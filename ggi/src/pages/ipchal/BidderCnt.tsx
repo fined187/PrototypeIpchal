@@ -11,6 +11,22 @@ interface BidderCntProps {
 
 export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
   const stateNum = useSetRecoilState(stepState);
+
+  const handleBiddingNum = (e: HTMLInputElement) => {
+    const value = e.value;
+    if (value === '') {
+      setFormData({
+        ...formData,
+        bidderNum: 1,
+      });
+    } else {
+      setFormData({
+        ...formData,
+        bidderNum: Number(value),
+      });
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col w-full justify-center items-center bg-white-500 h-screen relative">
@@ -28,12 +44,12 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
               <input 
                 className="w-[100px] h-[40px] border-2 border-gray-200 rounded-lg text-center focus:outline-none focus:border-blue-600"
                 type="number"
-                value={formData.bidderNum <= 0 ? '' : formData.bidderNum}
                 onChange={(e) => {
                   setFormData({
                     ...formData,
                     bidderNum: Number(e.target.value),
                   });
+                  handleBiddingNum(e.target);
                 }}
               />
               <span className="text-lg font-semibold ml-2">
@@ -49,7 +65,7 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
               이전
             </span>
           </div>
-          <div  className="flex rounded-2xl bg-gray-200 w-[80px] h-[35px] justify-center items-center cursor-pointer hover:bg-gray-200" onClick={() => stateNum(3)}>
+          <div  className="flex rounded-2xl bg-gray-200 w-[80px] h-[35px] justify-center items-center cursor-pointer hover:bg-gray-200" onClick={() => stateNum(4)}>
             <span className="text-gray-700">
               다음
             </span>

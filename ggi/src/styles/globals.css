@@ -2,20 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* PC nav__bar */
-.nav__bar {
-	@apply flex justify-between bg-emerald-300 w-full h-16 items-center;
+/* Navbar */
+
+.navebar {
+	@apply flex relative w-full
 }
 
-.nav__bar__logo {
-	@apply flex;
-}
-
-.nav__bar--title {
-	@apply text-xl font-bold text-white mx-auto;
-}
-
-/* mobile nav-bar */
-.nav__bar__mobile--close {
-	@apply md:hidden;
+.nav__bar-title {
+	@apply flex flex-row text-lg absolute right-0 top-0 mt-2 ml-2
 }

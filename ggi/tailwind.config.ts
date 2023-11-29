@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss'
 
+const colors = require('tailwindcss/colors');
+
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -14,6 +16,31 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
+    colors: {
+      mygold: '#C89C23',
+      white: colors.white,
+      black: colors.black,
+      gray: colors.gray,
+      blue: colors.blue,
+      red: colors.red,
+      yellow: colors.yellow,
+      green: colors.green,
+      indigo: colors.indigo,
+      purple: colors.purple,
+      pink: colors.pink,
+      teal: colors.teal,
+      orange: colors.orange,
+      cyan: colors.cyan,
+      lime: colors.lime,
+      emerald: colors.emerald,
+      rose: colors.rose,
+      fuchsia: colors.fuchsia,
+      violet: colors.violet,
+      amber: colors.amber,
+      lightBlue: colors.lightBlue,
+      sky: colors.sky,
+      mygray: '#8D8D8D'
+    }
   },
   plugins: [],
 }
