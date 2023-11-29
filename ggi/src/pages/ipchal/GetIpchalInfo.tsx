@@ -1,67 +1,80 @@
+import { stepState } from "@/atom";
+import { IpchalType } from "@/type/IpchalType";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { GrFormPrevious } from "react-icons/gr";
+import { GrFormNext } from "react-icons/gr";
+import { useSetRecoilState } from "recoil";
 
 interface GetIpchalInfoProps {
-  setIpchalStep: React.Dispatch<React.SetStateAction<number>>;
+  setIpchalStep?: React.Dispatch<React.SetStateAction<number>>;
+  setFormData?: React.Dispatch<React.SetStateAction<IpchalType>>;
+  formData?: IpchalType ;
 }
 
-export default function GetIpchalInfo({ setIpchalStep }: GetIpchalInfoProps) {
+export default function GetIpchalInfo({ setIpchalStep, setFormData, formData }: GetIpchalInfoProps) {
   //  idcode=A1423E3E3F3C3F3E3F403E3D473E3F47413E3C6&colmul_no=&startdate=20231212&bubnm=%BC%F6%BF%F810&ipchalamt=42428500&lowamt=424285000
-
   const router = useRouter();
-  console.log(router.asPath)
+  const { idcode, colmul_no, startdate, bubnm, ipchalamt, lowamt } = router.query;
+  
   const [ipchalInfo, setIpchalInfo] = useState({
+    sagunNum: '2023 타경 4016',
+    mulgunNum: '1',
+    ipchalDate: '2023-09-10',
+    addr: '서울특별시 강남구 역삼동 123-45',
+  });
 
-  })
+  const stateNum = useSetRecoilState(stepState);
+
   return (
     <>
       <div className="bg-white">
         <div className="relative isolate px-2 pt-0 lg:px-8">
-          <div
-            className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-            aria-hidden="true"
-          >
-          </div>
-          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+          <div className="mx-auto max-w-2xl py-20 ">
             <div className="text-center">
               <h1 className="text-xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 사건번호와 입찰일자를 확인해주세요.
               </h1>
-              <div className="mt-10 flex items-center justify-center gap-x-6">
-                <a
-                  href="#"
-                  className="
-                    rounded-md 
-                    bg-indigo-600 
-                    px-3.5 
-                    py-2.5 
-                    text-sm 
-                    font-semibold 
-                    text-white 
-                    shadow-sm 
-                    hover:bg-indigo-500 
-                    focus-visible:outline 
-                    focus-visible:outline-2 
-                    focus-visible:outline-offset-2 
-                    focus-visible:outline-indigo-600"
-                    onClick={() => setIpchalStep(2)}
-                >
-                  맞아요
-                </a>
+              <div>
+              <div className="px-4 sm:px-0 mt-10">
+                <h3 className="text-base font-semibold leading-7 text-gray-900">사건 정보</h3>
+              </div>
+              <div className="mt-6 border-t border-gray-100">
+                <dl className="divide-y divide-gray-100">
+                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt className="text-sm font-medium leading-6 text-gray-900">사건 번호</dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{ipchalInfo.sagunNum}</dd>
+                  </div>
+                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt className="text-sm font-medium leading-6 text-gray-900">물건 번호</dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{ipchalInfo.mulgunNum}</dd>
+                  </div>
+                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt className="text-sm font-medium leading-6 text-gray-900">입찰기일</dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{ipchalInfo.ipchalDate}</dd>
+                  </div>
+                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt className="text-sm font-medium leading-6 text-gray-900">주소</dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{ipchalInfo.addr}</dd>
+                  </div>
+                </dl>
               </div>
             </div>
-          </div>
-          <div
-            className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-            aria-hidden="true"
-          >
-            {/* <div
-              className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-              style={{
-                clipPath:
-                  'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-              }}
-            /> */}
+            <div className="flex flex-row w-full justify-between mt-20">
+              <div className="flex rounded-2xl bg-gray-200 w-[80px] h-[35px] justify-center items-center cursor-pointer hover:bg-gray-200" onClick={() => stateNum(0)}>
+                <GrFormPrevious className="text-gray-700" />
+                <span className="mr-1 text-gray-700">
+                  이전
+                </span>
+              </div>
+              <div className="flex rounded-2xl bg-gray-200 w-[80px] h-[35px] justify-center items-center cursor-pointer hover:bg-gray-200" onClick={() => stateNum(2)}>
+                <span className="text-gray-700">
+                  다음
+                </span>
+                <GrFormNext className="ml-1 text-gray-700" />
+              </div>
+            </div>
+            </div>
           </div>
         </div>
       </div>

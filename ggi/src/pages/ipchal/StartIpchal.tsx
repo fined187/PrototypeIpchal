@@ -1,8 +1,13 @@
+import { stepState } from "@/atom";
+import Link from "next/link";
+import { useSetRecoilState } from "recoil";
+
 interface StartIpchalProps {
-  setIpchalStep: React.Dispatch<React.SetStateAction<number>>;
+  setIpchalStep?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function StartIpchal({ setIpchalStep }: StartIpchalProps) {
+  const stateNum = useSetRecoilState(stepState);
   return (
     <>
       <div className="bg-white">
@@ -34,8 +39,7 @@ export default function StartIpchal({ setIpchalStep }: StartIpchalProps) {
                 다시 입찰표를 만들땐  개인정보를 다시 입력해주셔야 해요.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
-                <a
-                  href="#"
+                <div
                   className="
                     rounded-md 
                     bg-indigo-600 
@@ -50,10 +54,12 @@ export default function StartIpchal({ setIpchalStep }: StartIpchalProps) {
                     focus-visible:outline-2 
                     focus-visible:outline-offset-2 
                     focus-visible:outline-indigo-600"
-                    onClick={() => setIpchalStep(1)}
+                    onClick={() => {
+                      stateNum(1);
+                    }}
                 >
                   시작하기
-                </a>
+                </div>
               </div>
             </div>
           </div>

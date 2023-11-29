@@ -16,8 +16,11 @@ export default function Layout({ children }: Props) {
 			setMenuTitle("입찰 시작하기");
 		} else if (stepStateNum === 1) {
 			setMenuTitle("입찰정보 확인");
+		} else if (stepStateNum === 2) {
+			setMenuTitle("대리인 확인");
 		}
 	}
+	console.log(stepStateNum);
 	useEffect(() => {
 		updateMenuTitle();
 	}, [stepStateNum]);
