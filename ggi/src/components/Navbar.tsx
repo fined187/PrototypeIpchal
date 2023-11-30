@@ -17,6 +17,8 @@ export default function Navbar() {
 			setMenuTitle("대리인 확인");
 		} else if (stepStateNum === 3) {
 			setMenuTitle("입찰자 수");
+		} else if (stepStateNum === 4) {
+			setMenuTitle("입찰자 본인 정보");
 		}
 	}
 
@@ -24,10 +26,8 @@ export default function Navbar() {
 		updateMenuTitle();
 	}, [stepStateNum]);
 
-	console.log(stepStateNum);
-
 	return (
-			<div className="nav__bar">
+			<div className={`flex relative w-full h-20 ${stepStateNum === 0 ? 'bg-white' : 'bg-mybg'}`}>
 					{stepStateNum === 0 ? (
 						<div className="flex relative w-full">
 							<div className="flex flex-row absolute top-0 right-0">
@@ -42,7 +42,7 @@ export default function Navbar() {
 					): (
 						<>
 							<div className="nav__bar-title">
-								<span>{menuTitle}</span>
+								<span className="text-mygold text-sm font-extrabold font-nanum leading-3 mt-1 not-italic">{menuTitle}</span>
 								<div className="flex relative">
 									<div>
 										<svg width="20" height="20" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,5 @@
 import { stepState } from "@/atom";
 import Image from "next/image";
-import Link from "next/link";
 import { useSetRecoilState } from "recoil";
 
 
@@ -24,7 +23,7 @@ export default function StartIpchal() {
               height={300}
             />
           </div>
-          <div className="flex absolute top-[445px] bg-mygold w-[163px] h-[30px] rounded-lg items-center justify-center cursor-pointer">
+          <div className="flex absolute top-[445px] bg-mygold w-[163px] h-[30px] rounded-lg items-center justify-center cursor-pointer" onClick={() => stateNum(1)}>
             <span className="text-white text-sm font-nanum font-extrabold not-italic leading-4">
               시작하기
             </span>

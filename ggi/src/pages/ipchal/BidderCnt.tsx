@@ -1,8 +1,8 @@
 import { stepState } from "@/atom";
-import { IpchalType } from "@/type/IpchalType";
+import Button from "@/components/Button";
+import { IpchalType } from "@/interface/IpchalType";
 import { Dispatch, SetStateAction } from "react";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 interface BidderCntProps {
   setFormData: Dispatch<SetStateAction<IpchalType>>;
@@ -10,7 +10,8 @@ interface BidderCntProps {
 }
 
 export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
-  const stateNum = useSetRecoilState(stepState);
+  const setStateNum = useSetRecoilState(stepState);
+  const stateNum = useRecoilValue(stepState);
 
   const handleBiddingNum = (e: HTMLInputElement) => {
     const value = e.value;
@@ -29,49 +30,37 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
 
   return (
     <>
-      <div className="flex flex-col w-full justify-center items-center bg-white-500 h-screen relative">
-        <div className="relative flex justify-center md:w-[30%] h-[80%] w-full">
-          <div className="flex absolute top-0">
-            <span className="font-semibold md:text-2xl text-xl">
-              입찰하시는 분이 몇 분 이신가요?
-            </span>
+      <div className="flex justify-center relative">
+        <div className="flex flex-col w-full h-screen bg-mybg items-center text-center">
+          <div className="flex">
+            <span className="text-lg font-extrabold font-nanum not-italic leading-8">입찰하시는 분이 몇 명 이신가요?</span>
           </div>
-          <div className="absolute top-[150px]">
-            <div className="flex flex-row justify-center items-center">
-              <span className="text-lg font-semibold mr-5">
-                입찰자 수
-              </span>
-              <input 
-                className="w-[100px] h-[40px] border-2 border-gray-200 rounded-lg text-center focus:outline-none focus:border-blue-600"
-                type="number"
-                onChange={(e) => {
-                  setFormData({
-                    ...formData,
-                    bidderNum: Number(e.target.value),
-                  });
-                  handleBiddingNum(e.target);
-                }}
-              />
-              <span className="text-lg font-semibold ml-2">
-                명
-              </span>
+          <div className="flex flex-col gap-10 w-[327px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+            <div className="absolute top-[113px]">
+              <div className="flex flex-row justify-center items-center">
+                <span className="text-[15px] font-semibold mr-5">
+                  입찰자 수
+                </span>
+                <input 
+                  className="w-[70px] h-[30px] border-2 border-myyellow focus:border-myyellow rounded-md text-center focus:outline-none focus:border-blue-600"
+                  type="number"
+                  defaultValue={1}
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      bidderNum: Number(e.target.value),
+                    });
+                    handleBiddingNum(e.target);
+                  }}
+                />
+                <span className="text-[15px] font-bold font-nanum leading-[30px] ml-2">
+                  명
+                </span>
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center w-full gap-[50%] md:gap-[10%] absolute top-[400px] md:top-[500px]">
-          <div className="flex rounded-2xl bg-gray-200 w-[80px] h-[35px] justify-center items-center cursor-pointer hover:bg-gray-200" onClick={() => stateNum(2)}>
-            <GrFormPrevious className="text-gray-700" />
-            <span className="mr-1 text-gray-700">
-              이전
-            </span>
-          </div>
-          <div  className="flex rounded-2xl bg-gray-200 w-[80px] h-[35px] justify-center items-center cursor-pointer hover:bg-gray-200" onClick={() => stateNum(4)}>
-            <span className="text-gray-700">
-              다음
-            </span>
-            <GrFormNext className="ml-1 text-gray-700" />
-          </div>
-        </div>
+        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
       </div>
     </>
   )

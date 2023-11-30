@@ -20,7 +20,6 @@ const config: Config = {
       },
     },
     colors: {
-      mygold: '#C89C23',
       white: colors.white,
       black: colors.black,
       gray: colors.gray,
@@ -42,7 +41,13 @@ const config: Config = {
       amber: colors.amber,
       lightBlue: colors.lightBlue,
       sky: colors.sky,
-      mygray: '#8D8D8D'
+      mygray: '#8D8D8D',
+      mybg: '#F6F6F6',
+      myborder: '#E0E0E0',
+      mygold: '#C89C23',
+      mygraybg: '#D1D1D1',
+      myyellow: '#D3AB3B',
+      myRed: '#FF0000'
     }
   },
   plugins: [],

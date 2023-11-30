@@ -10,4 +10,15 @@ export interface IpchalType {
   biddingPrice: number;
   depositPrice: number;
   bidWay: string;
+  bidName: string;
+  bidPhone1: string;
+  bidPhone2: string;
+  bidPhone3: string;
+  bidIdNum1: string;
+  bidIdNum2: string;
+  bidAddr: string;
+  bidAddrDetail: string;
+  bidCorpNum1: string;
+  bidCorpNum2: string;
+  bidCorpNum3: string;
 }
