@@ -1,11 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Navbar */
 
-.navebar {
-	@apply flex relative w-full
+.nav__bar {
+	@apply flex relative w-full h-20
 }
 
 .nav__bar-title {
