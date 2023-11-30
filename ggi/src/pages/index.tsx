@@ -33,6 +33,8 @@ export default function Home() {
     bidCorpNum1: '',
     bidCorpNum2: '',
     bidCorpNum3: '',
+    bidCorpRegiNum1: '',
+    bidCorpRegiNum2: '',
   });
 
   return (

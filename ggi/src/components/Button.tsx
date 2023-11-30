@@ -36,7 +36,7 @@ export default function Button({ prevStepNum, nextStepNum, isSelected, formData,
           stateNum === 2 ? handleNextStep() : setStateNum(nextStepNum)
         }}
         >
-          <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">확인</span>
+          <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">{stateNum <= 3 ? '확인' : '다음'}</span>
         </button>
       </div>
     </>

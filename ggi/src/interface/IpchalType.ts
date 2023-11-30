@@ -21,4 +21,6 @@ export interface IpchalType {
   bidCorpNum1: string;
   bidCorpNum2: string;
   bidCorpNum3: string;
+  bidCorpRegiNum1: string;
+  bidCorpRegiNum2: string;
 }
