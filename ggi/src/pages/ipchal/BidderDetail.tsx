@@ -1,16 +1,30 @@
 import { stepState } from "@/atom";
 import Button from "@/components/Button";
 import { IpchalType } from "@/interface/IpchalType";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState, useCallback, useEffect } from "react";
 import { useRef } from "react";
 import { useRecoilValue } from "recoil";
+import { SearchAddress } from "../api/address/SearchAddress";
 
 interface BidderDetailProps {
   formData: IpchalType;
   setFormData: Dispatch<SetStateAction<IpchalType>>;
 }
 
-export default function BidderDetail({ formData, setFormData}: BidderDetailProps) {
+interface AddrType {
+  roadAddrPart1: string;
+  addrDetail?: string;
+  roadAddrPart2: string;
+  zipNo?: string;
+}
+
+export default function BidderDetail({ formData, setFormData }: BidderDetailProps) {
+  const confmKey = process.env.NEXT_PUBLIC_ADDR_API_KEY;
+  const returnUrl = 'https://business.juso.go.kr';
+  const resultType = '4';
+  const useDetailAddress = 'Y';
+
+  const popupRef = useRef<Window | null>(null);
   const stateNum = useRecoilValue(stepState);
 
   //  사업자등록번호 input focus 이동
@@ -39,10 +53,45 @@ export default function BidderDetail({ formData, setFormData}: BidderDetailProps
     }
   };
 
+  const openAddressPopup = () => {
+    const url = `https://business.juso.go.kr/addrlink/addrLinkUrl.do?confmKey=${confmKey}&returnUrl=${returnUrl}&resultType=${resultType}&useDetailAddress=${useDetailAddress}`;
+    popupRef.current = typeof window !== 'undefined' ? window.open(url, "pop", "width=570,height=420, scrollbars=yes, resizable=yes") : null;
+  };
+
+  const channel = new MessageChannel();
+  const iframe = document.querySelector('iframe');
+
+  iframe?.contentWindow?.postMessage('hello', '*', [channel.port2]);
+  channel.port1.onmessage = (event) => {
+    console.log(event.data);
+  };
+
+  window.addEventListener('message', (event) => {
+    if (event.origin !== 'https://business.juso.go.kr') {
+      return;
+    }
+    const [port2] = event.ports;
+    port2.postMessage('hello');
+    port2.onmessage = (event) => console.log(event.data);
+  });
+
+  const closePopup = useCallback(() => {
+    if (popupRef.current) {
+      popupRef.current.close();
+    }
+  }, [popupRef.current]);
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', () => {
+      closePopup();
+    })
+    return closePopup;
+  }, [closePopup]);
+
   return (
     <>
-      <div className="flex justify-center relative">
-        <div className="flex flex-col gap-4 w-full h-screen bg-mybg items-center text-center">
+      <div className="flex w-full bg-mybg justify-center relative">
+        <div className="flex flex-col gap-4 md:w-[20%] w-full h-screen bg-mybg items-center text-center">
           <div className="flex">
             <span className="text-lg font-extrabold font-nanum not-italic leading-8">입찰자 정보를 입력해주세요</span>
           </div>
@@ -235,10 +284,14 @@ export default function BidderDetail({ formData, setFormData}: BidderDetailProps
             )
           }
           <div className="flex flex-col w-[80%] h-[60px] gap-1">
-            <div className="flex">
+            <div className="flex flex-row justify-between">
               <span className="text-[10px] font-nanum not-italic font-extrabold text-left">주소</span>
+              <button className="text-[12px] font-nanum not-italic font-extrabold" onClick={openAddressPopup}>
+                주소검색
+              </button>
             </div>
             <input 
+              id="bidAddr"
               type="text"
               className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[100%]"
               value={formData?.bidAddr}

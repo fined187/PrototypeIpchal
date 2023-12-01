@@ -12,10 +12,9 @@ interface BidderCntProps {
 export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
   const setStateNum = useSetRecoilState(stepState);
   const stateNum = useRecoilValue(stepState);
-
   const handleBiddingNum = (e: HTMLInputElement) => {
     const value = e.value;
-    if (value === '') {
+    if (value === '' || parseInt(value) <= 0) {
       setFormData({
         ...formData,
         bidderNum: 1,
@@ -43,8 +42,7 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
                 </span>
                 <input 
                   className="w-[70px] h-[30px] border-2 border-myyellow focus:border-myyellow rounded-md text-center focus:outline-none focus:border-blue-600"
-                  type="number"
-                  defaultValue={1}
+                  type="text"
                   onChange={(e) => {
                     setFormData({
                       ...formData,
