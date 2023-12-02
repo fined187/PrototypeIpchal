@@ -19,12 +19,6 @@ interface AddrType {
 }
 
 export default function BidderDetail({ formData, setFormData }: BidderDetailProps) {
-  const confmKey = process.env.NEXT_PUBLIC_ADDR_API_KEY;
-  const returnUrl = 'https://business.juso.go.kr';
-  const resultType = '4';
-  const useDetailAddress = 'Y';
-
-  const popupRef = useRef<Window | null>(null);
   const stateNum = useRecoilValue(stepState);
 
   //  사업자등록번호 input focus 이동
@@ -52,41 +46,6 @@ export default function BidderDetail({ formData, setFormData }: BidderDetailProp
       focusRef3.current?.focus();
     }
   };
-
-  const openAddressPopup = () => {
-    const url = `https://business.juso.go.kr/addrlink/addrLinkUrl.do?confmKey=${confmKey}&returnUrl=${returnUrl}&resultType=${resultType}&useDetailAddress=${useDetailAddress}`;
-    popupRef.current = typeof window !== 'undefined' ? window.open(url, "pop", "width=570,height=420, scrollbars=yes, resizable=yes") : null;
-  };
-
-  const channel = new MessageChannel();
-  const iframe = document.querySelector('iframe');
-
-  iframe?.contentWindow?.postMessage('hello', '*', [channel.port2]);
-  channel.port1.onmessage = (event) => {
-    console.log(event.data);
-  };
-
-  window.addEventListener('message', (event) => {
-    if (event.origin !== 'https://business.juso.go.kr') {
-      return;
-    }
-    const [port2] = event.ports;
-    port2.postMessage('hello');
-    port2.onmessage = (event) => console.log(event.data);
-  });
-
-  const closePopup = useCallback(() => {
-    if (popupRef.current) {
-      popupRef.current.close();
-    }
-  }, [popupRef.current]);
-
-  useEffect(() => {
-    window.addEventListener('beforeunload', () => {
-      closePopup();
-    })
-    return closePopup;
-  }, [closePopup]);
 
   return (
       <div className="flex w-full bg-mybg justify-center relative">

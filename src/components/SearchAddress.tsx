@@ -1,22 +1,23 @@
 import { IpchalType } from "@/interface/IpchalType"
-import { Dispatch, SetStateAction, useRef, useState, Fragment } from "react"
+import { Dispatch, SetStateAction, useRef, useState, Fragment, useEffect } from "react"
 import { Dialog, Transition } from '@headlessui/react'
 import baseApiInstance from "@/pages/api/address";
+import Pagination from "./Pagination";
 
 interface SearchAddressProps {
   formData: IpchalType,
   setFormData: Dispatch<SetStateAction<IpchalType>>
 }
-const confmKey = process.env.NEXT_PUBLIC_ADDR_API_KEY;
-const returnUrl = 'https://business.juso.go.kr';
-const resultType = '4';
-const useDetailAddress = 'Y';
 
 export default function SearchAddress({ formData, setFormData }: SearchAddressProps) {
-//U01TX0FVVEgyMDIzMTIwMTA5MTQwNzExNDMyNDE=
   const [isOpen, setIsOpen] = useState(false);
   const [searchAddr, setSearchAddr] = useState<string>('');
-  const cancelButtonRef = useRef(null)
+  const cancelButtonRef = useRef(null);
+
+  const [emptyView, setEmptyView] = useState<boolean>(false); // 검색결과 없을 때 뷰
+  const [addrList, setAddrList] = useState([]);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
@@ -26,42 +27,59 @@ export default function SearchAddress({ formData, setFormData }: SearchAddressPr
     setSearchAddr(e.value);
   };
 
-  const handleSearch = async(keyword: string) => {
+  const handleSearch = async(keyword: string, page: number) => {
     const param = {
       confmKey: process.env.NEXT_PUBLIC_ADDR_API_KEY,
       resultType: 'json',
-      currentPage: 1,
+      currentPage: page,
       countPerPage: 10,
-      keyword: searchAddr,
+      keyword: keyword,
     };
     try {
       const result = await baseApiInstance.get('/addrlink/addrLinkApi.do', { params: param });
       if (result) {
         console.log(result);
+        setEmptyView(true);
+        setAddrList(result.data.results.juso);
+        setTotalCount(result.data.results.common.totalCount);
       }
+      setEmptyView(false);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const pageUpClick = () => {
+    if (currentPage === Math.ceil(totalCount / 10)) {
+      return;
+    } else {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    if (searchAddr.length > 0) {
+      handleSearch(searchAddr, currentPage);
+    }
+  }, [currentPage]);
+
   return (
     <>
       <div className="flex flex-col w-[80%] h-[60px] gap-1">
-        <div className="flex flex-row justify-between">
+        <div className="flex">
           <span className="text-[10px] font-nanum not-italic font-extrabold text-left">주소</span>
-          <button className="text-[12px] font-nanum not-italic font-extrabold" onClick={handleModal}>
+        </div>
+        <div className="flex flex-row justify-between gap-[5%]">
+          <input 
+            readOnly
+            type="text"
+            className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[70%]"
+            value={formData?.bidAddr}
+          />
+          <button className="text-white text-[12px] bg-myyellow rounded-md font-nanum not-italic font-bold w-[25%]" onClick={handleModal}>
             주소검색
           </button>
         </div>
-        <input 
-          id="bidAddr"
-          type="text"
-          className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[100%]"
-          value={formData?.bidAddr}
-          onChange={(e) => {
-            setFormData({...formData, bidAddr: e.target.value})
-          }}
-        />
       </div>
       <div className="flex flex-col w-[80%] h-[60px] gap-1">
         <div className="flex">
@@ -129,8 +147,8 @@ export default function SearchAddress({ formData, setFormData }: SearchAddressPr
                                 text-center
                                 cursor-pointer
                                 border 
-                                border-gray-300 
-                                focus:border-myyellow 
+                                border-blue-300
+                                hover:bg-blue-300
                                 rounded-md 
                                 text-[12px] 
                                 font-nanum 
@@ -140,12 +158,49 @@ export default function SearchAddress({ formData, setFormData }: SearchAddressPr
                                 h-[30px] 
                                 px-2 
                                 w-[20%]
+                                bg-blue-500
+                                text-white
                               "
-                              onClick={() => handleSearch(searchAddr)}
+                              onClick={() => handleSearch(searchAddr, currentPage)}
                             >
                               검색
                             </button>
                           </div>
+                          <div className={`flex w-full text-left ${addrList.length === 0 ? '' : 'border border-spacing-1'} mt-1 rounded-md`}>
+                            {addrList.length > 0 && !emptyView && (
+                              <div className="w-full">
+                                {addrList.map((addr: any, index: number) => (
+                                  <div key={index} className="flex w-full h-[50px] border-b-[1px]">
+                                    <button
+                                      className="text-[12px] w-full text-left px-2 font-nanum not-italic font-extrabold cursor-pointer"
+                                      onClick={() => {
+                                        setFormData({...formData, bidAddr: addr.roadAddrPart1});
+                                        setAddrList([]);
+                                        setIsOpen(false);
+                                        setEmptyView(false);
+                                      }}
+                                    >
+                                      {addr.roadAddrPart1}
+                                    </button>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                            {addrList.length === 0 && emptyView && (
+                              <div className="w-full text-center items-center justify-center h-[50px]">
+                                <span className="text-[12px] font-nanum not-italic font-extrabold text-left">검색결과가 없습니다.</span>
+                              </div>
+                            )}
+                          </div>
+                          {addrList.length > 0 && !emptyView && (
+                            <Pagination 
+                              totalCount={totalCount}
+                              currentPage={currentPage}
+                              setCurrentPage={setCurrentPage}
+                              pageUpClick={pageUpClick}
+                              pageDownClick={() => setCurrentPage(currentPage - 1)}
+                            />
+                          )}
                         </div>
                       </div>
                     </div>
@@ -160,7 +215,10 @@ export default function SearchAddress({ formData, setFormData }: SearchAddressPr
                       <button
                         type="button"
                         className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                        onClick={() => setIsOpen(false)}
+                        onClick={() => {
+                          setIsOpen(false);
+                          setAddrList([]);
+                        }}
                         ref={cancelButtonRef}
                       >
                         취소
