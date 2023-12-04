@@ -9,6 +9,7 @@ interface ButtonProps {
   isSelected?: boolean;
   formData?: IpchalType;
   setIsSelected?: Dispatch<SetStateAction<boolean>>;
+  goNext?: boolean;
 }
 
 export default function Button({
@@ -17,21 +18,28 @@ export default function Button({
   isSelected,
   formData,
   setIsSelected,
+  goNext,
 }: ButtonProps) {
   const setStateNum = useSetRecoilState(stepState);
   const stateNum = useRecoilValue(stepState);
 
   const handleNextStep = () => {
-    if (
-      typeof setIsSelected !== "undefined" &&
-      typeof formData !== "undefined"
-    ) {
-      if (formData?.bidder === "") {
-        setIsSelected(false);
-      } else {
-        setIsSelected(true);
-        setStateNum(nextStepNum);
+    if (stateNum === 2) {
+      if (
+        typeof setIsSelected !== "undefined" &&
+        typeof formData !== "undefined"
+      ) {
+        if (formData?.bidder === "") {
+          setIsSelected(false);
+        } else {
+          setIsSelected(true);
+          setStateNum(nextStepNum);
+        }
       }
+    } else if (stateNum === 4) {
+      return;
+    } else {
+      setStateNum(nextStepNum);
     }
   };
 
@@ -49,9 +57,10 @@ export default function Button({
         </button>
         <button
           type="button"
+          disabled={goNext}
           className="flex w-[229px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
-            stateNum === 2 ? handleNextStep() : setStateNum(nextStepNum);
+            handleNextStep();
           }}
         >
           <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">

@@ -147,8 +147,13 @@ export default function PopupContent({
                           <div
                             className="flex cursor-pointer"
                             onClick={() => {
-                              setIsOpen(false)
-                              setDetailAddr(false)
+                              setIsOpen(false);
+                              setDetailAddr(false);
+                              setFormData({
+                                ...formData,
+                                bidAddr: "",
+                                bidAddrDetail: "",
+                              });
                             }}
                           >
                             <IoClose className="flex" size={20} />
@@ -301,132 +306,155 @@ export default function PopupContent({
                               {addrList.length > 0 && !emptyView && (
                                 <>
                                   <div className="w-full">
-                                    {addrList.map((addr: any, index: number) => (
-                                      <div
-                                        key={index}
-                                        className={`flex flex-row justify-between sm:overflow-hidden overflow-y-auto w-full items-center h-[100px] sm:max-h-[150px] sm:min-h-[100px] border-b-[1px] ${
-                                          index % 2 === 0
-                                            ? "bg-gray-50 hover:bg-gray-100"
-                                            : "bg-white hover:bg-gray-100"
-                                        }`}
-                                      >
-                                        <div className="relative px-2 w-full flex flex-row justify-between items-center">
-                                          <span className="text-left text-[12px] font-nanum not-italic font-normal ml-1">
-                                            {currentPage === 1
-                                              ? index + 1
-                                              : (currentPage - 1) * 5 + index + 1}
-                                          </span>
-                                          <div className="flex flex-col flex-wrap sm:max-w-[300px] max-w-[240px] absolute left-8">
-                                            <span
-                                              className="text-left text-[12px] font-nanum not-italic font-extrabold"
-                                              onClick={() => {
-                                                setFormData({
-                                                  ...formData,
-                                                  bidAddr: addr.roadAddrPart1,
-                                                });
-                                                setAddrList([]);
-                                                setEmptyView(false);
-                                                setDetailAddr(true)
-                                              }}
-                                            >
-                                              {addr.roadAddr}
+                                    {addrList.map(
+                                      (addr: any, index: number) => (
+                                        <div
+                                          key={index}
+                                          className={`flex flex-row justify-between sm:overflow-hidden overflow-y-auto w-full items-center h-[100px] sm:max-h-[150px] sm:min-h-[100px] border-b-[1px] ${
+                                            index % 2 === 0
+                                              ? "bg-gray-50 hover:bg-gray-100"
+                                              : "bg-white hover:bg-gray-100"
+                                          }`}
+                                        >
+                                          <div className="relative px-2 w-full flex flex-row justify-between items-center">
+                                            <span className="text-left text-[12px] font-nanum not-italic font-normal ml-1">
+                                              {currentPage === 1
+                                                ? index + 1
+                                                : (currentPage - 1) * 5 +
+                                                  index +
+                                                  1}
                                             </span>
-                                            <span className="text-left text-[11px] font-nanum not-italic font-normal">
-                                              {"[지번] " + addr.jibunAddr}
-                                            </span>
-                                            {detailOpen === index.toString() && (
-                                              <>
-                                                <div className="flex flex-row gap-1">
-                                                  <span className="text-xs text-myBlue">
-                                                    [관할주민센터]
+                                            <div className="flex flex-col flex-wrap sm:max-w-[300px] max-w-[240px] absolute left-8">
+                                              <span
+                                                className="text-left text-[12px] font-nanum not-italic font-extrabold"
+                                                onClick={() => {
+                                                  setFormData({
+                                                    ...formData,
+                                                    bidAddr: addr.roadAddrPart1,
+                                                  });
+                                                  setAddrList([]);
+                                                  setEmptyView(false);
+                                                  setDetailAddr(true);
+                                                }}
+                                              >
+                                                {addr.roadAddr}
+                                              </span>
+                                              <span className="text-left text-[11px] font-nanum not-italic font-normal">
+                                                {"[지번] " + addr.jibunAddr}
+                                              </span>
+                                              {detailOpen ===
+                                                index.toString() && (
+                                                <>
+                                                  <div className="flex flex-row gap-1">
+                                                    <span className="text-xs text-myBlue">
+                                                      [관할주민센터]
+                                                    </span>
+                                                    <span className="text-xs">
+                                                      {addr.hemdNm}
+                                                    </span>
+                                                  </div>
+                                                  <span className="text-xs font-nanum font-bold text-myBlue">
+                                                    ※ 관할주민센터는
+                                                    참고정보이며, 실제와 다를 수
+                                                    있습니다.
                                                   </span>
-                                                  <span className="text-xs">
-                                                    {addr.hemdNm}
+                                                </>
+                                              )}
+                                            </div>
+                                            <div className="flex flex-row gap-2 justify-end">
+                                              {detailOpen ===
+                                              index.toString() ? (
+                                                <div
+                                                  className="flex text-center items-center justify-center rounded-[5px] mr-1 bg-gray-400 w-[50px] h-[25px] cursor-pointer"
+                                                  onClick={() =>
+                                                    setDetailOpen("")
+                                                  }
+                                                >
+                                                  <span className="text-[10px] text-white">
+                                                    닫기
                                                   </span>
                                                 </div>
-                                                <span className="text-xs font-nanum font-bold text-myBlue">
-                                                  ※ 관할주민센터는 참고정보이며,
-                                                  실제와 다를 수 있습니다.
-                                                </span>
-                                              </>
-                                            )}
-                                          </div>
-                                          <div className="flex flex-row gap-2 justify-end">
-                                            {detailOpen === index.toString() ? (
-                                              <div
-                                                className="flex text-center items-center justify-center rounded-[5px] mr-1 bg-gray-400 w-[50px] h-[25px] cursor-pointer"
-                                                onClick={() => setDetailOpen("")}
-                                              >
-                                                <span className="text-[10px] text-white">
-                                                  닫기
-                                                </span>
-                                              </div>
-                                            ) : (
-                                              <div
-                                                className="flex bg-myBlue text-center items-center justify-center w-[50px] h-[25px] cursor-pointer rounded-[5px] mr-1"
-                                                onClick={() =>
-                                                  setDetailOpen(index.toString())
-                                                }
-                                              >
-                                                <span className="text-[10px] text-white">
-                                                  상세보기
-                                                </span>
-                                              </div>
-                                            )}
-                                            <span className="text-left text-[12px] font-nanum not-italic font-normal mr-1">
-                                              {addr.zipNo}
-                                            </span>
+                                              ) : (
+                                                <div
+                                                  className="flex bg-myBlue text-center items-center justify-center w-[50px] h-[25px] cursor-pointer rounded-[5px] mr-1"
+                                                  onClick={() =>
+                                                    setDetailOpen(
+                                                      index.toString(),
+                                                    )
+                                                  }
+                                                >
+                                                  <span className="text-[10px] text-white">
+                                                    상세보기
+                                                  </span>
+                                                </div>
+                                              )}
+                                              <span className="text-left text-[12px] font-nanum not-italic font-normal mr-1">
+                                                {addr.zipNo}
+                                              </span>
+                                            </div>
                                           </div>
                                         </div>
-                                      </div>
-                                    ))}
+                                      ),
+                                    )}
                                   </div>
                                 </>
                               )}
-                              {addrList.length === 0 && emptyView && !detailAddr && (
-                                <div className="w-full text-center items-center justify-center h-[50px]">
-                                  <span className="text-[12px] font-nanum not-italic font-extrabold text-left">
-                                    검색결과가 없습니다.
-                                  </span>
-                                </div>
-                              )}
+                              {addrList.length === 0 &&
+                                emptyView &&
+                                !detailAddr && (
+                                  <div className="w-full text-center items-center justify-center h-[50px]">
+                                    <span className="text-[12px] font-nanum not-italic font-extrabold text-left">
+                                      검색결과가 없습니다.
+                                    </span>
+                                  </div>
+                                )}
                             </div>
                           )}
                           {detailAddr && (
                             <div className="flex flex-col w-full h-[350px] p-1 relative">
                               <div className="flex justify-start">
-                                <span className="text-[12px] font-bold ">상세주소 입력</span>
+                                <span className="text-[12px] font-bold ">
+                                  상세주소 입력
+                                </span>
                               </div>
                               <div>
-                              <div className="border-t border-gray-300 mt-6 w-full h-[150px] flex flex-col justify-center">
-                                <div className="w-[100%] flex flex-row h-[30%]">
-                                  <div className="flex justify-center items-center w-[30%] h-[100%] bg-gray-100">
-                                    <span className="text-sm font-bold font-nanum">도로명주소</span>
+                                <div className="border-t border-gray-300 mt-6 w-full h-[150px] flex flex-col justify-center">
+                                  <div className="w-[100%] flex flex-row h-[30%]">
+                                    <div className="flex justify-center items-center w-[30%] h-[100%] bg-gray-100">
+                                      <span className="text-sm font-bold font-nanum">
+                                        도로명주소
+                                      </span>
+                                    </div>
+                                    <div className="w-[70%] h-[100%] flex justify-center items-center">
+                                      <span className="text-sm font-normal font-nanum">
+                                        {formData.bidAddr}
+                                      </span>
+                                    </div>
                                   </div>
-                                  <div className="w-[70%] h-[100%] flex justify-center items-center">
-                                    <span className="text-sm font-normal font-nanum">{formData.bidAddr}</span>
+                                  <div className="flex flex-row w-[100%] h-[70%] border-t border-b border-black-200">
+                                    <div className="flex justify-center items-center w-[30%] h-[100%] bg-gray-100">
+                                      <span className="text-sm font-bold font-nanum">
+                                        상세주소
+                                      </span>
+                                    </div>
+                                    <div className="flex w-[70%] h-[100%] justify-center items-center">
+                                      <input
+                                        type="text"
+                                        className="flex w-[90%] h-[50%] border border-gray-200"
+                                        onChange={(e) =>
+                                          handleDetailAddr(e.target)
+                                        }
+                                      />
+                                    </div>
                                   </div>
                                 </div>
-                                <div className="flex flex-row w-[100%] h-[70%] border-t border-b border-black-200">
-                                  <div className="flex justify-center items-center w-[30%] h-[100%] bg-gray-100">
-                                    <span className="text-sm font-bold font-nanum">상세주소</span>
-                                  </div>
-                                  <div className="flex w-[70%] h-[100%] justify-center items-center">
-                                    <input 
-                                      type="text"
-                                      className="flex w-[90%] h-[50%] border border-gray-200"
-                                      onChange={(e) => handleDetailAddr(e.target)}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
                               </div>
                               <div className="flex absolute bottom-0 left-[40%] w-[100%]">
-                                <div 
+                                <div
                                   className="flex justify-center items-center w-[100px] h-[40px] bg-blue-500 rounded-md cursor-pointer hover:bg-blue-300"
                                   onClick={() => {
-                                    setDetailAddr(false)
-                                    setIsOpen(false)
+                                    setDetailAddr(false);
+                                    setIsOpen(false);
                                   }}
                                 >
                                   <span className="text-sm text-white rounded-md">

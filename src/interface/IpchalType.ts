@@ -4,7 +4,7 @@ export interface IpchalType {
   ipchalDate: string;
   addr: string;
   bidder: string;
-  bidderNum: number;
+  bidderNum: string;
   CorpYn: string;
   distribute: string;
   biddingPrice: number;

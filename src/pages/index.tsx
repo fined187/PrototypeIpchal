@@ -16,7 +16,7 @@ export default function Home() {
     ipchalDate: "",
     addr: "",
     bidder: "",
-    bidderNum: 1,
+    bidderNum: "1",
     CorpYn: "N",
     distribute: "",
     biddingPrice: 0,

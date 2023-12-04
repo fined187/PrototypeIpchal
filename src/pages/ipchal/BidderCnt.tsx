@@ -1,8 +1,8 @@
 import { stepState } from "@/atom";
 import Button from "@/components/Button";
 import { IpchalType } from "@/interface/IpchalType";
-import { Dispatch, SetStateAction } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 
 interface BidderCntProps {
   setFormData: Dispatch<SetStateAction<IpchalType>>;
@@ -10,22 +10,29 @@ interface BidderCntProps {
 }
 
 export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
-  const setStateNum = useSetRecoilState(stepState);
   const stateNum = useRecoilValue(stepState);
+  const [errorMsg, setErrorMsg] = useState<boolean>(false);
+
   const handleBiddingNum = (e: HTMLInputElement) => {
     const value = e.value;
-    if (value === "" || parseInt(value) <= 0) {
-      setFormData({
-        ...formData,
-        bidderNum: 1,
-      });
-    } else {
-      setFormData({
-        ...formData,
-        bidderNum: Number(value),
-      });
-    }
+    setFormData({
+      ...formData,
+      bidderNum: value,
+    });
   };
+
+  useEffect(() => {
+    const handleBiddingNumError = () => {
+      if (formData?.bidderNum === "" || parseInt(formData?.bidderNum) <= 0) {
+        setErrorMsg(true);
+      } else {
+        setErrorMsg(false);
+      }
+    };
+    handleBiddingNumError();
+  }, [formData?.bidderNum]);
+  console.log(formData?.bidderNum);
+  console.log(errorMsg);
 
   return (
     <>
@@ -44,11 +51,12 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
                 </span>
                 <input
                   className="w-[70px] h-[30px] border-2 border-myyellow focus:border-myyellow rounded-md text-center focus:outline-none focus:border-blue-600"
+                  defaultValue={formData?.bidderNum}
                   type="text"
                   onChange={(e) => {
                     setFormData({
                       ...formData,
-                      bidderNum: Number(e.target.value),
+                      bidderNum: e.target.value,
                     });
                     handleBiddingNum(e.target);
                   }}
@@ -57,10 +65,21 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
                   명
                 </span>
               </div>
+              {errorMsg && (
+                <div className="mt-5">
+                  <span className="text-[12px] font-semibold text-red-500">
+                    입찰자는 1명 이상이어야 합니다.
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         </div>
-        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
+        <Button
+          prevStepNum={stateNum - 1}
+          nextStepNum={stateNum + 1}
+          goNext={errorMsg}
+        />
       </div>
     </>
   );
