@@ -33,6 +33,7 @@ export default function SearchAddress({
         </div>
         <div className="flex flex-row justify-between gap-[5%]">
           <input
+            id="bidAddr"
             readOnly
             type="text"
             className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[70%]"
@@ -53,6 +54,7 @@ export default function SearchAddress({
           </span>
         </div>
         <input
+          id="bidAddrDetail"
           type="text"
           readOnly
           className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[100%]"

@@ -39,20 +39,20 @@ export default function Home() {
   });
 
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({
-    bidderName: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderPhone1: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderPhone2: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderPhone3: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderIdNum1: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderIdNum2: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderAddr: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderAddrDetail: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderCorpNum1: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderCorpNum2: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderCorpNum3: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderCorpRegiNum1: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderCorpRegiNum2: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
-    bidderCorpYn: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderName: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderPhone1: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderPhone2: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderPhone3: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderIdNum1: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderIdNum2: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderAddr: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderAddrDetail: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderCorpNum1: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderCorpNum2: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderCorpNum3: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderCorpRegiNum1: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderCorpRegiNum2: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
+    bidderCorpYn: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill('N'),
   });
 
   return (

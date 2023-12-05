@@ -21,6 +21,7 @@ export default function BidderDetail({
 
   const setStateNum = useSetRecoilState(stepState);
   const stateNum = useRecoilValue(stepState);
+  const [stepNum, setStepNum] = useState<number>(1);
 
   //  각 입력폼에 대한 유효성 검사
   const [isValidName, setIsValidName] = useState<boolean>(true);
@@ -30,6 +31,7 @@ export default function BidderDetail({
   const [isValidAddr, setIsValidAddr] = useState<boolean>(true);
   const [isValidAddrDetail, setIsValidAddrDetail] = useState<boolean>(true);
   const [isValidCorpRegiNum, setIsValidCorpRegiNum] = useState<boolean>(true);
+
 
   //  사업자등록번호 input focus 이동
   const focusRef1 = useRef<HTMLInputElement | null>(null);
@@ -73,9 +75,83 @@ export default function BidderDetail({
     }
   };
 
-  const [stepNum, setStepNum] = useState<number>(1);
+  const handleClear = () => {
+    let temp = document.querySelectorAll("input");
+    temp.forEach((item) => {
+      item.value = '';
+    });
+  };
 
-  console.log(biddingInfo);
+  const handleValidation = (stepNum: number) => {
+    if (biddingInfo?.bidderName[stepNum] === '') {
+      setIsValidName(false);
+    } else {
+      setIsValidName(true);
+    }
+    if (biddingInfo?.bidderPhone1[stepNum] === '' || biddingInfo?.bidderPhone2[stepNum] === '' || biddingInfo?.bidderPhone3[stepNum] === '') {
+      setIsValidPhone(false);
+    } else {
+      setIsValidPhone(true);
+    }
+    if (biddingInfo?.bidderCorpYn[stepNum] === 'N') {
+      if (biddingInfo?.bidderIdNum1[stepNum] === '' || biddingInfo?.bidderIdNum2[stepNum] === '') {
+        setIsValidIdNum(false);
+      } else {
+        setIsValidIdNum(true);
+      }
+    } else {
+      if (biddingInfo?.bidderCorpNum1[stepNum] === '' || biddingInfo?.bidderCorpNum2[stepNum] === '' || biddingInfo?.bidderCorpNum3[stepNum] === '') {
+        setIsValidCorpNum(false);
+      } else {
+        setIsValidCorpNum(true);
+      }
+      if (biddingInfo?.bidderCorpRegiNum1[stepNum] === '' || biddingInfo?.bidderCorpRegiNum2[stepNum] === '') {
+        setIsValidCorpRegiNum(false);
+      } else {
+        setIsValidCorpRegiNum(true);
+      }
+    }
+    if (biddingInfo?.bidderAddr[stepNum] === '' || biddingInfo?.bidderAddrDetail[stepNum] === '') {
+      setIsValidAddr(false);
+      setIsValidAddrDetail(false);
+    } else {
+      setIsValidAddr(true);
+      setIsValidAddrDetail(true);
+    }
+    
+  };
+    
+  const handleNextStep = (stepNum: number) => {
+    if (stepNum + 1 === Number(formData.bidderNum)) {
+      if (biddingInfo?.bidderCorpYn[stepNum] === 'N') {
+        if (isValidName && isValidPhone && isValidIdNum && isValidAddr && isValidAddrDetail) {
+          setStateNum(stateNum + 1);
+        }
+      } else if (biddingInfo?.bidderCorpYn[stepNum] === 'Y') {
+        if (isValidName && isValidPhone && isValidCorpNum && isValidCorpRegiNum && isValidAddr && isValidAddrDetail) {
+          setStateNum(stateNum + 1);
+        }
+      }
+    } else {
+      if (biddingInfo?.bidderCorpYn[stepNum] === 'N') {
+        if (isValidName && isValidPhone && isValidIdNum && isValidAddr && isValidAddrDetail) {
+          setStepNum(stepNum + 2);
+          handleClear();
+        }
+      } else if (biddingInfo?.bidderCorpYn[stepNum] === 'Y') {
+        if (isValidName && isValidPhone && isValidCorpNum && isValidCorpRegiNum && isValidAddr && isValidAddrDetail) {
+          setStepNum(stepNum + 2);
+          handleClear();
+        }
+      } else {
+        alert('입력정보를 확인해주세요');
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleValidation(stepNum - 1);
+  }, [stepNum, biddingInfo]);
 
   return (
     <div className="flex w-full bg-mybg justify-center relative">
@@ -169,10 +245,11 @@ export default function BidderDetail({
               성명
             </span>
             <input
+              id="bidName"
               type="text"
               className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2"
               placeholder="입찰자 성명을 입력해주세요"
-              value={biddingInfo?.bidderName[stepNum - 1]}
+              value={biddingInfo?.bidderName[stepNum - 1] === '' ? '' : biddingInfo?.bidderName[stepNum - 1]}
               onChange={(e) => setBiddingInfo({ ...biddingInfo, bidderName: {...biddingInfo?.bidderName, [stepNum - 1]: e.target.value }})}
             />
           </div>
@@ -189,8 +266,8 @@ export default function BidderDetail({
             </span>
             <div className="flex flex-row gap-[5%]">
               <input
-                type="text"
                 id="bidPhone1"
+                type="text"
                 ref={phoneFocusRef1}
                 maxLength={3}
                 placeholder="010"
@@ -246,10 +323,11 @@ export default function BidderDetail({
                 </span>
                 <div className="flex flex-row gap-[5%]">
                   <input
+                    id="bidIdNum1"
                     type="text"
                     maxLength={6}
                     className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[45%] text-center"
-                    value={biddingInfo?.bidderIdNum1 && biddingInfo?.bidderIdNum1[stepNum - 1]}
+                    value={biddingInfo?.bidderIdNum1[stepNum - 1]}
                     onChange={(e) =>
                       setBiddingInfo({
                         ...biddingInfo,
@@ -261,10 +339,11 @@ export default function BidderDetail({
                     -
                   </span>
                   <input
+                    id="bidIdNum2"
                     type="text"
                     maxLength={7}
                     className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[45%] text-center"
-                    value={biddingInfo?.bidderIdNum2 && biddingInfo?.bidderIdNum2[stepNum - 1]}
+                    value={biddingInfo?.bidderIdNum2[stepNum - 1]}
                     onChange={(e) =>
                       setBiddingInfo({
                         ...biddingInfo,
@@ -350,13 +429,10 @@ export default function BidderDetail({
                     <input
                       type="text"
                       id="bidCorpRegiNum1"
-                      ref={focusRef1}
-                      maxLength={3}
                       className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[50%] text-center"
                       value={biddingInfo?.bidderCorpRegiNum1[stepNum - 1] && biddingInfo?.bidderCorpRegiNum1[stepNum - 1]}
                       onChange={(e) => {
                         setBiddingInfo({ ...biddingInfo, bidderCorpRegiNum1: {...biddingInfo?.bidderCorpRegiNum1, [stepNum - 1]: e.target.value }});
-                        handleFocusMove(e.target);
                       }}
                     />
                     <span className="flex text-mygray font-nanum font-normal">
@@ -365,13 +441,10 @@ export default function BidderDetail({
                     <input
                       type="text"
                       id="bidCorpRegiNum2"
-                      ref={focusRef2}
-                      maxLength={2}
                       className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[50%] text-center"
                       value={biddingInfo?.bidderCorpRegiNum2[stepNum - 1] && biddingInfo?.bidderCorpRegiNum2[stepNum - 1]}
                       onChange={(e) => {
                         setBiddingInfo({ ...biddingInfo, bidderCorpRegiNum2: {...biddingInfo?.bidderCorpRegiNum2, [stepNum - 1]: e.target.value }});
-                        handleFocusMove(e.target);
                       }}
                     />
                   </div>
@@ -400,7 +473,10 @@ export default function BidderDetail({
               <button
                 type="button"
                 className="flex w-[82px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-                onClick={() => setStateNum(stateNum - 1)}
+                onClick={() => {
+                  handleValidation(stepNum - 1);
+                  setStateNum(stateNum - 1)
+                }}
               >
                 <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
                   이전
@@ -410,7 +486,8 @@ export default function BidderDetail({
                 type="button"
                 className="flex w-[229px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
                 onClick={() => {
-                  console.log(biddingInfo);
+                  handleValidation(stepNum - 1);
+                  handleNextStep(stepNum - 1);
                 }}
               >
                 <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
