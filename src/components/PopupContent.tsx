@@ -1,4 +1,4 @@
-import { IpchalType } from "@/interface/IpchalType";
+import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
 import {
   Dispatch,
   SetStateAction,
@@ -15,15 +15,17 @@ import { IoClose } from "react-icons/io5";
 interface PopupContentProps {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  setFormData: Dispatch<SetStateAction<IpchalType>>;
-  formData: IpchalType;
+  biddingInfo: BiddingInfoType;
+  setBiddingInfo: Dispatch<SetStateAction<BiddingInfoType>>;
+  stepNum: number;
 }
 
 export default function PopupContent({
   isOpen,
   setIsOpen,
-  setFormData,
-  formData,
+  biddingInfo,
+  setBiddingInfo,
+  stepNum
 }: PopupContentProps) {
   const cancelButtonRef = useRef(null);
   const [searchAddr, setSearchAddr] = useState<string>("");
@@ -97,10 +99,10 @@ export default function PopupContent({
   };
 
   const handleDetailAddr = (e: HTMLInputElement) => {
-    setFormData({
-      ...formData,
-      bidAddrDetail: e.value,
-    });
+    setBiddingInfo({
+      ...biddingInfo,
+      bidderAddrDetail: {...(biddingInfo && biddingInfo?.bidderAddrDetail), [stepNum - 1] : e.value}
+    })
   };
 
   return (
@@ -149,10 +151,10 @@ export default function PopupContent({
                             onClick={() => {
                               setIsOpen(false);
                               setDetailAddr(false);
-                              setFormData({
-                                ...formData,
-                                bidAddr: "",
-                                bidAddrDetail: "",
+                              setBiddingInfo({
+                                ...biddingInfo,
+                                bidderAddr: {...(biddingInfo && biddingInfo?.bidderAddr), [stepNum - 1] : ''},
+                                bidderAddrDetail: {...(biddingInfo && biddingInfo?.bidderAddrDetail), [stepNum - 1] : ''}
                               });
                             }}
                           >
@@ -191,7 +193,6 @@ export default function PopupContent({
                                 font-nanum 
                                 not-italic 
                                 font-extrabold 
-                                text-left 
                                 h-[30px] 
                                 px-2 
                                 w-[20%]
@@ -211,14 +212,18 @@ export default function PopupContent({
                               checked={hstry}
                               onChange={() => setHstry(!hstry)}
                             />
-                            <div className="flex flex-row justify-between gap-2">
-                              <span className="sm:text-[12px] text-[10px]">
-                                변동된 주소 포함
-                              </span>
-                              <span className="text-[10px] text-blue-400 mt-[2px]">
-                                예) 도로명(반포대로 58), 건물명(독립기념관),
-                                지번(삼성동 25)
-                              </span>
+                            <div className="flex flex-row justify-between sm:gap-7 gap-5">
+                              <div className="flex justify-start">
+                                <span className="sm:text-[12px] text-[9px]">
+                                  주소 변동 포함
+                                </span>
+                              </div>
+                              <div className="flex justify-end">
+                                <span className="sm:text-[12px] text-[9px] text-blue-400 mt-[2px]">
+                                  예) 도로명(반포대로 58), 건물명(독립기념관),
+                                  지번(삼성동 25)
+                                </span>
+                              </div>
                             </div>
                           </div>
                           {addrList.length > 0 && !emptyView && !detailAddr && (
@@ -226,7 +231,7 @@ export default function PopupContent({
                               <div className="flex flex-row w-full justify-between py-1">
                                 <div className="flex flex-row">
                                   <span className="text-xs font-normal font-nanum">
-                                    도로명주소 검색 결과
+                                    검색 결과
                                   </span>
                                   <span className="text-xs font-bold text-blue-500 ml-1">
                                     {`(${totalCount}건)`}
@@ -301,16 +306,16 @@ export default function PopupContent({
                                 addrList.length === 0
                                   ? ""
                                   : "border border-spacing-1"
-                              } rounded-md`}
+                              } rounded-md overflow-y-scroll sm:overflow-hidden`}
                             >
                               {addrList.length > 0 && !emptyView && (
                                 <>
-                                  <div className="w-full">
+                                  <div className="w-full overflow-y-scroll sm:overflow-hidden">
                                     {addrList.map(
                                       (addr: any, index: number) => (
                                         <div
                                           key={index}
-                                          className={`flex flex-row justify-between sm:overflow-hidden overflow-y-auto w-full items-center h-[100px] sm:max-h-[150px] sm:min-h-[100px] border-b-[1px] ${
+                                          className={`flex flex-row justify-between sm:overflow-hidden overflow-y-auto w-full items-center h-[110px] sm:max-h-[150px] sm:min-h-[100px] border-b-[1px] ${
                                             index % 2 === 0
                                               ? "bg-gray-50 hover:bg-gray-100"
                                               : "bg-white hover:bg-gray-100"
@@ -324,14 +329,14 @@ export default function PopupContent({
                                                   index +
                                                   1}
                                             </span>
-                                            <div className="flex flex-col flex-wrap sm:max-w-[300px] max-w-[240px] absolute left-8">
+                                            <div className="flex flex-col flex-wrap sm:max-w-[300px] max-w-[200px] absolute left-8">
                                               <span
                                                 className="text-left text-[12px] font-nanum not-italic font-extrabold"
                                                 onClick={() => {
-                                                  setFormData({
-                                                    ...formData,
-                                                    bidAddr: addr.roadAddrPart1,
-                                                  });
+                                                  setBiddingInfo({
+                                                    ...biddingInfo,
+                                                    bidderAddr: {...(biddingInfo && biddingInfo?.bidderAddr), [stepNum - 1] : addr.roadAddr}
+                                                  })
                                                   setAddrList([]);
                                                   setEmptyView(false);
                                                   setDetailAddr(true);
@@ -346,10 +351,10 @@ export default function PopupContent({
                                                 index.toString() && (
                                                 <>
                                                   <div className="flex flex-row gap-1">
-                                                    <span className="text-xs text-myBlue">
+                                                    <span className="text-[10px] text-myBlue">
                                                       [관할주민센터]
                                                     </span>
-                                                    <span className="text-xs">
+                                                    <span className="text-[10px]">
                                                       {addr.hemdNm}
                                                     </span>
                                                   </div>
@@ -426,8 +431,8 @@ export default function PopupContent({
                                       </span>
                                     </div>
                                     <div className="w-[70%] h-[100%] flex justify-center items-center">
-                                      <span className="text-sm font-normal font-nanum">
-                                        {formData.bidAddr}
+                                      <span className="text-[12px] font-normal font-nanum">
+                                        {biddingInfo?.bidderAddr[stepNum - 1]}
                                       </span>
                                     </div>
                                   </div>
@@ -440,7 +445,7 @@ export default function PopupContent({
                                     <div className="flex w-[70%] h-[100%] justify-center items-center">
                                       <input
                                         type="text"
-                                        className="flex w-[90%] h-[50%] border border-gray-200"
+                                        className="flex w-[90%] h-[30%] border border-gray-200"
                                         onChange={(e) =>
                                           handleDetailAddr(e.target)
                                         }

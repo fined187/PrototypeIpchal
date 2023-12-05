@@ -1,15 +1,21 @@
-import { IpchalType } from "@/interface/IpchalType";
+import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
 import { Dispatch, SetStateAction, useState } from "react";
 import PopupContent from "./PopupContent";
 
 interface SearchAddressProps {
   formData: IpchalType;
   setFormData: Dispatch<SetStateAction<IpchalType>>;
+  biddingInfo: BiddingInfoType;
+  setBiddingInfo: Dispatch<SetStateAction<BiddingInfoType>>;
+  stepNum: number;
 }
 
 export default function SearchAddress({
   formData,
   setFormData,
+  biddingInfo,
+  setBiddingInfo,
+  stepNum
 }: SearchAddressProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -19,7 +25,7 @@ export default function SearchAddress({
 
   return (
     <>
-      <div className="flex flex-col w-[80%] h-[60px] gap-1">
+      <div className="flex flex-col w-[100%] h-[60px] gap-1">
         <div className="flex">
           <span className="text-[10px] font-nanum not-italic font-extrabold text-left">
             주소
@@ -30,7 +36,7 @@ export default function SearchAddress({
             readOnly
             type="text"
             className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[70%]"
-            value={formData?.bidAddr}
+            value={biddingInfo?.bidderAddr[stepNum - 1]}
           />
           <button
             className="text-white text-[12px] bg-myyellow rounded-md font-nanum not-italic font-bold w-[25%]"
@@ -40,7 +46,7 @@ export default function SearchAddress({
           </button>
         </div>
       </div>
-      <div className="flex flex-col w-[80%] h-[60px] gap-1">
+      <div className="flex flex-col w-[100%] h-[60px] gap-1">
         <div className="flex">
           <span className="text-[10px] font-nanum not-italic font-extrabold text-left">
             상세주소
@@ -50,17 +56,15 @@ export default function SearchAddress({
           type="text"
           readOnly
           className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[100%]"
-          value={formData?.bidAddrDetail}
-          onChange={(e) => {
-            setFormData({ ...formData, bidAddrDetail: e.target.value });
-          }}
+          value={biddingInfo?.bidderAddrDetail[stepNum - 1]}
         />
       </div>
       <PopupContent
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        formData={formData}
-        setFormData={setFormData}
+        biddingInfo={biddingInfo}
+        setBiddingInfo={setBiddingInfo}
+        stepNum={stepNum}
       />
     </>
   );

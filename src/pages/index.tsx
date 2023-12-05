@@ -3,10 +3,11 @@ import StartIpchal from "./ipchal/StartIpchal";
 import { stepState } from "@/atom";
 import GetIpchalInfo from "./ipchal/GetIpchalInfo";
 import { useState } from "react";
-import { IpchalType } from "@/interface/IpchalType";
+import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
 import BidderInfo from "./ipchal/BidderInfo";
 import BidderCnt from "./ipchal/BidderCnt";
 import BidderDetail from "./ipchal/BidderDetail";
+import ShareInfo from "./ipchal/ShareInfo";
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState);
@@ -16,7 +17,7 @@ export default function Home() {
     ipchalDate: "",
     addr: "",
     bidder: "",
-    bidderNum: "1",
+    bidderNum: 1,
     CorpYn: "N",
     distribute: "",
     biddingPrice: 0,
@@ -37,6 +38,23 @@ export default function Home() {
     bidCorpRegiNum2: "",
   });
 
+  const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({
+    bidderName: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderPhone1: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderPhone2: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderPhone3: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderIdNum1: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderIdNum2: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderAddr: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderAddrDetail: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderCorpNum1: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderCorpNum2: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderCorpNum3: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderCorpRegiNum1: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderCorpRegiNum2: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+    bidderCorpYn: Array((formData.bidderNum) < 1 ? 1 : (formData.bidderNum)).fill(''),
+  });
+
   return (
     <>
       {stateNum === 0 && <StartIpchal />}
@@ -50,7 +68,10 @@ export default function Home() {
         <BidderCnt formData={formData} setFormData={setFormData} />
       )}
       {stateNum === 4 && (
-        <BidderDetail formData={formData} setFormData={setFormData} />
+        <BidderDetail formData={formData} setFormData={setFormData} biddingInfo={biddingInfo} setBiddingInfo={setBiddingInfo}  />
+      )}
+      {stateNum === 5 && (
+        <ShareInfo formData={formData} setFormData={setFormData} />
       )}
     </>
   );

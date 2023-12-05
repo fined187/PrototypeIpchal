@@ -18,6 +18,8 @@ export default function Navbar() {
       setMenuTitle("입찰자 수");
     } else if (stepStateNum === 4) {
       setMenuTitle("입찰자 본인 정보");
+    } else if (stepStateNum === 5) {
+      setMenuTitle("공동 입찰자 지분");
     }
   };
 

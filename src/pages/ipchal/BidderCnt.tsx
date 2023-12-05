@@ -31,8 +31,6 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
     };
     handleBiddingNumError();
   }, [formData?.bidderNum]);
-  console.log(formData?.bidderNum);
-  console.log(errorMsg);
 
   return (
     <>
