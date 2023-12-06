@@ -125,11 +125,19 @@ export default function BidderDetail({
     if (stepNum + 1 === Number(formData.bidderNum)) {
       if (biddingInfo?.bidderCorpYn[stepNum] === 'N') {
         if (isValidName && isValidPhone && isValidIdNum && isValidAddr && isValidAddrDetail) {
-          setStateNum(stateNum + 1);
+          if (formData?.bidderNum > 1) {
+            setStateNum(stateNum + 1)
+          } else {
+            setStateNum(stateNum + 2);
+          }
         }
       } else if (biddingInfo?.bidderCorpYn[stepNum] === 'Y') {
         if (isValidName && isValidPhone && isValidCorpNum && isValidCorpRegiNum && isValidAddr && isValidAddrDetail) {
-          setStateNum(stateNum + 1);
+          if (formData?.bidderNum > 1) {
+            setStateNum(stateNum + 1)
+          } else {
+            setStateNum(stateNum + 2);
+          }
         }
       }
     } else {
@@ -149,9 +157,13 @@ export default function BidderDetail({
     }
   };
 
+  
+
   useEffect(() => {
     handleValidation(stepNum - 1);
   }, [stepNum, biddingInfo]);
+
+  console.log(biddingInfo);
 
   return (
     <div className="flex w-full bg-mybg justify-center relative">
@@ -173,7 +185,13 @@ export default function BidderDetail({
                 ? "text-white bg-myyellow"
                 : "text-myyellow bg-white"
             }`}
-            onClick={() => setBiddingInfo({ ...biddingInfo, bidderCorpYn: {...biddingInfo?.bidderCorpYn, [stepNum - 1]: "N" }})}
+            onClick={() => {
+              setBiddingInfo((prev: any) => {
+                const temp = prev.bidderCorpYn;
+                temp[stepNum - 1] = "N";
+                return { ...prev, bidderCorpYn: temp };
+              })
+            }}
           >
             <div
               className={`${biddingInfo?.bidderCorpYn[stepNum - 1] === "N" ? "flex mr-1" : "hidden"}`}
@@ -207,9 +225,13 @@ export default function BidderDetail({
                 ? "text-white bg-myyellow"
                 : "text-myyellow bg-white"
             }`}
-            onClick={() =>
-              setBiddingInfo({ ...biddingInfo, bidderCorpYn: {...biddingInfo?.bidderCorpYn, [stepNum - 1]: "Y" }})
-            }
+            onClick={() => {
+              setBiddingInfo((prev: any) => {
+                const temp = prev.bidderCorpYn;
+                temp[stepNum - 1] = "Y";
+                return { ...prev, bidderCorpYn: temp };
+              })
+            }}
           >
             <div
               className={`${biddingInfo?.bidderCorpYn[stepNum - 1] === 'Y' ? "flex mr-1" : "hidden"}`}
@@ -250,7 +272,11 @@ export default function BidderDetail({
               className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2"
               placeholder="입찰자 성명을 입력해주세요"
               value={biddingInfo?.bidderName[stepNum - 1] === '' ? '' : biddingInfo?.bidderName[stepNum - 1]}
-              onChange={(e) => setBiddingInfo({ ...biddingInfo, bidderName: {...biddingInfo?.bidderName, [stepNum - 1]: e.target.value }})}
+              onChange={(e) => setBiddingInfo((prev: any) => {
+                const temp = prev.bidderName;
+                temp[stepNum - 1] = e.target.value;
+                return { ...prev, bidderName: temp };
+              })}
             />
           </div>
           {!isValidName && (
@@ -274,7 +300,11 @@ export default function BidderDetail({
                 value={biddingInfo?.bidderPhone1[stepNum - 1]}
                 className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
                 onChange={(e) => {
-                  setBiddingInfo({ ...biddingInfo, bidderPhone1: {...biddingInfo?.bidderPhone1, [stepNum - 1]: e.target.value }});
+                  setBiddingInfo((prev: any) => {
+                    const temp = prev.bidderPhone1;
+                    temp[stepNum - 1] = e.target.value;
+                    return { ...prev, bidderPhone1: temp };
+                  })
                   handlePhoneFocusMove(e.target);
                 }}
               />
@@ -288,7 +318,11 @@ export default function BidderDetail({
                 className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
                 value={biddingInfo?.bidderPhone2[stepNum - 1]}
                 onChange={(e) => {
-                  setBiddingInfo({ ...biddingInfo, bidderPhone2: {...biddingInfo?.bidderPhone2, [stepNum - 1]: e.target.value }});
+                  setBiddingInfo((prev: any) => {
+                    const temp = prev.bidderPhone2;
+                    temp[stepNum - 1] = e.target.value;
+                    return { ...prev, bidderPhone2: temp };
+                  });
                   handlePhoneFocusMove(e.target);
                 }}
               />
@@ -302,7 +336,11 @@ export default function BidderDetail({
                 className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
                 value={biddingInfo?.bidderPhone3[stepNum - 1]}
                 onChange={(e) => {
-                  setBiddingInfo({ ...biddingInfo, bidderPhone3: {...biddingInfo?.bidderPhone3, [stepNum - 1]: e.target.value }});
+                  setBiddingInfo((prev: any) => {
+                    const temp = prev.bidderPhone3;
+                    temp[stepNum - 1] = e.target.value;
+                    return { ...prev, bidderPhone3: temp };
+                  });
                   handlePhoneFocusMove(e.target);
                 }}
               />
@@ -329,9 +367,10 @@ export default function BidderDetail({
                     className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[45%] text-center"
                     value={biddingInfo?.bidderIdNum1[stepNum - 1]}
                     onChange={(e) =>
-                      setBiddingInfo({
-                        ...biddingInfo,
-                        bidderIdNum1: {...biddingInfo?.bidderIdNum1, [stepNum - 1]: e.target.value }
+                      setBiddingInfo((prev: any) => {
+                        const temp = prev.bidderIdNum1;
+                        temp[stepNum - 1] = e.target.value;
+                        return { ...prev, bidderIdNum1: temp };
                       })
                     }
                   />
@@ -345,9 +384,10 @@ export default function BidderDetail({
                     className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[45%] text-center"
                     value={biddingInfo?.bidderIdNum2[stepNum - 1]}
                     onChange={(e) =>
-                      setBiddingInfo({
-                        ...biddingInfo,
-                        bidderIdNum2: {...biddingInfo?.bidderIdNum2, [stepNum - 1]: e.target.value }
+                      setBiddingInfo((prev: any) => {
+                        const temp = prev.bidderIdNum2;
+                        temp[stepNum - 1] = e.target.value;
+                        return { ...prev, bidderIdNum2: temp };
                       })
                     }
                   />
@@ -377,7 +417,11 @@ export default function BidderDetail({
                     className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
                     value={biddingInfo?.bidderCorpNum1[stepNum - 1] && biddingInfo?.bidderCorpNum1[stepNum - 1]}
                     onChange={(e) => {
-                      setBiddingInfo({ ...biddingInfo, bidderCorpNum1: {...biddingInfo?.bidderCorpNum1, [stepNum - 1]: e.target.value }});
+                      setBiddingInfo((prev: any) => {
+                        const temp = prev.bidderCorpNum1;
+                        temp[stepNum - 1] = e.target.value;
+                        return { ...prev, bidderCorpNum1: temp };
+                      })
                       handleFocusMove(e.target);
                     }}
                   />
@@ -393,7 +437,11 @@ export default function BidderDetail({
                     className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
                     value={biddingInfo?.bidderCorpNum2[stepNum - 1] && biddingInfo?.bidderCorpNum2[stepNum - 1]}
                     onChange={(e) => {
-                      setBiddingInfo({ ...biddingInfo, bidderCorpNum2: {...biddingInfo?.bidderCorpNum2, [stepNum - 1]: e.target.value }});
+                      setBiddingInfo((prev: any) => {
+                        const temp = prev.bidderCorpNum2;
+                        temp[stepNum - 1] = e.target.value;
+                        return { ...prev, bidderCorpNum2: temp };
+                      })
                       handleFocusMove(e.target);
                     }}
                   />
@@ -409,7 +457,11 @@ export default function BidderDetail({
                     className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
                     value={biddingInfo?.bidderCorpNum3[stepNum - 1] && biddingInfo?.bidderCorpNum3[stepNum - 1]}
                     onChange={(e) => {
-                      setBiddingInfo({ ...biddingInfo, bidderCorpNum3: {...biddingInfo?.bidderCorpNum3, [stepNum - 1]: e.target.value }});
+                      setBiddingInfo((prev: any) => {
+                        const temp = prev.bidderCorpNum3;
+                        temp[stepNum - 1] = e.target.value;
+                        return { ...prev, bidderCorpNum3: temp };
+                      })
                       handleFocusMove(e.target);
                     }}
                   />
@@ -432,7 +484,11 @@ export default function BidderDetail({
                       className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[50%] text-center"
                       value={biddingInfo?.bidderCorpRegiNum1[stepNum - 1] && biddingInfo?.bidderCorpRegiNum1[stepNum - 1]}
                       onChange={(e) => {
-                        setBiddingInfo({ ...biddingInfo, bidderCorpRegiNum1: {...biddingInfo?.bidderCorpRegiNum1, [stepNum - 1]: e.target.value }});
+                        setBiddingInfo((prev: any) => {
+                          const temp = prev.bidderCorpRegiNum1;
+                          temp[stepNum - 1] = e.target.value;
+                          return { ...prev, bidderCorpRegiNum1: temp }
+                        })
                       }}
                     />
                     <span className="flex text-mygray font-nanum font-normal">
@@ -444,7 +500,11 @@ export default function BidderDetail({
                       className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[50%] text-center"
                       value={biddingInfo?.bidderCorpRegiNum2[stepNum - 1] && biddingInfo?.bidderCorpRegiNum2[stepNum - 1]}
                       onChange={(e) => {
-                        setBiddingInfo({ ...biddingInfo, bidderCorpRegiNum2: {...biddingInfo?.bidderCorpRegiNum2, [stepNum - 1]: e.target.value }});
+                        setBiddingInfo((prev: any) => {
+                          const temp = prev.bidderCorpRegiNum2;
+                          temp[stepNum - 1] = e.target.value;
+                          return { ...prev, bidderCorpRegiNum2: temp }
+                        })
                       }}
                     />
                   </div>
@@ -475,7 +535,7 @@ export default function BidderDetail({
                 className="flex w-[82px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
                 onClick={() => {
                   handleValidation(stepNum - 1);
-                  setStateNum(stateNum - 1)
+                  {stepNum === 1 ? setStateNum(stateNum - 1) : setStepNum(stepNum - 1)}
                 }}
               >
                 <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">

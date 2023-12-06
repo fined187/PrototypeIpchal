@@ -1,3 +1,8 @@
+export interface DistributeType {
+  sharedName: string[];
+  sharedPercent: string[];
+}
+
 export interface IpchalType {
   sagunNum: string;
   mulgunNum: string;
@@ -6,7 +11,7 @@ export interface IpchalType {
   bidder: string;
   bidderNum: number;
   CorpYn: string;
-  distribute: string;
+  distribute: DistributeType;
   biddingPrice: number;
   depositPrice: number;
   bidWay: string;

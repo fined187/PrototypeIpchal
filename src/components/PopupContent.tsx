@@ -99,9 +99,13 @@ export default function PopupContent({
   };
 
   const handleDetailAddr = (e: HTMLInputElement) => {
-    setBiddingInfo({
-      ...biddingInfo,
-      bidderAddrDetail: {...(biddingInfo && biddingInfo?.bidderAddrDetail), [stepNum - 1] : e.value}
+    setBiddingInfo((prev: any) => {
+      const temp = prev.bidderAddrDetail;
+      temp[stepNum - 1] = e.value;
+      return {
+        ...prev,
+        bidderAddrDetail: temp,
+      };
     })
   };
 
@@ -333,10 +337,15 @@ export default function PopupContent({
                                               <span
                                                 className="text-left text-[12px] font-nanum not-italic font-extrabold"
                                                 onClick={() => {
-                                                  setBiddingInfo({
-                                                    ...biddingInfo,
-                                                    bidderAddr: {...(biddingInfo && biddingInfo?.bidderAddr), [stepNum - 1] : addr.roadAddr}
-                                                  })
+                                                  setBiddingInfo((prev: any) => {
+                                                    const temp = prev.bidderAddr;
+                                                    temp[stepNum - 1] =
+                                                      addr.roadAddr;
+                                                    return {
+                                                      ...prev,
+                                                      bidderAddr: temp,
+                                                    };
+                                                  });
                                                   setAddrList([]);
                                                   setEmptyView(false);
                                                   setDetailAddr(true);

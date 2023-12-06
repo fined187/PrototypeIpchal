@@ -24,7 +24,7 @@ export default function GetIpchalInfo({
               사건 번호와 입찰일자를 확인해주세요
             </span>
           </div>
-          <div className="flex w-[327px] h-[257px] bg-white absolute top-[107px] justify-center rounded-lg border-slate-500">
+          <div className="flex w-[360px] h-[257px] bg-white absolute top-[107px] justify-center rounded-lg border-slate-500">
             <div className="flex flex-row absolute top-8 border-b w-[80%] border-gray-200">
               <span className="text-black text-[15px] tracking-[-0.45px] font-extrabold mb-3 font-nanum leading-9">
                 사건번호:{" "}

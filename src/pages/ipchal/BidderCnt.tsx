@@ -17,13 +17,13 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
     const value = e.value;
     setFormData({
       ...formData,
-      bidderNum: value,
+      bidderNum: parseInt(value),
     });
   };
 
   useEffect(() => {
     const handleBiddingNumError = () => {
-      if (formData?.bidderNum === "" || parseInt(formData?.bidderNum) <= 0) {
+      if ((formData?.bidderNum) <= 0) {
         setErrorMsg(true);
       } else {
         setErrorMsg(false);
@@ -41,7 +41,7 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
               입찰하시는 분이 몇 명 이신가요?
             </span>
           </div>
-          <div className="flex flex-col gap-10 w-[327px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+          <div className="flex flex-col gap-10 w-[360px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
             <div className="absolute top-[113px]">
               <div className="flex flex-row justify-center items-center">
                 <span className="text-[15px] font-semibold mr-5">
@@ -54,7 +54,7 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
                   onChange={(e) => {
                     setFormData({
                       ...formData,
-                      bidderNum: e.target.value,
+                      bidderNum: parseInt(e.target.value),
                     });
                     handleBiddingNum(e.target);
                   }}

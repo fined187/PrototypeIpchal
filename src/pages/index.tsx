@@ -19,7 +19,10 @@ export default function Home() {
     bidder: "",
     bidderNum: 1,
     CorpYn: "N",
-    distribute: "",
+    distribute: {
+      sharedName: [""],
+      sharedPercent: [""],
+    },
     biddingPrice: 0,
     depositPrice: 0,
     bidWay: "",
@@ -39,20 +42,20 @@ export default function Home() {
   });
 
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({
-    bidderName: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderPhone1: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderPhone2: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderPhone3: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderIdNum1: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderIdNum2: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderAddr: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderAddrDetail: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderCorpNum1: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderCorpNum2: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderCorpNum3: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderCorpRegiNum1: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderCorpRegiNum2: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill(''),
-    bidderCorpYn: Array(Number(formData.bidderNum) < 1 ? 1 : Number(formData.bidderNum)).fill('N'),
+    bidderName: [''],
+    bidderPhone1: [''],
+    bidderPhone2: [''],
+    bidderPhone3: [''],
+    bidderIdNum1: [''],
+    bidderIdNum2: [''],
+    bidderAddr: [''],
+    bidderAddrDetail:[''],
+    bidderCorpNum1: [''],
+    bidderCorpNum2: [''],
+    bidderCorpNum3: [''],
+    bidderCorpRegiNum1: [''],
+    bidderCorpRegiNum2: [''],
+    bidderCorpYn: [''],
   });
 
   return (
@@ -70,8 +73,12 @@ export default function Home() {
       {stateNum === 4 && (
         <BidderDetail formData={formData} setFormData={setFormData} biddingInfo={biddingInfo} setBiddingInfo={setBiddingInfo}  />
       )}
-      {stateNum === 5 && (
-        <ShareInfo formData={formData} setFormData={setFormData} />
+      {(stateNum === 5) && (formData?.bidderNum > 1) && (
+        <ShareInfo formData={formData} setFormData={setFormData} biddingInfo={biddingInfo} />
+      )}
+      {(stateNum === 6) && (formData?.bidderNum === 1) && (
+        <>
+        </>
       )}
     </>
   );
