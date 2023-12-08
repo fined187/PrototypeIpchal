@@ -1,7 +1,7 @@
 import { stepState } from "@/atom";
 import Button from "@/components/Button";
 import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 
 interface BidderDetailProps {
@@ -11,10 +11,72 @@ interface BidderDetailProps {
 }
 
 export default function ShareInfo({ formData, setFormData, biddingInfo }: BidderDetailProps) {
-  console.log(biddingInfo?.bidderName);
   const stateNum = useRecoilValue(stepState);
-
   const [shareWay, setShareWay] = useState<string>("");
+  const [calc, setCalc] = useState({
+    numerator: [0],
+    denominator: [0],
+  });
+  const [goNext, setGoNext] = useState<boolean>(false);
+
+  const handleClear = () => {
+    let temp = document.querySelectorAll("input");
+    temp.forEach((item) => {
+      item.value = '';
+    });
+  };
+
+  const handleCalc = () => {
+    if (shareWay === "S") {
+      const nameTemp = [''];
+      const percentTemp = [0];
+      for (let i = 0; i < formData?.bidderNum; i++) {
+        nameTemp.push(biddingInfo?.bidderName[i]);
+        percentTemp.push(( 1 / formData?.bidderNum) * 100);
+      }
+      nameTemp.shift();
+      percentTemp.shift();
+      setFormData({
+        ...formData,
+        distribute: {
+          sharedName: nameTemp,
+          sharedPercent: percentTemp,
+        },
+      });
+    } else {
+      const nameTemp = [''];
+      const percentTemp = [0];
+      for (let i = 0; i < formData?.bidderNum; i++) {
+        nameTemp.push(biddingInfo?.bidderName[i]);
+        percentTemp.push((calc.numerator[i] / calc.denominator[i]) * 100);
+      }
+      nameTemp.shift();
+      percentTemp.shift();
+      setFormData({
+        ...formData,
+        distribute: {
+          sharedName: nameTemp,
+          sharedPercent: percentTemp,
+        },
+      });
+    }
+  };
+
+  const handleValidate = () => {
+    let temp = document.querySelectorAll("input");
+    temp.forEach((item) => {
+      if (item.value === '') {
+        setGoNext(true);
+      } else {
+        setGoNext(false);
+      }
+    });
+  }
+
+  useEffect(() => {
+    handleCalc();
+    handleValidate();
+  }, [calc, shareWay]);
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -31,6 +93,7 @@ export default function ShareInfo({ formData, setFormData, biddingInfo }: Bidder
             }`}
             onClick={() => {
               setShareWay("S");
+              handleCalc();
             }}
           >
             <div
@@ -67,6 +130,8 @@ export default function ShareInfo({ formData, setFormData, biddingInfo }: Bidder
             }`}
             onClick={() => {
               setShareWay("N");
+              handleClear();
+              handleCalc();
             }}
           >
             <div
@@ -112,7 +177,7 @@ export default function ShareInfo({ formData, setFormData, biddingInfo }: Bidder
                         type="text"
                         readOnly
                         value="1"
-                        className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]"
+                        className={`border  border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
                       />
                       <span>
                         /
@@ -128,14 +193,32 @@ export default function ShareInfo({ formData, setFormData, biddingInfo }: Bidder
                     <>
                       <input 
                         type="text"
-                        className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]"
+                        className={`border ${shareWay === 'N' && goNext ? 'border-red-500' : 'border-gray-300'}  focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
+                        onChange={(e) => {
+                          const temp = [...calc.numerator];
+                          temp[index] = Number(e.target.value);
+                          setCalc({
+                            ...calc,
+                            numerator: temp,
+                          });
+                          handleCalc();
+                        }}
                       />
                       <span>
                         /
                       </span>
                       <input 
                         type="text"
-                        className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]" 
+                        className={`border ${shareWay === 'N' && goNext ? 'border-red-500' : 'border-gray-300'}  focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
+                        onChange={(e) => {
+                          const temp = [...calc.denominator];
+                          temp[index] = Number(e.target.value);
+                          setCalc({
+                            ...calc,
+                            denominator: temp,
+                          });
+                          handleCalc();
+                        }}
                       />
                     </>
                   )}
@@ -143,9 +226,13 @@ export default function ShareInfo({ formData, setFormData, biddingInfo }: Bidder
               </div>
             )
           })}
-
+          {shareWay === "N" && goNext && (
+            <span className="text-[10px] text-red-500 font-bold">
+              지분 값을 입력해주세요
+            </span>
+          )}
         </div>
-        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
+        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} goNext={goNext} />
       </div>
     </div>
   )

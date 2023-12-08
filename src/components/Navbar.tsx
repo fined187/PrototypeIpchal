@@ -20,6 +20,10 @@ export default function Navbar() {
       setMenuTitle("입찰자 본인 정보");
     } else if (stepStateNum === 5) {
       setMenuTitle("공동 입찰자 지분");
+    } else if (stepStateNum === 6) {
+      setMenuTitle("입찰 가격");
+    } else if (stepStateNum === 7) {
+      setMenuTitle("보증금 제공 방법");
     }
   };
 

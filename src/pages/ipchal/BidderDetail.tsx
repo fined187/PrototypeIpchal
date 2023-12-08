@@ -166,7 +166,7 @@ export default function BidderDetail({
   console.log(biddingInfo);
 
   return (
-    <div className="flex w-full bg-mybg justify-center relative">
+    <div className="flex w-full h-screen bg-mybg justify-center relative">
       <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center relative">
         <div className="flex flex-row">
           <span className="text-lg font-extrabold font-nanum not-italic leading-8">

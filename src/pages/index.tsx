@@ -8,6 +8,8 @@ import BidderInfo from "./ipchal/BidderInfo";
 import BidderCnt from "./ipchal/BidderCnt";
 import BidderDetail from "./ipchal/BidderDetail";
 import ShareInfo from "./ipchal/ShareInfo";
+import BiddingPrice from "./ipchal/BiddingPrice";
+import BiddingPayment from "./ipchal/BiddingPayment";
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState);
@@ -21,7 +23,7 @@ export default function Home() {
     CorpYn: "N",
     distribute: {
       sharedName: [""],
-      sharedPercent: [""],
+      sharedPercent: [],
     },
     biddingPrice: 0,
     depositPrice: 0,
@@ -76,9 +78,11 @@ export default function Home() {
       {(stateNum === 5) && (formData?.bidderNum > 1) && (
         <ShareInfo formData={formData} setFormData={setFormData} biddingInfo={biddingInfo} />
       )}
-      {(stateNum === 6) && (formData?.bidderNum === 1) && (
-        <>
-        </>
+      {(stateNum === 6) && (
+        <BiddingPrice formData={formData} setFormData={setFormData} />
+      )}
+      {(stateNum === 7) && (
+        <BiddingPayment formData={formData} setFormData={setFormData} />
       )}
     </>
   );

@@ -25,22 +25,25 @@ export default function Button({
 
   const handleNextStep = () => {
     if (stateNum === 2) {
-      if (
-        typeof setIsSelected !== "undefined" &&
-        typeof formData !== "undefined"
-      ) {
-        if (formData?.bidder === "") {
+      if (setIsSelected && formData) {
+        if ( formData?.bidder === "") {
           setIsSelected(false);
         } else {
           setIsSelected(true);
           setStateNum(nextStepNum);
         }
       }
-    } else if (stateNum === 4) {
-      return;
-    } else {
-      setStateNum(nextStepNum);
-    }
+    } 
+    if (stateNum === 7 && setIsSelected && formData) {
+      if (formData?.bidWay === "") {
+        setIsSelected(true);
+        console.log("true")
+      } else {
+        setIsSelected(false);
+        setStateNum(nextStepNum);
+      }
+    } 
+    setStateNum(nextStepNum);
   };
 
   return (
@@ -48,7 +51,7 @@ export default function Button({
       <div className="flex flex-row gap-2 absolute top-[578px]">
         <button
           type="button"
-          className="flex w-[82px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+          className="flex w-[100px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
           onClick={() => setStateNum(prevStepNum)}
         >
           <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
@@ -58,7 +61,7 @@ export default function Button({
         <button
           type="button"
           disabled={goNext}
-          className="flex w-[229px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+          className="flex w-[260px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
             handleNextStep();
           }}

@@ -218,12 +218,12 @@ export default function PopupContent({
                             />
                             <div className="flex flex-row justify-between sm:gap-7 gap-5">
                               <div className="flex justify-start">
-                                <span className="sm:text-[12px] text-[9px]">
+                                <span className="sm:text-[12px] text-[12px]">
                                   주소 변동 포함
                                 </span>
                               </div>
                               <div className="flex justify-end">
-                                <span className="sm:text-[12px] text-[9px] text-blue-400 mt-[2px]">
+                                <span className="sm:text-[12px] text-[9px] text-blue-400 mt-[2px] sm:block hidden">
                                   예) 도로명(반포대로 58), 건물명(독립기념관),
                                   지번(삼성동 25)
                                 </span>
@@ -319,7 +319,7 @@ export default function PopupContent({
                                       (addr: any, index: number) => (
                                         <div
                                           key={index}
-                                          className={`flex flex-row justify-between sm:overflow-hidden overflow-y-auto w-full items-center h-[110px] sm:max-h-[150px] sm:min-h-[100px] border-b-[1px] ${
+                                          className={`flex flex-row justify-between sm:overflow-hidden overflow-y-auto w-full items-center h-[120px] sm:max-h-[150px] sm:min-h-[100px] border-b-[1px] ${
                                             index % 2 === 0
                                               ? "bg-gray-50 hover:bg-gray-100"
                                               : "bg-white hover:bg-gray-100"

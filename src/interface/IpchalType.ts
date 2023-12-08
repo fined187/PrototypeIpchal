@@ -1,6 +1,6 @@
 export interface DistributeType {
   sharedName: string[];
-  sharedPercent: string[];
+  sharedPercent: number[];
 }
 
 export interface IpchalType {
