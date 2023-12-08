@@ -24,6 +24,14 @@ export default function Navbar() {
       setMenuTitle("입찰 가격");
     } else if (stepStateNum === 7) {
       setMenuTitle("보증금 제공 방법");
+    } else if (stepStateNum === 8) {
+      setMenuTitle("입찰표 입력 완료");
+    } else if (stepStateNum === 9) {
+      setMenuTitle("입찰표 확인");
+    } else if (stepStateNum === 10) {
+      setMenuTitle("파일 만들기");
+    } else if (stepStateNum === 11) {
+      setMenuTitle("입찰표 파일 공유");
     }
   };
 
@@ -34,7 +42,7 @@ export default function Navbar() {
   return (
     <div
       className={`flex relative w-full h-20 ${
-        stepStateNum === 0 ? "bg-white" : "bg-mybg"
+        stepStateNum === 0 || stepStateNum === 8 ? "bg-white" : "bg-mybg"
       }`}
     >
       {stepStateNum === 0 ? (

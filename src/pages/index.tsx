@@ -10,6 +10,10 @@ import BidderDetail from "./ipchal/BidderDetail";
 import ShareInfo from "./ipchal/ShareInfo";
 import BiddingPrice from "./ipchal/BiddingPrice";
 import BiddingPayment from "./ipchal/BiddingPayment";
+import IpchalInfo from "./ipchal/IpchalInfo";
+import IpchalContent from "./ipchal/IpchalContent";
+import CreateFile from "./ipchal/CreateFile";
+import IpchalShare from "./ipchal/IpchalShare";
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState);
@@ -83,6 +87,18 @@ export default function Home() {
       )}
       {(stateNum === 7) && (
         <BiddingPayment formData={formData} setFormData={setFormData} />
+      )}
+      {(stateNum === 8) && (
+        <IpchalInfo />
+      )}
+      {(stateNum === 9) && (
+        <IpchalContent />
+      )}
+      {(stateNum === 10) && (
+        <CreateFile />
+      )}
+      {(stateNum === 11) && (
+        <IpchalShare />
       )}
     </>
   );

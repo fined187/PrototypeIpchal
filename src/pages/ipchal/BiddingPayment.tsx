@@ -13,11 +13,6 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
   const [isSelected, setIsSelected] = useState<boolean>(true);
   const setStateNum = useSetRecoilState(stepState);
   const stateNum = useRecoilValue(stepState);
-  const [goNext, setGoNext] = useState<boolean>(false);
-
-  console.log(isSelected)
-  console.log(stateNum)
-  console.log(formData.bidWay)
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -38,9 +33,9 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
               ...formData,
               bidWay: "cash",
             });
-            // setTimeout(() => {
-            //   setStateNum(stateNum + 1);
-            // }, 300);
+            setTimeout(() => {
+              setStateNum(stateNum + 1);
+            }, 300);
           }}
         >
           <div
@@ -82,9 +77,9 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
               ...formData,
               bidWay: "paper",
             });
-            // setTimeout(() => {
-            //   setStateNum(stateNum + 1);
-            // }, 300);
+            setTimeout(() => {
+              setStateNum(stateNum + 1);
+            }, 300);
           }}
         >
           <div
