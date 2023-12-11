@@ -1,16 +1,12 @@
-import { stepState } from "@/atom";
+import { biddingInfoState, stepState } from "@/atom";
 import Button from "@/components/Button";
 import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
-interface BidderDetailProps {
-  formData: IpchalType;
-  setFormData: Dispatch<SetStateAction<IpchalType>>;
-  biddingInfo: BiddingInfoType;
-}
-
-export default function ShareInfo({ formData, setFormData, biddingInfo }: BidderDetailProps) {
+export default function ShareInfo() {
+  const biddingInfo = useRecoilValue(biddingInfoState);
+  const setBiddingInfo = useSetRecoilState(biddingInfoState);
   const stateNum = useRecoilValue(stepState);
   const [shareWay, setShareWay] = useState<string>("");
   const [calc, setCalc] = useState({
@@ -26,18 +22,20 @@ export default function ShareInfo({ formData, setFormData, biddingInfo }: Bidder
     });
   };
 
+  console.log(stateNum)
+
   const handleCalc = () => {
     if (shareWay === "S") {
       const nameTemp = [''];
       const percentTemp = [0];
-      for (let i = 0; i < formData?.bidderNum; i++) {
-        nameTemp.push(biddingInfo?.bidderName[i]);
-        percentTemp.push(( 1 / formData?.bidderNum) * 100);
+      for (let i = 0; i < biddingInfo?.bidderNum; i++) {
+        nameTemp.push(biddingInfo?.bidName[i]);
+        percentTemp.push(( 1 / biddingInfo?.bidderNum) * 100);
       }
       nameTemp.shift();
       percentTemp.shift();
-      setFormData({
-        ...formData,
+      setBiddingInfo({
+        ...biddingInfo,
         distribute: {
           sharedName: nameTemp,
           sharedPercent: percentTemp,
@@ -46,14 +44,14 @@ export default function ShareInfo({ formData, setFormData, biddingInfo }: Bidder
     } else {
       const nameTemp = [''];
       const percentTemp = [0];
-      for (let i = 0; i < formData?.bidderNum; i++) {
-        nameTemp.push(biddingInfo?.bidderName[i]);
+      for (let i = 0; i < biddingInfo?.bidderNum; i++) {
+        nameTemp.push(biddingInfo?.bidName[i]);
         percentTemp.push((calc.numerator[i] / calc.denominator[i]) * 100);
       }
       nameTemp.shift();
       percentTemp.shift();
-      setFormData({
-        ...formData,
+      setBiddingInfo({
+        ...biddingInfo,
         distribute: {
           sharedName: nameTemp,
           sharedPercent: percentTemp,
@@ -162,7 +160,7 @@ export default function ShareInfo({ formData, setFormData, biddingInfo }: Bidder
           </div>
         </div>
         <div className="flex flex-col gap-10 w-[360px] min-h-[257px] max-h-[500px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
-          {biddingInfo?.bidderName?.map((name, index) => {
+          {biddingInfo?.bidName?.map((name, index) => {
             return (
               <div key={index} className="flex justify-between mb-5 w-full">
                 <div className="flex w-[40%] ml-5">
@@ -185,7 +183,7 @@ export default function ShareInfo({ formData, setFormData, biddingInfo }: Bidder
                       <input 
                         type="text"
                         readOnly
-                        value={formData?.bidderNum}
+                        value={biddingInfo.bidderNum}
                         className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]" 
                       />
                     </>
@@ -232,7 +230,7 @@ export default function ShareInfo({ formData, setFormData, biddingInfo }: Bidder
             </span>
           )}
         </div>
-        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} goNext={goNext} />
+        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
       </div>
     </div>
   )

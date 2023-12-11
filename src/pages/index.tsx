@@ -6,7 +6,6 @@ import { useState } from "react";
 import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
 import BidderInfo from "./ipchal/BidderInfo";
 import BidderCnt from "./ipchal/BidderCnt";
-import BidderDetail from "./ipchal/BidderDetail";
 import ShareInfo from "./ipchal/ShareInfo";
 import BiddingPrice from "./ipchal/BiddingPrice";
 import BiddingPayment from "./ipchal/BiddingPayment";
@@ -48,40 +47,24 @@ export default function Home() {
     bidCorpRegiNum2: "",
   });
 
-  const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({
-    bidderName: [''],
-    bidderPhone1: [''],
-    bidderPhone2: [''],
-    bidderPhone3: [''],
-    bidderIdNum1: [''],
-    bidderIdNum2: [''],
-    bidderAddr: [''],
-    bidderAddrDetail:[''],
-    bidderCorpNum1: [''],
-    bidderCorpNum2: [''],
-    bidderCorpNum3: [''],
-    bidderCorpRegiNum1: [''],
-    bidderCorpRegiNum2: [''],
-    bidderCorpYn: [''],
-  });
 
   return (
     <>
       {stateNum === 0 && <StartIpchal />}
       {stateNum === 1 && (
-        <GetIpchalInfo formData={formData} setFormData={setFormData} />
+        <GetIpchalInfo />
       )}
       {stateNum === 2 && (
-        <BidderInfo formData={formData} setFormData={setFormData} />
+        <BidderInfo />
       )}
       {stateNum === 3 && (
-        <BidderCnt formData={formData} setFormData={setFormData} />
+        <BidderCnt />
       )}
       {stateNum === 4 && (
-        <BidderForm formData={formData} setFormData={setFormData} biddingInfo={biddingInfo} setBiddingInfo={setBiddingInfo}  />
+        <BidderForm />
       )}
-      {(stateNum === 5) && (formData?.bidderNum > 1) && (
-        <ShareInfo formData={formData} setFormData={setFormData} biddingInfo={biddingInfo} />
+      {(stateNum === 5) && (
+        <ShareInfo />
       )}
       {(stateNum === 6) && (
         <BiddingPrice formData={formData} setFormData={setFormData} />

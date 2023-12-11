@@ -1,24 +1,31 @@
-import { stepState } from "@/atom";
+import { biddingInfoState, stepState } from "@/atom";
 import SearchAddress from "@/components/SearchAddress";
 import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
 import { Dispatch, SetStateAction } from "react";
 import { useRef, useState, useEffect } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, set, useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
-interface BidderDetailProps {
-  formData: IpchalType;
-  setFormData: Dispatch<SetStateAction<IpchalType>>;
-  biddingInfo: BiddingInfoType;
-  setBiddingInfo: Dispatch<SetStateAction<BiddingInfoType>>;
-}
+export default function BidderForm() {
+  const biddingForm = useRecoilValue(biddingInfoState);
+  const setBiddingForm = useSetRecoilState(biddingInfoState);
 
-export default function BidderForm({
-  formData,
-  setFormData,
-  biddingInfo,
-  setBiddingInfo,
-}: BidderDetailProps) {
+  const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({
+    bidderName: Array(biddingForm.bidderNum).fill(''),
+    bidderPhone1: Array(biddingForm.bidderNum).fill(''),
+    bidderPhone2: Array(biddingForm.bidderNum).fill(''),
+    bidderPhone3: Array(biddingForm.bidderNum).fill(''),
+    bidderIdNum1: Array(biddingForm.bidderNum).fill(''),
+    bidderIdNum2: Array(biddingForm.bidderNum).fill(''),
+    bidderAddr: Array(biddingForm.bidderNum).fill(''),
+    bidderAddrDetail:Array(biddingForm.bidderNum).fill(''),
+    bidderCorpNum1: Array(biddingForm.bidderNum).fill(''),
+    bidderCorpNum2: Array(biddingForm.bidderNum).fill(''),
+    bidderCorpNum3: Array(biddingForm.bidderNum).fill(''),
+    bidderCorpRegiNum1: Array(biddingForm.bidderNum).fill(''),
+    bidderCorpRegiNum2: Array(biddingForm.bidderNum).fill(''),
+    bidderCorpYn: Array(biddingForm.bidderNum).fill(''),
+  });
 
   const setStateNum = useSetRecoilState(stepState);
   const stateNum = useRecoilValue(stepState);
@@ -78,69 +85,41 @@ export default function BidderForm({
     });
   };
 
-  // const handleNextStep = (stepNum: number) => {
-  //   if (stepNum + 1 === Number(formData.bidderNum)) {
-  //     if (biddingInfo?.bidderCorpYn[stepNum] === 'N') {
-  //       if (isValidName && isValidPhone && isValidIdNum && isValidAddr && isValidAddrDetail) {
-  //         if (formData?.bidderNum > 1) {
-  //           setStateNum(stateNum + 1)
-  //         } else {
-  //           setStateNum(stateNum + 2);
-  //         }
-  //       }
-  //     } else if (biddingInfo?.bidderCorpYn[stepNum] === 'Y') {
-  //       if (isValidName && isValidPhone && isValidCorpNum && isValidCorpRegiNum && isValidAddr && isValidAddrDetail) {
-  //         if (formData?.bidderNum > 1) {
-  //           setStateNum(stateNum + 1)
-  //         } else {
-  //           setStateNum(stateNum + 2);
-  //         }
-  //       }
-  //     }
-  //   } else {
-  //     if (biddingInfo?.bidderCorpYn[stepNum] === 'N') {
-  //       if (isValidName && isValidPhone && isValidIdNum && isValidAddr && isValidAddrDetail) {
-  //         setStepNum(stepNum + 2);
-  //         handleClear();
-  //       }
-  //     } else if (biddingInfo?.bidderCorpYn[stepNum] === 'Y') {
-  //       if (isValidName && isValidPhone && isValidCorpNum && isValidCorpRegiNum && isValidAddr && isValidAddrDetail) {
-  //         setStepNum(stepNum + 2);
-  //         handleClear();
-  //       }
-  //     } else {
-  //       alert('입력정보를 확인해주세요');
-  //     }
-  //   }
-  // };
-
-  const handleNextStep = (stepNum: number) => {
-    if (biddingInfo?.bidderCorpYn[stepNum - 1] === 'N') {
-      if (biddingInfo.bidderName[stepNum - 1] !== '' && biddingInfo.bidderPhone1[stepNum - 1] !== '' && biddingInfo.bidderPhone2[stepNum - 1] !== '' && biddingInfo.bidderPhone3[stepNum - 1] !== '' && biddingInfo.bidderIdNum1[stepNum - 1] !== '' && biddingInfo.bidderIdNum2[stepNum - 1] !== '' && biddingInfo.bidderAddr[stepNum - 1] !== '' && biddingInfo.bidderAddrDetail[stepNum - 1] !== '') {
-        if (formData?.bidderNum > 1) {
-          if (formData?.bidderNum > 1) {
+  const handleNextStep = (num: number) => {
+    if (biddingInfo.bidderCorpYn[num] === 'N') {
+      if (biddingInfo?.bidderName[num] === '' || biddingInfo?.bidderPhone1[num] === '' || biddingInfo?.bidderPhone2[num] === '' || biddingInfo?.bidderPhone3[num] === '' || biddingInfo?.bidderAddr[num] === '' || biddingInfo?.bidderAddr[num] === '' || biddingInfo?.bidderAddrDetail[num] === '' || biddingInfo?.bidderIdNum1[num] === '' || biddingInfo?.bidderIdNum2[num] === '') {
+        console.log("1번째")
+        alert('입찰자 정보를 입력해주세요');
+      } else {
+        if (biddingForm.bidderNum === 1) {
+          setStateNum(stateNum + 2);
+        } else {
+          if (stepNum === biddingForm.bidderNum) {
             setStateNum(stateNum + 1);
           } else {
-            setStateNum(stateNum + 2);
+            handleClear();
+            setStepNum(stepNum + 1);
           }
-        } else {
-          setStepNum(stepNum + 1);
         }
       }
-    } else {
-      if (biddingInfo.bidderName[stepNum - 1] !== '' && biddingInfo.bidderPhone1[stepNum - 1] !== '' && biddingInfo.bidderPhone2[stepNum - 1] !== '' && biddingInfo.bidderPhone3[stepNum - 1] !== '' && biddingInfo.bidderCorpNum1[stepNum - 1] !== '' && biddingInfo.bidderCorpNum2[stepNum - 1] !== '' && biddingInfo.bidderCorpNum3[stepNum - 1] !== '' && biddingInfo.bidderCorpRegiNum1[stepNum - 1] !== '' && biddingInfo.bidderCorpRegiNum2[stepNum - 1] !== '' && biddingInfo.bidderAddr[stepNum - 1] !== '' && biddingInfo.bidderAddrDetail[stepNum - 1] !== '') {
-        if (stepNum + 1 === Number(formData.bidderNum)) {
-          if (formData?.bidderNum > 1) {
+    } else if (biddingInfo.bidderCorpYn[num] === 'Y') {
+      if (biddingInfo?.bidderName[num] === '' || biddingInfo?.bidderPhone1[num] === '' || biddingInfo?.bidderPhone2[num] === '' || biddingInfo?.bidderPhone3[num] === '' || biddingInfo?.bidderAddr[num] === '' || biddingInfo?.bidderAddrDetail[num] === '' || biddingInfo?.bidderCorpNum1[num] === '' || biddingInfo?.bidderCorpNum2[num] === '' || biddingInfo?.bidderCorpNum3[num] === '' || biddingInfo?.bidderCorpRegiNum1[num] === '' || biddingInfo?.bidderCorpRegiNum2[num] === '') {
+        console.log("2번째")
+        alert('입찰자 정보를 입력해주세요');
+      } else {
+        if (biddingForm.bidderNum === 1) {
+          setStateNum(stateNum + 2);
+        } else {
+          if (stepNum === biddingForm.bidderNum) {
             setStateNum(stateNum + 1);
           } else {
-            setStateNum(stateNum + 2);
+            handleClear();
+            setStepNum(stepNum + 1);
           }
-        } else {
-          setStepNum(stepNum + 1);
         }
       }
     }
-  }
+  };
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -149,9 +128,9 @@ export default function BidderForm({
           <span className="text-lg font-extrabold font-nanum not-italic leading-8">
             입찰자 정보를 입력해주세요
           </span>
-          {(formData?.bidderNum) > 1 && (
+          {(biddingForm.bidderNum) > 1 && (
             <span className="text-lg font-extrabold font-nanum not-italic leading-8 ml-2">
-              {`(${stepNum} / ${formData?.bidderNum})`}
+              {`(${stepNum} / ${biddingForm.bidderNum})`}
             </span>
           )}
         </div>
@@ -532,9 +511,7 @@ export default function BidderForm({
                 <button
                   type="submit"
                   className="flex w-[229px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-                  onClick={() => {
-                    handleNextStep(stepNum - 1);
-                  }}
+                  onClick={() => {handleNextStep(stepNum - 1)}}
                 >
                   <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
                     {stateNum <= 3 ? "확인" : "다음"}

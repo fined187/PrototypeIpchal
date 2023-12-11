@@ -10,10 +10,12 @@ interface BiddingPaymentProps {
 }
 
 export default function BiddingPayment({ formData, setFormData }: BiddingPaymentProps) {
-  const [isSelected, setIsSelected] = useState<boolean>(true);
+  const [isWaySelected, setIsWaySelected] = useState<boolean>(false);
   const setStateNum = useSetRecoilState(stepState);
   const stateNum = useRecoilValue(stepState);
 
+  console.log(formData.bidWay)
+  console.log(stateNum)
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
       <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center relative">
@@ -24,7 +26,7 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
       <div className="flex flex-col gap-10 w-[360px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
         <div
           className={`flex flex-row w-[120px] h-[30px] rounded-md border ${
-            isSelected ? "border-red-600" : "border-myyellow"
+            isWaySelected ? "border-red-600" : "border-myyellow"
           } justify-center items-center cursor-pointer ${
             formData.bidWay === "cash" ? "bg-myyellow" : "bg-white"
           } relative`}
@@ -68,7 +70,7 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
         </div>
         <div
           className={`flex flex-row w-[120px] h-[30px] rounded-md border ${
-            isSelected ? "border-red-600" : "border-myyellow"
+            isWaySelected ? "border-red-600" : "border-myyellow"
           } justify-center items-center cursor-pointer ${
             formData.bidWay === "paper" ? "bg-myyellow" : "bg-white"
           } relative`}
@@ -114,7 +116,7 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
             보증서
           </span>
         </div>
-        {isSelected && (
+        {isWaySelected && (
           <div className='flex'>
             <span className="text-[12px] font-bold text-myRed font-nanum leading-[-0.3px] ">
               버튼을 선택해주세요.
@@ -122,7 +124,7 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
           </div>
         )}
       </div>
-      <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} isSelected={isSelected} setIsSelected={setIsSelected} />
+      <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
     </div>
   )
 };

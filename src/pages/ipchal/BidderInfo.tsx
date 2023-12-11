@@ -1,27 +1,21 @@
-import { stepState } from "@/atom";
+import { biddingInfoState, stepState } from "@/atom";
 import Button from "@/components/Button";
-import { IpchalType } from "@/interface/IpchalType";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-interface BidderInfoProps {
-  formData: IpchalType;
-  setFormData: Dispatch<SetStateAction<IpchalType>>;
-}
 
-export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
+export default function BidderInfo() {
   const stateNum = useRecoilValue(stepState);
   const setStateNum = useSetRecoilState(stepState);
   const [isSelected, setIsSelected] = useState<boolean>(true);
-
-  console.log(stateNum)
-  console.log(formData.bidder)
+  const biddingInfo = useRecoilValue(biddingInfoState);
+  const setBiddingInfo = useSetRecoilState(biddingInfoState);
 
   return (
     <>
-      <div className="flex justify-center relative">
+      <div className="flex w-full h-screen bg-mybg justify-center relative">
         <div className="flex flex-col w-full h-screen bg-mybg items-center text-center-500">
           <div className="flex">
-            <span className="text-lg font-extrabold font-nanum not-italic leading-8	">
+            <span className="text-lg font-bold font-nanum not-italic leading-8	">
               입찰하시는 본인이 맞으신가요?
             </span>
           </div>
@@ -30,11 +24,11 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
               className={`flex flex-row w-[70px] h-[30px] rounded-md border ${
                 isSelected ? "border-myyellow" : "border-red-600"
               } justify-center items-center cursor-pointer ${
-                formData.bidder === "self" ? "bg-myyellow" : "bg-white"
+                biddingInfo.bidder === "self" ? "bg-myyellow" : "bg-white"
               } relative`}
               onClick={() => {
-                setFormData({
-                  ...formData,
+                setBiddingInfo({
+                  ...biddingInfo,
                   bidder: "self",
                 });
                 setStateNum(stateNum + 1);
@@ -42,7 +36,7 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
             >
               <div
                 className={`${
-                  formData.bidder === "self" ? "flex absolute left-2" : "hidden"
+                  biddingInfo.bidder === "self" ? "flex absolute left-2" : "hidden"
                 }`}
               >
                 <svg
@@ -62,7 +56,7 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
               </div>
               <span
                 className={`flex text-[13px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
-                  formData.bidder === "self" ? "text-white" : "text-myyellow"
+                  biddingInfo.bidder === "self" ? "text-white" : "text-myyellow"
                 }`}
               >
                 본인
@@ -72,11 +66,11 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
               className={`flex flex-row w-[70px] h-[30px] rounded-md border ${
                 isSelected ? "border-myyellow" : "border-red-600"
               } justify-center items-center cursor-pointer ${
-                formData.bidder === "agent" ? "bg-myyellow" : "bg-white"
+                biddingInfo.bidder === "agent" ? "bg-myyellow" : "bg-white"
               } relative`}
               onClick={() => {
-                setFormData({
-                  ...formData,
+                setBiddingInfo({
+                  ...biddingInfo,
                   bidder: "agent",
                 });
                 setStateNum(stateNum + 1);
@@ -84,7 +78,7 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
             >
               <div
                 className={`${
-                  formData.bidder === "agent"
+                  biddingInfo.bidder === "agent"
                     ? "flex absolute left-1"
                     : "hidden"
                 }`}
@@ -106,7 +100,7 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
               </div>
               <span
                 className={`flex text-[13px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
-                  formData.bidder === "agent"
+                  biddingInfo.bidder === "agent"
                     ? "text-white ml-1"
                     : "text-myyellow"
                 }`}
@@ -115,7 +109,7 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
               </span>
             </div>
             <div className={`${isSelected ? "hidden" : "flex"}`}>
-              <span className="text-[10px] font-medium text-myRed font-nanum leading-[-0.3px] ">
+              <span className="text-[10px] font-bold text-myRed font-nanum leading-[-0.3px] ">
                 버튼을 선택해주세요.
               </span>
             </div>
@@ -124,7 +118,7 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
         <Button
           prevStepNum={stateNum - 1}
           nextStepNum={stateNum + 1}
-          formData={formData}
+          isSelected={isSelected}
           setIsSelected={setIsSelected}
         />
       </div>

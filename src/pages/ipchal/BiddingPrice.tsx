@@ -160,7 +160,7 @@ export default function BiddingPrice({ formData, setFormData }: BiddingPriceProp
           </div>
         </div>
       </div>
-      <Button prevStepNum={formData && formData?.bidderNum > 1 ? stateNum - 1 : stateNum - 2} nextStepNum={stateNum + 1} goNext={!goNext} />
+      <Button prevStepNum={formData && formData?.bidderNum > 1 ? stateNum - 1 : stateNum - 2} nextStepNum={stateNum + 1} />
     </div>
   );
 }
