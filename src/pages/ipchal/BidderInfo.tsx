@@ -1,7 +1,7 @@
 import { stepState } from "@/atom";
 import Button from "@/components/Button";
 import { IpchalType } from "@/interface/IpchalType";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 interface BidderInfoProps {
   formData: IpchalType;
@@ -9,9 +9,12 @@ interface BidderInfoProps {
 }
 
 export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
-  const stateValue = useRecoilValue(stepState);
+  const stateNum = useRecoilValue(stepState);
   const setStateNum = useSetRecoilState(stepState);
   const [isSelected, setIsSelected] = useState<boolean>(true);
+
+  console.log(stateNum)
+  console.log(formData.bidder)
 
   return (
     <>
@@ -34,9 +37,7 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
                   ...formData,
                   bidder: "self",
                 });
-                setTimeout(() => {
-                  setStateNum(stateValue + 1);
-                }, 300);
+                setStateNum(stateNum + 1);
               }}
             >
               <div
@@ -78,9 +79,7 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
                   ...formData,
                   bidder: "agent",
                 });
-                setTimeout(() => {
-                  setStateNum(stateValue + 1);
-                }, 300);
+                setStateNum(stateNum + 1);
               }}
             >
               <div
@@ -123,10 +122,9 @@ export default function BidderInfo({ formData, setFormData }: BidderInfoProps) {
           </div>
         </div>
         <Button
-          prevStepNum={stateValue - 1}
-          nextStepNum={stateValue + 1}
+          prevStepNum={stateNum - 1}
+          nextStepNum={stateNum + 1}
           formData={formData}
-          isSelected={isSelected}
           setIsSelected={setIsSelected}
         />
       </div>

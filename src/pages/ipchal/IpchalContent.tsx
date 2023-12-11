@@ -11,12 +11,12 @@ export default function IpchalContent() {
 
   return (
     <div className="flex w-full h-screen justify-center bg-mybg relative">
-      <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center">
+      <div className="flex flex-col gap-4 md:w-[520px] w-[100%] h-screen bg-mybg items-center text-center">
         <span className="text-[20px] font-extrabold font-nanum not-italic leading-8">
           입찰표
         </span>
       </div>
-      <div className="flex flex-col gap-10 w-[400px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500 overflow-scroll">
+      <div className="flex flex-col gap-10 md:w-[500px] w-[400px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500 overflow-scroll md:scrollbar-hide">
         <div className="flex flex-col border border-black w-[395px] h-[252px] relative">
           {/* 최상단 박스 */}
           <div className="flex border-b-[1px] border-black w-full h-[60px] relative">

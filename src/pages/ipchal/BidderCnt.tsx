@@ -49,7 +49,7 @@ export default function BidderCnt({ setFormData, formData }: BidderCntProps) {
                 </span>
                 <input
                   className="w-[70px] h-[30px] border-2 border-myyellow focus:border-myyellow rounded-md text-center focus:outline-none focus:border-blue-600"
-                  defaultValue={formData?.bidderNum}
+                  defaultValue={formData?.bidderNum && formData?.bidderNum}
                   type="text"
                   onChange={(e) => {
                     setFormData({

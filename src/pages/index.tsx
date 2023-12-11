@@ -14,6 +14,7 @@ import IpchalInfo from "./ipchal/IpchalInfo";
 import IpchalContent from "./ipchal/IpchalContent";
 import CreateFile from "./ipchal/CreateFile";
 import IpchalShare from "./ipchal/IpchalShare";
+import BidderForm from "./ipchal/BidderForm";
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState);
@@ -77,7 +78,7 @@ export default function Home() {
         <BidderCnt formData={formData} setFormData={setFormData} />
       )}
       {stateNum === 4 && (
-        <BidderDetail formData={formData} setFormData={setFormData} biddingInfo={biddingInfo} setBiddingInfo={setBiddingInfo}  />
+        <BidderForm formData={formData} setFormData={setFormData} biddingInfo={biddingInfo} setBiddingInfo={setBiddingInfo}  />
       )}
       {(stateNum === 5) && (formData?.bidderNum > 1) && (
         <ShareInfo formData={formData} setFormData={setFormData} biddingInfo={biddingInfo} />

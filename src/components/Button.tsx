@@ -29,21 +29,22 @@ export default function Button({
         if ( formData?.bidder === "") {
           setIsSelected(false);
         } else {
+          console.log("here")
           setIsSelected(true);
           setStateNum(nextStepNum);
         }
       }
     } 
-    if (stateNum === 7 && setIsSelected && formData) {
-      if (formData?.bidWay === "") {
-        setIsSelected(true);
-        console.log("true")
-      } else {
-        setIsSelected(false);
-        setStateNum(nextStepNum);
+    if (stateNum === 7) {
+      if (setIsSelected && formData) {
+        if (formData?.bidder === "") {
+          setIsSelected(false);
+        } else {
+          setIsSelected(true);
+          setStateNum(nextStepNum);
+        }
       }
-    } 
-    setStateNum(nextStepNum);
+    }
   };
 
   return (
@@ -63,7 +64,7 @@ export default function Button({
           disabled={goNext}
           className="flex w-[260px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
-            handleNextStep();
+            (stateNum === 2 || stateNum === 7) && setIsSelected && formData && formData?.bidder === "" ? handleNextStep() : setStateNum(nextStepNum);
           }}
         >
           <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
