@@ -6,15 +6,17 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 interface ButtonProps {
   prevStepNum: number;
   nextStepNum: number;
-  isSelected?: boolean;
+  goNext?: boolean;
+  setIsWaySelected?: Dispatch<SetStateAction<boolean>>;
   setIsSelected?: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function Button({
   prevStepNum,
   nextStepNum,
-  isSelected,
-  setIsSelected
+  setIsWaySelected,
+  setIsSelected,
+  goNext,
 }: ButtonProps) {
   const setStateNum = useSetRecoilState(stepState);
   const stateNum = useRecoilValue(stepState);
@@ -34,9 +36,10 @@ export default function Button({
         </button>
         <button
           type="button"
+          disabled={goNext}
           className="flex w-[260px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
-            (stateNum === 2 && biddingInfo.bidder === "") ? setIsSelected && setIsSelected(false) : (stateNum === 7 && biddingInfo.bidWay === "") ? setIsSelected && setIsSelected(false) : setStateNum(nextStepNum)
+            (stateNum === 2 && biddingInfo.bidder === "") ? setIsSelected && setIsSelected(false) : (stateNum === 7 && biddingInfo.bidWay === "") ? setIsWaySelected && setIsWaySelected(true) : setStateNum(nextStepNum)
           }}
         >
           <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">

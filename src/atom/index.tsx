@@ -12,12 +12,12 @@ export const biddingInfoState = atom({
   key: `biddingInfoState/${v4()}`,
   default: {
     sagunNum: "2022 타경 53843호",
-    mulgunNum: "2023년 11월 06일",
+    mulgunNum: "202020호",
     sagunAddr: "경기도 시흥시 도창동48",
     ipchalDate: "",
     bidder: "",
     bidderNum: 1,
-    CorpYn: [""],
+    bidCorpYn: [""],
     distribute: {
       sharedName: [""],
       sharedPercent: [0],

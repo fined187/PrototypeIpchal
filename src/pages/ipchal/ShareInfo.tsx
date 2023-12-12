@@ -1,7 +1,6 @@
 import { biddingInfoState, stepState } from "@/atom";
 import Button from "@/components/Button";
-import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 export default function ShareInfo() {
@@ -21,8 +20,6 @@ export default function ShareInfo() {
       item.value = '';
     });
   };
-
-  console.log(stateNum)
 
   const handleCalc = () => {
     if (shareWay === "S") {
@@ -71,10 +68,25 @@ export default function ShareInfo() {
     });
   }
 
+  const handleValidateCalc = () => {
+    let temp = [0];
+    if (shareWay === "S") {
+      for (let i = 0; i < biddingInfo?.bidderNum; i++) {
+        temp.push(1 / biddingInfo?.bidderNum);
+      }
+    } else {
+      for (let i = 0; i < calc.numerator.length; i++) {
+        temp.push((calc.numerator[i] / calc.denominator[i]))
+      }
+    }
+    temp.reduce((a, b) => a + b, 0) === 1 ? setGoNext(false) : setGoNext(true);
+  }
+
   useEffect(() => {
     handleCalc();
     handleValidate();
-  }, [calc, shareWay]);
+    handleValidateCalc();
+  }, [calc.numerator, calc.denominator, shareWay]);
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -172,6 +184,7 @@ export default function ShareInfo() {
                   {shareWay === "S" ? (
                     <>
                       <input 
+                        id="molecule"
                         type="text"
                         readOnly
                         value="1"
@@ -190,6 +203,7 @@ export default function ShareInfo() {
                   ): (
                     <>
                       <input 
+                        id="molecule"
                         type="text"
                         className={`border ${shareWay === 'N' && goNext ? 'border-red-500' : 'border-gray-300'}  focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
                         onChange={(e) => {
@@ -226,11 +240,11 @@ export default function ShareInfo() {
           })}
           {shareWay === "N" && goNext && (
             <span className="text-[10px] text-red-500 font-bold">
-              지분 값을 입력해주세요
+              지분 값을 확인해주세요.
             </span>
           )}
         </div>
-        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
+        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} goNext={goNext} />
       </div>
     </div>
   )

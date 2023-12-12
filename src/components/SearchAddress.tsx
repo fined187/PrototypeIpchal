@@ -1,7 +1,7 @@
-import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
-import { Dispatch, SetStateAction, useState } from "react";
+import { BiddingInfoType } from "@/interface/IpchalType";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import PopupContent from "./PopupContent";
-import { FieldErrors, FieldValue, FieldValues, UseControllerProps, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 interface SearchAddressProps {
   biddingInfo: BiddingInfoType;
@@ -9,6 +9,7 @@ interface SearchAddressProps {
   stepNum: number;
   register?: UseFormRegister<BiddingInfoType>;
   errors?: FieldErrors<BiddingInfoType>;
+  setError?: any;
 }
 
 export default function SearchAddress({
@@ -16,13 +17,20 @@ export default function SearchAddress({
   setBiddingInfo,
   stepNum,
   register,
-  errors
+  errors,
+  setError
 }: SearchAddressProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    if (biddingInfo.bidderAddr[stepNum - 1] === '') return;
+    setError && setError('bidderAddr', { type: 'manual', message: '' })
+
+  }, [biddingInfo.bidderAddr[stepNum - 1]])
 
   return (
     <>
@@ -36,11 +44,11 @@ export default function SearchAddress({
           {register && (
             <input
               {...register("bidderAddr", { required: true })}
-              id="bidAddr"
+              id="bidderAddr"
               readOnly
               type="text"
               className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[70%]"
-              value={biddingInfo?.bidderAddr[stepNum - 1]}
+              value={biddingInfo?.bidderAddr[stepNum - 1] === '' ? '' : biddingInfo?.bidderAddr[stepNum - 1]}
             />
           )}
           <button
@@ -62,7 +70,7 @@ export default function SearchAddress({
           type="text"
           readOnly
           className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[100%]"
-          value={biddingInfo?.bidderAddrDetail[stepNum - 1]}
+          value={biddingInfo?.bidderAddrDetail[stepNum - 1] === '' ? '' : biddingInfo?.bidderAddrDetail[stepNum - 1]}
         />
       </div>
       {(errors?.bidderAddr?.type === 'required') && (

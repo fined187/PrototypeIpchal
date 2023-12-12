@@ -1,9 +1,8 @@
 import { biddingInfoState, stepState } from "@/atom";
 import SearchAddress from "@/components/SearchAddress";
-import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
-import { Dispatch, SetStateAction } from "react";
-import { useRef, useState, useEffect } from "react";
-import { SubmitHandler, set, useForm } from "react-hook-form";
+import { BiddingInfoType } from "@/interface/IpchalType";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 export default function BidderForm() {
@@ -24,72 +23,83 @@ export default function BidderForm() {
     bidderCorpNum3: Array(biddingForm.bidderNum).fill(''),
     bidderCorpRegiNum1: Array(biddingForm.bidderNum).fill(''),
     bidderCorpRegiNum2: Array(biddingForm.bidderNum).fill(''),
-    bidderCorpYn: Array(biddingForm.bidderNum).fill(''),
+    bidderCorpYn: Array(biddingForm.bidderNum).fill('N'),
   });
 
   const setStateNum = useSetRecoilState(stepState);
   const stateNum = useRecoilValue(stepState);
   const [stepNum, setStepNum] = useState<number>(1);
 
-  const { register, handleSubmit, formState: { errors }} = useForm<BiddingInfoType>();
+  const { register, handleSubmit, setFocus, reset, setError, clearErrors, formState: { errors, isSubmitSuccessful, isSubmitted }} = useForm<BiddingInfoType>({
+    defaultValues: {
+      bidderName: [''],
+      bidderPhone1: [''],
+      bidderPhone2: [''],
+      bidderPhone3: [''],
+      bidderIdNum1: [''],
+      bidderIdNum2: [''],
+      bidderAddr: [''],
+      bidderAddrDetail: [''],
+      bidderCorpNum1: [''],
+      bidderCorpNum2: [''],
+      bidderCorpNum3: [''],
+      bidderCorpRegiNum1: [''],
+      bidderCorpRegiNum2: [''],
+    }
+  });
   const onSubmit: SubmitHandler<BiddingInfoType> = (data) => {
     console.log(data);
   };
 
-  //  사업자등록번호 input focus 이동
-  const focusRef1 = useRef<HTMLInputElement | null>(null);
-  const focusRef2 = useRef<HTMLInputElement | null>(null);
-  const focusRef3 = useRef<HTMLInputElement | null>(null);
-
-  //  전화번호 input focus 이동
-  const phoneFocusRef1 = useRef<HTMLInputElement | null>(null);
-  const phoneFocusRef2 = useRef<HTMLInputElement | null>(null);
-  const phoneFocusRef3 = useRef<HTMLInputElement | null>(null);
-
   const handlePhoneFocusMove = (target: HTMLInputElement) => {
     if (
       target.value.length === 3 &&
-      target.id === "bidderPhone1" &&
-      phoneFocusRef2.current?.value.length === 0
+      target.id === "bidderPhone1"
     ) {
-      phoneFocusRef2.current?.focus();
+      setFocus("bidderPhone2");
     } else if (
       target.value.length === 4 &&
-      target.id === "bidderPhone2" &&
-      phoneFocusRef3.current?.value.length === 0
+      target.id === "bidderPhone2" 
     ) {
-      phoneFocusRef3.current?.focus();
+      setFocus("bidderPhone3");
     }
   };
 
-  const handleFocusMove = (target: HTMLInputElement) => {
+  const handleCorpNumFocusMove = (target: HTMLInputElement) => {
     if (
       target.value.length === 3 &&
-      target.id === "bidCorpNum1" &&
-      focusRef2.current?.value.length === 0
+      target.id === "bidderCorpNum1" 
     ) {
-      focusRef2.current?.focus();
+      setFocus("bidderCorpNum2");
     } else if (
       target.value.length === 2 &&
-      target.id === "bidCorpNum2" &&
-      focusRef3.current?.value.length === 0
+      target.id === "bidderCorpNum2"
     ) {
-      focusRef3.current?.focus();
+      setFocus("bidderCorpNum3");
     }
   };
 
-  const handleClear = () => {
-    let temp = document.querySelectorAll("input");
-    temp.forEach((item) => {
-      item.value = '';
-    });
-  };
+  const handleCorpRegiNumFocusMove = (target: HTMLInputElement) => {
+    if (
+      target.value.length === 6 &&
+      target.id === "bidderCorpRegiNum1"
+    ) {
+      setFocus("bidderCorpRegiNum2");
+    }
+  }
+
+  const handleIdNumFocusMove = (target: HTMLInputElement) => {
+    if (
+      target.value.length === 6 &&
+      target.id === "bidderIdNum1"
+    ) {
+      setFocus("bidderIdNum2");
+    }
+  }
 
   const handleNextStep = (num: number) => {
     if (biddingInfo.bidderCorpYn[num] === 'N') {
       if (biddingInfo?.bidderName[num] === '' || biddingInfo?.bidderPhone1[num] === '' || biddingInfo?.bidderPhone2[num] === '' || biddingInfo?.bidderPhone3[num] === '' || biddingInfo?.bidderAddr[num] === '' || biddingInfo?.bidderAddr[num] === '' || biddingInfo?.bidderAddrDetail[num] === '' || biddingInfo?.bidderIdNum1[num] === '' || biddingInfo?.bidderIdNum2[num] === '') {
-        console.log("1번째")
-        alert('입찰자 정보를 입력해주세요');
       } else {
         if (biddingForm.bidderNum === 1) {
           setStateNum(stateNum + 2);
@@ -97,15 +107,13 @@ export default function BidderForm() {
           if (stepNum === biddingForm.bidderNum) {
             setStateNum(stateNum + 1);
           } else {
-            handleClear();
             setStepNum(stepNum + 1);
+            clearErrors();
           }
         }
       }
     } else if (biddingInfo.bidderCorpYn[num] === 'Y') {
       if (biddingInfo?.bidderName[num] === '' || biddingInfo?.bidderPhone1[num] === '' || biddingInfo?.bidderPhone2[num] === '' || biddingInfo?.bidderPhone3[num] === '' || biddingInfo?.bidderAddr[num] === '' || biddingInfo?.bidderAddrDetail[num] === '' || biddingInfo?.bidderCorpNum1[num] === '' || biddingInfo?.bidderCorpNum2[num] === '' || biddingInfo?.bidderCorpNum3[num] === '' || biddingInfo?.bidderCorpRegiNum1[num] === '' || biddingInfo?.bidderCorpRegiNum2[num] === '') {
-        console.log("2번째")
-        alert('입찰자 정보를 입력해주세요');
       } else {
         if (biddingForm.bidderNum === 1) {
           setStateNum(stateNum + 2);
@@ -113,19 +121,13 @@ export default function BidderForm() {
           if (stepNum === biddingForm.bidderNum) {
             setStateNum(stateNum + 1);
           } else {
-            handleClear();
             setStepNum(stepNum + 1);
+            clearErrors();
           }
         }
       }
     }
   };
-
-  for(let i = 0; i < biddingForm.bidderNum; i++) {
-    let temp = ['']
-    temp = biddingInfo.bidderCorpYn;
-    
-  }
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -152,6 +154,11 @@ export default function BidderForm() {
                 const temp = prev.bidderCorpYn;
                 temp[stepNum - 1] = "N";
                 return { ...prev, bidderCorpYn: temp };
+              })
+              setBiddingForm((prev: any) => {
+                const temp = prev.bidCorpYn;
+                temp[stepNum - 1] = "N";
+                return { ...prev, bidCorpYn: temp };
               })
             }}
           >
@@ -193,6 +200,11 @@ export default function BidderForm() {
                 temp[stepNum - 1] = "Y";
                 return { ...prev, bidderCorpYn: temp };
               })
+              setBiddingForm((prev: any) => {
+                const temp = prev.bidCorpYn;
+                temp[stepNum - 1] = "Y";
+                return { ...prev, bidCorpYn: temp };
+              })
             }}
           >
             <div
@@ -224,11 +236,8 @@ export default function BidderForm() {
         </div>
         {/* 입력정보 */}
         <form onSubmit={handleSubmit(async (data) => {
-          try {
-            console.log(data);
-          } catch (error) {
-            console.log(error);
-          }
+          handleNextStep(stepNum - 1);
+          reset();
         })}>
           <div className="flex flex-col w-[320px] h-[100%] gap-2">
             <div className="flex flex-col w-[100%] gap-1">
@@ -236,23 +245,36 @@ export default function BidderForm() {
                 성명
               </span>
               <input
-                {...register("bidderName", { required: true })}
+                {...register("bidderName", { 
+                  required: "이름을 입력해주세요",
+                  minLength: {
+                    value: 2,
+                    message: "이름은 2자 이상 입력해주세요"
+                  }
+                })}
+                value={biddingInfo?.bidderName[stepNum - 1] === '' ? '' : biddingInfo?.bidderName[stepNum - 1]}
                 id="bidderName"
                 type="text"
                 className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2"
                 placeholder="입찰자 성명을 입력해주세요"
-                value={biddingInfo?.bidderName[stepNum - 1] === '' ? '' : biddingInfo?.bidderName[stepNum - 1]}
-                onChange={(e) => setBiddingInfo((prev: any) => {
-                  const temp = prev.bidderName;
-                  temp[stepNum - 1] = e.target.value;
-                  return { ...prev, bidderName: temp };
-                })}
+                onChange={(e) => {
+                  setBiddingInfo((prev: any) => {
+                    const temp = prev.bidderName;
+                    temp[stepNum - 1] = e.target.value;
+                    return { ...prev, bidderName: temp };
+                  })
+                  setBiddingForm((prev: any) => {
+                    const temp = prev.bidName;
+                    temp[stepNum - 1] = e.target.value;
+                    return { ...prev, bidName: temp };
+                  })
+                }}
               />
             </div>
-            {errors.bidderName?.type === 'required' && (
+            {(errors.bidderName?.type === 'required' || errors.bidderName?.type === 'minLength') && (
               <div className="flex w-[100%] justify-start">
                 <label htmlFor="bidderName" className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500">
-                  성명을 입력해주세요
+                  {errors.bidderName?.message}
                 </label>
               </div>
             )}
@@ -264,11 +286,14 @@ export default function BidderForm() {
                 <input
                   {...register("bidderPhone1", { required: true })}
                   id="bidderPhone1"
+                  onInput={(e) => {
+                    e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                  }}
+                  value={biddingInfo?.bidderPhone1[stepNum - 1] === '' ? '' : biddingInfo?.bidderPhone1[stepNum - 1]}
                   name="bidderPhone1"
                   type="text"
                   maxLength={3}
                   placeholder="010"
-                  value={biddingInfo?.bidderPhone1[stepNum - 1]}
                   className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
                   onChange={(e) => {
                     setBiddingInfo((prev: any) => {
@@ -284,6 +309,9 @@ export default function BidderForm() {
                   {...register("bidderPhone2", { required: true })}
                   type="text"
                   id="bidderPhone2"
+                  onInput={(e) => {
+                    e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                  }}
                   name="bidderPhone2"
                   maxLength={4}
                   placeholder="1234"
@@ -303,6 +331,9 @@ export default function BidderForm() {
                   {...register("bidderPhone3", { required: true })}
                   type="text"
                   id="bidderPhone3"
+                  onInput={(e) => {
+                    e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                  }}
                   name="bidderPhone3"
                   maxLength={4}
                   placeholder="5678"
@@ -313,6 +344,11 @@ export default function BidderForm() {
                       const temp = prev.bidderPhone3;
                       temp[stepNum - 1] = e.target.value;
                       return { ...prev, bidderPhone3: temp };
+                    });
+                    setBiddingForm((prev: any) => {
+                      const temp = prev.bidPhone;
+                      temp[stepNum - 1] = biddingInfo?.bidderPhone1[stepNum - 1] + biddingInfo?.bidderPhone2[stepNum - 1] + e.target.value;
+                      return { ...prev, bidPhone: temp };
                     });
                     handlePhoneFocusMove(e.target);
                   }}
@@ -332,21 +368,26 @@ export default function BidderForm() {
                   <label htmlFor="bidIdNum" className="text-[10px] font-nanum not-italic font-extrabold text-left">
                     주민등록번호
                   </label>
-                  <div className="flex flex-row gap-[5%]">
+                  <div className="flex flex-row gap-[5%]"> 
                     <input
                       {...register("bidderIdNum1", { required: true })}
                       id="bidderIdNum1"
+                      name="bidderIdNum1"
+                      onInput={(e) => {
+                        e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                      }}
                       type="text"
                       maxLength={6}
                       className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[45%] text-center"
-                      value={biddingInfo?.bidderIdNum1[stepNum - 1]}
-                      onChange={(e) =>
+                      value={biddingInfo?.bidderIdNum1[stepNum - 1] === '' ? '' : biddingInfo?.bidderIdNum1[stepNum - 1]}
+                      onChange={(e) => {
                         setBiddingInfo((prev: any) => {
                           const temp = prev.bidderIdNum1;
                           temp[stepNum - 1] = e.target.value;
                           return { ...prev, bidderIdNum1: temp };
                         })
-                      }
+                        handleIdNumFocusMove(e.target);
+                      }}
                     />
                     <span className="flex text-mygray font-nanum font-normal">
                       -
@@ -354,17 +395,26 @@ export default function BidderForm() {
                     <input
                       {...register("bidderIdNum2", { required: true })}
                       id="bidderIdNum2"
+                      name="bidderIdNum2"
+                      onInput={(e) => {
+                        e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                      }}
                       type="text"
                       maxLength={7}
                       className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[45%] text-center"
-                      value={biddingInfo?.bidderIdNum2[stepNum - 1]}
-                      onChange={(e) =>
+                      value={biddingInfo?.bidderIdNum2[stepNum - 1] === '' ? '' : biddingInfo?.bidderIdNum2[stepNum - 1]}
+                      onChange={(e) =>{
                         setBiddingInfo((prev: any) => {
                           const temp = prev.bidderIdNum2;
                           temp[stepNum - 1] = e.target.value;
                           return { ...prev, bidderIdNum2: temp };
                         })
-                      }
+                        setBiddingForm((prev: any) => {
+                          const temp = prev.bidIdNum;
+                          temp[stepNum - 1] = biddingInfo?.bidderIdNum1[stepNum - 1] + e.target.value;
+                          return { ...prev, bidIdNum: temp };
+                        })
+                      }}
                     />
                   </div>
                 </div>
@@ -388,7 +438,10 @@ export default function BidderForm() {
                       type="text"
                       placeholder="123"
                       id="bidderCorpNum1"
-                      ref={focusRef1}
+                      onInput={(e) => {
+                        e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                      }}
+                      name="bidderCorpNum1"
                       maxLength={3}
                       className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
                       value={biddingInfo?.bidderCorpNum1[stepNum - 1] && biddingInfo?.bidderCorpNum1[stepNum - 1]}
@@ -398,7 +451,7 @@ export default function BidderForm() {
                           temp[stepNum - 1] = e.target.value;
                           return { ...prev, bidderCorpNum1: temp };
                         })
-                        handleFocusMove(e.target);
+                        handleCorpNumFocusMove(e.target);
                       }}
                     />
                     <span className="flex text-mygray font-nanum font-normal">
@@ -409,7 +462,10 @@ export default function BidderForm() {
                       type="text"
                       placeholder="45"
                       id="bidderCorpNum2"
-                      ref={focusRef2}
+                      onInput={(e) => {
+                        e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                      }}
+                      name="bidderCorpNum2"
                       maxLength={2}
                       className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
                       value={biddingInfo?.bidderCorpNum2[stepNum - 1] && biddingInfo?.bidderCorpNum2[stepNum - 1]}
@@ -419,7 +475,7 @@ export default function BidderForm() {
                           temp[stepNum - 1] = e.target.value;
                           return { ...prev, bidderCorpNum2: temp };
                         })
-                        handleFocusMove(e.target);
+                        handleCorpNumFocusMove(e.target);
                       }}
                     />
                     <span className="flex text-mygray font-nanum font-normal">
@@ -430,7 +486,10 @@ export default function BidderForm() {
                       type="text"
                       placeholder="67890"
                       id="bidderCorpNum3"
-                      ref={focusRef3}
+                      onInput={(e) => {
+                        e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                      }}
+                      name="bidderCorpNum3"
                       maxLength={5}
                       className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
                       value={biddingInfo?.bidderCorpNum3[stepNum - 1] && biddingInfo?.bidderCorpNum3[stepNum - 1]}
@@ -440,7 +499,12 @@ export default function BidderForm() {
                           temp[stepNum - 1] = e.target.value;
                           return { ...prev, bidderCorpNum3: temp };
                         })
-                        handleFocusMove(e.target);
+                        setBiddingForm((prev: any) => {
+                          const temp = prev.bidCorpNum;
+                          temp[stepNum - 1] = biddingInfo?.bidderCorpNum1[stepNum - 1] + biddingInfo?.bidderCorpNum2[stepNum - 1] + e.target.value;
+                          return { ...prev, bidCorpNum: temp };
+                        })
+                        handleCorpNumFocusMove(e.target);
                       }}
                     />
                   </div>
@@ -459,7 +523,13 @@ export default function BidderForm() {
                       <input
                         {...register("bidderCorpRegiNum1", { required: true })}
                         type="text"
+                        onInput={(e) => {
+                          e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                        }}
+                        maxLength={6}
                         id="bidderCorpRegiNum1"
+                        name="bidderCorpRegiNum1"
+                        placeholder="123456"
                         className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[50%] text-center"
                         value={biddingInfo?.bidderCorpRegiNum1[stepNum - 1] && biddingInfo?.bidderCorpRegiNum1[stepNum - 1]}
                         onChange={(e) => {
@@ -468,6 +538,7 @@ export default function BidderForm() {
                             temp[stepNum - 1] = e.target.value;
                             return { ...prev, bidderCorpRegiNum1: temp }
                           })
+                          handleCorpRegiNumFocusMove(e.target);
                         }}
                       />
                       <span className="flex text-mygray font-nanum font-normal">
@@ -476,7 +547,13 @@ export default function BidderForm() {
                       <input
                         {...register("bidderCorpRegiNum2", { required: true })}
                         type="text"
+                        onInput={(e) => {
+                          e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+                        }}
+                        maxLength={7}
                         id="bidderCorpRegiNum2"
+                        name="bidderCorpRegiNum2"
+                        placeholder="1234567"
                         className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[50%] text-center"
                         value={biddingInfo?.bidderCorpRegiNum2[stepNum - 1] && biddingInfo?.bidderCorpRegiNum2[stepNum - 1]}
                         onChange={(e) => {
@@ -484,6 +561,11 @@ export default function BidderForm() {
                             const temp = prev.bidderCorpRegiNum2;
                             temp[stepNum - 1] = e.target.value;
                             return { ...prev, bidderCorpRegiNum2: temp }
+                          })
+                          setBiddingForm((prev: any) => {
+                            const temp = prev.bidCorpRegiNum;
+                            temp[stepNum - 1] = biddingInfo?.bidderCorpRegiNum1[stepNum - 1] + e.target.value;
+                            return { ...prev, bidCorpRegiNum: temp };
                           })
                         }}
                       />
@@ -500,7 +582,7 @@ export default function BidderForm() {
               </>
             )}
               <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>
-                <SearchAddress biddingInfo={biddingInfo} setBiddingInfo={setBiddingInfo} stepNum={stepNum} register={register} errors={errors} />
+                <SearchAddress biddingInfo={biddingInfo} setBiddingInfo={setBiddingInfo} stepNum={stepNum} register={register} errors={errors} setError={setError} />
               </div>
               <div className="flex flex-row gap-2 absolute top-[578px]">
                 <button
@@ -517,7 +599,6 @@ export default function BidderForm() {
                 <button
                   type="submit"
                   className="flex w-[229px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-                  onClick={() => {handleNextStep(stepNum - 1)}}
                 >
                   <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
                     {stateNum <= 3 ? "확인" : "다음"}
@@ -528,5 +609,5 @@ export default function BidderForm() {
         </form>
       </div>
     </div>
-  );
+  )
 }

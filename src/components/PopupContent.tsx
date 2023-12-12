@@ -333,7 +333,7 @@ export default function PopupContent({
                                                   index +
                                                   1}
                                             </span>
-                                            <div className="flex flex-col flex-wrap sm:max-w-[300px] max-w-[200px] absolute left-8">
+                                            <div className="flex flex-col flex-wrap sm:max-w-[300px] max-w-[200px] absolute left-8 cursor-pointer">
                                               <span
                                                 className="text-left text-[12px] font-nanum not-italic font-extrabold"
                                                 onClick={() => {
