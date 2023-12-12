@@ -17,7 +17,7 @@ export const biddingInfoState = atom({
     ipchalDate: "",
     bidder: "",
     bidderNum: 1,
-    CorpYn: "N",
+    CorpYn: [""],
     distribute: {
       sharedName: [""],
       sharedPercent: [0],

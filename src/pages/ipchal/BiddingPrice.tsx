@@ -1,81 +1,94 @@
-import { stepState } from "@/atom";
-import Button from "@/components/Button";
-import { IpchalType } from "@/interface/IpchalType";
-import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { stepState } from '@/atom'
+import Button from '@/components/Button'
+import { IpchalType } from '@/interface/IpchalType'
+import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
 
 interface BiddingPriceProps {
-  formData: IpchalType;
-  setFormData: React.Dispatch<React.SetStateAction<IpchalType>>;
+  formData: IpchalType
+  setFormData: React.Dispatch<React.SetStateAction<IpchalType>>
 }
 
-export default function BiddingPrice({ formData, setFormData }: BiddingPriceProps) {
-  const [biddingPrice, setBiddingPrice] = useState<number>(0);
-  const [depositPrice, setDepositPrice] = useState<number>(0);
-  const [goNext, setGoNext] = useState<boolean>(false);
-  const stateNum = useRecoilValue(stepState);
+export default function BiddingPrice({
+  formData,
+  setFormData,
+}: BiddingPriceProps) {
+  const [biddingPrice, setBiddingPrice] = useState<number>(0)
+  const [depositPrice, setDepositPrice] = useState<number>(0)
+  const [goNext, setGoNext] = useState<boolean>(false)
+  const stateNum = useRecoilValue(stepState)
 
   function num2han(number: number) {
-    const units = ['조', '억', '만', '']; // 단위
-    const tenUnit = ['', '십', '백', '천'];
-    const numbers = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
-    const unit = 10000; // 단위는 만
-    let answer = '';
+    const units = ['조', '억', '만', ''] // 단위
+    const tenUnit = ['', '십', '백', '천']
+    const numbers = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구']
+    const unit = 10000 // 단위는 만
+    let answer = ''
 
     while (number > 0) {
-      number.toString().replace(',', '');
-      const mod = number % unit;
-      const modToArray = mod.toString().split('');
-      const length = modToArray.length - 1;
-      
-      const modToKorean = modToArray.reduce((acc: string, value: string, index: number) => {
-        const valueToNumer = +value;
-        if (!valueToNumer) return acc;
-        const numberToKorean = index < length && valueToNumer === 1 ? '' : numbers[valueToNumer];
-        return `${acc}${numberToKorean}${tenUnit[length - index]}`;
-      }, '');
-      answer = `${modToKorean}${units.pop()}${answer}`;
-      number = Math.floor(number / unit);
-    }
-    return answer.replace(/억만/g, '억');
-  };
+      number.toString().replace(',', '')
+      const mod = number % unit
+      const modToArray = mod.toString().split('')
+      const length = modToArray.length - 1
 
-  const input = document.querySelector('#number') as HTMLInputElement;
-  input && input.addEventListener('keyup', function(e: any) {
-    let value = e.target.value;
-    value = Number(value.replaceAll(',', ''));
-    if(isNaN(value)) {         //NaN인지 판별
-      input.value = "0";   
-    }else {                   //NaN이 아닌 경우
-      const formatValue = value.toLocaleString('ko-KR');
-      input.value = formatValue;
+      const modToKorean = modToArray.reduce(
+        (acc: string, value: string, index: number) => {
+          const valueToNumer = +value
+          if (!valueToNumer) return acc
+          const numberToKorean =
+            index < length && valueToNumer === 1 ? '' : numbers[valueToNumer]
+          return `${acc}${numberToKorean}${tenUnit[length - index]}`
+        },
+        '',
+      )
+      answer = `${modToKorean}${units.pop()}${answer}`
+      number = Math.floor(number / unit)
     }
-  });
+    return answer.replace(/억만/g, '억')
+  }
 
-  const input2 = document.querySelector('#number2') as HTMLInputElement;
-  input2 && input2.addEventListener('keyup', function(e: any) {
-    let value = e.target.value;
-    value = Number(value.replaceAll(',', ''));
-    if(isNaN(value)) {         //NaN인지 판별
-      input2.value = "0";   
-    }else {                   //NaN이 아닌 경우
-      const formatValue = value.toLocaleString('ko-KR');
-      input2.value = formatValue;
-    }
-  });
+  const input = document.querySelector('#number') as HTMLInputElement
+  input &&
+    input.addEventListener('keyup', function (e: any) {
+      let value = e.target.value
+      value = Number(value.replaceAll(',', ''))
+      if (isNaN(value)) {
+        //NaN인지 판별
+        input.value = '0'
+      } else {
+        //NaN이 아닌 경우
+        const formatValue = value.toLocaleString('ko-KR')
+        input.value = formatValue
+      }
+    })
+
+  const input2 = document.querySelector('#number2') as HTMLInputElement
+  input2 &&
+    input2.addEventListener('keyup', function (e: any) {
+      let value = e.target.value
+      value = Number(value.replaceAll(',', ''))
+      if (isNaN(value)) {
+        //NaN인지 판별
+        input2.value = '0'
+      } else {
+        //NaN이 아닌 경우
+        const formatValue = value.toLocaleString('ko-KR')
+        input2.value = formatValue
+      }
+    })
 
   useEffect(() => {
     if (formData && formData?.bidderNum > 1) {
       if (formData?.biddingPrice > 0 && formData?.depositPrice > 0) {
-        setGoNext(true);
+        setGoNext(true)
       } else {
-        setGoNext(false);
+        setGoNext(false)
       }
     } else {
       if (formData?.biddingPrice > 0 && formData?.depositPrice > 0) {
-        setGoNext(true);
+        setGoNext(true)
       } else {
-        setGoNext(false);
+        setGoNext(false)
       }
     }
   }, [formData?.biddingPrice, formData?.depositPrice])
@@ -106,17 +119,21 @@ export default function BiddingPrice({ formData, setFormData }: BiddingPriceProp
             </span>
           </div>
           <div className="flex w-full pt-[5px] pl-[10px]">
-            <input 
+            <input
               type="text"
               id="number"
               value={formData?.biddingPrice.toLocaleString('ko-KR')}
               className="flex w-[95%] border border-gray-300 rounded-md"
               onChange={(e) => {
-                setBiddingPrice(Number(e.target.value.toString().replaceAll(',', '')));
-                num2han(Number(e.target.value.toString().replaceAll(',', '')));
+                setBiddingPrice(
+                  Number(e.target.value.toString().replaceAll(',', '')),
+                )
+                num2han(Number(e.target.value.toString().replaceAll(',', '')))
                 setFormData({
                   ...formData,
-                  biddingPrice: Number(e.target.value.toString().replaceAll(',', ''))
+                  biddingPrice: Number(
+                    e.target.value.toString().replaceAll(',', ''),
+                  ),
                 })
               }}
             />
@@ -135,18 +152,22 @@ export default function BiddingPrice({ formData, setFormData }: BiddingPriceProp
             </span>
           </div>
           <div className="flex w-full pt-[5px] pl-[10px]">
-            <input 
+            <input
               type="text"
               id="number2"
               value={formData?.depositPrice.toLocaleString('ko-KR')}
               className="flex w-[95%] border border-gray-300 rounded-md"
               onChange={(e) => {
-                setDepositPrice(Number(e.target.value.toString().replaceAll(',', '')));
-                num2han(Number(e.target.value.toString().replaceAll(',', '')));
+                setDepositPrice(
+                  Number(e.target.value.toString().replaceAll(',', '')),
+                )
+                num2han(Number(e.target.value.toString().replaceAll(',', '')))
                 setFormData({
                   ...formData,
-                  depositPrice: Number(e.target.value.toString().replaceAll(',', ''))
-                });
+                  depositPrice: Number(
+                    e.target.value.toString().replaceAll(',', ''),
+                  ),
+                })
               }}
             />
           </div>
@@ -160,7 +181,12 @@ export default function BiddingPrice({ formData, setFormData }: BiddingPriceProp
           </div>
         </div>
       </div>
-      <Button prevStepNum={formData && formData?.bidderNum > 1 ? stateNum - 1 : stateNum - 2} nextStepNum={stateNum + 1} />
+      <Button
+        prevStepNum={
+          formData && formData?.bidderNum > 1 ? stateNum - 1 : stateNum - 2
+        }
+        nextStepNum={stateNum + 1}
+      />
     </div>
-  );
+  )
 }
