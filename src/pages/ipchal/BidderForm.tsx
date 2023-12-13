@@ -97,17 +97,26 @@ export default function BidderForm() {
   const handleNextStep = (num: number) => {
     if (biddingForm.bidCorpYn[num] === 'N') {
       if (biddingForm?.bidName[num] === '' || biddingForm?.bidPhone1[num] === '' || biddingForm?.bidPhone2[num] === '' || biddingForm?.bidPhone3[num] === '' || biddingForm?.bidAddr[num] === '' || biddingForm?.bidAddr[num] === '' || biddingForm?.bidAddrDetail[num] === '' || biddingForm?.bidIdNum1[num] === '' || biddingForm?.bidIdNum2[num] === '') {
+        alert('입력하지 않은 정보가 있습니다.');
       } else {
         if (biddingForm.bidderNum === 1) {
           if (biddingForm.bidder === 'self') {
-            setStateNum(stateNum + 1);
+            setStateNum(stateNum + 3);
+            reset();
           } else {
             setStateNum(stateNum + 1);
           }
         } else {
           if (stepNum === biddingForm.bidderNum) {
-            setStateNum(stateNum + 1);
-            reset();
+            if (biddingForm.bidder === 'self') {
+              //  본인인 경우 + 공동입찰(배분 필요)
+              setStateNum(stateNum + 2);
+              reset();
+            } else {
+              //  대리인인 경우 + 공동입찰(배분 필요), 대리인정보 입력창 필요
+              setStateNum(stateNum + 1);
+              reset();
+            }
           } else {
             setStepNum(stepNum + 1);
           }
@@ -115,19 +124,24 @@ export default function BidderForm() {
       }
     } else if (biddingForm.bidCorpYn[num] === 'Y') {
       if (biddingForm?.bidPhone1[num] === '' || biddingForm?.bidPhone2[num] === '' || biddingForm?.bidPhone3[num] === '' || biddingForm?.bidAddr[num] === '' || biddingForm?.bidAddrDetail[num] === '' || biddingForm?.bidCorpNum1[num] === '' || biddingForm?.bidCorpNum2[num] === '' || biddingForm?.bidCorpNum3[num] === '' || biddingForm?.bidCorpRegiNum1[num] === '' || biddingForm?.bidCorpRegiNum2[num] === '') {
+        alert('입력하지 않은 정보가 있습니다.');
       } else {
         if (biddingForm.bidderNum === 1) {
           if (biddingForm.bidder === 'self') {
-            setStateNum(stateNum + 1);
+            //  본인인 경우
+            setStateNum(stateNum + 3);
           } else {
+            //  대리인인 경우
             setStateNum(stateNum + 1);
           }
         } else {
           if (stepNum === biddingForm.bidderNum) {
             if (biddingForm.bidder === 'self') {
-              setStateNum(stateNum + 1);
+              //  본인인 경우 + 공동입찰(배분 필요)
+              setStateNum(stateNum + 2);
               reset();
             } else {
+              //  대리인인 경우 + 공동입찰(배분 필요), 대리인정보 입력창 필요
               setStateNum(stateNum + 1);
               reset();
             }
