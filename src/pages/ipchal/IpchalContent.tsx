@@ -1,4 +1,5 @@
 import { biddingInfoState, stepState } from "@/atom";
+import Button from "@/components/Button";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 export default function IpchalContent() {
@@ -9,6 +10,8 @@ export default function IpchalContent() {
   const nowDate = date.getDate();
   const nowMonth = date.getMonth() + 1;
   const nowYear = date.getFullYear();
+
+  console.log(biddingInfo.biddingPrice)
 
   return (
     <div className="flex w-full h-screen justify-center bg-mybg relative">
@@ -216,28 +219,94 @@ export default function IpchalContent() {
             </div>
           </div>
           {/* 4번째 박스 */}
-          <div className="flex flex-row w-full h-[60px] relative">
+          <div className="flex flex-row w-full h-[62px] relative">
             <div className="flex w-[20px] border-r-[1px] border-black justify-center items-center text-center">
               <span className="text-[9px] font-bold font-nanum">
                 입 찰 금 액
               </span>
             </div>
+            <div className="flex w-[180px] border-r-[2px] border-black">
+              <div className="flex flex-col w-[161px] h-[31px] border-b-[1px] border-black">
+                <div className="flex flex-col">
+                  <div className="flex flex-row">
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-center items-center text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        천억
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-center items-center text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        백억
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-center items-center text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        십억
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-end items-end text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        억
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-center items-center text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        천만
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-center items-center text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        백만
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-center items-center text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        십만
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-end items-end text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        만
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-end items-end text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        천
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-end items-end text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        백
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] border-r-[1px] border-black justify-end items-end text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        십
+                      </span>
+                    </div>
+                    <div className="flex w-[13.5px] h-[31px] justify-end items-end text-center">
+                      <span className="text-[9px] font-nanum font-bold">
+                        일
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-row-reverse items-center text-center h-[31px]">
+                    <div className="flex flex-row-reverse items-end text-center">
+                      <span className="text-[9px] font-bold ">
+                        {biddingInfo.biddingPrice.toString().substring(biddingInfo.biddingPrice.toString().length - 1)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-row gap-2 absolute top-[578px]">
-        <button
-          type="button"
-          className="flex w-[360px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-          onClick={() => {
-            setStateNum(stateNum + 1)
-          }}
-        >
-          <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
-            확인했습니다
-          </span>
-        </button>
-      </div>
+      <Button 
+        prevStepNum={stateNum - 1}
+        nextStepNum={stateNum + 1}
+      />
     </div>
   )
 }

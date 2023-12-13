@@ -39,11 +39,11 @@ export default function Button({
           disabled={goNext}
           className="flex w-[260px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
-            (stateNum === 2 && biddingInfo.bidder === "") ? setIsSelected && setIsSelected(false) : (stateNum === 7 && biddingInfo.bidWay === "") ? setIsWaySelected && setIsWaySelected(true) : setStateNum(nextStepNum)
+            (stateNum === 2 && biddingInfo.bidder === "") ? setIsSelected && setIsSelected(false) : (stateNum === 8 && biddingInfo.bidWay === "") ? setIsWaySelected && setIsWaySelected(true) : setStateNum(nextStepNum)
           }}
         >
           <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
-            {stateNum <= 3 ? "확인" : "다음"}
+            {stateNum <= 3 ? "확인" : stateNum === 10 ? '확인했습니다' : '다음' }
           </span>
         </button>
       </div>

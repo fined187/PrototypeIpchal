@@ -30,7 +30,6 @@ export interface IpchalType {
   bidCorpRegiNum2?: string;
 };
 
-
 export interface BiddingInfoType {
   bidderName: string[];
   bidderPhone1: string[];
@@ -46,4 +45,22 @@ export interface BiddingInfoType {
   bidderCorpRegiNum1: string[];
   bidderCorpRegiNum2: string[];
   bidderCorpYn: string[];
+};
+
+export interface AgentInfoType {
+  agentName: string;
+  agentRel: string;
+  agentPhone1: string;
+  agentPhone2: string;
+  agentPhone3: string;
+  agentIdNum1: string;
+  agentIdNum2: string;
+  agentAddr: string;
+  agentAddrDetail: string;
+  agentCorpNum1: string;
+  agentCorpNum2: string;
+  agentCorpNum3: string;
+  agentCorpRegiNum1: string;
+  agentCorpRegiNum2: string;
+  agentCorpYn: string;
 };

@@ -1,6 +1,6 @@
 import { stepState } from "@/atom";
 import Button from "@/components/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { LiaEyeSolid , LiaEyeSlashSolid  } from "react-icons/lia";
 
@@ -50,6 +50,14 @@ export default function CreateFile() {
               파일을 생성해주세요
             </span>
           </div>
+        )}
+        {isFileCreated && (
+          <div className="flex absolute top-[400px]">
+            <span className="text-[10px] font-bold text-green-500">
+              파일이 생성되었습니다
+            </span>
+          </div>
+        
         )}
       </div>
       <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />

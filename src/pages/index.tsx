@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 import StartIpchal from "./ipchal/StartIpchal";
-import { stepState } from "@/atom";
+import { biddingInfoState, stepState } from "@/atom";
 import GetIpchalInfo from "./ipchal/GetIpchalInfo";
 import { useState } from "react";
 import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
@@ -14,9 +14,11 @@ import IpchalContent from "./ipchal/IpchalContent";
 import CreateFile from "./ipchal/CreateFile";
 import IpchalShare from "./ipchal/IpchalShare";
 import BidderForm from "./ipchal/BidderForm";
+import AgentForm from "./ipchal/AgentForm";
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState);
+  const biddingForm = useRecoilValue(biddingInfoState);
   const [formData, setFormData] = useState<IpchalType>({
     sagunNum: "",
     mulgunNum: "",
@@ -50,7 +52,9 @@ export default function Home() {
 
   return (
     <>
-      {stateNum === 0 && <StartIpchal />}
+      {stateNum === 0 && (
+        <StartIpchal />
+      )}
       {stateNum === 1 && (
         <GetIpchalInfo />
       )}
@@ -63,25 +67,28 @@ export default function Home() {
       {stateNum === 4 && (
         <BidderForm />
       )}
-      {(stateNum === 5) && (
-        <ShareInfo />
+      {stateNum === 5 && biddingForm.bidder === 'agent' && (
+        <AgentForm />
       )}
       {(stateNum === 6) && (
-        <BiddingPrice formData={formData} setFormData={setFormData} />
+        <ShareInfo />
       )}
       {(stateNum === 7) && (
-        <BiddingPayment formData={formData} setFormData={setFormData} />
+        <BiddingPrice />
       )}
       {(stateNum === 8) && (
-        <IpchalInfo />
+        <BiddingPayment formData={formData} setFormData={setFormData} />
       )}
       {(stateNum === 9) && (
-        <IpchalContent />
+        <IpchalInfo />
       )}
       {(stateNum === 10) && (
-        <CreateFile />
+        <IpchalContent />
       )}
       {(stateNum === 11) && (
+        <CreateFile />
+      )}
+      {(stateNum === 12) && (
         <IpchalShare />
       )}
     </>

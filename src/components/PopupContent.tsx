@@ -1,4 +1,4 @@
-import { BiddingInfoType, IpchalType } from "@/interface/IpchalType";
+import { BiddingInfoType } from "@/interface/IpchalType";
 import {
   Dispatch,
   SetStateAction,
@@ -11,13 +11,17 @@ import { Dialog, Transition } from "@headlessui/react";
 import baseApiInstance from "@/pages/api/address";
 import Pagination from "./Pagination";
 import { IoClose } from "react-icons/io5";
+import { biddingInfoState } from "@/atom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 interface PopupContentProps {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  biddingInfo: BiddingInfoType;
-  setBiddingInfo: Dispatch<SetStateAction<BiddingInfoType>>;
-  stepNum: number;
+  biddingInfo?: BiddingInfoType;
+  setBiddingInfo?: Dispatch<SetStateAction<BiddingInfoType>>;
+  stepNum?: number;
+  agentInfo?: any;
+  setAgentInfo?: any;
 }
 
 export default function PopupContent({
@@ -25,7 +29,9 @@ export default function PopupContent({
   setIsOpen,
   biddingInfo,
   setBiddingInfo,
-  stepNum
+  stepNum,
+  agentInfo,
+  setAgentInfo,
 }: PopupContentProps) {
   const cancelButtonRef = useRef(null);
   const [searchAddr, setSearchAddr] = useState<string>("");
@@ -39,6 +45,9 @@ export default function PopupContent({
   const countPerPage = 5;
 
   const [detailAddr, setDetailAddr] = useState<boolean>(false); // 상세주소 [상세주소] 입력창 오픈
+
+  const biddingForm = useRecoilValue(biddingInfoState);
+  const setBiddingForm = useSetRecoilState(biddingInfoState);
 
   const handleInput = (e: HTMLInputElement) => {
     setSearchAddr(e.value);
@@ -99,14 +108,37 @@ export default function PopupContent({
   };
 
   const handleDetailAddr = (e: HTMLInputElement) => {
-    setBiddingInfo((prev: any) => {
-      const temp = prev.bidderAddrDetail;
-      temp[stepNum - 1] = e.value;
-      return {
-        ...prev,
-        bidderAddrDetail: temp,
-      };
-    })
+    if (stepNum && setBiddingInfo && setBiddingForm) {
+      setBiddingInfo((prev: any) => {
+        const temp = prev.bidderAddrDetail;
+        temp[stepNum - 1] = e.value;
+        return {
+          ...prev,
+          bidderAddrDetail: temp,
+        };
+      })
+      setBiddingForm((prev: any) => {
+        const temp = prev.bidAddrDetail;
+        temp[stepNum - 1] = e.value;
+        return {
+          ...prev,
+          bidAddrDetail: temp,
+        };
+      });
+    } else if (agentInfo && setAgentInfo && setBiddingForm) {
+      setAgentInfo((prev: any) => {
+        return {
+          ...prev,
+          agentAddrDetail: e.value,
+        };
+      });
+      setBiddingForm((prev: any) => {
+        return {
+          ...prev,
+          agentAddrDetail: e.value,
+        };
+      })
+    }
   };
 
   return (
@@ -155,10 +187,25 @@ export default function PopupContent({
                             onClick={() => {
                               setIsOpen(false);
                               setDetailAddr(false);
-                              setBiddingInfo({
+                              (stepNum && biddingInfo && setBiddingInfo) && setBiddingInfo({
                                 ...biddingInfo,
                                 bidderAddr: {...(biddingInfo && biddingInfo?.bidderAddr), [stepNum - 1] : ''},
                                 bidderAddrDetail: {...(biddingInfo && biddingInfo?.bidderAddrDetail), [stepNum - 1] : ''}
+                              });
+                              (stepNum && biddingInfo && setBiddingInfo) && setBiddingForm({
+                                ...biddingForm,
+                                bidAddr: {...(biddingForm && biddingForm?.bidAddr), [stepNum - 1] : ''},
+                                bidAddrDetail: {...(biddingForm && biddingForm?.bidAddrDetail), [stepNum - 1] : ''}
+                              });
+                              (agentInfo && setAgentInfo) && setAgentInfo({
+                                ...agentInfo,
+                                agentAddr: '',
+                                agentAddrDetail: ''
+                              });
+                              (agentInfo && setAgentInfo) && setBiddingForm({
+                                ...biddingForm,
+                                agentAddr: '',
+                                agentAddrDetail: ''
                               });
                             }}
                           >
@@ -337,13 +384,34 @@ export default function PopupContent({
                                               <span
                                                 className="text-left text-[12px] font-nanum not-italic font-extrabold"
                                                 onClick={() => {
-                                                  setBiddingInfo((prev: any) => {
+                                                  (stepNum && biddingInfo && setBiddingInfo) && setBiddingInfo((prev: any) => {
                                                     const temp = prev.bidderAddr;
                                                     temp[stepNum - 1] =
                                                       addr.roadAddr;
                                                     return {
                                                       ...prev,
                                                       bidderAddr: temp,
+                                                    };
+                                                  });
+                                                  (stepNum && biddingInfo && setBiddingInfo) && setBiddingForm((prev: any) => {
+                                                    const temp = prev.bidAddr;
+                                                    temp[stepNum - 1] =
+                                                      addr.roadAddr;
+                                                    return {
+                                                      ...prev,
+                                                      bidAddr: temp,
+                                                    };
+                                                  });
+                                                  (agentInfo && setAgentInfo) && setAgentInfo((prev: any) => {
+                                                    return {
+                                                      ...prev,
+                                                      agentAddr: addr.roadAddr,
+                                                    };
+                                                  });
+                                                  (agentInfo && setAgentInfo) && setBiddingForm((prev: any) => {
+                                                    return {
+                                                      ...prev,
+                                                      agentAddr: addr.roadAddr,
                                                     };
                                                   });
                                                   setAddrList([]);
@@ -441,7 +509,8 @@ export default function PopupContent({
                                     </div>
                                     <div className="w-[70%] h-[100%] flex justify-center items-center">
                                       <span className="text-[12px] font-normal font-nanum">
-                                        {biddingInfo?.bidderAddr[stepNum - 1]}
+                                        {stepNum && biddingInfo?.bidderAddr[stepNum - 1]}
+                                        {agentInfo && agentInfo?.agentAddr}
                                       </span>
                                     </div>
                                   </div>

@@ -1,22 +1,16 @@
-import { stepState } from '@/atom'
+import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import { IpchalType } from '@/interface/IpchalType'
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-interface BiddingPriceProps {
-  formData: IpchalType
-  setFormData: React.Dispatch<React.SetStateAction<IpchalType>>
-}
-
-export default function BiddingPrice({
-  formData,
-  setFormData,
-}: BiddingPriceProps) {
+export default function BiddingPrice() {
   const [biddingPrice, setBiddingPrice] = useState<number>(0)
   const [depositPrice, setDepositPrice] = useState<number>(0)
   const [goNext, setGoNext] = useState<boolean>(false)
   const stateNum = useRecoilValue(stepState)
+  const biddingForm = useRecoilValue(biddingInfoState)
+  const setBiddingForm = useSetRecoilState(biddingInfoState)
 
   function num2han(number: number) {
     const units = ['조', '억', '만', ''] // 단위
@@ -78,20 +72,22 @@ export default function BiddingPrice({
     })
 
   useEffect(() => {
-    if (formData && formData?.bidderNum > 1) {
-      if (formData?.biddingPrice > 0 && formData?.depositPrice > 0) {
+    if (biddingForm.bidderNum > 1) {
+      if (biddingForm.biddingPrice > 0 && biddingForm.depositPrice > 0) {
         setGoNext(true)
       } else {
         setGoNext(false)
       }
     } else {
-      if (formData?.biddingPrice > 0 && formData?.depositPrice > 0) {
+      if (biddingForm.biddingPrice > 0 && biddingForm.depositPrice > 0) {
         setGoNext(true)
       } else {
         setGoNext(false)
       }
     }
-  }, [formData?.biddingPrice, formData?.depositPrice])
+  }, [biddingForm.biddingPrice, biddingForm.depositPrice])
+
+  console.log(biddingForm)
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -122,15 +118,15 @@ export default function BiddingPrice({
             <input
               type="text"
               id="number"
-              value={formData?.biddingPrice.toLocaleString('ko-KR')}
+              value={biddingForm.biddingPrice.toLocaleString('ko-KR')}
               className="flex w-[95%] border border-gray-300 rounded-md"
               onChange={(e) => {
                 setBiddingPrice(
                   Number(e.target.value.toString().replaceAll(',', '')),
                 )
                 num2han(Number(e.target.value.toString().replaceAll(',', '')))
-                setFormData({
-                  ...formData,
+                setBiddingForm({
+                  ...biddingForm,
                   biddingPrice: Number(
                     e.target.value.toString().replaceAll(',', ''),
                   ),
@@ -138,7 +134,7 @@ export default function BiddingPrice({
               }}
             />
           </div>
-          <div className="flex justify-between w-[95%] pt-[5px] border-b-2 border-myyellow justify-start ml-2">
+          <div className="flex justify-between w-[95%] pt-[5px] border-b-2 border-myyellow ml-2">
             <span className="text-[10px] font-nanum not-italic font-bold leading-[9px] mb-2">
               일금
             </span>
@@ -155,15 +151,15 @@ export default function BiddingPrice({
             <input
               type="text"
               id="number2"
-              value={formData?.depositPrice.toLocaleString('ko-KR')}
+              value={biddingForm.depositPrice.toLocaleString('ko-KR')}
               className="flex w-[95%] border border-gray-300 rounded-md"
               onChange={(e) => {
                 setDepositPrice(
                   Number(e.target.value.toString().replaceAll(',', '')),
                 )
                 num2han(Number(e.target.value.toString().replaceAll(',', '')))
-                setFormData({
-                  ...formData,
+                setBiddingForm({
+                  ...biddingForm,
                   depositPrice: Number(
                     e.target.value.toString().replaceAll(',', ''),
                   ),
@@ -171,7 +167,7 @@ export default function BiddingPrice({
               }}
             />
           </div>
-          <div className="flex justify-between w-[95%] pt-[5px] border-b-2 border-myyellow justify-start ml-2">
+          <div className="flex justify-between w-[95%] pt-[5px] border-b-2 border-myyellow ml-2">
             <span className="text-[10px] font-nanum not-italic font-bold leading-[9px] mb-2">
               일금
             </span>
@@ -183,9 +179,10 @@ export default function BiddingPrice({
       </div>
       <Button
         prevStepNum={
-          formData && formData?.bidderNum > 1 ? stateNum - 1 : stateNum - 2
+          biddingForm.bidderNum > 1 ? stateNum - 1 : stateNum - 2
         }
         nextStepNum={stateNum + 1}
+        goNext={!goNext}
       />
     </div>
   )
