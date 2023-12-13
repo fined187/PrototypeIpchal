@@ -1,18 +1,15 @@
-import { stepState } from "@/atom";
+import { biddingInfoState, stepState } from "@/atom";
 import Button from "@/components/Button";
 import { IpchalType } from "@/interface/IpchalType";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
-interface BiddingPaymentProps {
-  formData: IpchalType;
-  setFormData: React.Dispatch<React.SetStateAction<IpchalType>>;
-}
-
-export default function BiddingPayment({ formData, setFormData }: BiddingPaymentProps) {
+export default function BiddingPayment() {
   const [isWaySelected, setIsWaySelected] = useState<boolean>(false);
   const setStateNum = useSetRecoilState(stepState);
   const stateNum = useRecoilValue(stepState);
+  const biddingForm = useRecoilValue(biddingInfoState);
+  const setBiddingForm = useSetRecoilState(biddingInfoState);
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -26,11 +23,11 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
           className={`flex flex-row w-[120px] h-[30px] rounded-md border ${
             isWaySelected ? "border-red-600" : "border-myyellow"
           } justify-center items-center cursor-pointer ${
-            formData.bidWay === "cash" ? "bg-myyellow" : "bg-white"
+            biddingForm.bidWay === "cash" ? "bg-myyellow" : "bg-white"
           } relative`}
           onClick={() => {
-            setFormData({
-              ...formData,
+            setBiddingForm({
+              ...biddingForm,
               bidWay: "cash",
             });
             setStateNum(stateNum + 1);
@@ -38,7 +35,7 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
         >
           <div
             className={`${
-              formData.bidWay === "cash" ? "flex" : "hidden"
+              biddingForm.bidWay === "cash" ? "flex" : "hidden"
             }`}
           >
             <svg
@@ -58,7 +55,7 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
           </div>
           <span
             className={`flex text-[13px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
-              formData.bidWay === "cash" ? "text-white" : "text-myyellow"
+              biddingForm.bidWay === "cash" ? "text-white" : "text-myyellow"
             }`}
           >
             현금/자기앞수표
@@ -68,11 +65,11 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
           className={`flex flex-row w-[120px] h-[30px] rounded-md border ${
             isWaySelected ? "border-red-600" : "border-myyellow"
           } justify-center items-center cursor-pointer ${
-            formData.bidWay === "paper" ? "bg-myyellow" : "bg-white"
+            biddingForm.bidWay === "paper" ? "bg-myyellow" : "bg-white"
           } relative`}
           onClick={() => {
-            setFormData({
-              ...formData,
+            setBiddingForm({
+              ...biddingForm,
               bidWay: "paper",
             });
             setStateNum(stateNum + 1);
@@ -80,7 +77,7 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
         >
           <div
             className={`${
-              formData.bidWay === "paper"
+              biddingForm.bidWay === "paper"
                 ? "flex"
                 : "hidden"
             }`}
@@ -102,7 +99,7 @@ export default function BiddingPayment({ formData, setFormData }: BiddingPayment
           </div>
           <span
             className={`flex text-[13px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
-              formData.bidWay === "paper"
+              biddingForm.bidWay === "paper"
                 ? "text-white ml-1"
                 : "text-myyellow"
             }`}

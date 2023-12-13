@@ -77,7 +77,7 @@ export default function Home() {
         <BiddingPrice />
       )}
       {(stateNum === 8) && (
-        <BiddingPayment formData={formData} setFormData={setFormData} />
+        <BiddingPayment />
       )}
       {(stateNum === 9) && (
         <IpchalInfo />

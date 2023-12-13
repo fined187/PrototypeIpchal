@@ -40,36 +40,37 @@ export default function BiddingPrice() {
     }
     return answer.replace(/억만/g, '억')
   }
-
-  const input = document.querySelector('#number') as HTMLInputElement
-  input &&
-    input.addEventListener('keyup', function (e: any) {
-      let value = e.target.value
-      value = Number(value.replaceAll(',', ''))
-      if (isNaN(value)) {
-        //NaN인지 판별
-        input.value = '0'
-      } else {
-        //NaN이 아닌 경우
-        const formatValue = value.toLocaleString('ko-KR')
-        input.value = formatValue
-      }
-    })
-
-  const input2 = document.querySelector('#number2') as HTMLInputElement
-  input2 &&
-    input2.addEventListener('keyup', function (e: any) {
-      let value = e.target.value
-      value = Number(value.replaceAll(',', ''))
-      if (isNaN(value)) {
-        //NaN인지 판별
-        input2.value = '0'
-      } else {
-        //NaN이 아닌 경우
-        const formatValue = value.toLocaleString('ko-KR')
-        input2.value = formatValue
-      }
-    })
+  if (typeof document !== 'undefined') {
+    const input = document.querySelector('#number') as HTMLInputElement
+    input &&
+      input.addEventListener('keyup', function (e: any) {
+        let value = e.target.value
+        value = Number(value.replaceAll(',', ''))
+        if (isNaN(value)) {
+          //NaN인지 판별
+          input.value = '0'
+        } else {
+          //NaN이 아닌 경우
+          const formatValue = value.toLocaleString('ko-KR')
+          input.value = formatValue
+        }
+      })
+  
+    const input2 = document.querySelector('#number2') as HTMLInputElement
+    input2 &&
+      input2.addEventListener('keyup', function (e: any) {
+        let value = e.target.value
+        value = Number(value.replaceAll(',', ''))
+        if (isNaN(value)) {
+          //NaN인지 판별
+          input2.value = '0'
+        } else {
+          //NaN이 아닌 경우
+          const formatValue = value.toLocaleString('ko-KR')
+          input2.value = formatValue
+        }
+      })
+  }
 
   useEffect(() => {
     if (biddingForm.bidderNum > 1) {
@@ -86,8 +87,6 @@ export default function BiddingPrice() {
       }
     }
   }, [biddingForm.biddingPrice, biddingForm.depositPrice])
-
-  console.log(biddingForm)
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
