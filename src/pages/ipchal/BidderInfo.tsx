@@ -118,7 +118,6 @@ export default function BidderInfo() {
         <Button
           prevStepNum={stateNum - 1}
           nextStepNum={stateNum + 1}
-          isSelected={isSelected}
           setIsSelected={setIsSelected}
         />
       </div>
