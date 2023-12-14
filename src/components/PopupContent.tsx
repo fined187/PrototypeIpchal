@@ -1,4 +1,4 @@
-import { BiddingInfoType } from "@/interface/IpchalType";
+import { BiddingInfoType } from '@/interface/IpchalType'
 import {
   Dispatch,
   SetStateAction,
@@ -6,22 +6,22 @@ import {
   useState,
   Fragment,
   useEffect,
-} from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import baseApiInstance from "@/pages/api/address";
-import Pagination from "./Pagination";
-import { IoClose } from "react-icons/io5";
-import { biddingInfoState } from "@/atom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+} from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import baseApiInstance from '@/pages/api/address'
+import Pagination from './Pagination'
+import { IoClose } from 'react-icons/io5'
+import { biddingInfoState } from '@/atom'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 interface PopupContentProps {
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-  biddingInfo?: BiddingInfoType;
-  setBiddingInfo?: Dispatch<SetStateAction<BiddingInfoType>>;
-  stepNum?: number;
-  agentInfo?: any;
-  setAgentInfo?: any;
+  isOpen: boolean
+  setIsOpen: Dispatch<SetStateAction<boolean>>
+  biddingInfo?: BiddingInfoType
+  setBiddingInfo?: Dispatch<SetStateAction<BiddingInfoType>>
+  stepNum?: number
+  agentInfo?: any
+  setAgentInfo?: any
 }
 
 export default function PopupContent({
@@ -33,113 +33,113 @@ export default function PopupContent({
   agentInfo,
   setAgentInfo,
 }: PopupContentProps) {
-  const cancelButtonRef = useRef(null);
-  const [searchAddr, setSearchAddr] = useState<string>("");
-  const [emptyView, setEmptyView] = useState<boolean>(false); // 검색결과 없을 때 뷰
-  const [addrList, setAddrList] = useState([]);
-  const [totalCount, setTotalCount] = useState<number>(0);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [hstry, setHstry] = useState<boolean>(false); // 변동된 주소정보 포함 여부 [true: 포함, false: 미포함
-  const [firstSort, setFirstSort] = useState("none"); // 정렬기준 [none: 기본, road: 도로명 포함, location: 지번 포함]
-  const [detailOpen, setDetailOpen] = useState<string>(""); // 상세보기 여부
-  const countPerPage = 5;
+  const cancelButtonRef = useRef(null)
+  const [searchAddr, setSearchAddr] = useState<string>('')
+  const [emptyView, setEmptyView] = useState<boolean>(false) // 검색결과 없을 때 뷰
+  const [addrList, setAddrList] = useState([])
+  const [totalCount, setTotalCount] = useState<number>(0)
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [hstry, setHstry] = useState<boolean>(false) // 변동된 주소정보 포함 여부 [true: 포함, false: 미포함
+  const [firstSort, setFirstSort] = useState('none') // 정렬기준 [none: 기본, road: 도로명 포함, location: 지번 포함]
+  const [detailOpen, setDetailOpen] = useState<string>('') // 상세보기 여부
+  const countPerPage = 5
 
-  const [detailAddr, setDetailAddr] = useState<boolean>(false); // 상세주소 [상세주소] 입력창 오픈
+  const [detailAddr, setDetailAddr] = useState<boolean>(false) // 상세주소 [상세주소] 입력창 오픈
 
-  const biddingForm = useRecoilValue(biddingInfoState);
-  const setBiddingForm = useSetRecoilState(biddingInfoState);
+  const biddingForm = useRecoilValue(biddingInfoState)
+  const setBiddingForm = useSetRecoilState(biddingInfoState)
 
   const handleInput = (e: HTMLInputElement) => {
-    setSearchAddr(e.value);
-  };
+    setSearchAddr(e.value)
+  }
 
   const handleSearch = async (keyword: string, page: number) => {
     const param = {
       confmKey: process.env.NEXT_PUBLIC_ADDR_API_KEY,
-      resultType: "json",
+      resultType: 'json',
       currentPage: page,
       countPerPage: countPerPage,
       keyword: keyword,
-      hstryYn: hstry ? "Y" : "N",
+      hstryYn: hstry ? 'Y' : 'N',
       firstSort: firstSort,
-      addInfoYn: "Y",
-    };
-    try {
-      const result = await baseApiInstance.get("/addrlink/addrLinkApi.do", {
-        params: param,
-      });
-      if (result) {
-        console.log(result);
-        setEmptyView(true);
-        setAddrList(result.data.results.juso);
-        setTotalCount(result.data.results.common.totalCount);
-      }
-      setEmptyView(false);
-    } catch (error) {
-      console.log(error);
+      addInfoYn: 'Y',
     }
-  };
+    try {
+      const result = await baseApiInstance.get('/addrlink/addrLinkApi.do', {
+        params: param,
+      })
+      if (result) {
+        console.log(result)
+        setEmptyView(true)
+        setAddrList(result.data.results.juso)
+        setTotalCount(result.data.results.common.totalCount)
+      }
+      setEmptyView(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const pageUpClick = () => {
     if (currentPage === Math.ceil(totalCount / 5)) {
-      return;
+      return
     } else {
-      setCurrentPage(currentPage + 1);
+      setCurrentPage(currentPage + 1)
     }
-  };
+  }
 
   useEffect(() => {
     if (searchAddr.length > 0) {
-      handleSearch(searchAddr, currentPage);
+      handleSearch(searchAddr, currentPage)
     }
-  }, [currentPage, hstry, firstSort]);
+  }, [currentPage, hstry, firstSort])
 
   useEffect(() => {
     if (isOpen === false) {
-      setSearchAddr("");
-      setAddrList([]);
-      setTotalCount(0);
-      setCurrentPage(1);
+      setSearchAddr('')
+      setAddrList([])
+      setTotalCount(0)
+      setCurrentPage(1)
     }
-  }, [isOpen]);
+  }, [isOpen])
 
   const handleRadioChange = (e: string) => {
-    setFirstSort(e);
-  };
+    setFirstSort(e)
+  }
 
   const handleDetailAddr = (e: HTMLInputElement) => {
     if (stepNum && setBiddingInfo && setBiddingForm) {
       setBiddingInfo((prev: any) => {
-        const temp = prev.bidderAddrDetail;
-        temp[stepNum - 1] = e.value;
+        const temp = prev.bidderAddrDetail
+        temp[stepNum - 1] = e.value
         return {
           ...prev,
           bidderAddrDetail: temp,
-        };
+        }
       })
       setBiddingForm((prev: any) => {
-        const temp = prev.bidAddrDetail;
-        temp[stepNum - 1] = e.value;
+        const temp = prev.bidAddrDetail
+        temp[stepNum - 1] = e.value
         return {
           ...prev,
           bidAddrDetail: temp,
-        };
-      });
+        }
+      })
     } else if (agentInfo && setAgentInfo && setBiddingForm) {
       setAgentInfo((prev: any) => {
         return {
           ...prev,
           agentAddrDetail: e.value,
-        };
-      });
+        }
+      })
       setBiddingForm((prev: any) => {
         return {
           ...prev,
           agentAddrDetail: e.value,
-        };
+        }
       })
     }
-  };
+  }
 
   return (
     <>
@@ -185,28 +185,52 @@ export default function PopupContent({
                           <div
                             className="flex cursor-pointer"
                             onClick={() => {
-                              setIsOpen(false);
-                              setDetailAddr(false);
-                              (stepNum && biddingInfo && setBiddingInfo) && setBiddingInfo({
-                                ...biddingInfo,
-                                bidderAddr: {...(biddingInfo && biddingInfo?.bidderAddr), [stepNum - 1] : ''},
-                                bidderAddrDetail: {...(biddingInfo && biddingInfo?.bidderAddrDetail), [stepNum - 1] : ''}
-                              });
-                              (stepNum && biddingInfo && setBiddingInfo) && setBiddingForm({
-                                ...biddingForm,
-                                bidAddr: {...(biddingForm && biddingForm?.bidAddr), [stepNum - 1] : ''},
-                                bidAddrDetail: {...(biddingForm && biddingForm?.bidAddrDetail), [stepNum - 1] : ''}
-                              });
-                              (agentInfo && setAgentInfo) && setAgentInfo({
-                                ...agentInfo,
-                                agentAddr: '',
-                                agentAddrDetail: ''
-                              });
-                              (agentInfo && setAgentInfo) && setBiddingForm({
-                                ...biddingForm,
-                                agentAddr: '',
-                                agentAddrDetail: ''
-                              });
+                              setIsOpen(false)
+                              setDetailAddr(false)
+                              stepNum &&
+                                biddingInfo &&
+                                setBiddingInfo &&
+                                setBiddingInfo({
+                                  ...biddingInfo,
+                                  bidderAddr: {
+                                    ...(biddingInfo && biddingInfo?.bidderAddr),
+                                    [stepNum - 1]: '',
+                                  },
+                                  bidderAddrDetail: {
+                                    ...(biddingInfo &&
+                                      biddingInfo?.bidderAddrDetail),
+                                    [stepNum - 1]: '',
+                                  },
+                                })
+                              stepNum &&
+                                biddingInfo &&
+                                setBiddingInfo &&
+                                setBiddingForm({
+                                  ...biddingForm,
+                                  bidAddr: {
+                                    ...(biddingForm && biddingForm?.bidAddr),
+                                    [stepNum - 1]: '',
+                                  },
+                                  bidAddrDetail: {
+                                    ...(biddingForm &&
+                                      biddingForm?.bidAddrDetail),
+                                    [stepNum - 1]: '',
+                                  },
+                                })
+                              agentInfo &&
+                                setAgentInfo &&
+                                setAgentInfo({
+                                  ...agentInfo,
+                                  agentAddr: '',
+                                  agentAddrDetail: '',
+                                })
+                              agentInfo &&
+                                setAgentInfo &&
+                                setBiddingForm({
+                                  ...biddingForm,
+                                  agentAddr: '',
+                                  agentAddrDetail: '',
+                                })
                             }}
                           >
                             <IoClose className="flex" size={20} />
@@ -310,7 +334,7 @@ export default function PopupContent({
                                       id="road"
                                       value="road"
                                       name="orderBy"
-                                      checked={firstSort === "road"}
+                                      checked={firstSort === 'road'}
                                       onChange={(e) =>
                                         handleRadioChange(e.target.value)
                                       }
@@ -325,7 +349,7 @@ export default function PopupContent({
                                       id="location"
                                       value="location"
                                       name="orderBy"
-                                      checked={firstSort === "location"}
+                                      checked={firstSort === 'location'}
                                       onChange={(e) =>
                                         handleRadioChange(e.target.value)
                                       }
@@ -355,8 +379,8 @@ export default function PopupContent({
                             <div
                               className={`flex w-full text-left ${
                                 addrList.length === 0
-                                  ? ""
-                                  : "border border-spacing-1"
+                                  ? ''
+                                  : 'border border-spacing-1'
                               } rounded-md overflow-y-scroll sm:overflow-hidden`}
                             >
                               {addrList.length > 0 && !emptyView && (
@@ -368,8 +392,8 @@ export default function PopupContent({
                                           key={index}
                                           className={`flex flex-row justify-between sm:overflow-hidden overflow-y-auto w-full items-center h-[120px] sm:max-h-[150px] sm:min-h-[100px] border-b-[1px] ${
                                             index % 2 === 0
-                                              ? "bg-gray-50 hover:bg-gray-100"
-                                              : "bg-white hover:bg-gray-100"
+                                              ? 'bg-gray-50 hover:bg-gray-100'
+                                              : 'bg-white hover:bg-gray-100'
                                           }`}
                                         >
                                           <div className="relative px-2 w-full flex flex-row justify-between items-center">
@@ -384,45 +408,67 @@ export default function PopupContent({
                                               <span
                                                 className="text-left text-[12px] font-nanum not-italic font-extrabold"
                                                 onClick={() => {
-                                                  (stepNum && biddingInfo && setBiddingInfo) && setBiddingInfo((prev: any) => {
-                                                    const temp = prev.bidderAddr;
-                                                    temp[stepNum - 1] =
-                                                      addr.roadAddr;
-                                                    return {
-                                                      ...prev,
-                                                      bidderAddr: temp,
-                                                    };
-                                                  });
-                                                  (stepNum && biddingInfo && setBiddingInfo) && setBiddingForm((prev: any) => {
-                                                    const temp = prev.bidAddr;
-                                                    temp[stepNum - 1] =
-                                                      addr.roadAddr;
-                                                    return {
-                                                      ...prev,
-                                                      bidAddr: temp,
-                                                    };
-                                                  });
-                                                  (agentInfo && setAgentInfo) && setAgentInfo((prev: any) => {
-                                                    return {
-                                                      ...prev,
-                                                      agentAddr: addr.roadAddr,
-                                                    };
-                                                  });
-                                                  (agentInfo && setAgentInfo) && setBiddingForm((prev: any) => {
-                                                    return {
-                                                      ...prev,
-                                                      agentAddr: addr.roadAddr,
-                                                    };
-                                                  });
-                                                  setAddrList([]);
-                                                  setEmptyView(false);
-                                                  setDetailAddr(true);
+                                                  stepNum &&
+                                                    biddingInfo &&
+                                                    setBiddingInfo &&
+                                                    setBiddingInfo(
+                                                      (prev: any) => {
+                                                        const temp =
+                                                          prev.bidderAddr
+                                                        temp[stepNum - 1] =
+                                                          addr.roadAddr
+                                                        return {
+                                                          ...prev,
+                                                          bidderAddr: temp,
+                                                        }
+                                                      },
+                                                    )
+                                                  stepNum &&
+                                                    biddingInfo &&
+                                                    setBiddingInfo &&
+                                                    setBiddingForm(
+                                                      (prev: any) => {
+                                                        const temp =
+                                                          prev.bidAddr
+                                                        temp[stepNum - 1] =
+                                                          addr.roadAddr
+                                                        return {
+                                                          ...prev,
+                                                          bidAddr: temp,
+                                                        }
+                                                      },
+                                                    )
+                                                  agentInfo &&
+                                                    setAgentInfo &&
+                                                    setAgentInfo(
+                                                      (prev: any) => {
+                                                        return {
+                                                          ...prev,
+                                                          agentAddr:
+                                                            addr.roadAddr,
+                                                        }
+                                                      },
+                                                    )
+                                                  agentInfo &&
+                                                    setAgentInfo &&
+                                                    setBiddingForm(
+                                                      (prev: any) => {
+                                                        return {
+                                                          ...prev,
+                                                          agentAddr:
+                                                            addr.roadAddr,
+                                                        }
+                                                      },
+                                                    )
+                                                  setAddrList([])
+                                                  setEmptyView(false)
+                                                  setDetailAddr(true)
                                                 }}
                                               >
                                                 {addr.roadAddr}
                                               </span>
                                               <span className="text-left text-[11px] font-nanum not-italic font-normal">
-                                                {"[지번] " + addr.jibunAddr}
+                                                {'[지번] ' + addr.jibunAddr}
                                               </span>
                                               {detailOpen ===
                                                 index.toString() && (
@@ -449,7 +495,7 @@ export default function PopupContent({
                                                 <div
                                                   className="flex text-center items-center justify-center rounded-[5px] mr-1 bg-gray-400 w-[50px] h-[25px] cursor-pointer"
                                                   onClick={() =>
-                                                    setDetailOpen("")
+                                                    setDetailOpen('')
                                                   }
                                                 >
                                                   <span className="text-[10px] text-white">
@@ -509,7 +555,8 @@ export default function PopupContent({
                                     </div>
                                     <div className="w-[70%] h-[100%] flex justify-center items-center">
                                       <span className="text-[12px] font-normal font-nanum">
-                                        {stepNum && biddingInfo?.bidderAddr[stepNum - 1]}
+                                        {stepNum &&
+                                          biddingInfo?.bidderAddr[stepNum - 1]}
                                         {agentInfo && agentInfo?.agentAddr}
                                       </span>
                                     </div>
@@ -536,8 +583,8 @@ export default function PopupContent({
                                 <div
                                   className="flex justify-center items-center w-[100px] h-[40px] bg-blue-500 rounded-md cursor-pointer hover:bg-blue-300"
                                   onClick={() => {
-                                    setDetailAddr(false);
-                                    setIsOpen(false);
+                                    setDetailAddr(false)
+                                    setIsOpen(false)
                                   }}
                                 >
                                   <span className="text-sm text-white rounded-md">
@@ -570,5 +617,5 @@ export default function PopupContent({
         </Transition.Root>
       )}
     </>
-  );
+  )
 }

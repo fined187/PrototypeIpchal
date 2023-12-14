@@ -1,35 +1,34 @@
-import { biddingInfoState, stepState } from "@/atom";
-import Button from "@/components/Button";
-import { IpchalType } from "@/interface/IpchalType";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-
+import { biddingInfoState, stepState } from '@/atom'
+import Button from '@/components/Button'
+import { IpchalType } from '@/interface/IpchalType'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BidderCnt() {
-  const stateNum = useRecoilValue(stepState);
-  const biddingInfo = useRecoilValue(biddingInfoState);
-  const setBiddingInfo = useSetRecoilState(biddingInfoState);
+  const stateNum = useRecoilValue(stepState)
+  const biddingInfo = useRecoilValue(biddingInfoState)
+  const setBiddingInfo = useSetRecoilState(biddingInfoState)
 
-  const [errorMsg, setErrorMsg] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<boolean>(false)
 
   const handleBiddingNum = (e: HTMLInputElement) => {
-    const value = e.value;
+    const value = e.value
     setBiddingInfo({
       ...biddingInfo,
       bidderNum: parseInt(value),
-    });
-  };
+    })
+  }
 
   useEffect(() => {
     const handleBiddingNumError = () => {
-      if ((biddingInfo?.bidderNum) <= 0) {
-        setErrorMsg(true);
+      if (biddingInfo?.bidderNum <= 0) {
+        setErrorMsg(true)
       } else {
-        setErrorMsg(false);
+        setErrorMsg(false)
       }
-    };
-    handleBiddingNumError();
-  }, [biddingInfo?.bidderNum]);
+    }
+    handleBiddingNumError()
+  }, [biddingInfo?.bidderNum])
 
   return (
     <>
@@ -48,14 +47,16 @@ export default function BidderCnt() {
                 </span>
                 <input
                   className="w-[70px] h-[30px] border-2 border-myyellow focus:border-myyellow rounded-md text-center focus:outline-none focus:border-blue-600"
-                  defaultValue={biddingInfo?.bidderNum && biddingInfo?.bidderNum}
+                  defaultValue={
+                    biddingInfo?.bidderNum && biddingInfo?.bidderNum
+                  }
                   type="text"
                   onChange={(e) => {
                     setBiddingInfo({
                       ...biddingInfo,
                       bidderNum: parseInt(e.target.value),
-                    });
-                    handleBiddingNum(e.target);
+                    })
+                    handleBiddingNum(e.target)
                   }}
                 />
                 <span className="text-[15px] font-bold font-nanum leading-[30px] ml-2">
@@ -72,11 +73,8 @@ export default function BidderCnt() {
             </div>
           </div>
         </div>
-        <Button
-          prevStepNum={stateNum - 1}
-          nextStepNum={stateNum + 1}
-        />
+        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
       </div>
     </>
-  );
+  )
 }

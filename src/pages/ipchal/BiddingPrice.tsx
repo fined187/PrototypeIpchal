@@ -55,7 +55,7 @@ export default function BiddingPrice() {
           input.value = formatValue
         }
       })
-  
+
     const input2 = document.querySelector('#number2') as HTMLInputElement
     input2 &&
       input2.addEventListener('keyup', function (e: any) {
@@ -177,9 +177,7 @@ export default function BiddingPrice() {
         </div>
       </div>
       <Button
-        prevStepNum={
-          biddingForm.bidderNum > 1 ? stateNum - 1 : stateNum - 2
-        }
+        prevStepNum={biddingForm.bidderNum > 1 ? stateNum - 1 : stateNum - 2}
         nextStepNum={stateNum + 1}
         goNext={!goNext}
       />

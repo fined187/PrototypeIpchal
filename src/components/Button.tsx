@@ -1,14 +1,14 @@
-import { biddingInfoState, stepState } from "@/atom";
-import { IpchalType } from "@/interface/IpchalType";
-import { Dispatch, SetStateAction } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { biddingInfoState, stepState } from '@/atom'
+import { IpchalType } from '@/interface/IpchalType'
+import { Dispatch, SetStateAction } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 interface ButtonProps {
-  prevStepNum: number;
-  nextStepNum: number;
-  goNext?: boolean;
-  setIsWaySelected?: Dispatch<SetStateAction<boolean>>;
-  setIsSelected?: Dispatch<SetStateAction<boolean>>;
+  prevStepNum: number
+  nextStepNum: number
+  goNext?: boolean
+  setIsWaySelected?: Dispatch<SetStateAction<boolean>>
+  setIsSelected?: Dispatch<SetStateAction<boolean>>
 }
 
 export default function Button({
@@ -18,9 +18,9 @@ export default function Button({
   setIsSelected,
   goNext,
 }: ButtonProps) {
-  const setStateNum = useSetRecoilState(stepState);
-  const stateNum = useRecoilValue(stepState);
-  const biddingInfo = useRecoilValue(biddingInfoState);
+  const setStateNum = useSetRecoilState(stepState)
+  const stateNum = useRecoilValue(stepState)
+  const biddingInfo = useRecoilValue(biddingInfoState)
 
   return (
     <>
@@ -39,14 +39,18 @@ export default function Button({
           disabled={goNext}
           className="flex w-[260px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
-            (stateNum === 2 && biddingInfo.bidder === "") ? setIsSelected && setIsSelected(false) : (stateNum === 8 && biddingInfo.bidWay === "") ? setIsWaySelected && setIsWaySelected(true) : setStateNum(nextStepNum)
+            stateNum === 2 && biddingInfo.bidder === ''
+              ? setIsSelected && setIsSelected(false)
+              : stateNum === 8 && biddingInfo.bidWay === ''
+                ? setIsWaySelected && setIsWaySelected(true)
+                : setStateNum(nextStepNum)
           }}
         >
           <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
-            {stateNum <= 3 ? "확인" : stateNum === 10 ? '확인했습니다' : '다음' }
+            {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
           </span>
         </button>
       </div>
     </>
-  );
+  )
 }

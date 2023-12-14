@@ -1,15 +1,15 @@
-import { biddingInfoState, stepState } from "@/atom";
-import Button from "@/components/Button";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { biddingInfoState, stepState } from '@/atom'
+import Button from '@/components/Button'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function IpchalContent() {
-  const stateNum = useRecoilValue(stepState);
-  const setStateNum = useSetRecoilState(stepState);
-  const biddingInfo = useRecoilValue(biddingInfoState);
-  const date = new Date();
-  const nowDate = date.getDate();
-  const nowMonth = date.getMonth() + 1;
-  const nowYear = date.getFullYear();
+  const stateNum = useRecoilValue(stepState)
+  const setStateNum = useSetRecoilState(stepState)
+  const biddingInfo = useRecoilValue(biddingInfoState)
+  const date = new Date()
+  const nowDate = date.getDate()
+  const nowMonth = date.getMonth() + 1
+  const nowYear = date.getFullYear()
 
   console.log(biddingInfo.biddingPrice)
 
@@ -25,14 +25,10 @@ export default function IpchalContent() {
           {/* 최상단 박스 */}
           <div className="flex border-b-[1px] border-black w-full h-[60px] relative">
             <div className="flex absolute top-0 left-0">
-              <span className="text-[9px] font-bold">
-                (앞면)
-              </span>
+              <span className="text-[9px] font-bold">(앞면)</span>
             </div>
             <div className="flex justify-center items-center text-center mx-auto">
-              <span className="font-bold text-[15px]">
-                기 일 입 찰 표
-              </span>
+              <span className="font-bold text-[15px]">기 일 입 찰 표</span>
             </div>
             <div className="flex absolute bottom-0 left-0">
               <span className="text-[9px] font-bold font-nanum">
@@ -49,9 +45,8 @@ export default function IpchalContent() {
           <div className="flex flex-row border-b-[1px] border-black w-full h-[40px] relative">
             <div className="flex border-r-[1px] border-black justify-center items-center w-[40px]">
               <span className="text-[9px] font-bold font-nanum">
-                사 건 
-                <br />
-                번 호
+                사 건
+                <br />번 호
               </span>
             </div>
             <div className="flex w-[160px] border-r-[1px] border-black justify-center items-center">
@@ -62,8 +57,7 @@ export default function IpchalContent() {
             <div className="flex border-r-[1px] border-black justify-center items-center w-[40px]">
               <span className="text-[9px] font-bold font-nanum">
                 물 건
-                <br />
-                번 호
+                <br />번 호
               </span>
             </div>
             <div className="flex w-[160px] justify-center items-center">
@@ -75,9 +69,7 @@ export default function IpchalContent() {
           {/* 3번째 박스 */}
           <div className="flex flex-row border-b-[1px] border-black w-full h-[180px] relative">
             <div className="flex w-[20px] border-r-[1px] border-black justify-center items-center text-center">
-              <span className="text-[9px] font-bold font-nanum">
-                입 찰 자
-              </span>
+              <span className="text-[9px] font-bold font-nanum">입 찰 자</span>
             </div>
             <div className="flex flex-col w-full">
               <div className="flex flex-row w-full h-[90px] border-b-[1px] border-black">
@@ -161,9 +153,7 @@ export default function IpchalContent() {
                       </span>
                     </div>
                     <div className="flex border-r-[1px] border-black w-[100px] justify-center items-center">
-                      <span className="text-[9px] font-bold font-nanum">
-                        -
-                      </span>
+                      <span className="text-[9px] font-bold font-nanum">-</span>
                     </div>
                     <div className="flex w-[60px] border-r-[1px] border-black justify-center items-center text-center">
                       <span className="text-[9px] font-bold font-nanum">
@@ -173,9 +163,7 @@ export default function IpchalContent() {
                       </span>
                     </div>
                     <div className="flex w-[90px] justify-center items-center">
-                      <span className="text-[9px] font-bold font-nanum">
-                        -
-                      </span>
+                      <span className="text-[9px] font-bold font-nanum">-</span>
                     </div>
                   </div>
                   <div className="flex flex-row border-b-[1px] border-black h-[30px]">
@@ -187,9 +175,7 @@ export default function IpchalContent() {
                       </span>
                     </div>
                     <div className="flex w-[100px] border-r-[1px] border-black justify-center items-center">
-                      <span className="text-[9px] font-bold font-nanum">
-                        -
-                      </span>
+                      <span className="text-[9px] font-bold font-nanum">-</span>
                     </div>
                     <div className="flex w-[60px] border-r-[1px] border-black justify-center items-center text-center">
                       <span className="text-[9px] font-bold font-nanum">
@@ -197,9 +183,7 @@ export default function IpchalContent() {
                       </span>
                     </div>
                     <div className="flex w-[90px] justify-center items-center text-center">
-                      <span className="text-[9px] font-bold font-nanum">
-                        -
-                      </span>
+                      <span className="text-[9px] font-bold font-nanum">-</span>
                     </div>
                   </div>
                   <div className="flex flex-row h-[30px]">
@@ -209,9 +193,7 @@ export default function IpchalContent() {
                       </span>
                     </div>
                     <div className="flex w-[260px] justify-center items-center text-center">
-                      <span className="text-[9px] font-bold font-nanum">
-                        -
-                      </span>
+                      <span className="text-[9px] font-bold font-nanum">-</span>
                     </div>
                   </div>
                 </div>
@@ -293,7 +275,11 @@ export default function IpchalContent() {
                   <div className="flex flex-row-reverse items-center text-center h-[31px]">
                     <div className="flex flex-row-reverse items-end text-center">
                       <span className="text-[9px] font-bold ">
-                        {biddingInfo.biddingPrice.toString().substring(biddingInfo.biddingPrice.toString().length - 1)}
+                        {biddingInfo.biddingPrice
+                          .toString()
+                          .substring(
+                            biddingInfo.biddingPrice.toString().length - 1,
+                          )}
                       </span>
                     </div>
                   </div>
@@ -303,10 +289,7 @@ export default function IpchalContent() {
           </div>
         </div>
       </div>
-      <Button 
-        prevStepNum={stateNum - 1}
-        nextStepNum={stateNum + 1}
-      />
+      <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
     </div>
   )
 }

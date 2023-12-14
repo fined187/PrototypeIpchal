@@ -1,92 +1,92 @@
-import { biddingInfoState, stepState } from "@/atom";
-import Button from "@/components/Button";
-import { useEffect, useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { biddingInfoState, stepState } from '@/atom'
+import Button from '@/components/Button'
+import { useEffect, useState } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function ShareInfo() {
-  const biddingInfo = useRecoilValue(biddingInfoState);
-  const setBiddingInfo = useSetRecoilState(biddingInfoState);
-  const stateNum = useRecoilValue(stepState);
-  const [shareWay, setShareWay] = useState<string>("");
+  const biddingInfo = useRecoilValue(biddingInfoState)
+  const setBiddingInfo = useSetRecoilState(biddingInfoState)
+  const stateNum = useRecoilValue(stepState)
+  const [shareWay, setShareWay] = useState<string>('')
   const [calc, setCalc] = useState({
     numerator: [0],
     denominator: [0],
-  });
-  const [goNext, setGoNext] = useState<boolean>(false);
+  })
+  const [goNext, setGoNext] = useState<boolean>(false)
 
   const handleClear = () => {
-    let temp = document.querySelectorAll("input");
+    let temp = document.querySelectorAll('input')
     temp.forEach((item) => {
-      item.value = '';
-    });
-  };
+      item.value = ''
+    })
+  }
 
   const handleCalc = () => {
-    if (shareWay === "S") {
-      const nameTemp = [''];
-      const percentTemp = [0];
+    if (shareWay === 'S') {
+      const nameTemp = ['']
+      const percentTemp = [0]
       for (let i = 0; i < biddingInfo?.bidderNum; i++) {
-        nameTemp.push(biddingInfo?.bidName[i]);
-        percentTemp.push(( 1 / biddingInfo?.bidderNum) * 100);
+        nameTemp.push(biddingInfo?.bidName[i])
+        percentTemp.push((1 / biddingInfo?.bidderNum) * 100)
       }
-      nameTemp.shift();
-      percentTemp.shift();
+      nameTemp.shift()
+      percentTemp.shift()
       setBiddingInfo({
         ...biddingInfo,
         distribute: {
           sharedName: nameTemp,
           sharedPercent: percentTemp,
         },
-      });
+      })
     } else {
-      const nameTemp = [''];
-      const percentTemp = [0];
+      const nameTemp = ['']
+      const percentTemp = [0]
       for (let i = 0; i < biddingInfo?.bidderNum; i++) {
-        nameTemp.push(biddingInfo?.bidName[i]);
-        percentTemp.push((calc.numerator[i] / calc.denominator[i]) * 100);
+        nameTemp.push(biddingInfo?.bidName[i])
+        percentTemp.push((calc.numerator[i] / calc.denominator[i]) * 100)
       }
-      nameTemp.shift();
-      percentTemp.shift();
+      nameTemp.shift()
+      percentTemp.shift()
       setBiddingInfo({
         ...biddingInfo,
         distribute: {
           sharedName: nameTemp,
           sharedPercent: percentTemp,
         },
-      });
+      })
     }
-  };
+  }
 
   const handleValidate = () => {
-    let temp = document.querySelectorAll("input");
+    let temp = document.querySelectorAll('input')
     temp.forEach((item) => {
       if (item.value === '') {
-        setGoNext(true);
+        setGoNext(true)
       } else {
-        setGoNext(false);
+        setGoNext(false)
       }
-    });
+    })
   }
 
   const handleValidateCalc = () => {
-    let temp = [0];
-    if (shareWay === "S") {
+    let temp = [0]
+    if (shareWay === 'S') {
       for (let i = 0; i < biddingInfo?.bidderNum; i++) {
-        temp.push(1 / biddingInfo?.bidderNum);
+        temp.push(1 / biddingInfo?.bidderNum)
       }
     } else {
       for (let i = 0; i < calc.numerator.length; i++) {
-        temp.push((calc.numerator[i] / calc.denominator[i]))
+        temp.push(calc.numerator[i] / calc.denominator[i])
       }
     }
-    temp.reduce((a, b) => a + b, 0) === 1 ? setGoNext(false) : setGoNext(true);
+    temp.reduce((a, b) => a + b, 0) === 1 ? setGoNext(false) : setGoNext(true)
   }
 
   useEffect(() => {
-    handleCalc();
-    handleValidate();
-    handleValidateCalc();
-  }, [calc.numerator, calc.denominator, shareWay]);
+    handleCalc()
+    handleValidate()
+    handleValidateCalc()
+  }, [calc.numerator, calc.denominator, shareWay])
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -97,18 +97,16 @@ export default function ShareInfo() {
         <div className="flex flex-row gap-10 w-[80%] justify-center">
           <div
             className={`flex flex-row w-[80px] h-[30px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-              shareWay === "S"
-                ? "text-white bg-myyellow"
-                : "text-myyellow bg-white"
+              shareWay === 'S'
+                ? 'text-white bg-myyellow'
+                : 'text-myyellow bg-white'
             }`}
             onClick={() => {
-              setShareWay("S");
-              handleCalc();
+              setShareWay('S')
+              handleCalc()
             }}
           >
-            <div
-              className={`${shareWay === "S" ? "flex mr-1" : "hidden"}`}
-            >
+            <div className={`${shareWay === 'S' ? 'flex mr-1' : 'hidden'}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="11"
@@ -126,7 +124,7 @@ export default function ShareInfo() {
             </div>
             <span
               className={`text-[13px] font-nanum not-italic font-extrabold ${
-                shareWay === "S" ? "text-white" : "text-myyellow"
+                shareWay === 'S' ? 'text-white' : 'text-myyellow'
               }`}
             >
               동일배분
@@ -134,19 +132,17 @@ export default function ShareInfo() {
           </div>
           <div
             className={`flex flex-row w-[80px] h-[30px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-              shareWay === "N"
-                ? "text-white bg-myyellow"
-                : "text-myyellow bg-white"
+              shareWay === 'N'
+                ? 'text-white bg-myyellow'
+                : 'text-myyellow bg-white'
             }`}
             onClick={() => {
-              setShareWay("N");
-              handleClear();
-              handleCalc();
+              setShareWay('N')
+              handleClear()
+              handleCalc()
             }}
           >
-            <div
-              className={`${shareWay === "N" ? "flex mr-1" : "hidden"}`}
-            >
+            <div className={`${shareWay === 'N' ? 'flex mr-1' : 'hidden'}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="11"
@@ -164,7 +160,7 @@ export default function ShareInfo() {
             </div>
             <span
               className={`text-[13px] font-nanum not-italic font-extrabold ${
-                shareWay === "N" ? "text-white" : "text-myyellow"
+                shareWay === 'N' ? 'text-white' : 'text-myyellow'
               }`}
             >
               각자배분
@@ -181,55 +177,59 @@ export default function ShareInfo() {
                   </span>
                 </div>
                 <div className="flex flex-row gap-[5%] w-[60%] justify-end mr-5">
-                  {shareWay === "S" ? (
+                  {shareWay === 'S' ? (
                     <>
-                      <input 
+                      <input
                         id="molecule"
                         type="text"
                         readOnly
                         value="1"
                         className={`border  border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
                       />
-                      <span>
-                        /
-                      </span>
-                      <input 
+                      <span>/</span>
+                      <input
                         type="text"
                         readOnly
                         value={biddingInfo.bidderNum}
-                        className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]" 
+                        className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]"
                       />
                     </>
-                  ): (
+                  ) : (
                     <>
-                      <input 
+                      <input
                         id="molecule"
                         type="text"
-                        className={`border ${shareWay === 'N' && goNext ? 'border-red-500' : 'border-gray-300'}  focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
+                        className={`border ${
+                          shareWay === 'N' && goNext
+                            ? 'border-red-500'
+                            : 'border-gray-300'
+                        }  focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
                         onChange={(e) => {
-                          const temp = [...calc.numerator];
-                          temp[index] = Number(e.target.value);
+                          const temp = [...calc.numerator]
+                          temp[index] = Number(e.target.value)
                           setCalc({
                             ...calc,
                             numerator: temp,
-                          });
-                          handleCalc();
+                          })
+                          handleCalc()
                         }}
                       />
-                      <span>
-                        /
-                      </span>
-                      <input 
+                      <span>/</span>
+                      <input
                         type="text"
-                        className={`border ${shareWay === 'N' && goNext ? 'border-red-500' : 'border-gray-300'}  focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
+                        className={`border ${
+                          shareWay === 'N' && goNext
+                            ? 'border-red-500'
+                            : 'border-gray-300'
+                        }  focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
                         onChange={(e) => {
-                          const temp = [...calc.denominator];
-                          temp[index] = Number(e.target.value);
+                          const temp = [...calc.denominator]
+                          temp[index] = Number(e.target.value)
                           setCalc({
                             ...calc,
                             denominator: temp,
-                          });
-                          handleCalc();
+                          })
+                          handleCalc()
                         }}
                       />
                     </>
@@ -238,13 +238,17 @@ export default function ShareInfo() {
               </div>
             )
           })}
-          {shareWay === "N" && goNext && (
+          {shareWay === 'N' && goNext && (
             <span className="text-[10px] text-red-500 font-bold">
               지분 값을 확인해주세요.
             </span>
           )}
         </div>
-        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} goNext={goNext} />
+        <Button
+          prevStepNum={stateNum - 1}
+          nextStepNum={stateNum + 1}
+          goNext={goNext}
+        />
       </div>
     </div>
   )

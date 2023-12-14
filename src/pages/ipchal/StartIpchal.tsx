@@ -1,9 +1,9 @@
-import { stepState } from "@/atom";
-import Image from "next/image";
-import { useSetRecoilState } from "recoil";
+import { stepState } from '@/atom'
+import Image from 'next/image'
+import { useSetRecoilState } from 'recoil'
 
 export default function StartIpchal() {
-  const stateNum = useSetRecoilState(stepState);
+  const stateNum = useSetRecoilState(stepState)
   return (
     <>
       <div className="flex justify-center relative">
@@ -20,7 +20,7 @@ export default function StartIpchal() {
           </div>
           <div className="flex md:w-[50%] w-[80%] absolute top-32 justify-center">
             <Image
-              src={"/MainImg.jpg"}
+              src={'/MainImg.jpg'}
               alt="MainImg"
               width={300}
               height={300}
@@ -45,5 +45,5 @@ export default function StartIpchal() {
         </div>
       </div>
     </>
-  );
+  )
 }

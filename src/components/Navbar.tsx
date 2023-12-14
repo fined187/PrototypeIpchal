@@ -1,49 +1,49 @@
-import { biddingInfoState, stepState } from "@/atom";
-import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { biddingInfoState, stepState } from '@/atom'
+import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
 
 export default function Navbar() {
-  const [menuTitle, setMenuTitle] = useState<string>("");
-  const stepStateNum = useRecoilValue(stepState);
-  const biddingForm = useRecoilValue(biddingInfoState);
+  const [menuTitle, setMenuTitle] = useState<string>('')
+  const stepStateNum = useRecoilValue(stepState)
+  const biddingForm = useRecoilValue(biddingInfoState)
   const updateMenuTitle = () => {
     if (stepStateNum === 0) {
-      setMenuTitle("");
+      setMenuTitle('')
     } else if (stepStateNum === 1) {
-      setMenuTitle("사건번호 입찰일자 확인");
+      setMenuTitle('사건번호 입찰일자 확인')
     } else if (stepStateNum === 2) {
-      setMenuTitle("대리인 확인");
+      setMenuTitle('대리인 확인')
     } else if (stepStateNum === 3) {
-      setMenuTitle("입찰자 수");
+      setMenuTitle('입찰자 수')
     } else if (stepStateNum === 4) {
-      setMenuTitle("입찰자 본인 정보");
+      setMenuTitle('입찰자 본인 정보')
     } else if (stepStateNum === 5 && biddingForm.bidder === 'agent') {
-      setMenuTitle("입찰자 대리인 정보");
+      setMenuTitle('입찰자 대리인 정보')
     } else if (stepStateNum === 6) {
-      setMenuTitle("공동 입찰자 지분");
+      setMenuTitle('공동 입찰자 지분')
     } else if (stepStateNum === 7) {
-      setMenuTitle("입찰 가격");
+      setMenuTitle('입찰 가격')
     } else if (stepStateNum === 8) {
-      setMenuTitle("보증금 제공 방법");
+      setMenuTitle('보증금 제공 방법')
     } else if (stepStateNum === 9) {
-      setMenuTitle("입찰표 입력 완료");
+      setMenuTitle('입찰표 입력 완료')
     } else if (stepStateNum === 10) {
-      setMenuTitle("입찰표 확인");
+      setMenuTitle('입찰표 확인')
     } else if (stepStateNum === 11) {
-      setMenuTitle("파일 만들기");
+      setMenuTitle('파일 만들기')
     } else if (stepStateNum === 12) {
-      setMenuTitle("입찰표 파일 공유");
+      setMenuTitle('입찰표 파일 공유')
     }
-  };
+  }
 
   useEffect(() => {
-    updateMenuTitle();
-  }, [stepStateNum]);
+    updateMenuTitle()
+  }, [stepStateNum])
 
   return (
     <div
       className={`flex relative w-full h-20 ${
-        stepStateNum === 0 || stepStateNum === 9 ? "bg-white" : "bg-mybg"
+        stepStateNum === 0 || stepStateNum === 9 ? 'bg-white' : 'bg-mybg'
       }`}
     >
       {stepStateNum === 0 ? (
@@ -111,5 +111,5 @@ export default function Navbar() {
         </>
       )}
     </div>
-  );
+  )
 }

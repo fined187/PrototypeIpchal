@@ -1,14 +1,14 @@
-import { biddingInfoState, stepState } from "@/atom";
-import Button from "@/components/Button";
-import { useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { biddingInfoState, stepState } from '@/atom'
+import Button from '@/components/Button'
+import { useState } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BidderInfo() {
-  const stateNum = useRecoilValue(stepState);
-  const setStateNum = useSetRecoilState(stepState);
-  const [isSelected, setIsSelected] = useState<boolean>(true);
-  const biddingInfo = useRecoilValue(biddingInfoState);
-  const setBiddingInfo = useSetRecoilState(biddingInfoState);
+  const stateNum = useRecoilValue(stepState)
+  const setStateNum = useSetRecoilState(stepState)
+  const [isSelected, setIsSelected] = useState<boolean>(true)
+  const biddingInfo = useRecoilValue(biddingInfoState)
+  const setBiddingInfo = useSetRecoilState(biddingInfoState)
 
   return (
     <>
@@ -22,21 +22,23 @@ export default function BidderInfo() {
           <div className="flex flex-col gap-10 w-[360px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
             <div
               className={`flex flex-row w-[70px] h-[30px] rounded-md border ${
-                isSelected ? "border-myyellow" : "border-red-600"
+                isSelected ? 'border-myyellow' : 'border-red-600'
               } justify-center items-center cursor-pointer ${
-                biddingInfo.bidder === "self" ? "bg-myyellow" : "bg-white"
+                biddingInfo.bidder === 'self' ? 'bg-myyellow' : 'bg-white'
               } relative`}
               onClick={() => {
                 setBiddingInfo({
                   ...biddingInfo,
-                  bidder: "self",
-                });
-                setStateNum(stateNum + 1);
+                  bidder: 'self',
+                })
+                setStateNum(stateNum + 1)
               }}
             >
               <div
                 className={`${
-                  biddingInfo.bidder === "self" ? "flex absolute left-2" : "hidden"
+                  biddingInfo.bidder === 'self'
+                    ? 'flex absolute left-2'
+                    : 'hidden'
                 }`}
               >
                 <svg
@@ -56,7 +58,7 @@ export default function BidderInfo() {
               </div>
               <span
                 className={`flex text-[13px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
-                  biddingInfo.bidder === "self" ? "text-white" : "text-myyellow"
+                  biddingInfo.bidder === 'self' ? 'text-white' : 'text-myyellow'
                 }`}
               >
                 본인
@@ -64,23 +66,23 @@ export default function BidderInfo() {
             </div>
             <div
               className={`flex flex-row w-[70px] h-[30px] rounded-md border ${
-                isSelected ? "border-myyellow" : "border-red-600"
+                isSelected ? 'border-myyellow' : 'border-red-600'
               } justify-center items-center cursor-pointer ${
-                biddingInfo.bidder === "agent" ? "bg-myyellow" : "bg-white"
+                biddingInfo.bidder === 'agent' ? 'bg-myyellow' : 'bg-white'
               } relative`}
               onClick={() => {
                 setBiddingInfo({
                   ...biddingInfo,
-                  bidder: "agent",
-                });
-                setStateNum(stateNum + 1);
+                  bidder: 'agent',
+                })
+                setStateNum(stateNum + 1)
               }}
             >
               <div
                 className={`${
-                  biddingInfo.bidder === "agent"
-                    ? "flex absolute left-1"
-                    : "hidden"
+                  biddingInfo.bidder === 'agent'
+                    ? 'flex absolute left-1'
+                    : 'hidden'
                 }`}
               >
                 <svg
@@ -100,15 +102,15 @@ export default function BidderInfo() {
               </div>
               <span
                 className={`flex text-[13px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
-                  biddingInfo.bidder === "agent"
-                    ? "text-white ml-1"
-                    : "text-myyellow"
+                  biddingInfo.bidder === 'agent'
+                    ? 'text-white ml-1'
+                    : 'text-myyellow'
                 }`}
               >
                 대리인
               </span>
             </div>
-            <div className={`${isSelected ? "hidden" : "flex"}`}>
+            <div className={`${isSelected ? 'hidden' : 'flex'}`}>
               <span className="text-[10px] font-bold text-myRed font-nanum leading-[-0.3px] ">
                 버튼을 선택해주세요.
               </span>
@@ -122,5 +124,5 @@ export default function BidderInfo() {
         />
       </div>
     </>
-  );
+  )
 }
