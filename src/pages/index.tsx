@@ -1,9 +1,7 @@
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import StartIpchal from './ipchal/StartIpchal'
-import { biddingInfoState, stepState } from '@/atom'
+import { biddingInfoState, loginState, stepState } from '@/atom'
 import GetIpchalInfo from './ipchal/GetIpchalInfo'
-import { useState } from 'react'
-import { BiddingInfoType, IpchalType } from '@/interface/IpchalType'
 import BidderInfo from './ipchal/BidderInfo'
 import BidderCnt from './ipchal/BidderCnt'
 import ShareInfo from './ipchal/ShareInfo'
@@ -15,39 +13,43 @@ import CreateFile from './ipchal/CreateFile'
 import IpchalShare from './ipchal/IpchalShare'
 import BidderForm from './ipchal/BidderForm'
 import AgentForm from './ipchal/AgentForm'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import IpchalResult from './ipchal/IpchalResult'
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState)
   const biddingForm = useRecoilValue(biddingInfoState)
-  const [formData, setFormData] = useState<IpchalType>({
-    sagunNum: '',
-    mulgunNum: '',
-    ipchalDate: '',
-    addr: '',
-    bidder: '',
-    bidderNum: 1,
-    CorpYn: 'N',
-    distribute: {
-      sharedName: [''],
-      sharedPercent: [],
-    },
-    biddingPrice: 0,
-    depositPrice: 0,
-    bidWay: '',
-    bidName: '',
-    bidPhone1: '',
-    bidPhone2: '',
-    bidPhone3: '',
-    bidIdNum1: '',
-    bidIdNum2: '',
-    bidAddr: '',
-    bidAddrDetail: '',
-    bidCorpNum1: '',
-    bidCorpNum2: '',
-    bidCorpNum3: '',
-    bidCorpRegiNum1: '',
-    bidCorpRegiNum2: '',
-  })
+  const [getUserId, setGetUserId] = useState<string>('')
+
+  const setLoginState = useSetRecoilState(loginState)
+  const loginStateValue = useRecoilValue(loginState)
+
+  const router = useRouter();
+  const idcode = router.query.idCode;
+  const colmul_no = router.query.colmul_no;
+  const startdate = router.query.startdate;
+  const bubnm = router.query.bubnm;
+  const ipchalamt = router.query.ipchalamt;
+  const lowamt = router.query.lowamt;
+
+  
+
+  useEffect(() => {
+    const handleLoginStatus = async (id: string) => {
+      try {
+        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${id}/login-status`)
+        if (response.data.data.isLoginStatus) {
+          setLoginState(true)
+          setGetUserId(response.data.data.userId)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    handleLoginStatus('best');
+  }, [])
 
   return (
     <>
@@ -61,7 +63,7 @@ export default function Home() {
       {stateNum === 7 && <BiddingPrice />}
       {stateNum === 8 && <BiddingPayment />}
       {stateNum === 9 && <IpchalInfo />}
-      {stateNum === 10 && <IpchalContent />}
+      {stateNum === 10 && <IpchalResult />}
       {stateNum === 11 && <CreateFile />}
       {stateNum === 12 && <IpchalShare />}
     </>

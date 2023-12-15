@@ -63,3 +63,9 @@ export const biddingInfoState = atom({
   },
   dangerouslyAllowMutability: true,
 })
+
+export const loginState = atom({
+  key: `loginState/${v4()}`,
+  default: false,
+  dangerouslyAllowMutability: true,
+})

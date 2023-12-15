@@ -1,9 +1,13 @@
-import { stepState } from '@/atom'
+import { loginState, stepState } from '@/atom'
+import axios from 'axios'
 import Image from 'next/image'
-import { useSetRecoilState } from 'recoil'
+import { useEffect } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function StartIpchal() {
   const stateNum = useSetRecoilState(stepState)
+  const loginStateValue = useRecoilValue(loginState)
+
   return (
     <>
       <div className="flex justify-center relative">
@@ -28,7 +32,10 @@ export default function StartIpchal() {
           </div>
           <div
             className="flex absolute top-[445px] bg-mygold w-[163px] h-[30px] rounded-lg items-center justify-center cursor-pointer"
-            onClick={() => stateNum(1)}
+            onClick={() => {
+              loginStateValue ? stateNum(1) :
+              alert('로그인 후 이용해주세요.')
+            }}
           >
             <span className="text-white text-sm font-nanum font-extrabold not-italic leading-4">
               시작하기
