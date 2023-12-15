@@ -1,12 +1,46 @@
-import { loginState, stepState } from '@/atom'
+import { biddingInfoState, loginState, stepState } from '@/atom'
 import axios from 'axios'
 import Image from 'next/image'
-import { useEffect } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function StartIpchal() {
   const stateNum = useSetRecoilState(stepState)
   const loginStateValue = useRecoilValue(loginState)
+  const setBiddingInfo = useSetRecoilState(biddingInfoState)
+  const biddingInfo = useRecoilValue(biddingInfoState)
+
+  const date = new Date()
+  const nowDate = date.getDate()
+  const nowMonth = date.getMonth() + 1
+  const nowYear = date.getFullYear()
+
+  const handleCheck = async () => {
+    try {
+      const response = await axios.post(`http://118.217.180.254:8081/ggi/api/bid-form/checks`, {
+        "idCode": 'A1423E3F3E433F3E3F3F3E3D3F403D3E463E3C6',
+        "biddingDate": `${nowYear}${nowMonth}${nowDate}`
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      if (response.status === 200) {
+        setBiddingInfo({
+          ...biddingInfo,
+          caseNo: response.data.data.caseNo,
+          infoId: response.data.data.infoId,
+          sagunNum: response.data.data.caseYear + " 타경 " + response.data.data.caseDetail,
+          mulgunNum: response.data.data.mulSeq,
+          ipchalDate: response.data.data.startYear + response.data.data.startMonth + response.data.data.startDay,
+          sagunAddr: response.data.data.address,
+        })
+        stateNum(1)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -24,16 +58,21 @@ export default function StartIpchal() {
           </div>
           <div className="flex md:w-[50%] w-[80%] absolute top-32 justify-center">
             <Image
+              priority
               src={'/MainImg.jpg'}
               alt="MainImg"
               width={300}
               height={300}
+              style={{
+                height: 'auto',
+                width: 'auto',
+              }}
             />
           </div>
           <div
             className="flex absolute top-[445px] bg-mygold w-[163px] h-[30px] rounded-lg items-center justify-center cursor-pointer"
             onClick={() => {
-              loginStateValue ? stateNum(1) :
+              loginStateValue ? handleCheck() :
               alert('로그인 후 이용해주세요.')
             }}
           >

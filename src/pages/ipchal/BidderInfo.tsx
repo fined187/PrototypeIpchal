@@ -31,7 +31,7 @@ export default function BidderInfo() {
                   ...biddingInfo,
                   bidder: 'self',
                 })
-                setStateNum(stateNum + 1)
+                setStateNum(stateNum + 3)
               }}
             >
               <div

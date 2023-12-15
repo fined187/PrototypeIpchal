@@ -32,9 +32,7 @@ export default function Home() {
   const startdate = router.query.startdate;
   const bubnm = router.query.bubnm;
   const ipchalamt = router.query.ipchalamt;
-  const lowamt = router.query.lowamt;
-
-  
+  const lowamt = router.query.lowamt;  
 
   useEffect(() => {
     const handleLoginStatus = async (id: string) => {
@@ -56,16 +54,16 @@ export default function Home() {
       {stateNum === 0 && <StartIpchal />}
       {stateNum === 1 && <GetIpchalInfo />}
       {stateNum === 2 && <BidderInfo />}
-      {stateNum === 3 && <BidderCnt />}
-      {stateNum === 4 && <BidderForm />}
-      {stateNum === 5 && biddingForm.bidder === 'agent' && <AgentForm />}
-      {stateNum === 6 && <ShareInfo />}
-      {stateNum === 7 && <BiddingPrice />}
-      {stateNum === 8 && <BiddingPayment />}
-      {stateNum === 9 && <IpchalInfo />}
-      {stateNum === 10 && <IpchalResult />}
-      {stateNum === 11 && <CreateFile />}
-      {stateNum === 12 && <IpchalShare />}
+      {stateNum === 3 && biddingForm.bidder === 'agent' && <AgentForm />}
+      {stateNum === 4 && <BidderCnt />}
+      {stateNum === 5 && <BidderForm />}
+      {stateNum === 6 && biddingForm.bidderNum > 1 && <ShareInfo />}
+      {stateNum === 6 && biddingForm.bidderNum === 1 && <BiddingPrice />}
+      {stateNum === 7 && <BiddingPayment />}
+      {stateNum === 8 && <IpchalInfo />}
+      {stateNum === 9 && <IpchalResult />}
+      {stateNum === 10 && <CreateFile />}
+      {stateNum === 11 && <IpchalShare />}
     </>
   )
 }

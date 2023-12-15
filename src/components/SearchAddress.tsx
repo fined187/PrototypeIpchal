@@ -37,19 +37,21 @@ export default function SearchAddress({
   const handleModal = () => {
     setIsOpen(!isOpen)
   }
-  const setBiddingForm = useSetRecoilState(biddingInfoState)
   const biddingForm = useRecoilValue(biddingInfoState)
 
   useEffect(() => {
     if (stepNum && biddingForm.bidAddr[stepNum - 1] === '') return
-    if (agentSetError) {
-      agentSetError &&
-        agentSetError('agentAddr', { type: 'manual', message: '' })
-    }
-    if (setError !== undefined) {
+
+    if (setError) {
       setError('bidderAddr', { type: 'manual', message: '' })
     }
-  }, [stepNum && biddingForm.bidAddr[stepNum - 1], agentSetError, setError])
+  }, [stepNum && biddingForm.bidAddr[stepNum - 1], setError])
+
+  useEffect(() => {
+    if (agentSetError) {
+      agentSetError('agentAddr', { type: 'manual', message: '' })
+    }
+  }, [agentSetError])
 
   return (
     <>

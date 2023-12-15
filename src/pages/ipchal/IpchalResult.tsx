@@ -19,14 +19,12 @@ export default function IpchalResult() {
     }
   }
 
-  console.log(handlePrice(biddingInfo.biddingPrice.toString().length).substring(3, 4))
-
   return (
     <>
-      <div className="flex flex-col bg-mybg h-screen md:max-w-[full] w-[full] m-auto relative justify-center items-center">
+      <div className="flex flex-col bg-mybg h-screen md:max-w-[full] w-[420px] m-auto relative justify-center items-center">
         <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">입찰표</div>
-        <div className="min-w-[500px] md:max-w-[600px] overflow-x-scroll absolute top-[160px] h-[600px] bg-mybg">
-          <div className="border border-black text-[1.5rem] text-center min-w-[500px] md:max-w-[600px] h-[100%] m-auto bg-mybg">
+        <div className="min-w-[420px] md:max-w-[600px] overflow-x-scroll absolute top-[160px] h-[600px] bg-mybg">
+          <div className="border border-black text-[1.5rem] text-center min-w-[420px] md:max-w-[600px] h-[100%] m-auto bg-mybg">
             {/* 첫 번째 박스 */}
             <div className="p-[1%] pb-0 border-black border-b-[1px]">
               <div className="text-left text-[14px]">(앞면)</div>
