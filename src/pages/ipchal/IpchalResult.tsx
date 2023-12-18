@@ -1,6 +1,12 @@
 import { biddingInfoState, loginState, stepState } from '@/atom'
 import Button from '@/components/Button'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+import jsPDF from 'jspdf'
+import html2canvas from 'html2canvas'
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+
 
 export default function IpchalResult() {
   const stateNum = useRecoilValue(stepState)
@@ -11,6 +17,8 @@ export default function IpchalResult() {
   const nowMonth = date.getMonth() + 1
   const nowYear = date.getFullYear()
 
+  const [totalResult, setTotalResult] = useState<any>([])
+
   const handlePrice = (len: number) => {
     if (12 - len > 0) {
       return '0'.repeat(12 - len) + biddingInfo.biddingPrice
@@ -19,9 +27,37 @@ export default function IpchalResult() {
     }
   }
 
+  const CaptureAndConvertPDF = () => {
+    const input = document.getElementById('capture')
+    html2canvas(input as HTMLElement).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png')
+      const pdf = new jsPDF('p', 'mm', 'a4')
+      const imgProps = pdf.getImageProperties(imgData)
+      const pdfWidth = pdf.internal.pageSize.getWidth()
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight)
+      pdf.save('download.pdf')
+    })
+  }
+
+  useEffect(() => {
+    const handleGetResult = async () => {
+      try {
+        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`)
+        if (response.status === 200) {
+          console.log(response.data.data)
+          setTotalResult(response.data.data)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    handleGetResult()
+  }, [])
+
   return (
     <>
-      <div className="flex flex-col bg-mybg h-screen md:w-full w-[420px] m-auto relative justify-center items-center">
+      <div className="flex flex-col bg-mybg h-screen md:w-full w-[420px] m-auto relative justify-center items-center" id='capture'>
         <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">입찰표</div>
         <div className="min-w-[420px] md:max-w-[600px] overflow-x-scroll absolute top-[160px] h-[600px] bg-mybg">
           <div className="border border-black text-[1.5rem] text-center min-w-[420px] md:max-w-[600px] h-[100%] m-auto bg-mybg">
@@ -34,12 +70,12 @@ export default function IpchalResult() {
               <div className="flex flex-row justify-between items-stretch">
                 <div>
                   <span className='text-[12px] font-semibold font-nanum'>
-                    영월지원 집행관 귀하
+                    {totalResult && totalResult && totalResult.reqCourtName + ' 귀하'}
                   </span>
                 </div>
                 <div>
                   <span className='text-[12px] font-semibold font-nanum'>
-                    입찰기일 : {nowYear}년 {nowMonth}월 {nowDate}일
+                    {/* 입찰기일 : {totalResult.biddingDate?.substring(0, 4)}년 {totalResult.biddingDate.substring(4, 6)}월 {totalResult.biddingDate.substring(6, 8)}일 */}
                   </span>
                 </div>
               </div>
@@ -55,7 +91,7 @@ export default function IpchalResult() {
               </div>
               <div className="flex justify-center items-center border-black border-r-[1px] w-[40%] text-center">
                 <span className='md:text-[14px] text-[12px] font-nanum font-semibold'>
-                  {biddingInfo.sagunNum}
+                  {totalResult && totalResult.caseYear + " 타경 " + totalResult.caseDetail}
                 </span>
               </div>
               <div className='border-black border-r-[1px] w-[10%] justify-center items-center text-center'>
@@ -66,8 +102,8 @@ export default function IpchalResult() {
                 </span>
               </div>
               <div className="flex justify-center items-center text-center w-[40%]">
-                <span className='text-[8px] font-bold font-nanum'>
-                  {biddingInfo.mulgunNum ?? '※ 물건번호가 여러개 있는 경우에는 꼭 기재'}
+                <span className={totalResult.mulNo ? 'text-[12px] font-bold font-nanum' : 'text-[8px] font-bold font-nanum'}>
+                  {totalResult.mulNo ?? '※ 물건번호가 여러개 있는 경우에는 꼭 기재'}
                 </span>
               </div>
             </div>
@@ -94,7 +130,7 @@ export default function IpchalResult() {
                       </div>
                       <div className="flex justify-center text-center items-center border-black border-r-[1px] w-[30%]">
                         <span className='text-[12px] font-nanum'>
-                          {biddingInfo.bidName[0]}
+                          {totalResult && totalResult.bidders.length > 1 ? '' : totalResult.bidders[0].name}
                         </span>
                         <span className='mr-1 text-[12px] float-right'>
                           (인)
@@ -107,7 +143,7 @@ export default function IpchalResult() {
                       </div>
                       <div className="flex justify-center items-center text-center w-[30%]">
                         <span className='text-[12px]'>
-                          {biddingInfo.bidPhone[0]}
+                          {totalResult && totalResult.bidders.length > 1 ? '' : totalResult.bidders[0].phoneNo}
                         </span>
                       </div>
                     </div>
@@ -133,7 +169,7 @@ export default function IpchalResult() {
                       </div>
                       <div className="flex justify-center items-center w-[30%] text-center">
                         <span className='text-[12px] font-nanum'>
-                          {biddingInfo.bidCorpNum[0]}
+                          {totalResult && totalResult.bidders.length > 1 ? '' : totalResult.bidders[0].corporationNo}
                         </span>
                       </div>
                     </div>
@@ -145,7 +181,7 @@ export default function IpchalResult() {
                       </div>
                       <div className="flex justify-center items-center w-[80%]">
                         <span className='text-[12px] font-nanum'>
-                          {biddingInfo.bidAddr[0]}
+                          {totalResult && totalResult.bidders.length > 1 ? '' : totalResult.bidders[0].address}
                         </span>
                       </div>
                     </div>
@@ -244,7 +280,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 1) === '0' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substr(0, 1)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 1) === '0' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(0, 1)}
                   </span>
                 </div>
               </div>
@@ -256,7 +292,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 2) === '00'  ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(1, 1)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 2) === '00'  ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(1, 1)}
                   </span>
                 </div>
               </div>
@@ -268,7 +304,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 3) === '000' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(2, 1)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 3) === '000' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(2, 1)}
                   </span>
                 </div>
               </div>
@@ -283,7 +319,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 4) === '0000' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(3, 4)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 4) === '0000' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(3, 4)}
                   </span>
                 </div>
               </div>
@@ -295,7 +331,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 5) === '00000' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(4, 5)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 5) === '00000' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(4, 5)}
                   </span>
                 </div>
               </div>
@@ -307,7 +343,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 6) === '000000' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(5, 6)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 6) === '000000' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(5, 6)}
                   </span>
                 </div>
               </div>
@@ -319,7 +355,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 7) === '0000000' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(6, 7)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 7) === '0000000' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(6, 7)}
                   </span>
                 </div>
               </div>
@@ -334,7 +370,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 8) === '00000000' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(7, 8)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 8) === '00000000' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(7, 8)}
                   </span>
                 </div>
               </div>
@@ -349,7 +385,7 @@ export default function IpchalResult() {
                 </div>
                 <div className='flex justify-center items-center h-[50%] border-black border-[2px]'>
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 9) === '000000000' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(8, 9)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 9) === '000000000' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(8, 9)}
                   </span>
                 </div>
               </div>
@@ -364,7 +400,7 @@ export default function IpchalResult() {
                 </div>
                 <div className='flex justify-center items-center h-[50%] border-black border-[2px]'>
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 10) === '0000000000' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(9, 10)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 10) === '0000000000' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(9, 10)}
                   </span>
                 </div>
               </div>
@@ -379,7 +415,7 @@ export default function IpchalResult() {
                 </div>
                 <div className='flex justify-center items-center h-[50%] border-black border-[2px]'>
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 11) === '00000000000' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(10, 11)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 11) === '00000000000' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(10, 11)}
                   </span>
                 </div>
               </div>
@@ -394,7 +430,7 @@ export default function IpchalResult() {
                 </div>
                 <div className='flex justify-center items-center h-[50%] border-black border-[2px]'>
                   <span className='text-[12px] font-nanum font-bold'>
-                    {handlePrice(biddingInfo.biddingPrice.toString().length).substring(0, 12) === '000000000000' ? '' : handlePrice(biddingInfo.biddingPrice.toString().length).substring(11, 12)}
+                    {totalResult && handlePrice(totalResult.bidPrice.toString().length).substring(0, 12) === '000000000000' ? '' : handlePrice(totalResult.bidPrice.toString().length).substring(11, 12)}
                   </span>
                 </div>
               </div>
@@ -422,7 +458,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                    {biddingInfo.depositPrice.toString().length === 12 ? biddingInfo.depositPrice.toString().substring(0, 1) : ''}
+                    {totalResult && totalResult.bidDeposit.toString().length === 12 ? totalResult.bidDeposit.toString().substring(0, 1) : ''}
                   </span>
                 </div>
               </div>
@@ -434,7 +470,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                    {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 2) === '00' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(1, 2))}
+                    {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 2) === '00' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(1, 2))}
                   </span>
                 </div>
               </div>
@@ -446,7 +482,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                  {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 3) === '000' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(2, 3))}
+                  {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 3) === '000' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(2, 3))}
                   </span>
                 </div>
               </div>
@@ -461,7 +497,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                  {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 4) === '0000' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(3, 4))}
+                  {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 4) === '0000' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(3, 4))}
                   </span>
                 </div>
               </div>
@@ -473,7 +509,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                  {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 5) === '00000' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(4, 5))}
+                  {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 5) === '00000' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(4, 5))}
                   </span>
                 </div>
               </div>
@@ -485,7 +521,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                  {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 6) === '000000' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(5, 6))}
+                  {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 6) === '000000' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(5, 6))}
                   </span>
                 </div>
               </div>
@@ -497,7 +533,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                  {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 7) === '0000000' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(6, 7))}
+                  {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 7) === '0000000' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(6, 7))}
                   </span>
                 </div>
               </div>
@@ -512,7 +548,7 @@ export default function IpchalResult() {
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
                   <span className='text-[12px] font-nanum font-bold'>
-                  {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 8) === '00000000' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(7, 8))}
+                  {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 8) === '00000000' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(7, 8))}
                   </span>
                 </div>
               </div>
@@ -527,7 +563,7 @@ export default function IpchalResult() {
                 </div>
                 <div className='flex justify-center items-center h-[50%] border-black border-[2px]'>
                   <span className='text-[12px] font-nanum font-bold'>
-                  {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 9) === '000000000' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(8, 9))}
+                  {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 9) === '000000000' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(8, 9))}
                   </span>
                 </div>
               </div>
@@ -542,7 +578,7 @@ export default function IpchalResult() {
                 </div>
                 <div className='flex justify-center items-center h-[50%] border-black border-[2px]'>
                   <span className='text-[12px] font-nanum font-bold'>
-                  {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 10) === '0000000000' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(9, 10))}
+                  {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 10) === '0000000000' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(9, 10))}
                   </span>
                 </div>
               </div>
@@ -557,7 +593,7 @@ export default function IpchalResult() {
                 </div>
                 <div className='flex justify-center items-center h-[50%] border-black border-[2px]'>
                   <span className='text-[12px] font-nanum font-bold'>
-                  {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 11) === '00000000000' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(10, 11))}
+                  {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 11) === '00000000000' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(10, 11))}
                   </span>
                 </div>
               </div>
@@ -572,7 +608,7 @@ export default function IpchalResult() {
                 </div>
                 <div className='flex justify-center items-center h-[50%] border-black border-[2px]'>
                   <span className='text-[12px] font-nanum font-bold'>
-                  {(handlePrice(biddingInfo.depositPrice.toString().length).substring(0, 12) === '000000000000' ? '' : handlePrice(biddingInfo.depositPrice.toString().length).substring(11, 12))}
+                  {totalResult && (handlePrice(totalResult.bidDeposit.toString().length).substring(0, 12) === '000000000000' ? '' : handlePrice(totalResult.bidDeposit.toString().length).substring(11, 12))}
                   </span>
                 </div>
               </div>
@@ -591,7 +627,7 @@ export default function IpchalResult() {
                   <div className='flex flex-row'>
                     <input 
                       type="checkbox"
-                      checked={biddingInfo.bidWay === 'cash' ? true : false}
+                      checked={biddingInfo.bidWay === 'M' ? true : false}
                       className='w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white'
                       readOnly
                     />
@@ -602,7 +638,7 @@ export default function IpchalResult() {
                   <div className='flex flex-row'>
                     <input 
                       type="checkbox"
-                      checked={biddingInfo.bidWay === 'paper' ? true : false}
+                      checked={biddingInfo.bidWay === 'W' ? true : false}
                       className='w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white'
                       readOnly
                     />
@@ -619,7 +655,7 @@ export default function IpchalResult() {
                   </span>
                 </div>
                 <span className='text-[12px] font-nanum font-bold'>
-                  본인 또는 대리인 {biddingInfo.bidName[0]} (인)
+                  본인 또는 대리인 {totalResult && totalResult.bidders[0].name} (인)
                 </span>
               </div>
             </div>
@@ -639,7 +675,8 @@ export default function IpchalResult() {
             type="button"
             className="flex md:w-[280px] w-[230px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              setStateNum(stateNum + 1)
+              CaptureAndConvertPDF()
+              
             }}
           >
             <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">

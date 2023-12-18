@@ -122,7 +122,7 @@ export default function BiddingPrice() {
     if (biddingForm.biddingPrice >= (paymentsInfo.minimumAmount * 1.1) && biddingForm.biddingPrice < (paymentsInfo.minimumAmount * 1.2)) {
       alert('입찰금액이 최저가의 10% 이상입니다')
     } 
-    if (biddingForm.biddingPrice >= (paymentsInfo.minimumAmount * 1.2) && biddingForm.biddingPrice < (paymentsInfo.appraisalAmount)) {
+    if (biddingForm.biddingPrice >= (paymentsInfo.minimumAmount * 1.2)) {
       alert('입찰금액이 최저가의 20% 이상입니다')
     } 
   }, [biddingForm.biddingPrice])

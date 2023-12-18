@@ -1,4 +1,4 @@
-import { stepState } from '@/atom'
+import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
@@ -6,6 +6,7 @@ import { LiaEyeSolid, LiaEyeSlashSolid } from 'react-icons/lia'
 
 export default function CreateFile() {
   const stateNum = useRecoilValue(stepState)
+  const biddingInfo = useRecoilValue(biddingInfoState)
   const [isFileCreated, setIsFileCreated] = useState<boolean>(false)
   const [passwordActive, setPasswordActive] = useState<boolean>(false)
 
@@ -13,7 +14,7 @@ export default function CreateFile() {
 
   return (
     <div className="flex w-full h-screen justify-center bg-mybg relative">
-      <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center top-20 relative">
+      <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-[80%] bg-mybg items-center text-center top-20 relative">
         <span className="text-[20px] font-extrabold font-nanum not-italic leading-8">
           파일명과 암호를 입력하세요
         </span>
@@ -22,7 +23,7 @@ export default function CreateFile() {
             <span className="text-black text-[10px] font-extrabold not-italic font-nanum leading-[9px] ml-[5%]">
               파일이름
             </span>
-            <input className="w-[90%] h-[30px] border border-gray-300 rounded-md ml-[5%]" />
+            <input className="w-[90%] h-[30px] border border-gray-300 rounded-md ml-[5%]" value={'best_' + biddingInfo.ipchalDate} />
           </div>
           <div className="flex flex-col justify-start text-left gap-3 relative">
             <span className="text-black text-[10px] font-extrabold not-italic font-nanum leading-[9px] ml-[5%]">

@@ -12,27 +12,24 @@ export default function BiddingPayment() {
   const biddingForm = useRecoilValue(biddingInfoState)
   const setBiddingForm = useSetRecoilState(biddingInfoState)
 
-  const handleBiddingPayment = async () => {
+  const handleBiddingPayment = async (pay: string) => {
     try {
       const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`, {
         "bidPrice": biddingForm.biddingPrice,
         "bidDeposit": biddingForm.depositPrice,
-        "depositType": biddingForm.bidWay,
+        "depositType": pay,
       }, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       if (response.status === 200) {
-        console.log(response.data)
         setStateNum(stateNum + 1)
       }
     } catch (error) {
       console.log(error)
     }
   }
-
-  console.log(biddingForm)
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -53,7 +50,7 @@ export default function BiddingPayment() {
               ...biddingForm,
               bidWay: 'M',
             })
-            handleBiddingPayment()
+            handleBiddingPayment(biddingForm.bidWay)
           }}
         >
           <div
@@ -93,7 +90,7 @@ export default function BiddingPayment() {
               ...biddingForm,
               bidWay: 'W',
             })
-            handleBiddingPayment()
+            handleBiddingPayment(biddingForm.bidWay)
           }}
         >
           <div
