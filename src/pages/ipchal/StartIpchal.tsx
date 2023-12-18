@@ -17,8 +17,8 @@ export default function StartIpchal() {
   const handleCheck = async () => {
     try {
       const response = await axios.post(`http://118.217.180.254:8081/ggi/api/bid-form/checks`, {
-        "idCode": 'A1423E3F3E433F3E3F3F3E3D3F403D3E463E3C6',
-        "biddingDate": `${nowYear}${nowMonth}${nowDate}`
+        "idCode": 'A1403F3F403D3F3D3E403E3C3D4349474A3C3E8',
+        "biddingDate": `20231221`
       }, {
         headers: {
           'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ export default function StartIpchal() {
       console.log(error)
     }
   }
-
+  
   return (
     <>
       <div className="flex justify-center relative">

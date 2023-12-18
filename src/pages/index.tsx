@@ -58,12 +58,12 @@ export default function Home() {
       {stateNum === 4 && <BidderCnt />}
       {stateNum === 5 && <BidderForm />}
       {stateNum === 6 && biddingForm.bidderNum > 1 && <ShareInfo />}
-      {stateNum === 6 && biddingForm.bidderNum === 1 && <BiddingPrice />}
-      {stateNum === 7 && <BiddingPayment />}
-      {stateNum === 8 && <IpchalInfo />}
-      {stateNum === 9 && <IpchalResult />}
-      {stateNum === 10 && <CreateFile />}
-      {stateNum === 11 && <IpchalShare />}
+      {stateNum === 7 && <BiddingPrice />}
+      {stateNum === 8 && <BiddingPayment />}
+      {stateNum === 9 && <IpchalInfo />}
+      {stateNum === 10 && <IpchalResult />}
+      {stateNum === 11 && <CreateFile />}
+      {stateNum === 12 && <IpchalShare />}
     </>
   )
 }

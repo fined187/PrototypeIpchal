@@ -45,6 +45,7 @@ export interface BiddingInfoType {
   bidderCorpRegiNum1: string[]
   bidderCorpRegiNum2: string[]
   bidderCorpYn: string[]
+  bidderJob: string[]
 }
 
 export interface AgentInfoType {
@@ -58,4 +59,16 @@ export interface AgentInfoType {
   agentAddr: string
   agentAddrDetail: string
   agentJob: string
+}
+
+export interface BidderList {
+  peopleSeq: number
+  bidderType: string
+  name: string
+  phoneNo: string
+  address: string
+  job: string
+  companyNo: string
+  corporationNo: string
+  share: string
 }

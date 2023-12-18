@@ -9,6 +9,8 @@ interface ButtonProps {
   setIsWaySelected?: Dispatch<SetStateAction<boolean>>
   setIsSelected?: Dispatch<SetStateAction<boolean>>
   handleConfirm?: () => void
+  handleBiddingCnt?: () => void
+  handleBiddingPrice?: () => void
 }
 
 export default function Button({
@@ -17,14 +19,18 @@ export default function Button({
   setIsWaySelected,
   setIsSelected,
   goNext,
-  handleConfirm
+  handleConfirm,
+  handleBiddingCnt,
+  handleBiddingPrice
 }: ButtonProps) {
   const setStateNum = useSetRecoilState(stepState)
   const stateNum = useRecoilValue(stepState)
   const biddingInfo = useRecoilValue(biddingInfoState)
 
-  const handleNextStep = () => {
-    if (stateNum === 2 && biddingInfo.bidder === '') {
+  const handleNextStep = async () => {
+    if (stateNum === 1 && handleConfirm) {
+      await handleConfirm()
+    } else if (stateNum === 2 && biddingInfo.bidder === '') {
       setIsSelected && setIsSelected(false)
     } else if (stateNum === 2 && biddingInfo.bidder === 'agent') {
       setStateNum(stateNum + 1)
@@ -32,8 +38,13 @@ export default function Button({
       setStateNum(stateNum + 2)
     } else if (stateNum === 3 && biddingInfo.bidder === 'agent') {
       setStateNum(stateNum + 1)
-    } else if (stateNum === 4 && biddingInfo.bidder === 'self') {
+    } else if (stateNum === 4 && biddingInfo.bidder === 'self' && handleBiddingCnt) {
+      await handleBiddingCnt()
       setStateNum(stateNum + 1)
+    } else if (stateNum === 7 && handleBiddingPrice) {
+      handleBiddingPrice()
+    } else if (stateNum === 8 && biddingInfo.bidWay === '') {
+      setIsWaySelected && setIsWaySelected(true)
     } else {
       setStateNum(stateNum + 1)
     }

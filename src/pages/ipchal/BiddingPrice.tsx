@@ -1,16 +1,23 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import { IpchalType } from '@/interface/IpchalType'
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BiddingPrice() {
   const [biddingPrice, setBiddingPrice] = useState<number>(0)
   const [depositPrice, setDepositPrice] = useState<number>(0)
-  const [goNext, setGoNext] = useState<boolean>(false)
   const stateNum = useRecoilValue(stepState)
+  const setStateNum = useSetRecoilState(stepState)
   const biddingForm = useRecoilValue(biddingInfoState)
   const setBiddingForm = useSetRecoilState(biddingInfoState)
+  const [paymentsInfo, setPaymentsInfo] = useState({
+    biddingTime: '',
+    appraisalAmount: 0,
+    minimumAmount: 0,
+    bidDeposit: 0
+  })
 
   function num2han(number: number) {
     const units = ['조', '억', '만', ''] // 단위
@@ -73,20 +80,52 @@ export default function BiddingPrice() {
   }
 
   useEffect(() => {
-    if (biddingForm.bidderNum > 1) {
-      if (biddingForm.biddingPrice > 0 && biddingForm.depositPrice > 0) {
-        setGoNext(true)
-      } else {
-        setGoNext(false)
-      }
-    } else {
-      if (biddingForm.biddingPrice > 0 && biddingForm.depositPrice > 0) {
-        setGoNext(true)
-      } else {
-        setGoNext(false)
+    const handleGetBiddingPrice = async () => {
+      try {
+        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`);
+        if (response.status !== 200) throw new Error('에러');
+        setPaymentsInfo({
+          ...paymentsInfo,
+          biddingTime: response.data.data.biddingInfoList[0].biddingTime,
+          appraisalAmount: response.data.data.biddingInfoList[0].appraisalAmount,
+          minimumAmount: response.data.data.biddingInfoList[0].minimumAmount,
+          bidDeposit: response.data.data.biddingInfoList[0].bidDeposit
+        })
+        if (biddingForm.biddingPrice === 0) {
+          setBiddingForm({
+            ...biddingForm,
+            biddingPrice: response.data.data.biddingInfoList[0].minimumAmount
+          })
+        }
+        if (biddingForm.depositPrice === 0) {
+          setBiddingForm({
+            ...biddingForm,
+            depositPrice: response.data.data.biddingInfoList[0].bidDeposit
+          })
+        }
+      } catch (error) {
+        console.log(error)
       }
     }
-  }, [biddingForm.biddingPrice, biddingForm.depositPrice])
+    handleGetBiddingPrice();
+  }, [])
+
+  const handleBiddingPrice = () => {
+    if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount && biddingForm.depositPrice >= paymentsInfo.bidDeposit) {
+      setStateNum(stateNum + 1)
+    } else {
+      alert('입찰금액과 입찰보증금을 확인해주세요')
+    }
+  }
+
+  useEffect(() => {
+    if (biddingForm.biddingPrice >= (paymentsInfo.minimumAmount * 1.1) && biddingForm.biddingPrice < (paymentsInfo.minimumAmount * 1.2)) {
+      alert('입찰금액이 최저가의 10% 이상입니다')
+    } 
+    if (biddingForm.biddingPrice >= (paymentsInfo.minimumAmount * 1.2) && biddingForm.biddingPrice < (paymentsInfo.appraisalAmount)) {
+      alert('입찰금액이 최저가의 20% 이상입니다')
+    } 
+  }, [biddingForm.biddingPrice])
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -96,10 +135,10 @@ export default function BiddingPrice() {
         </span>
         <div className="flex flex-col w-full">
           <span className="text-[13px] font-bold font-nanum text-center leading-[11px]">
-            감정가: <span className="text-mygold">18,000,000</span>
+            감정가: <span className="text-mygold">{paymentsInfo.appraisalAmount.toLocaleString('ko-KR')}</span>
           </span>
           <span className="text-[13px] font-bold font-nanum text-center leading-[11px] mt-[10px]">
-            최저가: <span className="text-mygold">10,000,000</span>
+            최저가: <span className="text-mygold">{paymentsInfo.minimumAmount.toLocaleString('ko-KR')}</span>
           </span>
           <div className="flex justify-center mt-5">
             <span className="text-[13px] font-bold font-nanum text-center leading-[11px] mt-[10px]">
@@ -117,7 +156,7 @@ export default function BiddingPrice() {
             <input
               type="text"
               id="number"
-              value={biddingForm.biddingPrice.toLocaleString('ko-KR')}
+              value={biddingForm.biddingPrice === 0 ? 0 : biddingForm.biddingPrice.toLocaleString('ko-KR')}
               className="flex w-[95%] border border-gray-300 rounded-md"
               onChange={(e) => {
                 setBiddingPrice(
@@ -150,7 +189,7 @@ export default function BiddingPrice() {
             <input
               type="text"
               id="number2"
-              value={biddingForm.depositPrice.toLocaleString('ko-KR')}
+              value={biddingForm.depositPrice === 0 ? 0 : biddingForm.depositPrice.toLocaleString('ko-KR')}
               className="flex w-[95%] border border-gray-300 rounded-md"
               onChange={(e) => {
                 setDepositPrice(
@@ -177,9 +216,9 @@ export default function BiddingPrice() {
         </div>
       </div>
       <Button
-        prevStepNum={biddingForm.bidderNum > 1 ? stateNum - 1 : stateNum - 2}
+        prevStepNum={stateNum - 2}
         nextStepNum={stateNum + 1}
-        goNext={!goNext}
+        handleBiddingPrice={handleBiddingPrice}
       />
     </div>
   )

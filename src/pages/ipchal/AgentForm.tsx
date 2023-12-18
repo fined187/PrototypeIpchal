@@ -2,7 +2,7 @@ import { biddingInfoState, stepState } from '@/atom'
 import SearchAddress from '@/components/SearchAddress'
 import { AgentInfoType } from '@/interface/IpchalType'
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
@@ -87,10 +87,18 @@ export default function AgentForm() {
     reset()
   }
 
+  useEffect(() => {
+    if (biddingForm.agentAddrDetail === '') return
+
+    if (setError) {
+      setError('agentAddr', { type: 'manual', message: '' })
+    }
+  }, [biddingForm.agentAddrDetail, setError])
+
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
       <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center relative">
-        <div className="flex flex-row py-6 pt-4">
+        <div className="flex flex-row py-6">
           <span className="text-lg font-extrabold font-nanum not-italic leading-8">
             대리인 정보를 입력해주세요
           </span>

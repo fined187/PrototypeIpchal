@@ -19,6 +19,7 @@ export default function GetIpchalInfo() {
         "biddingDate": biddingInfo.ipchalDate,
       })
       if (response.status === 200) {
+        console.log(response.data.data)
         setBiddingInfo({
           ...biddingInfo,
           mstSeq: response.data.data.mstSeq,

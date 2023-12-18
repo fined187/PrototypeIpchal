@@ -1,6 +1,7 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import { IpchalType } from '@/interface/IpchalType'
+import axios from 'axios'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
@@ -29,6 +30,20 @@ export default function BidderCnt() {
     }
     handleBiddingNumError()
   }, [biddingInfo?.bidderNum])
+
+  const handleBiddingCnt = async () => {
+    try {
+      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`, {
+        bidderCount: biddingInfo.bidderNum,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -73,7 +88,7 @@ export default function BidderCnt() {
             </div>
           </div>
         </div>
-        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
+        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} handleBiddingCnt={handleBiddingCnt} />
       </div>
     </>
   )

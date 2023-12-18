@@ -45,6 +45,7 @@ export const biddingInfoState = atom({
     bidCorpRegiNum1: [''],
     bidCorpRegiNum2: [''],
     bidCorpRegiNum: [''],
+    bidJob: [''],
     agentName: '',
     agentPhone1: '',
     agentPhone2: '',

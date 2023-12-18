@@ -49,9 +49,10 @@ export default function SearchAddress({
 
   useEffect(() => {
     if (agentSetError) {
-      agentSetError('agentAddr', { type: 'manual', message: '' })
+      agentSetError &&
+        agentSetError('agentAddr', { type: 'manual', message: '' })
     }
-  }, [agentSetError])
+  }, [agentErrors])
 
   return (
     <>

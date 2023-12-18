@@ -21,7 +21,7 @@ export default function IpchalResult() {
 
   return (
     <>
-      <div className="flex flex-col bg-mybg h-screen md:max-w-[full] w-[420px] m-auto relative justify-center items-center">
+      <div className="flex flex-col bg-mybg h-screen md:w-full w-[420px] m-auto relative justify-center items-center">
         <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">입찰표</div>
         <div className="min-w-[420px] md:max-w-[600px] overflow-x-scroll absolute top-[160px] h-[600px] bg-mybg">
           <div className="border border-black text-[1.5rem] text-center min-w-[420px] md:max-w-[600px] h-[100%] m-auto bg-mybg">
@@ -625,10 +625,10 @@ export default function IpchalResult() {
             </div>
           </div>
         </div>
-        <div className="flex justify-between w-[520px] absolute top-[800px]">
+        <div className="flex justify-between md:w-[520px] w-[420px] absolute top-[800px]">
           <button
             type="button"
-            className="flex w-[200px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+            className="flex md:w-[200px] w-[150px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => setStateNum(stateNum - 1)}
           >
             <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
@@ -637,7 +637,7 @@ export default function IpchalResult() {
           </button>
           <button
             type="button"
-            className="flex w-[280px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            className="flex md:w-[280px] w-[230px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
               setStateNum(stateNum + 1)
             }}
