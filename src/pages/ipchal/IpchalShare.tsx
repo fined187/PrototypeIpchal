@@ -1,10 +1,11 @@
-import { stepState } from '@/atom'
+import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function IpchalShare() {
   const stateNum = useRecoilValue(stepState)
   const setStateNum = useSetRecoilState(stepState)
+  const biddingInfo = useRecoilValue(biddingInfoState)
 
   const onShare = () => {
     if (window.Kakao) {
@@ -12,13 +13,13 @@ export default function IpchalShare() {
         objectType: 'feed',
         content: {
           link: {
-            mobileWebUrl: 'http://localhost:3000',
+            mobileWebUrl: 'http://localhost:3000',      //  마이페이지 
             webUrl: 'http://localhost:3000',
           },
-          title: '입찰표',
-          description: '사건번호 2120번의 입찰표입니다.',
+          title: `${biddingInfo.sagunNum} 입찰표`,
+          description: `사건번호 ${biddingInfo.sagunNum}의 입찰표입니다.`,
           imageUrl:
-            'https://t1.daumcdn.net/friends/prod/category/M001_friends_ryan2.jpg',
+            `${biddingInfo.resultImg}`,
         },
         buttons: [
           {
@@ -41,7 +42,7 @@ export default function IpchalShare() {
           <br />
           작성된 파일을 공유하시겠습니까?
         </span>
-        <div className="flex flex-col gap-10 w-[360px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+        <div className="flex flex-col gap-10 w-[420px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
           <div className="flex justify-between w-[80%]">
             <div className="flex justify-start items-center w-[80%]">
               <span className="text-black text-center font-nanum text-[13px] font-extrabold leading-[13px]">

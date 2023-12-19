@@ -58,6 +58,7 @@ export const biddingInfoState = atom({
     agentAddrDetail: '',
     agentJob: '',
     agentRel: '',
+    resultImg: '',
   },
   dangerouslyAllowMutability: true,
 })

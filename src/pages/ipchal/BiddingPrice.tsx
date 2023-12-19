@@ -118,14 +118,7 @@ export default function BiddingPrice() {
     }
   }
 
-  useEffect(() => {
-    if (biddingForm.biddingPrice >= (paymentsInfo.minimumAmount * 1.1) && biddingForm.biddingPrice < (paymentsInfo.minimumAmount * 1.2)) {
-      alert('입찰금액이 최저가의 10% 이상입니다')
-    } 
-    if (biddingForm.biddingPrice >= (paymentsInfo.minimumAmount * 1.2)) {
-      alert('입찰금액이 최저가의 20% 이상입니다')
-    } 
-  }, [biddingForm.biddingPrice])
+  console.log(biddingForm)
 
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
@@ -146,7 +139,7 @@ export default function BiddingPrice() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-2 w-[360px] min-h-[257px] max-h-[500px] bg-white absolute top-[145px] rounded-lg border-slate-500">
+        <div className="flex flex-col gap-2 w-[420px] min-h-[257px] max-h-[500px] bg-white absolute top-[145px] rounded-lg border-slate-500">
           <div className="flex w-full pt-[27px] pl-[10px]">
             <span className="text-[10px] font-nanum not-italic font-bold leading-[9px]">
               입찰금액

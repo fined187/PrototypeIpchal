@@ -11,6 +11,8 @@ interface ButtonProps {
   handleConfirm?: () => void
   handleBiddingCnt?: () => void
   handleBiddingPrice?: () => void
+  handleBiddingPayment?: (pay: string) => void
+  handleUploadFile?: () => void
 }
 
 export default function Button({
@@ -21,7 +23,9 @@ export default function Button({
   goNext,
   handleConfirm,
   handleBiddingCnt,
-  handleBiddingPrice
+  handleBiddingPrice,
+  handleBiddingPayment,
+  handleUploadFile,
 }: ButtonProps) {
   const setStateNum = useSetRecoilState(stepState)
   const stateNum = useRecoilValue(stepState)
@@ -45,6 +49,10 @@ export default function Button({
       handleBiddingPrice()
     } else if (stateNum === 8 && biddingInfo.bidWay === '') {
       setIsWaySelected && setIsWaySelected(true)
+      handleBiddingPayment && handleBiddingPayment(biddingInfo.bidWay)
+    } else if (stateNum === 11) {
+      handleUploadFile && handleUploadFile()
+      setStateNum(stateNum + 1)
     } else {
       setStateNum(stateNum + 1)
     }

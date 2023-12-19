@@ -24,6 +24,7 @@ export default function BiddingPayment() {
         },
       })
       if (response.status === 200) {
+        console.log(response)
         setStateNum(stateNum + 1)
       }
     } catch (error) {
@@ -45,12 +46,12 @@ export default function BiddingPayment() {
           } justify-center items-center cursor-pointer ${
             biddingForm.bidWay === 'M' ? 'bg-myyellow' : 'bg-white'
           } relative`}
-          onClick={() => {
+          onClick={async () => {
             setBiddingForm({
               ...biddingForm,
               bidWay: 'M',
             })
-            handleBiddingPayment(biddingForm.bidWay)
+            await handleBiddingPayment('M')
           }}
         >
           <div
@@ -85,12 +86,12 @@ export default function BiddingPayment() {
           } justify-center items-center cursor-pointer ${
             biddingForm.bidWay === 'W' ? 'bg-myyellow' : 'bg-white'
           } relative`}
-          onClick={() => {
+          onClick={async () => {
             setBiddingForm({
               ...biddingForm,
               bidWay: 'W',
             })
-            handleBiddingPayment(biddingForm.bidWay)
+            await handleBiddingPayment('W')
           }}
         >
           <div
@@ -133,6 +134,7 @@ export default function BiddingPayment() {
         prevStepNum={stateNum - 1}
         nextStepNum={stateNum + 1}
         setIsWaySelected={setIsWaySelected}
+        handleBiddingPayment={handleBiddingPayment}
       />
     </div>
   )
