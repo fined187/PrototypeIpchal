@@ -19,9 +19,9 @@ export default function CreateFile() {
 
   const [totalResult, setTotalResult] = useState<any>(null)
   const [loading, setLoading] = useState<boolean>(false)
-  const [blobFile, setBlobFile] = useState<any>(null)
+  const [blobFile, setBlobFile] = useState<File | null>(null)
 
-  let file = new File([], '');
+  let file = File && new File([], '');
 
   const handlePrice = (len: number) => {
     if (12 - len > 0) {
@@ -72,7 +72,6 @@ export default function CreateFile() {
     captureDiv.style.display = 'none'
   }
 
-  console.log(blobFile)
   const onClickPdf = async (e: any) => {
     e.preventDefault()
     await onCapture()
@@ -80,7 +79,9 @@ export default function CreateFile() {
 
   const handleUploadFile = async () => {
     const formData = new FormData()
-    formData.append('file', blobFile)
+    if (blobFile) {
+      formData.append('file', blobFile)
+    }
     formData.append('filePassword', password)
     try {
       const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`, formData, {
