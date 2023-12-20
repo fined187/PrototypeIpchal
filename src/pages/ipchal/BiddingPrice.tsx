@@ -124,8 +124,6 @@ export default function BiddingPrice() {
     }
   }
 
-  console.log(biddingForm)
-
   return (
     <div className="flex w-full h-screen bg-mybg justify-center relative">
       <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center relative">

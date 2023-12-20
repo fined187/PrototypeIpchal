@@ -11,8 +11,6 @@ export default function IpchalContent() {
   const nowMonth = date.getMonth() + 1
   const nowYear = date.getFullYear()
 
-  console.log(biddingInfo.biddingPrice)
-
   return (
     <div className="flex w-full h-screen justify-center bg-mybg relative">
       <div className="flex flex-col gap-4 md:w-[520px] w-[100%] h-screen bg-mybg items-center text-center">

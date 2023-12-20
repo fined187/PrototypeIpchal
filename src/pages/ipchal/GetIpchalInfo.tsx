@@ -22,7 +22,6 @@ export default function GetIpchalInfo() {
         },
       )
       if (response.status === 200) {
-        console.log(response.data.data)
         setBiddingInfo({
           ...biddingInfo,
           mstSeq: response.data.data.mstSeq,

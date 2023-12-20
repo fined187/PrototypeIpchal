@@ -22,6 +22,7 @@ export default function CreateFile() {
   const [blobFile, setBlobFile] = useState<File | null>(null)
 
   let file = File && new File([], '')
+  let file2
 
   const handlePrice = (len: number) => {
     if (12 - len > 0) {
@@ -61,10 +62,7 @@ export default function CreateFile() {
         scrollY: 0,
       },
     ).then((canvas: any) => {
-      setBiddingInfo({
-        ...biddingInfo,
-        resultImg: canvas.toDataURL('image/png'),
-      })
+      file2 = canvas.toDataURL('image/png')
       return canvas.toDataURL('image/png')
     })
     doc.addImage(refImage, 'PNG', 0, 0, 210, 297)
@@ -102,13 +100,11 @@ export default function CreateFile() {
           },
         },
       )
-      if (response.status === 200) {
-        console.log(response)
-      }
     } catch (error) {
       console.log(error)
     }
   }
+  console.log(file2)
 
   useEffect(() => {
     setLoading(true)
@@ -121,7 +117,6 @@ export default function CreateFile() {
           setTotalResult(response.data.data)
           setLoading(false)
         }
-        console.log(response.data.data)
       } catch (error) {
         console.log(error)
       }
@@ -201,6 +196,7 @@ export default function CreateFile() {
             prevStepNum={stateNum - 1}
             nextStepNum={stateNum + 1}
             handleUploadFile={handleUploadFile}
+            isFileCreated={isFileCreated}
           />
         </div>
       )}

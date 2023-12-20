@@ -93,7 +93,7 @@ export default function BidderCnt() {
           </div>
         </div>
         <Button
-          prevStepNum={stateNum - 1}
+          prevStepNum={biddingInfo.bidder === 'agent' ?  stateNum - 1 : stateNum - 2}
           nextStepNum={stateNum + 1}
           handleBiddingCnt={handleBiddingCnt}
         />

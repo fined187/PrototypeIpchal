@@ -28,7 +28,6 @@ export default function BiddingPayment() {
         },
       )
       if (response.status === 200) {
-        console.log(response)
         setStateNum(stateNum + 1)
       }
     } catch (error) {

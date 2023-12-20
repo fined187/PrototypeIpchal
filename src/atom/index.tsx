@@ -58,7 +58,7 @@ export const biddingInfoState = atom({
     agentAddrDetail: '',
     agentJob: '',
     agentRel: '',
-    resultImg: '',
+    resultImg: null,
     pdfFile: new File([], ''),
   },
   dangerouslyAllowMutability: true,

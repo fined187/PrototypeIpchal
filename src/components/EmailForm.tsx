@@ -132,7 +132,7 @@ export default function EmailForm({
                     <input 
                       type='file'
                       name='img-file'
-                      defaultValue={biddingInfo.resultImg}
+                      accept='image/*'
                     />
                   </div>
                 </div>

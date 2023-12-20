@@ -69,7 +69,6 @@ export default function PopupContent({
         params: param,
       })
       if (result) {
-        console.log(result)
         setEmptyView(true)
         setAddrList(result.data.results.juso)
         setTotalCount(result.data.results.common.totalCount)

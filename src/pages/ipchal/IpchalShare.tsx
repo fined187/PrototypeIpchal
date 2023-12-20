@@ -16,8 +16,8 @@ export default function IpchalShare() {
         objectType: 'feed',
         content: {
           link: {
-            mobileWebUrl: 'http://localhost:3000', //  마이페이지
-            webUrl: 'http://localhost:3000',
+            mobileWebUrl: `${biddingInfo.resultImg}`, //  마이페이지
+            webUrl: `${biddingInfo.resultImg}`,
           },
           title: `${biddingInfo.sagunNum} 입찰표`,
           description: `사건번호 ${biddingInfo.sagunNum}의 입찰표입니다.`,
@@ -35,7 +35,7 @@ export default function IpchalShare() {
       })
     }
   }
-console.log(biddingInfo.pdfFile)
+console.log(biddingInfo.resultImg)
   return (
     <>
       <div className="flex w-full h-screen justify-center bg-mybg relative">

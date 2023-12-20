@@ -37,10 +37,11 @@ export default function IpchalResult() {
         )
         if (response.status === 200) {
           setTotalResult(response.data.data)
-          setLoading(false)
         }
       } catch (error) {
         console.log(error)
+      } finally {
+        setLoading(false)
       }
     }
     handleGetResult()
