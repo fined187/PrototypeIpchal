@@ -33,13 +33,17 @@ export default function BidderCnt() {
 
   const handleBiddingCnt = async () => {
     try {
-      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`, {
-        bidderCount: biddingInfo.bidderNum,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
+      const response = await axios.put(
+        `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`,
+        {
+          bidderCount: biddingInfo.bidderNum,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
     } catch (error) {
       console.log(error)
     }
@@ -88,7 +92,11 @@ export default function BidderCnt() {
             </div>
           </div>
         </div>
-        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} handleBiddingCnt={handleBiddingCnt} />
+        <Button
+          prevStepNum={stateNum - 1}
+          nextStepNum={stateNum + 1}
+          handleBiddingCnt={handleBiddingCnt}
+        />
       </div>
     </>
   )

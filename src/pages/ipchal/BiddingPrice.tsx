@@ -16,7 +16,7 @@ export default function BiddingPrice() {
     biddingTime: '',
     appraisalAmount: 0,
     minimumAmount: 0,
-    bidDeposit: 0
+    bidDeposit: 0,
   })
 
   function num2han(number: number) {
@@ -82,36 +82,42 @@ export default function BiddingPrice() {
   useEffect(() => {
     const handleGetBiddingPrice = async () => {
       try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`);
-        if (response.status !== 200) throw new Error('에러');
+        const response = await axios.get(
+          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`,
+        )
+        if (response.status !== 200) throw new Error('에러')
         setPaymentsInfo({
           ...paymentsInfo,
           biddingTime: response.data.data.biddingInfoList[0].biddingTime,
-          appraisalAmount: response.data.data.biddingInfoList[0].appraisalAmount,
+          appraisalAmount:
+            response.data.data.biddingInfoList[0].appraisalAmount,
           minimumAmount: response.data.data.biddingInfoList[0].minimumAmount,
-          bidDeposit: response.data.data.biddingInfoList[0].bidDeposit
+          bidDeposit: response.data.data.biddingInfoList[0].bidDeposit,
         })
         if (biddingForm.biddingPrice === 0) {
           setBiddingForm({
             ...biddingForm,
-            biddingPrice: response.data.data.biddingInfoList[0].minimumAmount
+            biddingPrice: response.data.data.biddingInfoList[0].minimumAmount,
           })
         }
         if (biddingForm.depositPrice === 0) {
           setBiddingForm({
             ...biddingForm,
-            depositPrice: response.data.data.biddingInfoList[0].bidDeposit
+            depositPrice: response.data.data.biddingInfoList[0].bidDeposit,
           })
         }
       } catch (error) {
         console.log(error)
       }
     }
-    handleGetBiddingPrice();
+    handleGetBiddingPrice()
   }, [])
 
   const handleBiddingPrice = () => {
-    if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount && biddingForm.depositPrice >= paymentsInfo.bidDeposit) {
+    if (
+      biddingForm.biddingPrice >= paymentsInfo.minimumAmount &&
+      biddingForm.depositPrice >= paymentsInfo.bidDeposit
+    ) {
       setStateNum(stateNum + 1)
     } else {
       alert('입찰금액과 입찰보증금을 확인해주세요')
@@ -128,10 +134,16 @@ export default function BiddingPrice() {
         </span>
         <div className="flex flex-col w-full">
           <span className="text-[13px] font-bold font-nanum text-center leading-[11px]">
-            감정가: <span className="text-mygold">{paymentsInfo.appraisalAmount.toLocaleString('ko-KR')}</span>
+            감정가:{' '}
+            <span className="text-mygold">
+              {paymentsInfo.appraisalAmount.toLocaleString('ko-KR')}
+            </span>
           </span>
           <span className="text-[13px] font-bold font-nanum text-center leading-[11px] mt-[10px]">
-            최저가: <span className="text-mygold">{paymentsInfo.minimumAmount.toLocaleString('ko-KR')}</span>
+            최저가:{' '}
+            <span className="text-mygold">
+              {paymentsInfo.minimumAmount.toLocaleString('ko-KR')}
+            </span>
           </span>
           <div className="flex justify-center mt-5">
             <span className="text-[13px] font-bold font-nanum text-center leading-[11px] mt-[10px]">
@@ -149,7 +161,11 @@ export default function BiddingPrice() {
             <input
               type="text"
               id="number"
-              value={biddingForm.biddingPrice === 0 ? 0 : biddingForm.biddingPrice.toLocaleString('ko-KR')}
+              value={
+                biddingForm.biddingPrice === 0
+                  ? 0
+                  : biddingForm.biddingPrice.toLocaleString('ko-KR')
+              }
               className="flex w-[95%] border border-gray-300 rounded-md"
               onChange={(e) => {
                 setBiddingPrice(
@@ -182,7 +198,11 @@ export default function BiddingPrice() {
             <input
               type="text"
               id="number2"
-              value={biddingForm.depositPrice === 0 ? 0 : biddingForm.depositPrice.toLocaleString('ko-KR')}
+              value={
+                biddingForm.depositPrice === 0
+                  ? 0
+                  : biddingForm.depositPrice.toLocaleString('ko-KR')
+              }
               className="flex w-[95%] border border-gray-300 rounded-md"
               onChange={(e) => {
                 setDepositPrice(

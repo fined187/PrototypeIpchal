@@ -26,6 +26,7 @@ const RAW_RUNTIME_STATE =
       [null, {\
         "packageLocation": "./",\
         "packageDependencies": [\
+          ["@emailjs/browser", "npm:3.11.0"],\
           ["@headlessui/react", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.7.17"],\
           ["@hookform/resolvers", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:3.3.2"],\
           ["@types/html-pdf", "npm:3.0.3"],\
@@ -36,6 +37,7 @@ const RAW_RUNTIME_STATE =
           ["@types/uuid", "npm:9.0.7"],\
           ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.16"],\
           ["axios", "npm:1.6.2"],\
+          ["emailjs", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3"],\
           ["eslint", "npm:8.55.0"],\
           ["eslint-config-next", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:14.0.3"],\
           ["eslint-config-prettier", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:9.1.0"],\
@@ -2895,6 +2897,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@emailjs/browser", [\
+      ["npm:3.11.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@emailjs-browser-npm-3.11.0-3a580335bf-10c0.zip/node_modules/@emailjs/browser/",\
+        "packageDependencies": [\
+          ["@emailjs/browser", "npm:3.11.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@eslint-community/eslint-utils", [\
       ["npm:4.4.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@eslint-community-eslint-utils-npm-4.4.0-d1791bd5a3-10c0.zip/node_modules/@eslint-community/eslint-utils/",\
@@ -5038,6 +5049,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["emailjs", [\
+      ["npm:4.0.3", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/emailjs-npm-4.0.3-a1968bcbb8-10c0.zip/node_modules/emailjs/",\
+        "packageDependencies": [\
+          ["emailjs", "npm:4.0.3"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3", {\
+        "packageLocation": "./.yarn/__virtual__/emailjs-virtual-16e6916162/3/Users/woota/AppData/Local/Yarn/Berry/cache/emailjs-npm-4.0.3-a1968bcbb8-10c0.zip/node_modules/emailjs/",\
+        "packageDependencies": [\
+          ["emailjs", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3"],\
+          ["@types/typescript", null],\
+          ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"]\
+        ],\
+        "packagePeers": [\
+          "@types/typescript",\
+          "typescript"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["emoji-regex", [\
       ["npm:8.0.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/emoji-regex-npm-8.0.0-213764015c-10c0.zip/node_modules/emoji-regex/",\
@@ -6367,6 +6400,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["ggi", "workspace:."],\
+          ["@emailjs/browser", "npm:3.11.0"],\
           ["@headlessui/react", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.7.17"],\
           ["@hookform/resolvers", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:3.3.2"],\
           ["@types/html-pdf", "npm:3.0.3"],\
@@ -6377,6 +6411,7 @@ const RAW_RUNTIME_STATE =
           ["@types/uuid", "npm:9.0.7"],\
           ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.16"],\
           ["axios", "npm:1.6.2"],\
+          ["emailjs", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3"],\
           ["eslint", "npm:8.55.0"],\
           ["eslint-config-next", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:14.0.3"],\
           ["eslint-config-prettier", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:9.1.0"],\

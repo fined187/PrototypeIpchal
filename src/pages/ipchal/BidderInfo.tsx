@@ -9,7 +9,7 @@ export default function BidderInfo() {
   const [isSelected, setIsSelected] = useState<boolean>(true)
   const biddingInfo = useRecoilValue(biddingInfoState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
-  
+
   return (
     <>
       <div className="flex w-full h-screen bg-mybg justify-center relative">

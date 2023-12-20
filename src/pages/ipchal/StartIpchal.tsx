@@ -16,23 +16,33 @@ export default function StartIpchal() {
 
   const handleCheck = async () => {
     try {
-      const response = await axios.post(`http://118.217.180.254:8081/ggi/api/bid-form/checks`, {
-        "idCode": 'A1403F3F403D3F3D3E403E3C3D4349474A3C3E8',
-        "biddingDate": `20231221`
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      const response = await axios.post(
+        `http://118.217.180.254:8081/ggi/api/bid-form/checks`,
+        {
+          idCode: 'A1403F3F403D3F3D3E403E3C3D4349474A3C3E8',
+          biddingDate: `20231221`,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
 
       if (response.status === 200) {
         setBiddingInfo({
           ...biddingInfo,
           caseNo: response.data.data.caseNo,
           infoId: response.data.data.infoId,
-          sagunNum: response.data.data.caseYear + " 타경 " + response.data.data.caseDetail,
+          sagunNum:
+            response.data.data.caseYear +
+            ' 타경 ' +
+            response.data.data.caseDetail,
           mulgunNum: response.data.data.mulSeq,
-          ipchalDate: response.data.data.startYear + response.data.data.startMonth + response.data.data.startDay,
+          ipchalDate:
+            response.data.data.startYear +
+            response.data.data.startMonth +
+            response.data.data.startDay,
           sagunAddr: response.data.data.address,
         })
         stateNum(1)
@@ -41,7 +51,7 @@ export default function StartIpchal() {
       console.log(error)
     }
   }
-  
+
   return (
     <>
       <div className="flex justify-center relative">
@@ -72,8 +82,7 @@ export default function StartIpchal() {
           <div
             className="flex absolute top-[445px] bg-mygold w-[163px] h-[30px] rounded-lg items-center justify-center cursor-pointer"
             onClick={() => {
-              loginStateValue ? handleCheck() :
-              alert('로그인 후 이용해주세요.')
+              loginStateValue ? handleCheck() : alert('로그인 후 이용해주세요.')
             }}
           >
             <span className="text-white text-sm font-nanum font-extrabold not-italic leading-4">

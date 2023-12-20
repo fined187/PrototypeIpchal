@@ -90,31 +90,43 @@ export default function BidderForm() {
   const handleBidderFormSave = async () => {
     try {
       if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
-        const response = await axios.post(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`, {
-          "bidderType": biddingForm.bidCorpYn[stepNum - 1],
-          "name": biddingForm.bidName[stepNum - 1],
-          "phoneNo": biddingForm.bidPhone[stepNum - 1],
-          "address": biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1],
-          "job": biddingForm.bidJob[stepNum - 1],
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
+        const response = await axios.post(
+          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
+          {
+            bidderType: biddingForm.bidCorpYn[stepNum - 1],
+            name: biddingForm.bidName[stepNum - 1],
+            phoneNo: biddingForm.bidPhone[stepNum - 1],
+            address:
+              biddingForm.bidAddr[stepNum - 1] +
+              biddingForm.bidAddrDetail[stepNum - 1],
+            job: biddingForm.bidJob[stepNum - 1],
           },
-        })
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
       } else {
-        const response = await axios.post(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`, {
-          "bidderType": biddingForm.bidCorpYn[stepNum - 1],
-          "name": biddingForm.bidName[stepNum - 1],
-          "phoneNo": biddingForm.bidPhone[stepNum - 1],
-          "address": biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1],
-          "job": biddingForm.bidJob[stepNum - 1],
-          "companyNo": biddingForm.bidCorpNum[stepNum - 1],
-          "corporationNo": biddingForm.bidCorpRegiNum[stepNum - 1],
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
+        const response = await axios.post(
+          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
+          {
+            bidderType: biddingForm.bidCorpYn[stepNum - 1],
+            name: biddingForm.bidName[stepNum - 1],
+            phoneNo: biddingForm.bidPhone[stepNum - 1],
+            address:
+              biddingForm.bidAddr[stepNum - 1] +
+              biddingForm.bidAddrDetail[stepNum - 1],
+            job: biddingForm.bidJob[stepNum - 1],
+            companyNo: biddingForm.bidCorpNum[stepNum - 1],
+            corporationNo: biddingForm.bidCorpRegiNum[stepNum - 1],
           },
-        })
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
       }
     } catch (error) {
       console.log(error)
@@ -131,7 +143,7 @@ export default function BidderForm() {
         biddingForm?.bidAddr[num] === '' ||
         biddingForm?.bidAddrDetail[num] === '' ||
         biddingForm?.bidIdNum1[num] === '' ||
-        biddingForm?.bidIdNum2[num] === '' || 
+        biddingForm?.bidIdNum2[num] === '' ||
         biddingForm?.bidJob[num] === ''
       ) {
         alert('입력하지 않은 정보가 있습니다.')
@@ -189,11 +201,12 @@ export default function BidderForm() {
     }
   }
 
-
   useEffect(() => {
     const handleGetBidderForm = async () => {
       try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
+        const response = await axios.get(
+          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
+        )
         setBidderList(response.data.data.bidderList)
         if (bidderList.length > 0) {
           setBiddingForm((prev: any) => {
@@ -893,7 +906,7 @@ export default function BidderForm() {
                 errors={errors}
                 setError={setError}
               />
-              <div className='flex flex-col w-[100%] gap-1'>
+              <div className="flex flex-col w-[100%] gap-1">
                 <label
                   htmlFor="bidderJob"
                   className="text-[10px] font-nanum not-italic font-extrabold text-left"
@@ -905,7 +918,9 @@ export default function BidderForm() {
                     required: '직업을 입력해주세요',
                   })}
                   value={
-                    biddingForm.bidJob[stepNum - 1] === '' ? '' : biddingForm.bidJob[stepNum - 1]
+                    biddingForm.bidJob[stepNum - 1] === ''
+                      ? ''
+                      : biddingForm.bidJob[stepNum - 1]
                   }
                   id="bidderJob"
                   type="text"

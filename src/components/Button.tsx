@@ -42,7 +42,11 @@ export default function Button({
       setStateNum(stateNum + 2)
     } else if (stateNum === 3 && biddingInfo.bidder === 'agent') {
       setStateNum(stateNum + 1)
-    } else if (stateNum === 4 && biddingInfo.bidder === 'self' && handleBiddingCnt) {
+    } else if (
+      stateNum === 4 &&
+      biddingInfo.bidder === 'self' &&
+      handleBiddingCnt
+    ) {
       await handleBiddingCnt()
       setStateNum(stateNum + 1)
     } else if (stateNum === 7 && handleBiddingPrice) {

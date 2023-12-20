@@ -11,13 +11,16 @@ export default function GetIpchalInfo() {
 
   const handleConfirm = async () => {
     try {
-      const response = await axios.post(`http://118.217.180.254:8081/ggi/api/bid-form/inits`, {
-        "userId": 'best',
-        "infoId": biddingInfo.infoId,
-        "caseNo": biddingInfo.caseNo,
-        "mulSeq": biddingInfo.mulgunNum,
-        "biddingDate": biddingInfo.ipchalDate,
-      })
+      const response = await axios.post(
+        `http://118.217.180.254:8081/ggi/api/bid-form/inits`,
+        {
+          userId: 'best',
+          infoId: biddingInfo.infoId,
+          caseNo: biddingInfo.caseNo,
+          mulSeq: biddingInfo.mulgunNum,
+          biddingDate: biddingInfo.ipchalDate,
+        },
+      )
       if (response.status === 200) {
         console.log(response.data.data)
         setBiddingInfo({
@@ -55,7 +58,9 @@ export default function GetIpchalInfo() {
                 입찰기일 :
               </span>
               <span className="text-mygray text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-nanum leading-9">
-                {biddingInfo.ipchalDate.substring(0, 4)}년 {biddingInfo.ipchalDate.substring(4, 6)}월 {biddingInfo.ipchalDate.substring(6, 8)}일
+                {biddingInfo.ipchalDate.substring(0, 4)}년{' '}
+                {biddingInfo.ipchalDate.substring(4, 6)}월{' '}
+                {biddingInfo.ipchalDate.substring(6, 8)}일
               </span>
             </div>
             <div className="flex flex-row absolute top-40 border-b w-[80%] border-gray-200">
@@ -68,7 +73,11 @@ export default function GetIpchalInfo() {
             </div>
           </div>
         </div>
-        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} handleConfirm={handleConfirm} />
+        <Button
+          prevStepNum={stateNum - 1}
+          nextStepNum={stateNum + 1}
+          handleConfirm={handleConfirm}
+        />
       </div>
     </>
   )

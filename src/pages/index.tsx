@@ -26,18 +26,20 @@ export default function Home() {
   const setLoginState = useSetRecoilState(loginState)
   const loginStateValue = useRecoilValue(loginState)
 
-  const router = useRouter();
-  const idcode = router.query.idCode;
-  const colmul_no = router.query.colmul_no;
-  const startdate = router.query.startdate;
-  const bubnm = router.query.bubnm;
-  const ipchalamt = router.query.ipchalamt;
-  const lowamt = router.query.lowamt;  
+  const router = useRouter()
+  const idcode = router.query.idCode
+  const colmul_no = router.query.colmul_no
+  const startdate = router.query.startdate
+  const bubnm = router.query.bubnm
+  const ipchalamt = router.query.ipchalamt
+  const lowamt = router.query.lowamt
 
   useEffect(() => {
     const handleLoginStatus = async (id: string) => {
       try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${id}/login-status`)
+        const response = await axios.get(
+          `http://118.217.180.254:8081/ggi/api/bid-form/${id}/login-status`,
+        )
         if (response.data.data.isLoginStatus) {
           setLoginState(true)
           setGetUserId(response.data.data.userId)
@@ -46,7 +48,7 @@ export default function Home() {
         console.log(error)
       }
     }
-    handleLoginStatus('best');
+    handleLoginStatus('best')
   }, [])
 
   return (

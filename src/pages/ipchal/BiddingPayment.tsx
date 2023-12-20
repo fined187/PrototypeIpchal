@@ -14,15 +14,19 @@ export default function BiddingPayment() {
 
   const handleBiddingPayment = async (pay: string) => {
     try {
-      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`, {
-        "bidPrice": biddingForm.biddingPrice,
-        "bidDeposit": biddingForm.depositPrice,
-        "depositType": pay,
-      }, {
-        headers: {
-          "Content-Type": "application/json",
+      const response = await axios.put(
+        `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`,
+        {
+          bidPrice: biddingForm.biddingPrice,
+          bidDeposit: biddingForm.depositPrice,
+          depositType: pay,
         },
-      })
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
       if (response.status === 200) {
         console.log(response)
         setStateNum(stateNum + 1)
@@ -54,9 +58,7 @@ export default function BiddingPayment() {
             await handleBiddingPayment('M')
           }}
         >
-          <div
-            className={`${biddingForm.bidWay === 'M' ? 'flex' : 'hidden'}`}
-          >
+          <div className={`${biddingForm.bidWay === 'M' ? 'flex' : 'hidden'}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="11"
@@ -94,9 +96,7 @@ export default function BiddingPayment() {
             await handleBiddingPayment('W')
           }}
         >
-          <div
-            className={`${biddingForm.bidWay === 'W' ? 'flex' : 'hidden'}`}
-          >
+          <div className={`${biddingForm.bidWay === 'W' ? 'flex' : 'hidden'}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="11"

@@ -1605,6 +1605,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emailjs/browser@npm:^3.11.0":
+  version: 3.11.0
+  resolution: "@emailjs/browser@npm:3.11.0"
+  checksum: e80356c05718a7af247f4577990cc9240e4f299fde6aeaca927c3fdcd0021984917c24003f062df8826b01157849d28e2554626f7d53a967fe71f8b645a4bff8
+  languageName: node
+  linkType: hard
+
 "@eslint-community/eslint-utils@npm:^4.2.0":
   version: 4.4.0
   resolution: "@eslint-community/eslint-utils@npm:4.4.0"
@@ -3283,6 +3290,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"emailjs@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "emailjs@npm:4.0.3"
+  peerDependencies:
+    typescript: ">=4.3.5"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 5cb831bce7f15953bd3727bc2781dfc8030a4533f5efce24def913523809a21415a269f8e1159ccbd24f3443ec2021b1ced7bdbac8d8dde14c40a3168adbaab2
+  languageName: node
+  linkType: hard
+
 "emoji-regex@npm:^8.0.0":
   version: 8.0.0
   resolution: "emoji-regex@npm:8.0.0"
@@ -4246,6 +4265,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ggi@workspace:."
   dependencies:
+    "@emailjs/browser": "npm:^3.11.0"
     "@headlessui/react": "npm:^1.7.17"
     "@hookform/resolvers": "npm:^3.3.2"
     "@types/html-pdf": "npm:^3.0.3"
@@ -4256,6 +4276,7 @@ __metadata:
     "@types/uuid": "npm:^9.0.7"
     autoprefixer: "npm:^10.0.1"
     axios: "npm:^1.6.2"
+    emailjs: "npm:^4.0.3"
     eslint: "npm:^8.55.0"
     eslint-config-next: "npm:14.0.3"
     eslint-config-prettier: "npm:^9.1.0"
