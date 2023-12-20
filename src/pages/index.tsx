@@ -17,6 +17,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import IpchalResult from './ipchal/IpchalResult'
+import DownIpchal from './ipchal/DownIpchal'
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState)
@@ -66,6 +67,7 @@ export default function Home() {
       {stateNum === 10 && <IpchalResult />}
       {stateNum === 11 && <CreateFile />}
       {stateNum === 12 && <IpchalShare />}
+      {stateNum === 13 && <DownIpchal />}
     </>
   )
 }

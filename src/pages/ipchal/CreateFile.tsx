@@ -22,8 +22,7 @@ export default function CreateFile() {
   const [blobFile, setBlobFile] = useState<File | null>(null)
 
   let file = File && new File([], '')
-  let file2
-
+  
   const handlePrice = (len: number) => {
     if (12 - len > 0) {
       return '0'.repeat(12 - len) + totalResult?.bidPrice
@@ -62,9 +61,9 @@ export default function CreateFile() {
         scrollY: 0,
       },
     ).then((canvas: any) => {
-      file2 = canvas.toDataURL('image/png')
       return canvas.toDataURL('image/png')
     })
+
     doc.addImage(refImage, 'PNG', 0, 0, 210, 297)
     const blob = doc.output('blob')
     doc.save(`best_${biddingInfo.ipchalDate}.pdf`)
@@ -104,7 +103,6 @@ export default function CreateFile() {
       console.log(error)
     }
   }
-  console.log(file2)
 
   useEffect(() => {
     setLoading(true)

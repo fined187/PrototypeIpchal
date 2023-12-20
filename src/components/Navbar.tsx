@@ -33,6 +33,8 @@ export default function Navbar() {
       setMenuTitle('파일 만들기')
     } else if (stepStateNum === 12) {
       setMenuTitle('입찰표 파일 공유')
+    } else if (stepStateNum === 13) {
+      setMenuTitle('입찰표 작성 완료')
     }
   }
 
