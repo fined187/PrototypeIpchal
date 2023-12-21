@@ -396,14 +396,7 @@ export default function AgentForm() {
                 </div>
               )}
             <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>
-              <SearchAddress
-                agentInfo={agentInfo}
-                setAgentInfo={setAgentInfo}
-                agentRegister={register}
-                agentErrors={errors}
-                agentSetError={setError}
-              />
-              <div className="flex flex-col w-[100%] gap-1">
+            <div className="flex flex-col w-[100%] gap-1">
                 <label
                   htmlFor="agentJob"
                   className="text-[10px] font-nanum not-italic font-extrabold text-left"
@@ -441,8 +434,15 @@ export default function AgentForm() {
                   </div>
                 )}
               </div>
+              <SearchAddress
+                agentInfo={agentInfo}
+                setAgentInfo={setAgentInfo}
+                agentRegister={register}
+                agentErrors={errors}
+                agentSetError={setError}
+              />
             </div>
-            <div className="flex flex-row gap-2 absolute top-[578px]">
+            <div className="flex flex-row gap-2 absolute top-[630px]">
               <button
                 type="button"
                 className="flex w-[82px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

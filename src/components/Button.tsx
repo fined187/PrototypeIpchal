@@ -46,7 +46,6 @@ export default function Button({
       setStateNum(stateNum + 1)
     } else if (
       stateNum === 4 &&
-      biddingInfo.bidder === 'self' &&
       handleBiddingCnt
     ) {
       await handleBiddingCnt()

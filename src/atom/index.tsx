@@ -10,6 +10,7 @@ export const stepState = atom({
 export const biddingInfoState = atom({
   key: `biddingInfoState/${v4()}`,
   default: {
+    bidSeq: [0],
     mstSeq: 0,
     state: 0,
     infoId: '',
@@ -60,6 +61,7 @@ export const biddingInfoState = atom({
     agentRel: '',
     resultImg: null,
     pdfFile: new File([], ''),
+    reqCourtName: '',
   },
   dangerouslyAllowMutability: true,
 })

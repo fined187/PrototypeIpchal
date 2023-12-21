@@ -42,7 +42,7 @@ export default function BiddingPayment() {
           보증금 제공 방법을 선택해주세요
         </span>
       </div>
-      <div className="flex flex-col gap-10 w-[360px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+      <div className="flex flex-col gap-10 w-[420px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
         <div
           className={`flex flex-row w-[120px] h-[30px] rounded-md border ${
             isWaySelected ? 'border-red-600' : 'border-myyellow'

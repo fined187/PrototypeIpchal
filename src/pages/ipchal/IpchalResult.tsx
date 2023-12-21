@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import LoadingResult from '@/components/LoadingResult'
+import CoIpchalContent from '@/components/IpchalContent/CoIpchalContent'
 
 export default function IpchalResult() {
   const stateNum = useRecoilValue(stepState)
@@ -36,6 +37,7 @@ export default function IpchalResult() {
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`,
         )
         if (response.status === 200) {
+          console.log(response)
           setTotalResult(response.data.data)
         }
       } catch (error) {
@@ -46,7 +48,7 @@ export default function IpchalResult() {
     }
     handleGetResult()
   }, [])
-
+console.log(totalResult && totalResult?.bidders[0].name)
   return (
     <>
       {loading && (
@@ -54,7 +56,7 @@ export default function IpchalResult() {
           <LoadingResult />
         </div>
       )}
-      {!loading && (
+      {!loading && (totalResult && totalResult.bidders.length === 1) && (
         <div className="flex flex-col bg-mybg h-screen md:w-full w-[420px] m-auto relative justify-center items-center">
           <div
             className="flex flex-col bg-mybg h-screen md:w-full w-[420px] m-auto relative justify-center items-center"
@@ -833,6 +835,9 @@ export default function IpchalResult() {
             </button>
           </div>
         </div>
+      )}
+      {!loading && (totalResult && totalResult.bidders.length > 1) && (
+        <CoIpchalContent />
       )}
     </>
   )

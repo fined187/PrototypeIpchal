@@ -172,8 +172,8 @@ export default function PopupContent({
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full h-screen sm:my-8 sm:w-full sm:h-[800px] sm:max-w-lg">
-                    <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 w-full">
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-full h-screen sm:my-8 sm:w-full sm:h-[850px] sm:max-w-lg">
+                    <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 w-full">
                       <div className="flex justify-center flex-col">
                         <div className="flex flex-row justify-between">
                           <div className="">

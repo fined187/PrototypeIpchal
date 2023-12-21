@@ -44,6 +44,9 @@ export default function BidderCnt() {
           },
         },
       )
+      if (response.status === 200) {
+        console.log(response)
+      }
     } catch (error) {
       console.log(error)
     }
@@ -58,7 +61,7 @@ export default function BidderCnt() {
               입찰하시는 분이 몇 명 이신가요?
             </span>
           </div>
-          <div className="flex flex-col gap-10 w-[360px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+          <div className="flex flex-col gap-10 w-[420px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
             <div className="absolute top-[113px]">
               <div className="flex flex-row justify-center items-center">
                 <span className="text-[15px] font-semibold mr-5">

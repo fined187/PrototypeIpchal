@@ -1,11 +1,12 @@
-import { biddingInfoState } from "@/atom";
+import { biddingInfoState, stepState } from "@/atom";
 import PdfContent from "@/components/PdfContent";
 import { useState } from "react";
 import { TfiDownload } from "react-icons/tfi";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 export default function DownIpchal() {
   const biddingInfo = useRecoilValue(biddingInfoState)
+  const setStateNum = useSetRecoilState(stepState)
   const [openPdf, setOpenPdf] = useState<boolean>(false)
 
   const handleDownload = async () => {
@@ -49,9 +50,33 @@ export default function DownIpchal() {
             <TfiDownload className='bg-orange-400 ml-2 text-white stroke-[1px]' size={20} />
           </div>
         </div>
+        <div className="flex flex-row gap-[10px] absolute top-[578px]">
+          <button
+            type="button"
+            className="flex w-[100px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+            onClick={() => {
+              setStateNum(12)
+            }}
+          >
+            <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+              이전
+            </span>
+          </button>
+          <button
+            type="button"
+            className="flex w-[230px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            onClick={() => {
+              setStateNum(0)
+            }}
+          >
+            <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+              닫기
+            </span>
+          </button>
+        </div>
       </div>
       {openPdf && (
-        <div className="flex w-[90vw] h-[80%]">
+        <div className="flex w-full h-screen">
           <PdfContent openPdf={openPdf} setOpenPdf={setOpenPdf} />
         </div>
       )}

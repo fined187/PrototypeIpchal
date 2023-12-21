@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
@@ -13,6 +14,13 @@ export default function ShareInfo() {
     denominator: [0],
   })
   const [goNext, setGoNext] = useState<boolean>(false)
+
+  const [shareList, setShareList] = useState({
+    shareList: Array(biddingInfo.bidderNum).fill({
+      peopleSeq: 0,
+      share: '',
+    }),
+  })
 
   const handleClear = () => {
     let temp = document.querySelectorAll('input')
@@ -80,6 +88,20 @@ export default function ShareInfo() {
       }
     }
     temp.reduce((a, b) => a + b, 0) === 1 ? setGoNext(false) : setGoNext(true)
+  }
+
+  const handleShare = async () => {
+    try {
+      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders/shares`, {
+        bidderCount: biddingInfo.bidderNum,
+        shareList: shareList.shareList,
+      })
+      if (response.status === 200) {
+        console.log(response)
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -167,7 +189,7 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-10 w-[360px] min-h-[257px] max-h-[500px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+        <div className="flex flex-col gap-10 w-[420px] min-h-[257px] max-h-[500px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
           {biddingInfo?.bidName?.map((name, index) => {
             return (
               <div key={index} className="flex justify-between mb-5 w-full">
