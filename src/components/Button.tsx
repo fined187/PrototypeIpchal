@@ -4,7 +4,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 interface ButtonProps {
   prevStepNum: number
-  nextStepNum: number
+  nextStepNum?: number
   goNext?: boolean
   setIsWaySelected?: Dispatch<SetStateAction<boolean>>
   setIsSelected?: Dispatch<SetStateAction<boolean>>
@@ -14,11 +14,11 @@ interface ButtonProps {
   handleBiddingPayment?: (pay: string) => void
   handleUploadFile?: () => void
   isFileCreated?: boolean
+  handleShare?: () => void
 }
 
 export default function Button({
   prevStepNum,
-  nextStepNum,
   setIsWaySelected,
   setIsSelected,
   goNext,
@@ -28,6 +28,7 @@ export default function Button({
   handleBiddingPayment,
   handleUploadFile,
   isFileCreated,
+  handleShare
 }: ButtonProps) {
   const setStateNum = useSetRecoilState(stepState)
   const stateNum = useRecoilValue(stepState)
@@ -49,6 +50,9 @@ export default function Button({
       handleBiddingCnt
     ) {
       await handleBiddingCnt()
+      setStateNum(stateNum + 1)
+    } else if (stateNum === 6) {
+      handleShare && handleShare()
       setStateNum(stateNum + 1)
     } else if (stateNum === 7 && handleBiddingPrice) {
       handleBiddingPrice()

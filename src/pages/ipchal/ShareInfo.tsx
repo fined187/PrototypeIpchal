@@ -22,6 +22,33 @@ export default function ShareInfo() {
     }),
   })
 
+  const handleShareList = () => {
+    const temp = [...shareList.shareList]
+    if (shareWay === 'S') {
+      for (let i = 0; i < biddingInfo.bidderNum; i++) {
+        temp[i] = {
+          peopleSeq: i + 1,
+          share: '1/' + biddingInfo.bidderNum.toString(),
+        }
+      }
+    } else {
+        for (let i = 0; i < biddingInfo.bidderNum; i++) {
+          temp[i] = {
+            peopleSeq: i + 1,
+            share: (calc.numerator[i].toString() +  '/' + calc.denominator[i].toString()),
+          }
+        }
+    }
+    setShareList({
+      ...shareList,
+      shareList: temp,
+    })
+  }
+
+  useEffect(() => {
+    handleShareList()
+  }, [calc.numerator, calc.denominator, shareWay])
+
   const handleClear = () => {
     let temp = document.querySelectorAll('input')
     temp.forEach((item) => {
@@ -270,6 +297,7 @@ export default function ShareInfo() {
           prevStepNum={stateNum - 1}
           nextStepNum={stateNum + 1}
           goNext={goNext}
+          handleShare={handleShare}
         />
       </div>
     </div>
