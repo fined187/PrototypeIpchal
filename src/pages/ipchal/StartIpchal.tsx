@@ -19,8 +19,8 @@ export default function StartIpchal() {
       const response = await axios.post(
         `http://118.217.180.254:8081/ggi/api/bid-form/checks`,
         {
-          idCode: 'A1403F3F403D3F3D3E403E3C3D4349474A3C3E8',
-          biddingDate: `20231221`,
+          idCode: 'A1423E3E3F3D3F3E3F3F3E3D47404741483E3C6',
+          biddingDate: `20240205`,
         },
         {
           headers: {
@@ -30,6 +30,7 @@ export default function StartIpchal() {
       )
 
       if (response.status === 200) {
+        console.log(response)
         setBiddingInfo({
           ...biddingInfo,
           caseNo: response.data.data.caseNo,
@@ -40,9 +41,9 @@ export default function StartIpchal() {
             response.data.data.caseDetail,
           mulgunNum: response.data.data.mulSeq,
           ipchalDate:
-            response.data.data.startYear +
-            response.data.data.startMonth +
-            response.data.data.startDay,
+            (response.data.data.startYear) +
+            (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
+            (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
           sagunAddr: response.data.data.address,
         })
         stateNum(1)

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import LoadingResult from "../LoadingResult";
 import CoIpchalForm from "./CoIpchalForm";
+import IpchalText from "./IpchalText";
 
 export default function CoIpchalContent() {
   const [totalResult, setTotalResult] = useState<any>(null);
@@ -49,7 +50,6 @@ export default function CoIpchalContent() {
   }, [])
 
   console.log(totalResult && totalResult)
-
   return (
     <>
     {loading && (
@@ -59,13 +59,13 @@ export default function CoIpchalContent() {
     )}
     {!loading && (
       <>
-        <div className="flex flex-col bg-mybg h-screen md:w-full w-[420px] m-auto relative justify-center items-center">
-          <div className="flex flex-col bg-mybg h-screen md:w-full w-[420px] m-auto relative justify-center items-center">
-            <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
+        <div className="flex flex-col bg-mybg h-[1100px] md:w-full w-[100%] m-auto relative justify-center items-center">
+          <div className="flex flex-col bg-mybg h-[100%] md:w-full w-[100%] m-auto relative justify-center items-center">
+            <div className="text-[22px] font-bold py-[15px] absolute top-0 bg-mybg">
               입찰표
             </div>
-            <div className="min-w-[420px] md:max-w-[600px] absolute top-[160px] h-[600px] bg-mybg">
-              <div className="border border-black text-[1.5rem] text-center min-w-[420px] md:max-w-[600px] h-[100%] m-auto bg-mybg">
+            <div className="min-w-[420px] md:max-w-[600px] absolute top-[80px] h-[600px] bg-mybg">
+              <div className="border border-black text-[1.5rem] text-center min-w-[420px] md:w-[600px] h-[100%] m-auto bg-mybg">
                 {/* 첫 번째 박스 */}
                 <div className="p-[1%] pb-0 border-black border-b-[1px]">
                   <div className="text-left text-[14px]">(앞면)</div>
@@ -272,7 +272,7 @@ export default function CoIpchalContent() {
                           : totalResult &&
                             handlePrice(
                               totalResult?.bidPrice?.toString().length,
-                            )?.substring(1, 1)}
+                            )?.substring(1, 2)}
                       </span>
                     </div>
                   </div>
@@ -290,7 +290,7 @@ export default function CoIpchalContent() {
                           : totalResult &&
                             handlePrice(
                               totalResult?.bidPrice?.toString().length,
-                            )?.substring(2, 1)}
+                            )?.substring(2, 3)}
                       </span>
                     </div>
                   </div>
@@ -765,8 +765,9 @@ export default function CoIpchalContent() {
               </div>
             </div>
           </div>
+          <IpchalText />
         </div>
-        <CoIpchalForm />
+        <CoIpchalForm totalResult={totalResult} />
       </>
     )}
     </>

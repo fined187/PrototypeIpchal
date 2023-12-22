@@ -44,12 +44,12 @@ export default function Navbar() {
 
   return (
     <div
-      className={`flex relative w-full h-20 ${
+      className={`flex relative w-[100%] md:w-full h-20 ${
         stepStateNum === 0 || stepStateNum === 9 ? 'bg-white' : 'bg-mybg'
       }`}
     >
       {stepStateNum === 0 ? (
-        <div className="flex relative w-full">
+        <div className="flex relative w-[100%]">
           <div className="flex flex-row absolute top-0 right-0">
             <svg
               width="20"

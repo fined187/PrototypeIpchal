@@ -72,3 +72,32 @@ export interface BidderList {
   corporationNo: string
   share: string
 }
+
+export interface GetAgentInfoType {
+  name: string
+  relationship: string
+  phoneNo: string
+  address: string
+  job: string
+}
+
+export interface GetBiddingInfoType {
+  mstSeq: number
+  state: number
+  mulNo: string
+  caseYear: string
+  caseDetail: string
+  startYear: string
+  startMonth: string
+  startDay: string
+  reqCourtName: string
+  biddingDate: string
+  bidPrice: number
+  bidDeposit: number
+  depositType: string
+  agentYn: string
+  biddingCount: number
+  number: number
+  bidders: BidderList[]
+  agent: GetAgentInfoType
+}

@@ -86,24 +86,25 @@ export default function BiddingPrice() {
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`,
         )
         if (response.status !== 200) throw new Error('에러')
+        console.log(response)
         setPaymentsInfo({
           ...paymentsInfo,
-          biddingTime: response.data.data.biddingInfoList[0].biddingTime,
+          biddingTime: response.data.data.biddingInfos[0].biddingTime,
           appraisalAmount:
-            response.data.data.biddingInfoList[0].appraisalAmount,
-          minimumAmount: response.data.data.biddingInfoList[0].minimumAmount,
-          bidDeposit: response.data.data.biddingInfoList[0].bidDeposit,
+            response.data.data.biddingInfos[0].appraisalAmount,
+          minimumAmount: response.data.data.biddingInfos[0].minimumAmount,
+          bidDeposit: response.data.data.biddingInfos[0].bidDeposit,
         })
         if (biddingForm.biddingPrice === 0) {
           setBiddingForm({
             ...biddingForm,
-            biddingPrice: response.data.data.biddingInfoList[0].minimumAmount,
+            biddingPrice: response.data.data.biddingInfos[0].minimumAmount,
           })
         }
         if (biddingForm.depositPrice === 0) {
           setBiddingForm({
             ...biddingForm,
-            depositPrice: response.data.data.biddingInfoList[0].bidDeposit,
+            depositPrice: response.data.data.biddingInfos[0].bidDeposit,
           })
         }
       } catch (error) {

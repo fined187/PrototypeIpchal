@@ -6,7 +6,7 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className="layout">
+    <div className="layout w-full">
       <Navbar />
       {children}
     </div>

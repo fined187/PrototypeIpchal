@@ -35,7 +35,7 @@ export default function ShareInfo() {
         for (let i = 0; i < biddingInfo.bidderNum; i++) {
           temp[i] = {
             peopleSeq: i + 1,
-            share: (calc.numerator[i].toString() +  '/' + calc.denominator[i].toString()),
+            share: (calc?.numerator[i]?.toString() +  '/' + calc?.denominator[i]?.toString()),
           }
         }
     }
