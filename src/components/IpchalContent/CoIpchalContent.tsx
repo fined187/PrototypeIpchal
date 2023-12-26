@@ -62,17 +62,20 @@ export default function CoIpchalContent() {
     )}
     {!loading && (
       <>
-        <div className="flex flex-col bg-mybg h-[1100px] md:w-full w-[100%] m-auto relative justify-center items-center">
-          <div className="flex flex-col bg-mybg h-[100%] md:w-full w-[100%] m-auto relative justify-center items-center">
-            <div className="text-[22px] font-bold py-[15px] absolute top-0 bg-mybg">
+        <div className="flex flex-col bg-mybg h-[1200px] md:w-full min-w-[420px] m-auto relative justify-center items-center">
+          <div
+            className="flex flex-col bg-mybg h-[100%] md:w-full min-w-[420px] m-auto relative justify-center items-center"
+            id="capture"
+          >            
+            <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표
             </div>
-            <div className="min-w-[420px] md:max-w-[600px] absolute top-[80px] h-[600px] bg-mybg">
-              <div className="border border-black text-[1.5rem] text-center min-w-[420px] md:w-[600px] h-[100%] m-auto bg-mybg">
+            <div className="min-w-[420px] md:max-w-[850px] overflow-x-scroll absolute top-[160px] h-[650px] bg-mybg">
+              <div className="border border-black text-[1.5rem] text-center md:w-[800px] w-[420px] h-[100%] m-auto bg-mybg">
                 {/* 첫 번째 박스 */}
-                <div className="p-[1%] pb-0 border-black border-b-[1px]">
+                <div className="p-[1%] pb-0 border-black border-b-[1px] h-[15%]">
                   <div className="text-left text-[14px]">(앞면)</div>
-                  <div className="text-[19px] font-semibold mb-[3%]">
+                  <div className="text-[19px] font-semibold">
                     기&nbsp;&nbsp;&nbsp;일&nbsp;&nbsp;&nbsp;입&nbsp;&nbsp;&nbsp;찰&nbsp;&nbsp;&nbsp;표
                   </div>
                   <div className="flex flex-row justify-between items-stretch">
@@ -93,26 +96,30 @@ export default function CoIpchalContent() {
                   </div>
                 </div>
                 {/* 두 번째 박스 */}
-                <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] text-center">
-                  <div className="border-black border-r-[1px] w-[8%]">
-                    <span className="md:text-[14px] text-[12px] font-nanum font-semibold">
-                      사건 번호
+                <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[12%]">
+                  <div className="border-black border-r-[1px] md:w-[5%] w-[10%] h-[100%] justify-center items-start">
+                    <span className="md:text-[10px] text-[10px] font-nanum font-bold">
+                      사건 
+                      <br />
+                      번호
                     </span>
                   </div>
-                  <div className="flex justify-center items-center border-black border-r-[1px] w-[42%] text-center">
-                    <span className="md:text-[14px] text-[12px] font-nanum font-semibold">
+                  <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
+                    <span className="md:text-[12px] text-[12px] font-nanum font-semibold">
                       {totalResult &&
                         totalResult.caseYear +
                           ' 타경 ' +
                           totalResult.caseDetail}
                     </span>
                   </div>
-                  <div className="border-black border-r-[1px] w-[8%] justify-center items-center text-center">
-                    <span className="md:text-[14px] text-[12px] font-nanum font-semibold">
-                      물건 번호
+                  <div className="border-black border-r-[1px] md:w-[5%] w-[10%] justify-center items-center text-center h-[100%]">
+                    <span className="md:text-[10px] text-[10px] font-nanum font-bold">
+                      물건 
+                      <br />
+                      번호
                     </span>
                   </div>
-                  <div className="flex justify-center items-center text-center w-[42%]">
+                  <div className="flex justify-center items-center text-center md:w-[44%] w-[40%]">
                     <span
                       className={
                         totalResult && totalResult?.mulNo
@@ -127,20 +134,20 @@ export default function CoIpchalContent() {
                   </div>
                 </div>
                 {/* 세 번째 박스 */}
-                <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[200px]">
-                  <div className="flex justify-center items-center border-black border-r-[1px] w-[4.8%]">
+                <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[40%]">
+                  <div className="flex justify-center items-center border-black border-r-[1px] w-[5.2%]">
                     <span className="text-[14px] font-bold font-nanum">
                       입<br />찰<br />자
                     </span>
                   </div>
-                  <div className="w-[100%] h-[200px]">
+                  <div className="w-[100%] h-[100%]">
                     <div className="flex flex-row items-stretch border-black border-b-[1px] h-[50%]">
                       <div className="flex justify-center items-center border-black border-r-[1px] w-[12%]">
                         <span className="text-[14px] font-nanum">본인</span>
                       </div>
                       <div className="flex flex-col w-[100%] h-[100%]">
-                        <div className="flex flex-row items-stretch  h-[30%]">
-                          <div className="flex justify-center items-center border-b-[1px] border-black border-r-[1px] w-[20%]">
+                        <div className="flex flex-row items-stretc h-[30%]">
+                          <div className="flex justify-center items-center border-black border-b-[1px] border-r-[1px] w-[20%]">
                             <span className="text-[12px]">성명</span>
                           </div>
                         </div>
@@ -232,18 +239,19 @@ export default function CoIpchalContent() {
                   </div>
                 </div>
                 {/* 네 번째 박스 */}
-                <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px]">
-                  <div className="w-[4.7%] border-black border-r-[1px]">
+                <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[25%]">
+                  <div className="w-[4%] border-black border-r-[1px] h-[100%]">
                     <span className="text-[14px] font-nanum font-bold">
                       입
                       <br />
                       찰
                       <br />
                       가
-                      <br />격
+                      <br />
+                      격
                     </span>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">천억</span>
                     </div>
@@ -261,7 +269,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">백억</span>
                     </div>
@@ -279,7 +287,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">십억</span>
                     </div>
@@ -297,7 +305,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -318,7 +326,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">천만</span>
                     </div>
@@ -336,7 +344,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">백만</span>
                     </div>
@@ -354,7 +362,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">십만</span>
                     </div>
@@ -372,7 +380,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -393,7 +401,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -414,7 +422,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -435,7 +443,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -456,7 +464,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -477,10 +485,10 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="flex justify-center items-center border-black border-r-[1px] w-[3%]">
+                  <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
                     <span className="text-[15px] font-nanum font-bold">원</span>
                   </div>
-                  <div className="w-[5%] border-black border-r-[1px]">
+                  <div className="w-[4%] border-black border-r-[1px]">
                     <span className="text-[14px] font-nanum font-bold">
                       보
                       <br />
@@ -490,7 +498,7 @@ export default function CoIpchalContent() {
                       <br />액
                     </span>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">천억</span>
                     </div>
@@ -503,7 +511,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">백억</span>
                     </div>
@@ -521,7 +529,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">십억</span>
                     </div>
@@ -539,7 +547,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -560,7 +568,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">천만</span>
                     </div>
@@ -578,7 +586,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">백만</span>
                     </div>
@@ -596,7 +604,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum">십만</span>
                     </div>
@@ -614,7 +622,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -635,7 +643,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -656,7 +664,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -677,7 +685,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -698,7 +706,7 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-[3.5%]">
+                  <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                       <span className="text-[12px] font-nanum text-mybg">
                         <br />
@@ -719,17 +727,20 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="flex justify-center items-center border-black border-r-[1px] w-[3%]">
+                  <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
                     <span className="text-[15px] font-nanum font-bold">원</span>
                   </div>
                 </div>
-                <div className="flex flex-row justify-between items-stretch w-[100%] md:h-[12%] h-[12%]">
+                {/* 다섯 번째 박스 */}
+                <div className="flex flex-row justify-between items-stretch w-[100%] h-[8%]">
                   <div className="flex flex-row justify-around items-stretch w-[50%] py-[10px] border-black border-r-[2px]">
-                    <span className="text-[12px] font-nanum font-bold">
-                      보증의 제공방법
-                    </span>
-                    <div className="flex flex-col">
-                      <div className="flex flex-row">
+                    <div className='flex justify-start w-[50%] h-[100%] ml-[10px]'>
+                      <span className="text-[12px] font-nanum font-bold">
+                        보증의 제공방법
+                      </span>
+                    </div>
+                    <div className="flex flex-col justify-end w-[50%] h-[100%]">
+                      <div className="flex flex-row w-[100%]">
                         <input
                           type="checkbox"
                           checked={biddingInfo.bidWay === 'M' ? true : false}
@@ -738,7 +749,7 @@ export default function CoIpchalContent() {
                         />
                         <span className="text-[12px] font-bold mt-1">현금</span>
                       </div>
-                      <div className="flex flex-row">
+                      <div className="flex flex-row w-[100%]">
                         <input
                           type="checkbox"
                           checked={biddingInfo.bidWay === 'W' ? true : false}
@@ -752,13 +763,13 @@ export default function CoIpchalContent() {
                     </div>
                   </div>
                   <div className="flex flex-col justify-around items-stretch w-[50%] h-[100%]">
-                    <div className="flex justify-start ml-1">
-                      <span className="text-[12px] font-nanum font-bold">
+                    <div className="flex justify-start">
+                      <span className="text-[12px] font-nanum font-bold ml-[10px]">
                         보증을 반환 받았습니다.
                       </span>
                     </div>
-                    <div className="flex justify-end mr-1">
-                      <span className="text-[12px] font-nanum font-bold">
+                    <div className="flex justify-end">
+                      <span className="text-[12px] font-nanum font-bold mr-[10px]">
                         본인 또는 대리인{' '}
                         {totalResult && totalResult.bidders[0].name} (인)
                       </span>
@@ -772,7 +783,6 @@ export default function CoIpchalContent() {
         </div>
         <CoIpchalForm totalResult={totalResult} />
         <CoIpchalList totalResult={totalResult} />
-        <AgentForm totalResult={totalResult} />
       </>
     )}
     </>

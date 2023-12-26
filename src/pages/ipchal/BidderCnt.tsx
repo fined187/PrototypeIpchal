@@ -1,8 +1,7 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
-import { IpchalType } from '@/interface/IpchalType'
 import axios from 'axios'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BidderCnt() {
@@ -68,7 +67,7 @@ export default function BidderCnt() {
                   입찰자 수
                 </span>
                 <input
-                  className="w-[70px] h-[30px] border-2 border-myyellow focus:border-myyellow rounded-md text-center focus:outline-none focus:border-blue-600"
+                  className="w-[70px] h-[30px] border-2 border-myyellow focus:border-myyellow rounded-md text-center focus:outline-none"
                   defaultValue={
                     biddingInfo?.bidderNum && biddingInfo?.bidderNum
                   }

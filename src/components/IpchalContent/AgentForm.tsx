@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 export default function AgentForm({ totalResult }: { totalResult: GetBiddingInfoType}) {
   const biddingInfo = useRecoilValue(biddingInfoState);
   return (
-    <div className="flex flex-col bg-mybg h-[1300px] max-h-[2000px] w-full m-auto justify-center items-center relative border-black border-dashed border-t-[2px] mt-1">
+    <div className="flex flex-col bg-mybg min-h-[1500px] max-h-[2000px] md:w-full min-w-[420px] m-auto justify-center items-center relative border-black border-dashed border-t-[2px] overflow-x-scroll">
       <div className="flex w-[800px] absolute top-0">
         <p className="text-[15px] font-nanum">
           (뒷면)

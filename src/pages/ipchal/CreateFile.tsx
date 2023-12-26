@@ -204,55 +204,62 @@ export default function CreateFile() {
         </div>
       )}
       <div
-        className="flex-col bg-mybg h-[1000px] md:w-[600px] w-[420px] justify-center items-center absolute hidden"
+        className="flex flex-col bg-mybg h-[100%] md:w-full min-w-[420px] m-auto relative justify-center items-center"
         id="capture"
       >
         <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
           입찰표
         </div>
-        <div className="min-w-[420px] md:max-w-[600px] overflow-x-scroll absolute top-[160px] h-[600px] bg-mybg">
-          <div className="border border-black text-[1.5rem] text-center min-w-[420px] md:max-w-[600px] h-[100%] m-auto bg-mybg">
+        <div className="min-w-[420px] md:max-w-[850px] overflow-x-scroll absolute top-[160px] h-[650px] bg-mybg">
+          <div className="border border-black text-[1.5rem] text-center md:w-[800px] w-[420px] h-[100%] m-auto bg-mybg">
             {/* 첫 번째 박스 */}
-            <div className="p-[1%] pb-0 border-black border-b-[1px]">
+            <div className="p-[1%] pb-0 border-black border-b-[1px] h-[15%]">
               <div className="text-left text-[14px]">(앞면)</div>
-              <div className="text-[19px] font-semibold mb-[3%]">
+              <div className="text-[19px] font-semibold">
                 기&nbsp;&nbsp;&nbsp;일&nbsp;&nbsp;&nbsp;입&nbsp;&nbsp;&nbsp;찰&nbsp;&nbsp;&nbsp;표
               </div>
               <div className="flex flex-row justify-between items-stretch">
                 <div>
-                  <span className="text-[12px] font-semibold font-nanum text-center">
+                  <span className="text-[12px] font-semibold font-nanum">
                     {totalResult && totalResult.reqCourtName + ' 귀하'}
                   </span>
                 </div>
                 <div>
-                  <span className="text-[12px] font-semibold font-nanum text-center">
+                  <span className="text-[12px] font-semibold font-nanum">
                     입찰기일 :{' '}
-                    {totalResult && totalResult?.biddingDate?.substring(0, 4)}년{' '}
-                    {totalResult?.biddingDate?.substring(4, 6)}월{' '}
+                    {totalResult &&
+                      totalResult?.biddingDate?.substring(0, 4)}
+                    년 {totalResult?.biddingDate?.substring(4, 6)}월{' '}
                     {totalResult?.biddingDate?.substring(6, 8)}일
                   </span>
                 </div>
               </div>
             </div>
             {/* 두 번째 박스 */}
-            <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] text-center">
-              <div className="border-black border-r-[1px] w-[8%]">
-                <span className="md:text-[14px] text-[12px] font-nanum font-semibold text-center">
-                  사건 번호
+            <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[12%]">
+              <div className="border-black border-r-[1px] md:w-[5%] w-[10%] h-[100%] justify-center items-start">
+                <span className="md:text-[10px] text-[10px] font-nanum font-bold">
+                  사건 
+                  <br />
+                  번호
                 </span>
               </div>
-              <div className="flex justify-center items-center border-black border-r-[1px] w-[42%] text-center">
-                <span className="md:text-[14px] text-[12px] font-nanum font-semibold">
+              <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
+                <span className="md:text-[12px] text-[12px] font-nanum font-semibold">
                   {totalResult &&
-                    totalResult.caseYear + ' 타경 ' + totalResult.caseDetail}
+                    totalResult.caseYear +
+                      ' 타경 ' +
+                      totalResult.caseDetail}
                 </span>
               </div>
-              <div className="border-black border-r-[1px] w-[8%] justify-center items-center text-center">
-                <span className="md:text-[14px] text-[12px] font-nanum font-semibold">
-                  물건 번호
+              <div className="border-black border-r-[1px] md:w-[5%] w-[10%] justify-center items-center text-center h-[100%]">
+                <span className="md:text-[10px] text-[10px] font-nanum font-bold">
+                  물건 
+                  <br />
+                  번호
                 </span>
               </div>
-              <div className="flex justify-center items-center text-center w-[42%]">
+              <div className="flex justify-center items-center text-center md:w-[44%] w-[40%]">
                 <span
                   className={
                     totalResult && totalResult?.mulNo
@@ -260,18 +267,20 @@ export default function CreateFile() {
                       : 'text-[8px] font-bold font-nanum'
                   }
                 >
-                  {totalResult && totalResult?.mulNo ? totalResult?.mulNo : ''}
+                  {totalResult && totalResult?.mulNo
+                    ? totalResult?.mulNo
+                    : ''}
                 </span>
               </div>
             </div>
             {/* 세 번째 박스 */}
-            <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[200px]">
-              <div className="flex justify-center items-center border-black border-r-[1px] w-[4.8%]">
+            <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[40%]">
+              <div className="flex justify-center items-center border-black border-r-[1px] w-[5.2%]">
                 <span className="text-[14px] font-bold font-nanum">
                   입<br />찰<br />자
                 </span>
               </div>
-              <div className="w-[100%] h-[200px]">
+              <div className="w-[100%] h-[100%]">
                 <div className="flex flex-row items-stretch border-black border-b-[1px] h-[50%]">
                   <div className="flex justify-center items-center border-black border-r-[1px] w-[12%]">
                     <span className="text-[14px] font-nanum">본인</span>
@@ -298,7 +307,8 @@ export default function CreateFile() {
                         <span className="text-[12px]">
                           {totalResult && totalResult?.bidders?.length > 1
                             ? ''
-                            : totalResult && totalResult?.bidders[0]?.phoneNo}
+                            : totalResult &&
+                              totalResult?.bidders[0]?.phoneNo}
                         </span>
                       </div>
                     </div>
@@ -312,7 +322,10 @@ export default function CreateFile() {
                       </div>
                       <div className="flex w-[30%] border-black border-r-[1px] justify-center items-center">
                         <span className="text-[12px] font-nanum">
-                          {biddingInfo.bidIdNum[0].toString().substring(0, 6)}-
+                          {biddingInfo.bidIdNum[0]
+                            .toString()
+                            .substring(0, 6)}
+                          -
                           {biddingInfo.bidIdNum.toString().substring(6, 14)}
                         </span>
                       </div>
@@ -340,7 +353,8 @@ export default function CreateFile() {
                         <span className="text-[12px] font-nanum">
                           {totalResult && totalResult?.bidders?.length > 1
                             ? ''
-                            : totalResult && totalResult?.bidders[0]?.address}
+                            : totalResult &&
+                              totalResult?.bidders[0]?.address}
                         </span>
                       </div>
                     </div>
@@ -388,7 +402,9 @@ export default function CreateFile() {
                         </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
-                        <span className="text-[12px] font-nanum">전화번호</span>
+                        <span className="text-[12px] font-nanum">
+                          전화번호
+                        </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[30%]">
                         <span className="text-[12px] font-nanum">
@@ -411,18 +427,19 @@ export default function CreateFile() {
               </div>
             </div>
             {/* 네 번째 박스 */}
-            <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px]">
-              <div className="w-[4.7%] border-black border-r-[1px]">
-                <span className="text-[14px] font-nanum font-bold">
+            <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[25%]">
+              <div className="w-[4%] border-black border-r-[1px] h-[100%]">
+                <span className="text-[12px] font-nanum font-bold">
                   입
                   <br />
                   찰
                   <br />
                   가
-                  <br />격
+                  <br />
+                  격
                 </span>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">천억</span>
                 </div>
@@ -440,7 +457,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">백억</span>
                 </div>
@@ -454,11 +471,11 @@ export default function CreateFile() {
                       : totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
-                        )?.substring(1, 1)}
+                        )?.substring(1, 2)}
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">십억</span>
                 </div>
@@ -472,11 +489,11 @@ export default function CreateFile() {
                       : totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
-                        )?.substring(2, 1)}
+                        )?.substring(2, 3)}
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -497,7 +514,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">천만</span>
                 </div>
@@ -515,7 +532,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">백만</span>
                 </div>
@@ -533,7 +550,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">십만</span>
                 </div>
@@ -551,7 +568,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -572,7 +589,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -593,7 +610,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -614,7 +631,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -635,7 +652,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -656,10 +673,10 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="flex justify-center items-center border-black border-r-[1px] w-[3%]">
+              <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
                 <span className="text-[15px] font-nanum font-bold">원</span>
               </div>
-              <div className="w-[5%] border-black border-r-[1px]">
+              <div className="w-[4%] border-black border-r-[1px]">
                 <span className="text-[14px] font-nanum font-bold">
                   보
                   <br />
@@ -669,7 +686,7 @@ export default function CreateFile() {
                   <br />액
                 </span>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">천억</span>
                 </div>
@@ -682,7 +699,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">백억</span>
                 </div>
@@ -700,7 +717,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">십억</span>
                 </div>
@@ -718,7 +735,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -739,7 +756,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">천만</span>
                 </div>
@@ -757,7 +774,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">백만</span>
                 </div>
@@ -775,7 +792,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum">십만</span>
                 </div>
@@ -793,7 +810,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -814,7 +831,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -835,7 +852,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -856,7 +873,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -877,7 +894,7 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3.5%]">
+              <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
                   <span className="text-[12px] font-nanum text-mybg">
                     <br />
@@ -898,46 +915,53 @@ export default function CreateFile() {
                   </span>
                 </div>
               </div>
-              <div className="flex justify-center items-center border-black border-r-[1px] w-[3%]">
+              <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
                 <span className="text-[15px] font-nanum font-bold">원</span>
               </div>
             </div>
-            <div className="flex flex-row justify-between items-stretch w-[100%] md:h-[9.8%] h-[12.2%]">
-              <div className="flex flex-row justify-around items-stretch w-[50%] border-black border-r-[2px]">
-                <span className="text-[12px] font-nanum font-bold">
-                  보증의 제공방법
-                </span>
-                <div className="flex flex-col">
-                  <div className="flex flex-row">
+            {/* 다섯 번째 박스 */}
+            <div className="flex flex-row justify-between items-stretch w-[100%] h-[8%]">
+              <div className="flex w-[50%] border-black border-r-[2px] h-[100%]">
+                <div className='flex justify-start w-[50%] h-[100%] ml-[10px]'>
+                  <span className="text-[12px] font-nanum font-bold">
+                    보증의 제공방법
+                  </span>
+                </div>
+                <div className="flex flex-col justify-end w-[50%] h-[100%]">
+                  <div className="flex flex-row w-[100%]">
                     <input
                       type="checkbox"
                       checked={biddingInfo.bidWay === 'M' ? true : false}
-                      className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
+                      className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-1 indeterminate:bg-white"
                       readOnly
                     />
-                    <span className="text-[12px] font-bold mt-1">현금</span>
+                    <span className="text-[12px] font-bold">현금</span>
                   </div>
-                  <div className="flex flex-row">
+                  <div className="flex flex-row w-[100%]">
                     <input
                       type="checkbox"
                       checked={biddingInfo.bidWay === 'W' ? true : false}
-                      className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
+                      className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-1 indeterminate:bg-white"
                       readOnly
                     />
-                    <span className="text-[12px] font-bold mt-1">보증서</span>
+                    <span className="text-[12px] font-bold mt-1">
+                      보증서
+                    </span>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col justify-around items-stretch w-[50%] h-[100%]">
                 <div className="flex justify-start">
-                  <span className="text-[12px] font-nanum font-bold">
+                  <span className="text-[12px] font-nanum font-bold ml-[10px]">
                     보증을 반환 받았습니다.
                   </span>
                 </div>
-                <span className="text-[12px] font-nanum font-bold">
-                  본인 또는 대리인 {totalResult && totalResult.bidders[0].name}{' '}
-                  (인)
-                </span>
+                <div className='flex justify-end'>
+                  <span className="text-[12px] font-nanum font-bold mr-[10px]">
+                    본인 또는 대리인{' '}
+                    {totalResult && totalResult.bidders[0].name} (인)
+                  </span>
+                </div>
               </div>
             </div>
           </div>
