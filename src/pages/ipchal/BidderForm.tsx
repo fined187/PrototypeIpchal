@@ -894,52 +894,50 @@ export default function BidderForm() {
               </>
             )}
             <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>
-              {biddingInfo?.bidderCorpYn[stepNum - 1] === 'I' && (
-                <div className="flex flex-col w-[100%] gap-1">
-                  <label
-                    htmlFor="bidderJob"
-                    className="text-[10px] font-nanum not-italic font-extrabold text-left"
-                  >
-                    직업
-                  </label>
-                  <input
-                    {...register('bidderJob', {
-                      required: '직업을 입력해주세요',
-                    })}
-                    value={
-                      biddingForm.bidJob[stepNum - 1] === ''
-                        ? ''
-                        : biddingForm.bidJob[stepNum - 1]
-                    }
-                    id="bidderJob"
-                    type="text"
-                    className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2"
-                    placeholder="직업을 입력해주세요"
-                    onChange={(e) => {
-                      setBiddingInfo((prev: any) => {
-                        const temp = prev.bidderJob
-                        temp[stepNum - 1] = e.target.value
-                        return { ...prev, bidderJob: temp }
-                      })
-                      setBiddingForm((prev: any) => {
-                        const temp = prev.bidJob
-                        temp[stepNum - 1] = e.target.value
-                        return { ...prev, bidJob: temp }
-                      })
-                    }}
-                  />
-                  {errors.bidderJob?.type === 'required' && (
-                    <div className="flex w-[100%] justify-start">
-                      <label
-                        htmlFor="agentJob"
-                        className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500"
-                      >
-                        {errors.bidderJob?.message}
-                      </label>
-                    </div>
-                  )}
-                </div>
-              )}
+              <div className="flex flex-col w-[100%] gap-1">
+                <label
+                  htmlFor="bidderJob"
+                  className="text-[10px] font-nanum not-italic font-extrabold text-left"
+                >
+                  직업
+                </label>
+                <input
+                  {...register('bidderJob', {
+                    required: '직업을 입력해주세요',
+                  })}
+                  value={
+                    biddingForm.bidJob[stepNum - 1] === ''
+                      ? ''
+                      : biddingForm.bidJob[stepNum - 1]
+                  }
+                  id="bidderJob"
+                  type="text"
+                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2"
+                  placeholder="직업을 입력해주세요"
+                  onChange={(e) => {
+                    setBiddingInfo((prev: any) => {
+                      const temp = prev.bidderJob
+                      temp[stepNum - 1] = e.target.value
+                      return { ...prev, bidderJob: temp }
+                    })
+                    setBiddingForm((prev: any) => {
+                      const temp = prev.bidJob
+                      temp[stepNum - 1] = e.target.value
+                      return { ...prev, bidJob: temp }
+                    })
+                  }}
+                />
+                {errors.bidderJob?.type === 'required' && (
+                  <div className="flex w-[100%] justify-start">
+                    <label
+                      htmlFor="agentJob"
+                      className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500"
+                    >
+                      {errors.bidderJob?.message}
+                    </label>
+                  </div>
+                )}
+              </div>
               <SearchAddress
                 biddingInfo={biddingInfo}
                 setBiddingInfo={setBiddingInfo}

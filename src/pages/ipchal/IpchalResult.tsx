@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import LoadingResult from '@/components/LoadingResult'
 import CoIpchalContent from '@/components/IpchalContent/CoIpchalContent'
+import AgentForm from '@/components/IpchalContent/AgentForm'
 
 export default function IpchalResult() {
   const stateNum = useRecoilValue(stepState)
@@ -321,7 +322,7 @@ console.log(totalResult && totalResult?.bidders[0].name)
                           : totalResult &&
                             handlePrice(
                               totalResult?.bidPrice?.toString().length,
-                            )?.substring(1, 1)}
+                            )?.substring(1, 2)}
                       </span>
                     </div>
                   </div>
@@ -339,7 +340,7 @@ console.log(totalResult && totalResult?.bidders[0].name)
                           : totalResult &&
                             handlePrice(
                               totalResult?.bidPrice?.toString().length,
-                            )?.substring(2, 1)}
+                            )?.substring(2, 3)}
                       </span>
                     </div>
                   </div>
@@ -838,6 +839,9 @@ console.log(totalResult && totalResult?.bidders[0].name)
       )}
       {!loading && (totalResult && totalResult.bidders.length > 1) && (
         <CoIpchalContent />
+      )}
+      {!loading && (totalResult && totalResult.agentYn === 'Y') && (
+        <AgentForm totalResult={totalResult} />
       )}
     </>
   )

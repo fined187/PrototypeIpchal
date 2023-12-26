@@ -5,9 +5,12 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import LoadingResult from "../LoadingResult";
 import CoIpchalForm from "./CoIpchalForm";
 import IpchalText from "./IpchalText";
+import CoIpchalList from "./CoIpchalList";
+import AgentForm from "./AgentForm";
 
 export default function CoIpchalContent() {
   const [totalResult, setTotalResult] = useState<any>(null);
+  const [agentResult, setAgentResult] = useState<any>(null);
   const biddingInfo = useRecoilValue(biddingInfoState);
   const stateNum = useRecoilValue(stepState);
   const setStateNum = useSetRecoilState(stepState);
@@ -768,6 +771,8 @@ export default function CoIpchalContent() {
           <IpchalText />
         </div>
         <CoIpchalForm totalResult={totalResult} />
+        <CoIpchalList totalResult={totalResult} />
+        <AgentForm totalResult={totalResult} />
       </>
     )}
     </>
