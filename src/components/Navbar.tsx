@@ -44,7 +44,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`flex relative w-[100%] md:w-full h-20 ${
+      className={`flex relative w-[100%] md:w-screen h-20 ${
         stepStateNum === 0 || stepStateNum === 9 ? 'bg-white' : 'bg-mybg'
       }`}
     >

@@ -6,7 +6,7 @@ export default function IpchalInfo() {
   const stateNum = useRecoilValue(stepState)
   const setStateNum = useSetRecoilState(stepState)
   return (
-    <div className="flex w-full h-screen justify-center bg-white relative">
+    <div className="flex w-screen h-screen justify-center bg-white relative">
       <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen items-center text-center absolute top-20">
         <span className="text-[20px] font-extrabold font-nanum not-italic leading-8">
           입력이 모두 끝났습니다

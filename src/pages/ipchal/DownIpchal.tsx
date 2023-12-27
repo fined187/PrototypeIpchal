@@ -26,7 +26,7 @@ export default function DownIpchal() {
 
   return (
     <>
-      <div className="flex w-full h-screen justify-center bg-mybg relative">
+      <div className="flex w-screen h-screen justify-center bg-mybg relative">
         <div className="flex flex-col gap-[60px] md:w-[520px] w-[100%] h-[80%] bg-mybg items-center text-center top-20 relative">
           <span className="text-[20px] font-extrabold font-nanum not-italic leading-8">
             입찰표 작성이 모두 끝났습니다

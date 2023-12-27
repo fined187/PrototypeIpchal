@@ -12,7 +12,7 @@ export default function BidderInfo() {
 
   return (
     <>
-      <div className="flex w-full h-screen bg-mybg justify-center relative">
+      <div className="flex w-screen h-screen bg-mybg justify-center relative">
         <div className="flex flex-col w-full h-screen bg-mybg items-center text-center-500">
           <div className="flex">
             <span className="text-lg font-bold font-nanum not-italic leading-8	">

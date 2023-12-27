@@ -3,8 +3,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import LoadingResult from '@/components/LoadingResult'
-import CoIpchalContent from '@/components/IpchalContent/CoIpchalContent'
-import AgentForm from '@/components/IpchalContent/AgentForm'
+import CoIpchalContent from '@/components/CoIpchalContent/CoIpchalContent'
+import AgentListForm from '@/components/CoIpchalContent/AgentListForm'
 
 export default function IpchalResult() {
   const stateNum = useRecoilValue(stepState)
@@ -59,10 +59,7 @@ export default function IpchalResult() {
       )}
       {!loading && (totalResult && totalResult.bidders.length === 1) && (
         <div className="flex flex-col bg-mybg h-[1000px] md:w-full min-w-[420px] m-auto relative justify-center items-center">
-          <div
-            className="flex flex-col bg-mybg h-[100%] md:w-full min-w-[420px] m-auto relative justify-center items-center"
-            id="capture"
-          >
+          <div className="flex flex-col bg-mybg h-[100%] md:w-full min-w-[420px] m-auto relative justify-center items-center" id="capture">
             <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표
             </div>
@@ -852,7 +849,7 @@ export default function IpchalResult() {
         <CoIpchalContent />
       )}
       {!loading && (totalResult && totalResult.agentYn === 'Y') && (
-        <AgentForm totalResult={totalResult} />
+        <AgentListForm totalResult={totalResult} />
       )}
     </>
   )

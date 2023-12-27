@@ -6,7 +6,7 @@ import LoadingResult from "../LoadingResult";
 import CoIpchalForm from "./CoIpchalForm";
 import IpchalText from "./IpchalText";
 import CoIpchalList from "./CoIpchalList";
-import AgentForm from "./AgentForm";
+import AgentForm from "./AgentListForm";
 
 export default function CoIpchalContent() {
   const [totalResult, setTotalResult] = useState<any>(null);
@@ -56,17 +56,14 @@ export default function CoIpchalContent() {
   return (
     <>
     {loading && (
-      <div className="flex flex-col bg-mybg h-screen w-full m-auto relative justify-center items-center">
+      <div className="flex flex-col bg-mybg h-screen w-screen m-auto relative justify-center items-center">
         <LoadingResult />
       </div>
     )}
     {!loading && (
       <>
-        <div className="flex flex-col bg-mybg h-[1200px] md:w-full min-w-[420px] m-auto relative justify-center items-center">
-          <div
-            className="flex flex-col bg-mybg h-[100%] md:w-full min-w-[420px] m-auto relative justify-center items-center"
-            id="capture"
-          >            
+        <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] md:w-screen min-w-[420px] m-auto relative justify-center items-center">
+          <div className="flex flex-col bg-mybg md:w-full h-[100%] min-w-[420px] m-auto relative justify-center items-center" id="capture">
             <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표
             </div>
@@ -778,8 +775,31 @@ export default function CoIpchalContent() {
                 </div>
               </div>
             </div>
+            <IpchalText />
+            {/* 버튼 */}
+            <div className="flex justify-between md:w-[520px] min-w-[420px] absolute md:top-[1200px] bottom-[20px]">
+              <button
+                type="button"
+                className="flex md:w-[200px] w-[150px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+                onClick={() => setStateNum(stateNum - 1)}
+              >
+                <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+                  이전
+                </span>
+              </button>
+              <button
+                type="button"
+                className="flex md:w-[280px] w-[230px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+                onClick={() => {
+                  setStateNum(stateNum + 1)
+                }}
+              >
+                <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+                  확인했습니다
+                </span>
+              </button>
+            </div>
           </div>
-          <IpchalText />
         </div>
         <CoIpchalForm totalResult={totalResult} />
         <CoIpchalList totalResult={totalResult} />

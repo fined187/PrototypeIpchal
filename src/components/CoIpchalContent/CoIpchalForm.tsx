@@ -6,17 +6,17 @@ interface CoIpchalFormProps {
 
 export default function CoIpchalForm({ totalResult }: CoIpchalFormProps) {
   return (
-    <div className="flex flex-col bg-mybg h-[1000px] md:w-full w-full m-auto relative justify-center items-center border-black border-dashed border-t-[2px] border-b-[2px]">
-      <div className="flex flex-col bg-mybg h-[100%] sm:w-[800px] w-full m-auto relative justify-center items-center">
+    <div className="flex flex-col bg-mybg h-[1000px] w-screen m-auto relative justify-center items-center border-black border-dashed border-t-[2px] border-b-[2px] overflow-x-scroll">
+      <div className="flex flex-col bg-mybg h-[100%] w-[800px] m-auto relative justify-center items-center">
         <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
           공 동 입 찰 신 고 서
         </div>
-        <div className="flex justify-end text-right sm:w-[800px] w-full absolute top-[200px] mr-2">
+        <div className="flex justify-end text-right w-[800px] absolute top-[200px] mr-2">
           <span className="text-[15px] font-bold font-nanum">
             수원지방법원 본원 집행관 귀하
           </span>
         </div>
-        <div className="flex flex-col gap-[10px] justify-start sm:w-[800px] w-full ml-2">
+        <div className="flex flex-col gap-[10px] justify-start w-[800px] ml-2">
           <div className="flex flex-row w-[100%] sm:gap-[115px] gap-[150px] ">
             <span className="text-[15px] font-bold font-nanum">
               사건번호

@@ -125,7 +125,7 @@ export default function CreateFile() {
   return (
     <>
       {!loading && (
-        <div className="flex w-full h-screen justify-center bg-mybg relative">
+        <div className="flex w-screen h-screen justify-center bg-mybg relative">
           <div className="flex flex-col gap-4 md:w-[520px] w-[100%] h-[80%] bg-mybg items-center text-center top-20 relative">
             <span className="text-[20px] font-extrabold font-nanum not-italic leading-8">
               파일명과 암호를 입력하세요
@@ -203,14 +203,11 @@ export default function CreateFile() {
           <Loading />
         </div>
       )}
-      <div
-        className="flex flex-col bg-mybg h-[100%] md:w-full min-w-[420px] m-auto relative justify-center items-center"
-        id="capture"
-      >
-        <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
+      <div className="flex flex-col bg-mybg h-screen w-screen m-auto relative justify-center items-center" id="capture">
+        <div className="w-[100%] text-[22px] font-bold py-[30px] absolute top-0 bg-mybg justify-center item-center text-center">
           입찰표
         </div>
-        <div className="min-w-[420px] md:max-w-[850px] overflow-x-scroll absolute top-[160px] h-[650px] bg-mybg">
+        <div className="w-[850px] absolute top-[160px] h-[650px] bg-mybg">
           <div className="border border-black text-[1.5rem] text-center md:w-[800px] w-[420px] h-[100%] m-auto bg-mybg">
             {/* 첫 번째 박스 */}
             <div className="p-[1%] pb-0 border-black border-b-[1px] h-[15%]">

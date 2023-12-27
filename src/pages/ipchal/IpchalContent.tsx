@@ -12,7 +12,7 @@ export default function IpchalContent() {
   const nowYear = date.getFullYear()
 
   return (
-    <div className="flex w-full h-screen justify-center bg-mybg relative">
+    <div className="flex w-screen h-screen justify-center bg-mybg relative">
       <div className="flex flex-col gap-4 md:w-[520px] w-[100%] h-screen bg-mybg items-center text-center">
         <span className="text-[20px] font-extrabold font-nanum not-italic leading-8">
           입찰표

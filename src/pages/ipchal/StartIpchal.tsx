@@ -56,7 +56,7 @@ export default function StartIpchal() {
   return (
     <>
       <div className="flex justify-center relative">
-        <div className="flex flex-col md:w-[50%] w-full h-screen bg-white items-center text-center">
+        <div className="flex flex-col md:w-[50%] w-screen h-screen bg-white items-center text-center">
           <div className="flex">
             <span className="text-lg font-extrabold font-nanum not-italic">
               입찰표 작성을 시작합니다

@@ -138,7 +138,7 @@ export default function ShareInfo() {
   }, [calc.numerator, calc.denominator, shareWay])
 
   return (
-    <div className="flex w-full h-screen bg-mybg justify-center relative">
+    <div className="flex w-screen h-screen bg-mybg justify-center relative">
       <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center relative">
         <span className="text-lg font-extrabold font-nanum not-italic leading-8">
           공동입찰자 분의 지분을 입력해주세요

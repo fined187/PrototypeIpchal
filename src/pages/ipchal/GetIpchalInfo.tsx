@@ -36,7 +36,7 @@ export default function GetIpchalInfo() {
 
   return (
     <>
-      <div className="flex w-full h-screen justify-center bg-mybg relative">
+      <div className="flex w-screen h-screen justify-center bg-mybg relative">
         <div className="flex flex-col w-full h-screen bg-mybg items-center text-center-500">
           <div className="flex">
             <span className="text-[20px] font-bold font-nanum not-italic leading-8">

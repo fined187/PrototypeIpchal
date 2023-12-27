@@ -54,7 +54,7 @@ export default function BidderCnt() {
   return (
     <>
       <div className="flex justify-center relative">
-        <div className="flex flex-col w-full h-screen bg-mybg items-center text-center">
+        <div className="flex flex-col w-screen h-screen bg-mybg items-center text-center">
           <div className="flex">
             <span className="text-lg font-extrabold font-nanum not-italic leading-8">
               입찰하시는 분이 몇 명 이신가요?
