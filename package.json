@@ -20,7 +20,7 @@
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "next": "14.0.3",
-    "phantomjs-prebuilt": "2.1.13",
+    "phantomjs-prebuilt": "2.1.16",
     "qpdf": "^0.1.0-prealpha.1",
     "react": "^18",
     "react-dom": "^18",
