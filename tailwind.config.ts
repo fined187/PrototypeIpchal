@@ -51,7 +51,7 @@ const config: Config = {
       myBlue: '#4a81a4'
     }
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 }
 
 export default config

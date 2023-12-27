@@ -9,7 +9,7 @@ interface CoIpchalListProps {
 export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
   const biddingInfo = useRecoilValue(biddingInfoState);
   return (
-    <div className="flex flex-col bg-mybg h-[1300px] w-screen m-auto justify-center items-center relative overflow-x-scroll">
+    <div className="flex flex-col bg-mybg h-[1300px] w-screen m-auto justify-center items-center relative overflow-x-scroll scrollbar-hide">
       <div className="flex absolute top-0">
         <p className="text-[22px] font-bold py-[30px]">
           공 동 입 찰 자 목 록
@@ -57,7 +57,7 @@ export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
           </div>
           {totalResult && totalResult?.bidders.map((el, idx) => {
             return (
-            <div className="flex flex-row w-[100%] h-[105px] border-black border-b-[1px] justify-start items-center text-center">
+            <div className="flex flex-row w-[100%] h-[105px] border-black border-b-[1px] justify-start items-center text-center" key={idx}>
               <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px] h-[100%]">
                 <p className="text-[15px] font-nanum font-normal">
                   {el.name + ' (인)'}

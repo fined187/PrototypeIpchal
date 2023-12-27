@@ -6,7 +6,7 @@ interface CoIpchalFormProps {
 
 export default function CoIpchalForm({ totalResult }: CoIpchalFormProps) {
   return (
-    <div className="flex flex-col bg-mybg h-[1000px] w-screen m-auto relative justify-center items-center border-black border-dashed border-t-[2px] border-b-[2px] overflow-x-scroll">
+    <div className="flex flex-col bg-mybg h-[1000px] w-screen m-auto relative justify-center items-center border-black border-dashed border-t-[2px] border-b-[2px] overflow-x-scroll scrollbar-hide">
       <div className="flex flex-col bg-mybg h-[100%] w-[800px] m-auto relative justify-center items-center">
         <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
           공 동 입 찰 신 고 서

@@ -6,7 +6,7 @@ export default function AgentListForm({ totalResult }: { totalResult: GetBidding
   const biddingInfo = useRecoilValue(biddingInfoState);
   console.log(biddingInfo)
   return (
-    <div className="flex flex-col bg-mybg h-[1700px] w-screen m-auto justify-center items-center relative border-black border-dashed border-t-[2px] overflow-x-scroll">
+    <div className="flex flex-col bg-mybg h-[1700px] w-screen m-auto justify-center items-center relative border-black border-dashed border-t-[2px] overflow-x-scroll scrollbar-hide">
       <div className="flex w-[800px] absolute top-0">
         <p className="text-[15px] font-nanum">
           (뒷면)

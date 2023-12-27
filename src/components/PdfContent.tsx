@@ -48,7 +48,7 @@ export default function PdfContent({ openPdf, setOpenPdf }: PdfContentProps) {
                 <Dialog.Panel className="relative transform justify-center items-center overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:w-[50%] w-[100%] sm:h-[80%] h-[100%] sm:my-8">
                   <div className="bg-white justify-center items-center px-4 pb-4 pt-5 sm:p-6 sm:pb-4 ">
                     <div className="flex justify-center items-center flex-col">
-                      <div className="flex flex-col justify-center items-center w-[100%] h-[720px] bg-mybg relative overflow-y-scroll">
+                      <div className="flex flex-col justify-center items-center w-[100%] h-[720px] bg-mybg relative">
                         <IpchalContent setOpenPdf={setOpenPdf} />
                       </div>
                     </div>

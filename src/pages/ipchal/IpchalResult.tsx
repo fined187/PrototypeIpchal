@@ -5,6 +5,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 import LoadingResult from '@/components/LoadingResult'
 import CoIpchalContent from '@/components/CoIpchalContent/CoIpchalContent'
 import AgentListForm from '@/components/CoIpchalContent/AgentListForm'
+import IpchalText from '@/components/CoIpchalContent/IpchalText'
 
 export default function IpchalResult() {
   const stateNum = useRecoilValue(stepState)
@@ -58,12 +59,12 @@ export default function IpchalResult() {
         </div>
       )}
       {!loading && (totalResult && totalResult.bidders.length === 1) && (
-        <div className="flex flex-col bg-mybg h-[1000px] md:w-full min-w-[420px] m-auto relative justify-center items-center">
+        <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] md:w-screen min-w-[420px] m-auto relative justify-center items-center">
           <div className="flex flex-col bg-mybg h-[100%] md:w-full min-w-[420px] m-auto relative justify-center items-center" id="capture">
             <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표
             </div>
-            <div className="min-w-[420px] md:max-w-[850px] overflow-x-scroll absolute top-[160px] h-[650px] bg-mybg">
+            <div className="min-w-[420px] md:max-w-[850px] overflow-x-scroll absolute top-[160px] h-[650px] bg-mybg scrollbar-hide">
               <div className="border border-black text-[1.5rem] text-center md:w-[800px] w-[420px] h-[100%] m-auto bg-mybg">
                 {/* 첫 번째 박스 */}
                 <div className="p-[1%] pb-0 border-black border-b-[1px] h-[15%]">
@@ -820,8 +821,9 @@ export default function IpchalResult() {
               </div>
             </div>
           </div>
+          <IpchalText />
           {/* 버튼 */}
-          <div className="flex justify-between md:w-[520px] min-w-[420px] absolute md:top-[850px] top-[900px]">
+          <div className="flex justify-between md:w-[520px] min-w-[420px] absolute md:top-[1200px] bottom-[20px]">
             <button
               type="button"
               className="flex md:w-[200px] w-[150px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

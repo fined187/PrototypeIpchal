@@ -6,7 +6,6 @@ import LoadingResult from "../LoadingResult";
 import CoIpchalForm from "./CoIpchalForm";
 import IpchalText from "./IpchalText";
 import CoIpchalList from "./CoIpchalList";
-import AgentForm from "./AgentListForm";
 
 export default function CoIpchalContent() {
   const [totalResult, setTotalResult] = useState<any>(null);
@@ -63,11 +62,11 @@ export default function CoIpchalContent() {
     {!loading && (
       <>
         <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] md:w-screen min-w-[420px] m-auto relative justify-center items-center">
-          <div className="flex flex-col bg-mybg md:w-full h-[100%] min-w-[420px] m-auto relative justify-center items-center" id="capture">
+          <div className="flex flex-col bg-mybg md:w-full h-[100%] min-w-[420px] m-auto relative justify-center items-center">
             <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표
             </div>
-            <div className="min-w-[420px] md:max-w-[850px] overflow-x-scroll absolute top-[160px] h-[650px] bg-mybg">
+            <div className="min-w-[420px] md:max-w-[850px] overflow-x-scroll scrollbar-hide absolute top-[160px] h-[650px] bg-mybg">
               <div className="border border-black text-[1.5rem] text-center md:w-[800px] w-[420px] h-[100%] m-auto bg-mybg">
                 {/* 첫 번째 박스 */}
                 <div className="p-[1%] pb-0 border-black border-b-[1px] h-[15%]">
@@ -724,13 +723,13 @@ export default function CoIpchalContent() {
                       </span>
                     </div>
                   </div>
-                  <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
+                  <div className="flex justify-center items-center w-[5%]">
                     <span className="text-[15px] font-nanum font-bold">원</span>
                   </div>
                 </div>
                 {/* 다섯 번째 박스 */}
                 <div className="flex flex-row justify-between items-stretch w-[100%] h-[8%]">
-                  <div className="flex flex-row justify-around items-stretch w-[50%] py-[10px] border-black border-r-[2px]">
+                  <div className="flex flex-row justify-around items-stretch w-[49.9%] py-[10px] border-black border-r-[2px]">
                     <div className='flex justify-start w-[50%] h-[100%] ml-[10px]'>
                       <span className="text-[12px] font-nanum font-bold">
                         보증의 제공방법
@@ -768,7 +767,7 @@ export default function CoIpchalContent() {
                     <div className="flex justify-end">
                       <span className="text-[12px] font-nanum font-bold mr-[10px]">
                         본인 또는 대리인{' '}
-                        {totalResult && totalResult.bidders[0].name} (인)
+                        {totalResult && totalResult.agentYn === 'Y' ? totalResult && totalResult.agent.name : totalResult && totalResult.bidders[0].name} (인)
                       </span>
                     </div>
                   </div>
