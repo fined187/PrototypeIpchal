@@ -3,6 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  img {
+    @apply inline-block;
+  }
+}
 
 /* Navbar */
 

@@ -80,12 +80,12 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
               </div>
               {/* 세 번째 박스 */}
               <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[40%]">
-                <div className="flex justify-center items-center border-black border-r-[1px] w-[4.8%]">
+                <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
                   <span className="text-[14px] font-bold font-nanum">
                     입<br />찰<br />자
                   </span>
                 </div>
-                <div className="w-[100%] h-[200px]">
+                <div className="w-[100%] h-[100%]">
                   <div className="flex flex-row items-stretch border-black border-b-[1px] h-[50%]">
                     <div className="flex justify-center items-center border-black border-r-[1px] w-[12%]">
                       <span className="text-[14px] font-nanum">본인</span>
@@ -263,7 +263,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         ? ''
                         : handlePrice(
                             biddingInfo.biddingPrice.toString().length,
-                          )?.substring(1, 1)}
+                          )?.substring(1, 2)}
                     </span>
                   </div>
                 </div>
@@ -279,7 +279,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         ? ''
                         : handlePrice(
                             biddingInfo?.biddingPrice.toString().length,
-                          )?.substring(2, 1)}
+                          )?.substring(2, 3)}
                     </span>
                   </div>
                 </div>
