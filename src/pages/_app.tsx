@@ -3,7 +3,6 @@ import '@/styles/globals.css'
 import Layout from '@/components/Layout'
 import { RecoilRoot } from 'recoil'
 import Script from 'next/script'
-import { useEffect } from 'react'
 
 declare global {
   interface Window {

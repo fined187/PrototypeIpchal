@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start -p ${PORT:-4000}",
+    "lint": "next lint",
+    "prod": "next export"
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
