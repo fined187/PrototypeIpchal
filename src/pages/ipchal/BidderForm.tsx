@@ -139,6 +139,31 @@ export default function BidderForm() {
     }
   }
 
+  const handleUpdateBidderForm = async () => {
+    try {
+      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${stepNum}`, {
+        bidderType: biddingForm.bidCorpYn[stepNum - 1],
+        name: biddingForm.bidName[stepNum - 1],
+        phoneNo: biddingForm.bidPhone[stepNum - 1],
+        address:
+          biddingForm.bidAddr[stepNum - 1] +
+          biddingForm.bidAddrDetail[stepNum - 1],
+        job: biddingForm.bidJob[stepNum - 1],
+        companyNo: biddingForm.bidCorpNum[stepNum - 1],
+        corporationNo: biddingForm.bidCorpRegiNum[stepNum - 1],
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      if (response.status === 200) {
+        console.log(response.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleNextStep = (num: number) => {
     if (biddingForm.bidCorpYn[num] === 'I') {
       if (
@@ -256,9 +281,21 @@ export default function BidderForm() {
   }, [])
 
   const onSubmit: SubmitHandler<any> = async () => {
-    await handleBidderFormSave()
-    handleNextStep(stepNum - 1)
-    reset()
+    try {
+      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
+      console.log(response.data.data)
+      if (response.data.data.bidders.length > 0) {
+        await handleUpdateBidderForm()
+        handleNextStep(stepNum - 1)
+        reset()
+      } else {
+        await handleBidderFormSave()
+        handleNextStep(stepNum - 1)
+        reset()
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

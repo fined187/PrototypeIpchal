@@ -88,9 +88,9 @@ export default function SearchAddress({
               type="text"
               className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[70%]"
               value={
-                agentInfo && agentInfo.agentAddr === ''
+                biddingForm.agentAddr === ''
                   ? ''
-                  : agentInfo && agentInfo.agentAddr
+                  : biddingForm.agentAddr
               }
             />
           )}
@@ -128,9 +128,9 @@ export default function SearchAddress({
             readOnly
             className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2 w-[100%]"
             value={
-              agentInfo && agentInfo.agentAddrDetail === ''
+              biddingForm.agentAddrDetail === ''
                 ? ''
-                : agentInfo && agentInfo.agentAddrDetail
+                : biddingForm.agentAddrDetail
             }
           />
         )}

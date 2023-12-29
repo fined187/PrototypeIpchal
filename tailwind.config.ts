@@ -39,7 +39,6 @@ const config: Config = {
       fuchsia: colors.fuchsia,
       violet: colors.violet,
       amber: colors.amber,
-      lightBlue: colors.lightBlue,
       sky: colors.sky,
       mygray: '#8D8D8D',
       mybg: '#F6F6F6',

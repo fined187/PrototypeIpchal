@@ -3,6 +3,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useRecoilValue } from 'recoil'
 import { biddingInfoState } from '@/atom'
+import { useForm } from 'react-hook-form'
 
 interface EmailFormProps {
   openEmailForm: boolean
@@ -22,6 +23,15 @@ export default function EmailForm({
   const messageRef = useRef<HTMLTextAreaElement>(null)
 
   const biddingInfo = useRecoilValue(biddingInfoState)
+
+  const {    
+    register,
+    handleSubmit,
+    setFocus,
+    reset,
+    setError,
+    formState: { errors },
+  } = useForm()
 
   const sendEamil = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -70,7 +80,7 @@ export default function EmailForm({
             className="hidden sm:inline-block sm:align-middle sm:h-screen"
             aria-hidden="true"
           >
-            ​
+            
           </span>
           {/* Modal panel, show/hide based on modal state. */}
           <Transition.Child
@@ -82,7 +92,7 @@ export default function EmailForm({
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-[100%] w-[100%]">
               <form encType='multipart/form-data' method='post' ref={formRef} onSubmit={sendEamil}>
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="mb-4">
@@ -97,10 +107,8 @@ export default function EmailForm({
                       id="title"
                       type="text"
                       placeholder="제목을 입력해주세요"
-                      name="title"
-                      ref={titleRef}
+                      {...register('title', { required: true })}
                     />
-
                     <label
                       className="block text-gray-700 text-sm font-bold mb-2"
                       htmlFor="email"
@@ -129,19 +137,14 @@ export default function EmailForm({
                       name="message"
                       ref={messageRef}
                     />
-                    <input 
-                      type='file'
-                      name='img-file'
-                      accept='image/*'
-                    />
                   </div>
                 </div>
-                <div className='flex flex-row-reverse mr-8'>
+                <div className='flex flex-row-reverse justify-center items-center'>
                   <input 
                     type="submit"
                     name="submit"
                     value="보내기"
-                    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4 cursor-pointer'
+                    className='bg-mygold text-white w-[160px] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4 cursor-pointer'
                   />
                 </div>
               </form>

@@ -135,13 +135,12 @@ export default function IpchalShare() {
             <div className="flex justify-between w-[80%]">
               <div
                 className="flex w-[80%] items-center justify-start"
-                onClick={() => setOpenEmailForm(true)}
               >
                 <span className="text-black text-center font-nanum text-[13px] font-extrabold leading-[13px]">
                   이메일로 보내기
                 </span>
               </div>
-              <div className="flex cursor-pointer relative">
+              <div className="flex cursor-pointer relative" onClick={() => setOpenEmailForm(true)}>
                 <div className="flex relative">
                   <svg
                     width="40"
@@ -199,12 +198,10 @@ export default function IpchalShare() {
         <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
       </div>
       {openEmailForm && (
-        <div className="flex w-[500px] h-[500px] justify-center bg-white absolute top-[10%] left-[40%]">
-          <EmailForm
-            openEmailForm={openEmailForm}
-            setOpenEmailForm={setOpenEmailForm}
-          />
-        </div>
+        <EmailForm
+          openEmailForm={openEmailForm}
+          setOpenEmailForm={setOpenEmailForm}
+        />
       )}
     </>
   )
