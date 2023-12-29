@@ -141,6 +141,24 @@ export default function BidderForm() {
 
   const handleUpdateBidderForm = async () => {
     try {
+      if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
+        const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${stepNum}`, {
+          bidderType: biddingForm.bidCorpYn[stepNum - 1],
+          name: biddingForm.bidName[stepNum - 1],
+          phoneNo: biddingForm.bidPhone[stepNum - 1],
+          address:
+            biddingForm.bidAddr[stepNum - 1] +
+            biddingForm.bidAddrDetail[stepNum - 1],
+          job: biddingForm.bidJob[stepNum - 1],
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        if (response.status === 200) {
+          console.log(response.data)
+        }
+    } else {
       const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${stepNum}`, {
         bidderType: biddingForm.bidCorpYn[stepNum - 1],
         name: biddingForm.bidName[stepNum - 1],
@@ -159,11 +177,12 @@ export default function BidderForm() {
       if (response.status === 200) {
         console.log(response.data)
       }
+    }
     } catch (error) {
       console.log(error)
     }
   }
-
+console.log(stepNum === biddingForm.bidderNum)
   const handleNextStep = (num: number) => {
     if (biddingForm.bidCorpYn[num] === 'I') {
       if (
@@ -180,6 +199,7 @@ export default function BidderForm() {
         alert('입력하지 않은 정보가 있습니다.')
       } else {
         if (biddingForm.bidderNum === 1) {
+          console.log("여기")
           setStateNum(stateNum + 2)
           reset()
         } else {
@@ -187,6 +207,7 @@ export default function BidderForm() {
             setStateNum(stateNum + 1)
           } else {
             setStepNum(stepNum + 1)
+            reset()
           }
         }
       }
@@ -213,9 +234,11 @@ export default function BidderForm() {
           }
         } else {
           if (stepNum === biddingForm.bidderNum) {
+            console.log("여기")
             setStateNum(stateNum + 1)
           } else {
             setStepNum(stepNum + 1)
+            reset()
           }
         }
       }
@@ -282,19 +305,10 @@ export default function BidderForm() {
 
   const onSubmit: SubmitHandler<any> = async () => {
     try {
-      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
-      console.log(response.data.data)
-      if (response.data.data.bidders.length > 0) {
-        await handleUpdateBidderForm()
-        handleNextStep(stepNum - 1)
-        reset()
-      } else {
-        await handleBidderFormSave()
-        handleNextStep(stepNum - 1)
-        reset()
-      }
+      handleNextStep(stepNum - 1) 
+      await handleBidderFormSave()
     } catch (error) {
-      console.log(error)
+      
     }
   }
 

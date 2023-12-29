@@ -120,8 +120,7 @@ export default function EmailForm({
                       id="recipient"
                       type="email"
                       placeholder="이메일을 입력해주세요"
-                      name="recipient"
-                      ref={recipientRef}
+                      {...register('recipient', { required: true })}
                     />
 
                     <label
@@ -134,8 +133,7 @@ export default function EmailForm({
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       id="message"
                       placeholder="메시지를 입력해주세요"
-                      name="message"
-                      ref={messageRef}
+                      {...register('message', { required: true })}
                     />
                   </div>
                 </div>
