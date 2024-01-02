@@ -1,4 +1,4 @@
-import { biddingInfoState } from "@/atom";
+import { biddingInfoState, stepState } from "@/atom";
 import { GetBiddingInfoType } from "@/interface/IpchalType";
 import { useRecoilValue } from "recoil";
 
@@ -8,8 +8,9 @@ interface CoIpchalListProps {
 
 export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
   const biddingInfo = useRecoilValue(biddingInfoState);
+  const stateNum = useRecoilValue(stepState);
   return (
-    <div className="flex flex-col bg-mybg h-[1300px] w-screen m-auto justify-center items-center relative overflow-x-scroll scrollbar-hide">
+    <div className={`flex flex-col bg-mybg h-[1300px] w-screen m-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
       <div className="flex absolute top-0">
         <p className="text-[22px] font-bold py-[30px]">
           공 동 입 찰 자 목 록
@@ -22,7 +23,7 @@ export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
           </div>
           {totalResult && totalResult?.bidders.map((_, idx) => {
             return (
-            <div className="flex justify-center items-center border-black border-b-[1px] w-[100px] h-[105px]">
+            <div className="flex justify-center items-center border-black border-b-[1px] w-[100px] h-[105px]" key={idx}>
               {idx + 1}
             </div>
             )

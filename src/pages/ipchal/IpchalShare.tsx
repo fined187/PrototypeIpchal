@@ -17,18 +17,15 @@ export default function IpchalShare() {
         content: {
           link: {
             mobileWebUrl: `${biddingInfo.pdfFile}`, //  마이페이지
-            webUrl: `${biddingInfo.pdfFile}`,
+            webUrl: `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`,
           },
           title: `${biddingInfo.sagunNum} 입찰표`,
           description: `사건번호 ${biddingInfo.sagunNum}의 입찰표입니다.`,
-          imageUrl: `${biddingInfo.pdfFile}`,
+          imageUrl: `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`,
         }
       })
     }
-  }
-
-  console.log(biddingInfo.resultImg)
-  
+  }  
   return (
     <>
       <div className="flex w-screen h-screen justify-center bg-mybg relative">

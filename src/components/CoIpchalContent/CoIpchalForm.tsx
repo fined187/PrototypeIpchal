@@ -1,12 +1,15 @@
+import { stepState } from "@/atom";
 import { GetBiddingInfoType } from "@/interface/IpchalType";
+import { useRecoilValue } from "recoil";
 
 interface CoIpchalFormProps {
   totalResult: GetBiddingInfoType;
 }
 
 export default function CoIpchalForm({ totalResult }: CoIpchalFormProps) {
+  const stateNum = useRecoilValue(stepState);
   return (
-    <div className="flex flex-col bg-mybg h-[1000px] w-screen m-auto relative justify-center items-center border-black border-dashed border-t-[2px] border-b-[2px] overflow-x-scroll scrollbar-hide">
+    <div className={`flex flex-col bg-mybg h-[1300px] w-screen m-auto relative justify-center items-center ${stateNum === 11 ? '' : 'border-black border-dashed border-t-[2px] border-b-[2px]'} overflow-x-scroll scrollbar-hide`}>
       <div className="flex flex-col bg-mybg h-[100%] w-[800px] m-auto relative justify-center items-center">
         <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
           공 동 입 찰 신 고 서
@@ -16,7 +19,7 @@ export default function CoIpchalForm({ totalResult }: CoIpchalFormProps) {
             수원지방법원 본원 집행관 귀하
           </span>
         </div>
-        <div className="flex flex-col gap-[10px] justify-start w-[800px] ml-2">
+        <div className="flex flex-col gap-[10px] justify-start w-[800px] ml-2 absolute top-[350px]">
           <div className="flex flex-row w-[100%] sm:gap-[115px] gap-[150px] ">
             <span className="text-[15px] font-bold font-nanum">
               사건번호

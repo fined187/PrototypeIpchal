@@ -1,5 +1,5 @@
 import emailjs from '@emailjs/browser'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, Fragment, useEffect, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useRecoilValue } from 'recoil'
 import { biddingInfoState } from '@/atom'
@@ -21,6 +21,8 @@ export default function EmailForm({
   const titleRef = useRef<HTMLInputElement>(null)
   const recipientRef = useRef<HTMLInputElement>(null)
   const messageRef = useRef<HTMLTextAreaElement>(null)
+
+  const [msg, setMsg] = useState<string>('')
 
   const biddingInfo = useRecoilValue(biddingInfoState)
 
@@ -51,10 +53,14 @@ export default function EmailForm({
     }
   }
 
+  const handleMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setMsg(e.target.value)
+  }
+
   useEffect(() => {
     emailjs.init(process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY!)
   }, [])
-  
+
   return (
     <Transition.Root show={openEmailForm} as={Fragment}>
       <Dialog
@@ -107,7 +113,8 @@ export default function EmailForm({
                       id="title"
                       type="text"
                       placeholder="제목을 입력해주세요"
-                      {...register('title', { required: true })}
+                      name="title"
+                      ref={titleRef}
                     />
                     <label
                       className="block text-gray-700 text-sm font-bold mb-2"
@@ -120,7 +127,8 @@ export default function EmailForm({
                       id="recipient"
                       type="email"
                       placeholder="이메일을 입력해주세요"
-                      {...register('recipient', { required: true })}
+                      name="recipient"
+                      ref={recipientRef}
                     />
 
                     <label
@@ -133,7 +141,12 @@ export default function EmailForm({
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       id="message"
                       placeholder="메시지를 입력해주세요"
-                      {...register('message', { required: true })}
+                      name="message"
+                      ref={messageRef}
+                      value={`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`}
+                      onChange={(e) => {
+                        handleMessage(e)
+                      }}
                     />
                   </div>
                 </div>

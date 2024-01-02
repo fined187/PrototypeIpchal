@@ -2,6 +2,7 @@ import { biddingInfoState, loginState, stepState } from '@/atom'
 import axios from 'axios'
 import Image from 'next/image'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { format } from 'date-fns'
 
 export default function StartIpchal() {
   const stateNum = useSetRecoilState(stepState)
@@ -13,7 +14,7 @@ export default function StartIpchal() {
   const nowDate = date.getDate()
   const nowMonth = date.getMonth() + 1
   const nowYear = date.getFullYear()
-
+  
   const handleCheck = async () => {
     try {
       const response = await axios.post(

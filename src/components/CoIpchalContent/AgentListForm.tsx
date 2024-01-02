@@ -1,12 +1,12 @@
-import { biddingInfoState } from "@/atom";
+import { biddingInfoState, stepState } from "@/atom";
 import { GetBiddingInfoType } from "@/interface/IpchalType";
 import { useRecoilValue } from "recoil";
 
 export default function AgentListForm({ totalResult }: { totalResult: GetBiddingInfoType}) {
   const biddingInfo = useRecoilValue(biddingInfoState);
-  console.log(biddingInfo)
+  const stateNum = useRecoilValue(stepState);
   return (
-    <div className="flex flex-col bg-mybg h-[1700px] w-screen m-auto justify-center items-center relative border-black border-dashed border-t-[2px] overflow-x-scroll scrollbar-hide">
+    <div className={`flex flex-col bg-mybg h-[1600px] w-screen m-auto justify-center items-center relative ${stateNum === 11 ? '' : 'border-black border-dashed border-t-[2px]'}  overflow-x-scroll scrollbar-hide`}>
       <div className="flex w-[800px] absolute top-0">
         <p className="text-[15px] font-nanum">
           (뒷면)
@@ -192,7 +192,7 @@ export default function AgentListForm({ totalResult }: { totalResult: GetBidding
             </div>
           )
         })}
-        <div className="flex flex-col justify-center items-center text-center gap-[50px] w-[800px] mt-[50px]">
+        <div className="flex flex-col justify-center items-center text-center gap-[25px] w-[800px] mt-[25px]">
           <span>
             * 본인의 인감 증명서 첨부
           </span>
