@@ -51,7 +51,6 @@ export default function CoIpchalContent() {
     handleGetResult()
   }, [])
 
-  console.log(totalResult && totalResult)
   return (
     <>
     {loading && (

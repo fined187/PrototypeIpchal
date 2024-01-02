@@ -39,7 +39,6 @@ export default function IpchalResult() {
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`,
         )
         if (response.status === 200) {
-          console.log(response)
           setTotalResult(response.data.data)
         }
       } catch (error) {
@@ -159,10 +158,9 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
                             <span className="text-[12px]">
-                              {totalResult && totalResult?.bidders?.length > 1
-                                ? ''
-                                : totalResult &&
-                                  totalResult?.bidders[0]?.phoneNo}
+                              {
+                                biddingInfo.bidPhone1 + '-' + biddingInfo.bidPhone2 + '-' + biddingInfo.bidPhone3
+                              }
                             </span>
                           </div>
                         </div>
@@ -176,11 +174,11 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex w-[30%] border-black border-r-[1px] justify-center items-center">
                             <span className="text-[12px] font-nanum">
-                              {biddingInfo.bidIdNum[0]
-                                .toString()
-                                .substring(0, 6)}
-                              -
-                              {biddingInfo.bidIdNum.toString().substring(6, 14)}
+                              {biddingInfo.bidCorpYn[0] === 'N' ? (
+                                biddingInfo.bidIdNum1 + '-' + biddingInfo.bidIdNum2
+                              ): (
+                                biddingInfo.bidCorpNum1 + '-' + biddingInfo.bidCorpNum2 + '-' + biddingInfo.bidCorpNum3
+                              )}
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">

@@ -7,11 +7,14 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BidderForm() {
-  const biddingForm = useRecoilValue(biddingInfoState)
-  const setBiddingForm = useSetRecoilState(biddingInfoState)
-  const [bidderList, setBidderList] = useState<BidderList[]>([])
+  const setStateNum = useSetRecoilState(stepState)                  //  입찰표 작성 단계 set함수
+  const stateNum = useRecoilValue(stepState)                        //  입찰표 작성 단계
+  const [stepNum, setStepNum] = useState<number>(1)                 //  입찰자 정보 단계
+  const biddingForm = useRecoilValue(biddingInfoState)              //  입찰표 정보(전역 상태 관리)
+  const setBiddingForm = useSetRecoilState(biddingInfoState)        //  입찰표 정보(전역 상태 관리) set함수
+  const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
 
-  const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({
+  const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
     bidderName: Array(biddingForm.bidderNum).fill(''),
     bidderPhone1: Array(biddingForm.bidderNum).fill(''),
     bidderPhone2: Array(biddingForm.bidderNum).fill(''),
@@ -29,9 +32,6 @@ export default function BidderForm() {
     bidderJob: Array(biddingForm.bidderNum).fill(''),
   })
 
-  const setStateNum = useSetRecoilState(stepState)
-  const stateNum = useRecoilValue(stepState)
-  const [stepNum, setStepNum] = useState<number>(1)
 
   const {
     register,
@@ -87,6 +87,7 @@ export default function BidderForm() {
     }
   }
 
+  // 입찰자 정보 저장
   const handleBidderFormSave = async () => {
     try {
       if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
@@ -139,6 +140,9 @@ export default function BidderForm() {
     }
   }
 
+
+
+  //  입찰자 정보 수정
   const handleUpdateBidderForm = async () => {
     try {
       if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
@@ -182,7 +186,8 @@ export default function BidderForm() {
       console.log(error)
     }
   }
-console.log(stepNum === biddingForm.bidderNum)
+
+  //  다음 스텝 넘어가기
   const handleNextStep = (num: number) => {
     if (biddingForm.bidCorpYn[num] === 'I') {
       if (
@@ -199,15 +204,17 @@ console.log(stepNum === biddingForm.bidderNum)
         alert('입력하지 않은 정보가 있습니다.')
       } else {
         if (biddingForm.bidderNum === 1) {
-          console.log("여기")
           setStateNum(stateNum + 2)
-          reset()
         } else {
           if (stepNum === biddingForm.bidderNum) {
             setStateNum(stateNum + 1)
           } else {
-            setStepNum(stepNum + 1)
-            reset()
+            if (bidderList.length > 0) {
+              setStepNum(stepNum + 1)
+            } else {
+              setStepNum(stepNum + 1)
+              reset()
+            }
           }
         }
       }
@@ -234,60 +241,29 @@ console.log(stepNum === biddingForm.bidderNum)
           }
         } else {
           if (stepNum === biddingForm.bidderNum) {
-            console.log("여기")
             setStateNum(stateNum + 1)
           } else {
-            setStepNum(stepNum + 1)
-            reset()
+            if (bidderList.length > 0) {
+              setStepNum(stepNum + 1)
+            } else {
+              setStepNum(stepNum + 1)
+              reset()
+            }
           }
         }
       }
     }
   }
 
+  //  입찰자 정보 가져오기(컴포넌트 마운트시)
   useEffect(() => {
     const handleGetBidderForm = async () => {
       try {
         const response = await axios.get(
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
         )
-        setBidderList(response.data.data.bidderList)
-        if (bidderList.length > 0) {
-          setBiddingForm((prev: any) => {
-            let temp = prev.bidderNum[stepNum - 1]
-            temp = bidderList[stepNum - 1].name
-            return { ...prev, bidName: temp }
-          })
-          setBiddingForm((prev: any) => {
-            let temp = prev.bidderNum[stepNum - 1]
-            temp = bidderList[stepNum - 1].phoneNo
-            return { ...prev, bidPhone: temp }
-          })
-          setBiddingForm((prev: any) => {
-            let temp = prev.bidderNum[stepNum - 1]
-            temp = bidderList[stepNum - 1].address
-            return { ...prev, bidAddr: temp }
-          })
-          setBiddingForm((prev: any) => {
-            let temp = prev.bidderNum[stepNum - 1]
-            temp = bidderList[stepNum - 1].job
-            return { ...prev, bidJob: temp }
-          })
-          setBiddingForm((prev: any) => {
-            let temp = prev.bidderNum[stepNum - 1]
-            temp = bidderList[stepNum - 1].companyNo
-            return { ...prev, bidCorpNum: temp }
-          })
-          setBiddingForm((prev: any) => {
-            let temp = prev.bidderNum[stepNum - 1]
-            temp = bidderList[stepNum - 1].corporationNo
-            return { ...prev, bidCorpRegiNum: temp }
-          })
-          setBiddingForm((prev: any) => {
-            let temp = prev.bidCorpYn[stepNum - 1]
-            temp = bidderList[stepNum - 1].bidderType
-            return { ...prev, bidCorpYn: temp }
-          })
+        if (response.status === 200) {
+          setBidderList(response.data.data.bidders)
         }
       } catch (error) {
         console.log(error)
@@ -305,11 +281,48 @@ console.log(stepNum === biddingForm.bidderNum)
 
   const onSubmit: SubmitHandler<any> = async () => {
     try {
-      handleNextStep(stepNum - 1) 
-      await handleBidderFormSave()
+      if (bidderList.length > 0) {
+        if ((biddingForm.bidCorpYn[stepNum - 1]) === 'I') {
+          //  개인인 경우
+          if (
+            biddingForm.bidName[stepNum - 1] === bidderList[stepNum - 1].name &&
+            biddingForm.bidPhone[stepNum - 1] === bidderList[stepNum - 1].phoneNo &&
+            biddingForm.bidAddr[stepNum - 1] === bidderList[stepNum - 1].address &&
+            biddingForm.bidJob[stepNum - 1] === bidderList[stepNum - 1].job
+          ) {
+            //  변경사항 없는 경우
+            handleNextStep(stepNum - 1)
+          } else {
+            //  변경사항 있는 경우
+            await handleUpdateBidderForm()
+            handleNextStep(stepNum - 1)
+          }
+        } else {
+          //  법인인 경우
+          if (
+            biddingForm.bidPhone[stepNum - 1] === bidderList[stepNum - 1].phoneNo &&
+            biddingForm.bidAddr[stepNum - 1] === bidderList[stepNum - 1].address &&
+            biddingForm.bidJob[stepNum - 1] === bidderList[stepNum - 1].job &&
+            biddingForm.bidCorpNum[stepNum - 1] === bidderList[stepNum - 1].companyNo &&
+            biddingForm.bidCorpRegiNum[stepNum - 1] === bidderList[stepNum - 1].corporationNo
+          ) {
+            //  변경사항 없는 경우
+            handleNextStep(stepNum - 1)
+          } else {
+            //  변경사항 있는 경우
+            await handleUpdateBidderForm()
+            handleNextStep(stepNum - 1)
+          }
+        }
+      } else {
+        //  입찰자 정보가 없는 경우
+        await handleBidderFormSave()
+        handleNextStep(stepNum - 1)
+      }
     } catch (error) {
-      
+      console.log(error)
     }
+    
   }
 
   return (
