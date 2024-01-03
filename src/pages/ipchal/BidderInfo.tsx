@@ -12,24 +12,24 @@ export default function BidderInfo() {
 
   return (
     <>
-      <div className="flex w-screen h-screen bg-mybg justify-center relative">
-        <div className="flex flex-col w-full h-screen bg-mybg items-center text-center-500">
+      <div className="flex w-[100%] h-screen bg-white justify-center relative">
+        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
           <div className="flex">
-            <span className="text-lg font-bold font-nanum not-italic leading-8	">
+            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               입찰하시는 본인이 맞으신가요?
             </span>
           </div>
-          <div className="flex flex-col gap-10 w-[420px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+          <div className="flex flex-col gap-10 md:min-w-[450px] min-w-[400px] md:h-[200px] h-[200px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
             <div
-              className={`flex flex-row w-[70px] h-[30px] rounded-md border ${
-                isSelected ? 'border-myyellow' : 'border-red-600'
+              className={`flex flex-row w-[124px] h-[40px] rounded-sm border ${
+                isSelected ? 'border-myyellow border-[2px]' : 'border-red-600'
               } justify-center items-center cursor-pointer ${
                 biddingInfo.bidder === 'self' ? 'bg-myyellow' : 'bg-white'
               } relative`}
               onClick={() => {
                 setBiddingInfo({
                   ...biddingInfo,
-                  bidder: 'self',
+                  bidder: 'self', 
                 })
                 setStateNum(stateNum + 2)
               }}
@@ -37,7 +37,7 @@ export default function BidderInfo() {
               <div
                 className={`${
                   biddingInfo.bidder === 'self'
-                    ? 'flex absolute left-2'
+                    ? 'flex absolute left-[25px]'
                     : 'hidden'
                 }`}
               >
@@ -57,7 +57,7 @@ export default function BidderInfo() {
                 </svg>
               </div>
               <span
-                className={`flex text-[13px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
+                className={`flex text-[1rem] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
                   biddingInfo.bidder === 'self' ? 'text-white' : 'text-myyellow'
                 }`}
               >
@@ -65,8 +65,8 @@ export default function BidderInfo() {
               </span>
             </div>
             <div
-              className={`flex flex-row w-[70px] h-[30px] rounded-md border ${
-                isSelected ? 'border-myyellow' : 'border-red-600'
+              className={`flex flex-row w-[124px] h-[40px] rounded-sm border ${
+                isSelected ? 'border-myyellow border-[2px]' : 'border-red-600'
               } justify-center items-center cursor-pointer ${
                 biddingInfo.bidder === 'agent' ? 'bg-myyellow' : 'bg-white'
               } relative`}
@@ -81,7 +81,7 @@ export default function BidderInfo() {
               <div
                 className={`${
                   biddingInfo.bidder === 'agent'
-                    ? 'flex absolute left-1'
+                    ? 'flex absolute left-[20px]'
                     : 'hidden'
                 }`}
               >
@@ -101,7 +101,7 @@ export default function BidderInfo() {
                 </svg>
               </div>
               <span
-                className={`flex text-[13px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
+                className={`flex text-[1rem] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
                   biddingInfo.bidder === 'agent'
                     ? 'text-white ml-1'
                     : 'text-myyellow'
@@ -112,7 +112,7 @@ export default function BidderInfo() {
             </div>
             <div className={`${isSelected ? 'hidden' : 'flex'}`}>
               <span className="text-[10px] font-bold text-myRed font-nanum leading-[-0.3px] ">
-                버튼을 선택해주세요.
+                본인 / 대리인 버튼을 선택해주세요.
               </span>
             </div>
           </div>

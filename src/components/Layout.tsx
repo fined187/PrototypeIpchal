@@ -6,7 +6,7 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   return (
-    <div className="layout w-full">
+    <div className="layout justify-center items-center w-[100%]">
       <Navbar />
       {children}
     </div>

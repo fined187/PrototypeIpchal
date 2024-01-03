@@ -21,7 +21,7 @@ export default function BidderCnt() {
 
   useEffect(() => {
     const handleBiddingNumError = () => {
-      if (biddingInfo?.bidderNum <= 0) {
+      if (biddingInfo.bidderNum <= 0 || biddingInfo.bidderNum === undefined || biddingInfo.bidderNum === null || isNaN(biddingInfo.bidderNum)) {
         setErrorMsg(true)
       } else {
         setErrorMsg(false)
@@ -30,33 +30,39 @@ export default function BidderCnt() {
     handleBiddingNumError()
   }, [biddingInfo?.bidderNum])
 
+  console.log(isNaN(biddingInfo.bidderNum))
   const handleBiddingCnt = async () => {
-    try {
-      const response = await axios.put(
-        `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`,
-        {
-          bidderCount: biddingInfo.bidderNum,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
+    if (!errorMsg) {
+      try {
+        const response = await axios.put(
+          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`,
+          {
+            bidderCount: biddingInfo.bidderNum,
           },
-        },
-      )
-      if (response.status === 200) {
-        console.log(response)
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        if (response.status === 200) {
+          console.log(response)
+        }
+      } catch (error) {
+        console.log(error)
       }
-    } catch (error) {
-      console.log(error)
+    } else {
+      setErrorMsg(true)
+      alert('입찰자는 1명 이상이어야 합니다.')
     }
   }
 
   return (
     <>
-      <div className="flex justify-center relative">
-        <div className="flex flex-col w-screen h-screen bg-mybg items-center text-center">
+      <div className="flex w-[100%] h-screen bg-white justify-center relative">
+        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
           <div className="flex">
-            <span className="text-lg font-extrabold font-nanum not-italic leading-8">
+            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               입찰하시는 분이 몇 명 이신가요?
             </span>
           </div>
@@ -98,6 +104,7 @@ export default function BidderCnt() {
           prevStepNum={biddingInfo.bidder === 'agent' ?  stateNum - 1 : stateNum - 2}
           nextStepNum={stateNum + 1}
           handleBiddingCnt={handleBiddingCnt}
+          errorMsg={errorMsg}
         />
       </div>
     </>

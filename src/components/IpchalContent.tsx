@@ -1,12 +1,9 @@
-import { biddingInfoState, stepState } from "@/atom"
-import { Dispatch, SetStateAction, useEffect } from "react"
+import { biddingInfoState } from "@/atom"
+import { Dispatch, SetStateAction } from "react"
 import { useRecoilValue } from "recoil"
-import CoIpchalForm from "./CoIpchalContent/CoIpchalForm"
-import CoIpchalList from "./CoIpchalContent/CoIpchalList"
 
 export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetStateAction<boolean>>}) {
   const biddingInfo = useRecoilValue(biddingInfoState)
-  const stateNum = useRecoilValue(stepState)
   const handlePrice = (len: number) => {
     if (12 - len > 0) {
       return '0'.repeat(12 - len) + biddingInfo?.biddingPrice
@@ -22,8 +19,6 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
       return biddingInfo?.depositPrice?.toString()
     }
   }
-
-  console.log(biddingInfo)
 
   return (
     <>
@@ -733,7 +728,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
           </div>
           {/* 대리인 */}
           {biddingInfo.agentName !== '' && (
-            <div className={`flex flex-col bg-mybg h-[1600px] w-[600px] m-auto justify-center items-center overflow-x-scroll scrollbar-hide absolute top-[2500px]`}>
+            <div className={`flex flex-col bg-mybg h-[1600px] w-[600px] m-auto justify-center items-center overflow-x-scroll scrollbar-hide absolute top-[800px]`}>
               <div className="flex w-[100%] absolute top-0">
                 <p className="text-[15px] font-nanum">
                   (뒷면)

@@ -140,8 +140,6 @@ export default function BidderForm() {
     }
   }
 
-
-
   //  입찰자 정보 수정
   const handleUpdateBidderForm = async () => {
     try {
@@ -326,21 +324,21 @@ export default function BidderForm() {
   }
 
   return (
-    <div className="flex w-screen h-screen bg-mybg justify-center relative">
-      <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center relative">
-        <div className="flex flex-row  py-6 pt-4">
-          <span className="text-lg font-extrabold font-nanum not-italic leading-8">
+    <div className="flex w-[100%] h-screen bg-white justify-center relative">
+      <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
+        <div className="flex flex-row py-6 pt-4">
+          <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
             본인 정보를 입력해주세요
           </span>
           {biddingForm.bidderNum > 1 && (
-            <span className="text-lg font-extrabold font-nanum not-italic leading-8 ml-2">
+            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8 ml-2">
               {`(${stepNum} / ${biddingForm.bidderNum})`}
             </span>
           )}
         </div>
         <div className="flex flex-row gap-10 w-[80%] justify-center">
           <div
-            className={`flex flex-row w-[53px] h-[25px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
+            className={`flex flex-row w-[70px] h-[30px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
               biddingInfo?.bidderCorpYn[stepNum - 1] === 'I'
                 ? 'text-white bg-myyellow'
                 : 'text-myyellow bg-white'
@@ -381,7 +379,7 @@ export default function BidderForm() {
               </svg>
             </div>
             <span
-              className={`text-[13px] font-nanum not-italic font-extrabold ${
+              className={`text-[13px] font-NanumGothic not-italic font-extrabold ${
                 biddingInfo?.bidderCorpYn[stepNum - 1] === 'I'
                   ? 'text-white'
                   : 'text-myyellow'
@@ -391,7 +389,7 @@ export default function BidderForm() {
             </span>
           </div>
           <div
-            className={`flex flex-row w-[53px] h-[25px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
+            className={`flex flex-row w-[70px] h-[30px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
               biddingInfo?.bidderCorpYn[stepNum - 1] === 'C'
                 ? 'text-white bg-myyellow'
                 : 'text-myyellow bg-white'
@@ -432,7 +430,7 @@ export default function BidderForm() {
               </svg>
             </div>
             <span
-              className={`text-[13px] font-nanum not-italic font-extrabold ${
+              className={`text-[13px] font-NanumGothic not-italic font-extrabold ${
                 biddingInfo?.bidderCorpYn[stepNum - 1] === 'C'
                   ? 'text-white'
                   : 'text-myyellow'
@@ -443,10 +441,10 @@ export default function BidderForm() {
           </div>
         </div>
         {/* 입력정보 */}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col w-[320px] h-[100%] gap-2">
+        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[50%] w-[80%] h-[100%] justify-center items-center'>
+          <div className="flex flex-col w-[100%] h-[100%] gap-2">
             <div className="flex flex-col w-[100%] gap-1">
-              <span className="text-[10px] font-nanum not-italic font-extrabold text-left">
+              <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
                 성명
               </span>
               <input
@@ -464,7 +462,7 @@ export default function BidderForm() {
                 }
                 id="bidderName"
                 type="text"
-                className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2"
+                className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
                 placeholder="입찰자 성명을 입력해주세요"
                 onChange={(e) => {
                   setBiddingInfo((prev: any) => {
@@ -485,7 +483,7 @@ export default function BidderForm() {
               <div className="flex w-[100%] justify-start">
                 <label
                   htmlFor="bidderName"
-                  className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500"
+                  className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                 >
                   {errors.bidderName?.message}
                 </label>
@@ -494,7 +492,7 @@ export default function BidderForm() {
             <div className="flex flex-col w-[100%] gap-1">
               <label
                 htmlFor="bidderPhone"
-                className="text-[10px] font-nanum not-italic font-extrabold text-left"
+                className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
               >
                 전화번호
               </label>
@@ -513,7 +511,7 @@ export default function BidderForm() {
                   type="text"
                   maxLength={3}
                   placeholder="010"
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
+                  className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                   value={
                     biddingForm.bidPhone1[stepNum - 1] === ''
                       ? ''
@@ -533,7 +531,7 @@ export default function BidderForm() {
                     handlePhoneFocusMove(e.target)
                   }}
                 />
-                <span className="flex text-mygray font-nanum font-normal">
+                <span className="flex text-mygray font-NanumGothic font-bold mt-1">
                   -
                 </span>
                 <input
@@ -550,7 +548,7 @@ export default function BidderForm() {
                       .replace(/(\..*)\./g, '$1')
                   }}
                   placeholder="1234"
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
+                  className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                   value={
                     biddingForm.bidPhone2[stepNum - 1] === ''
                       ? ''
@@ -570,7 +568,7 @@ export default function BidderForm() {
                     handlePhoneFocusMove(e.target)
                   }}
                 />
-                <span className="flex text-mygray font-nanum font-normal">
+                <span className="flex text-mygray font-NanumGothic font-bold mt-1">
                   -
                 </span>
                 <input
@@ -587,7 +585,7 @@ export default function BidderForm() {
                       .replace(/(\..*)\./g, '$1')
                   }}
                   placeholder="5678"
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
+                  className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                   value={
                     biddingForm.bidPhone3[stepNum - 1] === ''
                       ? ''
@@ -621,7 +619,7 @@ export default function BidderForm() {
               errors.bidderPhone2?.type === 'required' ||
               errors.bidderPhone3?.type === 'required') && (
               <div className="flex w-[100%] justify-start">
-                <span className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500">
+                <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
                   전화번호를 입력해주세요
                 </span>
               </div>
@@ -629,10 +627,7 @@ export default function BidderForm() {
             {biddingInfo?.bidderCorpYn[stepNum - 1] === 'I' ? (
               <>
                 <div className="flex flex-col w-[100%] gap-1">
-                  <label
-                    htmlFor="bidIdNum"
-                    className="text-[10px] font-nanum not-italic font-extrabold text-left"
-                  >
+                  <label htmlFor="bidIdNum" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
                     주민등록번호
                   </label>
                   <div className="flex flex-row gap-[5%]">
@@ -649,7 +644,7 @@ export default function BidderForm() {
                       }}
                       type="text"
                       maxLength={6}
-                      className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[45%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[12px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
                       value={
                         biddingForm.bidIdNum1[stepNum - 1] === ''
                           ? ''
@@ -669,7 +664,7 @@ export default function BidderForm() {
                         handleIdNumFocusMove(e.target)
                       }}
                     />
-                    <span className="flex text-mygray font-nanum font-normal">
+                    <span className="flex text-mygray font-NanumGothic font-bold mt-1">
                       -
                     </span>
                     <input
@@ -685,7 +680,7 @@ export default function BidderForm() {
                       }}
                       type="text"
                       maxLength={7}
-                      className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[45%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[12px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
                       value={
                         biddingForm.bidIdNum2[stepNum - 1] === ''
                           ? ''
@@ -716,7 +711,7 @@ export default function BidderForm() {
                 {errors.bidderIdNum1?.type === 'required' &&
                   errors.bidderIdNum2?.type === 'required' && (
                     <div className="flex w-[80%] justify-start h-[15px] mb-1">
-                      <span className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500">
+                      <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
                         주민등록번호를 입력해주세요
                       </span>
                     </div>
@@ -725,10 +720,7 @@ export default function BidderForm() {
             ) : (
               <>
                 <div className="flex flex-col w-[100%] gap-1">
-                  <label
-                    htmlFor="bidCorpNum"
-                    className="text-[10px] font-nanum not-italic font-extrabold text-left"
-                  >
+                  <label htmlFor="bidCorpNum" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
                     사업자 등록번호
                   </label>
                   <div className="flex flex-row gap-[5%]">
@@ -746,7 +738,7 @@ export default function BidderForm() {
                           .replace(/(\..*)\./g, '$1')
                       }}
                       maxLength={3}
-                      className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                       value={
                         biddingForm.bidCorpNum1[stepNum - 1] === ''
                           ? ''
@@ -766,7 +758,7 @@ export default function BidderForm() {
                         handleCorpNumFocusMove(e.target)
                       }}
                     />
-                    <span className="flex text-mygray font-nanum font-normal">
+                    <span className="flex text-mygray font-NanumGothic font-bold mt-1">
                       -
                     </span>
                     <input
@@ -783,7 +775,7 @@ export default function BidderForm() {
                           .replace(/(\..*)\./g, '$1')
                       }}
                       maxLength={2}
-                      className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                       value={
                         biddingForm.bidCorpNum2[stepNum - 1] === ''
                           ? ''
@@ -803,7 +795,7 @@ export default function BidderForm() {
                         handleCorpNumFocusMove(e.target)
                       }}
                     />
-                    <span className="flex text-mygray font-nanum font-normal">
+                    <span className="flex text-mygray font-NanumGothic font-bold mt-1">
                       -
                     </span>
                     <input
@@ -820,7 +812,7 @@ export default function BidderForm() {
                           .replace(/(\..*)\./g, '$1')
                       }}
                       maxLength={5}
-                      className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                       value={
                         biddingForm.bidCorpNum3[stepNum - 1] === ''
                           ? ''
@@ -853,7 +845,7 @@ export default function BidderForm() {
                     errors.bidderCorpNum2?.type === 'required' ||
                     errors.bidderCorpNum3?.type === 'required') && (
                     <div className="flex w-[100%] justify-start mb-1">
-                      <span className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500">
+                      <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
                         사업자등록번호를 입력해주세요
                       </span>
                     </div>
@@ -861,7 +853,7 @@ export default function BidderForm() {
                   <div className="flex flex-col w-[100%] gap-1 mt-1">
                     <label
                       htmlFor="bidCorpRegiNum"
-                      className="text-[10px] font-nanum not-italic font-extrabold text-left"
+                      className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
                     >
                       법인 등록번호
                     </label>
@@ -880,7 +872,7 @@ export default function BidderForm() {
                         maxLength={6}
                         id="bidderCorpRegiNum1"
                         placeholder="123456"
-                        className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[50%] text-center"
+                        className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[50%] text-center"
                         value={
                           biddingForm.bidCorpRegiNum1[stepNum - 1] === ''
                             ? ''
@@ -900,7 +892,7 @@ export default function BidderForm() {
                           handleCorpRegiNumFocusMove(e.target)
                         }}
                       />
-                      <span className="flex text-mygray font-nanum font-normal">
+                      <span className="flex text-mygray font-NanumGothic font-bold mt-1">
                         -
                       </span>
                       <input
@@ -918,7 +910,7 @@ export default function BidderForm() {
                         id="bidderCorpRegiNum2"
                         name="bidderCorpRegiNum2"
                         placeholder="1234567"
-                        className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[50%] text-center"
+                        className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[50%] text-center"
                         value={
                           biddingForm.bidCorpRegiNum2[stepNum - 1] === ''
                             ? ''
@@ -949,7 +941,7 @@ export default function BidderForm() {
                   {(errors.bidderCorpRegiNum1?.type === 'required' ||
                     errors.bidderCorpRegiNum2?.type === 'required') && (
                     <div className="flex w-[100%] justify-start mb-1">
-                      <span className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500">
+                      <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
                         법인 등록번호를 입력해주세요
                       </span>
                     </div>
@@ -959,10 +951,7 @@ export default function BidderForm() {
             )}
             <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>
               <div className="flex flex-col w-[100%] gap-1">
-                <label
-                  htmlFor="bidderJob"
-                  className="text-[10px] font-nanum not-italic font-extrabold text-left"
-                >
+                <label htmlFor="bidderJob" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
                   직업
                 </label>
                 <input
@@ -976,7 +965,7 @@ export default function BidderForm() {
                   }
                   id="bidderJob"
                   type="text"
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2"
+                  className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
                   placeholder="직업을 입력해주세요"
                   onChange={(e) => {
                     setBiddingInfo((prev: any) => {
@@ -995,7 +984,7 @@ export default function BidderForm() {
                   <div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="agentJob"
-                      className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500"
+                      className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                     >
                       {errors.bidderJob?.message}
                     </label>
@@ -1011,10 +1000,10 @@ export default function BidderForm() {
                 setError={setError}
               />
             </div>
-            <div className="flex flex-row gap-2 absolute top-[630px]">
+            <div className={`flex flex-row gap-[10px] absolute ${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'top-[750px]' : 'top-[850px]'} justify-center items-center md:w-[50%] w-[80%]`}>
               <button
                 type="button"
-                className="flex w-[82px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+                className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
                 onClick={() => {
                   {
                     stepNum === 1
@@ -1023,15 +1012,15 @@ export default function BidderForm() {
                   }
                 }}
               >
-                <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+                <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                   이전
                 </span>
               </button>
               <button
                 type="submit"
-                className="flex w-[229px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+                className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               >
-                <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+                <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                   {stateNum <= 3 ? '확인' : '다음'}
                 </span>
               </button>

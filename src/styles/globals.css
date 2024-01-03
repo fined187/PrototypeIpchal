@@ -9,14 +9,29 @@
   }
 }
 
+@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css');
+
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://hangeul.naver.com/webfont/NanumGothic/NanumGothic-Regular.eot);
+  src: url(https://hangeul.naver.com/webfont/NanumGothic/NanumGothic-Regular.eot?#iefix)
+      format('embedded-opentype'),
+    url(https://hangeul.naver.com/webfont/NanumGothic/NanumGothic-Regular.woff)
+      format('woff'),
+    url(https://hangeul.naver.com/webfont/NanumGothic/NanumGothic-Regular.ttf)
+      format('truetype');
+}
+
 /* Navbar */
 
 .nav__bar {
-  @apply flex relative w-full h-20 bg-mybg;
+  @apply flex relative w-[50%] h-20 bg-mybg;
 }
 
 .nav__bar-title {
-  @apply flex flex-row text-lg absolute right-0 top-0 mt-2 ml-2;
+  @apply flex flex-row-reverse md:w-[100%] w-[100%] h-[100%] bg-mybg;
 }
 
 /*  */

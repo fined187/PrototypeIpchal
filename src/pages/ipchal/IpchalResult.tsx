@@ -58,7 +58,7 @@ export default function IpchalResult() {
         </div>
       )}
       {!loading && (totalResult && totalResult.bidders.length === 1) && (
-        <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] md:w-screen min-w-[420px] m-auto relative justify-center items-center">
+        <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] sm:w-screen min-w-[420px] m-auto relative justify-center items-center">
           <div className="flex flex-col bg-mybg h-[100%] md:w-full min-w-[420px] m-auto relative justify-center items-center" id="capture">
             <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표

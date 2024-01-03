@@ -15,6 +15,7 @@ interface ButtonProps {
   handleUploadFile?: () => void
   isFileCreated?: boolean
   handleShare?: () => void
+  errorMsg?: boolean
 }
 
 export default function Button({
@@ -28,7 +29,8 @@ export default function Button({
   handleBiddingPayment,
   handleUploadFile,
   isFileCreated,
-  handleShare
+  handleShare,
+  errorMsg,
 }: ButtonProps) {
   const setStateNum = useSetRecoilState(stepState)
   const stateNum = useRecoilValue(stepState)
@@ -47,7 +49,7 @@ export default function Button({
       setStateNum(stateNum + 1)
     } else if (
       stateNum === 4 &&
-      handleBiddingCnt
+      handleBiddingCnt && !errorMsg
     ) {
       await handleBiddingCnt()
       setStateNum(stateNum + 1)
@@ -77,10 +79,10 @@ export default function Button({
 
   return (
     <>
-      <div className="flex flex-row gap-[10px] absolute top-[578px]">
+      <div className="flex flex-row justify-center items-center md:w-[500px] w-[400px] gap-[10px] absolute top-[578px]">
         <button
           type="button"
-          className="flex w-[120px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+          className="flex w-[30%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
           onClick={handlePrevStep}
         >
           <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
@@ -89,8 +91,8 @@ export default function Button({
         </button>
         <button
           type="button"
-          disabled={goNext}
-          className="flex w-[260px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+          disabled={goNext || errorMsg}
+          className="flex w-[55%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
             handleNextStep()
           }}

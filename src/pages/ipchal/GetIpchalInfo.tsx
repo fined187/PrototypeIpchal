@@ -36,37 +36,37 @@ export default function GetIpchalInfo() {
 
   return (
     <>
-      <div className="flex w-screen h-screen justify-center bg-mybg relative">
-        <div className="flex flex-col w-full h-screen bg-mybg items-center text-center-500">
+      <div className="flex w-[100%] h-screen justify-center bg-white relative">
+        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
           <div className="flex">
-            <span className="text-[20px] font-bold font-nanum not-italic leading-8">
+            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               사건 번호와 입찰일자를 확인해주세요
             </span>
           </div>
-          <div className="flex min-w-[400px] h-[257px] bg-white absolute top-[107px] justify-center rounded-lg border-slate-500">
-            <div className="flex flex-row absolute top-8 border-b w-[80%] border-gray-200">
-              <span className="text-black text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-nanum leading-9">
+          <div className="flex flex-col md:min-w-[450px] min-w-[400px] md:h-[300px] h-[255px] gap-[100px] bg-white absolute top-[107px] justify-center items-center rounded-lg">
+            <div className="flex flex-row absolute top-8 border-b w-[80%] border-gray-200  md:pt-[20px]">
+              <span className="text-black md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-Nanum Gothic leading-9">
                 사건번호 :
               </span>
-              <span className="text-mygray text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-nanum leading-9">
+              <span className="text-mygray md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-Nanum Gothic leading-9">
                 {biddingInfo.sagunNum}
               </span>
             </div>
-            <div className="flex flex-row absolute top-24 border-b w-[80%] border-gray-200">
-              <span className="text-black text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-nanum leading-9">
+            <div className="flex flex-row absolute top-24 border-b w-[80%] border-gray-200 md:pt-[20px]">
+              <span className="text-black md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-Nanum Gothic leading-9">
                 입찰기일 :
               </span>
-              <span className="text-mygray text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-nanum leading-9">
+              <span className="text-mygray md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-Nanum Gothic leading-9">
                 {biddingInfo.ipchalDate.substring(0, 4)}년{' '}
                 {biddingInfo.ipchalDate.substring(4, 6)}월{' '}
                 {biddingInfo.ipchalDate.substring(6, 8)}일
               </span>
             </div>
-            <div className="flex flex-row absolute top-40 border-b w-[80%] border-gray-200">
-              <span className="text-black text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-nanum leading-9">
+            <div className="flex flex-row absolute top-40 border-b w-[80%] border-gray-200 md:pt-[20px]">
+              <span className="text-black md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-Nanum Gothic leading-9">
                 주소 :
               </span>
-              <span className="text-mygray text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-nanum leading-9">
+              <span className="text-mygray md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-Nanum Gothic leading-9">
                 {biddingInfo.sagunAddr}
               </span>
             </div>
