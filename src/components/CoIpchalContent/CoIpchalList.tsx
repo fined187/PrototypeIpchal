@@ -3,7 +3,7 @@ import { GetBiddingInfoType } from "@/interface/IpchalType";
 import { useRecoilValue } from "recoil";
 
 interface CoIpchalListProps {
-  totalResult: GetBiddingInfoType;
+  totalResult?: GetBiddingInfoType;
 }
 
 export default function CoIpchalList({ totalResult }: CoIpchalListProps) {

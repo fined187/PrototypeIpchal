@@ -1,9 +1,12 @@
-import { biddingInfoState } from "@/atom"
-import { Dispatch, SetStateAction } from "react"
+import { biddingInfoState, stepState } from "@/atom"
+import { Dispatch, SetStateAction, useEffect } from "react"
 import { useRecoilValue } from "recoil"
+import CoIpchalForm from "./CoIpchalContent/CoIpchalForm"
+import CoIpchalList from "./CoIpchalContent/CoIpchalList"
 
 export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetStateAction<boolean>>}) {
   const biddingInfo = useRecoilValue(biddingInfoState)
+  const stateNum = useRecoilValue(stepState)
   const handlePrice = (len: number) => {
     if (12 - len > 0) {
       return '0'.repeat(12 - len) + biddingInfo?.biddingPrice
@@ -19,10 +22,13 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
       return biddingInfo?.depositPrice?.toString()
     }
   }
+
+  console.log(biddingInfo)
+
   return (
     <>
       {biddingInfo.bidName.length === 1 && (
-        <div className="flex-col bg-mybg w-[600px] h-[800px] justify-center items-center mx-auto relative overflow-y-scroll scrollbar-hide">
+        <div className="flex-col bg-mybg w-[600px] h-[800px] max-h-[2000px] justify-center items-center mx-auto relative overflow-y-scroll scrollbar-hide">
           <div className="text-[22px] font-bold text-center py-[10px] w-[600px] absolute top-0 bg-mybg">
             입찰표
           </div>
@@ -725,14 +731,217 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
               </div>
             </div>
           </div>
+          {/* 대리인 */}
+          {biddingInfo.agentName !== '' && (
+            <div className={`flex flex-col bg-mybg h-[1600px] w-[600px] m-auto justify-center items-center overflow-x-scroll scrollbar-hide absolute top-[2500px]`}>
+              <div className="flex w-[100%] absolute top-0">
+                <p className="text-[15px] font-nanum">
+                  (뒷면)
+                </p>
+              </div>
+              <div className="flex flex-col w-[100%] items-center text-center absolute top-[50px]">
+                <span className="text-[22px] font-extrabold font-nanum">
+                  위임장
+                </span>
+                <div className="flex flex-row w-[100%] h-[200px] border-black border-[2px] absolute top-[100px]">
+                  <div className="flex w-[30px] justify-center items-center text-center border-black border-r-[1px]">
+                    <p className="text-[16px]">
+                      대리인
+                    </p>
+                  </div>
+                  <div className="flex flex-col w-[570px] h-[100%]">
+                    <div className="flex flex-row w-[100%] h-[30%] border-black border-b-[1px]">
+                      <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                        <p className="text-[16px]">
+                          성명
+                        </p>
+                      </div>
+                      <div className="flex flex-row gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
+                        <p className="text-[16px]">
+                          {biddingInfo.agentName}
+                        </p>
+                        <p className="text-[16px]">
+                          (인)
+                        </p>
+                      </div>
+                      <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                        <p className="text-[16px]">
+                          직업
+                        </p>
+                      </div>
+                      <div className="flex w-[30%] justify-center items-center text-center">
+                        <p className="text-[16px]">
+                          {biddingInfo.agentJob}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex w-[100%] h-[30%] border-black border-b-[1px]">
+                      <div className="flex flex-row w-[100%] h-[100%]">
+                        <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                          <p className="text-[16px]">
+                            주민등록번호
+                          </p>
+                        </div>
+                        <div className="flex gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
+                          <p className="text-[16px]">
+                            {biddingInfo.agentIdNum1 + '-' + biddingInfo.agentIdNum2}
+                          </p>
+                        </div>
+                        <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                          <p className="text-[16px]">
+                            전 화 번 호
+                          </p>
+                        </div>
+                        <div className="flex w-[30%] justify-center items-center text-center">
+                          <p className="text-[16px]">
+                            {biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-row w-[100%] h-[40%] ">
+                      <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                        <p>
+                          주 소
+                        </p>
+                      </div>
+                      <div className="flex w-[80%] justify-center items-center text-center">
+                        <p>
+                          {biddingInfo.agentAddr + ' ' + biddingInfo.agentAddrDetail}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-[30px] w-[100%] justify-center items-center text-center absolute top-[400px]">
+                <span className="text-[16px] font-nanum">
+                  위 사람을 대리인으로 정하고 다음 사항을 위임함.
+                </span>
+                <span className="text-[16px] font-nanum">
+                  다&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음
+                </span>
+                <div className="flex flex-row w-[100%] justify-center items-center text-center">
+                  <span className="text-[16px]">
+                    {biddingInfo.reqCourtName + ' 본원 '}
+                  </span>
+                  <span className="text-[16px] text-red-500 font-bold">
+                    &nbsp;{biddingInfo.caseNo.substring(0, 4)}&nbsp;
+                  </span>
+                  <span className="text-[16px]">
+                    &nbsp;타경&nbsp;
+                  </span>
+                  <span className="text-[16px] text-red-500 font-bold">
+                    {biddingInfo.caseNo.substring(4, 11)}
+                  </span>
+                  <span className="text-[16px]">
+                    &nbsp;호
+                  </span>
+                </div>
+                <span className="text-[16px]">
+                  경매사건에 관한입찰행위 일체
+                </span>
+              </div>
+              <div className="flex flex-col w-[100%] justify-center items-center absolute top-[700px]">
+                {biddingInfo.bidName.map((_, index) => {
+                  return (
+                    <div key={index} className={`flex w-[100%] h-[200px] ${index + 1 >= 2 ? 'border-black border-r-[2px] border-b-[2px] border-l-[2px]' : 'border-black border-[2px]'} `}>
+                      <div className="flex w-[30px] justify-center items-center text-center border-black border-r-[1px]">
+                        <p className="text-[16px]">
+                          본인
+                          <br />
+                          {index + 1}
+                        </p>
+                      </div>
+                      <div className="flex flex-col w-[570px] h-[100%]">
+                        <div className="flex flex-row w-[100%] h-[30%] border-black border-b-[1px]">
+                          <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                            <p className="text-[16px]">
+                              성명
+                            </p>
+                          </div>
+                          <div className="flex flex-row gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
+                            <p className="text-[16px]">
+                              {biddingInfo.bidName[index]}
+                            </p>
+                            <p className="text-[16px]">
+                              (인)
+                            </p>
+                          </div>
+                          <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                            <p className="text-[16px]">
+                              직업
+                            </p>
+                          </div>
+                          <div className="flex w-[30%] justify-center items-center text-center">
+                            <p className="text-[16px]">
+                              {biddingInfo.bidJob[index]}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex w-[100%] h-[30%] border-black border-b-[1px]">
+                          <div className="flex flex-row w-[100%] h-[100%]">
+                            <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                              <p className="text-[16px]">
+                                주민등록번호
+                              </p>
+                            </div>
+                            <div className="flex gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
+                              <p className="text-[16px]">
+                                {biddingInfo.bidCorpYn[index] === 'I' ? biddingInfo.bidIdNum1[index] + '-' + biddingInfo.bidIdNum2[index] : biddingInfo.bidCorpNum1[index] + '-' + biddingInfo.bidCorpNum2[index] + '-' + biddingInfo.bidCorpNum3[index]}
+                              </p>
+                            </div>
+                            <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                              <p className="text-[16px]">
+                                전 화 번 호
+                              </p>
+                            </div>
+                            <div className="flex w-[30%] justify-center items-center text-center">
+                              <p className="text-[16px]">
+                                {biddingInfo.bidPhone1[index] + '-' + biddingInfo.bidPhone2[index] + '-' + biddingInfo.bidPhone3[index]}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex flex-row w-[100%] h-[40%] ">
+                          <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                            <p>
+                              주 소
+                            </p>
+                          </div>
+                          <div className="flex w-[80%] justify-center items-center text-center">
+                            <p>
+                              {biddingInfo.bidAddr[index] + ' ' + biddingInfo.bidAddrDetail[index]}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+                <div className="flex flex-col justify-center items-center text-center gap-[25px] w-[100%] mt-[50px]">
+                  <span>
+                    * 본인의 인감 증명서 첨부
+                  </span>
+                  <span>
+                    * 본인이 법인인 경우에는 주민등록번호란에 사업자등록번호를 기재
+                  </span>
+                  <span className="font-extrabold font-nanum text-[25px]">
+                    {biddingInfo.reqCourtName + ' 본원 귀중' }
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
       {biddingInfo.bidName.length > 1 && (
-        <div className="flex-col bg-mybg w-[600px] h-[800px] justify-center items-center mx-auto relative overflow-y-scroll scrollbar-hide">
+        <div className="flex flex-col bg-mybg w-[600px] h-[800px] max-h-[4000px] justify-center items-center mx-auto relative overflow-y-scroll scrollbar-hide">
+          {/* 입찰표 */}
           <div className="text-[22px] font-bold text-center py-[10px] w-[600px] absolute top-0 bg-mybg">
             입찰표
           </div>
-          <div className="w-[600px] mx-auto absolute top-[60px] h-[100%] bg-mybg">
+          <div className="w-[600px] h-[100%] mx-auto absolute top-[60px] bg-mybg">
             <div className="border border-black text-[1.5rem] text-center min-w-[420px] md:max-w-[600px] h-[100%] m-auto bg-mybg">
               {/* 첫 번째 박스 */}
               <div className="p-[1%] pb-0 border-black border-b-[1px] h-[15%]">
@@ -1389,6 +1598,373 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
               </div>
             </div>
           </div>
+          {/* 공동입찰 신고서 */}
+          <div className="flex flex-col bg-mybg w-[600px] h-[800px] justify-center items-center mx-auto overflow-y-scroll scrollbar-hide absolute top-[800px]">
+            <div className="flex flex-col bg-mybg h-[100%] w-[100%] m-auto relative justify-center items-center">
+              <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
+                공 동 입 찰 신 고 서
+              </div>
+              <div className="flex justify-end text-right w-[100%] absolute top-[200px] mr-2">
+                <span className="text-[15px] font-bold font-nanum">
+                  {biddingInfo.reqCourtName} 본원 집행관 귀하
+                </span>
+              </div>
+              <div className="flex flex-col gap-[10px] justify-start w-[100%] ml-2 absolute top-[350px]">
+                <div className="flex flex-row w-[100%] sm:gap-[115px] gap-[150px] ">
+                  <span className="text-[15px] font-bold font-nanum">
+                    사건번호
+                  </span>
+                  <div className="flex flex-row gap-3">
+                    <span className="text-[15px] text-red-500 font-bold font-nanum">
+                      {biddingInfo.caseNo.substring(0, 4)}
+                    </span>
+                    <span className="text-[15px] text-black font-bold font-nanum">
+                      {' 타경 '}
+                    </span>
+                    <span className="text-[15px] text-red-500 font-bold font-nanum">
+                      {biddingInfo.caseNo.substring(4, 11)}
+                    </span>
+                    <span className="text-[15px] text-black font-bold">
+                      {'호'}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex flex-row w-[100%] sm:gap-[115px] gap-[150px] ">
+                  <span className="text-[15px] font-bold font-nanum">
+                    물건번호
+                  </span>
+                  <span className="text-[15px] text-red-500 font-bold font-nanum">
+                    {biddingInfo.mulgunNum}
+                  </span>
+                </div>
+                <div className="flex flex-row w-[100%] sm:gap-[100px] gap-[135px] ">
+                  <span className="text-[15px] font-bold font-nanum">
+                    공동입찰자
+                  </span>
+                  <span className="text-[15px] text-black font-nanum">
+                    별지목록과 같음
+                  </span>
+                </div>
+                <div className="flex mt-10">
+                  <span className="text-[15px] font-nanum">
+                    위 사건에 관하여 공동입찰을 신고합니다.
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-[30px] justify-center items-center w-[100%] absolute top-[600px] ">
+                <span>
+                </span>
+                <div className="flex flex-row justify-center items-center gap-[10px] w-[100%]">
+                  <span className="text-[15px] font-nanum">
+                    신청인
+                  </span>
+                  <span className="text-[15px] font-nanum text-red-500 font-bold">
+                    {biddingInfo.bidName[0]}
+                  </span>
+                  <span className="text-[15px] font-nanum">
+                    외
+                  </span>
+                  <span className="text-[15px] font-nanum text-red-500 font-bold">
+                    {biddingInfo.bidName.length - 1}
+                  </span>
+                  <span className="text-[15px] font-nanum">
+                    {' 인(별지목록 기재와 같음)'}
+                  </span>
+                </div>
+              </div>
+              <div className="flex absolute top-[750px]">
+                <div>
+                  <span className="text-[15px] font-nanum">
+                    1. 공동입찰을 하는 때에는 입찰표에 각자의 지분을 분명하게 표시하여야 합니다.
+                    <br />
+                    2. 별지 공동입찰자 목록과 사이에 공동입찰자 전원이 간인하십시오.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* 공동입찰자 목록 */}
+          <div className="flex bg-mybg w-[600px] h-[800px] justify-center items-center mx-auto overflow-y-scroll scrollbar-hide absolute top-[1600px]">
+            <div className="flex absolute top-0">
+              <p className="text-[22px] font-bold py-[30px]">
+                공 동 입 찰 자 목 록
+              </p>
+            </div>
+            <div className="flex sm:w-[600px] h-[800px] border border-black absolute top-[150px]">
+              <div className="flex flex-col w-[10%] h-[100%] border-black border-r-[1px]">
+                <div className="flex justify-center items-center border-black border-b-[1px] w-[100%] h-[50px]">
+                  번호
+                </div>
+                {biddingInfo.bidName.map((_, idx) => {
+                  return (
+                  <div className="flex justify-center items-center border-black border-b-[1px] w-[100%] h-[105px]" key={idx}>
+                    {idx + 1}
+                  </div>
+                  )
+                })}
+              </div>
+              <div className="flex flex-col w-[100%]">
+                <div className="flex flex-row w-[100%] h-[50px] border-black border-b-[1px] justify-start items-center">
+                  <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px] h-[100%]">
+                    <p className="text-[15px] font-nanum font-normal">
+                      성명
+                    </p>
+                  </div>
+                  <div className="flex flex-col w-[100%] justify-center items-center">
+                    <div className="border-black border-b-[1px] w-[100%] justify-center items-center text-center">
+                      <p className="text-[15px] font-nanum font-normal">
+                        주소
+                      </p>
+                    </div>
+                    <div className="flex flex-row w-[100%] justify-center items-center text-center h-[100%]">
+                      <div className="flex w-[100%] border-black border-r-[1px] justify-center items-center text-center h-[100%]">
+                        <p className="text-[15px] font-nanum font-normal">
+                          주민등록번호
+                        </p>
+                      </div>
+                      <div className="flex w-[100%] justify-center items-center text-center">
+                        <p className="text-[15px] font-nanum font-normal">
+                          전화번호
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {biddingInfo.bidName.map((_, idx) => {
+                  return (
+                  <div className="flex flex-row w-[100%] h-[105px] border-black border-b-[1px] justify-start items-center text-center" key={idx}>
+                    <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px] h-[100%]">
+                      <p className="text-[15px] font-nanum font-normal">
+                        {biddingInfo.bidName[idx] + ' (인)'}
+                      </p>
+                    </div>
+                    <div className="flex flex-col w-[100%] h-[100%]">
+                      <div className="flex border-black border-b-[1px] w-[100%] h-[50%] justify-center items-center text-center">
+                        <p className="text-[15px] font-nanum font-normal">
+                          {biddingInfo.bidAddr[idx]}
+                        </p>
+                      </div>
+                      <div className="flex flex-row w-[100%] h-[50%]">
+                        <div className="flex w-[100%] h-[100%] border-black border-r-[1px] justify-center items-center text-center">
+                          <p className="text-[15px] font-nanum font-normal">
+                            {biddingInfo.bidCorpYn[idx] === 'I' ?  biddingInfo.bidIdNum1[idx] + '-' + biddingInfo.bidIdNum1[idx] : biddingInfo.bidCorpNum1[idx] + '-' + biddingInfo.bidCorpNum2[idx] + '-' + biddingInfo.bidCorpNum3[idx]}
+                          </p>
+                        </div>
+                        <div className="flex w-[100%] h-[100%] justify-center items-center text-center">
+                          <p className="text-[15px] font-nanum font-normal">
+                            {biddingInfo.bidPhone[idx]}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+          {/* 대리인 */}
+          {biddingInfo.agentName !== '' && (
+            <div className={`flex flex-col bg-mybg h-[1600px] w-[600px] m-auto justify-center items-center overflow-x-scroll scrollbar-hide absolute top-[2500px]`}>
+              <div className="flex w-[100%] absolute top-0">
+                <p className="text-[15px] font-nanum">
+                  (뒷면)
+                </p>
+              </div>
+              <div className="flex flex-col w-[100%] items-center text-center absolute top-[50px]">
+                <span className="text-[22px] font-extrabold font-nanum">
+                  위임장
+                </span>
+                <div className="flex flex-row w-[100%] h-[200px] border-black border-[2px] absolute top-[100px]">
+                  <div className="flex w-[30px] justify-center items-center text-center border-black border-r-[1px]">
+                    <p className="text-[16px]">
+                      대리인
+                    </p>
+                  </div>
+                  <div className="flex flex-col w-[570px] h-[100%]">
+                    <div className="flex flex-row w-[100%] h-[30%] border-black border-b-[1px]">
+                      <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                        <p className="text-[16px]">
+                          성명
+                        </p>
+                      </div>
+                      <div className="flex flex-row gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
+                        <p className="text-[16px]">
+                          {biddingInfo.agentName}
+                        </p>
+                        <p className="text-[16px]">
+                          (인)
+                        </p>
+                      </div>
+                      <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                        <p className="text-[16px]">
+                          직업
+                        </p>
+                      </div>
+                      <div className="flex w-[30%] justify-center items-center text-center">
+                        <p className="text-[16px]">
+                          {biddingInfo.agentJob}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex w-[100%] h-[30%] border-black border-b-[1px]">
+                      <div className="flex flex-row w-[100%] h-[100%]">
+                        <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                          <p className="text-[16px]">
+                            주민등록번호
+                          </p>
+                        </div>
+                        <div className="flex gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
+                          <p className="text-[16px]">
+                            {biddingInfo.agentIdNum1 + '-' + biddingInfo.agentIdNum2}
+                          </p>
+                        </div>
+                        <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                          <p className="text-[16px]">
+                            전 화 번 호
+                          </p>
+                        </div>
+                        <div className="flex w-[30%] justify-center items-center text-center">
+                          <p className="text-[16px]">
+                            {biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-row w-[100%] h-[40%] ">
+                      <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                        <p>
+                          주 소
+                        </p>
+                      </div>
+                      <div className="flex w-[80%] justify-center items-center text-center">
+                        <p>
+                          {biddingInfo.agentAddr + ' ' + biddingInfo.agentAddrDetail}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-[30px] w-[100%] justify-center items-center text-center absolute top-[400px]">
+                <span className="text-[16px] font-nanum">
+                  위 사람을 대리인으로 정하고 다음 사항을 위임함.
+                </span>
+                <span className="text-[16px] font-nanum">
+                  다&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음
+                </span>
+                <div className="flex flex-row w-[100%] justify-center items-center text-center">
+                  <span className="text-[16px]">
+                    {biddingInfo.reqCourtName + ' 본원 '}
+                  </span>
+                  <span className="text-[16px] text-red-500 font-bold">
+                    &nbsp;{biddingInfo.caseNo.substring(0, 4)}&nbsp;
+                  </span>
+                  <span className="text-[16px]">
+                    &nbsp;타경&nbsp;
+                  </span>
+                  <span className="text-[16px] text-red-500 font-bold">
+                    {biddingInfo.caseNo.substring(4, 11)}
+                  </span>
+                  <span className="text-[16px]">
+                    &nbsp;호
+                  </span>
+                </div>
+                <span className="text-[16px]">
+                  경매사건에 관한입찰행위 일체
+                </span>
+              </div>
+              <div className="flex flex-col w-[100%] justify-center items-center absolute top-[700px]">
+                {biddingInfo.bidName.map((_, index) => {
+                  return (
+                    <div key={index} className={`flex w-[100%] h-[200px] ${index + 1 >= 2 ? 'border-black border-r-[2px] border-b-[2px] border-l-[2px]' : 'border-black border-[2px]'} `}>
+                      <div className="flex w-[30px] justify-center items-center text-center border-black border-r-[1px]">
+                        <p className="text-[16px]">
+                          본인
+                          <br />
+                          {index + 1}
+                        </p>
+                      </div>
+                      <div className="flex flex-col w-[570px] h-[100%]">
+                        <div className="flex flex-row w-[100%] h-[30%] border-black border-b-[1px]">
+                          <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                            <p className="text-[16px]">
+                              성명
+                            </p>
+                          </div>
+                          <div className="flex flex-row gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
+                            <p className="text-[16px]">
+                              {biddingInfo.bidName[index]}
+                            </p>
+                            <p className="text-[16px]">
+                              (인)
+                            </p>
+                          </div>
+                          <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                            <p className="text-[16px]">
+                              직업
+                            </p>
+                          </div>
+                          <div className="flex w-[30%] justify-center items-center text-center">
+                            <p className="text-[16px]">
+                              {biddingInfo.bidJob[index]}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex w-[100%] h-[30%] border-black border-b-[1px]">
+                          <div className="flex flex-row w-[100%] h-[100%]">
+                            <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                              <p className="text-[16px]">
+                                주민등록번호
+                              </p>
+                            </div>
+                            <div className="flex gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
+                              <p className="text-[16px]">
+                                {biddingInfo.bidCorpYn[index] === 'I' ? biddingInfo.bidIdNum1[index] + '-' + biddingInfo.bidIdNum2[index] : biddingInfo.bidCorpNum1[index] + '-' + biddingInfo.bidCorpNum2[index] + '-' + biddingInfo.bidCorpNum3[index]}
+                              </p>
+                            </div>
+                            <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                              <p className="text-[16px]">
+                                전 화 번 호
+                              </p>
+                            </div>
+                            <div className="flex w-[30%] justify-center items-center text-center">
+                              <p className="text-[16px]">
+                                {biddingInfo.bidPhone1[index] + '-' + biddingInfo.bidPhone2[index] + '-' + biddingInfo.bidPhone3[index]}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex flex-row w-[100%] h-[40%] ">
+                          <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                            <p>
+                              주 소
+                            </p>
+                          </div>
+                          <div className="flex w-[80%] justify-center items-center text-center">
+                            <p>
+                              {biddingInfo.bidAddr[index] + ' ' + biddingInfo.bidAddrDetail[index]}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+                <div className="flex flex-col justify-center items-center text-center gap-[25px] w-[100%] mt-[50px]">
+                  <span>
+                    * 본인의 인감 증명서 첨부
+                  </span>
+                  <span>
+                    * 본인이 법인인 경우에는 주민등록번호란에 사업자등록번호를 기재
+                  </span>
+                  <span className="font-extrabold font-nanum text-[25px]">
+                    {biddingInfo.reqCourtName + ' 본원 귀중' }
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
       <div className="flex w-[600px] justify-center items-center bg-mygold mt-[10px] mb-[10px] rounded-md h-[50px] cursor-pointer" onClick={() => {

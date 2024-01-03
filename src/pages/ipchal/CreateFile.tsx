@@ -118,7 +118,11 @@ export default function CreateFile() {
 
   const onClickPdf = async (e: any) => {
     e.preventDefault()
-    await onCapture()
+    if (password.length < 4 || password === '') {
+      alert('파일 암호를 4자리 이상 입력해주세요')
+    } else {
+      await onCapture()
+    }
   }
 
   const handleUploadFile = async () => {
@@ -137,6 +141,9 @@ export default function CreateFile() {
           },
         },
       )
+      if (response.status === 200) {
+        console.log(response)
+      }
     } catch (error) {
       console.log(error)
     }
@@ -242,7 +249,7 @@ export default function CreateFile() {
         </div>
       )}
       {totalResult && totalResult.bidders.length > 1 && (
-        <div className='flex flex-col' id='capture'>
+        <div className='hidden flex-col' id='capture'>
           <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] md:w-screen min-w-[420px] m-auto relative justify-center items-center">
             <div className="flex flex-col bg-mybg md:w-full h-[100%] min-w-[420px] m-auto relative justify-center items-center">
               <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
@@ -967,7 +974,7 @@ export default function CreateFile() {
         </div>
       )}
       {totalResult && totalResult.bidders.length === 1 && (
-        <div className='flex flex-col' id="capture">
+        <div className='hidden flex-col' id="capture">
           <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] md:w-screen min-w-[420px] m-auto relative justify-center items-center">
             <div className="flex flex-col bg-mybg md:w-full h-[100%] min-w-[420px] m-auto relative justify-center items-center">
               <div className="w-[100%] text-[22px] font-bold py-[30px] absolute top-0 bg-mybg justify-center item-center text-center">
