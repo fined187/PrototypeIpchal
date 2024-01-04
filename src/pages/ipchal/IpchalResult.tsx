@@ -53,7 +53,7 @@ export default function IpchalResult() {
   return (
     <>
       {loading && (
-        <div className="flex flex-col bg-mybg h-screen w-full m-auto relative justify-center items-center">
+        <div className="flex flex-col bg-white h-screen w-[100%] relative justify-center items-center">
           <LoadingResult />
         </div>
       )}

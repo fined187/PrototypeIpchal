@@ -20,8 +20,8 @@ export default function StartIpchal() {
       const response = await axios.post(
         `http://118.217.180.254:8081/ggi/api/bid-form/checks`,
         {
-          idCode: 'A1423E3E3F3D3F3E3F3F3E3D47404741483E3C6',
-          biddingDate: `20240205`,
+          idCode: 'A140483D3F3E3D40403D3E3D424240473E3E3C6',
+          biddingDate: `20240109`,
         },
         {
           headers: {

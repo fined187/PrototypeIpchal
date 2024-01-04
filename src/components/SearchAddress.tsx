@@ -72,7 +72,7 @@ export default function SearchAddress({
               id="bidderAddr"
               readOnly
               type="text"
-              className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-nanum not-italic font-extrabold text-left h-[40px] px-2 w-[70%]"
+              className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-nanum not-italic font-extrabold text-left h-[40px] px-2 w-[70%]"
               value={
                 stepNum && biddingForm.bidAddr[stepNum - 1] === ''
                   ? ''
@@ -86,7 +86,7 @@ export default function SearchAddress({
               id="agentAddr"
               readOnly
               type="text"
-              className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-nanum not-italic font-extrabold text-left h-[40px] px-2 w-[70%]"
+              className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-nanum not-italic font-extrabold text-left h-[40px] px-2 w-[70%]"
               value={
                 biddingForm.agentAddr === ''
                   ? ''
@@ -113,7 +113,7 @@ export default function SearchAddress({
             id="bidAddrDetail"
             type="text"
             readOnly
-            className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-nanum not-italic font-extrabold text-left h-[40px] px-2 w-[100%]"
+            className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-nanum not-italic font-extrabold text-left h-[40px] px-2 w-[100%]"
             value={
               stepNum && biddingForm.bidAddrDetail[stepNum - 1] === ''
                 ? ''
@@ -126,7 +126,7 @@ export default function SearchAddress({
             id="agentAddrDetail"
             type="text"
             readOnly
-            className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-nanum not-italic font-extrabold text-left h-[40px] px-2 w-[100%]"
+            className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-nanum not-italic font-extrabold text-left h-[40px] px-2 w-[100%]"
             value={
               biddingForm.agentAddrDetail === ''
                 ? ''

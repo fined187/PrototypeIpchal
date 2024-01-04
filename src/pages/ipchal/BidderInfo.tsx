@@ -19,7 +19,7 @@ export default function BidderInfo() {
               입찰하시는 본인이 맞으신가요?
             </span>
           </div>
-          <div className="flex flex-col gap-10 md:min-w-[450px] min-w-[400px] md:h-[200px] h-[200px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+          <div className="flex flex-col gap-10 md:w-[550px] w-[90%] md:h-[200px] h-[200px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
             <div
               className={`flex flex-row w-[124px] h-[40px] rounded-sm border ${
                 isSelected ? 'border-myyellow border-[2px]' : 'border-red-600'

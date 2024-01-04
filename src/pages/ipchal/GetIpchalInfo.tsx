@@ -43,7 +43,7 @@ export default function GetIpchalInfo() {
               사건 번호와 입찰일자를 확인해주세요
             </span>
           </div>
-          <div className="flex flex-col md:min-w-[450px] min-w-[400px] md:h-[300px] h-[255px] gap-[100px] bg-white absolute top-[107px] justify-center items-center rounded-lg">
+          <div className="flex flex-col md:w-[550px] w-[90%] md:h-[300px] h-[255px] gap-[100px] bg-white absolute top-[107px] justify-center items-center rounded-lg">
             <div className="flex flex-row absolute top-8 border-b w-[80%] border-gray-200  md:pt-[20px]">
               <span className="text-black md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-Nanum Gothic leading-9">
                 사건번호 :

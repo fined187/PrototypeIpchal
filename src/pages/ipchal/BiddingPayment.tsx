@@ -1,8 +1,7 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
-import { IpchalType } from '@/interface/IpchalType'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BiddingPayment() {
@@ -34,17 +33,17 @@ export default function BiddingPayment() {
       console.log(error)
     }
   }
-
+  console.log(biddingForm)
   return (
-    <div className="flex w-screen h-screen bg-mybg justify-center relative">
-      <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center relative">
-        <span className="text-lg font-extrabold font-nanum not-italic leading-8">
+    <div className="flex w-[100%] h-screen bg-white justify-center relative">
+      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
+        <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
           보증금 제공 방법을 선택해주세요
         </span>
       </div>
-      <div className="flex flex-col gap-10 w-[420px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+      <div className="flex flex-col gap-10 md:w-[550px] w-[90%] min-h-[257px] max-h-[600px] h-[300px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
         <div
-          className={`flex flex-row w-[120px] h-[30px] rounded-md border ${
+          className={`flex flex-row w-[140px] h-[40px] rounded-md border-2 ${
             isWaySelected ? 'border-red-600' : 'border-myyellow'
           } justify-center items-center cursor-pointer ${
             biddingForm.bidWay === 'M' ? 'bg-myyellow' : 'bg-white'
@@ -74,7 +73,7 @@ export default function BiddingPayment() {
             </svg>
           </div>
           <span
-            className={`flex text-[13px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
+            className={`flex text-[15px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
               biddingForm.bidWay === 'M' ? 'text-white' : 'text-myyellow'
             }`}
           >
@@ -82,7 +81,7 @@ export default function BiddingPayment() {
           </span>
         </div>
         <div
-          className={`flex flex-row w-[120px] h-[30px] rounded-md border ${
+          className={`flex flex-row w-[140px] h-[40px] rounded-md border-2 ${
             isWaySelected ? 'border-red-600' : 'border-myyellow'
           } justify-center items-center cursor-pointer ${
             biddingForm.bidWay === 'W' ? 'bg-myyellow' : 'bg-white'
@@ -112,9 +111,9 @@ export default function BiddingPayment() {
             </svg>
           </div>
           <span
-            className={`flex text-[13px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
-              biddingForm.bidWay === 'paper'
-                ? 'text-white ml-1'
+            className={`flex text-[15px] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
+              biddingForm.bidWay === 'W'
+                ? 'text-white'
                 : 'text-myyellow'
             }`}
           >

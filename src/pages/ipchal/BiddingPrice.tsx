@@ -126,112 +126,132 @@ export default function BiddingPrice() {
   }
 
   return (
-    <div className="flex w-screen h-screen bg-mybg justify-center relative">
-      <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center relative">
-        <span className="text-lg font-extrabold font-nanum not-italic leading-8">
+    <div className="flex w-[100%] h-screen bg-white justify-center relative">
+      <div className="flex flex-col gap-[20px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
+        <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
           입찰 가격을 입력해주세요
         </span>
-        <div className="flex flex-col w-full">
-          <span className="text-[13px] font-bold font-nanum text-center leading-[11px]">
+        <div className="flex flex-col w-full gap-[10px]">
+          <span className="text-[15px] font-bold font-Nanum Gothic text-center leading-[11px]">
             감정가:{' '}
-            <span className="text-mygold">
+            <span className="text-mygold text-[15px] font-bold font-Nanum Gothic">
               {paymentsInfo.appraisalAmount.toLocaleString('ko-KR')}
             </span>
           </span>
-          <span className="text-[13px] font-bold font-nanum text-center leading-[11px] mt-[10px]">
+          <span className="text-[15px] font-bold font-Nanum Gothic text-center leading-[11px] mt-[10px]">
             최저가:{' '}
-            <span className="text-mygold">
+            <span className="text-mygold text-[15px] font-bold font-Nanum Gothic">
               {paymentsInfo.minimumAmount.toLocaleString('ko-KR')}
             </span>
           </span>
           <div className="flex justify-center mt-5">
-            <span className="text-[13px] font-bold font-nanum text-center leading-[11px] mt-[10px]">
+            <span className="text-[15px] font-bold font-Nanum Gothic text-center leading-[11px] mt-[10px]">
               ※ 최저가 이상으로 입력해주세요
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-2 w-[420px] min-h-[257px] max-h-[500px] bg-white absolute top-[145px] rounded-lg border-slate-500">
-          <div className="flex w-full pt-[27px] pl-[10px]">
-            <span className="text-[10px] font-nanum not-italic font-bold leading-[9px]">
-              입찰금액
-            </span>
+        <div className="flex flex-col gap-2 md:w-[550px] w-[100%] min-h-[300px] max-h-[500px] bg-white absolute top-[180px] border-slate-500 justify-center items-center">
+          <div className="flex flex-row gap-[20px] w-[90%]">
+            <div className='flex justify-start md:w-[15%] w-[15%] pt-[20px] ml-[10px]'>
+              <span className="md:text-[15px] text-[12px] font-nanum not-italic font-bold leading-[9px]">
+                입찰금액
+              </span>
+            </div>
+            <div className="flex justify-end w-[80%] pt-[10px] mr-[10px]">
+              <input
+                type="text"
+                id="number"
+                value={
+                  biddingForm.biddingPrice === 0
+                    ? 0
+                    : biddingForm.biddingPrice.toLocaleString('ko-KR')
+                }
+                className="flex md:w-[100%] w-[90%] h-[30px] border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md pl-[10px]"
+                onChange={(e) => {
+                  setBiddingPrice(
+                    Number(e.target.value.toString().replaceAll(',', '')),
+                  )
+                  num2han(Number(e.target.value.toString().replaceAll(',', '')))
+                  setBiddingForm({
+                    ...biddingForm,
+                    biddingPrice: Number(
+                      e.target.value.toString().replaceAll(',', ''),
+                    ),
+                  })
+                }}
+              />
+            </div>
           </div>
-          <div className="flex w-full pt-[5px] pl-[10px]">
-            <input
-              type="text"
-              id="number"
-              value={
-                biddingForm.biddingPrice === 0
-                  ? 0
-                  : biddingForm.biddingPrice.toLocaleString('ko-KR')
-              }
-              className="flex w-[95%] border border-gray-300 rounded-md"
-              onChange={(e) => {
-                setBiddingPrice(
-                  Number(e.target.value.toString().replaceAll(',', '')),
-                )
-                num2han(Number(e.target.value.toString().replaceAll(',', '')))
-                setBiddingForm({
-                  ...biddingForm,
-                  biddingPrice: Number(
-                    e.target.value.toString().replaceAll(',', ''),
-                  ),
-                })
-              }}
-            />
-          </div>
-          <div className="flex justify-between w-[95%] pt-[5px] border-b-2 border-myyellow ml-2">
-            <span className="text-[10px] font-nanum not-italic font-bold leading-[9px] mb-2">
+          <div className="flex justify-between w-[85%] pt-[5px] border-b-2 border-myyellow">
+            <span className="text-[12px] text-mygold font-nanum not-italic font-bold leading-[9px] mb-2">
               일금
             </span>
-            <span className="text-[10px] font-nanum not-italic font-bold text-red-500 leading-[9px] mb-2">
+            <span className="text-[12px] font-nanum not-italic font-bold text-red-500 leading-[9px] mb-2">
               {num2han(biddingPrice) + '원'}
             </span>
           </div>
-          <div className="flex w-full pt-[27px] pl-[10px]">
-            <span className="text-[10px] font-nanum not-italic font-bold leading-[9px]">
-              입찰보증금
-            </span>
+          <div className="flex flex-row gap-[20px] w-[90%]">
+            <div className="flex justify-start md:w-[20%] w-[25%] pt-[20px] ml-[10px]">
+              <span className="md:text-[15px] text-[12px] font-nanum not-italic font-bold leading-[9px]">
+                입찰보증금
+              </span>
+            </div>
+            <div className="flex justify-end w-[100%] pt-[10px] mr-[10px]">
+              <input
+                type="text"
+                id="number2"
+                value={
+                  biddingForm.depositPrice === 0
+                    ? 0
+                    : biddingForm.depositPrice.toLocaleString('ko-KR')
+                }
+                className="flex md:w-[100%] w-[95%] h-[30px] border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md pl-[10px]"
+                onChange={(e) => {
+                  setDepositPrice(
+                    Number(e.target.value.toString().replaceAll(',', '')),
+                  )
+                  num2han(Number(e.target.value.toString().replaceAll(',', '')))
+                  setBiddingForm({
+                    ...biddingForm,
+                    depositPrice: Number(
+                      e.target.value.toString().replaceAll(',', ''),
+                    ),
+                  })
+                }}
+              />
+            </div>
           </div>
-          <div className="flex w-full pt-[5px] pl-[10px]">
-            <input
-              type="text"
-              id="number2"
-              value={
-                biddingForm.depositPrice === 0
-                  ? 0
-                  : biddingForm.depositPrice.toLocaleString('ko-KR')
-              }
-              className="flex w-[95%] border border-gray-300 rounded-md"
-              onChange={(e) => {
-                setDepositPrice(
-                  Number(e.target.value.toString().replaceAll(',', '')),
-                )
-                num2han(Number(e.target.value.toString().replaceAll(',', '')))
-                setBiddingForm({
-                  ...biddingForm,
-                  depositPrice: Number(
-                    e.target.value.toString().replaceAll(',', ''),
-                  ),
-                })
-              }}
-            />
-          </div>
-          <div className="flex justify-between w-[95%] pt-[5px] border-b-2 border-myyellow ml-2">
-            <span className="text-[10px] font-nanum not-italic font-bold leading-[9px] mb-2">
+          <div className="flex justify-between w-[85%] pt-[5px] border-b-2 border-myyellow ml-2">
+            <span className="text-[12px] text-mygold font-nanum not-italic font-bold leading-[9px] mb-2">
               일금
             </span>
-            <span className="text-[10px] font-nanum not-italic font-bold text-red-500 leading-[9px] mb-2">
+            <span className="text-[12px] font-nanum not-italic font-bold text-red-500 leading-[9px] mb-2">
               {num2han(depositPrice) + '원'}
             </span>
           </div>
         </div>
       </div>
-      <Button
-        prevStepNum={stateNum - 2}
-        nextStepNum={stateNum + 1}
-        handleBiddingPrice={handleBiddingPrice}
-      />
+      <div className="flex flex-row justify-center items-center md:w-[600px] w-[400px] gap-[10px] absolute md:top-[600px] top-[600px]">
+        <button
+          type="button"
+          className="flex md:w-[30%] w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+          onClick={() => {
+            setStateNum(stateNum - 1)
+          }}
+        >
+          <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+            이전
+          </span>
+        </button>
+        <button
+          type="button"
+          className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+        >
+          <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+            {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
+          </span>
+        </button>
+      </div>
     </div>
   )
 }

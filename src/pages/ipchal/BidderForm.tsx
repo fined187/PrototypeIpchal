@@ -462,7 +462,7 @@ export default function BidderForm() {
                 }
                 id="bidderName"
                 type="text"
-                className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
+                className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
                 placeholder="입찰자 성명을 입력해주세요"
                 onChange={(e) => {
                   setBiddingInfo((prev: any) => {
@@ -511,7 +511,7 @@ export default function BidderForm() {
                   type="text"
                   maxLength={3}
                   placeholder="010"
-                  className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                   value={
                     biddingForm.bidPhone1[stepNum - 1] === ''
                       ? ''
@@ -548,7 +548,7 @@ export default function BidderForm() {
                       .replace(/(\..*)\./g, '$1')
                   }}
                   placeholder="1234"
-                  className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                   value={
                     biddingForm.bidPhone2[stepNum - 1] === ''
                       ? ''
@@ -585,7 +585,7 @@ export default function BidderForm() {
                       .replace(/(\..*)\./g, '$1')
                   }}
                   placeholder="5678"
-                  className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                   value={
                     biddingForm.bidPhone3[stepNum - 1] === ''
                       ? ''
@@ -644,7 +644,7 @@ export default function BidderForm() {
                       }}
                       type="text"
                       maxLength={6}
-                      className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[12px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
                       value={
                         biddingForm.bidIdNum1[stepNum - 1] === ''
                           ? ''
@@ -680,7 +680,7 @@ export default function BidderForm() {
                       }}
                       type="text"
                       maxLength={7}
-                      className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[12px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
                       value={
                         biddingForm.bidIdNum2[stepNum - 1] === ''
                           ? ''
@@ -738,7 +738,7 @@ export default function BidderForm() {
                           .replace(/(\..*)\./g, '$1')
                       }}
                       maxLength={3}
-                      className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                       value={
                         biddingForm.bidCorpNum1[stepNum - 1] === ''
                           ? ''
@@ -775,7 +775,7 @@ export default function BidderForm() {
                           .replace(/(\..*)\./g, '$1')
                       }}
                       maxLength={2}
-                      className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                       value={
                         biddingForm.bidCorpNum2[stepNum - 1] === ''
                           ? ''
@@ -812,7 +812,7 @@ export default function BidderForm() {
                           .replace(/(\..*)\./g, '$1')
                       }}
                       maxLength={5}
-                      className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                       value={
                         biddingForm.bidCorpNum3[stepNum - 1] === ''
                           ? ''
@@ -872,7 +872,7 @@ export default function BidderForm() {
                         maxLength={6}
                         id="bidderCorpRegiNum1"
                         placeholder="123456"
-                        className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[50%] text-center"
+                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[50%] text-center"
                         value={
                           biddingForm.bidCorpRegiNum1[stepNum - 1] === ''
                             ? ''
@@ -910,7 +910,7 @@ export default function BidderForm() {
                         id="bidderCorpRegiNum2"
                         name="bidderCorpRegiNum2"
                         placeholder="1234567"
-                        className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[50%] text-center"
+                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[50%] text-center"
                         value={
                           biddingForm.bidCorpRegiNum2[stepNum - 1] === ''
                             ? ''
@@ -965,7 +965,7 @@ export default function BidderForm() {
                   }
                   id="bidderJob"
                   type="text"
-                  className="border border-gray-300 focus:outline-2 focus:border-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
                   placeholder="직업을 입력해주세요"
                   onChange={(e) => {
                     setBiddingInfo((prev: any) => {
