@@ -20,7 +20,7 @@ export const biddingInfoState = atom({
     sagunAddr: '',
     ipchalDate: '',
     bidder: '',
-    bidderNum: 1,
+    bidderNum: 0,
     bidCorpYn: [''],
     distribute: {
       sharedName: [''],

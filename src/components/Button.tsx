@@ -1,5 +1,5 @@
 import { biddingInfoState, stepState } from '@/atom'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 interface ButtonProps {
@@ -16,6 +16,7 @@ interface ButtonProps {
   isFileCreated?: boolean
   handleShare?: () => void
   errorMsg?: boolean
+  handleErrorOk?: () => void
 }
 
 export default function Button({
@@ -31,6 +32,7 @@ export default function Button({
   isFileCreated,
   handleShare,
   errorMsg,
+  handleErrorOk
 }: ButtonProps) {
   const setStateNum = useSetRecoilState(stepState)
   const stateNum = useRecoilValue(stepState)
@@ -49,10 +51,10 @@ export default function Button({
       setStateNum(stateNum + 1)
     } else if (
       stateNum === 4 &&
-      handleBiddingCnt && !errorMsg
+      handleBiddingCnt && handleErrorOk
     ) {
+      handleErrorOk()
       await handleBiddingCnt()
-      setStateNum(stateNum + 1)
     } else if (stateNum === 6) {
       handleShare && handleShare()
       setStateNum(stateNum + 1)
@@ -85,19 +87,19 @@ export default function Button({
           className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
           onClick={handlePrevStep}
         >
-          <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+          <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
             이전
           </span>
         </button>
         <button
           type="button"
-          disabled={goNext || errorMsg}
+          disabled={goNext}
           className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
             handleNextStep()
           }}
         >
-          <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+          <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
             {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
           </span>
         </button>

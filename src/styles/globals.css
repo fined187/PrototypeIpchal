@@ -12,16 +12,10 @@
 @import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css');
 
 @font-face {
-  font-family: 'Nanum Gothic';
+  font-family: 'NanumGothic';
   font-style: normal;
   font-weight: 400;
-  src: url(https://hangeul.naver.com/webfont/NanumGothic/NanumGothic-Regular.eot);
-  src: url(https://hangeul.naver.com/webfont/NanumGothic/NanumGothic-Regular.eot?#iefix)
-      format('embedded-opentype'),
-    url(https://hangeul.naver.com/webfont/NanumGothic/NanumGothic-Regular.woff)
-      format('woff'),
-    url(https://hangeul.naver.com/webfont/NanumGothic/NanumGothic-Regular.ttf)
-      format('truetype');
+  src: url('/fonts/GGAuction.ttf') format('truetype');
 }
 
 /* Navbar */

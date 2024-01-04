@@ -15,21 +15,21 @@ export default function BidderForm() {
   const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
 
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
-    bidderName: Array(biddingForm.bidderNum).fill(''),
-    bidderPhone1: Array(biddingForm.bidderNum).fill(''),
-    bidderPhone2: Array(biddingForm.bidderNum).fill(''),
-    bidderPhone3: Array(biddingForm.bidderNum).fill(''),
-    bidderIdNum1: Array(biddingForm.bidderNum).fill(''),
-    bidderIdNum2: Array(biddingForm.bidderNum).fill(''),
-    bidderAddr: Array(biddingForm.bidderNum).fill(''),
-    bidderAddrDetail: Array(biddingForm.bidderNum).fill(''),
-    bidderCorpNum1: Array(biddingForm.bidderNum).fill(''),
-    bidderCorpNum2: Array(biddingForm.bidderNum).fill(''),
-    bidderCorpNum3: Array(biddingForm.bidderNum).fill(''),
-    bidderCorpRegiNum1: Array(biddingForm.bidderNum).fill(''),
-    bidderCorpRegiNum2: Array(biddingForm.bidderNum).fill(''),
-    bidderCorpYn: Array(biddingForm.bidderNum).fill('I'),
-    bidderJob: Array(biddingForm.bidderNum).fill(''),
+    bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderPhone1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderPhone2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderPhone3: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderIdNum1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderIdNum2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderAddr: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderAddrDetail: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderCorpNum1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderCorpNum2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderCorpNum3: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderCorpRegiNum1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderCorpRegiNum2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
+    bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill('I'),
+    bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
 
 
@@ -320,7 +320,6 @@ export default function BidderForm() {
     } catch (error) {
       console.log(error)
     }
-    
   }
 
   return (
@@ -644,7 +643,7 @@ export default function BidderForm() {
                       }}
                       type="text"
                       maxLength={6}
-                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
                       value={
                         biddingForm.bidIdNum1[stepNum - 1] === ''
                           ? ''
@@ -680,7 +679,7 @@ export default function BidderForm() {
                       }}
                       type="text"
                       maxLength={7}
-                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
                       value={
                         biddingForm.bidIdNum2[stepNum - 1] === ''
                           ? ''
@@ -1000,7 +999,7 @@ export default function BidderForm() {
                 setError={setError}
               />
             </div>
-            <div className={`flex flex-row gap-[10px] absolute ${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'top-[750px]' : 'top-[850px]'} justify-center items-center md:w-[50%] w-[80%]`}>
+            <div className={`flex flex-row gap-[10px] absolute ${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>
               <button
                 type="button"
                 className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

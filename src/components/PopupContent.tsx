@@ -177,7 +177,7 @@ export default function PopupContent({
                       <div className="flex justify-center flex-col">
                         <div className="flex flex-row justify-between">
                           <div className="">
-                            <span className="text-[13px] font-nanum not-italic font-extrabold text-left">
+                            <span className="text-[13px] font-NanumGothic not-italic font-extrabold text-left">
                               주소정보연계 | 도로명주소 안내시스템
                             </span>
                           </div>
@@ -245,7 +245,7 @@ export default function PopupContent({
                                 focus:border-myyellow 
                                 rounded-md 
                                 text-[12px] 
-                                font-nanum 
+                                font-NanumGothic 
                                 not-italic 
                                 font-extrabold 
                                 text-left 
@@ -264,7 +264,7 @@ export default function PopupContent({
                                 hover:bg-blue-300
                                 rounded-md 
                                 text-[12px] 
-                                font-nanum 
+                                font-NanumGothic 
                                 not-italic 
                                 font-extrabold 
                                 h-[30px] 
@@ -304,7 +304,7 @@ export default function PopupContent({
                             <>
                               <div className="flex flex-row w-full justify-between py-1">
                                 <div className="flex flex-row">
-                                  <span className="text-xs font-normal font-nanum">
+                                  <span className="text-xs font-normal font-NanumGothic">
                                     검색 결과
                                   </span>
                                   <span className="text-xs font-bold text-blue-500 ml-1">
@@ -361,13 +361,13 @@ export default function PopupContent({
                               </div>
                               <div className="border-t-2 border-b-2 border-black">
                                 <div className="flex flex-row justify-between mt-1 mb-1 ml-2">
-                                  <span className="text-xs font-bold font-nanum">
+                                  <span className="text-xs font-bold font-NanumGothic">
                                     No
                                   </span>
-                                  <span className="text-xs font-bold font-nanum">
+                                  <span className="text-xs font-bold font-NanumGothic">
                                     도로명주소
                                   </span>
-                                  <span className="text-xs font-bold font-nanum mr-2">
+                                  <span className="text-xs font-bold font-NanumGothic mr-2">
                                     우편번호
                                   </span>
                                 </div>
@@ -396,7 +396,7 @@ export default function PopupContent({
                                           }`}
                                         >
                                           <div className="relative px-2 w-full flex flex-row justify-between items-center">
-                                            <span className="text-left text-[12px] font-nanum not-italic font-normal ml-1">
+                                            <span className="text-left text-[12px] font-NanumGothic not-italic font-normal ml-1">
                                               {currentPage === 1
                                                 ? index + 1
                                                 : (currentPage - 1) * 5 +
@@ -405,7 +405,7 @@ export default function PopupContent({
                                             </span>
                                             <div className="flex flex-col flex-wrap sm:max-w-[300px] max-w-[200px] absolute left-8 cursor-pointer">
                                               <span
-                                                className="text-left text-[12px] font-nanum not-italic font-extrabold"
+                                                className="text-left text-[12px] font-NanumGothic not-italic font-extrabold"
                                                 onClick={() => {
                                                   stepNum &&
                                                     biddingInfo &&
@@ -466,7 +466,7 @@ export default function PopupContent({
                                               >
                                                 {addr.roadAddr}
                                               </span>
-                                              <span className="text-left text-[11px] font-nanum not-italic font-normal">
+                                              <span className="text-left text-[11px] font-NanumGothic not-italic font-normal">
                                                 {'[지번] ' + addr.jibunAddr}
                                               </span>
                                               {detailOpen ===
@@ -480,7 +480,7 @@ export default function PopupContent({
                                                       {addr.hemdNm}
                                                     </span>
                                                   </div>
-                                                  <span className="text-xs font-nanum font-bold text-myBlue">
+                                                  <span className="text-xs font-NanumGothic font-bold text-myBlue">
                                                     ※ 관할주민센터는
                                                     참고정보이며, 실제와 다를 수
                                                     있습니다.
@@ -515,7 +515,7 @@ export default function PopupContent({
                                                   </span>
                                                 </div>
                                               )}
-                                              <span className="text-left text-[12px] font-nanum not-italic font-normal mr-1">
+                                              <span className="text-left text-[12px] font-NanumGothic not-italic font-normal mr-1">
                                                 {addr.zipNo}
                                               </span>
                                             </div>
@@ -530,7 +530,7 @@ export default function PopupContent({
                                 emptyView &&
                                 !detailAddr && (
                                   <div className="w-full text-center items-center justify-center h-[50px]">
-                                    <span className="text-[12px] font-nanum not-italic font-extrabold text-left">
+                                    <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
                                       검색결과가 없습니다.
                                     </span>
                                   </div>
@@ -548,12 +548,12 @@ export default function PopupContent({
                                 <div className="border-t border-gray-300 mt-6 w-full h-[150px] flex flex-col justify-center">
                                   <div className="w-[100%] flex flex-row h-[30%]">
                                     <div className="flex justify-center items-center w-[30%] h-[100%] bg-gray-100">
-                                      <span className="text-sm font-bold font-nanum">
+                                      <span className="text-sm font-bold font-NanumGothic">
                                         도로명주소
                                       </span>
                                     </div>
                                     <div className="w-[70%] h-[100%] flex justify-center items-center">
-                                      <span className="text-[12px] font-normal font-nanum">
+                                      <span className="text-[12px] font-normal font-NanumGothic">
                                         {stepNum &&
                                           biddingInfo?.bidderAddr[stepNum - 1]}
                                         {agentInfo && agentInfo?.agentAddr}
@@ -562,7 +562,7 @@ export default function PopupContent({
                                   </div>
                                   <div className="flex flex-row w-[100%] h-[70%] border-t border-b border-black-200">
                                     <div className="flex justify-center items-center w-[30%] h-[100%] bg-gray-100">
-                                      <span className="text-sm font-bold font-nanum">
+                                      <span className="text-sm font-bold font-NanumGothic">
                                         상세주소
                                       </span>
                                     </div>

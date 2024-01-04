@@ -15,14 +15,14 @@ export default function BidderInfo() {
       <div className="flex w-[100%] h-screen bg-white justify-center relative">
         <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
           <div className="flex">
-            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
+            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
               입찰하시는 본인이 맞으신가요?
             </span>
           </div>
           <div className="flex flex-col gap-10 md:w-[550px] w-[90%] md:h-[200px] h-[200px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
             <div
               className={`flex flex-row w-[124px] h-[40px] rounded-sm border ${
-                isSelected ? 'border-myyellow border-[2px]' : 'border-red-600'
+                isSelected ? 'border-myyellow border-[2px]' : 'border-red-600 border-[2px]'
               } justify-center items-center cursor-pointer ${
                 biddingInfo.bidder === 'self' ? 'bg-myyellow' : 'bg-white'
               } relative`}
@@ -31,7 +31,9 @@ export default function BidderInfo() {
                   ...biddingInfo,
                   bidder: 'self', 
                 })
-                setStateNum(stateNum + 2)
+                setTimeout(() => {
+                  setStateNum(stateNum + 2)
+                }, 1000)
               }}
             >
               <div
@@ -57,7 +59,7 @@ export default function BidderInfo() {
                 </svg>
               </div>
               <span
-                className={`flex text-[1rem] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
+                className={`flex text-[1rem] not-italic font-extrabold font-NanumGothic leading-[13px] tracking-[-0.39px] ${
                   biddingInfo.bidder === 'self' ? 'text-white' : 'text-myyellow'
                 }`}
               >
@@ -66,7 +68,7 @@ export default function BidderInfo() {
             </div>
             <div
               className={`flex flex-row w-[124px] h-[40px] rounded-sm border ${
-                isSelected ? 'border-myyellow border-[2px]' : 'border-red-600'
+                isSelected ? 'border-myyellow border-[2px]' : 'border-red-600 border-[2px]'
               } justify-center items-center cursor-pointer ${
                 biddingInfo.bidder === 'agent' ? 'bg-myyellow' : 'bg-white'
               } relative`}
@@ -75,7 +77,9 @@ export default function BidderInfo() {
                   ...biddingInfo,
                   bidder: 'agent',
                 })
-                setStateNum(stateNum + 1)
+                setTimeout(() => {
+                  setStateNum(stateNum + 2)
+                }, 1000)
               }}
             >
               <div
@@ -101,7 +105,7 @@ export default function BidderInfo() {
                 </svg>
               </div>
               <span
-                className={`flex text-[1rem] not-italic font-extrabold leading-[13px] tracking-[-0.39px] ${
+                className={`flex text-[1rem] not-italic font-extrabold font-NanumGothic leading-[13px] tracking-[-0.39px] ${
                   biddingInfo.bidder === 'agent'
                     ? 'text-white ml-1'
                     : 'text-myyellow'
@@ -111,7 +115,7 @@ export default function BidderInfo() {
               </span>
             </div>
             <div className={`${isSelected ? 'hidden' : 'flex'}`}>
-              <span className="text-[10px] font-bold text-myRed font-nanum leading-[-0.3px] ">
+              <span className="text-[12px] font-bold text-myRed font-NanumGothic leading-[-0.3px] ">
                 본인 / 대리인 버튼을 선택해주세요.
               </span>
             </div>
