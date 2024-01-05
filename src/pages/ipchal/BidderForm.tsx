@@ -484,11 +484,7 @@ export default function BidderForm() {
                     message: '이름은 2자 이상 입력해주세요',
                   },
                 })}
-                value={
-                  biddingForm.bidName[stepNum - 1] === ''
-                    ? ''
-                    : biddingForm.bidName[stepNum - 1]
-                }
+                value={biddingForm.bidName[stepNum - 1] || ''}
                 id="bidderName"
                 type="text"
                 className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
@@ -541,11 +537,7 @@ export default function BidderForm() {
                   maxLength={3}
                   placeholder="010"
                   className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
-                  value={
-                    biddingForm.bidPhone1[stepNum - 1] === ''
-                      ? ''
-                      : biddingForm.bidPhone1[stepNum - 1]
-                  }
+                  value={biddingForm.bidPhone1[stepNum - 1] || ''}
                   onChange={(e) => {
                     setBiddingInfo((prev: any) => {
                       const temp = prev.bidderPhone1
@@ -578,11 +570,7 @@ export default function BidderForm() {
                   }}
                   placeholder="1234"
                   className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
-                  value={
-                    biddingForm.bidPhone2[stepNum - 1] === ''
-                      ? ''
-                      : biddingForm.bidPhone2[stepNum - 1]
-                  }
+                  value={biddingForm.bidPhone2[stepNum - 1] || ''}
                   onChange={(e) => {
                     setBiddingInfo((prev: any) => {
                       const temp = prev.bidderPhone2
@@ -615,11 +603,7 @@ export default function BidderForm() {
                   }}
                   placeholder="5678"
                   className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
-                  value={
-                    biddingForm.bidPhone3[stepNum - 1] === ''
-                      ? ''
-                      : biddingForm.bidPhone3[stepNum - 1]
-                  }
+                  value={biddingForm.bidPhone3[stepNum - 1] || ''}
                   onChange={(e) => {
                     setBiddingInfo((prev: any) => {
                       const temp = prev.bidderPhone3
@@ -674,11 +658,7 @@ export default function BidderForm() {
                       type="text"
                       maxLength={6}
                       className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
-                      value={
-                        biddingForm.bidIdNum1[stepNum - 1] === ''
-                          ? ''
-                          : biddingForm.bidIdNum1[stepNum - 1]
-                      }
+                      value={biddingForm.bidIdNum1[stepNum - 1] || ''}
                       onChange={(e) => {
                         setBiddingInfo((prev: any) => {
                           const temp = prev.bidderIdNum1
@@ -710,11 +690,7 @@ export default function BidderForm() {
                       type="text"
                       maxLength={7}
                       className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
-                      value={
-                        biddingForm.bidIdNum2[stepNum - 1] === ''
-                          ? ''
-                          : biddingForm.bidIdNum2[stepNum - 1]
-                      }
+                      value={biddingForm.bidIdNum2[stepNum - 1] || ''}
                       onChange={(e) => {
                         setBiddingInfo((prev: any) => {
                           const temp = prev.bidderIdNum2
@@ -768,11 +744,7 @@ export default function BidderForm() {
                       }}
                       maxLength={3}
                       className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
-                      value={
-                        biddingForm.bidCorpNum1[stepNum - 1] === ''
-                          ? ''
-                          : biddingForm.bidCorpNum1[stepNum - 1]
-                      }
+                      value={biddingForm.bidCorpNum1[stepNum - 1] || ''}
                       onChange={(e) => {
                         setBiddingInfo((prev: any) => {
                           const temp = prev.bidderCorpNum1
@@ -805,11 +777,7 @@ export default function BidderForm() {
                       }}
                       maxLength={2}
                       className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
-                      value={
-                        biddingForm.bidCorpNum2[stepNum - 1] === ''
-                          ? ''
-                          : biddingForm.bidCorpNum2[stepNum - 1]
-                      }
+                      value={biddingForm.bidCorpNum2[stepNum - 1] || ''}
                       onChange={(e) => {
                         setBiddingInfo((prev: any) => {
                           const temp = prev.bidderCorpNum2
@@ -842,11 +810,7 @@ export default function BidderForm() {
                       }}
                       maxLength={5}
                       className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
-                      value={
-                        biddingForm.bidCorpNum3[stepNum - 1] === ''
-                          ? ''
-                          : biddingForm.bidCorpNum3[stepNum - 1]
-                      }
+                      value={biddingForm.bidCorpNum3[stepNum - 1] || ''}
                       onChange={(e) => {
                         setBiddingInfo((prev: any) => {
                           const temp = prev.bidderCorpNum3
@@ -902,11 +866,7 @@ export default function BidderForm() {
                         id="bidderCorpRegiNum1"
                         placeholder="123456"
                         className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[50%] text-center"
-                        value={
-                          biddingForm.bidCorpRegiNum1[stepNum - 1] === ''
-                            ? ''
-                            : biddingForm.bidCorpRegiNum1[stepNum - 1]
-                        }
+                        value={biddingForm.bidCorpRegiNum1[stepNum - 1] || ''}
                         onChange={(e) => {
                           setBiddingInfo((prev: any) => {
                             const temp = prev.bidderCorpRegiNum1
@@ -940,11 +900,7 @@ export default function BidderForm() {
                         name="bidderCorpRegiNum2"
                         placeholder="1234567"
                         className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[50%] text-center"
-                        value={
-                          biddingForm.bidCorpRegiNum2[stepNum - 1] === ''
-                            ? ''
-                            : biddingForm.bidCorpRegiNum2[stepNum - 1]
-                        }
+                        value={biddingForm.bidCorpRegiNum2[stepNum - 1] || ''}
                         onChange={(e) => {
                           setBiddingInfo((prev: any) => {
                             const temp = prev.bidderCorpRegiNum2
@@ -987,11 +943,7 @@ export default function BidderForm() {
                   {...register('bidderJob', {
                     required: '직업을 입력해주세요',
                   })}
-                  value={
-                    biddingForm.bidJob[stepNum - 1] === ''
-                      ? ''
-                      : biddingForm.bidJob[stepNum - 1]
-                  }
+                  value={biddingForm.bidJob[stepNum - 1] || ''}
                   id="bidderJob"
                   type="text"
                   className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"

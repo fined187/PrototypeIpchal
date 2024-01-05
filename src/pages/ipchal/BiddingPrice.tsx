@@ -89,22 +89,22 @@ export default function BiddingPrice() {
         console.log(response)
         setPaymentsInfo({
           ...paymentsInfo,
-          biddingTime: response.data.data.biddingInfos[0].biddingTime,
+          biddingTime: response.data.data.biddingInfo.biddingTime,
           appraisalAmount:
-            response.data.data.biddingInfos[0].appraisalAmount,
-          minimumAmount: response.data.data.biddingInfos[0].minimumAmount,
-          bidDeposit: response.data.data.biddingInfos[0].bidDeposit,
+            response.data.data.biddingInfo.appraisalAmount,
+          minimumAmount: response.data.data.biddingInfo.minimumAmount,
+          bidDeposit: response.data.data.biddingInfo.bidDeposit,
         })
         if (biddingForm.biddingPrice === 0) {
           setBiddingForm({
             ...biddingForm,
-            biddingPrice: response.data.data.biddingInfos[0].minimumAmount,
+            biddingPrice: response.data.data.biddingInfo.minimumAmount,
           })
         }
         if (biddingForm.depositPrice === 0) {
           setBiddingForm({
             ...biddingForm,
-            depositPrice: response.data.data.biddingInfos[0].bidDeposit,
+            depositPrice: response.data.data.biddingInfo.bidDeposit,
           })
         }
       } catch (error) {
@@ -236,7 +236,7 @@ export default function BiddingPrice() {
           type="button"
           className="flex md:w-[30%] w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
-            setStateNum(stateNum - 1)
+            setStateNum(14)
           }}
         >
           <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
@@ -246,6 +246,9 @@ export default function BiddingPrice() {
         <button
           type="button"
           className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+          onClick={() => {
+            handleBiddingPrice()
+          }}
         >
           <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
             {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}

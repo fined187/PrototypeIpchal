@@ -58,8 +58,8 @@ export default function IpchalResult() {
         </div>
       )}
       {!loading && (totalResult && totalResult.bidders.length === 1) && (
-        <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] sm:w-screen min-w-[420px] m-auto relative justify-center items-center">
-          <div className="flex flex-col bg-mybg h-[100%] md:w-full min-w-[420px] m-auto relative justify-center items-center" id="capture">
+        <div className="flex flex-col bg-white max-h-[2000px] h-[1300px] sm:w-[100%] mx-auto relative justify-center items-center">
+          <div className="flex flex-col bg-mybg h-[100%] md:w-[50%] w-[100%] mx-auto relative justify-center items-center" id="capture">
             <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표
             </div>
@@ -73,12 +73,12 @@ export default function IpchalResult() {
                   </div>
                   <div className="flex flex-row justify-between items-stretch">
                     <div>
-                      <span className="text-[12px] font-semibold font-nanum">
+                      <span className="text-[12px] font-semibold font-NanumGothic">
                         {totalResult && totalResult.reqCourtName + ' 귀하'}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[12px] font-semibold font-nanum">
+                      <span className="text-[12px] font-semibold font-NanumGothic">
                         입찰기일 :{' '}
                         {totalResult &&
                           totalResult?.biddingDate?.substring(0, 4)}
@@ -91,14 +91,14 @@ export default function IpchalResult() {
                 {/* 두 번째 박스 */}
                 <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[12%]">
                   <div className="border-black border-r-[1px] md:w-[5%] w-[10%] h-[100%] justify-center items-start">
-                    <span className="md:text-[10px] text-[10px] font-nanum font-bold">
+                    <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
                       사건 
                       <br />
                       번호
                     </span>
                   </div>
                   <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
-                    <span className="md:text-[12px] text-[12px] font-nanum font-semibold">
+                    <span className="md:text-[12px] text-[12px] font-NanumGothic font-semibold">
                       {totalResult &&
                         totalResult.caseYear +
                           ' 타경 ' +
@@ -106,7 +106,7 @@ export default function IpchalResult() {
                     </span>
                   </div>
                   <div className="border-black border-r-[1px] md:w-[5%] w-[10%] justify-center items-center text-center h-[100%]">
-                    <span className="md:text-[10px] text-[10px] font-nanum font-bold">
+                    <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
                       물건 
                       <br />
                       번호
@@ -116,8 +116,8 @@ export default function IpchalResult() {
                     <span
                       className={
                         totalResult && totalResult?.mulNo
-                          ? 'text-[12px] font-bold font-nanum'
-                          : 'text-[8px] font-bold font-nanum'
+                          ? 'text-[12px] font-bold font-NanumGothic'
+                          : 'text-[8px] font-bold font-NanumGothic'
                       }
                     >
                       {totalResult && totalResult?.mulNo
@@ -129,14 +129,14 @@ export default function IpchalResult() {
                 {/* 세 번째 박스 */}
                 <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[40%]">
                   <div className="flex justify-center items-center border-black border-r-[1px] w-[5.2%]">
-                    <span className="text-[14px] font-bold font-nanum">
+                    <span className="text-[14px] font-bold font-NanumGothic">
                       입<br />찰<br />자
                     </span>
                   </div>
                   <div className="w-[100%] h-[100%]">
                     <div className="flex flex-row items-stretch border-black border-b-[1px] h-[50%]">
                       <div className="flex justify-center items-center border-black border-r-[1px] w-[12%]">
-                        <span className="text-[14px] font-nanum">본인</span>
+                        <span className="text-[14px] font-NanumGothic">본인</span>
                       </div>
                       <div className="flex flex-col w-[100%] h-[100%]">
                         <div className="flex flex-row items-stretch border-black border-b-[1px] h-[30%]">
@@ -144,7 +144,7 @@ export default function IpchalResult() {
                             <span className="text-[12px]">성명</span>
                           </div>
                           <div className="flex justify-center text-center items-center border-black border-r-[1px] w-[30%]">
-                            <span className="text-[12px] font-nanum">
+                            <span className="text-[12px] font-NanumGothic">
                               {totalResult && totalResult?.bidders?.length > 1
                                 ? ''
                                 : totalResult && totalResult?.bidders[0]?.name}
@@ -166,14 +166,14 @@ export default function IpchalResult() {
                         </div>
                         <div className="flex flex-row border-black border-b-[1px]">
                           <div className="flex justify-center border-black border-r-[1px] w-[20%]">
-                            <span className="text-[12px] font-nanum">
+                            <span className="text-[12px] font-NanumGothic">
                               주민(사업자)
                               <br />
                               등록번호
                             </span>
                           </div>
                           <div className="flex w-[30%] border-black border-r-[1px] justify-center items-center">
-                            <span className="text-[12px] font-nanum">
+                            <span className="text-[12px] font-NanumGothic">
                               {biddingInfo.bidCorpYn[0] === 'I' ? (
                                 biddingInfo.bidIdNum1 + '-' + biddingInfo.bidIdNum2
                               ): (
@@ -189,7 +189,7 @@ export default function IpchalResult() {
                             </span>
                           </div>
                           <div className="flex justify-center items-center w-[30%] text-center">
-                            <span className="text-[12px] font-nanum">
+                            <span className="text-[12px] font-NanumGothic">
                               {totalResult && totalResult?.bidders?.length > 1
                                 ? '-'
                                 : totalResult &&
@@ -199,10 +199,10 @@ export default function IpchalResult() {
                         </div>
                         <div className="flex flex-row h-[40%]">
                           <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
-                            <span className="text-[12px] font-nanum">주소</span>
+                            <span className="text-[12px] font-NanumGothic">주소</span>
                           </div>
                           <div className="flex justify-center items-center w-[80%]">
-                            <span className="text-[12px] font-nanum">
+                            <span className="text-[12px] font-NanumGothic">
                               {totalResult && totalResult?.bidders?.length > 1
                                 ? ''
                                 : totalResult &&
@@ -214,7 +214,7 @@ export default function IpchalResult() {
                     </div>
                     <div className="flex flex-row justify-between items-stretch w-[100%] h-[50%]">
                       <div className="flex justify-center items-center w-[10.8%] border-black border-r-[1px]">
-                        <span className="text-[14px] font-nanum">대리인</span>
+                        <span className="text-[14px] font-NanumGothic">대리인</span>
                       </div>
                       <div className="w-[90%]">
                         <div className="flex flex-row items-stretch border-black border-b-[1px] h-[35%]">
@@ -242,34 +242,34 @@ export default function IpchalResult() {
                         </div>
                         <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] h-[35%]">
                           <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                            <span className="text-[12px] font-nanum">
+                            <span className="text-[12px] font-NanumGothic">
                               주민등록번호
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                            <span className="font-nanum text-[12px]">
+                            <span className="font-NanumGothic text-[12px]">
                               {biddingInfo.agentIdNum.substring(0, 6) +
                                 '-' +
                                 biddingInfo.agentIdNum.substring(6, 14) ?? '-'}
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
-                            <span className="text-[12px] font-nanum">
+                            <span className="text-[12px] font-NanumGothic">
                               전화번호
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
-                            <span className="text-[12px] font-nanum">
+                            <span className="text-[12px] font-NanumGothic">
                               {biddingInfo.agentPhone ?? '-'}
                             </span>
                           </div>
                         </div>
                         <div className="flex flex-row justify-between items-stretch h-[30%]">
                           <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                            <span className="text-[12px] font-nanum">주소</span>
+                            <span className="text-[12px] font-NanumGothic">주소</span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[80%]">
-                            <span className="text-[12px] font-nanum">
+                            <span className="text-[12px] font-NanumGothic">
                               {biddingInfo.agentAddr ?? '-'}
                             </span>
                           </div>
@@ -281,7 +281,7 @@ export default function IpchalResult() {
                 {/* 네 번째 박스 */}
                 <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[25%]">
                   <div className="w-[4%] border-black border-r-[1px] h-[100%]">
-                    <span className="text-[12px] font-nanum font-bold">
+                    <span className="text-[12px] font-NanumGothic font-bold">
                       입
                       <br />
                       찰
@@ -293,10 +293,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">천억</span>
+                      <span className="text-[12px] font-NanumGothic">천억</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -311,10 +311,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">백억</span>
+                      <span className="text-[12px] font-NanumGothic">백억</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -329,10 +329,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">십억</span>
+                      <span className="text-[12px] font-NanumGothic">십억</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -347,13 +347,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">억</span>
+                      <span className="text-[12px] font-NanumGothic">억</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -368,10 +368,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">천만</span>
+                      <span className="text-[12px] font-NanumGothic">천만</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -386,10 +386,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">백만</span>
+                      <span className="text-[12px] font-NanumGothic">백만</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -404,10 +404,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">십만</span>
+                      <span className="text-[12px] font-NanumGothic">십만</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -422,13 +422,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">만</span>
+                      <span className="text-[12px] font-NanumGothic">만</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -443,13 +443,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">천</span>
+                      <span className="text-[12px] font-NanumGothic">천</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -464,13 +464,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">백</span>
+                      <span className="text-[12px] font-NanumGothic">백</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -485,13 +485,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">십</span>
+                      <span className="text-[12px] font-NanumGothic">십</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -506,13 +506,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">일</span>
+                      <span className="text-[12px] font-NanumGothic">일</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         handlePrice(
                           totalResult?.bidPrice?.toString().length,
@@ -526,10 +526,10 @@ export default function IpchalResult() {
                     </div>
                   </div>
                   <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
-                    <span className="text-[15px] font-nanum font-bold">원</span>
+                    <span className="text-[15px] font-NanumGothic font-bold">원</span>
                   </div>
                   <div className="w-[4%] border-black border-r-[1px]">
-                    <span className="text-[14px] font-nanum font-bold">
+                    <span className="text-[14px] font-NanumGothic font-bold">
                       보
                       <br />
                       증
@@ -540,10 +540,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">천억</span>
+                      <span className="text-[12px] font-NanumGothic">천억</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                         totalResult?.bidDeposit?.toString().length === 12
                           ? totalResult?.bidDeposit?.toString()?.substring(0, 1)
@@ -553,10 +553,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">백억</span>
+                      <span className="text-[12px] font-NanumGothic">백억</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -571,10 +571,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">십억</span>
+                      <span className="text-[12px] font-NanumGothic">십억</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -589,13 +589,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">억</span>
+                      <span className="text-[12px] font-NanumGothic">억</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -610,10 +610,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">천만</span>
+                      <span className="text-[12px] font-NanumGothic">천만</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -628,10 +628,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">백만</span>
+                      <span className="text-[12px] font-NanumGothic">백만</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -646,10 +646,10 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum">십만</span>
+                      <span className="text-[12px] font-NanumGothic">십만</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -664,13 +664,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">만</span>
+                      <span className="text-[12px] font-NanumGothic">만</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -685,13 +685,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">천</span>
+                      <span className="text-[12px] font-NanumGothic">천</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -706,13 +706,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">백</span>
+                      <span className="text-[12px] font-NanumGothic">백</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -727,13 +727,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">십</span>
+                      <span className="text-[12px] font-NanumGothic">십</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -748,13 +748,13 @@ export default function IpchalResult() {
                   </div>
                   <div className="w-[3%]">
                     <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                      <span className="text-[12px] font-nanum text-mybg">
+                      <span className="text-[12px] font-NanumGothic text-mybg">
                         <br />
                       </span>
-                      <span className="text-[12px] font-nanum">일</span>
+                      <span className="text-[12px] font-NanumGothic">일</span>
                     </div>
                     <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         {totalResult &&
                           (handleDepositPrice(
                             totalResult?.bidDeposit?.toString().length,
@@ -768,14 +768,14 @@ export default function IpchalResult() {
                     </div>
                   </div>
                   <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
-                    <span className="text-[15px] font-nanum font-bold">원</span>
+                    <span className="text-[15px] font-NanumGothic font-bold">원</span>
                   </div>
                 </div>
                 {/* 다섯 번째 박스 */}
                 <div className="flex flex-row justify-between items-stretch w-[100%] h-[8%]">
                   <div className="flex w-[50%] border-black border-r-[2px] h-[100%]">
                     <div className='flex justify-start w-[50%] h-[100%] ml-[10px]'>
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         보증의 제공방법
                       </span>
                     </div>
@@ -804,12 +804,12 @@ export default function IpchalResult() {
                   </div>
                   <div className="flex flex-col justify-around items-stretch w-[50%] h-[100%]">
                     <div className="flex justify-start">
-                      <span className="text-[12px] font-nanum font-bold ml-[10px]">
+                      <span className="text-[12px] font-NanumGothic font-bold ml-[10px]">
                         보증을 반환 받았습니다.
                       </span>
                     </div>
                     <div className='flex justify-end'>
-                      <span className="text-[12px] font-nanum font-bold mr-[10px]">
+                      <span className="text-[12px] font-NanumGothic font-bold mr-[10px]">
                         본인 또는 대리인{' '}
                         {totalResult && totalResult.bidders[0].name} (인)
                       </span>
@@ -827,7 +827,7 @@ export default function IpchalResult() {
               className="flex md:w-[200px] w-[150px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
               onClick={() => setStateNum(stateNum - 1)}
             >
-              <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+              <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                 이전
               </span>
             </button>
@@ -838,7 +838,7 @@ export default function IpchalResult() {
                 setStateNum(stateNum + 1)
               }}
             >
-              <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+              <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                 확인했습니다
               </span>
             </button>

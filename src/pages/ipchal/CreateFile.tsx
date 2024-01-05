@@ -170,14 +170,14 @@ export default function CreateFile() {
   return (
     <>
       {!loading && (
-        <div className="flex w-screen h-screen justify-center bg-mybg relative">
-          <div className="flex flex-col gap-4 md:w-[520px] w-[100%] h-[80%] bg-mybg items-center text-center top-20 relative">
-            <span className="text-[20px] font-extrabold font-nanum not-italic leading-8">
+        <div className="flex w-[100%] h-screen justify-center bg-white relative">
+          <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
+            <span className="text-[20px] font-extrabold font-NanumGothic not-italic leading-8">
               파일명과 암호를 입력하세요
             </span>
             <div className="flex flex-col gap-5 w-[420px] h-[150px] justify-center items-left bg-white absolute top-[130px] rounded-md border-gray-400">
               <div className="flex flex-col justify-start text-left gap-3">
-                <span className="text-black text-[10px] font-extrabold not-italic font-nanum leading-[9px] ml-[5%]">
+                <span className="text-black text-[10px] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
                   파일이름
                 </span>
                 <input
@@ -189,7 +189,7 @@ export default function CreateFile() {
                 />
               </div>
               <div className="flex flex-col justify-start text-left gap-3 relative">
-                <span className="text-black text-[10px] font-extrabold not-italic font-nanum leading-[9px] ml-[5%]">
+                <span className="text-black text-[10px] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
                   파일암호
                 </span>
                 <input
@@ -216,7 +216,7 @@ export default function CreateFile() {
                 setIsFileCreated(true)
               }}
             >
-              <span className="flex text-white text-center text-[15px] not-italic font-extrabold leading-[15px] font-nanum cursor-pointer">
+              <span className="flex text-white text-center text-[15px] not-italic font-extrabold leading-[15px] font-NanumGothic cursor-pointer">
                 파일만들기
               </span>
             </div>
@@ -265,12 +265,12 @@ export default function CreateFile() {
                     </div>
                     <div className="flex flex-row justify-between items-stretch">
                       <div>
-                        <span className="text-[12px] font-semibold font-nanum">
+                        <span className="text-[12px] font-semibold font-NanumGothic">
                           {totalResult && totalResult.reqCourtName + ' 귀하'}
                         </span>
                       </div>
                       <div>
-                        <span className="text-[12px] font-semibold font-nanum">
+                        <span className="text-[12px] font-semibold font-NanumGothic">
                           입찰기일 :{' '}
                           {totalResult &&
                             totalResult?.biddingDate?.substring(0, 4)}
@@ -283,14 +283,14 @@ export default function CreateFile() {
                   {/* 두 번째 박스 */}
                   <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[12%]">
                     <div className="border-black border-r-[1px] md:w-[5%] w-[10%] h-[100%] justify-center items-start">
-                      <span className="md:text-[10px] text-[10px] font-nanum font-bold">
+                      <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
                         사건 
                         <br />
                         번호
                       </span>
                     </div>
                     <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
-                      <span className="md:text-[12px] text-[12px] font-nanum font-semibold">
+                      <span className="md:text-[12px] text-[12px] font-NanumGothic font-semibold">
                         {totalResult &&
                           totalResult.caseYear +
                             ' 타경 ' +
@@ -298,7 +298,7 @@ export default function CreateFile() {
                       </span>
                     </div>
                     <div className="border-black border-r-[1px] md:w-[5%] w-[10%] justify-center items-center text-center h-[100%]">
-                      <span className="md:text-[10px] text-[10px] font-nanum font-bold">
+                      <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
                         물건 
                         <br />
                         번호
@@ -308,8 +308,8 @@ export default function CreateFile() {
                       <span
                         className={
                           totalResult && totalResult?.mulNo
-                            ? 'text-[12px] font-bold font-nanum'
-                            : 'text-[8px] font-bold font-nanum'
+                            ? 'text-[12px] font-bold font-NanumGothic'
+                            : 'text-[8px] font-bold font-NanumGothic'
                         }
                       >
                         {totalResult && totalResult?.mulNo
@@ -321,14 +321,14 @@ export default function CreateFile() {
                   {/* 세 번째 박스 */}
                   <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[40%]">
                     <div className="flex justify-center items-center border-black border-r-[1px] w-[5.2%]">
-                      <span className="text-[14px] font-bold font-nanum">
+                      <span className="text-[14px] font-bold font-NanumGothic">
                         입<br />찰<br />자
                       </span>
                     </div>
                     <div className="w-[100%] h-[100%]">
                       <div className="flex flex-row items-stretch border-black border-b-[1px] h-[50%]">
                         <div className="flex justify-center items-center border-black border-r-[1px] w-[12%]">
-                          <span className="text-[14px] font-nanum">본인</span>
+                          <span className="text-[14px] font-NanumGothic">본인</span>
                         </div>
                         <div className="flex flex-col w-[100%] h-[100%]">
                           <div className="flex flex-row items-stretc h-[30%]">
@@ -338,7 +338,7 @@ export default function CreateFile() {
                           </div>
                           <div className="flex flex-row">
                             <div className="flex justify-center border-black border-b-[1px] border-r-[1px] w-[20%]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 주민(사업자)
                                 <br />
                                 등록번호
@@ -352,14 +352,14 @@ export default function CreateFile() {
                           </div>
                           <div className="flex flex-row h-[40%]">
                             <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
-                              <span className="text-[12px] font-nanum">주소</span>
+                              <span className="text-[12px] font-NanumGothic">주소</span>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div className="flex flex-row justify-between items-stretch w-[100%] h-[50%]">
                         <div className="flex justify-center items-center w-[10.8%] border-black border-r-[1px]">
-                          <span className="text-[14px] font-nanum">대리인</span>
+                          <span className="text-[14px] font-NanumGothic">대리인</span>
                         </div>
                         <div className="w-[90%]">
                           <div className="flex flex-row items-stretch border-black border-b-[1px] h-[35%]">
@@ -387,34 +387,34 @@ export default function CreateFile() {
                           </div>
                           <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] h-[35%]">
                             <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 주민등록번호
                               </span>
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                              <span className="font-nanum text-[12px]">
+                              <span className="font-NanumGothic text-[12px]">
                                 {biddingInfo.agentIdNum.substring(0, 6) +
                                   '-' +
                                   biddingInfo.agentIdNum.substring(6, 14) ?? '-'}
                               </span>
                             </div>
                             <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 전화번호
                               </span>
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 {biddingInfo.agentPhone ?? '-'}
                               </span>
                             </div>
                           </div>
                           <div className="flex flex-row justify-between items-stretch h-[30%]">
                             <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                              <span className="text-[12px] font-nanum">주소</span>
+                              <span className="text-[12px] font-NanumGothic">주소</span>
                             </div>
                             <div className="flex justify-center items-center text-center w-[80%]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 {biddingInfo.agentAddr ?? '-'}
                               </span>
                             </div>
@@ -426,7 +426,7 @@ export default function CreateFile() {
                   {/* 네 번째 박스 */}
                   <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[25%]">
                     <div className="w-[4%] border-black border-r-[1px] h-[100%]">
-                      <span className="text-[14px] font-nanum font-bold">
+                      <span className="text-[14px] font-NanumGothic font-bold">
                         입
                         <br />
                         찰
@@ -438,10 +438,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">천억</span>
+                        <span className="text-[12px] font-NanumGothic">천억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -456,10 +456,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">백억</span>
+                        <span className="text-[12px] font-NanumGothic">백억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -474,10 +474,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">십억</span>
+                        <span className="text-[12px] font-NanumGothic">십억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -492,13 +492,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">억</span>
+                        <span className="text-[12px] font-NanumGothic">억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -513,10 +513,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">천만</span>
+                        <span className="text-[12px] font-NanumGothic">천만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -531,10 +531,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">백만</span>
+                        <span className="text-[12px] font-NanumGothic">백만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -549,10 +549,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">십만</span>
+                        <span className="text-[12px] font-NanumGothic">십만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -567,13 +567,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">만</span>
+                        <span className="text-[12px] font-NanumGothic">만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -588,13 +588,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">천</span>
+                        <span className="text-[12px] font-NanumGothic">천</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -609,13 +609,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">백</span>
+                        <span className="text-[12px] font-NanumGothic">백</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -630,13 +630,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">십</span>
+                        <span className="text-[12px] font-NanumGothic">십</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -651,13 +651,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">일</span>
+                        <span className="text-[12px] font-NanumGothic">일</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -671,10 +671,10 @@ export default function CreateFile() {
                       </div>
                     </div>
                     <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
-                      <span className="text-[15px] font-nanum font-bold">원</span>
+                      <span className="text-[15px] font-NanumGothic font-bold">원</span>
                     </div>
                     <div className="w-[4%] border-black border-r-[1px]">
-                      <span className="text-[14px] font-nanum font-bold">
+                      <span className="text-[14px] font-NanumGothic font-bold">
                         보
                         <br />
                         증
@@ -685,10 +685,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">천억</span>
+                        <span className="text-[12px] font-NanumGothic">천억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           totalResult?.bidDeposit?.toString().length === 12
                             ? totalResult?.bidDeposit?.toString()?.substring(0, 1)
@@ -698,10 +698,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">백억</span>
+                        <span className="text-[12px] font-NanumGothic">백억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -716,10 +716,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">십억</span>
+                        <span className="text-[12px] font-NanumGothic">십억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -734,13 +734,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">억</span>
+                        <span className="text-[12px] font-NanumGothic">억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -755,10 +755,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">천만</span>
+                        <span className="text-[12px] font-NanumGothic">천만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -773,10 +773,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">백만</span>
+                        <span className="text-[12px] font-NanumGothic">백만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -791,10 +791,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">십만</span>
+                        <span className="text-[12px] font-NanumGothic">십만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -809,13 +809,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">만</span>
+                        <span className="text-[12px] font-NanumGothic">만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -830,13 +830,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">천</span>
+                        <span className="text-[12px] font-NanumGothic">천</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -851,13 +851,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">백</span>
+                        <span className="text-[12px] font-NanumGothic">백</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -872,13 +872,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">십</span>
+                        <span className="text-[12px] font-NanumGothic">십</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -893,13 +893,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">일</span>
+                        <span className="text-[12px] font-NanumGothic">일</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -913,14 +913,14 @@ export default function CreateFile() {
                       </div>
                     </div>
                     <div className="flex justify-center items-center w-[5%]">
-                      <span className="text-[15px] font-nanum font-bold">원</span>
+                      <span className="text-[15px] font-NanumGothic font-bold">원</span>
                     </div>
                   </div>
                   {/* 다섯 번째 박스 */}
                   <div className="flex flex-row justify-between items-stretch w-[100%] h-[8%]">
                     <div className="flex flex-row justify-around items-stretch w-[49.9%] py-[10px] border-black border-r-[2px]">
                       <div className='flex justify-start w-[50%] h-[100%] ml-[10px]'>
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           보증의 제공방법
                         </span>
                       </div>
@@ -949,12 +949,12 @@ export default function CreateFile() {
                     </div>
                     <div className="flex flex-col justify-around items-stretch w-[50%] h-[100%]">
                       <div className="flex justify-start">
-                        <span className="text-[12px] font-nanum font-bold ml-[10px]">
+                        <span className="text-[12px] font-NanumGothic font-bold ml-[10px]">
                           보증을 반환 받았습니다.
                         </span>
                       </div>
                       <div className="flex justify-end">
-                        <span className="text-[12px] font-nanum font-bold mr-[10px]">
+                        <span className="text-[12px] font-NanumGothic font-bold mr-[10px]">
                           본인 또는 대리인{' '}
                           {totalResult && totalResult.agentYn === 'Y' ? totalResult && totalResult.agent.name : totalResult && totalResult.bidders[0].name} (인)
                         </span>
@@ -990,12 +990,12 @@ export default function CreateFile() {
                     </div>
                     <div className="flex flex-row justify-between items-stretch">
                       <div>
-                        <span className="text-[12px] font-semibold font-nanum">
+                        <span className="text-[12px] font-semibold font-NanumGothic">
                           {totalResult && totalResult.reqCourtName + ' 귀하'}
                         </span>
                       </div>
                       <div>
-                        <span className="text-[12px] font-semibold font-nanum">
+                        <span className="text-[12px] font-semibold font-NanumGothic">
                           입찰기일 :{' '}
                           {totalResult &&
                             totalResult?.biddingDate?.substring(0, 4)}
@@ -1008,14 +1008,14 @@ export default function CreateFile() {
                   {/* 두 번째 박스 */}
                   <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[12%]">
                     <div className="border-black border-r-[1px] md:w-[5%] w-[10%] h-[100%] justify-center items-start">
-                      <span className="md:text-[10px] text-[10px] font-nanum font-bold">
+                      <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
                         사건 
                         <br />
                         번호
                       </span>
                     </div>
                     <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
-                      <span className="md:text-[12px] text-[12px] font-nanum font-semibold">
+                      <span className="md:text-[12px] text-[12px] font-NanumGothic font-semibold">
                         {totalResult &&
                           totalResult.caseYear +
                             ' 타경 ' +
@@ -1023,7 +1023,7 @@ export default function CreateFile() {
                       </span>
                     </div>
                     <div className="border-black border-r-[1px] md:w-[5%] w-[10%] justify-center items-center text-center h-[100%]">
-                      <span className="md:text-[10px] text-[10px] font-nanum font-bold">
+                      <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
                         물건 
                         <br />
                         번호
@@ -1033,8 +1033,8 @@ export default function CreateFile() {
                       <span
                         className={
                           totalResult && totalResult?.mulNo
-                            ? 'text-[12px] font-bold font-nanum'
-                            : 'text-[8px] font-bold font-nanum'
+                            ? 'text-[12px] font-bold font-NanumGothic'
+                            : 'text-[8px] font-bold font-NanumGothic'
                         }
                       >
                         {totalResult && totalResult?.mulNo
@@ -1046,14 +1046,14 @@ export default function CreateFile() {
                   {/* 세 번째 박스 */}
                   <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[40%]">
                     <div className="flex justify-center items-center border-black border-r-[1px] w-[5.2%]">
-                      <span className="text-[14px] font-bold font-nanum">
+                      <span className="text-[14px] font-bold font-NanumGothic">
                         입<br />찰<br />자
                       </span>
                     </div>
                     <div className="w-[100%] h-[100%]">
                       <div className="flex flex-row items-stretch border-black border-b-[1px] h-[50%]">
                         <div className="flex justify-center items-center border-black border-r-[1px] w-[12%]">
-                          <span className="text-[14px] font-nanum">본인</span>
+                          <span className="text-[14px] font-NanumGothic">본인</span>
                         </div>
                         <div className="flex flex-col w-[100%] h-[100%]">
                           <div className="flex flex-row items-stretch border-black border-b-[1px] h-[30%]">
@@ -1061,7 +1061,7 @@ export default function CreateFile() {
                               <span className="text-[12px]">성명</span>
                             </div>
                             <div className="flex justify-center text-center items-center border-black border-r-[1px] w-[30%]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 {totalResult && totalResult?.bidders?.length > 1
                                   ? ''
                                   : totalResult && totalResult?.bidders[0]?.name}
@@ -1083,14 +1083,14 @@ export default function CreateFile() {
                           </div>
                           <div className="flex flex-row border-black border-b-[1px]">
                             <div className="flex justify-center border-black border-r-[1px] w-[20%]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 주민(사업자)
                                 <br />
                                 등록번호
                               </span>
                             </div>
                             <div className="flex w-[30%] border-black border-r-[1px] justify-center items-center">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 {biddingInfo.bidCorpYn[0] === 'N' ? (
                                   biddingInfo.bidIdNum1 + '-' + biddingInfo.bidIdNum2
                                 ): (
@@ -1106,7 +1106,7 @@ export default function CreateFile() {
                               </span>
                             </div>
                             <div className="flex justify-center items-center w-[30%] text-center">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 {totalResult && totalResult?.bidders?.length > 1
                                   ? ''
                                   : totalResult &&
@@ -1116,10 +1116,10 @@ export default function CreateFile() {
                           </div>
                           <div className="flex flex-row h-[40%]">
                             <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
-                              <span className="text-[12px] font-nanum">주소</span>
+                              <span className="text-[12px] font-NanumGothic">주소</span>
                             </div>
                             <div className="flex justify-center items-center w-[80%]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 {totalResult && totalResult?.bidders?.length > 1
                                   ? ''
                                   : totalResult &&
@@ -1131,7 +1131,7 @@ export default function CreateFile() {
                       </div>
                       <div className="flex flex-row justify-between items-stretch w-[100%] h-[50%]">
                         <div className="flex justify-center items-center w-[10.8%] border-black border-r-[1px]">
-                          <span className="text-[14px] font-nanum">대리인</span>
+                          <span className="text-[14px] font-NanumGothic">대리인</span>
                         </div>
                         <div className="w-[90%]">
                           <div className="flex flex-row items-stretch border-black border-b-[1px] h-[35%]">
@@ -1159,34 +1159,34 @@ export default function CreateFile() {
                           </div>
                           <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] h-[35%]">
                             <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 주민등록번호
                               </span>
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                              <span className="font-nanum text-[12px]">
+                              <span className="font-NanumGothic text-[12px]">
                                 {biddingInfo.agentIdNum.substring(0, 6) +
                                   '-' +
                                   biddingInfo.agentIdNum.substring(6, 14) ?? '-'}
                               </span>
                             </div>
                             <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 전화번호
                               </span>
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 {biddingInfo.agentPhone ?? '-'}
                               </span>
                             </div>
                           </div>
                           <div className="flex flex-row justify-between items-stretch h-[30%]">
                             <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                              <span className="text-[12px] font-nanum">주소</span>
+                              <span className="text-[12px] font-NanumGothic">주소</span>
                             </div>
                             <div className="flex justify-center items-center text-center w-[80%]">
-                              <span className="text-[12px] font-nanum">
+                              <span className="text-[12px] font-NanumGothic">
                                 {biddingInfo.agentAddr ?? '-'}
                               </span>
                             </div>
@@ -1198,7 +1198,7 @@ export default function CreateFile() {
                   {/* 네 번째 박스 */}
                   <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[25%]">
                     <div className="w-[4%] border-black border-r-[1px] h-[100%]">
-                      <span className="text-[12px] font-nanum font-bold">
+                      <span className="text-[12px] font-NanumGothic font-bold">
                         입
                         <br />
                         찰
@@ -1210,10 +1210,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">천억</span>
+                        <span className="text-[12px] font-NanumGothic">천억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1228,10 +1228,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">백억</span>
+                        <span className="text-[12px] font-NanumGothic">백억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1246,10 +1246,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">십억</span>
+                        <span className="text-[12px] font-NanumGothic">십억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1264,13 +1264,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">억</span>
+                        <span className="text-[12px] font-NanumGothic">억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1285,10 +1285,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">천만</span>
+                        <span className="text-[12px] font-NanumGothic">천만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1303,10 +1303,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">백만</span>
+                        <span className="text-[12px] font-NanumGothic">백만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1321,10 +1321,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">십만</span>
+                        <span className="text-[12px] font-NanumGothic">십만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1339,13 +1339,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">만</span>
+                        <span className="text-[12px] font-NanumGothic">만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1360,13 +1360,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">천</span>
+                        <span className="text-[12px] font-NanumGothic">천</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1381,13 +1381,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">백</span>
+                        <span className="text-[12px] font-NanumGothic">백</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1402,13 +1402,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">십</span>
+                        <span className="text-[12px] font-NanumGothic">십</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1423,13 +1423,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">일</span>
+                        <span className="text-[12px] font-NanumGothic">일</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           handlePrice(
                             totalResult?.bidPrice?.toString().length,
@@ -1443,10 +1443,10 @@ export default function CreateFile() {
                       </div>
                     </div>
                     <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
-                      <span className="text-[15px] font-nanum font-bold">원</span>
+                      <span className="text-[15px] font-NanumGothic font-bold">원</span>
                     </div>
                     <div className="w-[4%] border-black border-r-[1px]">
-                      <span className="text-[14px] font-nanum font-bold">
+                      <span className="text-[14px] font-NanumGothic font-bold">
                         보
                         <br />
                         증
@@ -1457,10 +1457,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">천억</span>
+                        <span className="text-[12px] font-NanumGothic">천억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                           totalResult?.bidDeposit?.toString().length === 12
                             ? totalResult?.bidDeposit?.toString()?.substring(0, 1)
@@ -1470,10 +1470,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">백억</span>
+                        <span className="text-[12px] font-NanumGothic">백억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1488,10 +1488,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">십억</span>
+                        <span className="text-[12px] font-NanumGothic">십억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1506,13 +1506,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">억</span>
+                        <span className="text-[12px] font-NanumGothic">억</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1527,10 +1527,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">천만</span>
+                        <span className="text-[12px] font-NanumGothic">천만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1545,10 +1545,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">백만</span>
+                        <span className="text-[12px] font-NanumGothic">백만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1563,10 +1563,10 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum">십만</span>
+                        <span className="text-[12px] font-NanumGothic">십만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1581,13 +1581,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">만</span>
+                        <span className="text-[12px] font-NanumGothic">만</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1602,13 +1602,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">천</span>
+                        <span className="text-[12px] font-NanumGothic">천</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1623,13 +1623,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">백</span>
+                        <span className="text-[12px] font-NanumGothic">백</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1644,13 +1644,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">십</span>
+                        <span className="text-[12px] font-NanumGothic">십</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1665,13 +1665,13 @@ export default function CreateFile() {
                     </div>
                     <div className="w-[3%]">
                       <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px]">
-                        <span className="text-[12px] font-nanum text-mybg">
+                        <span className="text-[12px] font-NanumGothic text-mybg">
                           <br />
                         </span>
-                        <span className="text-[12px] font-nanum">일</span>
+                        <span className="text-[12px] font-NanumGothic">일</span>
                       </div>
                       <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           {totalResult &&
                             (handleDepositPrice(
                               totalResult?.bidDeposit?.toString().length,
@@ -1685,14 +1685,14 @@ export default function CreateFile() {
                       </div>
                     </div>
                     <div className="flex justify-center items-center border-black border-r-[1px] w-[5%]">
-                      <span className="text-[15px] font-nanum font-bold">원</span>
+                      <span className="text-[15px] font-NanumGothic font-bold">원</span>
                     </div>
                   </div>
                   {/* 다섯 번째 박스 */}
                   <div className="flex flex-row justify-between items-stretch w-[100%] h-[8%]">
                     <div className="flex w-[50%] border-black border-r-[2px] h-[100%]">
                       <div className='flex justify-start w-[50%] h-[100%] ml-[10px]'>
-                        <span className="text-[12px] font-nanum font-bold">
+                        <span className="text-[12px] font-NanumGothic font-bold">
                           보증의 제공방법
                         </span>
                       </div>
@@ -1721,12 +1721,12 @@ export default function CreateFile() {
                     </div>
                     <div className="flex flex-col justify-around items-stretch w-[50%] h-[100%]">
                       <div className="flex justify-start">
-                        <span className="text-[12px] font-nanum font-bold ml-[10px]">
+                        <span className="text-[12px] font-NanumGothic font-bold ml-[10px]">
                           보증을 반환 받았습니다.
                         </span>
                       </div>
                       <div className='flex justify-end'>
-                        <span className="text-[12px] font-nanum font-bold mr-[10px]">
+                        <span className="text-[12px] font-NanumGothic font-bold mr-[10px]">
                           본인 또는 대리인{' '}
                           {totalResult && totalResult.agentYn === 'Y' ? totalResult.agent.name : totalResult.bidders[0].name} (인)
                         </span>

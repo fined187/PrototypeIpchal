@@ -12,10 +12,10 @@ export default function IpchalInfo() {
           입력이 모두 끝났습니다
         </span>
         <div className="flex flex-col mt-5">
-          <span className="text-[20px] font-extrabold font-nanum not-italic leading-8">
+          <span className="text-[20px] font-extrabold font-NanumGothic not-italic leading-8">
             입찰표를 확인해주시고
           </span>
-          <span className="text-[20px] font-extrabold font-nanum not-italic leading-8">
+          <span className="text-[20px] font-extrabold font-NanumGothic not-italic leading-8">
             입찰표 파일을 생성해주세요
           </span>
         </div>
@@ -23,7 +23,7 @@ export default function IpchalInfo() {
           className="flex w-[180px] h-[40px] bg-mygold rounded-md text-center justify-center items-center absolute top-[300px] cursor-pointer"
           onClick={() => setStateNum(stateNum + 1)}
         >
-          <span className="font-Nanum Gothic text-white text-[16px] not-italic font-extrabold leading-[15px]">
+          <span className="font-NanumGothic text-white text-[16px] not-italic font-extrabold leading-[15px]">
             입찰표 확인하기
           </span>
         </div>

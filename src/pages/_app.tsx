@@ -3,12 +3,14 @@ import '@/styles/globals.css'
 import Layout from '@/components/Layout'
 import { RecoilRoot } from 'recoil'
 import Script from 'next/script'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 declare global {
   interface Window {
     Kakao: any
   }
 }
+const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   const kakaoInit = () => {
@@ -17,16 +19,19 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }
 
+
   return (
     <RecoilRoot>
-      <Layout>
-        <Component {...pageProps} />
-        <Script
-          src="https://developers.kakao.com/sdk/js/kakao.min.js"
-          defer
-          onLoad={kakaoInit}
-        />
-      </Layout>
+      <QueryClientProvider client={queryClient}>
+        <Layout>
+          <Component {...pageProps} />
+          <Script
+            src="https://developers.kakao.com/sdk/js/kakao.min.js"
+            defer
+            onLoad={kakaoInit}
+          />
+        </Layout>
+      </QueryClientProvider>
     </RecoilRoot>
   )
 }

@@ -26,25 +26,25 @@ export default function DownIpchal() {
 
   return (
     <>
-      <div className="flex w-screen h-screen justify-center bg-mybg relative">
-        <div className="flex flex-col gap-[60px] md:w-[520px] w-[100%] h-[80%] bg-mybg items-center text-center top-20 relative">
-          <span className="text-[20px] font-extrabold font-nanum not-italic leading-8">
+      <div className="flex w-[100%] h-screen justify-center bg-white relative">
+        <div className="flex flex-col gap-[60px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
+          <span className="text-[20px] font-extrabold font-NanumGothic not-italic leading-8">
             입찰표 작성이 모두 끝났습니다
             <br />
             수고하셨습니다
           </span>
-          <span className="text-[14px] font-nanum not-italic text-gray-400 leading-[30px] font-bold">
+          <span className="text-[14px] font-NanumGothic not-italic text-gray-400 leading-[30px] font-bold">
             꼭 낙찰 받으시길 기원합니다
           </span>
         </div>
         <div className="flex flex-col gap-[30px] md:w-[520px] bg-mybg items-center text-center absolute top-[350px] cursor-pointer">
           <div className="flex bg-mygold w-[163px] h-[30px] rounded-md justify-center items-center" onClick={() => setOpenPdf(true)}>
-            <span className="text-center text-white font-nanum text-[15px] font-bold leading-[15px]">
+            <span className="text-center text-white font-NanumGothic text-[15px] font-bold leading-[15px]">
               입찰표 확인하기
             </span>
           </div>
           <div className="flex flex-row bg-orange-400 w-[163px] h-[30px] rounded-md justify-center items-center cursor-pointer" onClick={handleDownload}>
-            <span className="text-center text-white font-nanum text-[15px] font-bold leading-[15px]">
+            <span className="text-center text-white font-NanumGothic text-[15px] font-bold leading-[15px]">
               다운받기
             </span>
             <TfiDownload className='bg-orange-400 ml-2 text-white stroke-[1px]' size={20} />
@@ -58,7 +58,7 @@ export default function DownIpchal() {
               setStateNum(12)
             }}
           >
-            <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
               이전
             </span>
           </button>
@@ -69,7 +69,7 @@ export default function DownIpchal() {
               setStateNum(0)
             }}
           >
-            <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
               닫기
             </span>
           </button>
