@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import IpchalResult from './ipchal/IpchalResult'
 import DownIpchal from './ipchal/DownIpchal'
+import BidderFormMod from './ipchal/BidderFormMod'
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState)
@@ -68,6 +69,7 @@ export default function Home() {
       {stateNum === 11 && <CreateFile />}
       {stateNum === 12 && <IpchalShare />}
       {stateNum === 13 && <DownIpchal />}
+      {stateNum === 14 && <BidderFormMod />}
     </>
   )
 }

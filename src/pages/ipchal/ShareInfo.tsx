@@ -171,7 +171,7 @@ export default function ShareInfo() {
               </svg>
             </div>
             <span
-              className={`text-[13px] font-nanum not-italic font-extrabold ${
+              className={`text-[13px] font-NanumGothic not-italic font-extrabold ${
                 shareWay === 'S' ? 'text-white' : 'text-myyellow'
               }`}
             >
@@ -207,7 +207,7 @@ export default function ShareInfo() {
               </svg>
             </div>
             <span
-              className={`text-[13px] font-nanum not-italic font-extrabold ${
+              className={`text-[13px] font-NanumGothic not-italic font-extrabold ${
                 shareWay === 'N' ? 'text-white' : 'text-myyellow'
               }`}
             >
@@ -232,14 +232,14 @@ export default function ShareInfo() {
                         type="text"
                         readOnly
                         value="1"
-                        className={`border  border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
+                        className={`border  border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
                       />
                       <span>/</span>
                       <input
                         type="text"
                         readOnly
                         value={biddingInfo.bidderNum}
-                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]"
+                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[30px] px-2 w-[40%]"
                       />
                     </>
                   ) : (
@@ -251,7 +251,7 @@ export default function ShareInfo() {
                           shareWay === 'N' && goNext
                             ? 'border-red-500'
                             : 'border-gray-300'
-                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
+                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
                         onChange={(e) => {
                           const temp = [...calc.numerator]
                           temp[index] = Number(e.target.value)
@@ -269,7 +269,7 @@ export default function ShareInfo() {
                           shareWay === 'N' && goNext
                             ? 'border-red-500'
                             : 'border-gray-300'
-                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
+                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
                         onChange={(e) => {
                           const temp = [...calc.denominator]
                           temp[index] = Number(e.target.value)
@@ -297,10 +297,10 @@ export default function ShareInfo() {
             type="button"
             className="flex w-[30%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              setStateNum(stateNum - 1)
+              setStateNum(14)
             }}
           >
-            <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
               이전
             </span>
           </button>
@@ -313,7 +313,7 @@ export default function ShareInfo() {
               setStateNum(stateNum + 1)
             }}
           >
-            <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
               {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
             </span>
           </button>

@@ -5,6 +5,26 @@ import { FieldErrors, UseFormRegister, UseFormSetError } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { biddingInfoState } from '@/atom'
 
+type BiddersProps = {
+  address: string
+  bidderType: string
+  companyNo: string
+  corporationNo: string
+  job: string
+  name: string
+  peopleSeq: number
+  phoneNo: string
+  share: any
+}
+
+interface BidderListProps {
+  agentYn: string | null
+  bidderCount: number
+  mstSeq: number
+  number: number
+  state: number
+  bidders: BiddersProps[]
+}
 interface SearchAddressProps {
   biddingInfo?: BiddingInfoType
   setBiddingInfo?: Dispatch<SetStateAction<BiddingInfoType>>
@@ -17,6 +37,8 @@ interface SearchAddressProps {
   agentRegister?: UseFormRegister<AgentInfoType>
   agentErrors?: FieldErrors<AgentInfoType>
   agentSetError?: UseFormSetError<AgentInfoType>
+  bidderList?: BidderListProps
+  setBidderList?: Dispatch<SetStateAction<BidderListProps | undefined>>
 }
 
 export default function SearchAddress({
@@ -31,6 +53,8 @@ export default function SearchAddress({
   agentRegister,
   agentErrors,
   agentSetError,
+  setBidderList,
+  bidderList,
 }: SearchAddressProps) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -108,7 +132,7 @@ export default function SearchAddress({
             상세주소
           </span>
         </div>
-        {register && (
+        {(register && (
           <input
             id="bidAddrDetail"
             type="text"
@@ -120,8 +144,8 @@ export default function SearchAddress({
                 : stepNum && biddingForm.bidAddrDetail[stepNum - 1]
             }
           />
-        )}
-        {agentRegister && (
+        ))}
+        {(agentRegister && (
           <input
             id="agentAddrDetail"
             type="text"
@@ -133,19 +157,19 @@ export default function SearchAddress({
                 : biddingForm.agentAddrDetail
             }
           />
-        )}
+        ))}
       </div>
       {errors?.bidderAddr?.type === 'required' && (
         <div className="flex w-[100%] justify-start">
           <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
-            주소 및 상세주소를 입력해주세요
+            주소를 입력해주세요
           </span>
         </div>
       )}
       {agentErrors?.agentAddr?.type === 'required' && (
         <div className="flex w-[100%] justify-start">
           <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
-            주소 및 상세주소를 입력해주세요
+            주소를 입력해주세요
           </span>
         </div>
       )}

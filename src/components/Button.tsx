@@ -1,5 +1,5 @@
 import { biddingInfoState, stepState } from '@/atom'
-import { Dispatch, SetStateAction, useEffect } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction, useEffect } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 interface ButtonProps {
@@ -9,7 +9,7 @@ interface ButtonProps {
   setIsWaySelected?: Dispatch<SetStateAction<boolean>>
   setIsSelected?: Dispatch<SetStateAction<boolean>>
   handleConfirm?: () => void
-  handleBiddingCnt?: () => void
+  handleBiddingCnt?: (e: ChangeEvent<HTMLInputElement>) => void
   handleBiddingPrice?: () => void
   handleBiddingPayment?: (pay: string) => void
   handleUploadFile?: () => void
@@ -38,7 +38,7 @@ export default function Button({
   const stateNum = useRecoilValue(stepState)
   const biddingInfo = useRecoilValue(biddingInfoState)
 
-  const handleNextStep = async () => {
+  const handleNextStep = async (e: ChangeEvent<HTMLInputElement>) => {
     if (stateNum === 1 && handleConfirm) {
       await handleConfirm()
     } else if (stateNum === 2 && biddingInfo.bidder === '') {
@@ -54,7 +54,7 @@ export default function Button({
       handleBiddingCnt && handleErrorOk
     ) {
       handleErrorOk()
-      await handleBiddingCnt()
+      await handleBiddingCnt(e)
     } else if (stateNum === 6) {
       handleShare && handleShare()
       setStateNum(stateNum + 1)
@@ -95,8 +95,8 @@ export default function Button({
           type="button"
           disabled={goNext}
           className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-          onClick={() => {
-            handleNextStep()
+          onClick={(e: any) => {
+            handleNextStep(e)
           }}
         >
           <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

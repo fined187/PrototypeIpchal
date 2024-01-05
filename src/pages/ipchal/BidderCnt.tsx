@@ -1,7 +1,7 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BidderCnt() {
@@ -11,14 +11,7 @@ export default function BidderCnt() {
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
 
   const [errorMsg, setErrorMsg] = useState<boolean>(false)
-
-  const handleBiddingNum = (e: HTMLInputElement) => {
-    const value = e.value
-    setBiddingInfo({
-      ...biddingInfo,
-      bidderNum: parseInt(value),
-    })
-  }
+  const [countVal, setCountVal] = useState<number>(0)
 
   const handleErrorOk = () => {
     if (biddingInfo.bidderNum <= 0 || biddingInfo.bidderNum === undefined || biddingInfo.bidderNum === null || isNaN(biddingInfo.bidderNum)) {
@@ -30,12 +23,12 @@ export default function BidderCnt() {
     }
   }
 
-  const handleBiddingCnt = async () => {
+  const handleBiddingCnt = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
       const response = await axios.put(
         `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`,
         {
-          bidderCount: biddingInfo.bidderNum,
+          bidderCount: Number(e.target.value),
         },
         {
           headers: {
@@ -45,22 +38,15 @@ export default function BidderCnt() {
       )
       if (response.status === 200) {
         console.log(response)
-      }
+        setStateNum(stateNum + 1)
+      }      
     } catch (error) {
       console.log(error)
     }
   }
 
-  const handleBiddingCntChange = async () => {
-    let bidderCnt = (document.getElementById('bidderNum') as HTMLInputElement)?.value
-    console.log(bidderCnt)
-    if (parseInt(bidderCnt) > 0) {
-      await handleBiddingCnt()
-      setTimeout(() => {
-        setStateNum(stateNum + 1)
-      }, 1000)
-    }
-  }
+  console.log(biddingInfo.bidderNum)
+
 
   return (
     <>
@@ -82,9 +68,12 @@ export default function BidderCnt() {
                   className="w-[100px] h-[40px] border-2 border-myyellow text-center focus:outline-none"
                   type="text"
                   value={biddingInfo.bidderNum > 0 ? biddingInfo.bidderNum : ''}
-                  onChange={(e) => {
-                    handleBiddingNum(e.target)
-                    handleBiddingCntChange()
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    setBiddingInfo({
+                      ...biddingInfo,
+                      bidderNum: Number(e.target.value),
+                    })
+                    handleBiddingCnt(e)
                   }}
                 />
                 <span className="text-[20px] font-bold font-NanumGothic leading-[30px] ml-2">

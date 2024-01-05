@@ -19,6 +19,7 @@ export default function GetIpchalInfo() {
           caseNo: biddingInfo.caseNo,
           mulSeq: biddingInfo.mulgunNum,
           biddingDate: biddingInfo.ipchalDate,
+          biddingTime: "1000"
         },
       )
       if (response.status === 200) {

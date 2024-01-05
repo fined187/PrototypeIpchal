@@ -153,7 +153,7 @@ export default function BiddingPrice() {
         <div className="flex flex-col gap-2 md:w-[550px] w-[100%] min-h-[300px] max-h-[500px] bg-white absolute top-[180px] border-slate-500 justify-center items-center">
           <div className="flex flex-row gap-[20px] w-[90%]">
             <div className='flex justify-start md:w-[15%] w-[15%] pt-[20px] ml-[10px]'>
-              <span className="md:text-[15px] text-[12px] font-nanum not-italic font-bold leading-[9px]">
+              <span className="md:text-[15px] text-[12px] font-NanumGothic not-italic font-bold leading-[9px]">
                 입찰금액
               </span>
             </div>
@@ -183,16 +183,16 @@ export default function BiddingPrice() {
             </div>
           </div>
           <div className="flex justify-between w-[85%] pt-[5px] border-b-2 border-myyellow">
-            <span className="text-[12px] text-mygold font-nanum not-italic font-bold leading-[9px] mb-2">
+            <span className="text-[12px] text-mygold font-NanumGothic not-italic font-bold leading-[9px] mb-2">
               일금
             </span>
-            <span className="text-[12px] font-nanum not-italic font-bold text-red-500 leading-[9px] mb-2">
+            <span className="text-[12px] font-NanumGothic not-italic font-bold text-red-500 leading-[9px] mb-2">
               {num2han(biddingPrice) + '원'}
             </span>
           </div>
           <div className="flex flex-row gap-[20px] w-[90%]">
             <div className="flex justify-start md:w-[20%] w-[25%] pt-[20px] ml-[10px]">
-              <span className="md:text-[15px] text-[12px] font-nanum not-italic font-bold leading-[9px]">
+              <span className="md:text-[15px] text-[12px] font-NanumGothic not-italic font-bold leading-[9px]">
                 입찰보증금
               </span>
             </div>
@@ -222,10 +222,10 @@ export default function BiddingPrice() {
             </div>
           </div>
           <div className="flex justify-between w-[85%] pt-[5px] border-b-2 border-myyellow ml-2">
-            <span className="text-[12px] text-mygold font-nanum not-italic font-bold leading-[9px] mb-2">
+            <span className="text-[12px] text-mygold font-NanumGothic not-italic font-bold leading-[9px] mb-2">
               일금
             </span>
-            <span className="text-[12px] font-nanum not-italic font-bold text-red-500 leading-[9px] mb-2">
+            <span className="text-[12px] font-NanumGothic not-italic font-bold text-red-500 leading-[9px] mb-2">
               {num2han(depositPrice) + '원'}
             </span>
           </div>
@@ -239,7 +239,7 @@ export default function BiddingPrice() {
             setStateNum(stateNum - 1)
           }}
         >
-          <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+          <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
             이전
           </span>
         </button>
@@ -247,7 +247,7 @@ export default function BiddingPrice() {
           type="button"
           className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
         >
-          <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+          <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
             {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
           </span>
         </button>
