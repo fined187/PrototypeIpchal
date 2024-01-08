@@ -4,7 +4,7 @@ import Layout from '@/components/Layout'
 import { RecoilRoot } from 'recoil'
 import Script from 'next/script'
 import { QueryClient, QueryClientProvider } from 'react-query'
-
+import { ReactQueryDevtools } from 'react-query/devtools' 
 declare global {
   interface Window {
     Kakao: any
@@ -19,7 +19,6 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }
 
-
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
@@ -31,6 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
             onLoad={kakaoInit}
           />
         </Layout>
+        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       </QueryClientProvider>
     </RecoilRoot>
   )

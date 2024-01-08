@@ -1,4 +1,4 @@
-import { biddingInfoState, stepState } from '@/atom'
+import { bidderInfo, biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import axios from 'axios'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -9,19 +9,10 @@ export default function BidderCnt() {
   const setStateNum = useSetRecoilState(stepState)
   const biddingInfo = useRecoilValue(biddingInfoState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
+  const bidder = useRecoilValue(bidderInfo)
 
   const [errorMsg, setErrorMsg] = useState<boolean>(false)
   const [countVal, setCountVal] = useState<number>(0)
-
-  const handleErrorOk = () => {
-    if (biddingInfo.bidderNum <= 0 || biddingInfo.bidderNum === undefined || biddingInfo.bidderNum === null || isNaN(biddingInfo.bidderNum)) {
-      setErrorMsg(true)
-      alert('입찰자는 1명 이상이어야 합니다')
-      return
-    } else {
-      setErrorMsg(false)
-    }
-  }
 
   const handleBiddingCnt = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
@@ -36,17 +27,26 @@ export default function BidderCnt() {
           },
         },
       )
-      if (response.status === 200) {
-        console.log(response)
-        setStateNum(stateNum + 1)
-      }      
     } catch (error) {
       console.log(error)
     }
   }
 
-  console.log(biddingInfo.bidderNum)
-
+  const handleErrorOk = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === '' || Number(e.target.value) === 0 || isNaN(Number(e.target.value))) {
+      setErrorMsg(true)
+      alert('입찰자는 1명 이상이어야 합니다')
+    } else if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
+      setTimeout(() => {
+        setStateNum(14)
+      }, 1000)
+    } else {
+      handleBiddingCnt(e)
+      setTimeout(() => {
+        setStateNum(5)
+      }, 1000)
+    }
+  }
 
   return (
     <>
@@ -73,7 +73,7 @@ export default function BidderCnt() {
                       ...biddingInfo,
                       bidderNum: Number(e.target.value),
                     })
-                    handleBiddingCnt(e)
+                    Number(e.target.value) > 0 ? handleErrorOk(e) : null
                   }}
                 />
                 <span className="text-[20px] font-bold font-NanumGothic leading-[30px] ml-2">
@@ -82,7 +82,7 @@ export default function BidderCnt() {
               </div>
               {errorMsg && (
                 <div className="mt-5">
-                  <span className="text-[12px] font-semibold text-red-500">
+                  <span className="text-[12px] font-bold text-red-500">
                     입찰자는 1명 이상이어야 합니다
                   </span>
                 </div>
@@ -90,13 +90,25 @@ export default function BidderCnt() {
             </div>
           </div>
         </div>
-        <Button
-          prevStepNum={biddingInfo.bidder === 'agent' ?  stateNum - 1 : stateNum - 2}
-          nextStepNum={stateNum + 1}
-          handleBiddingCnt={handleBiddingCnt}
-          handleErrorOk={handleErrorOk}
-          errorMsg={errorMsg}
-        />
+        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[600px]">
+          <button
+            type="button"
+            className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+          >
+            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+              이전
+            </span>
+          </button>
+          <button
+            type="button"
+            className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            
+          >
+            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+              다음
+            </span>
+          </button>
+        </div>
       </div>
     </>
   )

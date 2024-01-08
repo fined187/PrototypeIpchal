@@ -1,6 +1,6 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import StartIpchal from './ipchal/StartIpchal'
-import { biddingInfoState, loginState, stepState } from '@/atom'
+import { bidderInfo, biddingInfoState, loginState, stepState } from '@/atom'
 import GetIpchalInfo from './ipchal/GetIpchalInfo'
 import BidderInfo from './ipchal/BidderInfo'
 import BidderCnt from './ipchal/BidderCnt'
@@ -19,10 +19,14 @@ import axios from 'axios'
 import IpchalResult from './ipchal/IpchalResult'
 import DownIpchal from './ipchal/DownIpchal'
 import BidderFormMod from './ipchal/BidderFormMod'
+import { useQuery } from 'react-query'
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState)
   const biddingForm = useRecoilValue(biddingInfoState)
+  const setBidderInfo = useSetRecoilState(bidderInfo)
+
+  const bidderInfos = useRecoilValue(bidderInfo)
   const [getUserId, setGetUserId] = useState<string>('')
 
   const setLoginState = useSetRecoilState(loginState)
@@ -35,6 +39,28 @@ export default function Home() {
   const bubnm = router.query.bubnm
   const ipchalamt = router.query.ipchalamt
   const lowamt = router.query.lowamt
+
+  const handleGetBidder = async () => {
+    try {
+      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
+      if (response.status === 200) {
+        console.log(response.data.data)
+        setBidderInfo({
+          agentYn: response.data.data.agentYn,
+          mstSeq: response.data.data.mstSeq,
+          state: response.data.data.state,
+          bidderCount: response.data.data.bidderCount,
+          number: response.data.data.number,
+          bidders: response.data.data.bidders,
+        })
+        console.log(bidderInfos)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const { data:bidderQuery, isLoading } = useQuery(['bidder'], async () => await handleGetBidder())
 
   useEffect(() => {
     const handleLoginStatus = async (id: string) => {

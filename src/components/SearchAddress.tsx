@@ -119,7 +119,7 @@ export default function SearchAddress({
             />
           )}
           <button
-            className="text-white text-[12px] bg-myyellow rounded-md font-NanumGothic not-italic font-bold w-[25%]"
+            className="text-white text-[13px] bg-myyellow rounded-md font-NanumGothic not-italic font-bold w-[25%]"
             onClick={handleModal}
           >
             주소검색

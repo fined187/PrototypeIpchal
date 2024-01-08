@@ -91,8 +91,8 @@ export default function CreateFile() {
       let pageHeight = 295
       let imgHeight = getHeight
       let heightLeft = imgHeight
-      console.log(canvas.width, canvas.height)
       let position = 0
+
       doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
       heightLeft -= pageHeight
       while (heightLeft >= 20) {
@@ -120,9 +120,9 @@ export default function CreateFile() {
     e.preventDefault()
     if (password.length < 4 || password === '') {
       alert('파일 암호를 4자리 이상 입력해주세요')
-    } else {
-      await onCapture()
-    }
+      return
+    } 
+    await onCapture()
   }
 
   const handleUploadFile = async () => {

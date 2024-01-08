@@ -32,7 +32,6 @@ export default function BidderForm() {
     bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
 
-  
   const {
     register,
     handleSubmit,
@@ -140,139 +139,20 @@ export default function BidderForm() {
     }
   }
 
-  //  입찰자 정보 수정
-  const handleUpdateBidderForm = async () => {
-    try {
-      if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
-        const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${stepNum}`, {
-          bidderType: biddingForm.bidCorpYn[stepNum - 1],
-          name: biddingForm.bidName[stepNum - 1],
-          phoneNo: biddingForm.bidPhone[stepNum - 1],
-          address:
-            biddingForm.bidAddr[stepNum - 1] +
-            biddingForm.bidAddrDetail[stepNum - 1],
-          job: biddingForm.bidJob[stepNum - 1],
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        if (response.status === 200) {
-          console.log(response.data)
-        }
-    } else {
-      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${stepNum}`, {
-        bidderType: biddingForm.bidCorpYn[stepNum - 1],
-        name: biddingForm.bidName[stepNum - 1],
-        phoneNo: biddingForm.bidPhone[stepNum - 1],
-        address:
-          biddingForm.bidAddr[stepNum - 1] +
-          biddingForm.bidAddrDetail[stepNum - 1],
-        job: biddingForm.bidJob[stepNum - 1],
-        companyNo: biddingForm.bidCorpNum[stepNum - 1],
-        corporationNo: biddingForm.bidCorpRegiNum[stepNum - 1],
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      if (response.status === 200) {
-        console.log(response.data)
-      }
-    }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   //  다음 스텝 넘어가기
-  const handleNextStep = (num: number) => {
-    if (biddingForm.bidCorpYn[num] === 'I') {
-      if (
-        biddingForm?.bidName[num] === '' ||
-        biddingForm?.bidPhone1[num] === '' ||
-        biddingForm?.bidPhone2[num] === '' ||
-        biddingForm?.bidPhone3[num] === '' ||
-        biddingForm?.bidAddr[num] === '' ||
-        biddingForm?.bidAddrDetail[num] === '' ||
-        biddingForm?.bidIdNum1[num] === '' ||
-        biddingForm?.bidIdNum2[num] === '' ||
-        biddingForm?.bidJob[num] === ''
-      ) {
-        alert('입력하지 않은 정보가 있습니다.')
-      } else {
-        if (biddingForm.bidderNum === 1) {
-          setStateNum(stateNum + 2)
-        } else {
-          if (stepNum === biddingForm.bidderNum) {
-            setStateNum(stateNum + 1)
-          } else {
-            if (bidderList.length > 0) {
-              setStepNum(stepNum + 1)
-            } else {
-              if (biddingForm.bidName[stepNum + 1] === '') {
-                setStepNum(stepNum + 1)
-                reset()
-              } else {
-                setStepNum(stepNum + 1)
-              }
-            }
-          }
-        }
-      }
-    } else if (biddingForm.bidCorpYn[num] === 'C') {
-      if (
-        biddingForm?.bidPhone1[num] === '' ||
-        biddingForm?.bidPhone2[num] === '' ||
-        biddingForm?.bidPhone3[num] === '' ||
-        biddingForm?.bidAddr[num] === '' ||
-        biddingForm?.bidAddrDetail[num] === '' ||
-        biddingForm?.bidCorpNum1[num] === '' ||
-        biddingForm?.bidCorpNum2[num] === '' ||
-        biddingForm?.bidCorpNum3[num] === '' ||
-        biddingForm?.bidCorpRegiNum1[num] === '' ||
-        biddingForm?.bidCorpRegiNum2[num] === '' ||
-        biddingForm?.bidJob[num] === ''
-      ) {
-        alert('입력하지 않은 정보가 있습니다.')
-      } else {
-        if (biddingForm.bidderNum === 1) {
-          if (biddingForm.bidder === 'self') {
-            //  본인인 경우
-            setStateNum(stateNum + 2)
-          }
-        } else {
-          if (stepNum === biddingForm.bidderNum) {
-            setStateNum(stateNum + 1)
-          } else {
-            if (bidderList.length > 0) {
-              setStepNum(stepNum + 1)
-            } else {
-              if (biddingForm.bidName[stepNum + 1] === '') {
-                setStepNum(stepNum + 1)
-                reset()
-              } else {
-                setStepNum(stepNum + 1)
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  //  다음 스텝 넘어가기
-  const handleNextStepNew = (num: number) => {
+  const handleNextStepNew = async (num: number) => {
     if (biddingForm.bidderNum === 1) {
+      await handleBidderFormSave()
       setStateNum(stateNum + 2)
     } else {
       if (stepNum === biddingForm.bidderNum) {
+        await handleBidderFormSave()
         setStateNum(stateNum + 1)
       } else if (biddingForm.bidName[stepNum] === '') {
-        console.log('여기')
+        await handleBidderFormSave()
         setStepNum(num + 1)
       } else {
-        console.log('요기')
+        await handleBidderFormSave()
         setStepNum(num + 1)
         reset()
       }
@@ -303,51 +183,85 @@ export default function BidderForm() {
     })
   }, [])
 
-  const onSubmit: SubmitHandler<any> = async () => {
-    try {
-      if (bidderList.length > 0) {
-        if ((biddingForm.bidCorpYn[stepNum - 1]) === 'I') {
-          //  개인인 경우
-          if (
-            biddingForm.bidName[stepNum - 1] === bidderList[stepNum - 1].name &&
-            biddingForm.bidPhone[stepNum - 1] === bidderList[stepNum - 1].phoneNo &&
-            biddingForm.bidAddr[stepNum - 1] === bidderList[stepNum - 1].address &&
-            biddingForm.bidJob[stepNum - 1] === bidderList[stepNum - 1].job
-          ) {
-            //  변경사항 없는 경우
-            // handleNextStep(stepNum - 1)
-            handleNextStepNew(stepNum)
-          } else {
-            //  변경사항 있는 경우
-            await handleUpdateBidderForm()
-            // handleNextStep(stepNum - 1)
-            handleNextStepNew(stepNum)
-          }
-        } else {
-          //  법인인 경우
-          if (
-            biddingForm.bidPhone[stepNum - 1] === bidderList[stepNum - 1].phoneNo &&
-            biddingForm.bidAddr[stepNum - 1] === bidderList[stepNum - 1].address &&
-            biddingForm.bidJob[stepNum - 1] === bidderList[stepNum - 1].job &&
-            biddingForm.bidCorpNum[stepNum - 1] === bidderList[stepNum - 1].companyNo &&
-            biddingForm.bidCorpRegiNum[stepNum - 1] === bidderList[stepNum - 1].corporationNo
-          ) {
-            //  변경사항 없는 경우
-            // handleNextStep(stepNum - 1)
-            handleNextStepNew(stepNum)
-          } else {
-            //  변경사항 있는 경우
-            await handleUpdateBidderForm()
-            // handleNextStep(stepNum - 1)
-            handleNextStepNew(stepNum)
-          }
+  //  민증 검증
+  const handleVerifyIdNum = (idNum: string) => {
+    if (idNum.length > 0 && idNum.length < 14) {
+      const idNumArr = idNum.split('')
+      const idNumArr1 = (idNumArr.length > 0 && idNumArr.map((item) => parseInt(item)))
+      const idNumArr2 = idNumArr1 && idNumArr1.map((item, index) => {
+        if (index === 0) {
+          return item * 2
+        } else if (index === 1) {
+          return item * 3
+        } else if (index === 2) {
+          return item * 4
+        } else if (index === 3) {
+          return item * 5
+        } else if (index === 4) {
+          return item * 6
+        } else if (index === 5) {
+          return item * 7
+        } else if (index === 6) {
+          return item * 8
+        } else if (index === 7) {
+          return item * 9
+        } else if (index === 8) {
+          return item * 2
+        } else if (index === 9) {
+          return item * 3
+        } else if (index === 10) {
+          return item * 4
+        } else if (index === 11) {
+          return item * 5
+        } else if (index === 12) {
+          return item * 1
         }
+      })
+
+      const idNumArr3 = (idNumArr2 && idNumArr2.reduce((acc: any, cur: any) => acc + cur)) 
+      const idNumArr4 = (idNumArr3 && (idNumArr3 - idNumArr2[12]!) % 11) 
+      const idNumArr5 = (idNumArr4 && 11 - idNumArr4) 
+      const idNumArr6 = (idNumArr5 && idNumArr5 % 10)
+      if (idNumArr6 === (idNumArr1 && idNumArr1[12])) {
+        return true
       } else {
-        //  입찰자 정보가 없는 경우
-        await handleBidderFormSave()
-        // handleNextStep(stepNum - 1)
-        handleNextStepNew(stepNum)
+        return false
       }
+    }
+  }
+
+  //  사업자 등록 번호 검증
+  const handleVerifyCorpNum = async (corpNum: string) => {
+    try {
+      const response = await axios.post(`https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=${process.env.NEXT_PUBLIC_GONGGONG_KEY}`, {
+        b_no: [corpNum]
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      if (response.status === 200) {
+        console.log(response.data)
+        return true
+      }
+    } catch (error) {
+      console.log(error)
+      return false
+    }
+  }
+
+  const onSubmit: SubmitHandler<any> = async () => {
+    if (handleVerifyIdNum(biddingInfo.bidderIdNum1[stepNum - 1] + biddingInfo.bidderIdNum2[stepNum - 1]) === false) {
+      alert('주민등록번호를 확인해주세요')
+      return
+    }
+    if (biddingInfo.bidderCorpYn[stepNum - 1] === 'C' && await handleVerifyCorpNum(biddingInfo.bidderCorpNum1[stepNum - 1] + biddingInfo.bidderCorpNum2[stepNum - 1] + biddingInfo.bidderCorpNum3[stepNum - 1]) === false) {
+      alert('사업자등록번호를 확인해주세요')
+      return
+    }
+
+    try {
+      handleNextStepNew(stepNum)
     } catch (error) {
       console.log(error)
     }
@@ -367,11 +281,7 @@ export default function BidderForm() {
           )}
         </div>
         <div className="flex flex-row gap-10 w-[80%] justify-center">
-          <div className={`flex flex-row w-[70px] h-[30px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-              biddingForm?.bidCorpYn[stepNum - 1] === 'I'
-                ? 'text-white bg-myyellow'
-                : 'text-myyellow bg-white'
-            }`}
+          <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${biddingForm?.bidCorpYn[stepNum - 1] === 'I' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`}
             onClick={() => {
               setBiddingInfo((prev: any) => {
                 const temp = prev.bidderCorpYn
@@ -385,13 +295,7 @@ export default function BidderForm() {
               })
             }}
           >
-            <div
-              className={`${
-                biddingForm?.bidCorpYn[stepNum - 1] === 'I'
-                  ? 'flex mr-1'
-                  : 'hidden'
-              }`}
-            >
+            <div className={`${biddingForm?.bidCorpYn[stepNum - 1] === 'I' ? 'flex mr-1' : 'hidden'}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="11"
@@ -417,12 +321,7 @@ export default function BidderForm() {
               개인
             </span>
           </div>
-          <div
-            className={`flex flex-row w-[70px] h-[30px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-              biddingForm?.bidCorpYn[stepNum - 1] === 'C'
-                ? 'text-white bg-myyellow'
-                : 'text-myyellow bg-white'
-            }`}
+          <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${biddingForm?.bidCorpYn[stepNum - 1] === 'C' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`}
             onClick={() => {
               setBiddingInfo((prev: any) => {
                 const temp = prev.bidderCorpYn
@@ -436,13 +335,7 @@ export default function BidderForm() {
               })
             }}
           >
-            <div
-              className={`${
-                biddingForm?.bidCorpYn[stepNum - 1] === 'C'
-                  ? 'flex mr-1'
-                  : 'hidden'
-              }`}
-            >
+            <div className={`${biddingForm?.bidCorpYn[stepNum - 1] === 'C' ? 'flex mr-1' : 'hidden'}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="11"
@@ -458,13 +351,7 @@ export default function BidderForm() {
                 />
               </svg>
             </div>
-            <span
-              className={`text-[13px] font-NanumGothic not-italic font-extrabold ${
-                biddingForm?.bidCorpYn[stepNum - 1] === 'C'
-                  ? 'text-white'
-                  : 'text-myyellow'
-              }`}
-            >
+            <span className={`text-[13px] font-NanumGothic not-italic font-extrabold ${biddingForm?.bidCorpYn[stepNum - 1] === 'C' ? 'text-white' : 'text-myyellow'}`}>
               법인
             </span>
           </div>

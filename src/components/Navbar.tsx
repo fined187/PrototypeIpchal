@@ -15,11 +15,13 @@ export default function Navbar() {
     } else if (stepStateNum === 2) {
       setMenuTitle('대리인 확인')
     } else if (stepStateNum === 3) {
-      setMenuTitle('입찰자 수')
+      setMenuTitle('대리인 정보 입력')
     } else if (stepStateNum === 4) {
-      setMenuTitle('입찰자 본인 정보')
+      setMenuTitle('입찰자 수')
     } else if (stepStateNum === 5 && biddingForm.bidder === 'agent') {
       setMenuTitle('입찰자 대리인 정보')
+    } else if (stepStateNum === 5 && biddingForm.bidder === 'self') {
+      setMenuTitle('입찰자 정보')
     } else if (stepStateNum === 6) {
       setMenuTitle('공동 입찰자 지분')
     } else if (stepStateNum === 7) {
