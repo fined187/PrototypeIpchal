@@ -20,8 +20,8 @@ export default function StartIpchal() {
       const response = await axios.post(
         `http://118.217.180.254:8081/ggi/api/bid-form/checks`,
         {
-          idCode: 'A140483D3F3E3D40403D3E3D424240473E3E3C6',
-          biddingDate: `20240109`,
+          idCode: 'A13F493D3F3E3D40403D3E3D464241483E3E3C6',
+          biddingDate: `20231127`,
         },
         {
           headers: {
@@ -46,6 +46,7 @@ export default function StartIpchal() {
             (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
             (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
           sagunAddr: response.data.data.address,
+          biddingInfos: response.data.data.biddingInfos,
         })
         stateNum(1)
       }

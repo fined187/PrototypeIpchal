@@ -20,11 +20,12 @@ import IpchalResult from './ipchal/IpchalResult'
 import DownIpchal from './ipchal/DownIpchal'
 import BidderFormMod from './ipchal/BidderFormMod'
 import { useQuery } from 'react-query'
+import TimeInfo from './ipchal/TimeInfo'
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState)
   const biddingForm = useRecoilValue(biddingInfoState)
-  const setBidderInfo = useSetRecoilState(bidderInfo)
+  const setBidderInfos = useSetRecoilState(bidderInfo)
 
   const bidderInfos = useRecoilValue(bidderInfo)
   const [getUserId, setGetUserId] = useState<string>('')
@@ -45,7 +46,7 @@ export default function Home() {
       const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
       if (response.status === 200) {
         console.log(response.data.data)
-        setBidderInfo({
+        setBidderInfos({
           agentYn: response.data.data.agentYn,
           mstSeq: response.data.data.mstSeq,
           state: response.data.data.state,
@@ -83,7 +84,8 @@ export default function Home() {
     <>
       {stateNum === 0 && <StartIpchal />}
       {stateNum === 1 && <GetIpchalInfo />}
-      {stateNum === 2 && <BidderInfo />}
+      {stateNum === 2 && biddingForm.biddingInfos.length > 1 && <TimeInfo />}
+      {stateNum === 2 && biddingForm.biddingInfos.length === 1 && <BidderInfo />}
       {stateNum === 3 && biddingForm.bidder === 'agent' && <AgentForm />}
       {stateNum === 4 && <BidderCnt />}
       {stateNum === 5 && <BidderForm />}

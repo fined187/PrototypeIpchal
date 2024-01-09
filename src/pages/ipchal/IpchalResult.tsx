@@ -159,7 +159,7 @@ export default function IpchalResult() {
                           <div className="flex justify-center items-center text-center w-[30%]">
                             <span className="text-[12px]">
                               {
-                                biddingInfo.bidPhone1 + '-' + biddingInfo.bidPhone2 + '-' + biddingInfo.bidPhone3
+                                biddingInfo.bidPhone1[0] + '-' + biddingInfo.bidPhone2[0] + '-' + biddingInfo.bidPhone3[0]
                               }
                             </span>
                           </div>
@@ -175,9 +175,9 @@ export default function IpchalResult() {
                           <div className="flex w-[30%] border-black border-r-[1px] justify-center items-center">
                             <span className="text-[12px] font-NanumGothic">
                               {biddingInfo.bidCorpYn[0] === 'I' ? (
-                                biddingInfo.bidIdNum1 + '-' + biddingInfo.bidIdNum2
+                                biddingInfo.bidIdNum1[0] + '-' + biddingInfo.bidIdNum2[0]
                               ): (
-                                biddingInfo.bidCorpNum1 + '-' + biddingInfo.bidCorpNum2 + '-' + biddingInfo.bidCorpNum3
+                                biddingInfo.bidCorpNum1[0] + '-' + biddingInfo.bidCorpNum2[0] + '-' + biddingInfo.bidCorpNum3[0]
                               )}
                             </span>
                           </div>

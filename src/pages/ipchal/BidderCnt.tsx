@@ -12,23 +12,29 @@ export default function BidderCnt() {
   const bidder = useRecoilValue(bidderInfo)
 
   const [errorMsg, setErrorMsg] = useState<boolean>(false)
-  const [countVal, setCountVal] = useState<number>(0)
 
   const handleBiddingCnt = async (e: ChangeEvent<HTMLInputElement>) => {
-    try {
-      const response = await axios.put(
-        `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`,
-        {
-          bidderCount: Number(e.target.value),
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
+    if (e.target.value === '' || Number(e.target.value) === 0 || isNaN(Number(e.target.value))) {
+      return
+    } else {
+      try {
+        const response = await axios.put(
+          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`,
+          {
+            bidderCount: Number(e.target.value),
           },
-        },
-      )
-    } catch (error) {
-      console.log(error)
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        if (response.status === 200) {
+          console.log(response.data)
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
@@ -36,7 +42,10 @@ export default function BidderCnt() {
     if (e.target.value === '' || Number(e.target.value) === 0 || isNaN(Number(e.target.value))) {
       setErrorMsg(true)
       alert('입찰자는 1명 이상이어야 합니다')
-    } else if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
+      return
+    } 
+    if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
+      handleBiddingCnt(e)
       setTimeout(() => {
         setStateNum(14)
       }, 1000)
@@ -73,7 +82,7 @@ export default function BidderCnt() {
                       ...biddingInfo,
                       bidderNum: Number(e.target.value),
                     })
-                    Number(e.target.value) > 0 ? handleErrorOk(e) : null
+                    handleErrorOk(e)
                   }}
                 />
                 <span className="text-[20px] font-bold font-NanumGothic leading-[30px] ml-2">

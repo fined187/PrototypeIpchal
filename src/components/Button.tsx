@@ -40,8 +40,8 @@ export default function Button({
   const biddingInfo = useRecoilValue(biddingInfoState)
 
   const handleNextStep = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (stateNum === 1 && handleConfirm) {
-      await handleConfirm()
+    if (stateNum === 1) {
+      setStateNum(stateNum + 1)
     } else if (stateNum === 2 && biddingInfo.bidder === '') {
       setIsSelected && setIsSelected(false)
     } else if (stateNum === 2 && biddingInfo.bidder === 'agent') {

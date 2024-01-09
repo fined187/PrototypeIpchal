@@ -250,6 +250,19 @@ export default function BidderForm() {
     }
   }
 
+  //  법인등록번호 검증
+  const handleVerifyCorpReiNum = (num: string) => {
+    const rawValue = num.replace(/[^\d]/g, '').split('').map(r => Number(r));
+    const checkSum = rawValue.pop();
+
+    const sum = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2].map((n, i) => n * rawValue[i]).reduce((sum, n) => {
+      sum += n;
+      return sum;
+    }, 0) % 10;
+
+    return sum === (10 - (checkSum ? checkSum : 0)) % 10;
+  }
+
   const onSubmit: SubmitHandler<any> = async () => {
     if (handleVerifyIdNum(biddingInfo.bidderIdNum1[stepNum - 1] + biddingInfo.bidderIdNum2[stepNum - 1]) === false) {
       alert('주민등록번호를 확인해주세요')
@@ -257,6 +270,11 @@ export default function BidderForm() {
     }
     if (biddingInfo.bidderCorpYn[stepNum - 1] === 'C' && await handleVerifyCorpNum(biddingInfo.bidderCorpNum1[stepNum - 1] + biddingInfo.bidderCorpNum2[stepNum - 1] + biddingInfo.bidderCorpNum3[stepNum - 1]) === false) {
       alert('사업자등록번호를 확인해주세요')
+      return
+    }
+
+    if (biddingInfo.bidderCorpYn[stepNum - 1] === 'C' && handleVerifyCorpReiNum(biddingInfo.bidderCorpRegiNum1[stepNum - 1] + biddingInfo.bidderCorpRegiNum2[stepNum - 1]) === false) {
+      alert('법인등록번호를 확인해주세요')
       return
     }
 
@@ -356,6 +374,7 @@ export default function BidderForm() {
             </span>
           </div>
         </div>
+
         {/* 입력정보 */}
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[50%] w-[80%] h-[100%] justify-center items-center'>
           <div className="flex flex-col w-[100%] h-[100%] gap-2">
@@ -410,10 +429,7 @@ export default function BidderForm() {
               </label>
               <div className="flex flex-row gap-[5%]">
                 <input
-                  {...register('bidderPhone1', {
-                    required: true,
-                    maxLength: 3,
-                  })}
+                  {...register('bidderPhone1', { required: true })}
                   id="bidderPhone1"
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
@@ -602,12 +618,12 @@ export default function BidderForm() {
                 </div>
                 {errors.bidderIdNum1?.type === 'required' &&
                   errors.bidderIdNum2?.type === 'required' && (
-                    <div className="flex w-[80%] justify-start h-[15px] mb-1">
-                      <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
-                        주민등록번호를 입력해주세요
-                      </span>
-                    </div>
-                  )}
+                  <div className="flex w-[80%] justify-start h-[15px] mb-1">
+                    <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
+                      주민등록번호를 입력해주세요
+                    </span>
+                  </div>
+                )}
               </>
             ) : (
               <>

@@ -12,7 +12,9 @@ export default function Navbar() {
       setMenuTitle('')
     } else if (stepStateNum === 1) {
       setMenuTitle('사건번호 입찰일자 확인')
-    } else if (stepStateNum === 2) {
+    } else if (stepStateNum === 2 && biddingForm.biddingInfos.length > 1) {
+      setMenuTitle('경매 시간 선택')
+    } else if (stepStateNum === 2 && biddingForm.biddingInfos.length === 1) {
       setMenuTitle('대리인 확인')
     } else if (stepStateNum === 3) {
       setMenuTitle('대리인 정보 입력')

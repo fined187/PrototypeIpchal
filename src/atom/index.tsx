@@ -19,6 +19,14 @@ export const biddingInfoState = atom({
     mulgunNum: '',
     sagunAddr: '',
     ipchalDate: '',
+    biddingInfos: [
+      {
+        biddingTime: '',
+        appraisalAmount: 0,
+        minimumAmount: 0,
+        bidDeposit: 0,
+      }
+    ],
     bidder: '',
     bidderNum: 0,
     bidCorpYn: [''],
