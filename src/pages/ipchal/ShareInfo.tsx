@@ -1,4 +1,4 @@
-import { biddingInfoState, stepState } from '@/atom'
+import { bidderInfo, biddingInfoState, stepState } from '@/atom'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
@@ -9,6 +9,7 @@ export default function ShareInfo() {
   const stateNum = useRecoilValue(stepState)
   const setStateNum = useSetRecoilState(stepState)
   const [shareWay, setShareWay] = useState<string>('')
+  const [isDataIn, setIsDataIn] = useState<any>([])
   const [calc, setCalc] = useState({
     numerator: [0],
     denominator: [0],
@@ -137,6 +138,31 @@ export default function ShareInfo() {
     handleValidateCalc()
   }, [calc.numerator, calc.denominator, shareWay])
 
+  useEffect(() => {
+    const handleGetBiddingFormUpdate = async () => {
+      try {
+        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders`)
+        if (response.status === 200) {
+          console.log(response.data)
+          setIsDataIn(response.data.data.bidders)
+          setBiddingInfo({
+            ...biddingInfo,
+            bidName: response.data.data.bidders.map((item: any) => item.name),
+            bidAddr: response.data.data.bidders.map((item: any) => item.address),
+            bidPhone: response.data.data.bidders.map((item: any) => item.phoneNo),
+            bidCorpYn: response.data.data.bidders.map((item: any) => item.bidderType),
+            bidCorpNum: response.data.data.bidders.map((item: any) => item.companyNo),
+            bidJob: response.data.data.bidders.map((item: any) => item.job),
+            bidCorpRegiNum: response.data.data.bidders.map((item: any) => item.corporationNo),
+          })
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    handleGetBiddingFormUpdate()
+  }, [])
+console.log(isDataIn.length)
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
@@ -216,11 +242,11 @@ export default function ShareInfo() {
           </div>
         </div>
         <div className="flex flex-col gap-10 md:w-[550px] w-[90%] min-h-[257px] max-h-[600px] h-[300px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500">
-          {biddingInfo?.bidName?.map((name, index) => {
+          {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
             return (
               <div key={index} className="flex justify-between mb-5 w-full">
                 <div className="flex w-[40%] ml-5">
-                  <span className="text-[12px] text-center font-bold ">
+                  <span className="text-[15px] text-center font-bold font-NanumGothic">
                     {name}
                   </span>
                 </div>
@@ -232,14 +258,14 @@ export default function ShareInfo() {
                         type="text"
                         readOnly
                         value="1"
-                        className={`border  border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
+                        className={`border  border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
                       />
                       <span>/</span>
                       <input
                         type="text"
                         readOnly
                         value={biddingInfo.bidderNum}
-                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[30px] px-2 w-[40%]"
+                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]"
                       />
                     </>
                   ) : (
@@ -297,7 +323,7 @@ export default function ShareInfo() {
             type="button"
             className="flex w-[30%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              setStateNum(14)
+              setStateNum(15)
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

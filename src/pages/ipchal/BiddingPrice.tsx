@@ -1,6 +1,4 @@
 import { biddingInfoState, stepState } from '@/atom'
-import Button from '@/components/Button'
-import { IpchalType } from '@/interface/IpchalType'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
@@ -236,7 +234,7 @@ export default function BiddingPrice() {
           type="button"
           className="flex md:w-[30%] w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
-            setStateNum(14)
+            setStateNum(15)
           }}
         >
           <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

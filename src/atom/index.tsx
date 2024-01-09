@@ -25,7 +25,7 @@ export const biddingInfoState = atom({
         appraisalAmount: 0,
         minimumAmount: 0,
         bidDeposit: 0,
-      }
+      },
     ],
     bidder: '',
     bidderNum: 0,

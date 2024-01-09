@@ -9,33 +9,6 @@ export default function GetIpchalInfo() {
   const biddingInfo = useRecoilValue(biddingInfoState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
 
-  // const handleConfirm = async () => {
-  //   try {
-  //     const response = await axios.post(
-  //       `http://118.217.180.254:8081/ggi/api/bid-form/inits`,
-  //       {
-  //         userId: 'best',
-  //         infoId: biddingInfo.infoId,
-  //         caseNo: biddingInfo.caseNo,
-  //         mulSeq: biddingInfo.mulgunNum,
-  //         biddingDate: biddingInfo.ipchalDate,
-  //         biddingTime: biddingInfo.biddingInfos[0].biddingTime,
-  //       },
-  //     )
-  //     if (response.status === 200) {
-  //       setBiddingInfo({
-  //         ...biddingInfo,
-  //         mstSeq: response.data.data.mstSeq,
-  //         state: response.data.data.state,
-  //       })
-  //       setStateNum(stateNum + 1)
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-  console.log(biddingInfo)
   return (
     <>
       <div className="flex w-[100%] h-screen justify-center bg-white relative">

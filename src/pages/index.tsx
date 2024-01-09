@@ -8,11 +8,9 @@ import ShareInfo from './ipchal/ShareInfo'
 import BiddingPrice from './ipchal/BiddingPrice'
 import BiddingPayment from './ipchal/BiddingPayment'
 import IpchalInfo from './ipchal/IpchalInfo'
-import IpchalContent from './ipchal/IpchalContent'
 import CreateFile from './ipchal/CreateFile'
 import IpchalShare from './ipchal/IpchalShare'
 import BidderForm from './ipchal/BidderForm'
-import AgentForm from './ipchal/AgentForm'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -25,6 +23,7 @@ import TimeInfo from './ipchal/TimeInfo'
 export default function Home() {
   const stateNum = useRecoilValue(stepState)
   const biddingForm = useRecoilValue(biddingInfoState)
+  const setBiddingForm = useSetRecoilState(biddingInfoState)
   const setBidderInfos = useSetRecoilState(bidderInfo)
 
   const bidderInfos = useRecoilValue(bidderInfo)
@@ -54,7 +53,6 @@ export default function Home() {
           number: response.data.data.number,
           bidders: response.data.data.bidders,
         })
-        console.log(bidderInfos)
       }
     } catch (error) {
       console.log(error)
@@ -85,19 +83,18 @@ export default function Home() {
       {stateNum === 0 && <StartIpchal />}
       {stateNum === 1 && <GetIpchalInfo />}
       {stateNum === 2 && biddingForm.biddingInfos.length > 1 && <TimeInfo />}
-      {stateNum === 2 && biddingForm.biddingInfos.length === 1 && <BidderInfo />}
-      {stateNum === 3 && biddingForm.bidder === 'agent' && <AgentForm />}
-      {stateNum === 4 && <BidderCnt />}
-      {stateNum === 5 && <BidderForm />}
-      {stateNum === 6 && biddingForm.bidderNum > 1 && <ShareInfo />}
-      {stateNum === 7 && <BiddingPrice />}
-      {stateNum === 8 && <BiddingPayment />}
-      {stateNum === 9 && <IpchalInfo />}
-      {stateNum === 10 && <IpchalResult />}
-      {stateNum === 11 && <CreateFile />}
-      {stateNum === 12 && <IpchalShare />}
-      {stateNum === 13 && <DownIpchal />}
-      {stateNum === 14 && <BidderFormMod />}
+      {stateNum === 3 && <BidderInfo />}
+      {stateNum === 5 && <BidderCnt />}
+      {stateNum === 6 && <BidderForm />}
+      {stateNum === 7 && biddingForm.bidName.length > 1 && <ShareInfo />}
+      {stateNum === 8 && <BiddingPrice />}
+      {stateNum === 9 && <BiddingPayment />}
+      {stateNum === 10 && <IpchalInfo />}
+      {stateNum === 11 && <IpchalResult />}
+      {stateNum === 12 && <CreateFile />}
+      {stateNum === 13 && <IpchalShare />}
+      {stateNum === 14 && <DownIpchal />}
+      {stateNum === 15 && <BidderFormMod />}
     </>
   )
 }

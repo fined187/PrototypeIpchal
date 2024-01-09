@@ -17,29 +17,33 @@ export default function Navbar() {
     } else if (stepStateNum === 2 && biddingForm.biddingInfos.length === 1) {
       setMenuTitle('대리인 확인')
     } else if (stepStateNum === 3) {
+      setMenuTitle('대리인 확인')
+    } else if (stepStateNum === 4 && biddingForm.bidder === 'agent') {
       setMenuTitle('대리인 정보 입력')
-    } else if (stepStateNum === 4) {
+    } else if (stepStateNum === 5) {
       setMenuTitle('입찰자 수')
-    } else if (stepStateNum === 5 && biddingForm.bidder === 'agent') {
+    } else if (stepStateNum === 6 && biddingForm.bidder === 'agent') {
       setMenuTitle('입찰자 대리인 정보')
-    } else if (stepStateNum === 5 && biddingForm.bidder === 'self') {
+    } else if (stepStateNum === 6 && biddingForm.bidder === 'self') {
       setMenuTitle('입찰자 정보')
-    } else if (stepStateNum === 6) {
+    } else if (stepStateNum === 7 && biddingForm.bidderNum > 1) {
       setMenuTitle('공동 입찰자 지분')
-    } else if (stepStateNum === 7) {
-      setMenuTitle('입찰 가격')
     } else if (stepStateNum === 8) {
-      setMenuTitle('보증금 제공 방법')
+      setMenuTitle('입찰 가격')
     } else if (stepStateNum === 9) {
-      setMenuTitle('입찰표 입력 완료')
+      setMenuTitle('보증금 제공 방법')
     } else if (stepStateNum === 10) {
-      setMenuTitle('입찰표 확인')
+      setMenuTitle('입찰표 입력 완료')
     } else if (stepStateNum === 11) {
-      setMenuTitle('파일 만들기')
+      setMenuTitle('입찰표 확인')
     } else if (stepStateNum === 12) {
-      setMenuTitle('입찰표 파일 공유')
+      setMenuTitle('파일 만들기')
     } else if (stepStateNum === 13) {
+      setMenuTitle('입찰표 파일 공유')
+    } else if (stepStateNum === 14) {
       setMenuTitle('입찰표 작성 완료')
+    } else if (stepStateNum === 15) {
+      setMenuTitle('입찰표 정보')
     }
   }
 

@@ -41,7 +41,7 @@ export default function Button({
 
   const handleNextStep = async (e: ChangeEvent<HTMLInputElement>) => {
     if (stateNum === 1) {
-      setStateNum(stateNum + 1)
+      biddingInfo.biddingInfos.length > 1 ? setStateNum(stateNum + 1) : setStateNum(stateNum + 2)
     } else if (stateNum === 2 && biddingInfo.bidder === '') {
       setIsSelected && setIsSelected(false)
     } else if (stateNum === 2 && biddingInfo.bidder === 'agent') {

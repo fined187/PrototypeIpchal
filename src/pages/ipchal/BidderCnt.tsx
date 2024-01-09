@@ -1,7 +1,6 @@
 import { bidderInfo, biddingInfoState, stepState } from '@/atom'
-import Button from '@/components/Button'
 import axios from 'axios'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BidderCnt() {
@@ -30,7 +29,6 @@ export default function BidderCnt() {
           },
         )
         if (response.status === 200) {
-          console.log(response.data)
         }
       } catch (error) {
         console.log(error)
@@ -47,12 +45,12 @@ export default function BidderCnt() {
     if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
       handleBiddingCnt(e)
       setTimeout(() => {
-        setStateNum(14)
+        setStateNum(15)
       }, 1000)
     } else {
       handleBiddingCnt(e)
       setTimeout(() => {
-        setStateNum(5)
+        setStateNum(6)
       }, 1000)
     }
   }

@@ -279,22 +279,43 @@ export default function BidderFormMod() {
   //  다음 스텝 / 단계 이동
   const handleNextStep = async () => {
     if (biddingForm.bidderNum === 1) {
-      setStateNum(7)
+      setStateNum(8)
       await handleUpdate()
     } else {
-      //  마지막 단계일 때
-      if (stepNum === biddingForm.bidderNum) {
-        await handleBidderFormSave()
-        setStateNum(6)
-      } else if (stepNum < biddingForm.bidderNum && stepNum > bidderList?.bidderCount!) {
-        await handleBidderFormSave()
-        setStepNum((prev) => prev + 1)
-        reset()
-      } 
+      //  1. 입찰자 수 증가의 경우
+      if (biddingForm.bidderNum > bidderList?.bidders.length!) {
+        if (stepNum === biddingForm.bidderNum) {
+          await handleBidderFormSave()
+          setStateNum(7)
+        } else if (stepNum > bidderList?.bidders.length! && stepNum < biddingForm.bidderNum) {
+          await handleBidderFormSave()
+          setStepNum(stepNum + 1)
+          reset()
+        } else {
+          await handleUpdate()
+          setStepNum(stepNum + 1)
+          reset()
+        }
+      } else if (biddingForm.bidderNum < bidderList?.bidders.length!) {
+        //  2. 입찰자 수 감소의 경우
+        if (stepNum === biddingForm.bidderNum) {
+          await handleUpdate()
+          setStateNum(7)
+        } else {
+          await handleUpdate()
+          setStepNum(stepNum + 1)
+        }
+      } else {
+        //  3. 입찰자 수 변경 없는 경우
+        if (stepNum === biddingForm.bidderNum) {
+          await handleUpdate()
+          setStateNum(7)
+        } else {
+          await handleUpdate()
+          setStepNum(stepNum + 1)
+        }
+      }
     }
-    await handleUpdate()
-    setStepNum((prev) => prev + 1)
-    reset()
   }
 
   const onSubmit: SubmitHandler<BiddingInfoType> = async () => {
@@ -345,6 +366,8 @@ export default function BidderFormMod() {
     }
     handleGetBidders()
   }, [])
+
+  console.log(biddingForm)
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -927,7 +950,7 @@ export default function BidderFormMod() {
                   type="button"
                   className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
                   onClick={() => {
-                    setStateNum(4)
+                    stepNum === 1 ? setStateNum(5) : setStepNum((prev) => prev - 1)
                   }}
                 >
                   <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

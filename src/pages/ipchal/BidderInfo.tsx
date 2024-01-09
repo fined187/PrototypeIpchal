@@ -1,4 +1,4 @@
-import { biddingInfoState, stepState } from '@/atom'
+import { bidderInfo, biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import { useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
@@ -9,7 +9,6 @@ export default function BidderInfo() {
   const [isSelected, setIsSelected] = useState<boolean>(true)
   const biddingInfo = useRecoilValue(biddingInfoState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
-
   return (
     <>
       <div className="flex w-[100%] h-screen bg-white justify-center relative">

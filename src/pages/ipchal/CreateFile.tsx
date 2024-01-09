@@ -172,16 +172,16 @@ export default function CreateFile() {
       {!loading && (
         <div className="flex w-[100%] h-screen justify-center bg-white relative">
           <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
-            <span className="text-[20px] font-extrabold font-NanumGothic not-italic leading-8">
+            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               파일명과 암호를 입력하세요
             </span>
-            <div className="flex flex-col gap-5 w-[420px] h-[150px] justify-center items-left bg-white absolute top-[130px] rounded-md border-gray-400">
+            <div className="flex flex-col gap-5 md:w-[550px] w-[400px] h-[200px] justify-center items-left bg-white absolute top-[130px] rounded-md border-gray-400">
               <div className="flex flex-col justify-start text-left gap-3">
-                <span className="text-black text-[10px] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
+                <span className="text-black text-[15px] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
                   파일이름
                 </span>
                 <input
-                  className="w-[90%] h-[30px] border border-gray-300 rounded-md ml-[5%]"
+                  className="w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%]"
                   value={'best_' + format(date, 'yyyyMMddHHmmss')}
                   onChange={(e) => {
                     setFileName(e.target.value)
@@ -189,16 +189,16 @@ export default function CreateFile() {
                 />
               </div>
               <div className="flex flex-col justify-start text-left gap-3 relative">
-                <span className="text-black text-[10px] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
+                <span className="text-black text-[15px] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
                   파일암호
                 </span>
                 <input
                   type={`${passwordActive ? 'text' : 'password'}`}
-                  className="block w-[90%] h-[30px] border border-gray-300 rounded-md ml-[5%]"
+                  className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%]"
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div
-                  className="absolute inset-y-0 right-0 flex items-center pr-6 pt-5 cursor-pointer"
+                  className="absolute inset-y-0 right-0 flex items-center pr-8 pt-5 cursor-pointer"
                   onClick={() => setPasswordActive(!passwordActive)}
                 >
                   {passwordActive ? (
@@ -210,26 +210,26 @@ export default function CreateFile() {
               </div>
             </div>
             <div
-              className="flex w-[293px] h-[35px] bg-mygold border-[1px] border-gray-300 justify-center items-center rounded-md absolute top-[350px]"
+              className="flex w-[293px] h-[35px] bg-mygold border-[1px] border-gray-300 justify-center items-center rounded-md absolute top-[400px]"
               onClick={(e) => {
                 onClickPdf(e)
                 setIsFileCreated(true)
               }}
             >
-              <span className="flex text-white text-center text-[15px] not-italic font-extrabold leading-[15px] font-NanumGothic cursor-pointer">
+              <span className="flex text-white text-center text-[18px] not-italic font-extrabold leading-[15px] font-NanumGothic cursor-pointer">
                 파일만들기
               </span>
             </div>
             {!isFileCreated && (
-              <div className="flex absolute top-[400px]">
-                <span className="text-red-500 text-[10px] font-bold">
+              <div className="flex absolute top-[450px]">
+                <span className="text-red-500 text-[15px] font-bold">
                   파일을 생성해주세요
                 </span>
               </div>
             )}
             {isFileCreated && (
-              <div className="flex absolute top-[400px]">
-                <span className="text-[10px] font-bold text-green-500">
+              <div className="flex absolute top-[450px]">
+                <span className="text-[15px] font-bold text-green-500">
                   파일이 생성되었습니다
                 </span>
               </div>
