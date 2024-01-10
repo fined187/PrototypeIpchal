@@ -19,6 +19,8 @@ import DownIpchal from './ipchal/DownIpchal'
 import BidderFormMod from './ipchal/BidderFormMod'
 import { useQuery } from 'react-query'
 import TimeInfo from './ipchal/TimeInfo'
+import AgentFormMod from './ipchal/AgentFormMod'
+import AgentForm from './ipchal/AgentForm'
 
 export default function Home() {
   const stateNum = useRecoilValue(stepState)
@@ -84,6 +86,7 @@ export default function Home() {
       {stateNum === 1 && <GetIpchalInfo />}
       {stateNum === 2 && biddingForm.biddingInfos.length > 1 && <TimeInfo />}
       {stateNum === 3 && <BidderInfo />}
+      {stateNum === 4 && <AgentForm />}
       {stateNum === 5 && <BidderCnt />}
       {stateNum === 6 && <BidderForm />}
       {stateNum === 7 && biddingForm.bidName.length > 1 && <ShareInfo />}
@@ -95,6 +98,7 @@ export default function Home() {
       {stateNum === 13 && <IpchalShare />}
       {stateNum === 14 && <DownIpchal />}
       {stateNum === 15 && <BidderFormMod />}
+      {stateNum === 16 && <AgentFormMod />}
     </>
   )
 }

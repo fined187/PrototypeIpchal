@@ -10,6 +10,7 @@ export const stepState = atom({
 export const biddingInfoState = atom({
   key: `biddingInfoState/${v4()}`,
   default: {
+    selectedTime: '0',
     bidSeq: [0],
     mstSeq: 0,
     state: 0,

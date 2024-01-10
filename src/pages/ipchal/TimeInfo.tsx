@@ -1,6 +1,6 @@
 import { biddingInfoState, stepState } from "@/atom"
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 
 export default function TimeInfo() {
@@ -32,7 +32,7 @@ export default function TimeInfo() {
         })
         setTimeout(() => {
           setStateNum(stateNum + 1)
-        }, 1000)
+        }, 1500)
         console.log(response.data)
       }
     } catch (error) {
@@ -60,25 +60,34 @@ export default function TimeInfo() {
           </span>
         </div>
         <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[60%] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
-          <div className={`flex flex-col justify-center items-center border-4 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${timeClicked === '1000' ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} onClick={() => {
+          <div className={`flex flex-col justify-center items-center border-4 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1000" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} 
+            onClick={() => {
+              setBiddingInfo((prev) => ({
+                ...prev,
+                selectedTime: "1000"
+              }))
+              setTimeClicked('1000')
             handleConfirm('1000')
-            setTimeClicked('1000')
           }}>
-            <span className={`font-NanumGothic text-[20px] font-bold ${timeClicked === '1000' ? 'text-white' : 'text-mygold'}`}>
+            <span className={`font-NanumGothic text-[20px] font-bold ${biddingInfo.selectedTime === '1000' ? 'text-white' : 'text-mygold'}`}>
               {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.biddingTime.substring(0, 2) + '시'}
             </span>
-            <span className={`font-NanumGothic text-[20px] font-bold ${timeClicked === '1000' ? 'text-white' : 'text-mygold'}`}>
+            <span className={`font-NanumGothic text-[20px] font-bold ${biddingInfo.selectedTime === '1000' ? 'text-white' : 'text-mygold'}`}>
               {'최저가 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.minimumAmount.toLocaleString('ko-KR') + '원'}
             </span>
           </div>
-          <div className={`flex flex-col justify-center items-center border-4 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${timeClicked === '1400' ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} onClick={() => {
+          <div className={`flex flex-col justify-center items-center border-4 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1400" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} onClick={() => {
+            setBiddingInfo((prev) => ({
+              ...prev,
+              selectedTime: "1400"
+            }))
+            setTimeClicked('1000')
             handleConfirm('1400')
-            setTimeClicked('1400')
           }}>
-            <span className={`font-NanumGothic text-[20px] font-bold ${timeClicked === '1400' ? 'text-white' : 'text-mygold'}`}>
+            <span className={`font-NanumGothic text-[20px] font-bold ${biddingInfo.selectedTime === '1400' ? 'text-white' : 'text-mygold'}`}>
               {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[1]?.biddingTime.substring(0, 2) + '시'}
             </span>
-            <span className={`font-NanumGothic text-[20px] font-bold ${timeClicked === '1400' ? 'text-white' : 'text-mygold'}`}>
+            <span className={`font-NanumGothic text-[20px] font-bold ${biddingInfo.selectedTime === '1400' ? 'text-white' : 'text-mygold'}`}>
               {'최저가 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[1]?.minimumAmount.toLocaleString('ko-KR') + '원'}
             </span>
           </div>

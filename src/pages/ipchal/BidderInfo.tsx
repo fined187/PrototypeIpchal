@@ -1,5 +1,5 @@
-import { bidderInfo, biddingInfoState, stepState } from '@/atom'
-import Button from '@/components/Button'
+import { biddingInfoState, stepState } from '@/atom'
+import axios from 'axios'
 import { useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
@@ -9,6 +9,18 @@ export default function BidderInfo() {
   const [isSelected, setIsSelected] = useState<boolean>(true)
   const biddingInfo = useRecoilValue(biddingInfoState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
+
+  const handleDeleteAgent = async () => {
+    try {
+      const response = await axios.delete(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/agents`)
+      if (response.status === 200) {
+        console.log(response.data.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  console.log(biddingInfo)
   return (
     <>
       <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -30,6 +42,7 @@ export default function BidderInfo() {
                   ...biddingInfo,
                   bidder: 'self', 
                 })
+                handleDeleteAgent()
                 setTimeout(() => {
                   setStateNum(stateNum + 2)
                 }, 1000)
@@ -77,7 +90,7 @@ export default function BidderInfo() {
                   bidder: 'agent',
                 })
                 setTimeout(() => {
-                  setStateNum(stateNum + 2)
+                  setStateNum(stateNum + 1)
                 }, 1000)
               }}
             >
@@ -120,11 +133,27 @@ export default function BidderInfo() {
             </div>
           </div>
         </div>
-        <Button
-          prevStepNum={stateNum - 1}
-          nextStepNum={stateNum + 1}
-          setIsSelected={setIsSelected}
-        />
+        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[600px]">
+          <button
+            type="button"
+            className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+            onClick={() => {
+              setStateNum(stateNum - 1)
+            }}
+          >
+            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+              이전
+            </span>
+          </button>
+          <button
+            type="button"
+            className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+          >
+            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+              다음
+            </span>
+          </button>
+        </div>
       </div>
     </>
   )

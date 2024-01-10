@@ -101,6 +101,9 @@ export default function BidderCnt() {
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+            onClick={() => {
+              setStateNum(stateNum - 2)
+            }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
               이전
@@ -109,7 +112,15 @@ export default function BidderCnt() {
           <button
             type="button"
             className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-            
+            onClick={() => {
+              if (biddingInfo.bidderNum > 0 && biddingInfo.bidName.length === 0) {
+                setStateNum(stateNum + 1)
+              } else if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
+                setStateNum(15)
+              } else {
+                alert('입찰자는 1명 이상이어야 합니다')
+              }
+            }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
               다음

@@ -887,7 +887,7 @@ export default function BidderForm() {
             <div className={`flex flex-row gap-[10px] absolute ${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>
               <button
                 type="button"
-                className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+                className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
                 onClick={() => {
                   {
                     stepNum === 1
@@ -902,7 +902,7 @@ export default function BidderForm() {
               </button>
               <button
                 type="submit"
-                className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+                className="flex w-[60%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               >
                 <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                   {stateNum <= 3 ? '확인' : '다음'}
