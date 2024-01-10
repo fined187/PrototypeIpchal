@@ -29,11 +29,11 @@ export default function TimeInfo() {
           ...biddingInfo,
           mstSeq: response.data.data.mstSeq,
           state: response.data.data.state,
+          selectedTime: time,
         })
         setTimeout(() => {
           setStateNum(stateNum + 1)
         }, 1500)
-        console.log(response.data)
       }
     } catch (error) {
       console.log(error)
@@ -41,7 +41,7 @@ export default function TimeInfo() {
   }
 
   const handleNextStep = (time: string) => {
-    if (timeClicked === '') {
+    if (time === '') {
       setErrorMsg(true)
       return
     } else {
@@ -62,11 +62,7 @@ export default function TimeInfo() {
         <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[60%] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
           <div className={`flex flex-col justify-center items-center border-4 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1000" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} 
             onClick={() => {
-              setBiddingInfo((prev) => ({
-                ...prev,
-                selectedTime: "1000"
-              }))
-              setTimeClicked('1000')
+            setTimeClicked('1000')
             handleConfirm('1000')
           }}>
             <span className={`font-NanumGothic text-[20px] font-bold ${biddingInfo.selectedTime === '1000' ? 'text-white' : 'text-mygold'}`}>
@@ -77,10 +73,6 @@ export default function TimeInfo() {
             </span>
           </div>
           <div className={`flex flex-col justify-center items-center border-4 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1400" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} onClick={() => {
-            setBiddingInfo((prev) => ({
-              ...prev,
-              selectedTime: "1400"
-            }))
             setTimeClicked('1000')
             handleConfirm('1400')
           }}>
@@ -112,7 +104,7 @@ export default function TimeInfo() {
             type="button"
             className="flex w-[60%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              handleNextStep(timeClicked)
+              handleNextStep(biddingInfo.selectedTime)
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

@@ -15,6 +15,7 @@ import CoIpchalList from '@/components/CoIpchalContent/CoIpchalList'
 
 export default function CreateFile() {
   const stateNum = useRecoilValue(stepState)
+  const setStateNum = useSetRecoilState(stepState)
   const biddingInfo = useRecoilValue(biddingInfoState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
   const [isFileCreated, setIsFileCreated] = useState<boolean>(false)
@@ -102,7 +103,7 @@ export default function CreateFile() {
         heightLeft -= pageHeight
       }
       const blob = doc.output('blob')
-      doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
+      // doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
       file = new File([blob], `best_${format(date, 'yyyyMMddHHmmss')}.pdf`, {
         type: 'application/pdf',
       })
@@ -121,8 +122,13 @@ export default function CreateFile() {
     if (password.length < 4 || password === '') {
       alert('파일 암호를 4자리 이상 입력해주세요')
       return
-    } 
-    await onCapture()
+    } else {
+      setBiddingInfo({
+        ...biddingInfo,
+        isFileCreated: true,
+      })
+      await onCapture()
+    }
   }
 
   const handleUploadFile = async () => {
@@ -142,10 +148,19 @@ export default function CreateFile() {
         },
       )
       if (response.status === 200) {
-        console.log(response)
+        return
       }
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  const handleNextStep = async () => {
+    if (biddingInfo.isFileCreated) {
+      await handleUploadFile()
+      setStateNum(stateNum + 1)
+    } else {
+      alert('파일을 생성해주세요')
     }
   }
 
@@ -213,21 +228,20 @@ export default function CreateFile() {
               className="flex w-[293px] h-[35px] bg-mygold border-[1px] border-gray-300 justify-center items-center rounded-md absolute top-[400px]"
               onClick={(e) => {
                 onClickPdf(e)
-                setIsFileCreated(true)
               }}
             >
               <span className="flex text-white text-center text-[18px] not-italic font-extrabold leading-[15px] font-NanumGothic cursor-pointer">
                 파일만들기
               </span>
             </div>
-            {!isFileCreated && (
+            {!biddingInfo.isFileCreated && (
               <div className="flex absolute top-[450px]">
                 <span className="text-red-500 text-[15px] font-bold">
                   파일을 생성해주세요
                 </span>
               </div>
             )}
-            {isFileCreated && (
+            {biddingInfo.isFileCreated && (
               <div className="flex absolute top-[450px]">
                 <span className="text-[15px] font-bold text-green-500">
                   파일이 생성되었습니다
@@ -235,12 +249,28 @@ export default function CreateFile() {
               </div>
             )}
           </div>
-          <Button
-            prevStepNum={stateNum - 1}
-            nextStepNum={stateNum + 1}
-            handleUploadFile={handleUploadFile}
-            isFileCreated={isFileCreated}
-          />
+          <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[600px]">
+            <button
+              type="button"
+              className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+              onClick={() => {
+                biddingInfo.isFileCreated ? alert('파일이 생성되어 이전 단계로 되돌아갈 수 없습니다.') : setStateNum(11)
+              }}
+            >
+              <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                이전
+              </span>
+            </button>
+            <button
+              type="button"
+              className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+              onClick={handleNextStep}
+            >
+              <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                다음
+              </span>
+            </button>
+          </div>
         </div>
       )}
       {loading && (
@@ -250,8 +280,8 @@ export default function CreateFile() {
       )}
       {totalResult && totalResult.bidders.length > 1 && (
         <div className='hidden flex-col' id='capture'>
-          <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] md:w-screen min-w-[420px] m-auto relative justify-center items-center">
-            <div className="flex flex-col bg-mybg md:w-full h-[100%] min-w-[420px] m-auto relative justify-center items-center">
+          <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] w-[100%] mx-auto relative justify-center items-center">
+            <div className="flex flex-col bg-mybg md:w-[50%] h-[100%] w-[100%] mx-auto relative justify-center items-center">
               <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
                 입찰표
               </div>
@@ -368,7 +398,7 @@ export default function CreateFile() {
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                               <span className="text-[12px]">
-                                {biddingInfo.agentName ?? '-'}
+                                {biddingInfo.bidder === 'agent' ? biddingInfo.agentName : ''}
                               </span>
                               <span className="text-[12px] mr-1">(인)</span>
                             </div>
@@ -381,7 +411,7 @@ export default function CreateFile() {
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%]">
                               <span className="text-[12px]">
-                                {biddingInfo.agentRel ?? '-'}
+                                {biddingInfo.bidder === 'agent' ? biddingInfo.agentRel : '-'}
                               </span>
                             </div>
                           </div>
@@ -393,9 +423,7 @@ export default function CreateFile() {
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                               <span className="font-NanumGothic text-[12px]">
-                                {biddingInfo.agentIdNum.substring(0, 6) +
-                                  '-' +
-                                  biddingInfo.agentIdNum.substring(6, 14) ?? '-'}
+                                {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) + '-' + biddingInfo.agentIdNum.substring(6, 14) : '-'}
                               </span>
                             </div>
                             <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
@@ -405,7 +433,7 @@ export default function CreateFile() {
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%]">
                               <span className="text-[12px] font-NanumGothic">
-                                {biddingInfo.agentPhone ?? '-'}
+                                {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3 : '-'}
                               </span>
                             </div>
                           </div>
@@ -415,7 +443,7 @@ export default function CreateFile() {
                             </div>
                             <div className="flex justify-center items-center text-center w-[80%]">
                               <span className="text-[12px] font-NanumGothic">
-                                {biddingInfo.agentAddr ?? '-'}
+                                {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr : '-'}
                               </span>
                             </div>
                           </div>
@@ -975,8 +1003,8 @@ export default function CreateFile() {
       )}
       {totalResult && totalResult.bidders.length === 1 && (
         <div className='hidden flex-col' id="capture">
-          <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] md:w-screen min-w-[420px] m-auto relative justify-center items-center">
-            <div className="flex flex-col bg-mybg md:w-full h-[100%] min-w-[420px] m-auto relative justify-center items-center">
+          <div className="flex flex-col bg-mybg max-h-[2000px] h-[1300px] w-[100%] mx-auto relative justify-center items-center">
+            <div className="flex flex-col bg-mybg md:w-[50%] h-[100%] w-[100%] mx-auto relative justify-center items-center">
               <div className="w-[100%] text-[22px] font-bold py-[30px] absolute top-0 bg-mybg justify-center item-center text-center">
                 입찰표
               </div>
@@ -1140,7 +1168,7 @@ export default function CreateFile() {
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                               <span className="text-[12px]">
-                                {biddingInfo.agentName ?? '-'}
+                                {biddingInfo.bidder === 'agent' ? biddingInfo.agentName : ''}
                               </span>
                               <span className="text-[12px] mr-1">(인)</span>
                             </div>
@@ -1153,7 +1181,7 @@ export default function CreateFile() {
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%]">
                               <span className="text-[12px]">
-                                {biddingInfo.agentRel ?? '-'}
+                                {biddingInfo.bidder === 'agent' ? biddingInfo.agentRel : '-'}
                               </span>
                             </div>
                           </div>
@@ -1165,9 +1193,7 @@ export default function CreateFile() {
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                               <span className="font-NanumGothic text-[12px]">
-                                {biddingInfo.agentIdNum.substring(0, 6) +
-                                  '-' +
-                                  biddingInfo.agentIdNum.substring(6, 14) ?? '-'}
+                                {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) + '-' + biddingInfo.agentIdNum.substring(6, 14) : '-'}
                               </span>
                             </div>
                             <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
@@ -1177,7 +1203,7 @@ export default function CreateFile() {
                             </div>
                             <div className="flex justify-center items-center text-center w-[30%]">
                               <span className="text-[12px] font-NanumGothic">
-                                {biddingInfo.agentPhone ?? '-'}
+                                {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3 : '-'}
                               </span>
                             </div>
                           </div>
@@ -1187,7 +1213,7 @@ export default function CreateFile() {
                             </div>
                             <div className="flex justify-center items-center text-center w-[80%]">
                               <span className="text-[12px] font-NanumGothic">
-                                {biddingInfo.agentAddr ?? '-'}
+                                {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr : '-'}
                               </span>
                             </div>
                           </div>
@@ -1743,7 +1769,6 @@ export default function CreateFile() {
           )}
         </div>
       )}
-
     </>
   )
 }

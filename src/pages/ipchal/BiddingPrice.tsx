@@ -84,7 +84,6 @@ export default function BiddingPrice() {
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`,
         )
         if (response.status !== 200) throw new Error('에러')
-        console.log(response)
         setPaymentsInfo({
           ...paymentsInfo,
           biddingTime: response.data.data.biddingInfo.biddingTime,

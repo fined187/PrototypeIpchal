@@ -9,7 +9,6 @@ import CoIpchalList from "./CoIpchalList";
 
 export default function CoIpchalContent() {
   const [totalResult, setTotalResult] = useState<any>(null);
-  const [agentResult, setAgentResult] = useState<any>(null);
   const biddingInfo = useRecoilValue(biddingInfoState);
   const stateNum = useRecoilValue(stepState);
   const setStateNum = useSetRecoilState(stepState);
@@ -39,7 +38,6 @@ export default function CoIpchalContent() {
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`,
         )
         if (response.status === 200) {
-          console.log(response)
           setTotalResult(response.data.data)
         }
       } catch (error) {
@@ -61,7 +59,7 @@ export default function CoIpchalContent() {
     {!loading && (
       <>
         <div className="flex flex-col bg-white max-h-[2000px] h-[1300px] w-[100%] mx-auto relative justify-center items-center">
-          <div className="flex flex-col bg-mybg md:w-[50%] h-[100%] w-[100%] m-auto relative justify-center items-center">
+          <div className="flex flex-col bg-mybg md:w-[50%] h-[100%] w-[100%] mx-auto relative justify-center items-center">
             <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표
             </div>
@@ -178,7 +176,7 @@ export default function CoIpchalContent() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                             <span className="text-[12px]">
-                              {biddingInfo.agentName ?? '-'}
+                              {biddingInfo.bidder === 'agent' ? biddingInfo.agentName : ''}
                             </span>
                             <span className="text-[12px] mr-1">(인)</span>
                           </div>
@@ -191,7 +189,7 @@ export default function CoIpchalContent() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
                             <span className="text-[12px]">
-                              {biddingInfo.agentRel ?? '-'}
+                              {biddingInfo.bidder === 'agent' ? biddingInfo.agentRel : '-'}
                             </span>
                           </div>
                         </div>
@@ -203,9 +201,7 @@ export default function CoIpchalContent() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                             <span className="font-NanumGothic text-[12px]">
-                              {biddingInfo.agentIdNum.substring(0, 6) +
-                                '-' +
-                                biddingInfo.agentIdNum.substring(6, 14) ?? '-'}
+                              {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) + '-' + biddingInfo.agentIdNum.substring(6, 14) : '-'}
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
@@ -215,7 +211,7 @@ export default function CoIpchalContent() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
                             <span className="text-[12px] font-NanumGothic">
-                              {biddingInfo.agentPhone ?? '-'}
+                              {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3 : '-'}
                             </span>
                           </div>
                         </div>
@@ -225,7 +221,7 @@ export default function CoIpchalContent() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[80%]">
                             <span className="text-[12px] font-NanumGothic">
-                              {biddingInfo.agentAddr ?? '-'}
+                              {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr : '-'}
                             </span>
                           </div>
                         </div>

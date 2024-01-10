@@ -167,7 +167,6 @@ export default function BidderFormMod() {
         },
       })
       if (response.status === 200) {
-        console.log(response.data)
         return true
       }
     } catch (error) {
@@ -193,7 +192,6 @@ export default function BidderFormMod() {
   const handleUpdate = async () => {
     try {
       if (biddingForm?.bidCorpYn[stepNum - 1] === 'I') {
-        console.log("여기")
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
@@ -202,7 +200,7 @@ export default function BidderFormMod() {
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
         if (response.status === 200) {
-          console.log(response.data)
+          return
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
@@ -245,7 +243,7 @@ export default function BidderFormMod() {
           },
         )
         if (response.status === 200) {
-          console.log(response.data)
+          return
         }
       } else {
         const response = await axios.post(
@@ -268,7 +266,7 @@ export default function BidderFormMod() {
           },
         )
         if (response.status === 200) {
-          console.log(response.data)
+          return
         }
       }
     } catch (error) {
@@ -366,8 +364,6 @@ export default function BidderFormMod() {
     }
     handleGetBidders()
   }, [])
-
-  console.log(biddingForm)
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">

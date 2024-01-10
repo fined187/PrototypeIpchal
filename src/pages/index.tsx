@@ -46,7 +46,6 @@ export default function Home() {
     try {
       const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
       if (response.status === 200) {
-        console.log(response.data.data)
         setBidderInfos({
           agentYn: response.data.data.agentYn,
           mstSeq: response.data.data.mstSeq,

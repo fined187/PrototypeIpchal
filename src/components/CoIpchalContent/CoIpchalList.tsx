@@ -78,7 +78,7 @@ export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
                   </div>
                   <div className="flex w-[100%] h-[100%] justify-center items-center text-center">
                     <p className="text-[15px] font-NanumGothic font-normal">
-                      {el.phoneNo}
+                      {biddingInfo.bidPhone1[idx] + '-' + biddingInfo.bidPhone2[idx] + '-' + biddingInfo.bidPhone3[idx]}
                     </p>
                   </div>
                 </div>

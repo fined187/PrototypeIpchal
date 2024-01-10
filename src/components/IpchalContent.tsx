@@ -20,6 +20,8 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
     }
   }
 
+  console.log(biddingInfo)
+
   return (
     <>
       {biddingInfo.bidName.length === 1 && (
@@ -1742,12 +1744,12 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                       <div className="flex flex-row w-[100%] h-[50%]">
                         <div className="flex w-[100%] h-[100%] border-black border-r-[1px] justify-center items-center text-center">
                           <p className="text-[15px] font-NanumGothic font-normal">
-                            {biddingInfo.bidCorpYn[idx] === 'I' ?  biddingInfo.bidIdNum1[idx] + '-' + biddingInfo.bidIdNum1[idx] : biddingInfo.bidCorpNum1[idx] + '-' + biddingInfo.bidCorpNum2[idx] + '-' + biddingInfo.bidCorpNum3[idx]}
+                            {biddingInfo.bidCorpYn[idx] === 'I' ?  biddingInfo.bidIdNum1[idx] + '-' + biddingInfo.bidIdNum2[idx] : biddingInfo.bidCorpNum1[idx] + '-' + biddingInfo.bidCorpNum2[idx] + '-' + biddingInfo.bidCorpNum3[idx]}
                           </p>
                         </div>
                         <div className="flex w-[100%] h-[100%] justify-center items-center text-center">
                           <p className="text-[15px] font-NanumGothic font-normal">
-                            {biddingInfo.bidPhone[idx]}
+                            {biddingInfo.bidPhone1[idx] + '-' + biddingInfo.bidPhone2[idx] + '-' + biddingInfo.bidPhone3[idx]}
                           </p>
                         </div>
                       </div>

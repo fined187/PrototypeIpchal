@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-export default function AgentFormMod() {
+export default function AgentForm() {
   const biddingForm = useRecoilValue(biddingInfoState)
   const setBiddingForm = useSetRecoilState(biddingInfoState)
   const setStateNum = useSetRecoilState(stepState)
@@ -79,7 +79,7 @@ export default function AgentFormMod() {
         },
       )
       if (response.status === 200) {
-        setStateNum(stateNum + 1)
+        setStateNum(5)
       }
     } catch (error) {
       console.log(error)
@@ -87,7 +87,11 @@ export default function AgentFormMod() {
   }
 
   const onSubmit: SubmitHandler<any> = async () => {
-    await handleAgentUpdate()
+    try {
+      await handleAgentUpdate()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -99,21 +103,22 @@ export default function AgentFormMod() {
   }, [biddingForm.agentAddrDetail, setError])
 
   return (
-    <div className="flex w-screen h-screen bg-mybg justify-center relative">
-      <div className="flex flex-col gap-4 md:w-[420px] w-[100%] h-screen bg-mybg items-center text-center relative">
-        <div className="flex flex-row py-6">
-          <span className="text-lg font-extrabold font-nanum not-italic leading-8">
-            대리인 정보를 입력해주세요 (수정)
+    <div className="flex w-[100%] h-screen bg-white justify-center relative">
+      <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
+        <div className="flex flex-row py-6 pt-4">
+          <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
+            대리인 정보를 입력해주세요(수정)
           </span>
         </div>
+
         {/* 입력정보 */}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col w-[320px] h-[100%] gap-2">
+        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[50%] w-[80%] h-[100%] justify-center items-center'>
+          <div className="flex flex-col w-[100%] h-[100%] gap-2">
             <div className="flex flex-row w-[100%] gap-[5%]">
               <div className="flex flex-col w-[47.5%] gap-1">
                 <label
                   htmlFor="agentName"
-                  className="text-[10px] font-nanum not-italic font-extrabold text-left"
+                  className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
                 >
                   성명
                 </label>
@@ -125,12 +130,10 @@ export default function AgentFormMod() {
                       message: '이름은 2자 이상 입력해주세요',
                     },
                   })}
-                  value={
-                    biddingForm.agentName === '' ? '' : biddingForm.agentName
-                  }
+                  value={biddingForm.agentName || ''}
                   id="agentName"
                   type="text"
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2"
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
                   placeholder="성명을 입력해주세요"
                   onChange={(e) => {
                     setAgentInfo((prev: any) => {
@@ -145,8 +148,8 @@ export default function AgentFormMod() {
                   errors.agentName?.type === 'minLength') && (
                   <div className="flex w-[100%] justify-start">
                     <label
-                      htmlFor="bidderName"
-                      className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500"
+                      htmlFor="agentName"
+                      className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                     >
                       {errors.agentName?.message}
                     </label>
@@ -156,7 +159,7 @@ export default function AgentFormMod() {
               <div className="flex flex-col w-[47.5%] gap-1">
                 <label
                   htmlFor="agentRel"
-                  className="text-[10px] font-nanum not-italic font-extrabold text-left"
+                  className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
                 >
                   입찰자와의 관계
                 </label>
@@ -164,12 +167,10 @@ export default function AgentFormMod() {
                   {...register('agentRel', {
                     required: '입찰자와의 관계를 입력해주세요',
                   })}
-                  value={
-                    biddingForm.agentRel === '' ? '' : biddingForm.agentRel
-                  }
+                  value={biddingForm.agentRel || ''}
                   id="agentRel"
                   type="text"
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2"
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
                   placeholder="관계를 입력해주세요"
                   onChange={(e) => {
                     setAgentInfo((prev: AgentInfoType) => {
@@ -184,7 +185,7 @@ export default function AgentFormMod() {
                   <div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="agentRel"
-                      className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500"
+                      className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                     >
                       {errors.agentRel?.message}
                     </label>
@@ -195,7 +196,7 @@ export default function AgentFormMod() {
             <div className="flex flex-col w-[100%] gap-1">
               <label
                 htmlFor="agentPhone"
-                className="text-[10px] font-nanum not-italic font-extrabold text-left"
+                className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
               >
                 전화번호
               </label>
@@ -211,12 +212,8 @@ export default function AgentFormMod() {
                   type="text"
                   maxLength={3}
                   placeholder="010"
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
-                  value={
-                    biddingForm.agentPhone1 === ''
-                      ? ''
-                      : biddingForm.agentPhone1
-                  }
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                  value={biddingForm.agentPhone1 || ''}
                   onChange={(e) => {
                     setAgentInfo((prev: AgentInfoType) => {
                       return { ...prev, agentPhone1: e.target.value }
@@ -227,7 +224,7 @@ export default function AgentFormMod() {
                     handlePhoneFocusMove(e.target)
                   }}
                 />
-                <span className="flex text-mygray font-nanum font-normal">
+                <span className="flex text-mygray font-NanumGothic font-bold mt-1">
                   -
                 </span>
                 <input
@@ -241,12 +238,8 @@ export default function AgentFormMod() {
                       .replace(/(\..*)\./g, '$1')
                   }}
                   placeholder="1234"
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
-                  value={
-                    biddingForm.agentPhone2 === ''
-                      ? ''
-                      : biddingForm.agentPhone2
-                  }
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                  value={biddingForm.agentPhone2 || ''}
                   onChange={(e) => {
                     setAgentInfo((prev: AgentInfoType) => {
                       return { ...prev, agentPhone2: e.target.value }
@@ -257,7 +250,7 @@ export default function AgentFormMod() {
                     handlePhoneFocusMove(e.target)
                   }}
                 />
-                <span className="flex text-mygray font-nanum font-normal">
+                <span className="flex text-mygray font-NanumGothic font-bold mt-1">
                   -
                 </span>
                 <input
@@ -271,12 +264,8 @@ export default function AgentFormMod() {
                       .replace(/(\..*)\./g, '$1')
                   }}
                   placeholder="5678"
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[30%] text-center"
-                  value={
-                    biddingForm.agentPhone3 === ''
-                      ? ''
-                      : biddingForm.agentPhone3
-                  }
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                  value={biddingForm.agentPhone3 || ''}
                   onChange={(e) => {
                     setAgentInfo((prev: AgentInfoType) => {
                       return { ...prev, agentPhone3: e.target.value }
@@ -304,7 +293,7 @@ export default function AgentFormMod() {
               <div className="flex w-[100%] justify-start">
                 <label
                   htmlFor="agentPhone"
-                  className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500"
+                  className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                 >
                   전화번호를 입력해주세요
                 </label>
@@ -313,7 +302,7 @@ export default function AgentFormMod() {
             <div className="flex flex-col w-[100%] gap-1">
               <label
                 htmlFor="agentIdNum"
-                className="text-[10px] font-nanum not-italic font-extrabold text-left"
+                className="text-[10px] font-NanumGothic not-italic font-extrabold text-left"
               >
                 주민등록번호
               </label>
@@ -331,12 +320,8 @@ export default function AgentFormMod() {
                   }}
                   type="text"
                   maxLength={6}
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[45%] text-center"
-                  value={
-                    biddingForm.agentIdNum1 === ''
-                      ? ''
-                      : biddingForm.agentIdNum1
-                  }
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
+                  value={biddingForm.agentIdNum1 || ''}
                   onChange={(e) => {
                     setAgentInfo((prev: AgentInfoType) => {
                       return { ...prev, agentIdNum1: e.target.value }
@@ -347,7 +332,7 @@ export default function AgentFormMod() {
                     handleIdNumFocusMove(e.target)
                   }}
                 />
-                <span className="flex text-mygray font-nanum font-normal">
+                <span className="flex text-mygray font-NanumGothic font-bold mt-1">
                   -
                 </span>
                 <input
@@ -363,12 +348,8 @@ export default function AgentFormMod() {
                   }}
                   type="text"
                   maxLength={7}
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold h-[30px] px-2 w-[45%] text-center"
-                  value={
-                    biddingForm.agentIdNum2 === ''
-                      ? ''
-                      : biddingForm.agentIdNum2
-                  }
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
+                  value={biddingForm.agentIdNum2 || ''}
                   onChange={(e) => {
                     setAgentInfo((prev: any) => {
                       return { ...prev, agentIdNum2: e.target.value }
@@ -389,16 +370,16 @@ export default function AgentFormMod() {
             {errors.agentIdNum1?.type === 'required' &&
               errors.agentIdNum2?.type === 'required' && (
                 <div className="flex w-[80%] justify-start h-[15px] mb-1">
-                  <span className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500">
+                  <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
                     주민등록번호를 입력해주세요
                   </span>
                 </div>
               )}
             <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>
-            <div className="flex flex-col w-[100%] gap-1">
+              <div className="flex flex-col w-[100%] gap-1">
                 <label
                   htmlFor="agentJob"
-                  className="text-[10px] font-nanum not-italic font-extrabold text-left"
+                  className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
                 >
                   직업
                 </label>
@@ -406,12 +387,10 @@ export default function AgentFormMod() {
                   {...register('agentJob', {
                     required: '직업을 입력해주세요',
                   })}
-                  value={
-                    biddingForm.agentJob === '' ? '' : biddingForm.agentJob
-                  }
+                  value={biddingForm.agentJob || ''}
                   id="agentJob"
                   type="text"
-                  className="border border-gray-300 focus:border-myyellow rounded-md text-[12px] font-nanum not-italic font-extrabold text-left h-[30px] px-2"
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
                   placeholder="직업을 입력해주세요"
                   onChange={(e) => {
                     setAgentInfo((prev: any) => {
@@ -426,7 +405,7 @@ export default function AgentFormMod() {
                   <div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="agentJob"
-                      className="text-[10px] font-nanum not-italic font-extrabold text-left text-red-500"
+                      className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                     >
                       {errors.agentJob?.message}
                     </label>
@@ -441,26 +420,26 @@ export default function AgentFormMod() {
                 agentSetError={setError}
               />
             </div>
-            <div className="flex flex-row gap-2 absolute top-[630px]">
+            <div className="flex flex-row gap-[10px] absolute top-[630px] justify-center items-center md:w-[50%] w-[80%]">
               <button
                 type="button"
-                className="flex w-[82px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+                className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
                 onClick={() => {
                   {
-                    setStateNum(stateNum - 1)
+                    setStateNum(3)
                   }
                 }}
               >
-                <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
+                <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                   이전
                 </span>
               </button>
               <button
                 type="submit"
-                className="flex w-[229px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+                className="flex w-[60%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               >
-                <span className="text-white font-extrabold font-nanum text-[18px] leading-[15px] tracking-[-0.9px]">
-                  {stateNum <= 3 ? '확인' : '다음'}
+                <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                  다음
                 </span>
               </button>
             </div>

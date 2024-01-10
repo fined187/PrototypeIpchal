@@ -125,7 +125,7 @@ export default function ShareInfo() {
         shareList: shareList.shareList,
       })
       if (response.status === 200) {
-        console.log(response)
+        return
       }
     } catch (error) {
       console.log(error)
@@ -143,7 +143,6 @@ export default function ShareInfo() {
       try {
         const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders`)
         if (response.status === 200) {
-          console.log(response.data)
           setIsDataIn(response.data.data.bidders)
           setBiddingInfo({
             ...biddingInfo,
@@ -162,7 +161,7 @@ export default function ShareInfo() {
     }
     handleGetBiddingFormUpdate()
   }, [])
-console.log(isDataIn.length)
+
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">

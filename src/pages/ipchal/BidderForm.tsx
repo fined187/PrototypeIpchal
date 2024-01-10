@@ -108,7 +108,7 @@ export default function BidderForm() {
           },
         )
         if (response.status === 200) {
-          console.log(response.data)
+          return
         }
       } else {
         const response = await axios.post(
@@ -131,7 +131,7 @@ export default function BidderForm() {
           },
         )
         if (response.status === 200) {
-          console.log(response.data)
+          return
         }
       }
     } catch (error) {
@@ -241,7 +241,6 @@ export default function BidderForm() {
         },
       })
       if (response.status === 200) {
-        console.log(response.data)
         return true
       }
     } catch (error) {
@@ -290,7 +289,7 @@ export default function BidderForm() {
       <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
         <div className="flex flex-row py-6 pt-4">
           <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
-            본인 정보를 입력해주세요
+            본인 정보를 입력해주세요(등록)
           </span>
           {biddingForm.bidderNum > 1 && (
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8 ml-2">

@@ -14,13 +14,28 @@ export default function BidderInfo() {
     try {
       const response = await axios.delete(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/agents`)
       if (response.status === 200) {
-        console.log(response.data.data)
+        setBiddingInfo({
+          ...biddingInfo,
+          bidder: 'self',
+          agentName: '',
+          agentPhone: '',
+          agentAddr: '',
+          agentIdNum: '',
+          agentIdNum1: '',
+          agentIdNum2: '',
+          agentJob: '',
+          agentPhone1: '',
+          agentPhone2: '',
+          agentPhone3: '',
+          agentRel: '',
+          agentAddrDetail: '',
+        })
       }
     } catch (error) {
       console.log(error)
     }
   }
-  console.log(biddingInfo)
+
   return (
     <>
       <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -38,10 +53,6 @@ export default function BidderInfo() {
                 biddingInfo.bidder === 'self' ? 'bg-myyellow' : 'bg-white'
               } relative`}
               onClick={() => {
-                setBiddingInfo({
-                  ...biddingInfo,
-                  bidder: 'self', 
-                })
                 handleDeleteAgent()
                 setTimeout(() => {
                   setStateNum(stateNum + 2)
@@ -148,6 +159,9 @@ export default function BidderInfo() {
           <button
             type="button"
             className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            onClick={() => {
+              biddingInfo.bidder === 'self' ? setStateNum(stateNum + 2) : biddingInfo.agentName === '' ? setStateNum(stateNum + 1) : setStateNum(16)
+            }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
               다음

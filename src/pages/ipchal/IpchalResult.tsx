@@ -49,7 +49,7 @@ export default function IpchalResult() {
     }
     handleGetResult()
   }, [])
-
+  
   return (
     <>
       {loading && (
@@ -223,7 +223,7 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                             <span className="text-[12px]">
-                              {biddingInfo.agentName ?? '-'}
+                              {biddingInfo.bidder === 'agent' && biddingInfo.agentName ? biddingInfo.agentName : ''}
                             </span>
                             <span className="text-[12px] mr-1">(인)</span>
                           </div>
@@ -236,7 +236,7 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
                             <span className="text-[12px]">
-                              {biddingInfo.agentRel ?? '-'}
+                              {biddingInfo.bidder === 'agent' && biddingInfo.agentRel ? biddingInfo.agentRel : '-'}
                             </span>
                           </div>
                         </div>
@@ -248,9 +248,9 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                             <span className="font-NanumGothic text-[12px]">
-                              {biddingInfo.agentIdNum.substring(0, 6) +
+                              {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) +
                                 '-' +
-                                biddingInfo.agentIdNum.substring(6, 14) ?? '-'}
+                                biddingInfo.agentIdNum.substring(6, 14) : '-'}
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
@@ -260,7 +260,8 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
                             <span className="text-[12px] font-NanumGothic">
-                              {biddingInfo.agentPhone ?? '-'}
+                              {biddingInfo.bidder === 'agent' ? (biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3) : '-'
+                              }
                             </span>
                           </div>
                         </div>
@@ -270,7 +271,7 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[80%]">
                             <span className="text-[12px] font-NanumGothic">
-                              {biddingInfo.agentAddr ?? '-'}
+                              {biddingInfo.bidder === 'agent' && biddingInfo.agentAddr ? biddingInfo.agentAddr : '-'}
                             </span>
                           </div>
                         </div>
