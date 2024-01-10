@@ -16,6 +16,7 @@ export default function BiddingPrice() {
     minimumAmount: 0,
     bidDeposit: 0,
   })
+  const [isDataIn, setIsDataIn] = useState<any>([])
 
   function num2han(number: number) {
     const units = ['조', '억', '만', ''] // 단위
@@ -76,33 +77,34 @@ export default function BiddingPrice() {
         }
       })
   }
-
   useEffect(() => {
     const handleGetBiddingPrice = async () => {
       try {
         const response = await axios.get(
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`,
         )
-        if (response.status !== 200) throw new Error('에러')
-        setPaymentsInfo({
-          ...paymentsInfo,
-          biddingTime: response.data.data.biddingInfo.biddingTime,
-          appraisalAmount:
-            response.data.data.biddingInfo.appraisalAmount,
-          minimumAmount: response.data.data.biddingInfo.minimumAmount,
-          bidDeposit: response.data.data.biddingInfo.bidDeposit,
-        })
-        if (biddingForm.biddingPrice === 0) {
-          setBiddingForm({
-            ...biddingForm,
-            biddingPrice: response.data.data.biddingInfo.minimumAmount,
+        if (response.status === 200) {
+          console.log(response)
+          setPaymentsInfo({
+            ...paymentsInfo,
+            biddingTime: response.data.data.biddingInfo.biddingTime,
+            appraisalAmount:
+              response.data.data.biddingInfo.appraisalAmount,
+            minimumAmount: response.data.data.biddingInfo.minimumAmount,
+            bidDeposit: response.data.data.biddingInfo.bidDeposit,
           })
-        }
-        if (biddingForm.depositPrice === 0) {
-          setBiddingForm({
-            ...biddingForm,
-            depositPrice: response.data.data.biddingInfo.bidDeposit,
-          })
+          if (biddingForm.biddingPrice === 0) {
+            setBiddingForm({
+              ...biddingForm,
+              biddingPrice: response.data.data.biddingInfo.minimumAmount,
+            })
+          }
+          if (biddingForm.depositPrice === 0) {
+            setBiddingForm({
+              ...biddingForm,
+              depositPrice: response.data.data.biddingInfo.bidDeposit,
+            })
+          }
         }
       } catch (error) {
         console.log(error)
@@ -119,6 +121,28 @@ export default function BiddingPrice() {
       setStateNum(stateNum + 1)
     } else {
       alert('입찰금액과 입찰보증금을 확인해주세요')
+    }
+  }
+
+  const handleGetBiddingFormUpdate = async () => {
+    try {
+      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
+      if (response.status === 200) {
+        setIsDataIn(response.data.data.bidders)
+        console.log(response.data.data.bidders.map((item: any) => item.name))
+        setBiddingForm({
+          ...biddingForm,
+          bidName: response.data.data.bidders.map((item: any) => item.name),
+          bidAddr: response.data.data.bidders.map((item: any) => item.address),
+          bidPhone: response.data.data.bidders.map((item: any) => item.phoneNo),
+          bidCorpYn: response.data.data.bidders.map((item: any) => item.bidderType),
+          bidCorpNum: response.data.data.bidders.map((item: any) => item.companyNo),
+          bidJob: response.data.data.bidders.map((item: any) => item.job),
+          bidCorpRegiNum: response.data.data.bidders.map((item: any) => item.corporationNo),
+        })
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -245,10 +269,11 @@ export default function BiddingPrice() {
           className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
             handleBiddingPrice()
+            handleGetBiddingFormUpdate()
           }}
         >
           <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-            {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
+            다음
           </span>
         </button>
       </div>

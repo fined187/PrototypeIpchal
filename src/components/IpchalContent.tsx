@@ -20,8 +20,6 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
     }
   }
 
-  console.log(biddingInfo)
-
   return (
     <>
       {biddingInfo.bidName.length === 1 && (
@@ -115,7 +113,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                           <span className="text-[12px]">
                             {biddingInfo?.bidPhone.length > 1
                               ? ''
-                              : biddingInfo.bidPhone[0]}
+                              : biddingInfo.bidPhone[0].length === 10 ? biddingInfo.bidPhone[0].substring(0, 2) + '-' + biddingInfo.bidPhone[0].substring(2, 6) + '-' + biddingInfo.bidPhone[0].substring(6, 10) : biddingInfo.bidPhone[0].substring(0, 3) + '-' + biddingInfo.bidPhone[0].substring(3, 7) + '-' + biddingInfo.bidPhone[0].substring(7, 11)}
                           </span>
                         </div>
                       </div>
@@ -130,7 +128,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         <div className="flex w-[30%] border-black border-r-[1px] justify-center items-center">
                           <span className="text-[12px] font-NanumGothic">
                             {biddingInfo.bidIdNum[0].toString().substring(0, 6)}-
-                            {biddingInfo.bidIdNum.toString().substring(6, 14)}
+                            {biddingInfo.bidIdNum[0].toString().substring(6, 14)}
                           </span>
                         </div>
                         <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
@@ -142,9 +140,9 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center w-[30%] text-center">
                           <span className="text-[12px] font-NanumGothic">
-                            {biddingInfo.bidCorpRegiNum.length > 1
-                              ? ''
-                              : biddingInfo?.bidCorpRegiNum[0]}
+                            {biddingInfo.bidCorpRegiNum.length > 1 || biddingInfo.bidCorpRegiNum[0] === null
+                              ? '-'
+                              : biddingInfo?.bidCorpRegiNum[0]?.substring(0, 3) + '-' + biddingInfo?.bidCorpRegiNum[0]?.substring(3, 5) + '-' + biddingInfo?.bidCorpRegiNum[0]?.substring(5, 10)}
                           </span>
                         </div>
                       </div>
@@ -173,7 +171,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                           <span className="text-[12px]">
-                            {biddingInfo.agentName ?? '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentName : '-'}
                           </span>
                           <span className="text-[12px] mr-1">(인)</span>
                         </div>
@@ -186,7 +184,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%]">
                           <span className="text-[12px]">
-                            {biddingInfo.agentRel ?? '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentRel : '-'}
                           </span>
                         </div>
                       </div>
@@ -198,9 +196,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                           <span className="font-NanumGothic text-[12px]">
-                            {biddingInfo.agentIdNum.substring(0, 6) +
-                              '-' +
-                              biddingInfo.agentIdNum.substring(6, 14) ?? '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) + '-' + biddingInfo.agentIdNum.substring(6, 14) : '-'}
                           </span>
                         </div>
                         <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
@@ -208,7 +204,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%]">
                           <span className="text-[12px] font-NanumGothic">
-                            {biddingInfo.agentPhone ?? '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone : '-'}
                           </span>
                         </div>
                       </div>
@@ -218,7 +214,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[80%]">
                           <span className="text-[12px] font-NanumGothic">
-                            {biddingInfo.agentAddr ?? '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr : '-'}
                           </span>
                         </div>
                       </div>
@@ -1003,27 +999,27 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                       <span className="text-[14px] font-NanumGothic">본인</span>
                     </div>
                     <div className="flex flex-col w-[100%] h-[100%]">
-                      <div className="flex flex-row items-stretch h-[30%]">
-                        <div className="flex justify-center items-center border-black border-b-[1px] border-r-[1px] w-[20%]">
+                      <div className="flex flex-row items-stretch h-[31%]">
+                        <div className="flex justify-center items-center border-black border-b-[1px] border-r-[1px] w-[19.8%]">
                           <span className="text-[12px]">성명</span>
                         </div>
                       </div>
                       <div className="flex flex-row">
-                        <div className="flex justify-center border-black border-b-[1px] border-r-[1px] w-[20%]">
+                        <div className="flex justify-center border-black border-b-[1px] border-r-[1px] w-[19.8%]">
                           <span className="text-[12px] font-NanumGothic">
                             주민(사업자)
                             <br />
                             등록번호
                           </span>
                         </div>
-                        <div className="flex justify-center items-center text-center w-[80%]">
+                        <div className="flex justify-center items-center text-center w-[80.2%]">
                           <span className="text-[15px] font-NanumGothic font-bold text-red-500">
                             별첨 목록과 같음
                           </span>
                         </div>
                       </div>
                       <div className="flex flex-row h-[40%]">
-                        <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                        <div className="flex w-[19.8%] border-black border-r-[1px] justify-center items-center text-center">
                           <span className="text-[12px] font-NanumGothic">주소</span>
                         </div>
                       </div>
@@ -1040,7 +1036,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                           <span className="text-[12px]">
-                            {biddingInfo.agentName ?? '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentName : '-'}
                           </span>
                           <span className="text-[12px] mr-1">(인)</span>
                         </div>
@@ -1053,7 +1049,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%]">
                           <span className="text-[12px]">
-                            {biddingInfo.agentRel ?? '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentRel : '-'}
                           </span>
                         </div>
                       </div>
@@ -1065,9 +1061,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                           <span className="font-NanumGothic text-[12px]">
-                            {biddingInfo.agentIdNum.substring(0, 6) +
-                              '-' +
-                              biddingInfo.agentIdNum.substring(6, 14) ?? '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) + '-' + biddingInfo.agentIdNum.substring(6, 14) : '-'}
                           </span>
                         </div>
                         <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
@@ -1075,7 +1069,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%]">
                           <span className="text-[12px] font-NanumGothic">
-                            {biddingInfo.agentPhone ?? '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone : '-'}
                           </span>
                         </div>
                       </div>
@@ -1085,7 +1079,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[80%]">
                           <span className="text-[12px] font-NanumGothic">
-                            {biddingInfo.agentAddr ?? '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr : '-'}
                           </span>
                         </div>
                       </div>

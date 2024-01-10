@@ -86,7 +86,58 @@ export default function AgentForm() {
     }
   }
 
+  //  민증 검증
+  const handleVerifyIdNum = (idNum: string) => {
+    if (idNum.length > 0 && idNum.length < 14) {
+      const idNumArr = idNum.split('')
+      const idNumArr1 = (idNumArr.length > 0 && idNumArr.map((item) => parseInt(item)))
+      const idNumArr2 = idNumArr1 && idNumArr1.map((item, index) => {
+        if (index === 0) {
+          return item * 2
+        } else if (index === 1) {
+          return item * 3
+        } else if (index === 2) {
+          return item * 4
+        } else if (index === 3) {
+          return item * 5
+        } else if (index === 4) {
+          return item * 6
+        } else if (index === 5) {
+          return item * 7
+        } else if (index === 6) {
+          return item * 8
+        } else if (index === 7) {
+          return item * 9
+        } else if (index === 8) {
+          return item * 2
+        } else if (index === 9) {
+          return item * 3
+        } else if (index === 10) {
+          return item * 4
+        } else if (index === 11) {
+          return item * 5
+        } else if (index === 12) {
+          return item * 1
+        }
+      })
+
+      const idNumArr3 = (idNumArr2 && idNumArr2.reduce((acc: any, cur: any) => acc + cur)) 
+      const idNumArr4 = (idNumArr3 && (idNumArr3 - idNumArr2[12]!) % 11) 
+      const idNumArr5 = (idNumArr4 && 11 - idNumArr4) 
+      const idNumArr6 = (idNumArr5 && idNumArr5 % 10)
+      if (idNumArr6 === (idNumArr1 && idNumArr1[12])) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+
   const onSubmit: SubmitHandler<any> = async () => {
+    if (handleVerifyIdNum(biddingForm.agentIdNum1 + biddingForm.agentIdNum2) === false) {
+      alert('주민등록번호를 다시 확인해주세요')
+      return
+    }
     try {
       await handleAgentUpdate()
     } catch (error) {

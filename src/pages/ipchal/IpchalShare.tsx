@@ -36,7 +36,7 @@ export default function IpchalShare() {
             <br />
             작성된 파일을 공유하시겠습니까?
           </span>
-          <div className="flex flex-col gap-10 md:w-[550px] w-[420px] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+          <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
             <div className="flex justify-between w-[80%]">
               <div className="flex justify-start items-center w-[80%]">
                 <span className="text-black text-center font-NanumGothic text-[15px] font-extrabold leading-[13px]">

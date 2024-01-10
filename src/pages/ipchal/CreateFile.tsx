@@ -111,6 +111,7 @@ export default function CreateFile() {
       setBiddingInfo({
         ...biddingInfo,
         pdfFile: file,
+        isFileCreated: true,
       })
     })
     captureDiv.style.display = 'none'
@@ -123,10 +124,6 @@ export default function CreateFile() {
       alert('파일 암호를 4자리 이상 입력해주세요')
       return
     } else {
-      setBiddingInfo({
-        ...biddingInfo,
-        isFileCreated: true,
-      })
       await onCapture()
     }
   }
@@ -190,7 +187,7 @@ export default function CreateFile() {
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               파일명과 암호를 입력하세요
             </span>
-            <div className="flex flex-col gap-5 md:w-[550px] w-[400px] h-[200px] justify-center items-left bg-white absolute top-[130px] rounded-md border-gray-400">
+            <div className="flex flex-col gap-5 md:w-[550px] w-[90%] h-[200px] justify-center items-left bg-white absolute top-[130px] rounded-md border-gray-400">
               <div className="flex flex-col justify-start text-left gap-3">
                 <span className="text-black text-[15px] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
                   파일이름
@@ -210,6 +207,7 @@ export default function CreateFile() {
                 <input
                   type={`${passwordActive ? 'text' : 'password'}`}
                   className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%]"
+                  value={password || ''}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div

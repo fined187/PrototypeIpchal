@@ -274,6 +274,27 @@ export default function BidderFormMod() {
     }
   }
 
+  //  입찰자 감소
+  const handleDecreaseBidder = async () => {
+    try {
+      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`)
+      if (response.status === 200) {
+        setBiddingForm({
+          ...biddingForm,
+          bidName: response.data.data.bidders.map((item: any) => item.name),
+          bidPhone: response.data.data.bidders.map((item: any) => item.phoneNo),
+          bidAddr: response.data.data.bidders.map((item: any) => item.address),
+          bidJob: response.data.data.bidders.map((item: any) => item.job),
+          bidCorpNum: response.data.data.bidders.map((item: any) => item.companyNo),
+          bidCorpRegiNum: response.data.data.bidders.map((item: any) => item.corporationNo),
+          bidCorpYn: response.data.data.bidders.map((item: any) => item.bidderType),
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   //  다음 스텝 / 단계 이동
   const handleNextStep = async () => {
     if (biddingForm.bidderNum === 1) {
@@ -298,18 +319,22 @@ export default function BidderFormMod() {
         //  2. 입찰자 수 감소의 경우
         if (stepNum === biddingForm.bidderNum) {
           await handleUpdate()
+          await handleDecreaseBidder()
           setStateNum(7)
         } else {
           await handleUpdate()
+          await handleDecreaseBidder()
           setStepNum(stepNum + 1)
         }
       } else {
         //  3. 입찰자 수 변경 없는 경우
         if (stepNum === biddingForm.bidderNum) {
           await handleUpdate()
+          await handleDecreaseBidder()
           setStateNum(7)
         } else {
           await handleUpdate()
+          await handleDecreaseBidder()
           setStepNum(stepNum + 1)
         }
       }

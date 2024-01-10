@@ -138,29 +138,26 @@ export default function ShareInfo() {
     handleValidateCalc()
   }, [calc.numerator, calc.denominator, shareWay])
 
-  useEffect(() => {
-    const handleGetBiddingFormUpdate = async () => {
-      try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders`)
-        if (response.status === 200) {
-          setIsDataIn(response.data.data.bidders)
-          setBiddingInfo({
-            ...biddingInfo,
-            bidName: response.data.data.bidders.map((item: any) => item.name),
-            bidAddr: response.data.data.bidders.map((item: any) => item.address),
-            bidPhone: response.data.data.bidders.map((item: any) => item.phoneNo),
-            bidCorpYn: response.data.data.bidders.map((item: any) => item.bidderType),
-            bidCorpNum: response.data.data.bidders.map((item: any) => item.companyNo),
-            bidJob: response.data.data.bidders.map((item: any) => item.job),
-            bidCorpRegiNum: response.data.data.bidders.map((item: any) => item.corporationNo),
-          })
-        }
-      } catch (error) {
-        console.log(error)
+  const handleGetBiddingFormUpdate = async () => {
+    try {
+      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders`)
+      if (response.status === 200) {
+        setIsDataIn(response.data.data.bidders)
+        setBiddingInfo({
+          ...biddingInfo,
+          bidName: response.data.data.bidders.map((item: any) => item.name),
+          bidAddr: response.data.data.bidders.map((item: any) => item.address),
+          bidPhone: response.data.data.bidders.map((item: any) => item.phoneNo),
+          bidCorpYn: response.data.data.bidders.map((item: any) => item.bidderType),
+          bidCorpNum: response.data.data.bidders.map((item: any) => item.companyNo),
+          bidJob: response.data.data.bidders.map((item: any) => item.job),
+          bidCorpRegiNum: response.data.data.bidders.map((item: any) => item.corporationNo),
+        })
       }
+    } catch (error) {
+      console.log(error)
     }
-    handleGetBiddingFormUpdate()
-  }, [])
+  }
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -334,6 +331,7 @@ export default function ShareInfo() {
             className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
               goNext ? alert('지분 값을 확인해주세요.') :
+              handleGetBiddingFormUpdate()
               handleShare()
               setStateNum(stateNum + 1)
             }}
