@@ -18,7 +18,7 @@ export default function GetIpchalInfo() {
               사건 번호와 입찰일자를 확인해주세요
             </span>
           </div>
-          <div className="flex flex-col md:w-[550px] w-[90%] md:h-[300px] h-[255px] gap-[100px] bg-white absolute top-[107px] justify-center items-center rounded-lg">
+          <div className="flex flex-col md:w-[550px] w-[90%] md:h-[300px] h-[300px] gap-[100px] bg-white absolute top-[107px] justify-center items-center rounded-lg">
             <div className="flex flex-row absolute top-8 border-b w-[80%] border-gray-200  md:pt-[20px]">
               <div className='flex w-[20%]'>
                 <span className="text-black md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
@@ -51,7 +51,7 @@ export default function GetIpchalInfo() {
                   주소 :
                 </span>
               </div>
-              <div className='flex w-[60%]'>
+              <div className='flex w-[100%]'>
                 <span className="text-mygray md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
                   {biddingInfo.sagunAddr}
                 </span>

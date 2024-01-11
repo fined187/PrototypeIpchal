@@ -8,7 +8,7 @@ interface CoIpchalListProps {
 
 export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
   const biddingInfo = useRecoilValue(biddingInfoState);
-  const stateNum = useRecoilValue(stepState);
+
   return (
     <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
       <div className="flex md:w-[50%] w-[100%] h-[100%] min-w-[420px] justify-center bg-mybg absolute top-0">
@@ -67,7 +67,7 @@ export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
               <div className="flex flex-col w-[80%] h-[100%]">
                 <div className="flex border-black border-b-[1px] w-[100%] h-[50%] justify-center items-center text-center">
                   <p className="text-[15px] font-NanumGothic font-normal">
-                    {el.address}
+                    {biddingInfo.bidAddr[idx] + ' ' + biddingInfo.bidAddrDetail[idx]}
                   </p>
                 </div>
                 <div className="flex flex-row w-[100%] h-[50%]">
@@ -78,7 +78,7 @@ export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
                   </div>
                   <div className="flex w-[100%] h-[100%] justify-center items-center text-center">
                     <p className="text-[15px] font-NanumGothic font-normal">
-                      {biddingInfo.bidPhone1[idx] + '-' + biddingInfo.bidPhone2[idx] + '-' + biddingInfo.bidPhone3[idx]}
+                      {biddingInfo.bidPhone[idx].length === 10 ? biddingInfo.bidPhone[idx].substring(0, 3) + '-' + biddingInfo.bidPhone[idx].substring(3, 6) + '-' + biddingInfo.bidPhone[idx].substring(6, 10) : biddingInfo.bidPhone[idx].substring(0, 3) + '-' + biddingInfo.bidPhone[idx].substring(3, 7) + '-' + biddingInfo.bidPhone[idx].substring(7, 11)}
                     </p>
                   </div>
                 </div>

@@ -25,7 +25,7 @@ export default function Navbar() {
     } else if (stepStateNum === 6 && biddingForm.bidder === 'agent') {
       setMenuTitle('입찰자 대리인 정보')
     } else if (stepStateNum === 6 && biddingForm.bidder === 'self') {
-      setMenuTitle('입찰자 정보')
+      setMenuTitle('입찰자 정보 입력')
     } else if (stepStateNum === 7 && biddingForm.bidderNum > 1) {
       setMenuTitle('공동 입찰자 지분')
     } else if (stepStateNum === 8) {
@@ -43,7 +43,9 @@ export default function Navbar() {
     } else if (stepStateNum === 14) {
       setMenuTitle('입찰표 작성 완료')
     } else if (stepStateNum === 15) {
-      setMenuTitle('입찰표 정보')
+      setMenuTitle('입찰표 정보 입력')
+    } else if (stepStateNum === 16) {
+      setMenuTitle('대리인 정보 입력')
     }
   }
 

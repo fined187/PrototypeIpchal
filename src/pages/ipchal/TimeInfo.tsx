@@ -41,7 +41,7 @@ export default function TimeInfo() {
   }
 
   const handleNextStep = (time: string) => {
-    if (time === '') {
+    if (time === '0') {
       setErrorMsg(true)
       return
     } else {

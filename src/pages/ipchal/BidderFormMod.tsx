@@ -54,7 +54,7 @@ export default function BidderFormMod() {
     bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(biddingForm.bidCorpYn[stepNum - 1] ? biddingForm.bidCorpYn[stepNum - 1] : 'I'),
     bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
-
+  
   const {
     register,
     handleSubmit,
@@ -62,24 +62,7 @@ export default function BidderFormMod() {
     reset,
     setError,
     formState: { errors },
-  } = useForm<BiddingInfoType>({
-    defaultValues: {
-      bidderName: [''],
-      bidderPhone1: [''],
-      bidderPhone2: [''],
-      bidderPhone3: [''],
-      bidderIdNum1: [''],
-      bidderIdNum2: [''],
-      bidderAddr: [''],
-      bidderAddrDetail: [''],
-      bidderCorpNum1: [''],
-      bidderCorpNum2: [''],
-      bidderCorpNum3: [''],
-      bidderCorpRegiNum1: [''],
-      bidderCorpRegiNum2: [''],
-      bidderJob: [''],
-    },
-  })
+  } = useForm<BiddingInfoType>()
   
   const handlePhoneFocusMove = (target: HTMLInputElement) => {
     if (target.value.length === 3 && target.id === 'bidderPhone1') {
@@ -519,7 +502,7 @@ export default function BidderFormMod() {
                     htmlFor="bidderName"
                     className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                   >
-                    {errors.bidderName?.message}
+                    입찰자 성명을 입력해주세요
                   </label>
                 </div>
               )}

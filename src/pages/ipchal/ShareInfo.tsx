@@ -159,6 +159,10 @@ export default function ShareInfo() {
     }
   }
 
+  useEffect(() => {
+    handleGetBiddingFormUpdate()
+  }, [])
+
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
@@ -273,7 +277,7 @@ export default function ShareInfo() {
                           shareWay === 'N' && goNext
                             ? 'border-red-500'
                             : 'border-gray-300'
-                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
+                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
                         onChange={(e) => {
                           const temp = [...calc.numerator]
                           temp[index] = Number(e.target.value)
@@ -291,7 +295,7 @@ export default function ShareInfo() {
                           shareWay === 'N' && goNext
                             ? 'border-red-500'
                             : 'border-gray-300'
-                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[30px] px-2 w-[40%]`}
+                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
                         onChange={(e) => {
                           const temp = [...calc.denominator]
                           temp[index] = Number(e.target.value)
