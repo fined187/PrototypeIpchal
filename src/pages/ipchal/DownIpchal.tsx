@@ -6,10 +6,13 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 
 export default function DownIpchal() {
   const biddingInfo = useRecoilValue(biddingInfoState)
+  const stateNum = useRecoilValue(stepState)
   const setStateNum = useSetRecoilState(stepState)
   const [openPdf, setOpenPdf] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const handleDownload = async () => {
+    setLoading(true)
     const url = `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`
     await fetch(url, {method: 'GET'}).then((response) => {
       response.blob().then(blob => {
@@ -18,8 +21,12 @@ export default function DownIpchal() {
         a.href = url;
         a.download = `${biddingInfo.sagunNum} 입찰표.pdf`;
         a.click();
+        setLoading(false)
+        alert('파일이 다운로드 되었습니다.');
       }).catch((error) => {
         console.log(error)
+        setLoading(false)
+        alert('파일 다운로드가 실패했습니다.');
       });
     });
   }
@@ -55,7 +62,7 @@ export default function DownIpchal() {
             type="button"
             className="flex w-[100px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              setStateNum(12)
+              setStateNum(stateNum - 1)
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
@@ -66,7 +73,7 @@ export default function DownIpchal() {
             type="button"
             className="flex w-[230px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              setStateNum(0)
+              window && window.location.reload()
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import SearchAddress from '@/components/SearchAddress'
+import Spinner from '@/components/Spinner'
 import { BidderList, BiddingInfoType } from '@/interface/IpchalType'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -13,6 +14,7 @@ export default function BidderForm() {
   const biddingForm = useRecoilValue(biddingInfoState)              //  입찰표 정보(전역 상태 관리)
   const setBiddingForm = useSetRecoilState(biddingInfoState)        //  입찰표 정보(전역 상태 관리) set함수
   const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
+  const [loading, setLoading] = useState<boolean>(false)            //  로딩 상태
 
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
     bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
@@ -88,6 +90,7 @@ export default function BidderForm() {
 
   // 입찰자 정보 저장
   const handleBidderFormSave = async () => {
+    setLoading(true)
     try {
       if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
         const response = await axios.post(
@@ -108,6 +111,7 @@ export default function BidderForm() {
           },
         )
         if (response.status === 200) {
+          setLoading(false)
           return
         }
       } else {
@@ -131,11 +135,13 @@ export default function BidderForm() {
           },
         )
         if (response.status === 200) {
+          setLoading(false)
           return
         }
       }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   }
 
@@ -286,6 +292,9 @@ export default function BidderForm() {
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
+      {loading && (
+        <Spinner />
+      )}
       <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
         <div className="flex flex-row py-6 pt-4">
           <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">

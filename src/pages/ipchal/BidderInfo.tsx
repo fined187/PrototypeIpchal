@@ -1,4 +1,5 @@
 import { biddingInfoState, stepState } from '@/atom'
+import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
@@ -9,8 +10,10 @@ export default function BidderInfo() {
   const [isSelected, setIsSelected] = useState<boolean>(true)
   const biddingInfo = useRecoilValue(biddingInfoState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const handleDeleteAgent = async () => {
+    setLoading(true)
     try {
       const response = await axios.delete(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/agents`)
       if (response.status === 200) {
@@ -33,12 +36,16 @@ export default function BidderInfo() {
       }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   }
 
   return (
     <>
       <div className="flex w-[100%] h-screen bg-white justify-center relative">
+        {loading && (
+          <Spinner />
+        )}
         <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
           <div className="flex">
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
@@ -56,6 +63,7 @@ export default function BidderInfo() {
                 handleDeleteAgent()
                 setTimeout(() => {
                   setStateNum(stateNum + 2)
+                  setIsSelected(false)
                 }, 1000)
               }}
             >
@@ -96,12 +104,14 @@ export default function BidderInfo() {
                 biddingInfo.bidder === 'agent' ? 'bg-myyellow' : 'bg-white'
               } relative`}
               onClick={() => {
+                setLoading(true)
                 setBiddingInfo({
                   ...biddingInfo,
                   bidder: 'agent',
                 })
                 setTimeout(() => {
                   setStateNum(stateNum + 1)
+                  setIsSelected(false)
                 }, 1000)
               }}
             >

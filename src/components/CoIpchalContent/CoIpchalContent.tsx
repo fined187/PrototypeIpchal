@@ -63,8 +63,8 @@ export default function CoIpchalContent() {
             <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표
             </div>
-            <div className="min-w-[420px] md:max-w-[850px] overflow-x-scroll scrollbar-hide absolute top-[160px] h-[650px] bg-mybg">
-              <div className="border border-black text-[1.5rem] text-center md:w-[800px] w-[420px] h-[100%] m-auto bg-mybg">
+            <div className="min-w-[400px] md:max-w-[850px] overflow-x-scroll scrollbar-hide absolute top-[160px] h-[650px] bg-mybg">
+              <div className="border border-black text-[1.5rem] text-center md:w-[800px] w-[400px] h-[100%] m-auto bg-mybg">
                 {/* 첫 번째 박스 */}
                 <div className="p-[1%] pb-0 border-black border-b-[1px] h-[15%]">
                   <div className="text-left text-[14px]">(앞면)</div>
@@ -771,10 +771,10 @@ export default function CoIpchalContent() {
             </div>
             <IpchalText />
             {/* 버튼 */}
-            <div className="flex justify-between md:w-[520px] min-w-[420px] absolute md:top-[1200px] bottom-[20px]">
+            <div className="flex flex-row gap-[20px] md:w-[520px] min-w-[400px] absolute md:top-[1200px] bottom-0">
               <button
                 type="button"
-                className="flex md:w-[200px] w-[150px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+                className="flex md:w-[200px] w-[150px] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
                 onClick={() => setStateNum(stateNum - 1)}
               >
                 <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
@@ -783,7 +783,7 @@ export default function CoIpchalContent() {
               </button>
               <button
                 type="button"
-                className="flex md:w-[280px] w-[230px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+                className="flex md:w-[280px] w-[230px] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
                 onClick={() => {
                   setStateNum(stateNum + 1)
                 }}

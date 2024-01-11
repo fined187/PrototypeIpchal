@@ -17,6 +17,7 @@ export default function BiddingPrice() {
     bidDeposit: 0,
   })
   const [isDataIn, setIsDataIn] = useState<any>([])
+  const [errorMsg, setErrorMsg] = useState(false)
 
   function num2han(number: number) {
     const units = ['조', '억', '만', ''] // 단위
@@ -84,7 +85,6 @@ export default function BiddingPrice() {
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`,
         )
         if (response.status === 200) {
-          console.log(response)
           setPaymentsInfo({
             ...paymentsInfo,
             biddingTime: response.data.data.biddingInfo.biddingTime,
@@ -113,15 +113,33 @@ export default function BiddingPrice() {
     handleGetBiddingPrice()
   }, [])
 
-  const handleBiddingPrice = () => {
-    if (
-      biddingForm.biddingPrice >= paymentsInfo.minimumAmount &&
-      biddingForm.depositPrice >= paymentsInfo.bidDeposit
-    ) {
-      setStateNum(stateNum + 1)
-    } else {
-      alert('입찰금액과 입찰보증금을 확인해주세요')
+  const handleCheckPrice = () => {
+    if (biddingForm.biddingPrice < paymentsInfo.minimumAmount) {
+      alert('최저가 이상으로 입력해주세요')
+      setErrorMsg(true)
+      return
     }
+    if (biddingForm.depositPrice < paymentsInfo.bidDeposit) {
+      alert('최저가 이상으로 입력해주세요')
+      setErrorMsg(true)
+      return
+    }
+    if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 2) {
+      alert('최저가의 100% 이상입니다.')
+      setErrorMsg(true)
+      return
+    }
+    if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 1.1 && biddingForm.biddingPrice < paymentsInfo.minimumAmount * 1.2) {
+      alert('최저가의 10% 이상입니다.')
+      setErrorMsg(true)
+      return
+    }
+    if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 1.2 && biddingForm.biddingPrice < paymentsInfo.minimumAmount * 2) {
+      alert('최저가의 20% 이상입니다.')
+      setErrorMsg(true)
+      return
+    }
+    setErrorMsg(false)
   }
 
   const handleGetBiddingFormUpdate = async () => {
@@ -129,7 +147,6 @@ export default function BiddingPrice() {
       const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
       if (response.status === 200) {
         setIsDataIn(response.data.data.bidders)
-        console.log(response.data.data.bidders.map((item: any) => item.name))
         setBiddingForm({
           ...biddingForm,
           bidName: response.data.data.bidders.map((item: any) => item.name),
@@ -140,6 +157,7 @@ export default function BiddingPrice() {
           bidJob: response.data.data.bidders.map((item: any) => item.job),
           bidCorpRegiNum: response.data.data.bidders.map((item: any) => item.corporationNo),
         })
+        setStateNum(stateNum + 1)
       }
     } catch (error) {
       console.log(error)
@@ -166,14 +184,14 @@ export default function BiddingPrice() {
             </span>
           </span>
           <div className="flex justify-center mt-5">
-            <span className="text-[15px] font-bold font-Nanum Gothic text-center leading-[11px] mt-[10px]">
+            <span className="text-[15px] font-bold font-Nanum Gothic text-center leading-[11px] mt-[10px] text-red-500">
               ※ 최저가 이상으로 입력해주세요
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-2 md:w-[550px] w-[100%] min-h-[300px] max-h-[500px] bg-white absolute top-[180px] border-slate-500 justify-center items-center">
+        <div className="flex flex-col gap-2 md:w-[550px] w-[90%] min-h-[300px] max-h-[500px] bg-white absolute top-[180px] border-slate-500 justify-center items-center">
           <div className="flex flex-row gap-[20px] w-[90%]">
-            <div className='flex justify-start md:w-[15%] w-[15%] pt-[20px] ml-[10px]'>
+            <div className='flex justify-start md:w-[15%] w-[20%] pt-[20px] md:ml-[10px]'>
               <span className="md:text-[15px] text-[12px] font-NanumGothic not-italic font-bold leading-[9px]">
                 입찰금액
               </span>
@@ -182,6 +200,7 @@ export default function BiddingPrice() {
               <input
                 type="text"
                 id="number"
+                onBlur={handleCheckPrice}
                 value={
                   biddingForm.biddingPrice === 0
                     ? 0
@@ -212,7 +231,7 @@ export default function BiddingPrice() {
             </span>
           </div>
           <div className="flex flex-row gap-[20px] w-[90%]">
-            <div className="flex justify-start md:w-[20%] w-[25%] pt-[20px] ml-[10px]">
+            <div className="flex justify-start md:w-[20%] w-[30%] pt-[20px] md:ml-[10px]">
               <span className="md:text-[15px] text-[12px] font-NanumGothic not-italic font-bold leading-[9px]">
                 입찰보증금
               </span>
@@ -242,7 +261,7 @@ export default function BiddingPrice() {
               />
             </div>
           </div>
-          <div className="flex justify-between w-[85%] pt-[5px] border-b-2 border-myyellow ml-2">
+          <div className="flex justify-between w-[85%] pt-[5px] border-b-2 border-myyellow">
             <span className="text-[12px] text-mygold font-NanumGothic not-italic font-bold leading-[9px] mb-2">
               일금
             </span>
@@ -268,8 +287,7 @@ export default function BiddingPrice() {
           type="button"
           className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
-            handleBiddingPrice()
-            handleGetBiddingFormUpdate()
+            biddingForm.biddingPrice < paymentsInfo.minimumAmount ? alert('최저가 이상으로 입찰해주세요') : handleGetBiddingFormUpdate()
           }}
         >
           <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

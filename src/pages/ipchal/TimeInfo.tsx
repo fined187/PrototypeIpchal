@@ -1,4 +1,5 @@
 import { biddingInfoState, stepState } from "@/atom"
+import Spinner from "@/components/Spinner"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useRecoilValue, useSetRecoilState } from "recoil"
@@ -10,8 +11,10 @@ export default function TimeInfo() {
   const setStateNum = useSetRecoilState(stepState)
   const [errorMsg, setErrorMsg] = useState<boolean>(false)
   const [timeClicked, setTimeClicked] = useState('')
+  const [loading, setLoading] = useState<boolean>(false)
 
   const handleConfirm = async (time: string) => {
+    setLoading(true)
     try {
       const response = await axios.post(
         `http://118.217.180.254:8081/ggi/api/bid-form/inits`,
@@ -33,10 +36,12 @@ export default function TimeInfo() {
         })
         setTimeout(() => {
           setStateNum(stateNum + 1)
-        }, 1500)
+          setLoading(false)
+        }, 1000)
       }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   }
 
@@ -51,6 +56,9 @@ export default function TimeInfo() {
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
+      {loading && (
+        <Spinner />
+      )}
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
         <div className="flex">
           <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
@@ -91,7 +99,7 @@ export default function TimeInfo() {
             </div>
           )}
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[750px]">
+        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[750px] top-[650px]">
           <button
             type="button"
             className="flex w-[40%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

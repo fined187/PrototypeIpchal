@@ -1,4 +1,5 @@
 import { bidderInfo, biddingInfoState, stepState } from '@/atom'
+import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { ChangeEvent, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
@@ -9,6 +10,7 @@ export default function BidderCnt() {
   const biddingInfo = useRecoilValue(biddingInfoState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
   const bidder = useRecoilValue(bidderInfo)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [errorMsg, setErrorMsg] = useState<boolean>(false)
 
@@ -32,24 +34,29 @@ export default function BidderCnt() {
         }
       } catch (error) {
         console.log(error)
+        setLoading(false)
       }
     }
   }
 
   const handleErrorOk = (e: ChangeEvent<HTMLInputElement>) => {
+    setLoading(true)
     if (e.target.value === '' || Number(e.target.value) === 0 || isNaN(Number(e.target.value))) {
       setErrorMsg(true)
       alert('입찰자는 1명 이상이어야 합니다')
+      setLoading(false)
       return
     } 
     if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
       handleBiddingCnt(e)
       setTimeout(() => {
+        setLoading(false)
         setStateNum(15)
       }, 1000)
     } else {
       handleBiddingCnt(e)
       setTimeout(() => {
+        setLoading(false)
         setStateNum(6)
       }, 1000)
     }
@@ -58,6 +65,9 @@ export default function BidderCnt() {
   return (
     <>
       <div className="flex w-[100%] h-screen bg-white justify-center relative">
+        {loading && (
+          <Spinner />
+        )}
         <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
           <div className="flex">
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">

@@ -1,6 +1,7 @@
 import { bidderInfo, biddingInfoState, stepState } from "@/atom"
 import Loading from "@/components/Loading"
 import SearchAddress from "@/components/SearchAddress"
+import Spinner from "@/components/Spinner"
 import { BiddingInfoType } from "@/interface/IpchalType"
 import axios from "axios"
 import { useEffect, useState } from "react"
@@ -206,6 +207,7 @@ export default function BidderFormMod() {
   //  새로운 입찰자 추가
   //  입찰자 정보 저장
   const handleBidderFormSave = async () => {
+    setLoading(true)
     try {
       if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
         const response = await axios.post(
@@ -226,6 +228,7 @@ export default function BidderFormMod() {
           },
         )
         if (response.status === 200) {
+          setLoading(false)
           return
         }
       } else {
@@ -249,16 +252,19 @@ export default function BidderFormMod() {
           },
         )
         if (response.status === 200) {
+          setLoading(false)
           return
         }
       }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   }
 
   //  입찰자 감소
   const handleDecreaseBidder = async () => {
+    setLoading(true)
     try {
       const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`)
       if (response.status === 200) {
@@ -272,9 +278,11 @@ export default function BidderFormMod() {
           bidCorpRegiNum: response.data.data.bidders.map((item: any) => item.corporationNo),
           bidCorpYn: response.data.data.bidders.map((item: any) => item.bidderType),
         })
+        setLoading(false)
       }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   }
 
@@ -376,7 +384,7 @@ export default function BidderFormMod() {
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (
-        <Loading />
+        <Spinner />
       )}
       {!loading && (
         <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">

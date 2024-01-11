@@ -3,12 +3,15 @@ import axios from 'axios'
 import Image from 'next/image'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { format } from 'date-fns'
+import { useState } from 'react'
+import Spinner from '@/components/Spinner'
 
 export default function StartIpchal() {
   const stateNum = useSetRecoilState(stepState)
   const loginStateValue = useRecoilValue(loginState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
   const biddingInfo = useRecoilValue(biddingInfoState)
+  const [loading, setLoading] = useState(false)
 
   const date = new Date()
   const nowDate = date.getDate()
@@ -16,6 +19,7 @@ export default function StartIpchal() {
   const nowYear = date.getFullYear()
   
   const handleCheck = async () => {
+    setLoading(true)
     try {
       const response = await axios.post(
         `http://118.217.180.254:8081/ggi/api/bid-form/checks`,
@@ -29,7 +33,6 @@ export default function StartIpchal() {
           },
         },
       )
-
       if (response.status === 200) {
         setBiddingInfo({
           ...biddingInfo,
@@ -48,15 +51,17 @@ export default function StartIpchal() {
           biddingInfos: response.data.data.biddingInfos,
         })
         stateNum(1)
+        setLoading(false)
       }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   }
 
   return (
     <>
-      <div className="flex w-[100%] h-screen justify-center bg-white relative">
+      <div className={`flex w-[100%] h-screen justify-center bg-white relative`}>
         <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[20px]">
           <div className="flex">
             <span className="md:text-[2rem] text-[1.4rem] font-extrabold font-NanumGothic not-italic">
@@ -69,6 +74,9 @@ export default function StartIpchal() {
             </span>
           </div>
           <div className="flex sm:w-[50%] w-[100%] absolute top-32 justify-center">
+            {loading && (
+              <Spinner />
+            )}
             <Image
               priority
               src={'/visualImg.jpg'}

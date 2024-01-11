@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
+import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
@@ -10,8 +11,10 @@ export default function BiddingPayment() {
   const stateNum = useRecoilValue(stepState)
   const biddingForm = useRecoilValue(biddingInfoState)
   const setBiddingForm = useSetRecoilState(biddingInfoState)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const handleBiddingPayment = async (pay: string) => {
+    setLoading(true)
     try {
       const response = await axios.put(
         `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`,
@@ -27,15 +30,22 @@ export default function BiddingPayment() {
         },
       )
       if (response.status === 200) {
-        setStateNum(stateNum + 1)
+        setTimeout(() => {
+          setLoading(false)
+          setStateNum(stateNum + 1)
+        }, 1000)
       }
     } catch (error) {
+      setLoading(false)
       console.log(error)
     }
   }
-  console.log(biddingForm)
+
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
+      {loading && (
+        <Spinner />
+      )}
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
         <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
           보증금 제공 방법을 선택해주세요

@@ -58,15 +58,15 @@ export default function IpchalResult() {
         </div>
       )}
       {!loading && (totalResult && totalResult.bidders.length === 1) && (
-        <div className="flex flex-col bg-white max-h-[2000px] h-[1300px] sm:w-[100%] mx-auto relative justify-center items-center">
+        <div className="flex flex-col bg-white max-h-[2000px] h-[1300px] w-[100%] mx-auto relative justify-center items-center">
           <div className="flex flex-col bg-mybg h-[100%] md:w-[50%] w-[100%] mx-auto relative justify-center items-center" id="capture">
             <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표
             </div>
-            <div className="min-w-[420px] md:max-w-[850px] overflow-x-scroll absolute top-[160px] h-[650px] bg-mybg scrollbar-hide">
-              <div className="border border-black text-[1.5rem] text-center md:w-[800px] w-[420px] h-[100%] m-auto bg-mybg">
+            <div className="min-w-[400px] md:max-w-[850px] overflow-x-scroll absolute top-[160px] h-[650px] bg-mybg scrollbar-hide">
+              <div className="border border-black text-[1.5rem] text-center md:w-[800px] w-[100%] h-[100%] m-auto bg-mybg">
                 {/* 첫 번째 박스 */}
-                <div className="p-[1%] pb-0 border-black border-b-[1px] h-[15%]">
+                <div className="p-[1%] pb-0 border-black border-b-[1px] h-[15%] w-[100%]">
                   <div className="text-left text-[14px]">(앞면)</div>
                   <div className="text-[19px] font-semibold">
                     기&nbsp;&nbsp;&nbsp;일&nbsp;&nbsp;&nbsp;입&nbsp;&nbsp;&nbsp;찰&nbsp;&nbsp;&nbsp;표
@@ -198,7 +198,7 @@ export default function IpchalResult() {
                           </div>
                         </div>
                         <div className="flex flex-row h-[40%]">
-                          <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
+                          <div className="flex w-[20%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
                             <span className="text-[12px] font-NanumGothic">주소</span>
                           </div>
                           <div className="flex justify-center items-center w-[80%]">
@@ -774,7 +774,7 @@ export default function IpchalResult() {
                 </div>
                 {/* 다섯 번째 박스 */}
                 <div className="flex flex-row justify-between items-stretch w-[100%] h-[8%]">
-                  <div className="flex w-[50%] border-black border-r-[2px] h-[100%]">
+                  <div className="flex w-[49.9%] border-black border-r-[2px] h-[100%]">
                     <div className='flex justify-start w-[50%] h-[100%] ml-[10px]'>
                       <span className="text-[12px] font-NanumGothic font-bold">
                         보증의 제공방법
@@ -788,7 +788,7 @@ export default function IpchalResult() {
                           className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-1 indeterminate:bg-white"
                           readOnly
                         />
-                        <span className="text-[12px] font-bold">현금</span>
+                        <span className="text-[12px] font-bold mt-1">현금</span>
                       </div>
                       <div className="flex flex-row w-[100%]">
                         <input
@@ -822,10 +822,10 @@ export default function IpchalResult() {
           </div>
           <IpchalText />
           {/* 버튼 */}
-          <div className="flex justify-between md:w-[520px] min-w-[420px] absolute md:top-[1200px] bottom-[20px]">
+          <div className="flex flex-row gap-[20px] md:w-[520px] min-w-[400px] absolute md:top-[1200px] bottom-0">
             <button
               type="button"
-              className="flex md:w-[200px] w-[150px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+              className="flex md:w-[200px] w-[150px] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
               onClick={() => setStateNum(stateNum - 1)}
             >
               <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
@@ -834,7 +834,7 @@ export default function IpchalResult() {
             </button>
             <button
               type="button"
-              className="flex md:w-[280px] w-[230px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+              className="flex md:w-[280px] w-[230px] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               onClick={() => {
                 setStateNum(stateNum + 1)
               }}

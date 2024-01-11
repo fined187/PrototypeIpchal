@@ -171,7 +171,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
                           <span className="text-[12px]">
-                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentName : '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentName : ''}
                           </span>
                           <span className="text-[12px] mr-1">(인)</span>
                         </div>

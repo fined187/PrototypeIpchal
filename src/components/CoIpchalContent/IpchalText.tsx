@@ -1,6 +1,6 @@
 export default function IpchalText() {
   return (
-    <div className="flex flex-col min-w-[420px] md:w-[800px] absolute top-[820px]">
+    <div className="flex flex-col min-w-[400px] md:w-[800px] absolute top-[820px]">
       <span className="text-[20px] font-extrabold font-NanumGothic ">
         주의사항
       </span>

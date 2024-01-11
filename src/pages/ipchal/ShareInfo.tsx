@@ -273,7 +273,7 @@ export default function ShareInfo() {
                       <input
                         id="molecule"
                         type="text"
-                        className={`border ${
+                        className={`border-2 ${
                           shareWay === 'N' && goNext
                             ? 'border-red-500'
                             : 'border-gray-300'
@@ -291,7 +291,7 @@ export default function ShareInfo() {
                       <span>/</span>
                       <input
                         type="text"
-                        className={`border ${
+                        className={`border-2 ${
                           shareWay === 'N' && goNext
                             ? 'border-red-500'
                             : 'border-gray-300'
@@ -313,7 +313,7 @@ export default function ShareInfo() {
             )
           })}
           {shareWay === 'N' && goNext && (
-            <span className="text-[12px] text-red-500 font-bold">
+            <span className="text-[15px] text-red-500 font-bold">
               지분 값을 확인해주세요
             </span>
           )}
