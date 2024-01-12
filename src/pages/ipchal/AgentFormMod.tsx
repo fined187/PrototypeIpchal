@@ -76,8 +76,7 @@ export default function AgentForm() {
       console.log(error)
     }
   }
-  console.log(biddingForm.mstSeq)
-
+  console.log(biddingForm)
   //  민증 검증
   const handleVerifyIdNum = (idNum: string) => {
     if (idNum.length > 0 && idNum.length < 14) {

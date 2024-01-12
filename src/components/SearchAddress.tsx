@@ -37,8 +37,6 @@ interface SearchAddressProps {
   agentRegister?: UseFormRegister<AgentInfoType>
   agentErrors?: FieldErrors<AgentInfoType>
   agentSetError?: UseFormSetError<AgentInfoType>
-  bidderList?: BidderListProps
-  setBidderList?: Dispatch<SetStateAction<BidderListProps | undefined>>
 }
 
 export default function SearchAddress({
@@ -53,8 +51,6 @@ export default function SearchAddress({
   agentRegister,
   agentErrors,
   agentSetError,
-  setBidderList,
-  bidderList,
 }: SearchAddressProps) {
   const [isOpen, setIsOpen] = useState(false)
 

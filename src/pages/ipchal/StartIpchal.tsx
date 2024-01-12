@@ -3,7 +3,7 @@ import { biddingInfoState, stepState } from '@/atom'
 import axios from 'axios'
 import Image from 'next/image'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Spinner from '@/components/Spinner'
 import { useRouter } from 'next/router'
 
@@ -14,8 +14,9 @@ export default function StartIpchal() {
   const [loading, setLoading] = useState(false)
 
   const router = useRouter()
-  let idcode = router.query.idcode
-  let startdate = router.query.startdate
+
+  let { idcode } = router.query
+  let { startdate } = router.query
 
   const handleCheck = async () => {
     setLoading(true)
@@ -62,6 +63,9 @@ export default function StartIpchal() {
   return (
     <>
       <div className={`flex w-[100%] h-screen justify-center bg-white relative`}>
+        {loading && (
+          <Spinner />
+        )}
         <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[20px]">
           <div className="flex">
             <span className="md:text-[2rem] text-[1.4rem] font-extrabold font-NanumGothic not-italic">
@@ -74,9 +78,7 @@ export default function StartIpchal() {
             </span>
           </div>
           <div className="flex sm:w-[50%] w-[100%] absolute top-32 justify-center">
-            {loading && (
-              <Spinner />
-            )}
+
             <Image
               priority
               src={'/visualImg_big.png'}

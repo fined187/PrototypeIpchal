@@ -61,7 +61,7 @@ export default function BidderCnt() {
       }, 1000)
     }
   }
-
+  console.log(biddingInfo)
   return (
     <>
       <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -112,7 +112,7 @@ export default function BidderCnt() {
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              bidder.agentYn === 'Y' ? setStateNum(16) : biddingInfo.bidder === 'agent' ? setStateNum(16) : setStateNum(3)
+              biddingInfo.bidder === 'agent' ? setStateNum(16) : setStateNum(3)
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

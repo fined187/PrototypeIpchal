@@ -1,4 +1,5 @@
 import { biddingInfoState, stepState } from '@/atom'
+import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -66,6 +67,9 @@ export default function GetIpchalInfo() {
   return (
     <>
       <div className="flex w-[100%] h-screen justify-center bg-white relative">
+        {loading && (
+          <Spinner />
+        )}
         <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
           <div className="flex">
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">

@@ -163,9 +163,7 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
                             <span className="text-[12px]">
-                              {
-                                biddingInfo.bidPhone1[0] + '-' + biddingInfo.bidPhone2[0] + '-' + biddingInfo.bidPhone3[0]
-                              }
+                              {biddingInfo.bidPhone[0].substring(0, 3) + '-' + biddingInfo.bidPhone[0].substring(3, 7) + '-' + biddingInfo.bidPhone[0].substring(7, 11)}
                             </span>
                           </div>
                         </div>
@@ -195,7 +193,7 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex justify-center items-center w-[30%] text-center">
                             <span className="text-[12px] font-NanumGothic">
-                              {totalResult && totalResult?.bidders?.length > 1
+                              {totalResult && totalResult?.bidders?.length > 1 || totalResult?.bidders[0]?.corporationNo === null
                                 ? '-'
                                 : totalResult &&
                                   totalResult?.bidders[0]?.corporationNo}

@@ -13,7 +13,7 @@ export const biddingInfoState = atom({
     isFileCreated: false,
     selectedTime: '0',
     bidSeq: [0],
-    mstSeq: '',
+    mstSeq: 0,
     state: 0,
     infoId: '',
     caseNo: '',
@@ -79,6 +79,7 @@ export const biddingInfoState = atom({
     bubnm: '',
     lowamt: '',
     ipchalamt: '',
+    bidders: []
   },
   dangerouslyAllowMutability: true,
 })

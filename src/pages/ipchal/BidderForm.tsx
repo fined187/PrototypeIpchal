@@ -144,16 +144,15 @@ export default function BidderForm() {
       setLoading(false)
     }
   }
-
   //  다음 스텝 넘어가기
   const handleNextStepNew = async (num: number) => {
     if (biddingForm.bidderNum === 1) {
       await handleBidderFormSave()
-      setStateNum(stateNum + 2)
+      setStateNum(8)
     } else {
       if (stepNum === biddingForm.bidderNum) {
         await handleBidderFormSave()
-        setStateNum(stateNum + 1)
+        setStateNum(7)
       } else if (biddingForm.bidName[stepNum] === '') {
         await handleBidderFormSave()
         setStepNum(num + 1)
@@ -268,6 +267,7 @@ export default function BidderForm() {
     return sum === (10 - (checkSum ? checkSum : 0)) % 10;
   }
 
+  
   const onSubmit: SubmitHandler<any> = async () => {
     if (handleVerifyIdNum(biddingInfo.bidderIdNum1[stepNum - 1] + biddingInfo.bidderIdNum2[stepNum - 1]) === false) {
       alert('주민등록번호를 확인해주세요')
@@ -282,14 +282,14 @@ export default function BidderForm() {
       alert('법인등록번호를 확인해주세요')
       return
     }
-
+    console.log(biddingInfo)
     try {
       handleNextStepNew(stepNum)
     } catch (error) {
       console.log(error)
     }
   }
-  console.log(biddingForm)
+
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (
@@ -899,7 +899,7 @@ export default function BidderForm() {
                 onClick={() => {
                   {
                     stepNum === 1
-                      ? setStateNum(stateNum - 1)
+                      ? setStateNum(5)
                       : setStepNum(stepNum - 1)
                   }
                 }}

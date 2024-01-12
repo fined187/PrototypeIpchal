@@ -346,6 +346,7 @@ export default function BidderFormMod() {
       alert('법인등록번호를 확인해주세요')
       return
     }
+    
     try {
       await handleNextStep()
     } catch (error) {
@@ -365,6 +366,7 @@ export default function BidderFormMod() {
       try {
         const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
         if (response.status === 200) {
+          console.log(response)
           setBidderList({
             agentYn: response.data.data.agentYn,
             bidderCount: response.data.data.bidderCount,
@@ -380,7 +382,8 @@ export default function BidderFormMod() {
     }
     handleGetBidders()
   }, [])
-
+  console.log(handleVerifyIdNum(biddingInfo.bidderIdNum1[stepNum - 1] + biddingInfo.bidderIdNum2[stepNum - 1]))
+  console.log(biddingInfo)
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (
