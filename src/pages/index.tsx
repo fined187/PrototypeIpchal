@@ -11,7 +11,7 @@ import IpchalInfo from './ipchal/IpchalInfo'
 import CreateFile from './ipchal/CreateFile'
 import IpchalShare from './ipchal/IpchalShare'
 import BidderForm from './ipchal/BidderForm'
-import { useRouter } from 'next/router'
+import { Router, useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import IpchalResult from './ipchal/IpchalResult'
@@ -29,38 +29,12 @@ export default function Home() {
   const setBidderInfos = useSetRecoilState(bidderInfo)
 
   const bidderInfos = useRecoilValue(bidderInfo)
-  const [getUserId, setGetUserId] = useState<string>('')
 
   const setLoginState = useSetRecoilState(loginState)
   const loginStateValue = useRecoilValue(loginState)
 
   const router = useRouter()
-  const idcode = router.query.idCode
-  const colmul_no = router.query.colmul_no
-  const startdate = router.query.startdate
-  const bubnm = router.query.bubnm
-  const ipchalamt = router.query.ipchalamt
-  const lowamt = router.query.lowamt
-
-  const handleGetBidder = async () => {
-    try {
-      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
-      if (response.status === 200) {
-        setBidderInfos({
-          agentYn: response.data.data.agentYn,
-          mstSeq: response.data.data.mstSeq,
-          state: response.data.data.state,
-          bidderCount: response.data.data.bidderCount,
-          number: response.data.data.number,
-          bidders: response.data.data.bidders,
-        })
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const { data:bidderQuery, isLoading } = useQuery(['bidder'], async () => await handleGetBidder())
+  let userId = router.query.userId
 
   useEffect(() => {
     const handleLoginStatus = async (id: string) => {
@@ -68,15 +42,18 @@ export default function Home() {
         const response = await axios.get(
           `http://118.217.180.254:8081/ggi/api/bid-form/${id}/login-status`,
         )
-        if (response.data.data.isLoginStatus) {
+        if (response.status === 200) {
           setLoginState(true)
-          setGetUserId(response.data.data.userId)
+          setBiddingForm({
+            ...biddingForm,
+            userId: id,
+          })
         }
       } catch (error) {
         console.log(error)
       }
     }
-    handleLoginStatus('best')
+    handleLoginStatus(userId as string)
   }, [])
 
   return (

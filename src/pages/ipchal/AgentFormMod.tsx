@@ -76,6 +76,7 @@ export default function AgentForm() {
       console.log(error)
     }
   }
+  console.log(biddingForm.mstSeq)
 
   //  민증 검증
   const handleVerifyIdNum = (idNum: string) => {
@@ -168,7 +169,7 @@ export default function AgentForm() {
         <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
           <div className="flex flex-row py-6 pt-4">
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
-              대리인 정보를 입력해주세요(수정)
+              대리인 정보를 입력해주세요
             </span>
           </div>
 

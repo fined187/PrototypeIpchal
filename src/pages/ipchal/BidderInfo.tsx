@@ -159,7 +159,7 @@ export default function BidderInfo() {
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              setStateNum(stateNum - 1)
+              biddingInfo.biddingInfos.length > 2 ? setStateNum(stateNum - 1) : setStateNum(stateNum - 2)
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

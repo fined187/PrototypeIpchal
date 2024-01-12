@@ -1,6 +1,7 @@
 import { biddingInfoState, stepState } from "@/atom"
 import Spinner from "@/components/Spinner"
 import axios from "axios"
+import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 
@@ -12,6 +13,7 @@ export default function TimeInfo() {
   const [errorMsg, setErrorMsg] = useState<boolean>(false)
   const [timeClicked, setTimeClicked] = useState('')
   const [loading, setLoading] = useState<boolean>(false)
+  const router = useRouter()
 
   const handleConfirm = async (time: string) => {
     setLoading(true)
@@ -19,12 +21,17 @@ export default function TimeInfo() {
       const response = await axios.post(
         `http://118.217.180.254:8081/ggi/api/bid-form/inits`,
         {
-          userId: 'best',
+          userId: router.query.userId,
           infoId: biddingInfo.infoId,
           caseNo: biddingInfo.caseNo,
           mulSeq: biddingInfo.mulgunNum,
           biddingDate: biddingInfo.ipchalDate,
           biddingTime: time,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
       )
       if (response.status === 200) {

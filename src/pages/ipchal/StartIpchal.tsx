@@ -1,62 +1,62 @@
-import { biddingInfoState, loginState, stepState } from '@/atom'
+'use client'
+import { biddingInfoState, stepState } from '@/atom'
 import axios from 'axios'
 import Image from 'next/image'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { format } from 'date-fns'
 import { useState } from 'react'
 import Spinner from '@/components/Spinner'
+import { useRouter } from 'next/router'
 
 export default function StartIpchal() {
   const stateNum = useSetRecoilState(stepState)
-  const loginStateValue = useRecoilValue(loginState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
   const biddingInfo = useRecoilValue(biddingInfoState)
   const [loading, setLoading] = useState(false)
 
-  const date = new Date()
-  const nowDate = date.getDate()
-  const nowMonth = date.getMonth() + 1
-  const nowYear = date.getFullYear()
-  
+  const router = useRouter()
+  let idcode = router.query.idcode
+  let startdate = router.query.startdate
+
   const handleCheck = async () => {
     setLoading(true)
     try {
-      const response = await axios.post(
-        `http://118.217.180.254:8081/ggi/api/bid-form/checks`,
-        {
-          idCode: 'A13F493D3F3E3D40403D3E3D464241483E3E3C6',
-          biddingDate: `20231127`,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
+        const response = await axios.post(
+          `http://118.217.180.254:8081/ggi/api/bid-form/checks`,
+          {
+            idCode: idcode,
+            biddingDate: startdate,
           },
-        },
-      )
-      if (response.status === 200) {
-        setBiddingInfo({
-          ...biddingInfo,
-          caseNo: response.data.data.caseNo,
-          infoId: response.data.data.infoId,
-          sagunNum:
-            response.data.data.caseYear +
-            ' 타경 ' +
-            response.data.data.caseDetail,
-          mulgunNum: response.data.data.mulSeq,
-          ipchalDate:
-            (response.data.data.startYear) +
-            (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
-            (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
-          sagunAddr: response.data.data.address,
-          biddingInfos: response.data.data.biddingInfos,
-        })
-        stateNum(1)
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        if (response.status === 200) {
+          console.log(response.data.data)
+          setBiddingInfo({
+            ...biddingInfo,
+            caseNo: response.data.data.caseNo,
+            infoId: response.data.data.infoId,
+            sagunNum:
+              response.data.data.caseYear +
+              ' 타경 ' +
+              response.data.data.caseDetail,
+            mulgunNum: response.data.data.mulSeq,
+            ipchalDate:
+              (response.data.data.startYear) +
+              (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
+              (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
+            sagunAddr: response.data.data.address,
+            biddingInfos: response.data.data.biddingInfos,
+          })
+          stateNum(1)
+          setLoading(false)
+        }
+      } catch (error) {
+        console.log(error)
         setLoading(false)
       }
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
-    }
   }
 
   return (
@@ -79,7 +79,7 @@ export default function StartIpchal() {
             )}
             <Image
               priority
-              src={'/visualImg.jpg'}
+              src={'/visualImg_big.png'}
               alt="MainImg"
               width={350}
               height={350}
@@ -92,7 +92,7 @@ export default function StartIpchal() {
           <div
             className="flex absolute top-[445px] bg-mygold w-[180px] h-[46px] rounded-md items-center justify-center cursor-pointer"
             onClick={() => {
-              loginStateValue ? handleCheck() : alert('로그인 후 이용해주세요.')
+              handleCheck()
             }}
           >
             <span className="text-white text-[16px] font-NanumGothic font-extrabold not-italic leading-4">

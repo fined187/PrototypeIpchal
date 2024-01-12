@@ -289,7 +289,7 @@ export default function BidderForm() {
       console.log(error)
     }
   }
-
+  console.log(biddingForm)
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (
@@ -298,7 +298,7 @@ export default function BidderForm() {
       <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
         <div className="flex flex-row py-6 pt-4">
           <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
-            본인 정보를 입력해주세요(등록)
+            본인 정보를 입력해주세요
           </span>
           {biddingForm.bidderNum > 1 && (
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8 ml-2">

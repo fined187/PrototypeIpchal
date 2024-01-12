@@ -127,8 +127,10 @@ export default function BidderCnt() {
                 setStateNum(stateNum + 1)
               } else if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
                 setStateNum(15)
-              } else {
+              } else if (biddingInfo.bidderNum === 0) {
                 alert('입찰자는 1명 이상이어야 합니다')
+              } else {
+                setStateNum(stateNum + 1)
               }
             }}
           >
