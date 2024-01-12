@@ -151,11 +151,7 @@ export default function SearchAddress({
             type="text"
             readOnly
             className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2 w-[100%]"
-            value={
-              biddingForm.agentAddrDetail === ''
-                ? ''
-                : biddingForm.agentAddrDetail
-            }
+            value={biddingForm.agentAddrDetail || ''}
           />
         ))}
       </div>

@@ -68,7 +68,7 @@ export default function TimeInfo() {
           </span>
         </div>
         <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[60%] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
-          <div className={`flex flex-col justify-center items-center border-4 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1000" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} 
+          <div className={`flex flex-col justify-center items-center border-2 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1000" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} 
             onClick={() => {
             setTimeClicked('1000')
             handleConfirm('1000')
@@ -80,7 +80,7 @@ export default function TimeInfo() {
               {'최저가 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.minimumAmount.toLocaleString('ko-KR') + '원'}
             </span>
           </div>
-          <div className={`flex flex-col justify-center items-center border-4 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1400" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} onClick={() => {
+          <div className={`flex flex-col justify-center items-center border-2 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1400" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} onClick={() => {
             setTimeClicked('1000')
             handleConfirm('1400')
           }}>

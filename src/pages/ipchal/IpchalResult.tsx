@@ -11,6 +11,7 @@ export default function IpchalResult() {
   const stateNum = useRecoilValue(stepState)
   const setStateNum = useSetRecoilState(stepState)
   const biddingInfo = useRecoilValue(biddingInfoState)
+  const setBiddingInfo = useSetRecoilState(biddingInfoState)
 
   const [totalResult, setTotalResult] = useState<any>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -39,6 +40,10 @@ export default function IpchalResult() {
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`,
         )
         if (response.status === 200) {
+          setBiddingInfo({
+            ...biddingInfo,
+            reqCourtName: response.data.data.reqCourtName,
+          })
           setTotalResult(response.data.data)
         }
       } catch (error) {
@@ -98,7 +103,7 @@ export default function IpchalResult() {
                     </span>
                   </div>
                   <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
-                    <span className="md:text-[12px] text-[12px] font-NanumGothic font-semibold">
+                    <span className="md:text-[12px] text-[12px] font-NanumGothic font-bold">
                       {totalResult &&
                         totalResult.caseYear +
                           ' 타경 ' +
@@ -260,8 +265,7 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
                             <span className="text-[12px] font-NanumGothic">
-                              {biddingInfo.bidder === 'agent' ? (biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3) : '-'
-                              }
+                              {biddingInfo.bidder === 'agent' ? (biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3) : '-'}
                             </span>
                           </div>
                         </div>
@@ -271,7 +275,7 @@ export default function IpchalResult() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[80%]">
                             <span className="text-[12px] font-NanumGothic">
-                              {biddingInfo.bidder === 'agent' && biddingInfo.agentAddr ? biddingInfo.agentAddr : '-'}
+                              {totalResult && totalResult?.agent?.address !== '' ? totalResult?.agent?.address : '-'}
                             </span>
                           </div>
                         </div>
