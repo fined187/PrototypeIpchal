@@ -1,5 +1,5 @@
 import { AgentInfoType, BiddingInfoType } from '@/interface/IpchalType'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import PopupContent from './PopupContent'
 import { FieldErrors, UseFormRegister, UseFormSetError } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
@@ -52,10 +52,10 @@ export default function SearchAddress({
   agentErrors,
   agentSetError,
 }: SearchAddressProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const isOpen = useRef(false)
 
   const handleModal = () => {
-    setIsOpen(!isOpen)
+    isOpen.current = !isOpen.current
   }
   const biddingForm = useRecoilValue(biddingInfoState)
 
@@ -168,7 +168,6 @@ export default function SearchAddress({
       {stepNum && biddingInfo && setBiddingInfo && (
         <PopupContent
           isOpen={isOpen}
-          setIsOpen={setIsOpen}
           biddingInfo={biddingInfo}
           setBiddingInfo={setBiddingInfo}
           stepNum={stepNum}
@@ -177,7 +176,6 @@ export default function SearchAddress({
       {agentInfo && setAgentInfo && (
         <PopupContent
           isOpen={isOpen}
-          setIsOpen={setIsOpen}
           biddingInfo={biddingInfo}
           setBiddingInfo={setBiddingInfo}
           stepNum={stepNum}

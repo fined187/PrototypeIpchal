@@ -382,8 +382,7 @@ export default function BidderFormMod() {
     }
     handleGetBidders()
   }, [])
-  console.log(handleVerifyIdNum(biddingInfo.bidderIdNum1[stepNum - 1] + biddingInfo.bidderIdNum2[stepNum - 1]))
-  console.log(biddingInfo)
+
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (

@@ -178,10 +178,6 @@ export default function Home() {
     }
   }, [router.query.mstSeq, router.query.userId, bidders.state, bidders.agentYn])
 
-
-  console.log(biddingForm)
-  console.log(bidders)
-
   return (
     <>
       {(stateNum === 0) && <StartIpchal />}

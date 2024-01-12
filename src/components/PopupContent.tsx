@@ -6,6 +6,7 @@ import {
   useState,
   Fragment,
   useEffect,
+  MutableRefObject,
 } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import baseApiInstance from '@/pages/api/address'
@@ -15,8 +16,7 @@ import { biddingInfoState } from '@/atom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 interface PopupContentProps {
-  isOpen: boolean
-  setIsOpen: Dispatch<SetStateAction<boolean>>
+  isOpen: MutableRefObject<boolean>
   biddingInfo?: BiddingInfoType
   setBiddingInfo?: Dispatch<SetStateAction<BiddingInfoType>>
   stepNum?: number
@@ -26,7 +26,6 @@ interface PopupContentProps {
 
 export default function PopupContent({
   isOpen,
-  setIsOpen,
   biddingInfo,
   setBiddingInfo,
   stepNum,
@@ -94,7 +93,7 @@ export default function PopupContent({
   }, [currentPage, hstry, firstSort])
 
   useEffect(() => {
-    if (isOpen === false) {
+    if (isOpen.current === false) {
       setSearchAddr('')
       setAddrList([])
       setTotalCount(0)
@@ -143,12 +142,14 @@ export default function PopupContent({
   return (
     <>
       {isOpen && (
-        <Transition.Root show={isOpen} as={Fragment}>
+        <Transition.Root show={isOpen.current} as={Fragment}>
           <Dialog
             as="div"
             className="relative z-10"
             initialFocus={cancelButtonRef}
-            onClose={setIsOpen}
+            onClose={() => {
+              isOpen.current = false
+            }}
           >
             <Transition.Child
               as={Fragment}
@@ -184,7 +185,7 @@ export default function PopupContent({
                           <div
                             className="flex cursor-pointer"
                             onClick={() => {
-                              setIsOpen(false)
+                              isOpen.current = false
                               setDetailAddr(false)
                               stepNum &&
                                 biddingInfo &&
@@ -583,7 +584,7 @@ export default function PopupContent({
                                   className="flex justify-center items-center w-[100px] h-[40px] bg-blue-500 rounded-md cursor-pointer hover:bg-blue-300"
                                   onClick={() => {
                                     setDetailAddr(false)
-                                    setIsOpen(false)
+                                    isOpen.current = false
                                   }}
                                 >
                                   <span className="text-sm text-white rounded-md">
