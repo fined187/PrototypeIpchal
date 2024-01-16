@@ -1,9 +1,9 @@
 import { biddingInfoState, stepState } from "@/atom";
-import { GetBiddingInfoType } from "@/interface/IpchalType";
+import { GetBiddingInfoType, TotalResultType } from "@/interface/IpchalType";
 import { useRecoilValue } from "recoil";
 
 interface CoIpchalListProps {
-  totalResult?: GetBiddingInfoType;
+  totalResult?: TotalResultType;
 }
 
 export default function CoIpchalListContent({ totalResult }: CoIpchalListProps) {

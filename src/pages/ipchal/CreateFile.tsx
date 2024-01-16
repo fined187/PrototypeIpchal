@@ -11,6 +11,7 @@ import CoIpchalFormContent from '@/components/PDFContent/CoIpchalFormContent'
 import CoIpchalListContent from '@/components/PDFContent/CoIpchalListContent'
 import AgentListFormContent from '@/components/PDFContent/AgentListFormContent'
 import Spinner from '@/components/Spinner'
+import { TotalResultType } from '@/interface/IpchalType'
 
 export default function CreateFile() {
   const stateNum = useRecoilValue(stepState)
@@ -21,7 +22,7 @@ export default function CreateFile() {
   const [fileName, setFileName] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
-  const [totalResult, setTotalResult] = useState<any>(null)
+  const [totalResult, setTotalResult] = useState<TotalResultType>()
   const [loading, setLoading] = useState<boolean>(false)
   const [blobFile, setBlobFile] = useState<File | null>(null)
 
@@ -290,7 +291,7 @@ export default function CreateFile() {
       )}
       {totalResult && totalResult.bidders.length > 1 && (
           <>
-            <div className={`hidden flex-col ${totalResult && totalResult.agentYn === 'Y' ? 'h-[5200px]' : 'h-[3900px]'} w-[60%] justify-center items-center mx-auto`} id="wrap-capture">
+            <div className={`hidden flex-col ${totalResult && totalResult.agentYn === 'Y' ? 'h-[5200px]' : 'h-[3900px]'} w-[50%] justify-center items-center mx-auto`} id="wrap-capture">
               <div className="flex flex-col h-[100%] w-[100%] justify-center items-center" id="capture">
                 <div className="flex flex-col bg-white max-h-[4000px] min-h-[1300px] h-[1300px] w-[100%] mx-auto relative justify-center items-center" >
                   <div className="flex flex-col bg-mybg md:w-[100%] h-[100%] w-[100%] mx-auto relative justify-center items-center">
@@ -308,7 +309,7 @@ export default function CreateFile() {
                           <div className="flex flex-row justify-between items-stretch">
                             <div>
                               <span className="text-[12px] font-semibold font-NanumGothic">
-                                {totalResult && totalResult.reqCourtName + ' 귀하'}
+                                {totalResult && totalResult.reqCourtName + ' 본원 집행관 귀하'}
                               </span>
                             </div>
                             <div>
@@ -325,14 +326,14 @@ export default function CreateFile() {
                         {/* 두 번째 박스 */}
                         <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[12%]">
                           <div className="border-black border-r-[1px] md:w-[5%] w-[10%] h-[100%] justify-center items-start">
-                            <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
+                            <span className="md:text-[13px] text-[10px] font-NanumGothic font-bold">
                               사건 
                               <br />
                               번호
                             </span>
                           </div>
                           <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
-                            <span className="md:text-[12px] text-[12px] font-NanumGothic font-semibold">
+                            <span className="md:text-[13px] text-[12px] font-NanumGothic font-semibold">
                               {totalResult &&
                                 totalResult.caseYear +
                                   ' 타경 ' +
@@ -340,7 +341,7 @@ export default function CreateFile() {
                             </span>
                           </div>
                           <div className="border-black border-r-[1px] md:w-[5%] w-[10%] justify-center items-center text-center h-[100%]">
-                            <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
+                            <span className="md:text-[13px] text-[10px] font-NanumGothic font-bold">
                               물건 
                               <br />
                               번호
@@ -350,8 +351,8 @@ export default function CreateFile() {
                             <span
                               className={
                                 totalResult && totalResult?.mulNo
-                                  ? 'text-[12px] font-bold font-NanumGothic'
-                                  : 'text-[8px] font-bold font-NanumGothic'
+                                  ? 'text-[13px] font-NanumGothic font-bold'
+                                  : 'text-[13px] font-NanumGothic font-bold'
                               }
                             >
                               {totalResult && totalResult?.mulNo
@@ -370,17 +371,17 @@ export default function CreateFile() {
                           <div className="w-[100%] h-[100%]">
                             <div className="flex flex-row items-stretch border-black border-b-[1px] h-[50%]">
                               <div className="flex justify-center items-center border-black border-r-[1px] w-[12%]">
-                                <span className="text-[14px] font-NanumGothic">본인</span>
+                                <span className="text-[14px] font-NanumGothic font-semibold">본인</span>
                               </div>
                               <div className="flex flex-col w-[100%] h-[100%]">
                                 <div className="flex flex-row items-stretc h-[30%]">
                                   <div className="flex justify-center items-center border-black border-b-[1px] border-r-[1px] w-[20%]">
-                                    <span className="text-[12px]">성명</span>
+                                    <span className="text-[12px] font-NanumGothic font-semibold">성명</span>
                                   </div>
                                 </div>
                                 <div className="flex flex-row">
                                   <div className="flex justify-center border-black border-b-[1px] border-r-[1px] w-[20%]">
-                                    <span className="text-[12px] font-NanumGothic">
+                                    <span className="text-[12px] font-NanumGothic font-semibold">
                                       주민(사업자)
                                       <br />
                                       등록번호
@@ -394,7 +395,7 @@ export default function CreateFile() {
                                 </div>
                                 <div className="flex flex-row h-[40%]">
                                   <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
-                                    <span className="text-[12px] font-NanumGothic">주소</span>
+                                    <span className="text-[12px] font-NanumGothic font-semibold">주소</span>
                                   </div>
                                 </div>
                               </div>
@@ -406,55 +407,55 @@ export default function CreateFile() {
                               <div className="w-[90%]">
                                 <div className="flex flex-row items-stretch border-black border-b-[1px] h-[35%]">
                                   <div className="flex justify-center items-center table__text w-[20%] border-black border-r-[1px]">
-                                    <span className="text-[12px]">성명</span>
+                                    <span className="text-[12px] font-NanumGothic font-semibold">성명</span>
                                   </div>
                                   <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                                    <span className="text-[12px]">
+                                    <span className="text-[12px] font-NanumGothic font-semibold">
                                       {biddingInfo.bidder === 'agent' ? biddingInfo.agentName : ''}
                                     </span>
-                                    <span className="text-[12px] mr-1">(인)</span>
+                                    <span className="text-[12px] font-NanumGothic font-semibold mr-1">(인)</span>
                                   </div>
                                   <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                                    <span className="text-[12px]">
+                                    <span className="text-[12px] font-NanumGothic font-semibold">
                                       본인과의
                                       <br />
                                       관계
                                     </span>
                                   </div>
                                   <div className="flex justify-center items-center text-center w-[30%]">
-                                    <span className="text-[12px]">
+                                    <span className="text-[12px] font-NanumGothic font-semibold">
                                       {biddingInfo.bidder === 'agent' ? biddingInfo.agentRel : '-'}
                                     </span>
                                   </div>
                                 </div>
                                 <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] h-[35%]">
                                   <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                                    <span className="text-[12px] font-NanumGothic">
+                                    <span className="text-[12px] font-NanumGothic font-semibold">
                                       주민등록번호
                                     </span>
                                   </div>
                                   <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                                    <span className="font-NanumGothic text-[12px]">
+                                    <span className="font-NanumGothic font-semibold text-[12px]">
                                       {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) + '-' + biddingInfo.agentIdNum.substring(6, 14) : '-'}
                                     </span>
                                   </div>
                                   <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
-                                    <span className="text-[12px] font-NanumGothic">
+                                    <span className="text-[12px] font-NanumGothic font-semibold">
                                       전화번호
                                     </span>
                                   </div>
                                   <div className="flex justify-center items-center text-center w-[30%]">
-                                    <span className="text-[12px] font-NanumGothic">
+                                    <span className="text-[12px] font-NanumGothic font-semibold">
                                       {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3 : '-'}
                                     </span>
                                   </div>
                                 </div>
                                 <div className="flex flex-row justify-between items-stretch h-[30%]">
                                   <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                                    <span className="text-[12px] font-NanumGothic">주소</span>
+                                    <span className="text-[12px] font-NanumGothic font-semibold">주소</span>
                                   </div>
                                   <div className="flex justify-center items-center text-center w-[80%]">
-                                    <span className="text-[12px] font-NanumGothic">
+                                    <span className="text-[12px] font-NanumGothic font-semibold">
                                       {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr : '-'}
                                     </span>
                                   </div>
@@ -1017,7 +1018,7 @@ export default function CreateFile() {
       )}
       {totalResult && totalResult.bidders.length === 1 && (
         <>
-          <div className={`hidden flex-col bg-white max-h-[2600px] ${totalResult && totalResult.agentYn === 'Y' ? 'h-[2600px]' : 'h-[1300px]'} w-[60%] mx-auto relative justify-center items-center`} id="wrap-capture">
+          <div className={`hidden flex-col bg-white max-h-[2600px] ${totalResult && totalResult.agentYn === 'Y' ? 'h-[2600px]' : 'h-[1300px]'} w-[50%] mx-auto relative justify-center items-center`} id="wrap-capture">
             <div className="flex flex-col h-[100%] w-[100%] justify-center items-center" id="capture">
               <div className="flex flex-col bg-white max-h-[4000px] min-h-[1300px] h-[1300px] w-[100%] mx-auto relative justify-center items-center" >
                 <div className="flex flex-col bg-mybg md:w-[100%] h-[100%] w-[100%] mx-auto relative justify-center items-center">
@@ -1052,14 +1053,14 @@ export default function CreateFile() {
                       {/* 두 번째 박스 */}
                       <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[12%]">
                         <div className="border-black border-r-[1px] md:w-[5%] w-[10%] h-[100%] justify-center items-start">
-                          <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
+                          <span className="md:text-[13px] text-[10px] font-NanumGothic font-semibold">
                             사건 
                             <br />
                             번호
                           </span>
                         </div>
                         <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
-                          <span className="md:text-[12px] text-[12px] font-NanumGothic font-semibold">
+                          <span className="md:text-[13px] text-[12px] font-NanumGothic font-semibold">
                             {totalResult &&
                               totalResult.caseYear +
                                 ' 타경 ' +
@@ -1067,7 +1068,7 @@ export default function CreateFile() {
                           </span>
                         </div>
                         <div className="border-black border-r-[1px] md:w-[5%] w-[10%] justify-center items-center text-center h-[100%]">
-                          <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
+                          <span className="md:text-[13px] text-[10px] font-NanumGothic font-semibold">
                             물건 
                             <br />
                             번호
@@ -1077,8 +1078,8 @@ export default function CreateFile() {
                           <span
                             className={
                               totalResult && totalResult?.mulNo
-                                ? 'text-[12px] font-bold font-NanumGothic'
-                                : 'text-[8px] font-bold font-NanumGothic'
+                                ? 'text-[13px] font-NanumGothic font-semibold'
+                                : 'text-[13px] font-NanumGothic font-semibold'
                             }
                           >
                             {totalResult && totalResult?.mulNo
@@ -1102,15 +1103,15 @@ export default function CreateFile() {
                             <div className="flex flex-col w-[100%] h-[100%]">
                               <div className="flex flex-row items-stretch border-black border-b-[1px] h-[30%]">
                                 <div className="flex justify-center items-center border-black border-r-[1px] w-[20%]">
-                                  <span className="text-[12px]">성명</span>
+                                  <span className="text-[12px] font-semibold font-NanumGothic">성명</span>
                                 </div>
                                 <div className="flex justify-center text-center items-center border-black border-r-[1px] w-[30%]">
-                                  <span className="text-[12px] font-NanumGothic">
+                                  <span className="text-[12px] font-semibold font-NanumGothic">
                                     {totalResult && totalResult?.bidders?.length > 1
                                       ? ''
                                       : totalResult && totalResult?.bidders[0]?.name}
                                   </span>
-                                  <span className="mr-1 text-[12px] float-right">
+                                  <span className="mr-1 text-[12px] font-NanumGothic font-semibold float-right">
                                     (인)
                                   </span>
                                 </div>
@@ -1118,7 +1119,7 @@ export default function CreateFile() {
                                   <span className="text-[12px]">전화번호</span>
                                 </div>
                                 <div className="flex justify-center items-center text-center w-[30%]">
-                                  <span className="text-[12px]">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     {
                                       totalResult && totalResult?.bidders[0]?.phoneNo.length === 10 ?
                                       (totalResult && (totalResult?.bidders[0]?.phoneNo?.substring(0, 2) + '-' + totalResult?.bidders[0]?.phoneNo?.substring(2, 6) + '-' + totalResult?.bidders[0]?.phoneNo?.substring(6, 10))) : 
@@ -1127,16 +1128,16 @@ export default function CreateFile() {
                                   </span>
                                 </div>
                               </div>
-                              <div className="flex flex-row border-black border-b-[1px]">
+                              <div className="flex flex-row border-black border-b-[1px] h-[30%]">
                                 <div className="flex justify-center border-black border-r-[1px] w-[20%]">
-                                  <span className="text-[12px] font-NanumGothic">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     주민(사업자)
                                     <br />
                                     등록번호
                                   </span>
                                 </div>
                                 <div className="flex w-[30%] border-black border-r-[1px] justify-center items-center">
-                                  <span className="text-[12px] font-NanumGothic">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     {biddingInfo.bidCorpYn[0] === 'I' ? (
                                       biddingInfo.bidIdNum1 + '-' + biddingInfo.bidIdNum2
                                     ): (
@@ -1145,14 +1146,14 @@ export default function CreateFile() {
                                   </span>
                                 </div>
                                 <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                                  <span className="text-[12px]">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     법인등록
                                     <br />
                                     번호
                                   </span>
                                 </div>
                                 <div className="flex justify-center items-center w-[30%] text-center">
-                                  <span className="text-[12px] font-NanumGothic">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     {totalResult && totalResult?.bidders?.length > 1
                                       ? ''
                                       : totalResult &&
@@ -1162,10 +1163,10 @@ export default function CreateFile() {
                               </div>
                               <div className="flex flex-row h-[40%]">
                                 <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
-                                  <span className="text-[12px] font-NanumGothic">주소</span>
+                                  <span className="text-[12px] font-NanumGothic font-semibold">주소</span>
                                 </div>
                                 <div className="flex justify-center items-center w-[80%]">
-                                  <span className="text-[12px] font-NanumGothic">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     {totalResult && totalResult?.bidders?.length > 1
                                       ? ''
                                       : totalResult &&
@@ -1182,55 +1183,55 @@ export default function CreateFile() {
                             <div className="w-[90%]">
                               <div className="flex flex-row items-stretch border-black border-b-[1px] h-[35%]">
                                 <div className="flex justify-center items-center table__text w-[20%] border-black border-r-[1px]">
-                                  <span className="text-[12px]">성명</span>
+                                  <span className="text-[12px] font-NanumGothic font-semibold">성명</span>
                                 </div>
                                 <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                                  <span className="text-[12px]">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     {biddingInfo.bidder === 'agent' ? biddingInfo.agentName : ''}
                                   </span>
-                                  <span className="text-[12px] mr-1">(인)</span>
+                                  <span className="text-[12px] font-NanumGothic font-semibold mr-1">(인)</span>
                                 </div>
                                 <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                                  <span className="text-[12px]">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     본인과의
                                     <br />
                                     관계
                                   </span>
                                 </div>
                                 <div className="flex justify-center items-center text-center w-[30%]">
-                                  <span className="text-[12px]">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     {biddingInfo.bidder === 'agent' ? biddingInfo.agentRel : '-'}
                                   </span>
                                 </div>
                               </div>
                               <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] h-[35%]">
                                 <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                                  <span className="text-[12px] font-NanumGothic">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     주민등록번호
                                   </span>
                                 </div>
                                 <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                                  <span className="font-NanumGothic text-[12px]">
+                                  <span className="font-NanumGothic font-semibold text-[12px]">
                                     {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) + '-' + biddingInfo.agentIdNum.substring(6, 14) : '-'}
                                   </span>
                                 </div>
                                 <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
-                                  <span className="text-[12px] font-NanumGothic">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     전화번호
                                   </span>
                                 </div>
                                 <div className="flex justify-center items-center text-center w-[30%]">
-                                  <span className="text-[12px] font-NanumGothic">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3 : '-'}
                                   </span>
                                 </div>
                               </div>
                               <div className="flex flex-row justify-between items-stretch h-[30%]">
                                 <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                                  <span className="text-[12px] font-NanumGothic">주소</span>
+                                  <span className="text-[12px] font-NanumGothic font-semibold">주소</span>
                                 </div>
                                 <div className="flex justify-center items-center text-center w-[80%]">
-                                  <span className="text-[12px] font-NanumGothic">
+                                  <span className="text-[12px] font-NanumGothic font-semibold">
                                     {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr : '-'}
                                   </span>
                                 </div>

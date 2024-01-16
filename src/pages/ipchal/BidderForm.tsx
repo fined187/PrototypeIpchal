@@ -238,21 +238,25 @@ export default function BidderForm() {
   }
 
   //  사업자 등록 번호 검증
-  const handleVerifyCorpNum = async (corpNum: string) => {
-    try {
-      const response = await axios.post(`https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=${process.env.NEXT_PUBLIC_GONGGONG_KEY}`, {
-        b_no: [corpNum]
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      if (response.status === 200) {
-        return true
+  const handleVerifyCorpNum = (number: string) => {
+    if (number.length !== 10) {
+      return false;
+    }
+
+    const regsplitNum = number.replace(/-/gi, '').split('').map(function(item) {
+      return parseInt(item, 10);
+    });
+    
+    if (regsplitNum.length === 10) {
+      const regkey = [1, 3, 7, 1, 3, 7, 1, 3, 5];
+      let regNumSum = 0;
+      for (var i = 0; i < regkey.length; i++) {
+        regNumSum += regkey[i] * regsplitNum[i];
       }
-    } catch (error) {
-      console.log(error)
-      return false
+      regNumSum += parseInt(((regkey[8] * regsplitNum[8]) / 10).toString(), 10);
+      const regCheck = (Math.floor(regsplitNum[9])) === ((10 - (regNumSum % 10) ) % 10);
+    
+      return regCheck;    
     }
   }
 

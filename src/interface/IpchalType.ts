@@ -101,3 +101,29 @@ export interface GetBiddingInfoType {
   bidders: BidderList[]
   agent: GetAgentInfoType
 }
+
+export interface TotalResultType {
+  mstSeq: number
+  state: number
+  mulNo: string
+  caseYear: string
+  caseDetail: string
+  startYear: string
+  startMonth: string
+  startDay: string
+  reqCourtName: string
+  biddingDate: string
+  bidPrice: number
+  bidDeposit: number
+  depositType: string
+  agentYn: string
+  agent: {
+    name: string
+    relationship: string
+    phoneNo: string
+    address: string
+    job: string
+  },
+  bidderCount: number
+  bidders: BidderList[]
+}

@@ -1,10 +1,11 @@
 import { biddingInfoState, stepState } from "@/atom";
-import { GetBiddingInfoType } from "@/interface/IpchalType";
+import { GetBiddingInfoType, TotalResultType } from "@/interface/IpchalType";
 import { useRecoilValue } from "recoil";
 
-export default function AgentListFormContent({ totalResult }: { totalResult: GetBiddingInfoType}) {
+export default function AgentListFormContent({ totalResult }: { totalResult: TotalResultType}) {
   const biddingInfo = useRecoilValue(biddingInfoState);
   const stateNum = useRecoilValue(stepState);
+  
   return (
     <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
       <div className={`flex flex-col bg-mybg ${totalResult && totalResult.bidders.length === 3 ? 'h-[100%]' : 'h-[94%]'} w-[100%] mx-auto absolute top-[5px] justify-center items-center`}>

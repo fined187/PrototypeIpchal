@@ -6,6 +6,7 @@ import LoadingResult from '@/components/LoadingResult'
 import CoIpchalContent from '@/components/CoIpchalContent/CoIpchalContent'
 import AgentListForm from '@/components/CoIpchalContent/AgentListForm'
 import IpchalText from '@/components/CoIpchalContent/IpchalText'
+import { TotalResultType } from '@/interface/IpchalType'
 
 export default function IpchalResult() {
   const stateNum = useRecoilValue(stepState)
@@ -13,7 +14,7 @@ export default function IpchalResult() {
   const biddingInfo = useRecoilValue(biddingInfoState)
   const setBiddingInfo = useSetRecoilState(biddingInfoState)
 
-  const [totalResult, setTotalResult] = useState<any>(null)
+  const [totalResult, setTotalResult] = useState<TotalResultType>()
   const [loading, setLoading] = useState<boolean>(false)
 
   const handlePrice = (len: number) => {
@@ -83,7 +84,7 @@ export default function IpchalResult() {
                       </span>
                     </div>
                     <div>
-                      <span className="text-[12px] font-semibold font-NanumGothic">
+                      <span className="text-[13px] font-semibold font-NanumGothic">
                         입찰기일 :{' '}
                         {totalResult &&
                           totalResult?.biddingDate?.substring(0, 4)}
@@ -103,7 +104,7 @@ export default function IpchalResult() {
                     </span>
                   </div>
                   <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
-                    <span className="md:text-[13px] text-[12px] font-NanumGothic font-bold">
+                    <span className="md:text-[13px] text-[12px] font-NanumGothic font-semibold">
                       {totalResult &&
                         totalResult.caseYear +
                           ' 타경 ' +
@@ -111,7 +112,7 @@ export default function IpchalResult() {
                     </span>
                   </div>
                   <div className="border-black border-r-[1px] md:w-[5%] w-[10%] justify-center items-center text-center h-[100%]">
-                    <span className="md:text-[13px] text-[10px] font-NanumGothic font-bold">
+                    <span className="md:text-[13px] text-[10px] font-NanumGothic font-semibold">
                       물건 
                       <br />
                       번호
@@ -121,8 +122,8 @@ export default function IpchalResult() {
                     <span
                       className={
                         totalResult && totalResult?.mulNo
-                          ? 'text-[13px] font-bold font-NanumGothic'
-                          : 'text-[13px] font-bold font-NanumGothic'
+                          ? 'text-[13px] font-NanumGothic font-bold'
+                          : 'text-[13px] font-NanumGothic font-bold'
                       }
                     >
                       {totalResult && totalResult?.mulNo
@@ -146,37 +147,37 @@ export default function IpchalResult() {
                       <div className="flex flex-col w-[100%] h-[100%]">
                         <div className="flex flex-row items-stretch border-black border-b-[1px] h-[30%]">
                           <div className="flex justify-center items-center border-black border-r-[1px] w-[20%]">
-                            <span className="text-[12px]">성명</span>
+                            <span className="text-[12px] font-NanumGothic font-semibold">성명</span>
                           </div>
                           <div className="flex justify-center text-center items-center border-black border-r-[1px] w-[30%]">
-                            <span className="text-[12px] font-NanumGothic">
+                            <span className="text-[12px] font-semibold font-NanumGothic">
                               {totalResult && totalResult?.bidders?.length > 1
                                 ? ''
                                 : totalResult && totalResult?.bidders[0]?.name}
                             </span>
-                            <span className="mr-1 text-[12px] float-right">
+                            <span className="mr-1 text-[12px] float-right font-semibold font-NanumGothic">
                               (인)
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                            <span className="text-[12px]">전화번호</span>
+                            <span className="text-[12px] font-NanumGothic font-semibold">전화번호</span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
-                            <span className="text-[12px]">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               {biddingInfo.bidPhone[0].substring(0, 3) + '-' + biddingInfo.bidPhone[0].substring(3, 7) + '-' + biddingInfo.bidPhone[0].substring(7, 11)}
                             </span>
                           </div>
                         </div>
-                        <div className="flex flex-row border-black border-b-[1px]">
+                        <div className="flex flex-row border-black border-b-[1px] h-[30%]">
                           <div className="flex justify-center border-black border-r-[1px] w-[20%]">
-                            <span className="text-[12px] font-NanumGothic">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               주민(사업자)
                               <br />
                               등록번호
                             </span>
                           </div>
                           <div className="flex w-[30%] border-black border-r-[1px] justify-center items-center">
-                            <span className="text-[12px] font-NanumGothic">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               {biddingInfo.bidCorpYn[0] === 'I' ? (
                                 biddingInfo.bidIdNum1[0] + '-' + biddingInfo.bidIdNum2[0]
                               ): (
@@ -185,14 +186,14 @@ export default function IpchalResult() {
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                            <span className="text-[12px]">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               법인등록
                               <br />
                               번호
                             </span>
                           </div>
                           <div className="flex justify-center items-center w-[30%] text-center">
-                            <span className="text-[12px] font-NanumGothic">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               {totalResult && totalResult?.bidders?.length > 1 || totalResult?.bidders[0]?.corporationNo === null
                                 ? '-'
                                 : totalResult &&
@@ -202,10 +203,10 @@ export default function IpchalResult() {
                         </div>
                         <div className="flex flex-row h-[40%]">
                           <div className="flex w-[20%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
-                            <span className="text-[12px] font-NanumGothic">주소</span>
+                            <span className="text-[12px] font-NanumGothic font-semibold">주소</span>
                           </div>
                           <div className="flex justify-center items-center w-[80%]">
-                            <span className="text-[12px] font-NanumGothic">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               {totalResult && totalResult?.bidders?.length > 1
                                 ? ''
                                 : totalResult &&
@@ -222,57 +223,57 @@ export default function IpchalResult() {
                       <div className="w-[90%]">
                         <div className="flex flex-row items-stretch border-black border-b-[1px] h-[35%]">
                           <div className="flex justify-center items-center table__text w-[20%] border-black border-r-[1px]">
-                            <span className="text-[12px]">성명</span>
+                            <span className="text-[12px] font-NanumGothic font-semibold">성명</span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                            <span className="text-[12px]">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               {biddingInfo.bidder === 'agent' && biddingInfo.agentName ? biddingInfo.agentName : ''}
                             </span>
-                            <span className="text-[12px] mr-1">(인)</span>
+                            <span className="text-[12px] font-NanumGothic font-semibold mr-1">(인)</span>
                           </div>
                           <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                            <span className="text-[12px]">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               본인과의
                               <br />
                               관계
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
-                            <span className="text-[12px]">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               {biddingInfo.bidder === 'agent' && biddingInfo.agentRel ? biddingInfo.agentRel : '-'}
                             </span>
                           </div>
                         </div>
                         <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] h-[35%]">
                           <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                            <span className="text-[12px] font-NanumGothic">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               주민등록번호
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                            <span className="font-NanumGothic text-[12px]">
+                            <span className="font-NanumGothic font-semibold text-[12px]">
                               {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) +
                                 '-' +
                                 biddingInfo.agentIdNum.substring(6, 14) : '-'}
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
-                            <span className="text-[12px] font-NanumGothic">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               전화번호
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
-                            <span className="text-[12px] font-NanumGothic">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               {biddingInfo.bidder === 'agent' ? (biddingInfo.agentPhone1 + '-' + biddingInfo.agentPhone2 + '-' + biddingInfo.agentPhone3) : '-'}
                             </span>
                           </div>
                         </div>
                         <div className="flex flex-row justify-between items-stretch h-[30%]">
                           <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                            <span className="text-[12px] font-NanumGothic">주소</span>
+                            <span className="text-[12px] font-NanumGothic font-semibold">주소</span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[80%]">
-                            <span className="text-[12px] font-NanumGothic">
+                            <span className="text-[12px] font-NanumGothic font-semibold">
                               {totalResult && totalResult?.agent?.address !== '' ? totalResult?.agent?.address : '-'}
                             </span>
                           </div>

@@ -20,6 +20,8 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
     }
   }
 
+  console.log(biddingInfo)
+
   return (
     <>
       {biddingInfo.bidName.length === 1 && (
@@ -38,7 +40,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                 <div className="flex flex-row justify-between items-stretch">
                   <div>
                     <span className="text-[12px] font-semibold font-NanumGothic text-center">
-                      {biddingInfo.reqCourtName + ' 귀하'}
+                      {biddingInfo.reqCourtName + ' 본원 집행관 귀하'}
                     </span>
                   </div>
                   <div>
@@ -943,13 +945,13 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                 <div className="flex flex-row justify-between items-stretch">
                   <div>
                     <span className="text-[12px] font-semibold font-NanumGothic text-center">
-                      {biddingInfo.reqCourtName + ' 귀하'}
+                      {biddingInfo.reqCourtName + ' 본원 집행관 귀하'}
                     </span>
                   </div>
                   <div>
                     <span className="text-[12px] font-semibold font-NanumGothic text-center">
                       입찰기일 :{' '}
-                      {biddingInfo.ipchalDate}
+                      {biddingInfo.ipchalDate.length === 8 ? biddingInfo.ipchalDate.substring(0, 4) + '년 ' + biddingInfo.ipchalDate.substring(4, 6) + '월 ' + biddingInfo.ipchalDate.substring(6, 8) + '일' : ''}
                     </span>
                   </div>
                 </div>

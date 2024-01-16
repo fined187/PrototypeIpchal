@@ -1,8 +1,8 @@
 import { biddingInfoState, stepState } from "@/atom";
-import { GetBiddingInfoType } from "@/interface/IpchalType";
+import { TotalResultType } from "@/interface/IpchalType";
 import { useRecoilValue } from "recoil";
 
-export default function AgentListForm({ totalResult }: { totalResult: GetBiddingInfoType}) {
+export default function AgentListForm({ totalResult }: { totalResult: TotalResultType}) {
   const biddingInfo = useRecoilValue(biddingInfoState);
   
   return (
