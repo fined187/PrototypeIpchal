@@ -9,6 +9,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function AgentForm() {
+
   const biddingForm = useRecoilValue(biddingInfoState)
   const setBiddingForm = useSetRecoilState(biddingInfoState)
   const setStateNum = useSetRecoilState(stepState)
@@ -28,6 +29,13 @@ export default function AgentForm() {
     agentAddr: '',
     agentAddrDetail: '',
     agentJob: '',
+  })
+
+  if (typeof window === 'undefined') return null
+  window.document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+    }
   })
 
   const {
@@ -177,7 +185,7 @@ export default function AgentForm() {
           </div>
 
           {/* 입력정보 */}
-          <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[50%] w-[80%] h-[100%] justify-center items-center'>
+          <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[50%] w-[80%] h-[100%] justify-center items-center' >
             <div className="flex flex-col w-[100%] h-[100%] gap-2">
               <div className="flex flex-row w-[100%] gap-[5%]">
                 <div className="flex flex-col w-[47.5%] gap-1">

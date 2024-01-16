@@ -9,24 +9,35 @@ export default function IpchalShare() {
   const setStateNum = useSetRecoilState(stepState)
   const biddingInfo = useRecoilValue(biddingInfoState)
   const [openEmailForm, setOpenEmailForm] = useState<boolean>(false)
+  const [fileUrl, setFileUrl] = useState<string>('')
 
   const onShare = () => {
+    if (window.Kakao) {
+      window.Kakao.Share.uploadImage({
+        file: biddingInfo.pdfFile,
+      }).then((res: any) => {
+        console.log(res)
+        setFileUrl(res.infos.original.url)
+      }).catch((err: any) => {
+        console.log(err)
+      })
+    }
     if (window.Kakao) {
       window.Kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
           link: {
-            mobileWebUrl: `${biddingInfo.pdfFile}`, //  마이페이지
+            mobileWebUrl: `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`,
             webUrl: `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`,
           },
           title: `${biddingInfo.sagunNum} 입찰표`,
           description: `사건번호 ${biddingInfo.sagunNum}의 입찰표입니다.`,
-          imageUrl: `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`,
+          imageUrl: fileUrl,
         }
       })
     }
   }  
-  
+  console.log(biddingInfo.imageFile)
   return (
     <>
       <div className="flex w-[100%] h-screen justify-center bg-white relative">

@@ -40,6 +40,12 @@ export default function BidderFormMod() {
   const [loading, setLoading] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [isCorpNumOk, setIsCorpNumOk] = useState(false)
+  if (typeof window === 'undefined') return null
+  window.document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+    }
+  })
 
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
     bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
@@ -65,8 +71,11 @@ export default function BidderFormMod() {
     setFocus,
     reset,
     setError,
+    watch,
     formState: { errors },
   } = useForm<BiddingInfoType>()
+
+  const watchAddr = watch('bidderAddr')
   
   const handlePhoneFocusMove = (target: HTMLInputElement) => {
     if (target.value.length === 3 && target.id === 'bidderPhone1') {
@@ -1000,11 +1009,11 @@ export default function BidderFormMod() {
                 <SearchAddress
                   isOpen={isOpen}
                   setIsOpen={setIsOpen}
-                  handleModal={handleModal}
                   stepNum={stepNum}
                   register={register}
                   errors={errors}
                   setError={setError}
+                  handleModal={handleModal}
                 />
                 {isOpen && (
                 <PopupContent

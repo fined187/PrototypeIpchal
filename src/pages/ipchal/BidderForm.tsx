@@ -9,6 +9,13 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BidderForm() {
+  if (typeof window === 'undefined') return null
+  window.document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+    }
+  })
+
   const setStateNum = useSetRecoilState(stepState)                  //  입찰표 작성 단계 set함수
   const stateNum = useRecoilValue(stepState)                        //  입찰표 작성 단계
   const [stepNum, setStepNum] = useState<number>(1)                 //  입찰자 정보 단계
@@ -17,7 +24,6 @@ export default function BidderForm() {
   const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
   const [loading, setLoading] = useState<boolean>(false)            //  로딩 상태
   const [isOpen, setIsOpen] = useState<boolean>(false)              //  주소검색 모달 상태
-
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
     bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
     bidderPhone1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
@@ -35,6 +41,8 @@ export default function BidderForm() {
     bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(biddingForm.bidCorpYn[stepNum - 1] ? biddingForm.bidCorpYn[stepNum - 1] : 'I'),
     bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
+
+
 
   const {
     register,

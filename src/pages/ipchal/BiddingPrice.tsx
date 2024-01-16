@@ -62,7 +62,6 @@ export default function BiddingPrice() {
           input.value = formatValue
         }
       })
-
     const input2 = document.querySelector('#number2') as HTMLInputElement
     input2 &&
       input2.addEventListener('keyup', function (e: any) {
@@ -119,11 +118,6 @@ export default function BiddingPrice() {
       setErrorMsg(true)
       return
     }
-    if (biddingForm.depositPrice < paymentsInfo.bidDeposit) {
-      alert('최저가 이상으로 입력해주세요')
-      setErrorMsg(true)
-      return
-    }
     if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 2) {
       alert('최저가의 100% 이상입니다.')
       setErrorMsg(true)
@@ -140,6 +134,40 @@ export default function BiddingPrice() {
       return
     }
     setErrorMsg(false)
+  }
+
+  const handleChangeBiddingPrice = (e: any) => {
+    setBiddingForm((prev) => {
+      return {
+        ...prev,
+        biddingPrice: Number(
+          e.target.value.toString().replaceAll(',', ''),
+        ),
+      }
+    })
+    setBiddingPrice((prev) => {
+      return Number(
+        e.target.value.toString().replaceAll(',', ''),
+      )
+    })
+    num2han(Number(e.target.value.toString().replaceAll(',', '')))
+  }
+
+  const handleChangeDepositPrice = (e: any) => {
+    setBiddingForm((prev) => {
+      return {
+        ...prev,
+        depositPrice: Number(
+          e.target.value.toString().replaceAll(',', ''),
+        ),
+      }
+    })
+    setDepositPrice((prev) => {
+      return Number(
+        e.target.value.toString().replaceAll(',', ''),
+      )
+    })
+    num2han(Number(e.target.value.toString().replaceAll(',', '')))
   }
 
   const handleGetBiddingFormUpdate = async () => {
@@ -163,6 +191,7 @@ export default function BiddingPrice() {
       console.log(error)
     }
   }
+
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -201,23 +230,15 @@ export default function BiddingPrice() {
                 type="text"
                 id="number"
                 onBlur={handleCheckPrice}
-                value={
-                  biddingForm.biddingPrice === 0
-                    ? 0
-                    : biddingForm.biddingPrice.toLocaleString('ko-KR')
-                }
+                value={biddingForm.biddingPrice.toLocaleString('ko-KR')}
+                onFocus={(e) => setBiddingPrice((prev) => {
+                  return Number(
+                    e.target.value.toString().replaceAll(',', ''),
+                  )
+                })}
                 className="flex md:w-[100%] w-[90%] h-[30px] border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md pl-[10px]"
                 onChange={(e) => {
-                  setBiddingPrice(
-                    Number(e.target.value.toString().replaceAll(',', '')),
-                  )
-                  num2han(Number(e.target.value.toString().replaceAll(',', '')))
-                  setBiddingForm({
-                    ...biddingForm,
-                    biddingPrice: Number(
-                      e.target.value.toString().replaceAll(',', ''),
-                    ),
-                  })
+                  handleChangeBiddingPrice(e)
                 }}
               />
             </div>
@@ -240,23 +261,10 @@ export default function BiddingPrice() {
               <input
                 type="text"
                 id="number2"
-                value={
-                  biddingForm.depositPrice === 0
-                    ? 0
-                    : biddingForm.depositPrice.toLocaleString('ko-KR')
-                }
+                value={biddingForm.depositPrice.toLocaleString('ko-KR')}
                 className="flex md:w-[100%] w-[95%] h-[30px] border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md pl-[10px]"
                 onChange={(e) => {
-                  setDepositPrice(
-                    Number(e.target.value.toString().replaceAll(',', '')),
-                  )
-                  num2han(Number(e.target.value.toString().replaceAll(',', '')))
-                  setBiddingForm({
-                    ...biddingForm,
-                    depositPrice: Number(
-                      e.target.value.toString().replaceAll(',', ''),
-                    ),
-                  })
+                  handleChangeDepositPrice(e)
                 }}
               />
             </div>

@@ -79,7 +79,8 @@ export const biddingInfoState = atom({
     bubnm: '',
     lowamt: '',
     ipchalamt: '',
-    bidders: []
+    bidders: [],
+    imageFile: '',
   },
   dangerouslyAllowMutability: true,
 })

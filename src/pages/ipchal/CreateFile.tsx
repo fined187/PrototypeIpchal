@@ -1,6 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { LiaEyeSolid, LiaEyeSlashSolid } from 'react-icons/lia'
 import axios from 'axios'
 import html2canvas from 'html2canvas'
@@ -16,8 +16,7 @@ import { TotalResultType } from '@/interface/IpchalType'
 export default function CreateFile() {
   const stateNum = useRecoilValue(stepState)
   const setStateNum = useSetRecoilState(stepState)
-  const biddingInfo = useRecoilValue(biddingInfoState)
-  const setBiddingInfo = useSetRecoilState(biddingInfoState)
+  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [passwordActive, setPasswordActive] = useState<boolean>(false)
   const [fileName, setFileName] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -98,7 +97,10 @@ export default function CreateFile() {
       let imgHeight = getHeight
       let heightLeft = imgHeight
       let position = 0
-
+      setBiddingInfo({
+        ...biddingInfo,
+        imageFile: imgData,
+      })
       doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
       heightLeft -= pageHeight
       while (heightLeft >= 20) {
@@ -1116,7 +1118,7 @@ export default function CreateFile() {
                                   </span>
                                 </div>
                                 <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                                  <span className="text-[12px]">전화번호</span>
+                                  <span className="text-[12px] font-NanumGothic font-semibold">전화번호</span>
                                 </div>
                                 <div className="flex justify-center items-center text-center w-[30%]">
                                   <span className="text-[12px] font-NanumGothic font-semibold">

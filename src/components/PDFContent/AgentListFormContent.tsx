@@ -8,13 +8,13 @@ export default function AgentListFormContent({ totalResult }: { totalResult: Tot
   
   return (
     <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
-      <div className={`flex flex-col bg-mybg ${totalResult && totalResult.bidders.length === 3 ? 'h-[100%]' : 'h-[94%]'} w-[100%] mx-auto absolute top-[5px] justify-center items-center`}>
+      <div className={`flex flex-col bg-mybg ${totalResult && totalResult.bidders.length === 3 ? 'h-[100%]' : totalResult && totalResult.bidders.length === 1 ? 'h-[97%]' : 'h-[94%]'} w-[100%] mx-auto ${totalResult && totalResult.bidders.length === 3 ? 'absolute top-[5px]' : 'absolute top-0'} justify-center items-center`}>
         <div className="flex md:w-[80%] w-[100%] absolute top-0">
           <p className="text-[15px] font-NanumGothic">
             (뒷면)
           </p>
         </div>
-        <div className="flex flex-col md:w-[80%] w-[100%] items-center text-center absolute top-[10px]">
+        <div className="flex flex-col md:w-[100%] w-[100%] items-center text-center absolute top-[10px]">
           <span className="text-[22px] font-extrabold font-NanumGothic">
             위임장
           </span>

@@ -44,19 +44,25 @@ export default function SearchAddress({
   const biddingForm = useRecoilValue(biddingInfoState)
 
   useEffect(() => {
-    if (stepNum && biddingForm.bidAddr[stepNum - 1] === '') return
-
-    if (setError) {
-      setError('bidderAddr', { type: 'manual', message: '' })
+    const handleSetError = () => {
+      if (stepNum && biddingForm.bidAddr[stepNum - 1] === '') return
+  
+      if (stepNum && biddingForm.bidAddr[stepNum - 1] !== '' && setError) {
+        setError('bidderAddr', { type: 'manual', message: '' })
+      }
     }
-  }, [stepNum && biddingForm.bidAddr[stepNum - 1], setError])
+    handleSetError()
+  }, [stepNum && biddingForm.bidAddr[stepNum - 1], setError, errors, register])
 
   useEffect(() => {
-    if (agentSetError) {
-      agentSetError &&
+    const handleSetError = () => {
+      if (biddingForm.agentAddr === '') return
+      if (biddingForm.agentAddr !== '' && agentSetError) {
         agentSetError('agentAddr', { type: 'manual', message: '' })
+      }
     }
-  }, [agentErrors, agentSetError, biddingForm.agentAddr])
+    handleSetError()
+  }, [agentErrors, agentSetError, biddingForm.agentAddr, agentRegister])
 
   return (
     <>
@@ -77,26 +83,18 @@ export default function SearchAddress({
               readOnly
               type="text"
               className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2 w-[90%]"
-              value={
-                stepNum && biddingForm.bidAddr[stepNum - 1] === ''
-                  ? ''
-                  : stepNum && biddingForm.bidAddr[stepNum - 1]
-              }
+              value={stepNum && biddingForm.bidAddr[stepNum - 1] || ''}
             />
             
           )}
           {agentRegister && (
             <input
-              {...agentRegister('agentAddr', { required: true })}
+              {...agentRegister("agentAddr", { required: true })}
               id="agentAddr"
               readOnly
               type="text"
               className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2 w-[90%]"
-              value={
-                biddingForm.agentAddr === ''
-                  ? ''
-                  : biddingForm.agentAddr
-              }
+              value={biddingForm.agentAddr || ''}
             />
           )}
           <button
@@ -120,11 +118,7 @@ export default function SearchAddress({
               type="text"
               readOnly
               className="border border-gray-300 focus:outline-2 focus:outline-yellow-500 rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2 w-[100%]"
-              value={
-                stepNum && biddingForm.bidAddrDetail[stepNum - 1] === ''
-                  ? ''
-                  : stepNum && biddingForm.bidAddrDetail[stepNum - 1]
-              }
+              value={stepNum && biddingForm.bidAddrDetail[stepNum - 1] || ''}
             />
           ))}
           {(agentRegister && (

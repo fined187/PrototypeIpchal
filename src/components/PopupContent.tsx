@@ -145,6 +145,12 @@ export default function PopupContent({
     }
   }
 
+  const handleEnterKey = (e: any) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+    }
+  }
+
   return (
     <>
       {isOpen && (
@@ -208,21 +214,21 @@ export default function PopupContent({
                                     [stepNum - 1]: '',
                                   },
                                 })
-                              stepNum &&
-                                biddingInfo &&
-                                setBiddingInfo &&
-                                setBiddingForm({
-                                  ...biddingForm,
-                                  bidAddr: {
-                                    ...(biddingForm && biddingForm?.bidAddr),
-                                    [stepNum - 1]: '',
-                                  },
-                                  bidAddrDetail: {
-                                    ...(biddingForm &&
-                                      biddingForm?.bidAddrDetail),
-                                    [stepNum - 1]: '',
-                                  },
-                                })
+                              // stepNum &&
+                              //   biddingInfo &&
+                              //   setBiddingForm &&
+                              //   setBiddingForm({
+                              //     ...biddingForm,
+                              //     bidAddr: {
+                              //       ...(biddingForm && biddingForm?.bidAddr),
+                              //       [stepNum - 1]: '',
+                              //     },
+                              //     bidAddrDetail: {
+                              //       ...(biddingForm &&
+                              //         biddingForm?.bidAddrDetail),
+                              //       [stepNum - 1]: '',
+                              //     },
+                              //   })
                               agentInfo &&
                                 setAgentInfo &&
                                 setAgentInfo({
@@ -230,13 +236,13 @@ export default function PopupContent({
                                   agentAddr: '',
                                   agentAddrDetail: '',
                                 })
-                              agentInfo &&
-                                setAgentInfo &&
-                                setBiddingForm({
-                                  ...biddingForm,
-                                  agentAddr: '',
-                                  agentAddrDetail: '',
-                                })
+                              // agentInfo &&
+                              //   setBiddingForm &&
+                              //   setBiddingForm({
+                              //     ...biddingForm,
+                              //     agentAddr: '',
+                              //     agentAddrDetail: '',
+                              //   })
                             }}
                           >
                             <IoClose className="flex" size={20} />

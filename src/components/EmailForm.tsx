@@ -99,6 +99,13 @@ export default function EmailForm({
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-[100%] w-[100%]">
+              <div className='flex justify-end p-[10px] border border-b-[1px] border-gray-300'>
+                <button>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-mygray hover:mygray cursor-pointer " fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={() => setOpenEmailForm(false)}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
               <form encType='multipart/form-data' method='post' ref={formRef} onSubmit={sendEamil}>
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="mb-4">

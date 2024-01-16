@@ -14,6 +14,12 @@ export default function AgentForm() {
   const stateNum = useRecoilValue(stepState)
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
+  if (typeof window === 'undefined') return null
+  window.document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+    }
+  })
   const [agentInfo, setAgentInfo] = useState<AgentInfoType>({
     agentName: '',
     agentRel: '',
