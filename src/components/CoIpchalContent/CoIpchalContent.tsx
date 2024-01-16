@@ -91,14 +91,14 @@ export default function CoIpchalContent() {
                 {/* 두 번째 박스 */}
                 <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[12%]">
                   <div className="border-black border-r-[1px] md:w-[5%] w-[10%] h-[100%] justify-center items-start">
-                    <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
+                    <span className="md:text-[13px] text-[10px] font-NanumGothic font-bold">
                       사건 
                       <br />
                       번호
                     </span>
                   </div>
                   <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
-                    <span className="md:text-[12px] text-[12px] font-NanumGothic font-semibold">
+                    <span className="md:text-[13px] text-[12px] font-NanumGothic font-semibold">
                       {totalResult &&
                         totalResult.caseYear +
                           ' 타경 ' +
@@ -106,7 +106,7 @@ export default function CoIpchalContent() {
                     </span>
                   </div>
                   <div className="border-black border-r-[1px] md:w-[5%] w-[10%] justify-center items-center text-center h-[100%]">
-                    <span className="md:text-[10px] text-[10px] font-NanumGothic font-bold">
+                    <span className="md:text-[13px] text-[10px] font-NanumGothic font-bold">
                       물건 
                       <br />
                       번호
@@ -116,8 +116,8 @@ export default function CoIpchalContent() {
                     <span
                       className={
                         totalResult && totalResult?.mulNo
-                          ? 'text-[12px] font-bold font-NanumGothic'
-                          : 'text-[8px] font-bold font-NanumGothic'
+                          ? 'text-[13px] font-bold font-NanumGothic'
+                          : 'text-[13px] font-bold font-NanumGothic'
                       }
                     >
                       {totalResult && totalResult?.mulNo
@@ -221,7 +221,7 @@ export default function CoIpchalContent() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[80%]">
                             <span className="text-[12px] font-NanumGothic">
-                              {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr : '-'}
+                              {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr + biddingInfo.agentAddrDetail : '-'}
                             </span>
                           </div>
                         </div>

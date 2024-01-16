@@ -241,7 +241,7 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-10 md:w-[550px] w-[90%] min-h-[257px] max-h-[600px] h-[300px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500">
+        <div className="flex flex-col gap-10 md:w-[550px] w-[90%] max-h-[600px] min-h-[350px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500">
           {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
             return (
               <div key={index} className="flex justify-between mb-5 w-full">

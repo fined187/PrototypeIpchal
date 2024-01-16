@@ -61,7 +61,7 @@ export default function BidderCnt() {
       }, 1000)
     }
   }
-  console.log(biddingInfo)
+
   return (
     <>
       <div className="flex w-[100%] h-screen bg-white justify-center relative">

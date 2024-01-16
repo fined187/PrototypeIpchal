@@ -1,4 +1,5 @@
 import { biddingInfoState, stepState } from '@/atom'
+import PopupContent from '@/components/PopupContent'
 import SearchAddress from '@/components/SearchAddress'
 import Spinner from '@/components/Spinner'
 import { BidderList, BiddingInfoType } from '@/interface/IpchalType'
@@ -15,6 +16,7 @@ export default function BidderForm() {
   const setBiddingForm = useSetRecoilState(biddingInfoState)        //  입찰표 정보(전역 상태 관리) set함수
   const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
   const [loading, setLoading] = useState<boolean>(false)            //  로딩 상태
+  const [isOpen, setIsOpen] = useState<boolean>(false)              //  주소검색 모달 상태
 
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
     bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
@@ -267,27 +269,31 @@ export default function BidderForm() {
     return sum === (10 - (checkSum ? checkSum : 0)) % 10;
   }
 
-  
-  const onSubmit: SubmitHandler<any> = async () => {
-    if (handleVerifyIdNum(biddingInfo.bidderIdNum1[stepNum - 1] + biddingInfo.bidderIdNum2[stepNum - 1]) === false) {
+  const onSubmit: SubmitHandler<any> = async (stepNum: number) => {
+    if (biddingForm.bidCorpYn[stepNum - 1] === 'I' && handleVerifyIdNum(biddingForm.bidIdNum1[stepNum - 1] + biddingForm.bidIdNum2[stepNum - 1]) === false) {
       alert('주민등록번호를 확인해주세요')
       return
-    }
-    if (biddingInfo.bidderCorpYn[stepNum - 1] === 'C' && await handleVerifyCorpNum(biddingInfo.bidderCorpNum1[stepNum - 1] + biddingInfo.bidderCorpNum2[stepNum - 1] + biddingInfo.bidderCorpNum3[stepNum - 1]) === false) {
+    }biddingForm
+    if (biddingForm.bidCorpYn[stepNum - 1] === 'C' && await handleVerifyCorpNum(biddingForm.bidCorpNum1[stepNum - 1] + biddingForm.bidCorpNum2[stepNum - 1] + biddingForm.bidCorpNum3[stepNum - 1]) === false) {
       alert('사업자등록번호를 확인해주세요')
       return
     }
 
-    if (biddingInfo.bidderCorpYn[stepNum - 1] === 'C' && handleVerifyCorpReiNum(biddingInfo.bidderCorpRegiNum1[stepNum - 1] + biddingInfo.bidderCorpRegiNum2[stepNum - 1]) === false) {
+    if (biddingForm.bidCorpYn[stepNum - 1] === 'C' && handleVerifyCorpReiNum(biddingForm.bidCorpRegiNum1[stepNum - 1] + biddingForm.bidCorpRegiNum2[stepNum - 1]) === false) {
       alert('법인등록번호를 확인해주세요')
       return
     }
-    console.log(biddingInfo)
-    try {
-      handleNextStepNew(stepNum)
-    } catch (error) {
-      console.log(error)
+    if (isOpen === false) {
+      try {
+        await handleNextStepNew(stepNum)
+      } catch (error) {
+        console.log(error)
+      }
     }
+  }
+
+  const handleModal = () => {
+    setIsOpen(!isOpen)
   }
 
   return (
@@ -384,7 +390,9 @@ export default function BidderForm() {
         </div>
 
         {/* 입력정보 */}
-        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[50%] w-[80%] h-[100%] justify-center items-center'>
+        <form onSubmit={handleSubmit(async () => {
+          await onSubmit(stepNum)
+        })} className='flex flex-col md:w-[50%] w-[80%] h-[100%] justify-center items-center'>
           <div className="flex flex-col w-[100%] h-[100%] gap-2">
             <div className="flex flex-col w-[100%] gap-1">
               <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
@@ -845,7 +853,7 @@ export default function BidderForm() {
                 </div>
               </>
             )}
-            <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>
+            <div className={`flex flex-col w-[100%] h-[60px] gap-1 relative`}>
               <div className="flex flex-col w-[100%] gap-1">
                 <label htmlFor="bidderJob" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
                   직업
@@ -884,13 +892,23 @@ export default function BidderForm() {
                 )}
               </div>
               <SearchAddress
-                biddingInfo={biddingInfo}
-                setBiddingInfo={setBiddingInfo}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
                 stepNum={stepNum}
                 register={register}
                 errors={errors}
                 setError={setError}
+                handleModal={handleModal}
               />
+              {isOpen && (
+                <PopupContent
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  biddingInfo={biddingInfo}
+                  setBiddingInfo={setBiddingInfo}
+                  stepNum={stepNum}
+                />
+              )}
             </div>
             <div className={`flex flex-row gap-[10px] absolute ${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>
               <button
@@ -913,7 +931,7 @@ export default function BidderForm() {
                 className="flex w-[60%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               >
                 <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-                  {stateNum <= 3 ? '확인' : '다음'}
+                  다음
                 </span>
               </button>
             </div>

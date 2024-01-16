@@ -116,8 +116,9 @@ export default function Home() {
           state: response.data.data.state,
           mulgunNum: response.data.data.mulNo,
           caseNo: response.data.data.caseYear + " 타경 " + response.data.data.caseDetail,
+          sagunNum: response.data.data.caseYear + " 타경 " + response.data.data.caseDetail,
           reqCourtName: response.data.data.reqCourtName,
-          ipchalDate: response.data.data.ipchalDate,
+          ipchalDate: response.data.data.startYear + "년 " + response.data.data.startMonth + "월 " + response.data.data.startDay + "일",
           biddingPrice: response.data.data.bidPrice ? response.data.data.bidPrice : 0,
           depositPrice: response.data.data.bidDeposit ? response.data.data.bidDeposit : 0,
           bidWay: response.data.data.depositType,
@@ -147,6 +148,7 @@ export default function Home() {
             sharedPercent: response.data.data.bidders.map((bidder: any) => bidder.share),
           },
         })
+        console.log(biddingForm)
       }
     } catch (error) {
       console.log(error)
@@ -159,9 +161,9 @@ export default function Home() {
     } else if (bidders.state === 1 || bidders.state === 2) {
       setStateNum(5)
     } else if (bidders.state >= 4 && bidders.agentYn === "Y") {
-      setStateNum(15)
-    } else if (bidders.state >= 4 && bidders.agentYn !== "Y") {
       setStateNum(16)
+    } else if (bidders.state >= 4 && bidders.agentYn !== "Y") {
+      setStateNum(15)
     } 
   }
 
@@ -195,8 +197,8 @@ export default function Home() {
       {stateNum === 12 && <CreateFile />}
       {stateNum === 13 && <IpchalShare />}
       {stateNum === 14 && <DownIpchal />}
-      {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== 'Y') && (stateNum === 15) ? <BidderFormMod /> : (stateNum === 15) && <BidderFormMod />}
-      {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn === 'Y') && (stateNum === 16) ? <AgentFormMod /> : (stateNum === 16) && <AgentFormMod />}
+      {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 15) ? <BidderFormMod /> : (stateNum === 15) && <BidderFormMod />}
+      {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 16) ? <AgentFormMod /> : (stateNum === 16) && <AgentFormMod />}
     </>
   )
 }

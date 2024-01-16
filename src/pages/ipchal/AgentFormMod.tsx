@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Loading from '@/components/Loading'
+import PopupContent from '@/components/PopupContent'
 import SearchAddress from '@/components/SearchAddress'
 import { AgentInfoType } from '@/interface/IpchalType'
 import axios from 'axios'
@@ -14,6 +15,7 @@ export default function AgentForm() {
   const stateNum = useRecoilValue(stepState)
   const [loading, setLoading] = useState<boolean>(false)
   const [agentList, setAgentList] = useState<AgentInfoType[]>([])
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const [agentInfo, setAgentInfo] = useState<AgentInfoType>({
     agentName: '',
@@ -32,9 +34,7 @@ export default function AgentForm() {
     register,
     handleSubmit,
     setFocus,
-    reset,
     setError,
-    getValues,
     formState: { errors },
   } = useForm<AgentInfoType>()
 
@@ -76,8 +76,7 @@ export default function AgentForm() {
       console.log(error)
     }
   }
-  console.log(biddingForm)
-  //  민증 검증
+    //  민증 검증
   const handleVerifyIdNum = (idNum: string) => {
     if (idNum.length > 0 && idNum.length < 14) {
       const idNumArr = idNum.split('')
@@ -135,10 +134,12 @@ export default function AgentForm() {
       alert('주민등록번호를 다시 확인해주세요')
       return
     }
-    try {
-      await handleNextStep()
-    } catch (error) {
-      console.log(error)
+    if (isOpen === false) {
+      try {
+        await handleNextStep()
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
@@ -150,7 +151,6 @@ export default function AgentForm() {
         )
         if (response.status === 200) {
           setAgentList(response.data.data)
-          console.log(response.data.data)
         }
       } catch (error) {
         console.log(error)
@@ -158,6 +158,10 @@ export default function AgentForm() {
     }
     handleGetAgentForm()
   }, [])
+
+  const handleModal = () => {
+    setIsOpen(!isOpen)
+  }
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -472,12 +476,21 @@ export default function AgentForm() {
                   )}
                 </div>
                 <SearchAddress
-                  agentInfo={agentInfo}
-                  setAgentInfo={setAgentInfo}
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  handleModal={handleModal}
                   agentRegister={register}
                   agentErrors={errors}
                   agentSetError={setError}
                 />
+                {isOpen && (
+                  <PopupContent
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    agentInfo={agentInfo}
+                    setAgentInfo={setAgentInfo}
+                  />
+                )}
               </div>
               <div className="flex flex-row gap-[10px] absolute top-[630px] justify-center items-center md:w-[50%] w-[80%]">
                 <button

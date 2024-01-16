@@ -44,9 +44,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                   <div>
                     <span className="text-[12px] font-semibold font-NanumGothic text-center">
                       입찰기일 :{' '}
-                      {biddingInfo.ipchalDate.substring(0, 4)}년{' '}
-                      {biddingInfo.ipchalDate.substring(4, 6)}월{' '}
-                      {biddingInfo.ipchalDate.substring(6, 8)}일
+                      {biddingInfo.ipchalDate}
                     </span>
                   </div>
                 </div>
@@ -54,17 +52,17 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
               {/* 두 번째 박스 */}
               <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] text-center h-[12%]">
                 <div className="border-black border-r-[1px] w-[8%]">
-                  <span className="md:text-[14px] text-[12px] font-NanumGothic font-semibold text-center">
+                  <span className="md:text-[15px] text-[12px] font-NanumGothic font-semibold text-center">
                     사건 번호
                   </span>
                 </div>
                 <div className="flex justify-center items-center border-black border-r-[1px] w-[42%] text-center">
-                  <span className="md:text-[14px] text-[12px] font-NanumGothic font-semibold">
+                  <span className="md:text-[15px] text-[12px] font-NanumGothic font-semibold">
                     {biddingInfo.sagunNum}
                   </span>
                 </div>
                 <div className="border-black border-r-[1px] w-[8%] justify-center items-center text-center">
-                  <span className="md:text-[14px] text-[12px] font-NanumGothic font-semibold">
+                  <span className="md:text-[15px] text-[12px] font-NanumGothic font-semibold">
                     물건 번호
                   </span>
                 </div>
@@ -204,7 +202,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%]">
                           <span className="text-[12px] font-NanumGothic">
-                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone : '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone.length === 10 ? biddingInfo.agentPhone.substring(0, 2) + '-' + biddingInfo.agentPhone.substring(2, 6) + '-' + biddingInfo.agentPhone.substring(6, 10) : biddingInfo.agentPhone.substring(0, 3) + '-' + biddingInfo.agentPhone.substring(3, 7) + '-' + biddingInfo.agentPhone.substring(7, 11) : '-'}
                           </span>
                         </div>
                       </div>
@@ -951,9 +949,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                   <div>
                     <span className="text-[12px] font-semibold font-NanumGothic text-center">
                       입찰기일 :{' '}
-                      {biddingInfo.ipchalDate.substring(0, 4)}년{' '}
-                      {biddingInfo.ipchalDate.substring(4, 6)}월{' '}
-                      {biddingInfo.ipchalDate.substring(6, 8)}일
+                      {biddingInfo.ipchalDate}
                     </span>
                   </div>
                 </div>
@@ -1069,7 +1065,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[30%]">
                           <span className="text-[12px] font-NanumGothic">
-                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone : '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone.length === 10 ? biddingInfo.agentPhone.substring(0, 2) + '-' + biddingInfo.agentPhone.substring(2, 6) + '-' + biddingInfo.agentPhone.substring(6, 10) : biddingInfo.agentPhone.substring(0, 3) + '-' + biddingInfo.agentPhone.substring(3, 7) + '-' + biddingInfo.agentPhone.substring(7, 11) : '-'}
                           </span>
                         </div>
                       </div>
@@ -1606,17 +1602,8 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                     사건번호
                   </span>
                   <div className="flex flex-row gap-3">
-                    <span className="text-[15px] text-red-500 font-bold font-NanumGothic">
-                      {biddingInfo.caseNo.substring(0, 4)}
-                    </span>
                     <span className="text-[15px] text-black font-bold font-NanumGothic">
-                      {' 타경 '}
-                    </span>
-                    <span className="text-[15px] text-red-500 font-bold font-NanumGothic">
-                      {biddingInfo.caseNo.substring(4, 11)}
-                    </span>
-                    <span className="text-[15px] text-black font-bold">
-                      {'호'}
+                      {biddingInfo.sagunNum}
                     </span>
                   </div>
                 </div>

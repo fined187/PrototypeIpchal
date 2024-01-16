@@ -6,9 +6,9 @@ export default function AgentListFormContent({ totalResult }: { totalResult: Get
   const biddingInfo = useRecoilValue(biddingInfoState);
   const stateNum = useRecoilValue(stepState);
   return (
-    <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center relativ overflow-x-scroll scrollbar-hide`}>
-      <div className="flex flex-col bg-mybg h-[100%] w-[100%] m-auto relative justify-center items-center">
-        <div className="flex md:w-[80%] w-[100%] absolute top-[5px]">
+    <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
+      <div className={`flex flex-col bg-mybg ${totalResult && totalResult.bidders.length === 3 ? 'h-[100%]' : 'h-[94%]'} w-[100%] mx-auto absolute top-[5px] justify-center items-center`}>
+        <div className="flex md:w-[80%] w-[100%] absolute top-0">
           <p className="text-[15px] font-NanumGothic">
             (뒷면)
           </p>

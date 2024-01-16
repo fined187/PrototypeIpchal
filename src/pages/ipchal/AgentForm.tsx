@@ -1,4 +1,5 @@
 import { biddingInfoState, stepState } from '@/atom'
+import PopupContent from '@/components/PopupContent'
 import SearchAddress from '@/components/SearchAddress'
 import { AgentInfoType } from '@/interface/IpchalType'
 import axios from 'axios'
@@ -11,6 +12,7 @@ export default function AgentForm() {
   const setBiddingForm = useSetRecoilState(biddingInfoState)
   const setStateNum = useSetRecoilState(stepState)
   const stateNum = useRecoilValue(stepState)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const [agentInfo, setAgentInfo] = useState<AgentInfoType>({
     agentName: '',
@@ -138,11 +140,17 @@ export default function AgentForm() {
       alert('주민등록번호를 확인해주세요')
       return
     }
-    try {
-      await handleAgentSave()
-    } catch (error) {
-      console.log(error)
+    if(isOpen === false) {
+      try {
+        await handleAgentSave()
+      } catch (error) {
+        console.log(error)
+      }
     }
+  }
+  
+  const handleModal = () => {
+    setIsOpen(!isOpen)
   }
 
   return (
@@ -418,7 +426,7 @@ export default function AgentForm() {
                   </span>
                 </div>
               )}
-            <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>
+            <div className={`flex flex-col w-[100%] h-[250px] gap-1 relative `}>
               <div className="flex flex-col w-[100%] gap-1">
                 <label
                   htmlFor="agentJob"
@@ -456,12 +464,22 @@ export default function AgentForm() {
                 )}
               </div>
               <SearchAddress
-                agentInfo={agentInfo}
-                setAgentInfo={setAgentInfo}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                handleModal={handleModal}
                 agentRegister={register}
                 agentErrors={errors}
                 agentSetError={setError}
-              />
+                />
+                
+              {isOpen && (
+                <PopupContent
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  agentInfo={agentInfo}
+                  setAgentInfo={setAgentInfo}
+                />
+              )}
             </div>
             <div className="flex flex-row gap-[10px] absolute top-[630px] justify-center items-center md:w-[50%] w-[80%]">
               <button

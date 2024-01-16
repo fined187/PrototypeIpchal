@@ -1,5 +1,6 @@
 import { bidderInfo, biddingInfoState, stepState } from "@/atom"
 import Loading from "@/components/Loading"
+import PopupContent from "@/components/PopupContent"
 import SearchAddress from "@/components/SearchAddress"
 import Spinner from "@/components/Spinner"
 import { BiddingInfoType } from "@/interface/IpchalType"
@@ -37,6 +38,8 @@ export default function BidderFormMod() {
   const [stepNum, setStepNum] = useState<number>(1)
   const [bidderList, setBidderList] = useState<BidderListProps>()
   const [loading, setLoading] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [isCorpNumOk, setIsCorpNumOk] = useState(false)
 
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
     bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
@@ -141,21 +144,25 @@ export default function BidderFormMod() {
   }
   
   //  사업자 등록 번호 검증
-  const handleVerifyCorpNum = async (corpNum: string) => {
-    try {
-      const response = await axios.post(`https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=${process.env.NEXT_PUBLIC_GONGGONG_KEY}`, {
-        b_no: [corpNum]
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      if (response.status === 200) {
-        return true
+  const handleVerifyCorpNum = (number: string) => {
+    if (number.length !== 10) {
+      return false;
+    }
+
+    const regsplitNum = number.replace(/-/gi, '').split('').map(function(item) {
+      return parseInt(item, 10);
+    });
+    
+    if (regsplitNum.length === 10) {
+      const regkey = [1, 3, 7, 1, 3, 7, 1, 3, 5];
+      let regNumSum = 0;
+      for (var i = 0; i < regkey.length; i++) {
+        regNumSum += regkey[i] * regsplitNum[i];
       }
-    } catch (error) {
-      console.log(error)
-      return false
+      regNumSum += parseInt(((regkey[8] * regsplitNum[8]) / 10).toString(), 10);
+      const regCheck = (Math.floor(regsplitNum[9])) === ((10 - (regNumSum % 10) ) % 10);
+    
+      return regCheck;    
     }
   }
 
@@ -169,7 +176,12 @@ export default function BidderFormMod() {
       return sum;
     }, 0) % 10;
 
-    return sum === (10 - (checkSum ? checkSum : 0)) % 10;
+    if (sum === (10 - (checkSum ? checkSum : 0)) % 10 === true) {
+      return true
+    } else {
+      alert('법인등록번호를 확인해주세요')
+      return false
+    }
   }
 
   //  수정 사항 반영
@@ -331,42 +343,78 @@ export default function BidderFormMod() {
       }
     }
   }
-
+    
   const onSubmit: SubmitHandler<BiddingInfoType> = async () => {
-    if (handleVerifyIdNum(biddingInfo.bidderIdNum1[stepNum - 1] + biddingInfo.bidderIdNum2[stepNum - 1]) === false) {
+    if (biddingForm.bidCorpYn[stepNum - 1] === 'I' && !handleVerifyIdNum(biddingForm.bidIdNum1[stepNum - 1] + biddingForm.bidIdNum2[stepNum - 1])) {
       alert('주민등록번호를 확인해주세요')
       return
-    }
-    if (biddingInfo.bidderCorpYn[stepNum - 1] === 'C' && await handleVerifyCorpNum(biddingInfo.bidderCorpNum1[stepNum - 1] + biddingInfo.bidderCorpNum2[stepNum - 1] + biddingInfo.bidderCorpNum3[stepNum - 1]) === false) {
+    } else if (biddingForm.bidCorpYn[stepNum - 1] === 'C' && !handleVerifyCorpNum(biddingForm.bidCorpNum1[stepNum - 1] + biddingForm.bidCorpNum2[stepNum - 1] + biddingForm.bidCorpNum3[stepNum - 1])) {
       alert('사업자등록번호를 확인해주세요')
       return
-    }
-
-    if (biddingInfo.bidderCorpYn[stepNum - 1] === 'C' && handleVerifyCorpReiNum(biddingInfo.bidderCorpRegiNum1[stepNum - 1] + biddingInfo.bidderCorpRegiNum2[stepNum - 1]) === false) {
+    } else if (biddingForm.bidCorpYn[stepNum - 1] === 'C' && !handleVerifyCorpReiNum(biddingForm.bidCorpRegiNum1[stepNum - 1] + biddingForm.bidCorpRegiNum2[stepNum - 1])) {
       alert('법인등록번호를 확인해주세요')
       return
-    }
-    
-    try {
-      await handleNextStep()
-    } catch (error) {
-      console.log(error)
+    } else {
+      if (isOpen === false) {
+        try {
+          await handleNextStep()
+        } catch (error) {
+          console.log(error)
+        }
+      }
     }
   }
 
   useEffect(() => {
-    setBiddingForm((prev: any) => {
-      const temp = biddingInfo.bidderCorpYn
-      return { ...prev, bidCorpYn: temp }
-    })
-  }, [])
+    const handleInitCorpYn = () => {
+      
+      if (biddingForm.bidCorpYn[stepNum - 1] === '') {
+        setBiddingForm((prev: any) => {
+          const temp = biddingInfo.bidderCorpYn
+          return { ...prev, bidCorpYn: temp }
+        })
+        setBiddingInfo((prev: any) => {
+          const temp = prev.bidderCorpYn
+          return { ...prev, bidCorpYn: temp }
+        })
+      } else {
+        setBiddingInfo((prev: any) => {
+          const temp = prev.bidderCorpYn
+          temp[stepNum - 1] = biddingForm.bidCorpYn[stepNum - 1]
+          return { ...prev, bidCorpYn: temp }
+        })
+        if (biddingForm.bidCorpYn[stepNum - 1] === 'C') {
+          setBiddingForm((prev: any) => {
+            const temp1 = prev.bidCorpNum1
+            const temp2 = prev.bidCorpNum2
+            const temp3 = prev.bidCorpNum3
+            const temp4 = prev.bidCorpRegiNum1
+            const temp5 = prev.bidCorpRegiNum2
+            temp1[stepNum - 1] = biddingForm.bidCorpNum[stepNum - 1] !== null ? biddingForm.bidCorpNum[stepNum - 1].substring(0, 3) : ''
+            temp2[stepNum - 1] = biddingForm.bidCorpNum[stepNum - 1] !== null ? biddingForm.bidCorpNum[stepNum - 1].substring(3, 5) : ''
+            temp3[stepNum - 1] = biddingForm.bidCorpNum[stepNum - 1] !== null ? biddingForm.bidCorpNum[stepNum - 1].substring(5, 10) : ''
+            temp4[stepNum - 1] = biddingForm.bidCorpRegiNum[stepNum - 1] !== null ? biddingForm.bidCorpRegiNum[stepNum - 1].substring(0, 6) : ''
+            temp5[stepNum - 1] = biddingForm.bidCorpRegiNum[stepNum - 1] !== null ? biddingForm.bidCorpRegiNum[stepNum - 1].substring(6, 13) : ''
+            return {
+              ...prev,
+              bidCorpNum1: temp1,
+              bidCorpNum2: temp2,
+              bidCorpNum3: temp3,
+              bidCorpRegiNum1: temp4,
+              bidCorpRegiNum2: temp5,
+            }
+          })
+        }
+      }
+    }
+    handleInitCorpYn()
+  }, [stepNum])
 
   useEffect(() => {
     const handleGetBidders = async () => {
       try {
         const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
         if (response.status === 200) {
-          console.log(response)
           setBidderList({
             agentYn: response.data.data.agentYn,
             bidderCount: response.data.data.bidderCount,
@@ -382,6 +430,10 @@ export default function BidderFormMod() {
     }
     handleGetBidders()
   }, [])
+
+  const handleModal = () => {
+    setIsOpen(!isOpen)
+  }
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -732,11 +784,6 @@ export default function BidderFormMod() {
                           className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
                           value={biddingForm.bidCorpNum1[stepNum - 1] || ''}
                           onChange={(e) => {
-                            setBidderList((prev: any) => {
-                              const temp = prev.bidders
-                              temp[stepNum - 1].companyNo = e.target.value + temp[stepNum - 1].companyNo?.substring(3, 10)
-                              return { ...prev, bidders: temp }
-                            })
                             setBiddingForm((prev: any) => {
                               const temp = prev.bidCorpNum1
                               temp[stepNum - 1] = e.target.value
@@ -951,13 +998,23 @@ export default function BidderFormMod() {
                   </div>
                 )}
                 <SearchAddress
-                  biddingInfo={biddingInfo}
-                  setBiddingInfo={setBiddingInfo}
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  handleModal={handleModal}
                   stepNum={stepNum}
                   register={register}
                   errors={errors}
                   setError={setError}
                 />
+                {isOpen && (
+                <PopupContent
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  biddingInfo={biddingInfo}
+                  setBiddingInfo={setBiddingInfo}
+                  stepNum={stepNum}
+                />
+                )}
               </div>
               <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>
                 <button

@@ -16,7 +16,7 @@ export default function CoIpchalListContent({ totalResult }: CoIpchalListProps) 
           공 동 입 찰 자 목 록
         </p>
       </div>
-      <div className="flex md:w-[80%] w-[100%] h-[1100px] border border-black absolute top-[150px]">
+      <div className="flex md:w-[80%] w-[100%] h-[1100px] border border-black absolute top-[120px]">
         <div className="flex flex-col w-[50px] md:w-[100px] h-[100%] border-black border-r-[1px]">
           <div className="flex justify-center items-center border-black border-b-[1px] w-[50px] md:w-[100px] h-[50px]">
             번호

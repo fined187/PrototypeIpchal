@@ -142,8 +142,6 @@ export default function BiddingPrice() {
     setErrorMsg(false)
   }
 
-  console.log(stateNum)
-
   const handleGetBiddingFormUpdate = async () => {
     try {
       const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)

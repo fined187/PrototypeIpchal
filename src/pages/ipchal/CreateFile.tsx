@@ -61,7 +61,7 @@ export default function CreateFile() {
       //  4. 입찰자가 2명 이상일 때 + 대리인이 있을 때
       if (biddingInfo.bidderNum === 2) {
         //  4-1. 입찰자가 2명일 때
-        setGetHeight(1256)
+        setGetHeight(1200)
       } else {
         //  4-2. 입찰자가 3명 이상일 때
         setGetHeight(1180)
@@ -108,7 +108,7 @@ export default function CreateFile() {
       }
       const blob = doc.output('blob')
       //  저장
-      // doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
+      doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
       file = new File([blob], `best_${format(date, 'yyyyMMddHHmmss')}.pdf`, {
         type: 'application/pdf',
       })
