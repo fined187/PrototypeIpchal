@@ -37,7 +37,7 @@ export default function IpchalShare() {
       })
     }
   }  
-  console.log(biddingInfo.imageFile)
+  
   return (
     <>
       <div className="flex w-[100%] h-screen justify-center bg-white relative">

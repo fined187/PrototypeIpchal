@@ -24,6 +24,7 @@ interface SearchAddressProps {
   onClose?: () => void
   onOpen?: () => void
   setValue?: any
+  agentSetValue?: any
 }
 
 export default function SearchAddress({
@@ -41,6 +42,7 @@ export default function SearchAddress({
   isOpen,
   onClose,
   onOpen,
+  agentSetValue,
 }: SearchAddressProps) {
   let [portalElement, setPortalElement] = useState<Element | null>(null);
   const biddingForm = useRecoilValue(biddingInfoState)
@@ -106,7 +108,7 @@ export default function SearchAddress({
             </span>
           </div>
         )}
-        {agentErrors?.agentAddr?.type === 'required' && (
+        {agentErrors?.agentAddr?.type === 'required' && biddingForm.agentAddr === '' && (
           <div className="flex w-[100%] justify-start">
             <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
               주소를 입력해주세요
@@ -151,6 +153,7 @@ export default function SearchAddress({
             setAgentInfo={setAgentInfo}
             agentSetError={agentSetError}
             setValue={setValue}
+            agentSetValue={agentSetValue}
           />
         , portalElement)
         )

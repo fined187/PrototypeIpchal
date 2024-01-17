@@ -234,6 +234,7 @@ export default function BidderFormMod() {
       console.log(error)
     }
   }
+  console.log(biddingForm)
 
   //  새로운 입찰자 추가
   //  입찰자 정보 저장

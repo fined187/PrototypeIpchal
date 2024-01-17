@@ -40,20 +40,7 @@ export default function AgentForm() {
     setValue,
     setError,
     formState: { errors },
-  } = useForm<AgentInfoType>({
-    defaultValues: {
-      agentName: '',
-      agentRel: '',
-      agentPhone1: '',
-      agentPhone2: '',
-      agentPhone3: '',
-      agentIdNum1: '',
-      agentIdNum2: '',
-      agentAddr: '',
-      agentAddrDetail: '',
-      agentJob: '',
-    },
-  })
+  } = useForm<AgentInfoType>({ mode: 'onChange' })
 
   const handlePhoneFocusMove = (target: HTMLInputElement) => {
     if (target.value.length === 3 && target.id === 'agentPhone1') {
@@ -480,7 +467,7 @@ export default function AgentForm() {
                 isOpen={isOpen}
                 onOpen={onOpen}
                 onClose={onClose}
-                setValue={setValue}
+                agentSetValue={setValue}
               />
             </div>
             <div className="flex flex-row gap-[10px] absolute top-[630px] justify-center items-center md:w-[50%] w-[80%]">

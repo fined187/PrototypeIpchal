@@ -1677,9 +1677,9 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                 <div className="flex justify-center items-center border-black border-b-[1px] w-[100%] h-[50px]">
                   번호
                 </div>
-                {biddingInfo.bidName.map((_, idx) => {
+                {Array(10).fill('').map((_, idx) => {
                   return (
-                  <div className="flex justify-center items-center border-black border-b-[1px] w-[100%] h-[105px]" key={idx}>
+                  <div className="flex justify-center items-center border-black border-b-[1px] w-[100%] h-[75px]" key={idx}>
                     {idx + 1}
                   </div>
                   )
@@ -1712,29 +1712,40 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                     </div>
                   </div>
                 </div>
-                {biddingInfo.bidName.map((_, idx) => {
+                {Array(10).fill('').map((_, idx) => {
                   return (
-                  <div className="flex flex-row w-[100%] h-[105px] border-black border-b-[1px] justify-start items-center text-center" key={idx}>
+                  <div className="flex flex-row w-[100%] h-[75px] border-black border-b-[1px] justify-start items-center text-center" key={idx}>
                     <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px] h-[100%]">
                       <p className="text-[15px] font-NanumGothic font-normal">
-                        {biddingInfo.bidName[idx] + ' (인)'}
+                        {biddingInfo.bidName[idx] ? biddingInfo.bidName[idx] + ' (인)' : ''}
                       </p>
                     </div>
                     <div className="flex flex-col w-[100%] h-[100%]">
                       <div className="flex border-black border-b-[1px] w-[100%] h-[50%] justify-center items-center text-center">
                         <p className="text-[15px] font-NanumGothic font-normal">
-                          {biddingInfo.bidAddr[idx]}
+                          {biddingInfo.bidAddr[idx] ?? ''}
                         </p>
                       </div>
                       <div className="flex flex-row w-[100%] h-[50%]">
                         <div className="flex w-[100%] h-[100%] border-black border-r-[1px] justify-center items-center text-center">
                           <p className="text-[15px] font-NanumGothic font-normal">
-                            {biddingInfo.bidCorpYn[idx] === 'I' ?  biddingInfo.bidIdNum1[idx] + '-' + biddingInfo.bidIdNum2[idx] : biddingInfo.bidCorpNum1[idx] + '-' + biddingInfo.bidCorpNum2[idx] + '-' + biddingInfo.bidCorpNum3[idx]}
+                            {biddingInfo.bidCorpYn[idx] === 'I' ?  biddingInfo.bidIdNum1[idx] + '-' + biddingInfo.bidIdNum2[idx] 
+                              : biddingInfo.bidCorpYn[idx] === 'C' ? 
+                              biddingInfo.bidCorpNum1[idx] + '-' + biddingInfo.bidCorpNum2[idx] + '-' + biddingInfo.bidCorpNum3[idx]
+                              : ''
+                            }
                           </p>
                         </div>
                         <div className="flex w-[100%] h-[100%] justify-center items-center text-center">
                           <p className="text-[15px] font-NanumGothic font-normal">
-                            {biddingInfo.bidPhone1[idx] + '-' + biddingInfo.bidPhone2[idx] + '-' + biddingInfo.bidPhone3[idx]}
+                            {
+                              biddingInfo.bidPhone[idx] ? biddingInfo.bidPhone[idx].length === 10 ? 
+                                biddingInfo.bidPhone[idx].substring(0, 2) + '-' + biddingInfo.bidPhone[idx].substring(2, 6) + '-' + biddingInfo.bidPhone[idx].substring(6, 10)
+                              : biddingInfo.bidPhone[idx].length === 11 ? 
+                                biddingInfo.bidPhone[idx].substring(0, 3) + '-' + biddingInfo.bidPhone[idx].substring(3, 7) + '-' + biddingInfo.bidPhone[idx].substring(7, 11)
+                              : ''
+                              : ''
+                            }
                           </p>
                         </div>
                       </div>

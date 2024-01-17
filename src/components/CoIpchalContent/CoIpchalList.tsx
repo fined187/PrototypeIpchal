@@ -21,7 +21,7 @@ export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
           <div className="flex justify-center items-center border-black border-b-[1px] w-[50px] md:w-[100px] h-[50px]">
             번호
           </div>
-          {totalResult && totalResult?.bidders.map((_, idx) => {
+          {Array(10).fill(10).map((_, idx) => {
             return (
             <div className="flex justify-center items-center border-black border-b-[1px] w-[50px] md:w-[100px] h-[105px]" key={idx}>
               {idx + 1}
@@ -56,29 +56,29 @@ export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
               </div>
             </div>
           </div>
-          {totalResult && totalResult?.bidders.map((el, idx) => {
+          {Array(10).fill('').map((_, idx) => {
             return (
             <div className="flex flex-row w-[100%] h-[105px] border-black border-b-[1px] justify-start items-center text-center" key={idx}>
               <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px] h-[100%]">
                 <p className="text-[15px] font-NanumGothic font-normal">
-                  {el.name + ' (인)'}
+                  {totalResult && totalResult.bidders[idx]?.name ? totalResult && totalResult.bidders[idx]?.name + ' (인)' : ''}
                 </p>
               </div>
               <div className="flex flex-col w-[80%] h-[100%]">
                 <div className="flex border-black border-b-[1px] w-[100%] h-[50%] justify-center items-center text-center">
                   <p className="text-[15px] font-NanumGothic font-normal">
-                    {biddingInfo.bidAddr[idx] + ' ' + biddingInfo.bidAddrDetail[idx]}
+                    {totalResult && totalResult.bidders[idx]?.address ? totalResult && totalResult.bidders[idx]?.address : ''}
                   </p>
                 </div>
                 <div className="flex flex-row w-[100%] h-[50%]">
                   <div className="flex w-[100%] h-[100%] border-black border-r-[1px] justify-center items-center text-center">
                     <p className="text-[15px] font-NanumGothic font-normal">
-                      {biddingInfo.bidCorpYn[idx] === 'I' ?  biddingInfo.bidIdNum1[idx] + '-' + biddingInfo.bidIdNum1[idx] : biddingInfo.bidCorpNum1[idx] + '-' + biddingInfo.bidCorpNum2[idx] + '-' + biddingInfo.bidCorpNum3[idx]}
+                    {biddingInfo && biddingInfo.bidIdNum1[idx] ? biddingInfo && biddingInfo.bidIdNum1[idx] : ''} - {biddingInfo && biddingInfo.bidIdNum2[idx] ? biddingInfo && biddingInfo.bidIdNum2[idx] : ''}
                     </p>
                   </div>
                   <div className="flex w-[100%] h-[100%] justify-center items-center text-center">
                     <p className="text-[15px] font-NanumGothic font-normal">
-                      {biddingInfo.bidPhone[idx].length === 10 ? biddingInfo.bidPhone[idx].substring(0, 3) + '-' + biddingInfo.bidPhone[idx].substring(3, 6) + '-' + biddingInfo.bidPhone[idx].substring(6, 10) : biddingInfo.bidPhone[idx].substring(0, 3) + '-' + biddingInfo.bidPhone[idx].substring(3, 7) + '-' + biddingInfo.bidPhone[idx].substring(7, 11)}
+                    {biddingInfo && biddingInfo.bidPhone[idx] ? biddingInfo && biddingInfo.bidPhone[idx].length === 10 ? biddingInfo.bidPhone[idx].substring(0, 2) + '-' + biddingInfo.bidPhone[idx].substring(2, 6) + '-' + biddingInfo.bidPhone[idx].substring(6, 10) : biddingInfo.bidPhone[idx].length === 11 ? biddingInfo.bidPhone[idx].substring(0, 3) + '-' + biddingInfo.bidPhone[idx].substring(3, 7) + '-' + biddingInfo.bidPhone[idx].substring(7, 11) : '' : ''}
                     </p>
                   </div>
                 </div>

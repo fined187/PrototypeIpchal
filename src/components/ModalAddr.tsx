@@ -26,6 +26,7 @@ interface PopupContentProps {
   agentSetError?: any
   register?: any
   setValue?: any
+  agentSetValue?: any
 }
 
 export default function ModalAddr({
@@ -37,6 +38,7 @@ export default function ModalAddr({
   agentInfo,
   setAgentInfo,
   setValue,
+  agentSetValue,
 }: PopupContentProps) {
   const [searchAddr, setSearchAddr] = useState<string>('')
   const [emptyView, setEmptyView] = useState<boolean>(false) // 검색결과 없을 때 뷰
@@ -150,7 +152,7 @@ export default function ModalAddr({
       })
     }
   }
-
+  
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -509,8 +511,10 @@ export default function ModalAddr({
                               <div
                                 className="flex justify-center items-center w-[100px] h-[40px] bg-blue-500 rounded-md cursor-pointer hover:bg-blue-300"
                                 onClick={() => {
-                                  setValue && stepNum && setValue('bidderAddr', [biddingInfo?.bidderAddr[stepNum - 1]])
-                                  setValue && setValue('agentAddr', agentInfo?.agentAddr)
+                                  biddingInfo && setValue && stepNum && setValue('bidderAddr', [biddingInfo?.bidderAddr[stepNum - 1]])
+                                  biddingInfo && setValue && stepNum && setValue('bidderAddrDetail', [biddingInfo?.bidderAddrDetail[stepNum - 1]])
+                                  agentInfo && agentSetValue && agentSetValue('agentAddr', agentInfo?.agentAddr)
+                                  agentInfo && agentSetValue && agentSetValue('agentAddrDetail', agentInfo?.agentAddrDetail)
                                   setDetailAddr(false)
                                   onClose()
                                 }}

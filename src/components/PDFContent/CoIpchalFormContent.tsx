@@ -17,7 +17,7 @@ export default function CoIpchalFormContent({ totalResult }: CoIpchalFormProps) 
           </div>
           <div className="flex justify-end text-right w-[100%] md:w-[80%] absolute top-[200px] mr-2">
             <span className="text-[15px] font-bold font-NanumGothic">
-              수원지방법원 본원 집행관 귀하
+              {totalResult && totalResult?.reqCourtName + ' 본원 집행관 귀하'}
             </span>
           </div>
           <div className="flex flex-col gap-[10px] justify-start w-[100%] md:w-[80%] ml-2 absolute top-[350px]">
