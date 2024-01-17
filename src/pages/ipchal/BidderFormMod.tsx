@@ -197,7 +197,7 @@ export default function BidderFormMod() {
     try {
       if (biddingForm?.bidCorpYn[stepNum - 1] === 'I') {
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
-          address: biddingForm?.bidAddr[stepNum - 1],
+          address: biddingForm?.bidAddr[stepNum - 1] + biddingForm?.bidAddrDetail[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           job: biddingForm?.bidJob[stepNum - 1],
           name: biddingForm?.bidName[stepNum - 1],
@@ -208,7 +208,7 @@ export default function BidderFormMod() {
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
-          address: biddingForm?.bidAddr[stepNum - 1],
+          address: biddingForm?.bidAddr[stepNum - 1] + biddingForm?.bidAddrDetail[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           companyNo: biddingForm?.bidCorpNum[stepNum - 1],
           corporationNo: biddingForm?.bidCorpRegiNum[stepNum - 1],
