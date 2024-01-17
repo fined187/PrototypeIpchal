@@ -1,11 +1,13 @@
+'use client';
+
 import { AgentInfoType, BiddingInfoType } from '@/interface/IpchalType'
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
-import PopupContent from './PopupContent'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { FieldErrors, UseFormRegister, UseFormSetError } from 'react-hook-form'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { biddingInfoState } from '@/atom'
-import { Modal, useDisclosure } from '@chakra-ui/react'
+import { useDisclosure } from '@chakra-ui/react'
 import ModalAddr from './ModalAddr'
+import { createPortal } from 'react-dom';
 
 type BiddersProps = {
   address: string
@@ -31,6 +33,10 @@ interface SearchAddressProps {
   setBiddingInfo?: Dispatch<SetStateAction<BiddingInfoType>>
   agentInfo?: AgentInfoType
   setAgentInfo?: Dispatch<SetStateAction<AgentInfoType>>
+  watch?: any
+  isOpen?: boolean
+  onClose?: () => void
+  onOpen?: () => void
 }
 
 export default function SearchAddress({
@@ -45,30 +51,43 @@ export default function SearchAddress({
   setBiddingInfo,
   agentInfo,
   setAgentInfo,
+  watch,
+  isOpen,
+  onClose,
+  onOpen,
 }: SearchAddressProps) {
+  let [portalElement, setPortalElement] = useState<Element | null>(null);
   const biddingForm = useRecoilValue(biddingInfoState)
-  const { isOpen, onClose, onOpen } = useDisclosure()
+
+  const handleModal = () => {
+    if (isOpen && onClose) {
+      onClose()
+    } else {
+      onOpen && onOpen()
+    }
+  }
 
   useEffect(() => {
-    const handleSetError = () => {
-      if (stepNum && biddingForm.bidAddr[stepNum - 1] === '') return
-  
-      if (stepNum && biddingForm.bidAddr[stepNum - 1] !== '' && setError) {
-        setError('bidderAddr', { type: 'manual', message: '' })
-      }
-    }
-    handleSetError()
-  }, [stepNum && biddingForm.bidAddr[stepNum - 1], setError, errors, register])
+    const portal = document.getElementById('portal');
+    setPortalElement(portal);
+  }, [isOpen])
 
   useEffect(() => {
-    const handleSetError = () => {
-      if (biddingForm.agentAddr === '') return
-      if (biddingForm.agentAddr !== '' && agentSetError) {
-        agentSetError('agentAddr', { type: 'manual', message: '' })
-      }
+    if (stepNum && biddingForm.bidAddr[stepNum] !== '' && setError) {
+      setError('bidderAddr', {
+        type: 'required',
+        message: '',
+      })
     }
-    handleSetError()
-  }, [agentErrors, agentSetError, biddingForm.agentAddr, agentRegister])
+    if (biddingForm.agentAddr !== '' && agentSetError) {
+      agentSetError('agentAddr', {
+        type: 'required',
+        message: '',
+      })
+    }
+  }, [biddingForm.agentAddr, biddingForm.bidAddr, setError, agentSetError, stepNum])
+
+  console.log(errors?.bidderAddr?.type)
 
   return (
     <>
@@ -106,7 +125,7 @@ export default function SearchAddress({
           <button
             className="text-white text-[13px] bg-myyellow rounded-md font-NanumGothic not-italic font-bold w-[25%] h-[40px]"
             onClick={() => {
-              onOpen()
+              handleModal()
             }}
           >
             주소검색
@@ -152,17 +171,20 @@ export default function SearchAddress({
           </div>
         )}
       </div>
-      {isOpen &&(
-        <ModalAddr
-          isOpen={isOpen}
-          onClose={onClose}
-          stepNum={stepNum}
-          biddingInfo={biddingInfo}
-          setBiddingInfo={setBiddingInfo}
-          agentInfo={agentInfo}
-          setAgentInfo={setAgentInfo}
-        />
-      )}
+      {isOpen && portalElement ? (
+        createPortal(
+          <ModalAddr
+            isOpen={isOpen}
+            onClose={onClose}
+            stepNum={stepNum}
+            biddingInfo={biddingInfo}
+            setBiddingInfo={setBiddingInfo}
+            agentInfo={agentInfo}
+            setAgentInfo={setAgentInfo}
+          />
+        , portalElement)
+        )
+        : null}
     </>
   )
 }

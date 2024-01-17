@@ -25,7 +25,7 @@ interface PopupContentProps {
   stepNum?: number
   agentInfo?: any
   setAgentInfo?: any
-  onClose: () => void
+  onClose: any
 }
 
 export default function ModalAddr({

@@ -2,6 +2,7 @@ import { biddingInfoState, stepState } from '@/atom'
 import PopupContent from '@/components/PopupContent'
 import SearchAddress from '@/components/SearchAddress'
 import { AgentInfoType } from '@/interface/IpchalType'
+import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -12,7 +13,7 @@ export default function AgentForm() {
   const setBiddingForm = useSetRecoilState(biddingInfoState)
   const setStateNum = useSetRecoilState(stepState)
   const stateNum = useRecoilValue(stepState)
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const { isOpen, onClose, onOpen } = useDisclosure() 
 
   if (typeof window === 'undefined') return null
   window.document.addEventListener('keydown', (e) => {
@@ -153,10 +154,6 @@ export default function AgentForm() {
         console.log(error)
       }
     }
-  }
-  
-  const handleModal = () => {
-    setIsOpen(!isOpen)
   }
 
   return (
@@ -475,6 +472,9 @@ export default function AgentForm() {
                 agentSetError={setError}
                 agentInfo={agentInfo}
                 setAgentInfo={setAgentInfo}
+                isOpen={isOpen}
+                onOpen={onOpen}
+                onClose={onClose}
               />
             </div>
             <div className="flex flex-row gap-[10px] absolute top-[630px] justify-center items-center md:w-[50%] w-[80%]">

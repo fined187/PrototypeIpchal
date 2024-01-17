@@ -4,6 +4,7 @@ import PopupContent from "@/components/PopupContent"
 import SearchAddress from "@/components/SearchAddress"
 import Spinner from "@/components/Spinner"
 import { BiddingInfoType } from "@/interface/IpchalType"
+import { useDisclosure } from "@chakra-ui/react"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -38,7 +39,7 @@ export default function BidderFormMod() {
   const [stepNum, setStepNum] = useState<number>(1)
   const [bidderList, setBidderList] = useState<BidderListProps>()
   const [loading, setLoading] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
+  const { isOpen, onClose, onOpen } = useDisclosure()
   const [isCorpNumOk, setIsCorpNumOk] = useState(false)
   if (typeof window === 'undefined') return null
   window.document.addEventListener('keydown', (e) => {
@@ -439,10 +440,6 @@ export default function BidderFormMod() {
     }
     handleGetBidders()
   }, [])
-
-  const handleModal = () => {
-    setIsOpen(!isOpen)
-  }
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -1013,6 +1010,10 @@ export default function BidderFormMod() {
                   setError={setError}
                   biddingInfo={biddingInfo}
                   setBiddingInfo={setBiddingInfo}
+                  watch={watch}
+                  isOpen={isOpen}
+                  onOpen={onOpen}
+                  onClose={onClose}
                 />
               </div>
               <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>

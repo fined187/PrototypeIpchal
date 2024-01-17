@@ -3,6 +3,7 @@ import Loading from '@/components/Loading'
 import PopupContent from '@/components/PopupContent'
 import SearchAddress from '@/components/SearchAddress'
 import { AgentInfoType } from '@/interface/IpchalType'
+import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -16,8 +17,7 @@ export default function AgentForm() {
   const stateNum = useRecoilValue(stepState)
   const [loading, setLoading] = useState<boolean>(false)
   const [agentList, setAgentList] = useState<AgentInfoType[]>([])
-  const [isOpen, setIsOpen] = useState<boolean>(false)
-
+  const { isOpen, onClose, onOpen } = useDisclosure() 
   const [agentInfo, setAgentInfo] = useState<AgentInfoType>({
     agentName: '',
     agentRel: '',
@@ -166,10 +166,6 @@ export default function AgentForm() {
     }
     handleGetAgentForm()
   }, [])
-
-  const handleModal = () => {
-    setIsOpen(!isOpen)
-  }
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -489,6 +485,9 @@ export default function AgentForm() {
                   agentSetError={setError}
                   agentInfo={agentInfo}
                   setAgentInfo={setAgentInfo}
+                  isOpen={isOpen}
+                  onOpen={onOpen}
+                  onClose={onClose}
                 />
               </div>
               <div className="flex flex-row gap-[10px] absolute top-[630px] justify-center items-center md:w-[50%] w-[80%]">

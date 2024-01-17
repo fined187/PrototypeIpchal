@@ -3,6 +3,7 @@ import PopupContent from '@/components/PopupContent'
 import SearchAddress from '@/components/SearchAddress'
 import Spinner from '@/components/Spinner'
 import { BidderList, BiddingInfoType } from '@/interface/IpchalType'
+import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -23,7 +24,7 @@ export default function BidderForm() {
   const setBiddingForm = useSetRecoilState(biddingInfoState)        //  입찰표 정보(전역 상태 관리) set함수
   const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
   const [loading, setLoading] = useState<boolean>(false)            //  로딩 상태
-  const [isOpen, setIsOpen] = useState(false)             //  주소검색 모달 상태
+  const { isOpen, onClose, onOpen } = useDisclosure()                       //  주소검색 모달 상태
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
     bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
     bidderPhone1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
@@ -42,14 +43,13 @@ export default function BidderForm() {
     bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
 
-
-
   const {
     register,
     handleSubmit,
     setFocus,
     reset,
     setError,
+    watch,
     formState: { errors },
   } = useForm<BiddingInfoType>({
     defaultValues: {
@@ -302,13 +302,6 @@ export default function BidderForm() {
         console.log(error)
       }
     }
-  }
-
-  const handleModal = () => {
-    setBiddingForm({
-      ...biddingForm,
-      isModalOpen: !biddingForm.isModalOpen,
-    })
   }
   
   return (
@@ -913,6 +906,10 @@ export default function BidderForm() {
                 setError={setError}
                 biddingInfo={biddingInfo}
                 setBiddingInfo={setBiddingInfo}
+                watch={watch}
+                isOpen={isOpen}
+                onOpen={onOpen}
+                onClose={onClose}
               />
             </div>
             <div className={`flex flex-row gap-[10px] absolute ${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>

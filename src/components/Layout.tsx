@@ -9,6 +9,8 @@ export default function Layout({ children }: Props) {
     <div className="layout justify-center items-center w-[100%]">
       <Navbar />
       {children}
+      {/* React Modal Portal */}
+      <div id="portal"></div>
     </div>
   )
 }
