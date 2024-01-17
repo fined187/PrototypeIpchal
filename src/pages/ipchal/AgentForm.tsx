@@ -38,7 +38,7 @@ export default function AgentForm() {
     register,
     handleSubmit,
     setFocus,
-    reset,
+    setValue,
     setError,
     formState: { errors },
   } = useForm<AgentInfoType>({
@@ -475,6 +475,7 @@ export default function AgentForm() {
                 isOpen={isOpen}
                 onOpen={onOpen}
                 onClose={onClose}
+                setValue={setValue}
               />
             </div>
             <div className="flex flex-row gap-[10px] absolute top-[630px] justify-center items-center md:w-[50%] w-[80%]">

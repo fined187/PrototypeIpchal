@@ -1,4 +1,5 @@
 import { biddingInfoState, stepState } from '@/atom'
+import ModalAddr from '@/components/ModalAddr'
 import PopupContent from '@/components/PopupContent'
 import SearchAddress from '@/components/SearchAddress'
 import Spinner from '@/components/Spinner'
@@ -6,6 +7,7 @@ import { BidderList, BiddingInfoType } from '@/interface/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
@@ -50,6 +52,7 @@ export default function BidderForm() {
     reset,
     setError,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<BiddingInfoType>({
     defaultValues: {
@@ -68,6 +71,7 @@ export default function BidderForm() {
       bidderCorpRegiNum2: [''],
       bidderJob: [''],
     },
+    mode: 'onChange',
   })
 
   const handlePhoneFocusMove = (target: HTMLInputElement) => {
@@ -899,17 +903,17 @@ export default function BidderForm() {
                   </div>
                 )}
               </div>
-              <SearchAddress
+              <SearchAddress 
                 stepNum={stepNum}
                 register={register}
                 errors={errors}
                 setError={setError}
                 biddingInfo={biddingInfo}
                 setBiddingInfo={setBiddingInfo}
-                watch={watch}
                 isOpen={isOpen}
                 onOpen={onOpen}
                 onClose={onClose}
+                setValue={setValue}
               />
             </div>
             <div className={`flex flex-row gap-[10px] absolute ${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>

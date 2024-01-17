@@ -72,11 +72,9 @@ export default function BidderFormMod() {
     setFocus,
     reset,
     setError,
-    watch,
+    setValue,
     formState: { errors },
   } = useForm<BiddingInfoType>()
-
-  const watchAddr = watch('bidderAddr')
   
   const handlePhoneFocusMove = (target: HTMLInputElement) => {
     if (target.value.length === 3 && target.id === 'bidderPhone1') {
@@ -1003,17 +1001,17 @@ export default function BidderFormMod() {
                     </label>
                   </div>
                 )}
-                <SearchAddress
+                <SearchAddress 
                   stepNum={stepNum}
                   register={register}
                   errors={errors}
                   setError={setError}
                   biddingInfo={biddingInfo}
                   setBiddingInfo={setBiddingInfo}
-                  watch={watch}
                   isOpen={isOpen}
                   onOpen={onOpen}
                   onClose={onClose}
+                  setValue={setValue}
                 />
               </div>
               <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>

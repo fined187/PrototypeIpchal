@@ -5,11 +5,7 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
-  ModalCloseButton,
-  Button,
   useMediaQuery,
 } from '@chakra-ui/react'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
@@ -26,6 +22,10 @@ interface PopupContentProps {
   agentInfo?: any
   setAgentInfo?: any
   onClose: any
+  setError?: any
+  agentSetError?: any
+  register?: any
+  setValue?: any
 }
 
 export default function ModalAddr({
@@ -36,6 +36,7 @@ export default function ModalAddr({
   stepNum,
   agentInfo,
   setAgentInfo,
+  setValue,
 }: PopupContentProps) {
   const [searchAddr, setSearchAddr] = useState<string>('')
   const [emptyView, setEmptyView] = useState<boolean>(false) // 검색결과 없을 때 뷰
@@ -508,6 +509,8 @@ export default function ModalAddr({
                               <div
                                 className="flex justify-center items-center w-[100px] h-[40px] bg-blue-500 rounded-md cursor-pointer hover:bg-blue-300"
                                 onClick={() => {
+                                  setValue && stepNum && setValue('bidderAddr', [biddingInfo?.bidderAddr[stepNum - 1]])
+                                  setValue && setValue('agentAddr', agentInfo?.agentAddr)
                                   setDetailAddr(false)
                                   onClose()
                                 }}

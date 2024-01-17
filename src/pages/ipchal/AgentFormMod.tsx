@@ -1,6 +1,5 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Loading from '@/components/Loading'
-import PopupContent from '@/components/PopupContent'
 import SearchAddress from '@/components/SearchAddress'
 import { AgentInfoType } from '@/interface/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
@@ -43,6 +42,7 @@ export default function AgentForm() {
     handleSubmit,
     setFocus,
     setError,
+    setValue,
     formState: { errors },
   } = useForm<AgentInfoType>()
 
@@ -488,6 +488,7 @@ export default function AgentForm() {
                   isOpen={isOpen}
                   onOpen={onOpen}
                   onClose={onClose}
+                  setValue={setValue}
                 />
               </div>
               <div className="flex flex-row gap-[10px] absolute top-[630px] justify-center items-center md:w-[50%] w-[80%]">
