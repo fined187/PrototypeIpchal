@@ -2,21 +2,19 @@ import { BiddingInfoType } from '@/interface/IpchalType'
 import {
   Dispatch,
   SetStateAction,
-  useRef,
   useState,
   Fragment,
   useEffect,
-  MutableRefObject,
 } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import baseApiInstance from '@/pages/api/address'
 import Pagination from './Pagination'
 import { IoClose } from 'react-icons/io5'
 import { biddingInfoState } from '@/atom'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 
 interface PopupContentProps {
-  isOpen: boolean
+  isOpen: any
   setIsOpen?: Dispatch<SetStateAction<boolean>>
   biddingInfo?: BiddingInfoType
   setBiddingInfo?: Dispatch<SetStateAction<BiddingInfoType>>
@@ -34,7 +32,6 @@ export default function PopupContent({
   agentInfo,
   setAgentInfo,
 }: PopupContentProps) {
-  const cancelButtonRef = useRef(null)
   const [searchAddr, setSearchAddr] = useState<string>('')
   const [emptyView, setEmptyView] = useState<boolean>(false) // 검색결과 없을 때 뷰
   const [addrList, setAddrList] = useState([])
@@ -46,10 +43,7 @@ export default function PopupContent({
   const countPerPage = 5
 
   const [detailAddr, setDetailAddr] = useState<boolean>(false) // 상세주소 [상세주소] 입력창 오픈
-
-  const biddingForm = useRecoilValue(biddingInfoState)
-  const setBiddingForm = useSetRecoilState(biddingInfoState)
-
+  const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
   const handleInput = (e: HTMLInputElement) => {
     setSearchAddr(e.value)
   }
@@ -144,23 +138,23 @@ export default function PopupContent({
       })
     }
   }
-
-  const handleEnterKey = (e: any) => {
-    if (e.key === 'Enter') {
-      e.preventDefault()
-    }
-  }
-
+  
   return (
     <>
-      {isOpen && (
-        <Transition.Root show={isOpen} as={Fragment}>
+      {biddingForm.isModalOpen && (
+        <Transition.Root show={biddingForm.isModalOpen} as={Fragment}>
           <Dialog
             as="div"
             className="relative z-10"
-            initialFocus={cancelButtonRef}
             onClose={() => {
+              setDetailAddr(false)
               setIsOpen && setIsOpen(false)
+              setBiddingForm((prev: any) => {
+                return {
+                  ...prev,
+                  isModalOpen: false,
+                }
+              })
             }}
           >
             <Transition.Child
@@ -214,21 +208,6 @@ export default function PopupContent({
                                     [stepNum - 1]: '',
                                   },
                                 })
-                              // stepNum &&
-                              //   biddingInfo &&
-                              //   setBiddingForm &&
-                              //   setBiddingForm({
-                              //     ...biddingForm,
-                              //     bidAddr: {
-                              //       ...(biddingForm && biddingForm?.bidAddr),
-                              //       [stepNum - 1]: '',
-                              //     },
-                              //     bidAddrDetail: {
-                              //       ...(biddingForm &&
-                              //         biddingForm?.bidAddrDetail),
-                              //       [stepNum - 1]: '',
-                              //     },
-                              //   })
                               agentInfo &&
                                 setAgentInfo &&
                                 setAgentInfo({
@@ -236,13 +215,6 @@ export default function PopupContent({
                                   agentAddr: '',
                                   agentAddrDetail: '',
                                 })
-                              // agentInfo &&
-                              //   setBiddingForm &&
-                              //   setBiddingForm({
-                              //     ...biddingForm,
-                              //     agentAddr: '',
-                              //     agentAddrDetail: '',
-                              //   })
                             }}
                           >
                             <IoClose className="flex" size={20} />
@@ -255,7 +227,6 @@ export default function PopupContent({
                               className="
                                 border 
                                 border-gray-300 
-                                focus:border-myyellow 
                                 rounded-md 
                                 text-[12px] 
                                 font-NanumGothic 

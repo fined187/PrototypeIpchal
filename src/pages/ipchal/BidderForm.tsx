@@ -4,7 +4,7 @@ import SearchAddress from '@/components/SearchAddress'
 import Spinner from '@/components/Spinner'
 import { BidderList, BiddingInfoType } from '@/interface/IpchalType'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
@@ -23,7 +23,7 @@ export default function BidderForm() {
   const setBiddingForm = useSetRecoilState(biddingInfoState)        //  입찰표 정보(전역 상태 관리) set함수
   const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
   const [loading, setLoading] = useState<boolean>(false)            //  로딩 상태
-  const [isOpen, setIsOpen] = useState<boolean>(false)              //  주소검색 모달 상태
+  const [isOpen, setIsOpen] = useState(false)             //  주소검색 모달 상태
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
     bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
     bidderPhone1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
@@ -305,9 +305,12 @@ export default function BidderForm() {
   }
 
   const handleModal = () => {
-    setIsOpen(!isOpen)
+    setBiddingForm({
+      ...biddingForm,
+      isModalOpen: !biddingForm.isModalOpen,
+    })
   }
-
+  
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (
@@ -904,23 +907,13 @@ export default function BidderForm() {
                 )}
               </div>
               <SearchAddress
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
                 stepNum={stepNum}
                 register={register}
                 errors={errors}
                 setError={setError}
-                handleModal={handleModal}
+                biddingInfo={biddingInfo}
+                setBiddingInfo={setBiddingInfo}
               />
-              {isOpen && (
-                <PopupContent
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                  biddingInfo={biddingInfo}
-                  setBiddingInfo={setBiddingInfo}
-                  stepNum={stepNum}
-                />
-              )}
             </div>
             <div className={`flex flex-row gap-[10px] absolute ${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>
               <button

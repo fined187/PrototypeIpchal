@@ -4,6 +4,8 @@ import PopupContent from './PopupContent'
 import { FieldErrors, UseFormRegister, UseFormSetError } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { biddingInfoState } from '@/atom'
+import { Modal, useDisclosure } from '@chakra-ui/react'
+import ModalAddr from './ModalAddr'
 
 type BiddersProps = {
   address: string
@@ -25,9 +27,10 @@ interface SearchAddressProps {
   agentRegister?: UseFormRegister<AgentInfoType>
   agentErrors?: FieldErrors<AgentInfoType>
   agentSetError?: UseFormSetError<AgentInfoType>
-  handleModal: () => void
-  isOpen: boolean
-  setIsOpen: Dispatch<SetStateAction<boolean>>
+  biddingInfo?: BiddingInfoType
+  setBiddingInfo?: Dispatch<SetStateAction<BiddingInfoType>>
+  agentInfo?: AgentInfoType
+  setAgentInfo?: Dispatch<SetStateAction<AgentInfoType>>
 }
 
 export default function SearchAddress({
@@ -38,10 +41,13 @@ export default function SearchAddress({
   agentRegister,
   agentErrors,
   agentSetError,
-  isOpen,
-  setIsOpen,
+  biddingInfo,
+  setBiddingInfo,
+  agentInfo,
+  setAgentInfo,
 }: SearchAddressProps) {
   const biddingForm = useRecoilValue(biddingInfoState)
+  const { isOpen, onClose, onOpen } = useDisclosure()
 
   useEffect(() => {
     const handleSetError = () => {
@@ -100,7 +106,7 @@ export default function SearchAddress({
           <button
             className="text-white text-[13px] bg-myyellow rounded-md font-NanumGothic not-italic font-bold w-[25%] h-[40px]"
             onClick={() => {
-              setIsOpen(true)
+              onOpen()
             }}
           >
             주소검색
@@ -146,6 +152,17 @@ export default function SearchAddress({
           </div>
         )}
       </div>
+      {isOpen &&(
+        <ModalAddr
+          isOpen={isOpen}
+          onClose={onClose}
+          stepNum={stepNum}
+          biddingInfo={biddingInfo}
+          setBiddingInfo={setBiddingInfo}
+          agentInfo={agentInfo}
+          setAgentInfo={setAgentInfo}
+        />
+      )}
     </>
   )
 }

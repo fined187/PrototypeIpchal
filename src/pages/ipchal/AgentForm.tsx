@@ -470,22 +470,12 @@ export default function AgentForm() {
                 )}
               </div>
               <SearchAddress
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                handleModal={handleModal}
                 agentRegister={register}
                 agentErrors={errors}
                 agentSetError={setError}
-                />
-                
-              {isOpen && (
-                <PopupContent
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                  agentInfo={agentInfo}
-                  setAgentInfo={setAgentInfo}
-                />
-              )}
+                agentInfo={agentInfo}
+                setAgentInfo={setAgentInfo}
+              />
             </div>
             <div className="flex flex-row gap-[10px] absolute top-[630px] justify-center items-center md:w-[50%] w-[80%]">
               <button

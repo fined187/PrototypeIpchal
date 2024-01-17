@@ -81,6 +81,7 @@ export const biddingInfoState = atom({
     ipchalamt: '',
     bidders: [],
     imageFile: '',
+    isModalOpen: false,
   },
   dangerouslyAllowMutability: true,
 })

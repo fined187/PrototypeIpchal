@@ -1007,23 +1007,13 @@ export default function BidderFormMod() {
                   </div>
                 )}
                 <SearchAddress
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
                   stepNum={stepNum}
                   register={register}
                   errors={errors}
                   setError={setError}
-                  handleModal={handleModal}
-                />
-                {isOpen && (
-                <PopupContent
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
                   biddingInfo={biddingInfo}
                   setBiddingInfo={setBiddingInfo}
-                  stepNum={stepNum}
                 />
-                )}
               </div>
               <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>
                 <button

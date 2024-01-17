@@ -10,7 +10,10 @@
     "prod": "next export"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
     "@emailjs/browser": "^3.11.0",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.17",
     "@hookform/resolvers": "^3.3.2",
     "@types/html-pdf": "^3.0.3",
@@ -18,6 +21,7 @@
     "axios": "^1.6.2",
     "date-fns": "^3.0.6",
     "emailjs": "^4.0.3",
+    "framer-motion": "^10.18.0",
     "html-pdf": "^3.0.1",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
