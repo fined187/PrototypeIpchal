@@ -20,8 +20,6 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
     }
   }
 
-  console.log(biddingInfo)
-
   return (
     <>
       {biddingInfo.bidName.length === 1 && (
@@ -158,7 +156,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                           <span className="text-[12px] font-NanumGothic font-semibold">
                             {biddingInfo.bidAddr.length > 1
                               ? ''
-                              : biddingInfo.bidAddr[0] + ' ' + biddingInfo.bidAddrDetail[0]}
+                              : biddingInfo.bidAddr[0]}
                           </span>
                         </div>
                       </div>
@@ -218,7 +216,7 @@ export default function IpchalContent({ setOpenPdf }: {setOpenPdf: Dispatch<SetS
                         </div>
                         <div className="flex justify-center items-center text-center w-[80%]">
                           <span className="text-[12px] font-NanumGothic font-semibold">
-                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr + biddingInfo.agentAddrDetail : '-'}
+                            {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr : '-'}
                           </span>
                         </div>
                       </div>

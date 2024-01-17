@@ -125,6 +125,13 @@ export default function BidderForm() {
           },
         )
         if (response.status === 200) {
+          setBiddingForm((prev: any) => {
+            const temp = prev.bidAddr
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1]
+            return {
+              ...prev,
+              bidAddr: temp,
+            }})
           setLoading(false)
           return
         }
@@ -149,6 +156,13 @@ export default function BidderForm() {
           },
         )
         if (response.status === 200) {
+          setBiddingForm((prev: any) => {
+            const temp = prev.bidAddr
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1]
+            return {
+              ...prev,
+              bidAddr: temp,
+            }})
           setLoading(false)
           return
         }

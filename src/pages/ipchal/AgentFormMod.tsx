@@ -78,6 +78,12 @@ export default function AgentForm() {
         },
       )
       if (response.status === 200) {
+        setBiddingForm((prev: any) => {
+          return {
+            ...prev,
+            agentAddr: biddingForm.agentAddr + biddingForm.agentAddrDetail,
+          }
+        })
         setStateNum(5)
       }
     } catch (error) {

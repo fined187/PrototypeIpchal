@@ -204,6 +204,11 @@ export default function BidderFormMod() {
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
         if (response.status === 200) {
+          setBiddingForm((prev: any) => {
+            const temp = prev.bidAddr
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1]
+            return { ...prev, bidAddr: temp }
+          })
           return
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
@@ -217,6 +222,12 @@ export default function BidderFormMod() {
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
         if (response.status === 200) {
+          setBiddingForm((prev: any) => {
+            const temp = prev.bidAddr
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1]
+            return { ...prev, bidAddr: temp }
+          })
+          return
         }
       }
     } catch (error) {
@@ -248,6 +259,11 @@ export default function BidderFormMod() {
           },
         )
         if (response.status === 200) {
+          setBiddingForm((prev: any) => {
+            const temp = prev.bidAddr
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1]
+            return { ...prev, bidAddr: temp }
+          })
           setLoading(false)
           return
         }
@@ -272,6 +288,11 @@ export default function BidderFormMod() {
           },
         )
         if (response.status === 200) {
+          setBiddingForm((prev: any) => {
+            const temp = prev.bidAddr
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1]
+            return { ...prev, bidAddr: temp }
+          })
           setLoading(false)
           return
         }

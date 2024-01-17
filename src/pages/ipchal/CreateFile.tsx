@@ -86,44 +86,47 @@ export default function CreateFile() {
     })
     const captureWrap = document && document.getElementById('wrap-capture') as HTMLElement
     const captureDiv = document && document.getElementById('capture') as HTMLElement
-    captureWrap.style.display = 'flex'
-    captureDiv.style.display = 'flex'
-    await html2canvas(
-      document.getElementById('capture') as HTMLElement
-    ).then((canvas: any) => {
-      let imgData = canvas.toDataURL('image/png')
-      let imgWidth = 210
-      let pageHeight = 295
-      let imgHeight = getHeight
-      let heightLeft = imgHeight
-      let position = 0
-      setBiddingInfo({
-        ...biddingInfo,
-        imageFile: imgData,
-      })
-      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
-      heightLeft -= pageHeight
-      while (heightLeft >= 20) {
-        position = heightLeft - imgHeight
-        doc.addPage()
+    if (captureWrap && captureDiv) {
+      captureWrap.style.display = 'flex'
+      captureDiv.style.display = 'flex'
+      
+      await html2canvas(
+        document.getElementById('capture') as HTMLElement
+      ).then((canvas: any) => {
+        let imgData = canvas.toDataURL('image/png')
+        let imgWidth = 210
+        let pageHeight = 295
+        let imgHeight = getHeight
+        let heightLeft = imgHeight
+        let position = 0
+        setBiddingInfo({
+          ...biddingInfo,
+          imageFile: imgData,
+        })
         doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
         heightLeft -= pageHeight
-      }
-      const blob = doc.output('blob')
-      //  저장
-      doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
-      file = new File([blob], `best_${format(date, 'yyyyMMddHHmmss')}.pdf`, {
-        type: 'application/pdf',
+        while (heightLeft >= 20) {
+          position = heightLeft - imgHeight
+          doc.addPage()
+          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+          heightLeft -= pageHeight
+        }
+        const blob = doc.output('blob')
+        //  저장
+        doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
+        file = new File([blob], `best_${format(date, 'yyyyMMddHHmmss')}.pdf`, {
+          type: 'application/pdf',
+        })
+        setBlobFile(file)
+        setBiddingInfo({
+          ...biddingInfo,
+          pdfFile: file,
+          isFileCreated: true,
+        })
       })
-      setBlobFile(file)
-      setBiddingInfo({
-        ...biddingInfo,
-        pdfFile: file,
-        isFileCreated: true,
-      })
-    })
-    captureWrap.style.display = 'none'
-    captureDiv.style.display = 'none'
+      captureWrap.style.display = 'none'
+      captureDiv.style.display = 'none'
+    }
   }
   
   const onClickPdf = async (e: any) => {
@@ -131,6 +134,10 @@ export default function CreateFile() {
     e.preventDefault()
     if (password.length < 4 || password === '') {
       alert('파일 암호를 4자리 이상 입력해주세요')
+      setLoading(false)
+      return
+    } else if (biddingInfo.isFileCreated) {
+      alert('이미 파일이 생성되었습니다')
       setLoading(false)
       return
     } else {

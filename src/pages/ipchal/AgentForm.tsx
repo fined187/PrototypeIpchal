@@ -1,10 +1,9 @@
 import { biddingInfoState, stepState } from '@/atom'
-import PopupContent from '@/components/PopupContent'
 import SearchAddress from '@/components/SearchAddress'
 import { AgentInfoType } from '@/interface/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
@@ -88,6 +87,12 @@ export default function AgentForm() {
         },
       )
       if (response.status === 200) {
+        setBiddingForm((prev: any) => {
+          return {
+            ...prev,
+            agentAddr: agentInfo.agentAddr + agentInfo.agentAddrDetail,
+          }
+        })
         setStateNum(stateNum + 1)
       }
     } catch (error) {
