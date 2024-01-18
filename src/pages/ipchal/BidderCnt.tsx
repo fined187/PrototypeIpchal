@@ -89,6 +89,7 @@ export default function BidderCnt() {
                     setBiddingInfo({
                       ...biddingInfo,
                       bidderNum: Number(e.target.value),
+                      bidCorpYn: Array(Number(e.target.value)).fill('I'),
                     })
                     handleErrorOk(e)
                   }}

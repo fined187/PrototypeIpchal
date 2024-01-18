@@ -1,6 +1,4 @@
-import { bidderInfo, biddingInfoState, stepState } from "@/atom"
-import Loading from "@/components/Loading"
-import PopupContent from "@/components/PopupContent"
+import { biddingInfoState, stepState } from "@/atom"
 import SearchAddress from "@/components/SearchAddress"
 import Spinner from "@/components/Spinner"
 import { BiddingInfoType } from "@/interface/IpchalType"
@@ -8,7 +6,7 @@ import { useDisclosure } from "@chakra-ui/react"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { useRecoilValue, useSetRecoilState } from "recoil"
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 
 type BiddersProps = {
   address: string
@@ -32,15 +30,7 @@ interface BidderListProps {
 }
 
 export default function BidderFormMod() {
-  const biddingForm = useRecoilValue(biddingInfoState)
-  const setBiddingForm = useSetRecoilState(biddingInfoState)
-  const stateNum = useRecoilValue(stepState)
-  const setStateNum = useSetRecoilState(stepState)
-  const [stepNum, setStepNum] = useState<number>(1)
-  const [bidderList, setBidderList] = useState<BidderListProps>()
-  const [loading, setLoading] = useState(false)
-  const { isOpen, onClose, onOpen } = useDisclosure()
-  const [isCorpNumOk, setIsCorpNumOk] = useState(false)
+  //  엔터키 입력 시 주소창 오픈 막기
   if (typeof window === 'undefined') return null
   window.document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
@@ -48,7 +38,14 @@ export default function BidderFormMod() {
     }
   })
 
-  const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
+  const [stepNum, setStepNum] = useState<number>(1)
+  const [loading, setLoading] = useState(false)
+  const { isOpen, onClose, onOpen } = useDisclosure()
+
+  const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)   //  전역 상태에서 저장하는 값
+  const [bidderList, setBidderList] = useState<BidderListProps>()         //  입찰자 정보(서버에서 받아온 값)
+  const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({       //  입찰자 정보 초기화(입찰자 수만큼 배열 생성)
     bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
     bidderPhone1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
     bidderPhone2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
@@ -62,10 +59,135 @@ export default function BidderFormMod() {
     bidderCorpNum3: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
     bidderCorpRegiNum1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
     bidderCorpRegiNum2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(biddingForm.bidCorpYn[stepNum - 1] ? biddingForm.bidCorpYn[stepNum - 1] : 'I'),
+    bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill('I'),
     bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
   
+
+  //  초기 컴포넌트 마운트 시 서버에 저장된 입찰자 정보를 불러온다.
+  useEffect(() => {
+    const handleGetBidders = async () => {
+      try {
+        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
+        if (response.status === 200) {
+          setBidderList({
+            agentYn: response.data.data.agentYn,
+            bidderCount: response.data.data.bidderCount,
+            mstSeq: response.data.data.mstSeq,
+            number: response.data.data.number,
+            state: response.data.data.state,
+            bidders: response.data.data.bidders,
+          })
+          //  입찰자 수가 기존 서버 저장 값보다 클 경우
+          if (response.data.data.bidderCount < biddingForm.bidderNum) {
+            setBiddingForm((prev: any) => {
+              const temp1 = prev.bidName
+              const temp2 = prev.bidPhone
+              const temp3 = prev.bidIdNum
+              const temp4 = prev.bidCorpNum
+              const temp5 = prev.bidCorpRegiNum
+              const temp6 = prev.bidAddr
+              const temp7 = prev.bidAddrDetail
+              const temp8 = prev.bidCorpYn
+              const temp9 = prev.bidJob
+              temp1.push('')
+              temp2.push('')
+              temp3.push('')
+              temp4.push('')
+              temp5.push('')
+              temp6.push('')
+              temp7.push('')
+              temp8.push('I')
+              temp9.push('')
+              return {
+                ...prev,
+                bidName: temp1,
+                bidPhone: temp2,
+                bidIdNum: temp3,
+                bidCorpNum: temp4,
+                bidCorpRegiNum: temp5,
+                bidAddr: temp6,
+                bidAddrDetail: temp7,
+                bidCorpYn: temp8,
+                bidJob: temp9,
+              }
+            })
+          } else if (response.data.data.bidderCount > biddingForm.bidderNum) {
+            //  입찰자 수가 기존 서버 저장 값보다 작을 경우
+            setBiddingForm((prev: any) => {
+              const temp1 = prev.bidName
+              const temp2 = prev.bidPhone
+              const temp3 = prev.bidIdNum
+              const temp4 = prev.bidCorpNum
+              const temp5 = prev.bidCorpRegiNum
+              const temp6 = prev.bidAddr
+              const temp7 = prev.bidAddrDetail
+              const temp8 = prev.bidCorpYn
+              const temp9 = prev.bidJob
+              temp1.pop()
+              temp2.pop()
+              temp3.pop()
+              temp4.pop()
+              temp5.pop()
+              temp6.pop()
+              temp7.pop()
+              temp8.pop()
+              temp9.pop()
+              return {
+                ...prev,
+                bidName: temp1,
+                bidPhone: temp2,
+                bidIdNum: temp3,
+                bidCorpNum: temp4,
+                bidCorpRegiNum: temp5,
+                bidAddr: temp6,
+                bidAddrDetail: temp7,
+                bidCorpYn: temp8,
+                bidJob: temp9,
+              }
+            })
+          } else {
+            //  입찰자 수가 기존 서버 저장 값과 같을 경우
+            setBiddingForm((prev: any) => {
+              let temp1 = prev.bidName
+              let temp2 = prev.bidPhone
+              let temp3 = prev.bidIdNum
+              let temp4 = prev.bidCorpNum
+              let temp5 = prev.bidCorpRegiNum
+              let temp6 = prev.bidAddr
+              let temp7 = prev.bidCorpYn
+              let temp8 = prev.bidJob
+              temp1 = response.data.data.bidders.map((item: any) => item.name)
+              temp2 = response.data.data.bidders.map((item: any) => item.phoneNo)
+              temp3 = response.data.data.bidders.map((item: any) => item.idNum)
+              temp4 = response.data.data.bidders.map((item: any) => item.companyNo)
+              temp5 = response.data.data.bidders.map((item: any) => item.corporationNo)
+              temp6 = response.data.data.bidders.map((item: any) => item.address)
+              temp7 = response.data.data.bidders.map((item: any) => item.bidderType)
+              temp8 = response.data.data.bidders.map((item: any) => item.job)
+              return {
+                ...prev,
+                bidName: temp1,
+                bidPhone: temp2,
+                bidIdNum: temp3,
+                bidCorpNum: temp4,
+                bidCorpRegiNum: temp5,
+                bidAddr: temp6,
+                bidCorpYn: temp7,
+                bidJob: temp8,
+              }
+            })
+          }
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    handleGetBidders()
+  }, [])
+
+  
+
   const {
     register,
     handleSubmit,
@@ -259,6 +381,7 @@ export default function BidderFormMod() {
           },
         )
         if (response.status === 200) {
+          console.log("durl")
           setBiddingForm((prev: any) => {
             const temp = prev.bidAddr
             temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
@@ -395,17 +518,19 @@ export default function BidderFormMod() {
     }
   }
 
+  console.log(biddingForm)
+
   useEffect(() => {
     const handleInitCorpYn = () => {
-      
-      if (biddingForm.bidCorpYn[stepNum - 1] === '') {
+      if (biddingForm.bidCorpYn[stepNum - 1] === '' || biddingForm.bidCorpYn[stepNum - 1] === undefined) {
         setBiddingForm((prev: any) => {
-          const temp = biddingInfo.bidderCorpYn
+          const temp = prev.bidCorpYn
+          temp[stepNum - 1] = 'I'
           return { ...prev, bidCorpYn: temp }
         })
         setBiddingInfo((prev: any) => {
           const temp = prev.bidderCorpYn
-          return { ...prev, bidCorpYn: temp }
+          return { ...prev, bidderCorpYn: temp }
         })
       } else {
         setBiddingInfo((prev: any) => {
@@ -440,27 +565,8 @@ export default function BidderFormMod() {
     handleInitCorpYn()
   }, [stepNum])
 
-  useEffect(() => {
-    const handleGetBidders = async () => {
-      try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
-        if (response.status === 200) {
-          setBidderList({
-            agentYn: response.data.data.agentYn,
-            bidderCount: response.data.data.bidderCount,
-            mstSeq: response.data.data.mstSeq,
-            number: response.data.data.number,
-            state: response.data.data.state,
-            bidders: response.data.data.bidders,
-          })
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    handleGetBidders()
-  }, [])
-  console.log(biddingForm)
+
+  
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (
@@ -480,7 +586,7 @@ export default function BidderFormMod() {
           </div>
           <div className="flex flex-row gap-10 w-[80%] justify-center">
             <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-              biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`} 
+              biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`} 
               onClick={() => {
                 setBiddingForm((prev: any) => {
                   const temp = prev.bidCorpYn
@@ -494,7 +600,7 @@ export default function BidderFormMod() {
                 })
               }}
             >
-              <div className={`${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'flex mr-1' : 'hidden'}`}>
+              <div className={`${biddingForm.bidCorpYn[stepNum - 1]  === 'I' ? 'flex mr-1' : 'hidden'}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="11"
@@ -510,13 +616,13 @@ export default function BidderFormMod() {
                   />
                 </svg>
               </div>
-              <span className={`text-[13px] font-NanumGothic not-italic font-extrabold ${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'text-white' : 'text-myyellow'}`}>
+              <span className={`text-[13px] font-NanumGothic not-italic font-extrabold ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'text-white' : 'text-myyellow'}`}>
                 개인
               </span>
             </div>
             <div
               className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-                biddingInfo.bidderCorpYn[stepNum - 1] === 'C'
+                biddingForm.bidCorpYn[stepNum - 1] === 'C'
                   ? 'text-white bg-myyellow'
                   : 'text-myyellow bg-white'
               }`}
@@ -533,7 +639,7 @@ export default function BidderFormMod() {
                 })
               }}
             >
-              <div className={`${biddingInfo.bidderCorpYn[stepNum - 1] === 'C' ? 'flex mr-1' : 'hidden'}`}>
+              <div className={`${biddingForm.bidCorpYn[stepNum - 1] === 'C' ? 'flex mr-1' : 'hidden'}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="11"
@@ -549,7 +655,7 @@ export default function BidderFormMod() {
                   />
                 </svg>
               </div>
-              <span className={`text-[13px] font-NanumGothic not-italic font-extrabold ${biddingInfo.bidderCorpYn[stepNum - 1] === 'C' ? 'text-white' : 'text-myyellow'}`}>
+              <span className={`text-[13px] font-NanumGothic not-italic font-extrabold ${biddingForm.bidCorpYn[stepNum - 1] === 'C' ? 'text-white' : 'text-myyellow'}`}>
                 법인
               </span>
             </div>
@@ -705,7 +811,7 @@ export default function BidderFormMod() {
                   </span>
                 </div>
               )}
-              {biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? (
+              {biddingForm.bidCorpYn[stepNum - 1] === 'I' ? (
                 <>
                   <div className={`${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'flex' : 'hidden'} flex-col w-[100%] gap-1`}>
                     <label htmlFor="bidIdNum" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">

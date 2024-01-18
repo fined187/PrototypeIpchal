@@ -290,7 +290,7 @@ export default function BiddingPrice() {
           type="button"
           className="flex md:w-[30%] w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
-            setStateNum(15)
+            biddingForm.bidderNum > 1 ? setStateNum(7) : setStateNum(15)
           }}
         >
           <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

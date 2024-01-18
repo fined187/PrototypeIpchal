@@ -78,8 +78,8 @@ export default function GetIpchalInfo() {
           </div>
           <div className="flex flex-col md:w-[550px] w-[90%] md:h-[300px] h-[300px] gap-[100px] bg-white absolute top-[107px] justify-center items-center rounded-lg">
             <div className="flex flex-row absolute top-8 border-b w-[80%] border-gray-200  md:pt-[20px]">
-              <div className='flex w-[20%]'>
-                <span className="text-black md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+              <div className='flex md:w-[20%] w-[30%]'>
+                <span className="text-black md:text-[15px] text-[15px] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   사건번호 :
                 </span>
               </div>
@@ -117,7 +117,7 @@ export default function GetIpchalInfo() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[600px]">
+        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[600px] top-[500px]">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

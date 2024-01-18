@@ -31,7 +31,6 @@ export const biddingInfoState = atom({
     ],
     bidder: '',
     bidderNum: 0,
-    bidCorpYn: [''],
     distribute: {
       sharedName: [''],
       sharedPercent: [0],
@@ -39,6 +38,7 @@ export const biddingInfoState = atom({
     biddingPrice: 0,
     depositPrice: 0,
     bidWay: '',
+    bidCorpYn: [''],
     bidName: [''],
     bidPhone1: [''],
     bidPhone2: [''],
@@ -82,6 +82,9 @@ export const biddingInfoState = atom({
     bidders: [],
     imageFile: '',
     isModalOpen: false,
+    shareWay: '',
+    numerator: '',
+    denominator: '',
   },
   dangerouslyAllowMutability: true,
 })

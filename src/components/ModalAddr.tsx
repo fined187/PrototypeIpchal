@@ -532,6 +532,7 @@ export default function ModalAddr({
                                     <input
                                       type="text"
                                       className="flex w-[90%] h-[30%] border border-gray-200"
+                                      value={(stepNum && biddingInfo?.bidderAddrDetail[stepNum - 1]) ?? agentInfo?.agentAddrDetail ?? ''}
                                       onChange={(e) =>
                                         handleDetailAddr(e.target)
                                       }

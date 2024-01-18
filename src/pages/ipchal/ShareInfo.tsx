@@ -178,6 +178,7 @@ export default function ShareInfo() {
                 : 'text-myyellow bg-white'
             }`}
             onClick={() => {
+             
               setShareWay('S')
               handleCalc()
             }}
