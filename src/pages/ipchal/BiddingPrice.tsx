@@ -92,12 +92,6 @@ export default function BiddingPrice() {
             minimumAmount: response.data.data.biddingInfo.minimumAmount,
             bidDeposit: response.data.data.biddingInfo.bidDeposit,
           })
-          if (biddingForm.biddingPrice === 0) {
-            setBiddingForm({
-              ...biddingForm,
-              biddingPrice: response.data.data.biddingInfo.minimumAmount,
-            })
-          }
           if (biddingForm.depositPrice === 0) {
             setBiddingForm({
               ...biddingForm,
@@ -119,19 +113,31 @@ export default function BiddingPrice() {
       return
     }
     if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 2) {
-      alert('최저가의 100% 이상입니다.')
-      setErrorMsg(true)
-      return
+      if (window.confirm('최저가의 100% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
+        setErrorMsg(false)
+        handleGetBiddingFormUpdate()
+      } else {
+        setErrorMsg(true)
+        return
+      }
     }
     if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 1.1 && biddingForm.biddingPrice < paymentsInfo.minimumAmount * 1.2) {
-      alert('최저가의 10% 이상입니다.')
-      setErrorMsg(true)
-      return
+      if (window.confirm('최저가의 10% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
+        setErrorMsg(false)
+        handleGetBiddingFormUpdate()
+      } else {
+        setErrorMsg(true)
+        return
+      }
     }
     if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 1.2 && biddingForm.biddingPrice < paymentsInfo.minimumAmount * 2) {
-      alert('최저가의 20% 이상입니다.')
-      setErrorMsg(true)
-      return
+      if (window.confirm('최저가의 20% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
+        setErrorMsg(false)
+        handleGetBiddingFormUpdate()
+      } else {
+        setErrorMsg(true)
+        return
+      }
     }
     setErrorMsg(false)
   }

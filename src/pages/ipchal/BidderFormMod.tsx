@@ -197,7 +197,7 @@ export default function BidderFormMod() {
     try {
       if (biddingForm?.bidCorpYn[stepNum - 1] === 'I') {
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
-          address: biddingForm?.bidAddr[stepNum - 1] + biddingForm?.bidAddrDetail[stepNum - 1],
+          address: biddingForm?.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : ''),
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           job: biddingForm?.bidJob[stepNum - 1],
           name: biddingForm?.bidName[stepNum - 1],
@@ -206,14 +206,14 @@ export default function BidderFormMod() {
         if (response.status === 200) {
           setBiddingForm((prev: any) => {
             const temp = prev.bidAddr
-            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1]
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
             return { ...prev, bidAddr: temp }
           })
           return
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
-          address: biddingForm?.bidAddr[stepNum - 1] + biddingForm?.bidAddrDetail[stepNum - 1],
+          address: biddingForm?.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : ''),
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           companyNo: biddingForm?.bidCorpNum[stepNum - 1],
           corporationNo: biddingForm?.bidCorpRegiNum[stepNum - 1],
@@ -224,7 +224,7 @@ export default function BidderFormMod() {
         if (response.status === 200) {
           setBiddingForm((prev: any) => {
             const temp = prev.bidAddr
-            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1]
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
             return { ...prev, bidAddr: temp }
           })
           return
@@ -234,7 +234,6 @@ export default function BidderFormMod() {
       console.log(error)
     }
   }
-  console.log(biddingForm)
 
   //  새로운 입찰자 추가
   //  입찰자 정보 저장
@@ -250,7 +249,7 @@ export default function BidderFormMod() {
             phoneNo: biddingForm.bidPhone[stepNum - 1],
             address:
               biddingForm.bidAddr[stepNum - 1] +
-              biddingForm.bidAddrDetail[stepNum - 1],
+              (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : ''),
             job: biddingForm.bidJob[stepNum - 1],
           },
           {
@@ -262,7 +261,7 @@ export default function BidderFormMod() {
         if (response.status === 200) {
           setBiddingForm((prev: any) => {
             const temp = prev.bidAddr
-            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1]
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
             return { ...prev, bidAddr: temp }
           })
           setLoading(false)
@@ -277,7 +276,7 @@ export default function BidderFormMod() {
             phoneNo: biddingForm.bidPhone[stepNum - 1],
             address:
               biddingForm.bidAddr[stepNum - 1] +
-              biddingForm.bidAddrDetail[stepNum - 1],
+              (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : ''),
             job: biddingForm.bidJob[stepNum - 1],
             companyNo: biddingForm.bidCorpNum[stepNum - 1],
             corporationNo: biddingForm.bidCorpRegiNum[stepNum - 1],
@@ -291,7 +290,7 @@ export default function BidderFormMod() {
         if (response.status === 200) {
           setBiddingForm((prev: any) => {
             const temp = prev.bidAddr
-            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + biddingForm.bidAddrDetail[stepNum - 1]
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
             return { ...prev, bidAddr: temp }
           })
           setLoading(false)
@@ -375,22 +374,23 @@ export default function BidderFormMod() {
   }
     
   const onSubmit: SubmitHandler<BiddingInfoType> = async () => {
-    if (biddingForm.bidCorpYn[stepNum - 1] === 'I' && !handleVerifyIdNum(biddingForm.bidIdNum1[stepNum - 1] + biddingForm.bidIdNum2[stepNum - 1])) {
-      alert('주민등록번호를 확인해주세요')
-      return
-    } else if (biddingForm.bidCorpYn[stepNum - 1] === 'C' && !handleVerifyCorpNum(biddingForm.bidCorpNum1[stepNum - 1] + biddingForm.bidCorpNum2[stepNum - 1] + biddingForm.bidCorpNum3[stepNum - 1])) {
-      alert('사업자등록번호를 확인해주세요')
-      return
-    } else if (biddingForm.bidCorpYn[stepNum - 1] === 'C' && !handleVerifyCorpReiNum(biddingForm.bidCorpRegiNum1[stepNum - 1] + biddingForm.bidCorpRegiNum2[stepNum - 1])) {
-      alert('법인등록번호를 확인해주세요')
-      return
-    } else {
-      if (isOpen === false) {
-        try {
-          await handleNextStep()
-        } catch (error) {
-          console.log(error)
-        }
+    // if (biddingForm.bidCorpYn[stepNum - 1] === 'I' && !handleVerifyIdNum(biddingForm.bidIdNum1[stepNum - 1] + biddingForm.bidIdNum2[stepNum - 1])) {
+    //   alert('주민등록번호를 확인해주세요')
+    //   return
+    // } 
+    // if (biddingForm.bidCorpYn[stepNum - 1] === 'C' && !handleVerifyCorpNum(biddingForm.bidCorpNum1[stepNum - 1] + biddingForm.bidCorpNum2[stepNum - 1] + biddingForm.bidCorpNum3[stepNum - 1])) {
+    //   alert('사업자등록번호를 확인해주세요')
+    //   return
+    // } 
+    // if (biddingForm.bidCorpYn[stepNum - 1] === 'C' && !handleVerifyCorpReiNum(biddingForm.bidCorpRegiNum1[stepNum - 1] + biddingForm.bidCorpRegiNum2[stepNum - 1])) {
+    //   alert('법인등록번호를 확인해주세요')
+    //   return
+    // } 
+    if (isOpen === false) {
+      try {
+        await handleNextStep()
+      } catch (error) {
+        console.log(error)
       }
     }
   }
@@ -460,7 +460,7 @@ export default function BidderFormMod() {
     }
     handleGetBidders()
   }, [])
-
+  console.log(biddingForm)
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (

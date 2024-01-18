@@ -68,7 +68,7 @@ export default function AgentForm() {
           name: biddingForm.agentName,
           relationship: biddingForm.agentRel,
           phoneNo: biddingForm.agentPhone,
-          address: biddingForm.agentAddr + biddingForm.agentAddrDetail,
+          address: biddingForm.agentAddr + biddingForm.agentAddrDetail ?? '',
           job: biddingForm.agentJob,
         },
         {
@@ -81,7 +81,7 @@ export default function AgentForm() {
         setBiddingForm((prev: any) => {
           return {
             ...prev,
-            agentAddr: biddingForm.agentAddr + biddingForm.agentAddrDetail,
+            agentAddr: biddingForm.agentAddr + biddingForm.agentAddrDetail ?? '',
           }
         })
         setStateNum(5)
@@ -144,10 +144,10 @@ export default function AgentForm() {
   }
 
   const onSubmit: SubmitHandler<AgentInfoType> = async () => {
-    if (handleVerifyIdNum(biddingForm.agentIdNum1 + biddingForm.agentIdNum2) === false) {
-      alert('주민등록번호를 다시 확인해주세요')
-      return
-    }
+    // if (handleVerifyIdNum(biddingForm.agentIdNum1 + biddingForm.agentIdNum2) === false) {
+    //   alert('주민등록번호를 다시 확인해주세요')
+    //   return
+    // }
     if (isOpen === false) {
       try {
         await handleNextStep()
@@ -172,7 +172,7 @@ export default function AgentForm() {
     }
     handleGetAgentForm()
   }, [])
-
+  console.log(biddingForm)
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (

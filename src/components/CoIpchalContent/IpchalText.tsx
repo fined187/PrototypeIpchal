@@ -38,6 +38,9 @@ export default function IpchalText() {
       <span className="text-[12px] font-NanumGothic">
         10. 입찰자 본인 또는 대리인 누구나 보증을 반환 받을 수 있습니다.
       </span>
+      <span className="text-[12px] font-NanumGothic">
+        11.	보증의 제공방법(현금·자기앞수표 또는 보증서)중 하나를 선택하여 표를 기재하십시오.
+      </span>
     </div>
   )
 }

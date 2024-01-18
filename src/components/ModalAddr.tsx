@@ -152,7 +152,39 @@ export default function ModalAddr({
       })
     }
   }
-  
+
+  const handleEnter = (e: any) => {
+    if (window !== undefined) {
+      if ((e.key === 'Enter') && (searchAddr.length > 0)) {
+        handleSearch(searchAddr, currentPage)
+      } else if ((e.key === 'Enter') && (searchAddr === '')) {
+        alert('검색어를 입력해주세요.')
+      }
+    } 
+  }
+
+  const handleGetAddr = () => {
+    if (biddingInfo && setValue && stepNum) {
+      setValue('bidderAddr', [biddingInfo?.bidderAddr[stepNum - 1] ?? ''])
+      setValue('bidderAddrDetail', [biddingInfo?.bidderAddrDetail[stepNum - 1] ?? ''])
+      setDetailAddr(false)
+      onClose()
+    } else if (agentInfo && agentSetValue) {
+      agentSetValue('agentAddr', agentInfo?.agentAddr)
+      agentSetValue('agentAddrDetail', agentInfo?.agentAddrDetail)
+      setDetailAddr(false)
+      onClose()
+    }
+  }
+
+  const handleEnterDetail = (e: any) => {
+    if (window !== undefined) {
+      if ((e.key === 'Enter') && (searchAddr.length > 0)) {
+        handleGetAddr()
+      }
+    } 
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -201,6 +233,7 @@ export default function ModalAddr({
                               px-2 
                               w-[80%]"
                             onChange={(e) => handleInput(e.target)}
+                            onKeyUp={(e) => handleEnter(e)}
                           />
                           <button
                             className="
@@ -364,7 +397,7 @@ export default function ModalAddr({
                                                     bidderAddr: temp,
                                                   }
                                                 })
-                                                stepNum && setBiddingForm((prev: any) => {
+                                                stepNum && setBiddingInfo && setBiddingForm((prev: any) => {
                                                   const temp = prev.bidAddr
                                                   temp[stepNum - 1] = addr.roadAddr
                                                   return {
@@ -380,7 +413,7 @@ export default function ModalAddr({
                                                     agentAddr: temp,
                                                   }
                                                 })
-                                                setBiddingForm && setBiddingForm((prev: any) => {
+                                                setAgentInfo && setBiddingForm((prev: any) => {
                                                   let temp = prev.agentAddr
                                                   temp = addr.roadAddr
                                                   return {
@@ -502,6 +535,7 @@ export default function ModalAddr({
                                       onChange={(e) =>
                                         handleDetailAddr(e.target)
                                       }
+                                      onKeyDown={(e) => handleEnterDetail(e)}
                                     />
                                   </div>
                                 </div>
@@ -511,12 +545,7 @@ export default function ModalAddr({
                               <div
                                 className="flex justify-center items-center w-[100px] h-[40px] bg-blue-500 rounded-md cursor-pointer hover:bg-blue-300"
                                 onClick={() => {
-                                  biddingInfo && setValue && stepNum && setValue('bidderAddr', [biddingInfo?.bidderAddr[stepNum - 1]])
-                                  biddingInfo && setValue && stepNum && setValue('bidderAddrDetail', [biddingInfo?.bidderAddrDetail[stepNum - 1]])
-                                  agentInfo && agentSetValue && agentSetValue('agentAddr', agentInfo?.agentAddr)
-                                  agentInfo && agentSetValue && agentSetValue('agentAddrDetail', agentInfo?.agentAddrDetail)
-                                  setDetailAddr(false)
-                                  onClose()
+                                  handleGetAddr()
                                 }}
                               >
                                 <span className="text-sm text-white rounded-md">

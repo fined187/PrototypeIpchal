@@ -15,7 +15,12 @@
   font-family: 'NanumGothic';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/GGAuction.ttf') format('truetype');
+  src: url('/public/fonts/GGAuction.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Batang';
+  src: url('/public/fonts/Batang.ttf') format('truetype');
 }
 
 /* Navbar */

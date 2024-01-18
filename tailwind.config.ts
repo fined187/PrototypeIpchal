@@ -12,6 +12,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         nanum: ['NanumGothic', 'sans-serif'],
+        batang: ['Batang', 'serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

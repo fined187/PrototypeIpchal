@@ -64,7 +64,7 @@ export default function AgentForm() {
           name: biddingForm.agentName,
           relationship: biddingForm.agentRel,
           phoneNo: biddingForm.agentPhone,
-          address: biddingForm.agentAddr + biddingForm.agentAddrDetail,
+          address: biddingForm.agentAddr + biddingForm.agentAddrDetail ?? '',
           job: biddingForm.agentJob,
         },
         {
@@ -77,7 +77,7 @@ export default function AgentForm() {
         setBiddingForm((prev: any) => {
           return {
             ...prev,
-            agentAddr: agentInfo.agentAddr + agentInfo.agentAddrDetail,
+            agentAddr: agentInfo.agentAddr + biddingForm.agentAddrDetail ?? '',
           }
         })
         setStateNum(stateNum + 1)
@@ -135,10 +135,10 @@ export default function AgentForm() {
   }
 
   const onSubmit: SubmitHandler<any> = async () => {
-    if (handleVerifyIdNum(agentInfo.agentIdNum1 + agentInfo.agentIdNum2) === false) {
-      alert('주민등록번호를 확인해주세요')
-      return
-    }
+    // if (handleVerifyIdNum(agentInfo.agentIdNum1 + agentInfo.agentIdNum2) === false) {
+    //   alert('주민등록번호를 확인해주세요')
+    //   return
+    // }
     if(isOpen === false) {
       try {
         await handleAgentSave()
@@ -147,7 +147,7 @@ export default function AgentForm() {
       }
     }
   }
-
+  console.log(biddingForm)
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
