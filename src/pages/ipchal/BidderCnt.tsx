@@ -62,6 +62,18 @@ export default function BidderCnt() {
     }
   }
 
+  const handleNextStep = () => {
+    if (biddingInfo.bidderNum > 0 && biddingInfo.bidName.length === 0) {
+      setStateNum(stateNum + 1)
+    } else if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
+      setStateNum(15)
+    } else if (biddingInfo.bidderNum === 0) {
+      alert('입찰자는 1명 이상이어야 합니다')
+    } else {
+      setStateNum(stateNum + 1)
+    }
+  }
+
   return (
     <>
       <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -124,15 +136,7 @@ export default function BidderCnt() {
             type="button"
             className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              if (biddingInfo.bidderNum > 0 && biddingInfo.bidName.length === 0) {
-                setStateNum(stateNum + 1)
-              } else if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
-                setStateNum(15)
-              } else if (biddingInfo.bidderNum === 0) {
-                alert('입찰자는 1명 이상이어야 합니다')
-              } else {
-                setStateNum(stateNum + 1)
-              }
+              handleNextStep()
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

@@ -1,142 +1,110 @@
-import { bidderInfo, biddingInfoState, stepState } from '@/atom'
+import { biddingInfoState, stepState } from '@/atom'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 export default function ShareInfo() {
-  const biddingInfo = useRecoilValue(biddingInfoState)
-  const setBiddingInfo = useSetRecoilState(biddingInfoState)
-  const stateNum = useRecoilValue(stepState)
-  const setStateNum = useSetRecoilState(stepState)
+  const[biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
   const [shareWay, setShareWay] = useState<string>('')
   const [isDataIn, setIsDataIn] = useState<any>([])
-  const [calc, setCalc] = useState({
-    numerator: [0],
-    denominator: [0],
-  })
   const [goNext, setGoNext] = useState<boolean>(false)
 
   const [shareList, setShareList] = useState({
     shareList: Array(biddingInfo.bidderNum).fill({
       peopleSeq: 0,
+      name: '',
       share: '',
     }),
   })
 
   const handleShareList = () => {
+    let numerator = (document && document.getElementById('numerator') as HTMLInputElement)?.value
+    let denominator = (document && document.getElementById('denominator') as HTMLInputElement)?.value
+
     const temp = [...shareList.shareList]
-    if (shareWay === 'S') {
+    if (biddingInfo.shareWay === 'S') {
       for (let i = 0; i < biddingInfo.bidderNum; i++) {
         temp[i] = {
           peopleSeq: i + 1,
+          name: biddingInfo.bidName[i],
           share: '1/' + biddingInfo.bidderNum.toString(),
         }
       }
+      setShareList({
+        ...shareList,
+        shareList: temp,
+      })
     } else {
-        for (let i = 0; i < biddingInfo.bidderNum; i++) {
-          temp[i] = {
-            peopleSeq: i + 1,
-            share: (calc?.numerator[i]?.toString() +  '/' + calc?.denominator[i]?.toString()),
-          }
+      for (let i = 0; i < biddingInfo.bidderNum; i++) {
+        temp[i] = {
+          peopleSeq: i + 1,
+          name: biddingInfo.bidName[i],
+          share: numerator + '/' + denominator,
         }
+      }
+      setShareList({
+        ...shareList,
+        shareList: temp,
+      })
     }
-    setShareList({
-      ...shareList,
-      shareList: temp,
-    })
   }
-
-  useEffect(() => {
-    handleShareList()
-  }, [calc.numerator, calc.denominator, shareWay])
 
   const handleClear = () => {
     let temp = document.querySelectorAll('input')
     temp.forEach((item) => {
       item.value = ''
     })
-  }
-
-  const handleCalc = () => {
-    if (shareWay === 'S') {
-      const nameTemp = ['']
-      const percentTemp = [0]
-      for (let i = 0; i < biddingInfo?.bidderNum; i++) {
-        nameTemp.push(biddingInfo?.bidName[i])
-        percentTemp.push((1 / biddingInfo?.bidderNum) * 100)
-      }
-      nameTemp.shift()
-      percentTemp.shift()
-      setBiddingInfo({
-        ...biddingInfo,
-        distribute: {
-          sharedName: nameTemp,
-          sharedPercent: percentTemp,
-        },
-      })
-    } else {
-      const nameTemp = ['']
-      const percentTemp = [0]
-      for (let i = 0; i < biddingInfo?.bidderNum; i++) {
-        nameTemp.push(biddingInfo?.bidName[i])
-        percentTemp.push((calc.numerator[i] / calc.denominator[i]) * 100)
-      }
-      nameTemp.shift()
-      percentTemp.shift()
-      setBiddingInfo({
-        ...biddingInfo,
-        distribute: {
-          sharedName: nameTemp,
-          sharedPercent: percentTemp,
-        },
-      })
-    }
-  }
-
-  const handleValidate = () => {
-    let temp = document.querySelectorAll('input')
-    temp.forEach((item) => {
-      if (item.value === '') {
-        setGoNext(true)
-      } else {
-        setGoNext(false)
-      }
+    shareList.shareList.map((item: any, index: number) => {
+      item.share = ''
     })
   }
 
-  const handleValidateCalc = () => {
-    let temp = [0]
-    if (shareWay === 'S') {
-      for (let i = 0; i < biddingInfo?.bidderNum; i++) {
-        temp.push(1 / biddingInfo?.bidderNum)
+  const handleValidate = () => {
+    let valid = 0
+    let numerator = (document && document.getElementById('numerator') as HTMLInputElement)?.value
+    let denominator = (document && document.getElementById('denominator') as HTMLInputElement)?.value
+    if (numerator === '' || denominator === '' || biddingInfo.shareWay === "") {
+      alert('지분을 확인해주세요')
+      setGoNext(true)
+      return
+    } else if (biddingInfo.shareWay === 'N') {
+      for(let i = 0; i < biddingInfo.bidderNum; i++) {
+        valid += parseInt(shareList.shareList[i].share)
+      }
+      if (valid !== parseInt(denominator)) {
+        setGoNext(true)
+      } else {
+        setGoNext(false)
+        handleGetBiddingFormUpdate()
+        handlePutShare()
       }
     } else {
-      for (let i = 0; i < calc.numerator.length; i++) {
-        temp.push(calc.numerator[i] / calc.denominator[i])
-      }
+      setGoNext(false)
+      handleGetBiddingFormUpdate()
+      handlePutShare()
     }
-    temp.reduce((a, b) => a + b, 0) === 1 ? setGoNext(false) : setGoNext(true)
   }
 
-  const handleShare = async () => {
+  const handlePutShare = async () => {
     try {
       const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders/shares`, {
         bidderCount: biddingInfo.bidderNum,
         shareList: shareList.shareList,
       })
       if (response.status === 200) {
-        return
+        console.log(response)
+        setBiddingInfo({
+          ...biddingInfo,
+          numerator: shareList.shareList.map((item: any) => item.share.split('/')[0]),
+          denominator: shareList.shareList.map((item: any) => item.share.split('/')[1]),
+        })
+        setStateNum(stateNum + 1)
       }
     } catch (error) {
       console.log(error)
     }
   }
-
-  useEffect(() => {
-    handleCalc()
-    handleValidate()
-    handleValidateCalc()
-  }, [calc.numerator, calc.denominator, shareWay])
 
   const handleGetBiddingFormUpdate = async () => {
     try {
@@ -153,6 +121,16 @@ export default function ShareInfo() {
           bidJob: response.data.data.bidders.map((item: any) => item.job),
           bidCorpRegiNum: response.data.data.bidders.map((item: any) => item.corporationNo),
         })
+        setShareList({
+          ...shareList,
+          shareList: response.data.data.bidders.map((item: any) => {
+            return {
+              peopleSeq: item.peopleSeq,
+              name: item.name,
+              share: item.share,
+            }
+          }),
+        })
       }
     } catch (error) {
       console.log(error)
@@ -161,9 +139,20 @@ export default function ShareInfo() {
 
   useEffect(() => {
     handleGetBiddingFormUpdate()
+    const handleInitShare = () => {
+      setBiddingInfo({
+        ...biddingInfo,
+        shareWay: '',
+        numerator: Array(biddingInfo.bidderNum).fill(''),
+        denominator: Array(biddingInfo.bidderNum).fill(''),
+      })
+    }
+    handleInitShare()
   }, [])
 
-  console.log(biddingInfo)
+  useEffect(() => {
+    handleShareList()
+  }, [biddingInfo.shareWay])
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -173,17 +162,18 @@ export default function ShareInfo() {
         </span>
         <div className="flex flex-row gap-10 w-[80%] justify-center absolute top-[80px]">
           <div className={`flex flex-row w-[100px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-              shareWay === 'S'
+              biddingInfo.shareWay === 'S'
                 ? 'text-white bg-myyellow'
                 : 'text-myyellow bg-white'
             }`}
             onClick={() => {
-             
-              setShareWay('S')
-              handleCalc()
+              setBiddingInfo({
+                ...biddingInfo,
+                shareWay: 'S',
+              })
             }}
           >
-            <div className={`${shareWay === 'S' ? 'flex mr-1' : 'hidden'}`}>
+            <div className={`${biddingInfo.shareWay === 'S' ? 'flex mr-1' : 'hidden'}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="11"
@@ -201,7 +191,7 @@ export default function ShareInfo() {
             </div>
             <span
               className={`text-[13px] font-NanumGothic not-italic font-extrabold ${
-                shareWay === 'S' ? 'text-white' : 'text-myyellow'
+                biddingInfo.shareWay === 'S' ? 'text-white' : 'text-myyellow'
               }`}
             >
               동일배분
@@ -209,17 +199,19 @@ export default function ShareInfo() {
           </div>
           <div
             className={`flex flex-row w-[100px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-              shareWay === 'N'
+              biddingInfo.shareWay === 'N'
                 ? 'text-white bg-myyellow'
                 : 'text-myyellow bg-white'
             }`}
             onClick={() => {
-              setShareWay('N')
+              setBiddingInfo({
+                ...biddingInfo,
+                shareWay: 'N',
+              })
               handleClear()
-              handleCalc()
             }}
           >
-            <div className={`${shareWay === 'N' ? 'flex mr-1' : 'hidden'}`}>
+            <div className={`${biddingInfo.shareWay === 'N' ? 'flex mr-1' : 'hidden'}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="11"
@@ -237,7 +229,7 @@ export default function ShareInfo() {
             </div>
             <span
               className={`text-[13px] font-NanumGothic not-italic font-extrabold ${
-                shareWay === 'N' ? 'text-white' : 'text-myyellow'
+                biddingInfo.shareWay === 'N' ? 'text-white' : 'text-myyellow'
               }`}
             >
               각자배분
@@ -254,17 +246,18 @@ export default function ShareInfo() {
                   </span>
                 </div>
                 <div className="flex flex-row gap-[5%] w-[60%] justify-end mr-5">
-                  {shareWay === 'S' ? (
+                  {biddingInfo.shareWay === 'S' ? (
                     <>
                       <input
-                        id="molecule"
+                        id="numerator"
                         type="text"
                         readOnly
-                        value="1"
+                        value={shareList.shareList[index]?.share?.split('/')[0]}
                         className={`border  border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
                       />
                       <span>/</span>
                       <input
+                        id='denominator'
                         type="text"
                         readOnly
                         value={biddingInfo.bidderNum}
@@ -274,39 +267,46 @@ export default function ShareInfo() {
                   ) : (
                     <>
                       <input
-                        id="molecule"
+                        id="numerator"
                         type="text"
+                        value={shareList.shareList[index]?.share?.split('/')[0] || ''}
                         className={`border-2 ${
-                          shareWay === 'N' && goNext
+                          (biddingInfo.shareWay === 'N') && goNext
                             ? 'border-red-500'
                             : 'border-gray-300'
                         }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
                         onChange={(e) => {
-                          const temp = [...calc.numerator]
-                          temp[index] = Number(e.target.value)
-                          setCalc({
-                            ...calc,
-                            numerator: temp,
+                          let temp = [...shareList.shareList]
+                          temp[index] = {
+                            ...temp[index],
+                            share: e.target.value + '/' + (document && document.getElementById('denominator') as HTMLInputElement)?.value,
+                          }
+                          setShareList({
+                            ...shareList,
+                            shareList: temp,
                           })
-                          handleCalc()
                         }}
                       />
                       <span>/</span>
                       <input
+                        id='denominator'
                         type="text"
+                        value={shareList.shareList[index].share?.split('/')[1] || ''}
                         className={`border-2 ${
-                          shareWay === 'N' && goNext
+                          (biddingInfo.shareWay === 'N') && goNext
                             ? 'border-red-500'
                             : 'border-gray-300'
                         }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
                         onChange={(e) => {
-                          const temp = [...calc.denominator]
-                          temp[index] = Number(e.target.value)
-                          setCalc({
-                            ...calc,
-                            denominator: temp,
+                          let temp = [...shareList.shareList]
+                          temp[index] = {
+                            ...temp[index],
+                            share: (document && document.getElementById('numerator') as HTMLInputElement)?.value + '/' + e.target.value,
+                          }
+                          setShareList({
+                            ...shareList,
+                            shareList: temp,
                           })
-                          handleCalc()
                         }}
                       />
                     </>
@@ -315,7 +315,7 @@ export default function ShareInfo() {
               </div>
             )
           })}
-          {shareWay === 'N' && goNext && (
+          {biddingInfo.shareWay === 'N' && goNext && (
             <span className="text-[15px] text-red-500 font-bold">
               지분 값을 확인해주세요
             </span>
@@ -337,10 +337,7 @@ export default function ShareInfo() {
             type="button"
             className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              goNext ? alert('지분 값을 확인해주세요.') :
-              handleGetBiddingFormUpdate()
-              handleShare()
-              setStateNum(stateNum + 1)
+              handleValidate()
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

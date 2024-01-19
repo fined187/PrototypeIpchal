@@ -2,14 +2,12 @@ import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BidderInfo() {
-  const stateNum = useRecoilValue(stepState)
-  const setStateNum = useSetRecoilState(stepState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
   const [isSelected, setIsSelected] = useState<boolean>(true)
-  const biddingInfo = useRecoilValue(biddingInfoState)
-  const setBiddingInfo = useSetRecoilState(biddingInfoState)
+  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
 
   const handleDeleteAgent = async () => {
@@ -37,6 +35,20 @@ export default function BidderInfo() {
     } catch (error) {
       console.log(error)
       setLoading(false)
+    }
+  }
+
+  const handleNextStep = async () => {
+    setLoading(true)
+    if (biddingInfo.bidder === 'self') {
+      setStateNum(stateNum + 2)
+    } else if (biddingInfo.agentName === '' && biddingInfo.bidder === 'agent') {
+      setStateNum(stateNum + 1)
+    } else if (biddingInfo.agentName !== '' && biddingInfo.bidder === 'agent') {
+      setStateNum(16)
+    } else if (biddingInfo.bidder === '') {
+      setLoading(false)
+      setIsSelected(false)
     }
   }
 
@@ -170,7 +182,7 @@ export default function BidderInfo() {
             type="button"
             className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              biddingInfo.bidder === 'self' ? setStateNum(stateNum + 2) : biddingInfo.agentName === '' ? setStateNum(stateNum + 1) : setStateNum(16)
+              handleNextStep()
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

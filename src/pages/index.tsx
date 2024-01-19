@@ -23,6 +23,7 @@ import AgentForm from './ipchal/AgentForm'
 import Spinner from '@/components/Spinner'
 
 export default function Home() {
+  const set = new Set<any>()
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
   const setLoginState = useSetRecoilState(loginState)
@@ -143,13 +144,16 @@ export default function Home() {
             bidAddr: response.data.data?.bidders ? response.data.data?.bidders.map((bidder: any) => bidder.address) : [''],
             bidJob: response.data.data?.bidders ? response.data.data?.bidders?.map((bidder: any) => bidder.job) : [''],
             bidCorpNum: response.data.data?.bidders ? response.data.data?.bidders?.map((bidder: any) => bidder.companyNo) : [''],
+            bidCorpNum1: response.data.data?.bidders ? response.data.data?.bidders?.map((bidder: any) => bidder.companyNo?.substring(0, 3)) : [''],
+            bidCorpNum2: response.data.data?.bidders ? response.data.data?.bidders?.map((bidder: any) => bidder.companyNo?.substring(3, 5)) : [''],
+            bidCorpNum3: response.data.data?.bidders ? response.data.data?.bidders?.map((bidder: any) => bidder.companyNo?.substring(5, 10)) : [''],
             bidCorpRegiNum: response.data.data?.bidders ? response.data.data?.bidders?.map((bidder: any) => bidder.corporationNo) : [''],
+            bidCorpRegiNum1: response.data.data?.bidders ? response.data.data?.bidders?.map((bidder: any) => bidder.corporationNo?.substring(0, 6)) : [''],
+            bidCorpRegiNum2: response.data.data?.bidders ? response.data.data?.bidders?.map((bidder: any) => bidder.corporationNo?.substring(6, 13)) : [''],
             bidCorpYn: response.data.data?.bidders ? response.data.data?.bidders.map((bidder: any) => bidder.bidderType) : [''],
-            distribute: {
-              sharedName: response.data.data.bidders.map((bidder: any) => bidder.share) ?? [''],
-              sharedPercent: [0],
-            },
-            
+            numerator: response.data.data?.bidders ? response.data.data?.bidders.map((bidder: any) => bidder.share?.split('/')[0]) : [''],
+            denominator: response.data.data?.bidders ? response.data.data?.bidders.map((bidder: any) => bidder.share?.split('/')[1]) : [''],
+            shareWay: response.data.data?.bidders ? response.data.data?.bidders.every((ele: any) => ele.share === response.data.data?.bidders[0].share) ? 'S' : 'N' : 'S',
           })
           setLoading(false)
         }
@@ -163,7 +167,9 @@ export default function Home() {
   const handleStateNum = () => {
     if (bidders.state === 0) {
       setStateNum(3)
-    } else if (bidders.state === 1 || bidders.state === 2) {
+    } else if ((bidders.state === 1 || bidders.state === 2) && bidders.agentYn === "Y") {
+      setStateNum(16)
+    } else if ((bidders.state === 1 || bidders.state === 2) && bidders.agentYn !== "Y") {
       setStateNum(5)
     } else if (bidders.state >= 4 && bidders.agentYn === "Y") {
       setStateNum(16)
@@ -214,7 +220,7 @@ export default function Home() {
           {stateNum === 13 && <IpchalShare />}
           {stateNum === 14 && <DownIpchal />}
           {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 15) ? <BidderFormMod /> : (stateNum === 15) && <BidderFormMod />}
-          {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 16) ? <AgentFormMod /> : (stateNum === 16) && <AgentFormMod />}
+          {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 16) ? <AgentFormMod /> : (stateNum === 16) && <AgentFormMod />}
         </>
       )}
     </>

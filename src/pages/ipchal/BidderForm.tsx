@@ -1,6 +1,4 @@
 import { biddingInfoState, stepState } from '@/atom'
-import ModalAddr from '@/components/ModalAddr'
-import PopupContent from '@/components/PopupContent'
 import SearchAddress from '@/components/SearchAddress'
 import Spinner from '@/components/Spinner'
 import { BidderList, BiddingInfoType } from '@/interface/IpchalType'
@@ -44,7 +42,6 @@ export default function BidderForm() {
     bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(biddingForm.bidCorpYn[stepNum - 1] ? biddingForm.bidCorpYn[stepNum - 1] : 'I'),
     bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
-  console.log(biddingForm)
   const {
     register,
     handleSubmit,
@@ -320,7 +317,7 @@ export default function BidderForm() {
       }
     }
   }
-  console.log(biddingForm)
+
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (

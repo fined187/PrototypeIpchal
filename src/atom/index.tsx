@@ -83,8 +83,8 @@ export const biddingInfoState = atom({
     imageFile: '',
     isModalOpen: false,
     shareWay: '',
-    numerator: '',
-    denominator: '',
+    numerator: [''],
+    denominator: [''],
   },
   dangerouslyAllowMutability: true,
 })

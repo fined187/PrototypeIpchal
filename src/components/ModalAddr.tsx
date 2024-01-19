@@ -8,7 +8,7 @@ import {
   ModalBody,
   useMediaQuery,
 } from '@chakra-ui/react'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import Pagination from './Pagination'
 import { IoClose } from 'react-icons/io5'
@@ -77,7 +77,6 @@ export default function ModalAddr({
         params: param,
       })
       if (result) {
-        console.log(result)
         setEmptyView(true)
         setAddrList(result.data.results.juso)
         setTotalCount(result.data.results.common.totalCount)
@@ -115,11 +114,11 @@ export default function ModalAddr({
     setFirstSort(e)
   }
 
-  const handleDetailAddr = (e: HTMLInputElement) => {
-    if (stepNum && setBiddingInfo && setBiddingForm) {
-      setBiddingInfo((prev: any) => {
+  const handleDetailAddr = (e: ChangeEvent<HTMLInputElement>) => {
+    if (stepNum) {
+      setBiddingInfo && setBiddingInfo((prev: any) => {
         const temp = prev.bidderAddrDetail
-        temp[stepNum - 1] = e.value
+        temp[stepNum - 1] = e.target.value
         return {
           ...prev,
           bidderAddrDetail: temp,
@@ -127,7 +126,7 @@ export default function ModalAddr({
       })
       setBiddingForm((prev: any) => {
         const temp = prev.bidAddrDetail
-        temp[stepNum - 1] = e.value
+        temp[stepNum - 1] = e.target.value
         return {
           ...prev,
           bidAddrDetail: temp,
@@ -136,7 +135,7 @@ export default function ModalAddr({
     } else if (agentInfo && setAgentInfo && setBiddingForm) {
       setAgentInfo((prev: any) => {
         let temp = prev.agentAddrDetail
-        temp = e.value
+        temp = e.target.value
         return {
           ...prev,
           agentAddrDetail: temp,
@@ -144,7 +143,7 @@ export default function ModalAddr({
       })
       setBiddingForm((prev: any) => {
         let temp = prev.agentAddrDetail
-        temp = e.value
+        temp = e.target.value
         return {
           ...prev,
           agentAddrDetail: temp,
@@ -164,9 +163,9 @@ export default function ModalAddr({
   }
 
   const handleGetAddr = () => {
-    if (biddingInfo && setValue && stepNum) {
-      setValue('bidderAddr', [biddingInfo?.bidderAddr[stepNum - 1] ?? ''])
-      setValue('bidderAddrDetail', [biddingInfo?.bidderAddrDetail[stepNum - 1] ?? ''])
+    if ((biddingForm || biddingInfo) && setValue && stepNum) {
+      setValue('bidderAddr', [biddingForm?.bidAddr[stepNum - 1] ?? ''])
+      setValue('bidderAddrDetail', [biddingForm?.bidAddrDetail[stepNum - 1] ?? ''])
       setDetailAddr(false)
       onClose()
     } else if (agentInfo && agentSetValue) {
@@ -389,12 +388,12 @@ export default function ModalAddr({
                                             <span
                                               className="text-left text-[12px] font-NanumGothic not-italic font-extrabold"
                                               onClick={() => {
-                                                stepNum && setBiddingInfo && setBiddingInfo((prev: any) => {
-                                                  const temp = prev.bidderAddr
+                                                stepNum && setBiddingForm((prev: any) => {
+                                                  const temp = prev.bidAddr
                                                   temp[stepNum - 1] = addr.roadAddr
                                                   return {
                                                     ...prev,
-                                                    bidderAddr: temp,
+                                                    bidAddr: temp,
                                                   }
                                                 })
                                                 stepNum && setBiddingInfo && setBiddingForm((prev: any) => {
@@ -517,7 +516,7 @@ export default function ModalAddr({
                                   <div className="w-[70%] h-[100%] flex justify-center items-center border-gray-100 border-r-[1px]">
                                     <span className="text-[12px] font-normal font-NanumGothic">
                                       {stepNum &&
-                                        biddingInfo?.bidderAddr[stepNum - 1]}
+                                        biddingForm.bidAddr[stepNum - 1]}
                                       {agentInfo && agentInfo?.agentAddr}
                                     </span>
                                   </div>
@@ -532,9 +531,9 @@ export default function ModalAddr({
                                     <input
                                       type="text"
                                       className="flex w-[90%] h-[30%] border border-gray-200"
-                                      value={(stepNum && biddingInfo?.bidderAddrDetail[stepNum - 1]) ?? agentInfo?.agentAddrDetail ?? ''}
+                                      value={(stepNum && biddingForm.bidAddrDetail[stepNum - 1]) || (agentInfo && agentInfo?.agentAddrDetail) || ''}
                                       onChange={(e) =>
-                                        handleDetailAddr(e.target)
+                                        handleDetailAddr(e)
                                       }
                                       onKeyDown={(e) => handleEnterDetail(e)}
                                     />

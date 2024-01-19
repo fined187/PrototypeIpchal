@@ -186,6 +186,9 @@ export default function BiddingPrice() {
           bidName: response.data.data.bidders.map((item: any) => item.name),
           bidAddr: response.data.data.bidders.map((item: any) => item.address),
           bidPhone: response.data.data.bidders.map((item: any) => item.phoneNo),
+          bidPhone1: response.data.data.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.slice(0, 3) : item.phoneNo.slice(0, 2)),
+          bidPhone2: response.data.data.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.slice(3, 7) : item.phoneNo.slice(2, 6)),
+          bidPhone3: response.data.data.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.slice(7, 11) : item.phoneNo.slice(6, 10)),
           bidCorpYn: response.data.data.bidders.map((item: any) => item.bidderType),
           bidCorpNum: response.data.data.bidders.map((item: any) => item.companyNo),
           bidJob: response.data.data.bidders.map((item: any) => item.job),
@@ -197,8 +200,7 @@ export default function BiddingPrice() {
       console.log(error)
     }
   }
-
-
+  
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col gap-[20px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
