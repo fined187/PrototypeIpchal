@@ -11,7 +11,7 @@ export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
 
   return (
     <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
-      <div className="flex md:w-[50%] w-[100%] h-[100%] min-w-[400px] justify-center bg-mybg absolute top-0">
+      <div className="flex md:w-[50%] w-[100%] h-[100%] min-w-[400px] justify-center bg-white absolute top-0">
         <p className="text-[22px] font-bold py-[30px]">
           공 동 입 찰 자 목 록
         </p>

@@ -77,6 +77,7 @@ export default function ModalAddr({
         params: param,
       })
       if (result) {
+        console.log(result)
         setEmptyView(true)
         setAddrList(result.data.results.juso)
         setTotalCount(result.data.results.common.totalCount)
@@ -173,6 +174,30 @@ export default function ModalAddr({
       agentSetValue('agentAddrDetail', agentInfo?.agentAddrDetail)
       setDetailAddr(false)
       onClose()
+    }
+  }
+
+  const handleCombineAddr = () => {
+    if (stepNum) {
+      const updatedAddr = biddingForm?.bidAddr[stepNum - 1] + ' ' + biddingForm?.bidAddrDetail[stepNum - 1]
+      setBiddingForm((prev: any) => {
+        const temp = prev.bidAddr
+        temp[stepNum - 1] = updatedAddr
+        return {
+          ...prev,
+          bidAddr: temp,
+        }
+      })
+    } else if (agentInfo && setAgentInfo) {
+      const updatedAddr = agentInfo?.agentAddr + ' ' + agentInfo?.agentAddrDetail
+      setBiddingForm((prev: any) => {
+        let temp = prev.agentAddr
+        temp = updatedAddr
+        return {
+          ...prev,
+          agentAddr: temp,
+        }
+      })
     }
   }
 
@@ -363,7 +388,7 @@ export default function ModalAddr({
                                 : 'border border-spacing-1'
                             } rounded-md overflow-y-scroll sm:overflow-hidden`}
                           >
-                            {addrList.length > 0 && !emptyView && (
+                            {addrList?.length > 0 && !emptyView && (
                               <>
                                 <div className="w-full overflow-y-scroll sm:overflow-hidden">
                                   {addrList.map(
@@ -487,15 +512,13 @@ export default function ModalAddr({
                                 </div>
                               </>
                             )}
-                            {addrList.length === 0 &&
-                              emptyView &&
-                              !detailAddr && (
-                                <div className="w-full text-center items-center justify-center h-[50px]">
-                                  <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
-                                    검색결과가 없습니다.
-                                  </span>
-                                </div>
-                              )}
+                            {addrList?.length === 0 && emptyView && !detailAddr && (
+                              <div className="text-center items-center justify-center w-[100%] h-[150px] absolute top-[300px]">
+                                <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
+                                  검색결과가 없습니다.
+                                </span>
+                              </div>
+                            )}
                           </div>
                         )}
                         {detailAddr && (
@@ -546,6 +569,7 @@ export default function ModalAddr({
                                 className="flex justify-center items-center w-[100px] h-[40px] bg-blue-500 rounded-md cursor-pointer hover:bg-blue-300"
                                 onClick={() => {
                                   handleGetAddr()
+                                  handleCombineAddr()
                                 }}
                               >
                                 <span className="text-sm text-white rounded-md">
@@ -555,7 +579,7 @@ export default function ModalAddr({
                             </div>
                           </div>
                         )}
-                        {addrList.length > 0 && !emptyView && !detailAddr && (
+                        {addrList?.length > 0 && !emptyView && !detailAddr && (
                           <Pagination
                             totalCount={totalCount}
                             currentPage={currentPage}

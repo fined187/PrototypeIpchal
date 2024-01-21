@@ -5,9 +5,8 @@ import { BidderList, BiddingInfoType } from '@/interface/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function BidderForm() {
   if (typeof window === 'undefined') return null
@@ -18,10 +17,8 @@ export default function BidderForm() {
   })
 
   const setStateNum = useSetRecoilState(stepState)                  //  입찰표 작성 단계 set함수
-  const stateNum = useRecoilValue(stepState)                        //  입찰표 작성 단계
   const [stepNum, setStepNum] = useState<number>(1)                 //  입찰자 정보 단계
-  const biddingForm = useRecoilValue(biddingInfoState)              //  입찰표 정보(전역 상태 관리)
-  const setBiddingForm = useSetRecoilState(biddingInfoState)        //  입찰표 정보(전역 상태 관리) set함수
+  const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)  //  입찰표 작성 정보
   const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
   const [loading, setLoading] = useState<boolean>(false)            //  로딩 상태
   const { isOpen, onClose, onOpen } = useDisclosure()                       //  주소검색 모달 상태
@@ -110,9 +107,7 @@ export default function BidderForm() {
             bidderType: biddingForm.bidCorpYn[stepNum - 1],
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
-            address:
-              biddingForm.bidAddr[stepNum - 1] +
-              (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : ''),
+            address: biddingForm.bidAddr[stepNum - 1],
             job: biddingForm.bidJob[stepNum - 1],
           },
           {
@@ -124,7 +119,7 @@ export default function BidderForm() {
         if (response.status === 200) {
           setBiddingForm((prev: any) => {
             const temp = prev.bidAddr
-            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '') 
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] 
             return {
               ...prev,
               bidAddr: temp,
@@ -139,9 +134,7 @@ export default function BidderForm() {
             bidderType: biddingForm.bidCorpYn[stepNum - 1],
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
-            address:
-              biddingForm.bidAddr[stepNum - 1] +
-              biddingForm.bidAddrDetail[stepNum - 1] ?? '',
+            address: biddingForm.bidAddr[stepNum - 1],
             job: biddingForm.bidJob[stepNum - 1],
             companyNo: biddingForm.bidCorpNum[stepNum - 1],
             corporationNo: biddingForm.bidCorpRegiNum[stepNum - 1],
@@ -155,7 +148,7 @@ export default function BidderForm() {
         if (response.status === 200) {
           setBiddingForm((prev: any) => {
             const temp = prev.bidAddr
-            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
+            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1]
             return {
               ...prev,
               bidAddr: temp,

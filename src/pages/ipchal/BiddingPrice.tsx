@@ -200,7 +200,41 @@ export default function BiddingPrice() {
       console.log(error)
     }
   }
-  
+
+  useEffect(() => {
+    const handleSyncBiddingForm = async () => {
+      try {
+        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}`)
+        if (response.status === 200) {
+          setBiddingForm({
+            ...biddingForm,
+            bidName: response.data.data?.bidders?.map((item: any) => item.name),
+            bidAddr: response.data.data?.bidders?.map((item: any) => item.address),
+            bidAddrDetail: response.data.data?.bidders?.length < biddingForm.bidAddrDetail.length ? biddingForm.bidAddrDetail.splice(response.data.data?.bidders?.length - 1, biddingForm.bidAddrDetail.length - response.data.data?.bidders?.length) : biddingForm.bidAddrDetail,
+            bidPhone: response.data.data?.bidders?.map((item: any) => item.phoneNo),
+            bidPhone1: response.data.data?.bidders?.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo?.slice(0, 3) : item.phoneNo?.slice(0, 2)),
+            bidPhone2: response.data.data?.bidders?.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo?.slice(3, 7) : item.phoneNo?.slice(2, 6)),
+            bidPhone3: response.data.data?.bidders?.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo?.slice(7, 11) : item.phoneNo?.slice(6, 10)),
+            bidCorpYn: response.data.data?.bidders?.map((item: any) => item.bidderType),
+            bidCorpNum: response.data.data?.bidders?.map((item: any) => item.companyNo),
+            bidCorpNum1: response.data.data?.bidders?.map((item: any) => item.companyNo?.slice(0, 3) ?? null),
+            bidCorpNum2: response.data.data?.bidders?.map((item: any) => item.companyNo?.slice(3, 5) ?? null),
+            bidCorpNum3: response.data.data?.bidders?.map((item: any) => item.companyNo?.slice(5, 10) ?? null),
+            bidJob: response.data.data?.bidders?.map((item: any) => item.job),
+            bidCorpRegiNum: response.data.data?.bidders?.map((item: any) => item.corporationNo),
+            bidCorpRegiNum1: response.data.data?.bidders?.map((item: any) => item.corporationNo?.slice(0, 6) ?? null),
+            bidCorpRegiNum2: response.data.data?.bidders?.map((item: any) => item.corporationNo?.slice(6, 13) ?? null),
+            denominator: response.data.data?.bidders?.length < biddingForm.denominator.length ? biddingForm.denominator?.splice(response.data.data?.bidders?.length - 1, biddingForm.denominator.length - response.data.data?.bidders?.length) : biddingForm.denominator,
+            numerator: response.data.data?.bidders?.length < biddingForm.numerator.length ? biddingForm.numerator?.splice(response.data.data?.bidders?.length - 1, biddingForm.numerator.length - response.data.data?.bidders?.length) : biddingForm.numerator,
+          })
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    handleSyncBiddingForm()
+  }, [])
+
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col gap-[20px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">

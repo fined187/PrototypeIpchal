@@ -62,7 +62,7 @@ export default function BidderFormMod() {
     bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill('I'),
     bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
-  
+  console.log(biddingInfo)
   //  초기 컴포넌트 마운트 시 서버에 저장된 입찰자 정보를 불러온다.
   useEffect(() => {
     const handleGetBidders = async () => {
@@ -314,32 +314,19 @@ export default function BidderFormMod() {
     try {
       if (biddingForm?.bidCorpYn[stepNum - 1] === 'I') {
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
-          address: biddingForm?.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : ''),
+          address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           job: biddingForm?.bidJob[stepNum - 1],
           name: biddingForm?.bidName[stepNum - 1],
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
         if (response.status === 200) {
-          setBiddingForm((prev: any) => {
-            const temp1 = prev.bidAddr
-            const temp2 = prev.bidIdNum
-            const temp3 = prev.bidAddrDetail
-            temp1[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
-            temp2[stepNum - 1] = biddingForm.bidIdNum[stepNum - 1]
-            temp3[stepNum - 1] = biddingForm.bidAddrDetail[stepNum - 1]
-            return { 
-              ...prev, 
-              bidAddr: temp1, 
-              bidIdNum: temp2,
-              bidAddrDetail: temp3,
-            }
-          })
+          console.log(response)
           return
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
-          address: biddingForm?.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : ''),
+          address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           companyNo: biddingForm?.bidCorpNum[stepNum - 1],
           corporationNo: biddingForm?.bidCorpRegiNum[stepNum - 1],
@@ -348,11 +335,6 @@ export default function BidderFormMod() {
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
         if (response.status === 200) {
-          setBiddingForm((prev: any) => {
-            const temp = prev.bidAddr
-            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
-            return { ...prev, bidAddr: temp }
-          })
           return
         }
       }
@@ -373,9 +355,7 @@ export default function BidderFormMod() {
             bidderType: biddingForm.bidCorpYn[stepNum - 1],
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
-            address:
-              biddingForm.bidAddr[stepNum - 1] +
-              (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : ''),
+            address: biddingForm.bidAddr[stepNum - 1],
             job: biddingForm.bidJob[stepNum - 1],
           },
           {
@@ -385,11 +365,6 @@ export default function BidderFormMod() {
           },
         )
         if (response.status === 200) {
-          setBiddingForm((prev: any) => {
-            const temp = prev.bidAddr
-            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
-            return { ...prev, bidAddr: temp }
-          })
           setLoading(false)
           return
         }
@@ -400,9 +375,7 @@ export default function BidderFormMod() {
             bidderType: biddingForm.bidCorpYn[stepNum - 1],
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
-            address:
-              biddingForm.bidAddr[stepNum - 1] +
-              (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : ''),
+            address: biddingForm.bidAddr[stepNum - 1],
             job: biddingForm.bidJob[stepNum - 1],
             companyNo: biddingForm.bidCorpNum[stepNum - 1],
             corporationNo: biddingForm.bidCorpRegiNum[stepNum - 1],
@@ -414,11 +387,6 @@ export default function BidderFormMod() {
           },
         )
         if (response.status === 200) {
-          setBiddingForm((prev: any) => {
-            const temp = prev.bidAddr
-            temp[stepNum - 1] = biddingForm.bidAddr[stepNum - 1] + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
-            return { ...prev, bidAddr: temp }
-          })
           setLoading(false)
           return
         }
@@ -430,31 +398,31 @@ export default function BidderFormMod() {
   }
 
   //  입찰자 감소
-  const handleDecreaseBidder = async () => {
-    setLoading(true)
-    try {
-      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}`)
-      if (response.status === 200) {
-        setBiddingForm({
-          ...biddingForm,
-          bidName: response.data.data?.bidders.map((item: any) => item.name),
-          bidPhone: response.data.data?.bidders.map((item: any) => item.phoneNo),
-          bidPhone1: response.data.data?.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.substring(0, 3) : item.phoneNo.substring(0, 2)),
-          bidPhone2: response.data.data?.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.substring(3, 7) : item.phoneNo.substring(2, 6)),
-          bidPhone3: response.data.data?.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.substring(7, 11) : item.phoneNo.substring(6, 10)),
-          bidAddr: response.data.data?.bidders.map((item: any) => item.address),
-          bidJob: response.data.data?.bidders.map((item: any) => item.job),
-          bidCorpNum: response.data.data?.bidders.map((item: any) => item.companyNo),
-          bidCorpRegiNum: response.data.data?.bidders.map((item: any) => item.corporationNo),
-          bidCorpYn: response.data.data?.bidders.map((item: any) => item.bidderType),
-        })
-        setLoading(false)
-      }
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
-    }
-  }
+  // const handleDecreaseBidder = async () => {
+  //   setLoading(true)
+  //   try {
+  //     const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}`)
+  //     if (response.status === 200) {
+  //       setBiddingForm({
+  //         ...biddingForm,
+  //         bidName: response.data.data?.bidders.map((item: any) => item.name),
+  //         bidPhone: response.data.data?.bidders.map((item: any) => item.phoneNo),
+  //         bidPhone1: response.data.data?.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.substring(0, 3) : item.phoneNo.substring(0, 2)),
+  //         bidPhone2: response.data.data?.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.substring(3, 7) : item.phoneNo.substring(2, 6)),
+  //         bidPhone3: response.data.data?.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.substring(7, 11) : item.phoneNo.substring(6, 10)),
+  //         bidAddr: response.data.data?.bidders.map((item: any) => item.address),
+  //         bidJob: response.data.data?.bidders.map((item: any) => item.job),
+  //         bidCorpNum: response.data.data?.bidders.map((item: any) => item.companyNo),
+  //         bidCorpRegiNum: response.data.data?.bidders.map((item: any) => item.corporationNo),
+  //         bidCorpYn: response.data.data?.bidders.map((item: any) => item.bidderType),
+  //       })
+  //       setLoading(false)
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //     setLoading(false)
+  //   }
+  // }
 
   //  다음 스텝 / 단계 이동
   const handleNextStep = async () => {
@@ -480,22 +448,22 @@ export default function BidderFormMod() {
         //  2. 입찰자 수 감소의 경우
         if (stepNum === biddingForm.bidderNum) {
           await handleUpdate()
-          await handleDecreaseBidder()
+          // await handleDecreaseBidder()
           setStateNum(7)
         } else {
           await handleUpdate()
-          await handleDecreaseBidder()
+          // await handleDecreaseBidder()
           setStepNum(stepNum + 1)
         }
       } else {
         //  3. 입찰자 수 변경 없는 경우
         if (stepNum === biddingForm.bidderNum) {
           await handleUpdate()
-          await handleDecreaseBidder()
+          // await handleDecreaseBidder()
           setStateNum(7)
         } else {
           await handleUpdate()
-          await handleDecreaseBidder()
+          // await handleDecreaseBidder()
           setStepNum(stepNum + 1)
         }
       }
@@ -533,54 +501,34 @@ export default function BidderFormMod() {
           temp[stepNum - 1] = 'I'
           return { ...prev, bidCorpYn: temp }
         })
-      } else {
-        if (biddingForm.bidCorpYn[stepNum - 1] === 'C') {
-          setBiddingForm((prev: any) => {
-            const temp1 = prev.bidCorpNum1
-            const temp2 = prev.bidCorpNum2
-            const temp3 = prev.bidCorpNum3
-            const temp4 = prev.bidCorpRegiNum1
-            const temp5 = prev.bidCorpRegiNum2
-            temp1[stepNum - 1] = biddingForm.bidCorpNum[stepNum - 1] !== null ? biddingForm.bidCorpNum[stepNum - 1]?.substring(0, 3) : ''
-            temp2[stepNum - 1] = biddingForm.bidCorpNum[stepNum - 1] !== null ? biddingForm.bidCorpNum[stepNum - 1]?.substring(3, 5) : ''
-            temp3[stepNum - 1] = biddingForm.bidCorpNum[stepNum - 1] !== null ? biddingForm.bidCorpNum[stepNum - 1]?.substring(5, 10) : ''
-            temp4[stepNum - 1] = biddingForm.bidCorpRegiNum[stepNum - 1] !== null ? biddingForm.bidCorpRegiNum[stepNum - 1]?.substring(0, 6) : ''
-            temp5[stepNum - 1] = biddingForm.bidCorpRegiNum[stepNum - 1] !== null ? biddingForm.bidCorpRegiNum[stepNum - 1]?.substring(6, 13) : ''
-            return {
-              ...prev,
-              bidCorpNum1: temp1,
-              bidCorpNum2: temp2,
-              bidCorpNum3: temp3,
-              bidCorpRegiNum1: temp4,
-              bidCorpRegiNum2: temp5,
-            }
-          })
-        }
       }
     }
     handleInitCorpYn()
   }, [stepNum])
 
-  useEffect(() =>{
-    const handleSyncBiddingForm = () => {
-      if (bidderList?.bidders.length! < biddingForm.bidIdNum.length) {
-        setBiddingForm({
-          ...biddingForm,
-          bidIdNum: biddingForm.bidIdNum.splice(bidderList?.bidders.length! - 1, biddingForm.bidIdNum.length - bidderList?.bidders.length!),
-          bidIdNum1: biddingForm.bidIdNum1.splice(bidderList?.bidders.length! - 1, biddingForm.bidIdNum1.length - bidderList?.bidders.length!),
-          bidIdNum2: biddingForm.bidIdNum2.splice(bidderList?.bidders.length! - 1, biddingForm.bidIdNum2.length - bidderList?.bidders.length!),
-          bidAddrDetail: biddingForm.bidAddrDetail.splice(bidderList?.bidders.length! - 1, biddingForm.bidAddrDetail.length - bidderList?.bidders.length!),
-          bidCorpNum1: biddingForm.bidCorpNum1.splice(bidderList?.bidders.length! - 1, biddingForm.bidCorpNum1.length - bidderList?.bidders.length!),
-          bidCorpNum2: biddingForm.bidCorpNum2.splice(bidderList?.bidders.length! - 1, biddingForm.bidCorpNum2.length - bidderList?.bidders.length!),
-          bidCorpNum3: biddingForm.bidCorpNum3.splice(bidderList?.bidders.length! - 1, biddingForm.bidCorpNum3.length - bidderList?.bidders.length!),
-          bidCorpRegiNum1: biddingForm.bidCorpRegiNum1.splice(bidderList?.bidders.length! - 1, biddingForm.bidCorpRegiNum1.length - bidderList?.bidders.length!),
-          bidCorpRegiNum2: biddingForm.bidCorpRegiNum2.splice(bidderList?.bidders.length! - 1, biddingForm.bidCorpRegiNum2.length - bidderList?.bidders.length!),
-        })
+  const handleUpdateIdNum = (index: number) => {
+    setBiddingForm((prev: any) => {
+      const newBidIdNum = [...prev.bidIdNum]
+      const newBidderType = [...prev.bidCorpYn]
+
+      if (newBidderType[index] === 'I') {
+        const isIdNum = newBidIdNum[index]?.length === 13
+        if (!isIdNum) {
+          newBidIdNum.splice(index, 1, '')
+        }
+      } else if (newBidderType[index] === 'C' && newBidIdNum[index]?.length !== '') {
+        newBidIdNum.splice(index, 1, '')
       }
-    }
-    handleSyncBiddingForm()
-  }, [])
-    console.log(biddingForm)
+      return { ...prev, bidIdNum: newBidIdNum }
+    })
+  }
+
+  useEffect(() => {
+    handleUpdateIdNum(stepNum - 1)
+  }, [biddingForm.bidIdNum[stepNum - 1]])
+
+  console.log(biddingForm)
+
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (
@@ -603,11 +551,6 @@ export default function BidderFormMod() {
               biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`} 
               onClick={() => {
                 setBiddingForm((prev: any) => {
-                  const temp = prev.bidCorpYn
-                  temp[stepNum - 1] = 'I'
-                  return { ...prev, bidCorpYn: temp }
-                })
-                setBiddingInfo((prev: any) => {
                   const temp = prev.bidCorpYn
                   temp[stepNum - 1] = 'I'
                   return { ...prev, bidCorpYn: temp }
@@ -643,11 +586,6 @@ export default function BidderFormMod() {
               onClick={() => {
                 setBiddingForm((prev: any) => {
                   const temp = prev.bidCorpYn
-                  temp[stepNum - 1] = 'C'
-                  return { ...prev, bidCorpYn: temp }
-                })
-                setBiddingInfo((prev: any) => {
-                  const temp = prev.bidderCorpYn
                   temp[stepNum - 1] = 'C'
                   return { ...prev, bidCorpYn: temp }
                 })

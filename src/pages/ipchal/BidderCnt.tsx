@@ -43,7 +43,6 @@ export default function BidderCnt() {
     setLoading(true)
     if (e.target.value === '' || Number(e.target.value) === 0 || isNaN(Number(e.target.value))) {
       setErrorMsg(true)
-      alert('입찰자는 1명 이상이어야 합니다')
       setLoading(false)
       return
     } 
@@ -67,7 +66,7 @@ export default function BidderCnt() {
       setStateNum(stateNum + 1)
     } else if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
       setStateNum(15)
-    } else if (biddingInfo.bidderNum === 0) {
+    } else if (biddingInfo.bidderNum === 0 || biddingInfo.bidderNum === undefined) {
       alert('입찰자는 1명 이상이어야 합니다')
     } else {
       setStateNum(stateNum + 1)

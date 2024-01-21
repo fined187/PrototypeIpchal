@@ -22,6 +22,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
       return totalResult?.bidDeposit?.toString()
     }
   }
+
   return (
     <div className="flex flex-col bg-white max-h-[2600px] h-[1300px] w-[100%] mx-auto relative justify-center items-center" id="wrap-capture">
       <div className="flex flex-col bg-mybg h-[100%] md:w-[50%] w-[100%] mx-auto relative justify-center items-center" id="capture">
@@ -45,7 +46,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               <div className="flex justify-between w-[100%] absolute bottom-[0px]">
                 <div>
                   <span className="pl-[3px] text-[11pt] leading-[-1px] font-batang">
-                    {totalResult && totalResult.reqCourtName + ' 집행관 귀하'}
+                    {totalResult && totalResult.reqCourtName + ' 본원 집행관 귀하'}
                   </span>
                 </div>
                 <div>
@@ -146,7 +147,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                           {biddingInfo.bidCorpYn[0] === 'I' ? (
                             biddingInfo.bidIdNum1[0] + '-' + biddingInfo.bidIdNum2[0]
                           ): (
-                            biddingInfo.bidCorpNum1[0] + '-' + biddingInfo.bidCorpNum2[0] + '-' + biddingInfo.bidCorpNum3[0]
+                            totalResult && totalResult?.bidders[0].companyNo.substring(0, 3) + '-' + totalResult?.bidders[0].companyNo.substring(3, 5) + '-' + totalResult?.bidders[0].companyNo.substring(5, 10)
                           )}
                         </span>
                       </div>
