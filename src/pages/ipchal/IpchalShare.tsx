@@ -2,12 +2,11 @@ import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import EmailForm from '@/components/EmailForm'
 import { useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 export default function IpchalShare() {
-  const stateNum = useRecoilValue(stepState)
-  const setStateNum = useSetRecoilState(stepState)
-  const biddingInfo = useRecoilValue(biddingInfoState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
+  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [openEmailForm, setOpenEmailForm] = useState<boolean>(false)
   const [fileUrl, setFileUrl] = useState<string>('')
 

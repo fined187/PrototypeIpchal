@@ -396,33 +396,6 @@ export default function BidderFormMod() {
     }
   }
 
-  //  입찰자 감소
-  // const handleDecreaseBidder = async () => {
-  //   setLoading(true)
-  //   try {
-  //     const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}`)
-  //     if (response.status === 200) {
-  //       setBiddingForm({
-  //         ...biddingForm,
-  //         bidName: response.data.data?.bidders.map((item: any) => item.name),
-  //         bidPhone: response.data.data?.bidders.map((item: any) => item.phoneNo),
-  //         bidPhone1: response.data.data?.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.substring(0, 3) : item.phoneNo.substring(0, 2)),
-  //         bidPhone2: response.data.data?.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.substring(3, 7) : item.phoneNo.substring(2, 6)),
-  //         bidPhone3: response.data.data?.bidders.map((item: any) => item.phoneNo.length === 11 ? item.phoneNo.substring(7, 11) : item.phoneNo.substring(6, 10)),
-  //         bidAddr: response.data.data?.bidders.map((item: any) => item.address),
-  //         bidJob: response.data.data?.bidders.map((item: any) => item.job),
-  //         bidCorpNum: response.data.data?.bidders.map((item: any) => item.companyNo),
-  //         bidCorpRegiNum: response.data.data?.bidders.map((item: any) => item.corporationNo),
-  //         bidCorpYn: response.data.data?.bidders.map((item: any) => item.bidderType),
-  //       })
-  //       setLoading(false)
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //     setLoading(false)
-  //   }
-  // }
-
   //  다음 스텝 / 단계 이동
   const handleNextStep = async () => {
     handleUpdateIdNum(stepNum - 1)

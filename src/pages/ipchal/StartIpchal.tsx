@@ -2,15 +2,14 @@
 import { biddingInfoState, stepState } from '@/atom'
 import axios from 'axios'
 import Image from 'next/image'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { useState } from 'react'
 import Spinner from '@/components/Spinner'
 import { useRouter } from 'next/router'
 
 export default function StartIpchal() {
-  const stateNum = useSetRecoilState(stepState)
-  const setBiddingInfo = useSetRecoilState(biddingInfoState)
-  const biddingInfo = useRecoilValue(biddingInfoState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
+  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState(false)
 
   const router = useRouter()
@@ -50,7 +49,7 @@ export default function StartIpchal() {
             sagunAddr: response.data.data.address,
             biddingInfos: response.data.data.biddingInfos,
           })
-          stateNum(1)
+          setStateNum(1)
           setLoading(false)
         }
       } catch (error) {

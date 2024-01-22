@@ -200,7 +200,6 @@ export default function ModalAddr({
   }
 
   const handleEnterDetail = (e: any) => {
-    console.log("dhi")
     if (window !== undefined) {
       if ((e.key === 'Enter') && (searchAddr.length > 0)) {
         handleGetAddr()
@@ -571,6 +570,7 @@ export default function ModalAddr({
                                 onClick={() => {
                                   handleGetAddr()
                                   handleCombineAddr()
+                                  onClose()
                                 }}
                               >
                                 <span className="text-sm text-white rounded-md">

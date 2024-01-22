@@ -3,13 +3,11 @@ import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 export default function GetIpchalInfo() {
-  const stateNum = useRecoilValue(stepState)
-  const setStateNum = useSetRecoilState(stepState)
-  const biddingInfo = useRecoilValue(biddingInfoState)
-  const setBiddingInfo = useSetRecoilState(biddingInfoState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
+  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
   const router = useRouter()
 

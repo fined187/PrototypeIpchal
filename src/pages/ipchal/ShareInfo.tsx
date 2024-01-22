@@ -6,7 +6,6 @@ import { useRecoilState } from 'recoil'
 export default function ShareInfo() {
   const[biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [stateNum, setStateNum] = useRecoilState(stepState)
-  const [shareWay, setShareWay] = useState<string>('')
   const [isDataIn, setIsDataIn] = useState<any>([])
   const [goNext, setGoNext] = useState<boolean>(false)
 
@@ -110,7 +109,6 @@ export default function ShareInfo() {
     try {
       const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders`)
       if (response.status === 200) {
-        setIsDataIn(response.data.data.bidders)
         setBiddingInfo({
           ...biddingInfo,
           bidName: response.data.data.bidders.map((item: any) => item.name),
@@ -138,19 +136,6 @@ export default function ShareInfo() {
   }
 
   useEffect(() => {
-    handleGetBiddingFormUpdate()
-    const handleInitShare = () => {
-      setBiddingInfo({
-        ...biddingInfo,
-        shareWay: '',
-        numerator: Array(biddingInfo.bidderNum).fill(''),
-        denominator: Array(biddingInfo.bidderNum).fill(''),
-      })
-    }
-    handleInitShare()
-  }, [])
-
-  useEffect(() => {
     handleShareList()
   }, [biddingInfo.shareWay])
 
@@ -159,6 +144,7 @@ export default function ShareInfo() {
       try {
         const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`)
         if (response.status === 200) {
+          setIsDataIn(response.data.data.bidders)
           setBiddingInfo({
             ...biddingInfo,
             bidName: response.data.data?.bidders?.map((item: any) => item.name),

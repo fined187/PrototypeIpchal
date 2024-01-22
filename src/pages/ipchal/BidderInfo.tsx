@@ -2,7 +2,7 @@ import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { useState } from 'react'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 export default function BidderInfo() {
   const [stateNum, setStateNum] = useRecoilState(stepState)

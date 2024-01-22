@@ -4,9 +4,9 @@ import Spinner from '@/components/Spinner'
 import { BidderList, BiddingInfoType } from '@/interface/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 export default function BidderForm() {
   if (typeof window === 'undefined') return null
@@ -314,8 +314,6 @@ export default function BidderForm() {
       }
     }
   }
-
-  console.log(biddingForm)
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">

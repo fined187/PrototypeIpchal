@@ -1,10 +1,9 @@
 import { stepState } from '@/atom'
 import Button from '@/components/Button'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 export default function IpchalInfo() {
-  const stateNum = useRecoilValue(stepState)
-  const setStateNum = useSetRecoilState(stepState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">

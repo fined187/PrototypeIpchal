@@ -147,7 +147,7 @@ export default function AgentForm() {
       }
     }
   }
-  console.log(biddingForm)
+
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">

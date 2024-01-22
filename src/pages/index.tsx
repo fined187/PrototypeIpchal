@@ -23,7 +23,6 @@ import AgentForm from './ipchal/AgentForm'
 import Spinner from '@/components/Spinner'
 
 export default function Home() {
-  const set = new Set<any>()
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
   const setLoginState = useSetRecoilState(loginState)

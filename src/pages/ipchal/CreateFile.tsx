@@ -13,8 +13,7 @@ import CoIpchalFormContent from '@/components/PDFContent/CoIpchalFormContent'
 import CoIpchalListContent from '@/components/PDFContent/CoIpchalListContent'
 
 export default function CreateFile() {
-  const stateNum = useRecoilValue(stepState)
-  const setStateNum = useSetRecoilState(stepState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [passwordActive, setPasswordActive] = useState<boolean>(false)
   const [fileName, setFileName] = useState<string>('')
@@ -1106,9 +1105,6 @@ export default function CreateFile() {
         <>
           <div className={`hidden flex-col bg-white max-h-[2600px] ${totalResult && totalResult.agentYn === 'Y' ? 'h-[2600px]' : 'h-[1300px]'} w-[50%] mx-auto relative justify-center items-center`} id="wrap-capture">
             <div className="hidden flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
-              <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-white">
-                입찰표
-              </div>
               <div className="w-[100%] overflow-x-scroll absolute top-[130px] h-[600px] bg-white scrollbar-hide">
                 <div className="border border-black text-[1.5rem] w-[80%] h-[100%] m-auto bg-white">
                   {/* 첫 번째 박스 */}

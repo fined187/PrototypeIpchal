@@ -1,5 +1,4 @@
 import { biddingInfoState, stepState } from '@/atom'
-import Button from '@/components/Button'
 import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { useState } from 'react'

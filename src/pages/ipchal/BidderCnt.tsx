@@ -2,16 +2,12 @@ import { bidderInfo, biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { ChangeEvent, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 export default function BidderCnt() {
-  const stateNum = useRecoilValue(stepState)
-  const setStateNum = useSetRecoilState(stepState)
-  const biddingInfo = useRecoilValue(biddingInfoState)
-  const setBiddingInfo = useSetRecoilState(biddingInfoState)
-  const bidder = useRecoilValue(bidderInfo)
+  const[stateNum, setStateNum] = useRecoilState(stepState)
+  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
-
   const [errorMsg, setErrorMsg] = useState<boolean>(false)
 
   const handleBiddingCnt = async (e: ChangeEvent<HTMLInputElement>) => {
