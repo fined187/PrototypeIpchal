@@ -26,12 +26,7 @@ export default function EmailForm({
 
   const biddingInfo = useRecoilValue(biddingInfoState)
 
-  const {    
-    register,
-    handleSubmit,
-    setFocus,
-    reset,
-    setError,
+  const {
     formState: { errors },
   } = useForm()
 

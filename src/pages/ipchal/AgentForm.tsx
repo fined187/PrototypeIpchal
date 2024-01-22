@@ -64,7 +64,7 @@ export default function AgentForm() {
           name: biddingForm.agentName,
           relationship: biddingForm.agentRel,
           phoneNo: biddingForm.agentPhone,
-          address: biddingForm.agentAddr + biddingForm.agentAddrDetail ?? '',
+          address: biddingForm.agentAddr,
           job: biddingForm.agentJob,
         },
         {
@@ -348,7 +348,7 @@ export default function AgentForm() {
             <div className="flex flex-col w-[100%] gap-1">
               <label
                 htmlFor="agentIdNum"
-                className="text-[10px] font-NanumGothic not-italic font-extrabold text-left"
+                className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
               >
                 주민등록번호
               </label>

@@ -6,7 +6,7 @@ export default function AgentListFormContent({ totalResult }: { totalResult: Tot
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
   
   return (
-    <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center absolute top-[3900px] overflow-x-scroll scrollbar-hide`}>
+    <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center absolute ${totalResult && totalResult.bidders.length === 1 ? 'top-[1300px]' : 'top-[3900px]'} overflow-x-scroll scrollbar-hide`}>
       <div className={`flex flex-col bg-white ${totalResult && totalResult.bidders.length === 3 ? 'h-[100%]' : totalResult && totalResult.bidders.length === 1 ? 'h-[97%]' : 'h-[94%]'} w-[100%] mx-auto ${totalResult && totalResult.bidders.length === 3 ? 'absolute top-[5px]' : 'absolute top-0'} justify-center items-center`}>
         <div className="flex md:w-[80%] w-[100%] absolute top-[5px]">
           <span className="text-[12pt] font-batang">

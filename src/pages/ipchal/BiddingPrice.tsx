@@ -224,8 +224,8 @@ export default function BiddingPrice() {
             bidCorpRegiNum: response.data.data?.bidders?.map((item: any) => item.corporationNo),
             bidCorpRegiNum1: response.data.data?.bidders?.map((item: any) => item.corporationNo?.slice(0, 6) ?? null),
             bidCorpRegiNum2: response.data.data?.bidders?.map((item: any) => item.corporationNo?.slice(6, 13) ?? null),
-            denominator: response.data.data?.bidders?.length < biddingForm.denominator.length ? biddingForm.denominator?.splice(response.data.data?.bidders?.length - 1, biddingForm.denominator.length - response.data.data?.bidders?.length) : biddingForm.denominator,
-            numerator: response.data.data?.bidders?.length < biddingForm.numerator.length ? biddingForm.numerator?.splice(response.data.data?.bidders?.length - 1, biddingForm.numerator.length - response.data.data?.bidders?.length) : biddingForm.numerator,
+            denominator: response.data.data?.bidders?.length < biddingForm.denominator.length ? biddingForm.denominator?.splice(response.data.data?.bidders?.length) : biddingForm.denominator,
+            numerator: response.data.data?.bidders?.length < biddingForm.numerator.length ? biddingForm.numerator?.splice(response.data.data?.bidders?.length) : biddingForm.numerator,
             bidIdNum1: biddingForm.bidIdNum.map((item) => item !== '' ? item?.substring(0, 6) : ''),
             bidIdNum2: biddingForm.bidIdNum.map((item) => item !== '' ? item?.substring(6, 13) : ''),
           })

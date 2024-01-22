@@ -1,15 +1,16 @@
 import { biddingInfoState, stepState } from "@/atom";
 import PdfContent from "@/components/PdfContent";
+import { useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { TfiDownload } from "react-icons/tfi";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 export default function DownIpchal() {
   const biddingInfo = useRecoilValue(biddingInfoState)
-  const stateNum = useRecoilValue(stepState)
-  const setStateNum = useSetRecoilState(stepState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
   const [openPdf, setOpenPdf] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleDownload = async () => {
     setLoading(true)
@@ -45,7 +46,7 @@ export default function DownIpchal() {
           </span>
         </div>
         <div className="flex flex-col gap-[30px] md:w-[520px] bg-mybg items-center text-center absolute top-[300px] cursor-pointer">
-          <div className="flex bg-mygold w-[200px] h-[40px] rounded-md justify-center items-center" onClick={() => setOpenPdf(true)}>
+          <div className="flex bg-mygold w-[200px] h-[40px] rounded-md justify-center items-center" onClick={() =>onOpen()}>
             <span className="text-center text-white font-NanumGothic text-[18px] font-bold leading-[15px]">
               입찰표 확인하기
             </span>
@@ -82,9 +83,9 @@ export default function DownIpchal() {
           </button>
         </div>
       </div>
-      {openPdf && (
+      {isOpen && (
         <div className="flex w-full h-screen">
-          <PdfContent openPdf={openPdf} setOpenPdf={setOpenPdf} />
+          <PdfContent isOpen={isOpen} onClose={onClose} />
         </div>
       )}
     </>

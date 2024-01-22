@@ -32,7 +32,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
           <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-mybg">
             {/* 첫 번째 박스 */}
             <div className="flex flex-col border-black border-b-[1px] h-[15%] w-[100%] justify-center items-center relative">
-              <div className="absolute top-[0px] left-[0px] w-[100%] pl-[5px]">
+              <div className="flex absolute top-[0px] left-[0px] w-[100%] pl-[5px]">
                 <span className="text-left text-[11pt] leading-[-1px]">
                   (앞면)
                 </span>
@@ -166,7 +166,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                           {totalResult && totalResult?.bidders?.length > 1 || totalResult?.bidders[0]?.corporationNo === null
                             ? ''
                             : totalResult &&
-                              totalResult?.bidders[0]?.corporationNo}
+                              totalResult?.bidders[0]?.corporationNo?.substring(0, 6) + '-' + totalResult?.bidders[0]?.corporationNo?.substring(6, 13)}
                         </span>
                       </div>
                     </div>

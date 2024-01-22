@@ -177,8 +177,8 @@ export default function ShareInfo() {
             bidCorpRegiNum: response.data.data?.bidders?.map((item: any) => item.corporationNo),
             bidCorpRegiNum1: response.data.data?.bidders?.map((item: any) => item.corporationNo?.slice(0, 6) ?? null),
             bidCorpRegiNum2: response.data.data?.bidders?.map((item: any) => item.corporationNo?.slice(6, 13) ?? null),
-            denominator: response.data.data?.bidders?.length < biddingInfo.denominator.length ? biddingInfo.denominator?.splice(response.data.data?.bidders?.length - 1, biddingInfo.denominator.length - response.data.data?.bidders?.length) : biddingInfo.denominator,
-            numerator: response.data.data?.bidders?.length < biddingInfo.numerator.length ? biddingInfo.numerator?.splice(response.data.data?.bidders?.length - 1, biddingInfo.numerator.length - response.data.data?.bidders?.length) : biddingInfo.numerator,
+            denominator: biddingInfo.shareWay === 'S' ? Array(biddingInfo.bidderNum).fill(biddingInfo.bidderNum.toString()) : response.data.data?.bidders?.map((item: any) => item.share?.split('/')[1]),
+            numerator: biddingInfo.shareWay === 'S' ? Array(biddingInfo.bidderNum).fill('1') : response.data.data?.bidders?.map((item: any) => item.share?.split('/')[0]),
           })
         }
       } catch (error) {
@@ -187,6 +187,8 @@ export default function ShareInfo() {
     }
     handleSyncBiddingForm()
   }, [])
+
+  console.log(biddingInfo)
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -355,7 +357,7 @@ export default function ShareInfo() {
             </span>
           )}
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[600px] w-[400px] gap-[10px] absolute top-[70%]">
+        <div className="flex flex-row justify-center items-center md:w-[600px] w-[400px] gap-[10px] absolute top-[600px]">
           <button
             type="button"
             className="flex w-[30%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

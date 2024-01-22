@@ -39,6 +39,23 @@ export default function BidderCnt() {
     }
   }
 
+  const handleBiddingCntNextBtn = async () => {
+    try {
+      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`, {
+        bidderCount: biddingInfo.bidderNum,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      if (response.status === 200) {
+        console.log(response.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleErrorOk = (e: ChangeEvent<HTMLInputElement>) => {
     setLoading(true)
     if (e.target.value === '' || Number(e.target.value) === 0 || isNaN(Number(e.target.value))) {
@@ -61,11 +78,13 @@ export default function BidderCnt() {
     }
   }
 
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
     if (biddingInfo.bidderNum > 0 && biddingInfo.bidName.length === 0) {
       setStateNum(stateNum + 1)
+      await handleBiddingCntNextBtn()
     } else if (biddingInfo.bidName.length > 0 && biddingInfo.bidName[0] !== '') {
       setStateNum(15)
+      await handleBiddingCntNextBtn()
     } else if (biddingInfo.bidderNum === 0 || biddingInfo.bidderNum === undefined) {
       alert('입찰자는 1명 이상이어야 합니다')
     } else {

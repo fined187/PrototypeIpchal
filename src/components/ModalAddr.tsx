@@ -168,12 +168,10 @@ export default function ModalAddr({
       setValue('bidderAddr', [biddingForm?.bidAddr[stepNum - 1] ?? ''])
       setValue('bidderAddrDetail', [biddingForm?.bidAddrDetail[stepNum - 1] ?? ''])
       setDetailAddr(false)
-      onClose()
     } else if (agentInfo && agentSetValue) {
       agentSetValue('agentAddr', agentInfo?.agentAddr)
       agentSetValue('agentAddrDetail', agentInfo?.agentAddrDetail)
       setDetailAddr(false)
-      onClose()
     }
   }
 
@@ -202,10 +200,12 @@ export default function ModalAddr({
   }
 
   const handleEnterDetail = (e: any) => {
+    console.log("dhi")
     if (window !== undefined) {
       if ((e.key === 'Enter') && (searchAddr.length > 0)) {
         handleGetAddr()
         handleCombineAddr()
+        onClose()
       }
     } 
   }

@@ -138,12 +138,30 @@ export default function BiddingPayment() {
           </div>
         )}
       </div>
-      <Button
-        prevStepNum={stateNum - 1}
-        nextStepNum={stateNum + 1}
-        setIsWaySelected={setIsWaySelected}
-        handleBiddingPayment={handleBiddingPayment}
-      />
+      <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[600px]">
+        <button
+          type="button"
+          className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+          onClick={() => {
+            setStateNum(stateNum - 1)
+          }}
+        >
+          <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            이전
+          </span>
+        </button>
+        <button
+          type="button"
+          className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+          onClick={async () => {
+            await handleBiddingPayment(biddingForm.bidWay)
+          }}
+        >
+          <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
+          </span>
+        </button>
+      </div>
     </div>
   )
 }

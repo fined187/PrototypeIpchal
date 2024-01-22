@@ -4,7 +4,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
 export default function AgentListForm({ totalResult }: { totalResult: TotalResultType}) {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
-  console.log(biddingInfo)
   
   return (
     <div className={`flex flex-col bg-white h-[1300px] md:w-[50%] w-[100%] mx-auto justify-center items-center relativ overflow-x-scroll scrollbar-hide`}>
