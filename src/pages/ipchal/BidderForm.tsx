@@ -98,6 +98,7 @@ export default function BidderForm() {
 
   // 입찰자 정보 저장
   const handleBidderFormSave = async () => {
+    handleUpdateIdNum(stepNum - 1)
     setLoading(true)
     try {
       if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
@@ -205,6 +206,23 @@ export default function BidderForm() {
       return { ...prev, bidCorpYn: temp }
     })
   }, [])
+
+  const handleUpdateIdNum = (index: number) => {
+    setBiddingForm((prev: any) => {
+      const newBidIdNum = [...prev.bidIdNum]
+      const newBidderType = [...prev.bidCorpYn]
+
+      if (newBidderType[index] === 'I') {
+        const isIdNum = newBidIdNum[index]?.length === 13
+        if (!isIdNum) {
+          newBidIdNum.splice(index, 1, '')
+        }
+      } else if (newBidderType[index] === 'C' && newBidIdNum[index]?.length !== '') {
+        newBidIdNum.splice(index, 1, '')
+      }
+      return { ...prev, bidIdNum: newBidIdNum }
+    })
+  }
 
   //  민증 검증
   const handleVerifyIdNum = (idNum: string) => {

@@ -426,6 +426,7 @@ export default function BidderFormMod() {
 
   //  다음 스텝 / 단계 이동
   const handleNextStep = async () => {
+    handleUpdateIdNum(stepNum - 1)
     if (biddingForm.bidderNum === 1) {
       setStateNum(8)
       await handleUpdate()
@@ -511,21 +512,16 @@ export default function BidderFormMod() {
       const newBidIdNum = [...prev.bidIdNum]
       const newBidderType = [...prev.bidCorpYn]
 
-      if (newBidderType[index] === 'I') {
-        const isIdNum = newBidIdNum[index]?.length === 13
-        if (!isIdNum) {
-          newBidIdNum.splice(index, 1, '')
-        }
-      } else if (newBidderType[index] === 'C' && newBidIdNum[index]?.length !== '') {
+      if (newBidderType[index] === 'C' && newBidIdNum[index] !== '') {
         newBidIdNum.splice(index, 1, '')
+      } else if (newBidderType[index + 1] === 'C' && newBidIdNum[index + 1] !== '') {
+        newBidIdNum.splice(index + 1, 1, '')
+      } else if (newBidderType[index + 1] === undefined) {
+        newBidIdNum.splice(index + 1, 1, '')
       }
       return { ...prev, bidIdNum: newBidIdNum }
     })
   }
-
-  useEffect(() => {
-    handleUpdateIdNum(stepNum - 1)
-  }, [biddingForm.bidIdNum[stepNum - 1]])
 
   console.log(biddingForm)
 
