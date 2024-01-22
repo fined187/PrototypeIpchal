@@ -37,13 +37,11 @@ export default function EmailForm({
 
   const sendEamil = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    let base64 = biddingInfo.resultImg
     try {
       await emailjs.send(serviceId!, templateId!, {
         title: titleRef.current!.value,
         recipient: recipientRef.current!.value,
         message: messageRef.current!.value,
-        content: base64
       })
       alert('메일이 전송되었습니다')
     } catch (error) {

@@ -59,12 +59,12 @@ export default function CoIpchalResult() {
     {!loading && (
       <>
         <div className="flex flex-col bg-white max-h-[2600px] h-[1300px] w-[100%] mx-auto relative justify-center items-center">
-          <div className="flex flex-col bg-white h-[100%] md:w-[50%] w-[100%] mx-auto relative justify-center items-center">
-            <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-white">
+          <div className="flex flex-col bg-mybg h-[100%] md:w-[50%] w-[100%] mx-auto relative justify-center items-center">
+            <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
               입찰표
             </div>
-            <div className="min-w-[400px] md:max-w-[850px] overflow-x-scroll absolute top-[130px] h-[600px] bg-white scrollbar-hide">
-              <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-white">
+            <div className="min-w-[400px] md:max-w-[850px] overflow-x-scroll absolute top-[130px] h-[600px] bg-mybg scrollbar-hide">
+              <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-mybg">
                 {/* 첫 번째 박스 */}
                 <div className="flex flex-col border-black border-b-[1px] h-[15%] w-[100%] justify-center items-center relative">
                   <div className="absolute top-[0px] left-[0px] w-[100%] pl-[5px]">
@@ -80,7 +80,7 @@ export default function CoIpchalResult() {
                   <div className="flex justify-between w-[100%] absolute bottom-[0px]">
                     <div>
                       <span className="pl-[3px] text-[11pt] leading-[-1px] font-batang">
-                        {totalResult && totalResult.reqCourtName + ' 본원 집행관 귀하'}
+                        {totalResult && totalResult.reqCourtName + ' 집행관 귀하'}
                       </span>
                     </div>
                     <div>
@@ -118,12 +118,15 @@ export default function CoIpchalResult() {
                       번호
                     </span>
                   </div>
-                  <div className="flex justify-center items-center text-center md:w-[44%] w-[40%]">
+                  <div className="flex flex-col justify-center items-center text-center md:w-[44%] w-[40%]">
                     <span className={`text-[11pt] font-batang`}
                     >
                       {totalResult && totalResult?.mulNo
                         ? totalResult?.mulNo
                         : '1'}
+                    </span>
+                    <span className={`text-[9pt] font-batang`}>
+                      ※ 물건번호가 여러개 있는 경우에는 꼭 기재
                     </span>
                   </div>
                 </div>
@@ -181,7 +184,7 @@ export default function CoIpchalResult() {
                                 {biddingInfo.bidder === 'agent' && biddingInfo.agentName ? biddingInfo.agentName : ''}
                               </span>
                             </div>
-                            <div className="flex w-[40%] justify-end">
+                            <div className="flex w-[40%] justify-end mr-1">
                               <span className="text-[11pt] font-batang text-center">(인)</span>
                             </div>
                           </div>
@@ -194,7 +197,7 @@ export default function CoIpchalResult() {
                           </div>
                           <div className="flex justify-center items-center text-center w-[30%]">
                             <span className="text-[11pt] font-batang text-center">
-                              {biddingInfo.bidder === 'agent' && biddingInfo.agentRel ? biddingInfo.agentRel : '-'}
+                              {biddingInfo.bidder === 'agent' && biddingInfo.agentRel ? biddingInfo.agentRel : ''}
                             </span>
                           </div>
                         </div>
@@ -208,7 +211,7 @@ export default function CoIpchalResult() {
                             <span className="text-[11pt] font-batang text-center">
                               {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) +
                                 '-' +
-                                biddingInfo.agentIdNum.substring(6, 14) : '-'}
+                                biddingInfo.agentIdNum.substring(6, 14) : ''}
                             </span>
                           </div>
                           <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
@@ -222,7 +225,7 @@ export default function CoIpchalResult() {
                                 totalResult && totalResult?.agent !== null ? 
                                 totalResult?.agent?.phoneNo.length === 10 ?
                                 totalResult?.agent?.phoneNo.substring(0, 2) + '-' + totalResult?.agent?.phoneNo.substring(2, 6) + '-' + totalResult?.agent?.phoneNo.substring(6, 10) 
-                                  : totalResult?.agent?.phoneNo.substring(0, 3) + '-' + totalResult?.agent?.phoneNo.substring(3, 7) + '-' + totalResult?.agent?.phoneNo.substring(7, 11) : '-'
+                                  : totalResult?.agent?.phoneNo.substring(0, 3) + '-' + totalResult?.agent?.phoneNo.substring(3, 7) + '-' + totalResult?.agent?.phoneNo.substring(7, 11) : ''
                               }
                             </span>
                           </div>
@@ -235,7 +238,7 @@ export default function CoIpchalResult() {
                             <span className="text-[11pt] font-batang text-center">
                               {
                                 totalResult && totalResult?.agent !== null ? 
-                                totalResult?.agent?.address : '-'
+                                totalResult?.agent?.address : ''
                               }
                             </span>
                           </div>
@@ -802,29 +805,49 @@ export default function CoIpchalResult() {
               </div>
             </div>
           </div>
-          <IpchalText />
-          {/* 버튼 */}
-          <div className="flex flex-row gap-[20px] md:w-[520px] min-w-[400px] absolute bottom-[50px]">
-            <button
-              type="button"
-              className="flex md:w-[200px] w-[150px] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-              onClick={() => setStateNum(stateNum - 1)}
-            >
-              <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-                이전
+          <div className="flex flex-col md:w-[50%] w-[100%] leading-[-1px] justify-center items-center absolute top-[750px]">
+            <div className="flex flex-col md:w-[85%] w-[100%] text-left items-start justify-start">
+              <span className="text-[15pt] font-extrabold font-batang ">
+                주의사항
               </span>
-            </button>
-            <button
-              type="button"
-              className="flex md:w-[280px] w-[230px] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-              onClick={() => {
-                setStateNum(stateNum + 1)
-              }}
-            >
-              <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-                확인했습니다
+              <span className="text-[11pt] text-left font-batang">
+                1. 입찰표는 물건마다 별도의 용지를 사용하십시오, 다만, 일괄입찰시에는 1매의 용지를 사용하십시오.
               </span>
-            </button>
+              <span className="text-[11pt] text-left font-batang">
+                2. 한 사건에서 입찳물건이 여러개 있고 그 물건들이 개별적으로 입찰에 부쳐진 경우에는 사건번호외에 물건번호를 기재하십시오.
+              </span>
+              <span className="text-[11pt] text-left font-batang">
+                3. 입찰자가 법인인 경우에는 본인의 성명란에 법인의 명칭과 대표자의 지위 및 성명을, 주민등록란에는 입찰자가 개인인 경우에는 주민등록번호를, 법인인 경우에는 사업자등록번호를 기재하고, 대표자의 자격을 증명하는 서면(법인의 등기부 등, 초본)을 제출하여야 합니다.
+              </span>
+              <span className="text-[11pt] text-left font-batang">
+                4. 주소는 주민등록상의 주소를, 법인은 등기부상의 본점소재지를 기재하시고, 신분확인상 필요하오니 주민등록증을 꼭 지참하십시오.
+              </span>
+              <span className="text-[14px] font-batang font-extrabold underline">
+                5. 입찰가격은 수정할 수 없으므로, 수정을 요하는 때에는 새 용지를 사용하십시오.
+              </span>
+              <p className="text-[11pt] text-left font-batang">
+                6. 대리인이 입찰하는 때에는 입찰자란에 본인과 대리인의 인적사항 및 본인과의 관계 등을 모두 기재하는 외에 본인의 {" "}
+                  <span className=" underline underline-offset-1">
+                    위임장(입찰표 뒷면을 사용)
+                  </span>
+                과 인감증명을 제출하십시오.
+              </p>
+              <span className="text-[11pt] text-left font-batang">
+                7. 위임장, 인감증명 및 자격증명서는 이 입찰표에 첨부하십시오.
+              </span>
+              <span className="text-[11pt] text-left font-batang">
+                8. 일단 제출된 입찰표는 취소, 변경이나 교환이 불가능합니다.
+              </span>
+              <span className="text-[11pt] text-left font-batang">
+                9. 공동으로 입찰하는 경우에는 공동입찰신고서를 입찰표와 함께 제출하되, 입찰표의 본인란에는 "별첨 공동입찰자목록 기재와 같음" 이라고 기재한 다음, 입찰표와 공동입찰신고서 사이에는 공동입찰자 전원이 간인 하십시오.
+              </span>
+              <span className="text-[11pt] text-left font-batang">
+                10. 입찰자 본인 또는 대리인 누구나 보증을 반환 받을 수 있습니다.
+              </span>
+              <span className="text-[11pt] text-left font-batang">
+                11.	보증의 제공방법(현금·자기앞수표 또는 보증서)중 하나를 선택하여 표를 기재하십시오.
+              </span>
+            </div>
           </div>
         </div>
         <CoIpchalForm totalResult={totalResult} />

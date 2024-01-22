@@ -178,7 +178,7 @@ export default function ModalAddr({
   }
 
   const handleCombineAddr = () => {
-    if (stepNum) {
+    if (stepNum && setBiddingForm && setBiddingInfo) {
       const updatedAddr = biddingForm?.bidAddr[stepNum - 1] + ' ' + biddingForm?.bidAddrDetail[stepNum - 1]
       setBiddingForm((prev: any) => {
         const temp = prev.bidAddr
@@ -205,6 +205,7 @@ export default function ModalAddr({
     if (window !== undefined) {
       if ((e.key === 'Enter') && (searchAddr.length > 0)) {
         handleGetAddr()
+        handleCombineAddr()
       }
     } 
   }

@@ -11,20 +11,24 @@ export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
 
   return (
     <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
-      <div className="flex md:w-[50%] w-[100%] h-[100%] min-w-[400px] justify-center bg-white absolute top-0">
-        <p className="text-[22px] font-bold py-[30px]">
+      <div className="flex md:w-[50%] w-[100%] h-[100%] min-w-[400px] justify-center bg-mybg absolute top-0">
+        <span className="text-[18pt] font-batang py-[30px]">
           공 동 입 찰 자 목 록
-        </p>
+        </span>
       </div>
       <div className="flex md:w-[40%] min-w-[400px] h-[1100px] border border-black absolute top-[150px]">
-        <div className="flex flex-col w-[50px] md:w-[100px] h-[100%] border-black border-r-[1px]">
-          <div className="flex justify-center items-center border-black border-b-[1px] w-[50px] md:w-[100px] h-[50px]">
-            번호
+        <div className="flex flex-col w-[10%] h-[100%] border-black border-r-[1px]">
+          <div className="flex justify-center items-center border-black border-b-[1px] w-[100%] h-[50px]">
+            <span className="text-[12pt] font-batang">
+              번호
+            </span>
           </div>
           {Array(10).fill(10).map((_, idx) => {
             return (
-            <div className="flex justify-center items-center border-black border-b-[1px] w-[50px] md:w-[100px] h-[105px]" key={idx}>
-              {idx + 1}
+            <div className={`flex justify-center items-center border-black ${idx === 9 ? '' : 'border-b-[1px]'} w-[100%] h-[105px]`} key={idx}>
+              <span className="text-[12pt] font-batang">
+                {idx + 1}
+              </span>
             </div>
             )
           })}
@@ -32,56 +36,75 @@ export default function CoIpchalList({ totalResult }: CoIpchalListProps) {
         <div className="flex flex-col w-[100%]">
           <div className="flex flex-row w-[100%] h-[50px] border-black border-b-[1px] justify-start items-center">
             <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px] h-[100%]">
-              <p className="text-[15px] font-NanumGothic font-normal">
+              <span className="text-[12pt] font-batang">
                 성명
-              </p>
+              </span>
             </div>
-            <div className="flex flex-col w-[80%] justify-center items-center">
+            <div className="flex flex-col w-[60%] border-black border-r-[1px] justify-center items-center">
               <div className="border-black border-b-[1px] w-[100%] justify-center items-center text-center">
-                <p className="text-[15px] font-NanumGothic font-normal">
+                <span className="text-[12pt] font-batang">
                   주소
-                </p>
+                </span>
               </div>
               <div className="flex flex-row w-[100%] justify-center items-center text-center h-[100%]">
                 <div className="flex w-[100%] border-black border-r-[1px] justify-center items-center text-center h-[100%]">
-                  <p className="text-[15px] font-NanumGothic font-normal">
+                  <span className="text-[12pt] font-batang">
                     주민등록번호
-                  </p>
+                  </span>
                 </div>
                 <div className="flex w-[100%] justify-center items-center text-center">
-                  <p className="text-[15px] font-NanumGothic font-normal">
+                  <span className="text-[12pt] font-batang">
                     전화번호
-                  </p>
+                  </span>
                 </div>
               </div>
+            </div>
+            <div className="flex w-[20%] justify-center items-center">
+              <span className="text-[12pt] font-batang">
+                지분
+              </span>
             </div>
           </div>
           {Array(10).fill('').map((_, idx) => {
             return (
-            <div className="flex flex-row w-[100%] h-[105px] border-black border-b-[1px] justify-start items-center text-center" key={idx}>
+            <div className={`flex flex-row w-[100%] h-[105px] border-black ${idx === 9 ? '' : 'border-b-[1px]'} justify-start items-center text-center`} key={idx}>
               <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px] h-[100%]">
-                <p className="text-[15px] font-NanumGothic font-normal">
-                  {totalResult && totalResult.bidders[idx]?.name ? totalResult && totalResult.bidders[idx]?.name + ' (인)' : ''}
-                </p>
+                <div className="flex justify-between items-center text-center w-[100%]">
+                  <div className="flex w-[60%] justify-end">
+                    <span className="text-[12pt] font-batang">
+                      {totalResult && totalResult.bidders[idx]?.name ? totalResult && totalResult.bidders[idx]?.name : ''}
+                    </span>
+                  </div>
+                  <div className="flex w-[40%] mr-1 justify-end">
+                    <span>
+                      {' (인)'}
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div className="flex flex-col w-[80%] h-[100%]">
+              <div className="flex flex-col w-[60%] h-[100%] border-black border-r-[1px]">
                 <div className="flex border-black border-b-[1px] w-[100%] h-[50%] justify-center items-center text-center">
-                  <p className="text-[15px] font-NanumGothic font-normal">
+                  <span className="text-[12pt] font-batang">
                     {totalResult && totalResult.bidders[idx]?.address ? totalResult && totalResult.bidders[idx]?.address : ''}
-                  </p>
+                  </span>
                 </div>
                 <div className="flex flex-row w-[100%] h-[50%]">
                   <div className="flex w-[100%] h-[100%] border-black border-r-[1px] justify-center items-center text-center">
-                    <p className="text-[15px] font-NanumGothic font-normal">
-                    {biddingInfo && biddingInfo.bidIdNum1[idx] ? biddingInfo && biddingInfo.bidIdNum1[idx] : ''} - {biddingInfo && biddingInfo.bidIdNum2[idx] ? biddingInfo && biddingInfo.bidIdNum2[idx] : ''}
-                    </p>
+                    <span className="text-[12pt] font-batang">
+                    {biddingInfo.bidCorpYn[idx] === 'I' ? biddingInfo.bidIdNum[idx].substring(0, 6) + '-' + biddingInfo.bidIdNum[idx].substring(6, 13) : biddingInfo.bidCorpYn[idx] === 'C' ? '-' : ''}
+                    </span>
                   </div>
                   <div className="flex w-[100%] h-[100%] justify-center items-center text-center">
-                    <p className="text-[15px] font-NanumGothic font-normal">
+                    <span className="text-[12pt] font-batang">
                     {biddingInfo && biddingInfo.bidPhone[idx] ? biddingInfo && biddingInfo.bidPhone[idx].length === 10 ? biddingInfo.bidPhone[idx].substring(0, 2) + '-' + biddingInfo.bidPhone[idx].substring(2, 6) + '-' + biddingInfo.bidPhone[idx].substring(6, 10) : biddingInfo.bidPhone[idx].length === 11 ? biddingInfo.bidPhone[idx].substring(0, 3) + '-' + biddingInfo.bidPhone[idx].substring(3, 7) + '-' + biddingInfo.bidPhone[idx].substring(7, 11) : '' : ''}
-                    </p>
+                    </span>
                   </div>
                 </div>
+              </div>
+              <div className="flex w-[20%] justify-center items-center">
+                <span className="text-[12pt] font-batang text-red-500 font-bold">
+                  {totalResult && totalResult.bidders[idx]?.share ? totalResult && totalResult.bidders[idx]?.share : ''}
+                </span>
               </div>
             </div>
             )

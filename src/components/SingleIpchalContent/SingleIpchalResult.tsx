@@ -1,10 +1,9 @@
-import { biddingInfoState, stepState } from "@/atom";
+import { biddingInfoState } from "@/atom";
 import { TotalResultType } from "@/interface/IpchalType";
 import { useRecoilState } from "recoil";
 import IpchalText from "../CoIpchalContent/IpchalText";
 
 export default function SingleIpchalResult({ totalResult }: { totalResult: TotalResultType}) {
-  const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
 
   const handlePrice = (len: number) => {
@@ -46,7 +45,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               <div className="flex justify-between w-[100%] absolute bottom-[0px]">
                 <div>
                   <span className="pl-[3px] text-[11pt] leading-[-1px] font-batang">
-                    {totalResult && totalResult.reqCourtName + ' 본원 집행관 귀하'}
+                    {totalResult && totalResult.reqCourtName + ' 집행관 귀하'}
                   </span>
                 </div>
                 <div>
@@ -84,11 +83,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   번호
                 </span>
               </div>
-              <div className="flex justify-center items-center text-center md:w-[44%] w-[40%]">
-                <span className={`text-[11pt] font-batang`}>
+              <div className="flex flex-col justify-center items-center text-center md:w-[44%] w-[40%]">
+                <span className={`text-[11pt] font-batang`}
+                >
                   {totalResult && totalResult?.mulNo
                     ? totalResult?.mulNo
                     : '1'}
+                </span>
+                <span className={`text-[9pt] font-batang`}>
+                  ※ 물건번호가 여러개 있는 경우에는 꼭 기재
                 </span>
               </div>
             </div>
@@ -117,7 +120,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                               : totalResult && totalResult?.bidders[0]?.name}
                           </span>
                         </div>
-                        <div className="flex w-[40%] justify-end">
+                        <div className="flex w-[40%] justify-end mr-1">
                           <span className="text-[11pt] font-batang text-right">
                             (인)
                           </span>
@@ -161,7 +164,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                       <div className="flex justify-center items-center w-[30%] text-center leading-[-1px]">
                         <span className="text-[11pt] font-batang text-center">
                           {totalResult && totalResult?.bidders?.length > 1 || totalResult?.bidders[0]?.corporationNo === null
-                            ? '-'
+                            ? ''
                             : totalResult &&
                               totalResult?.bidders[0]?.corporationNo}
                         </span>
@@ -197,7 +200,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                             {biddingInfo.bidder === 'agent' && biddingInfo.agentName ? biddingInfo.agentName : ''}
                           </span>
                         </div>
-                        <div className="flex w-[40%] justify-end">
+                        <div className="flex w-[40%] justify-end mr-1">
                           <span className="text-[11pt] font-batang text-center">(인)</span>
                         </div>
                       </div>
@@ -210,7 +213,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                       </div>
                       <div className="flex justify-center items-center text-center w-[30%]">
                         <span className="text-[11pt] font-batang text-center">
-                          {biddingInfo.bidder === 'agent' && biddingInfo.agentRel ? biddingInfo.agentRel : '-'}
+                          {biddingInfo.bidder === 'agent' && biddingInfo.agentRel ? biddingInfo.agentRel : ''}
                         </span>
                       </div>
                     </div>
@@ -224,7 +227,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                         <span className="text-[11pt] font-batang text-center">
                           {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) +
                             '-' +
-                            biddingInfo.agentIdNum.substring(6, 14) : '-'}
+                            biddingInfo.agentIdNum.substring(6, 14) : ''}
                         </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
@@ -238,7 +241,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                             totalResult && totalResult?.agent !== null ? 
                             totalResult?.agent?.phoneNo.length === 10 ?
                             totalResult?.agent?.phoneNo.substring(0, 2) + '-' + totalResult?.agent?.phoneNo.substring(2, 6) + '-' + totalResult?.agent?.phoneNo.substring(6, 10) 
-                              : totalResult?.agent?.phoneNo.substring(0, 3) + '-' + totalResult?.agent?.phoneNo.substring(3, 7) + '-' + totalResult?.agent?.phoneNo.substring(7, 11) : '-'
+                              : totalResult?.agent?.phoneNo.substring(0, 3) + '-' + totalResult?.agent?.phoneNo.substring(3, 7) + '-' + totalResult?.agent?.phoneNo.substring(7, 11) : ''
                           }
                         </span>
                       </div>
@@ -251,7 +254,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                         <span className="text-[11pt] font-batang text-center">
                           {
                             totalResult && totalResult?.agent !== null ? 
-                            totalResult?.agent?.address : '-'
+                            totalResult?.agent?.address : ''
                           }
                         </span>
                       </div>
@@ -817,30 +820,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
             </div>
           </div>
         </div>
-      </div>
-      <IpchalText />
-      {/* 버튼 */}
-      <div className="flex flex-row gap-[20px] md:w-[520px] min-w-[400px] absolute bottom-[50px]">
-        <button
-          type="button"
-          className="flex md:w-[200px] w-[150px] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-          onClick={() => setStateNum(stateNum - 1)}
-        >
-          <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-            이전
-          </span>
-        </button>
-        <button
-          type="button"
-          className="flex md:w-[280px] w-[230px] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-          onClick={() => {
-            setStateNum(stateNum + 1)
-          }}
-        >
-          <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-            확인했습니다
-          </span>
-        </button>
+        <IpchalText />
       </div>
     </div>
   )

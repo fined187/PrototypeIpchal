@@ -1,4 +1,4 @@
-import { biddingInfoState } from '@/atom'
+import { biddingInfoState, stepState } from '@/atom'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
@@ -10,6 +10,7 @@ import SingleIpchalResult from '@/components/SingleIpchalContent/SingleIpchalRes
 
 export default function IpchalResult() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
 
   const [totalResult, setTotalResult] = useState<TotalResultType>()
   const [loading, setLoading] = useState<boolean>(false)
@@ -55,6 +56,31 @@ export default function IpchalResult() {
       {!loading && (totalResult && totalResult.agentYn === 'Y') && (
         <AgentListForm totalResult={totalResult} />
       )}
+      {/* 버튼 */}
+      <div className="flex justify-center items-center w-[100%] h-[100%] bg-white">
+        <div className='flex flex-row justify-center items-center w-[50%] bg-mybg gap-[20px]'>
+          <button
+            type="button"
+            className="flex md:w-[200px] w-[150px] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+            onClick={() => setStateNum(stateNum - 1)}
+          >
+            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+              이전
+            </span>
+          </button>
+          <button
+            type="button"
+            className="flex md:w-[280px] w-[230px] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            onClick={() => {
+              setStateNum(stateNum + 1)
+            }}
+          >
+            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+              확인했습니다
+            </span>
+          </button>
+        </div>
+      </div>
     </>
   )
 }

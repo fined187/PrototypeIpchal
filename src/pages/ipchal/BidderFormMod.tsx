@@ -321,7 +321,6 @@ export default function BidderFormMod() {
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
         if (response.status === 200) {
-          console.log(response)
           return
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
