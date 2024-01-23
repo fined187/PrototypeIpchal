@@ -64,27 +64,30 @@ export default function SearchAddress({
       <div className="flex flex-col w-[100%] h-[60px] gap-1">
         <div className="flex w-[100%]">
           <div className='flex justify-between w-[100%]'>
-            <div className='flex justify-start w-[30%]'>
-              <label
-                htmlFor="addr"
-                className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
-              >
-                주소
-              </label>
-            </div>
-            {errors?.bidderAddr?.type === 'required' && stepNum && (biddingForm.bidAddr[stepNum - 1] === '') && (
-              <div className="flex w-[70%] justify-end">
+            {errors?.bidderAddr?.type === 'required' && stepNum && (biddingForm.bidAddr[stepNum - 1] === '') ? (
+              <div className="flex w-[100%] justify-start">
                 <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
                   주소를 입력해주세요
                 </span>
               </div>
-            )}
-            {agentErrors?.agentAddr?.type === 'required' && (biddingForm.agentAddr === '') && (
-              <div className="flex w-[70%] justify-end">
-                <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
-                  주소를 입력해주세요
-                </span>
-              </div>
+            ) : (
+                agentErrors?.agentAddr?.type === 'required' && (biddingForm.agentAddr === '') ? (
+                  <div className="flex w-[70%] justify-start">
+                    <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
+                      주소를 입력해주세요
+                    </span>
+                  </div>
+                ) :
+                (
+                  <div className='flex justify-start w-[100%]'>
+                    <label
+                      htmlFor="addr"
+                      className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
+                    >
+                      주소
+                    </label>
+                  </div>
+                )
             )}
           </div>
         </div>

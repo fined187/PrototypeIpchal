@@ -184,24 +184,25 @@ export default function AgentForm() {
               <div className="flex flex-row w-[100%] gap-[5%]">
                 <div className="flex flex-col w-[47.5%] gap-1">
                   <div className='flex justify-between w-[100%]'>
-                    <div className='flex w-[20%] justify-start'>
-                      <label
-                        htmlFor="agentName"
-                        className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
-                      >
-                        성명
-                      </label>
-                    </div>
                     {(errors.agentName?.type === 'required' ||
                       errors.agentName?.type === 'minLength') && 
-                      (biddingForm.agentName === '') &&
+                      (biddingForm.agentName === '') ?
                       (
-                        <div className="flex w-[80%] justify-end">
+                        <div className="flex w-[100%] justify-start">
                           <label
                             htmlFor="agentName"
                             className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                           >
                             {errors.agentName?.message}
+                          </label>
+                        </div>
+                      ) : (
+                        <div className='flex w-[100%] justify-start'>
+                          <label
+                            htmlFor="agentName"
+                            className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
+                          >
+                            성명
                           </label>
                         </div>
                       )}
@@ -231,23 +232,24 @@ export default function AgentForm() {
                 </div>
                 <div className="flex flex-col w-[47.5%] gap-1">
                   <div className='flex flex-row w-[100%]'>
-                    <div className='flex w-[40%] justify-start'>
-                      <label
-                        htmlFor="agentRel"
-                        className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
-                      >
-                        입찰자와의 관계
-                      </label>
-                    </div>
                     {errors.agentRel?.type === 'required' && 
-                    (biddingForm.agentRel === '') &&
+                    (biddingForm.agentRel === '') ?
                     (
-                      <div className="flex w-[50%] justify-end">
+                      <div className="flex w-[100%] justify-start">
                         <label
                           htmlFor="agentRel"
                           className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                         >
                           {errors.agentRel?.message}
+                        </label>
+                      </div>
+                    ) : (
+                      <div className='flex w-[100%] justify-start'>
+                        <label
+                          htmlFor="agentRel"
+                          className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
+                        >
+                          입찰자와의 관계
                         </label>
                       </div>
                     )}
@@ -274,25 +276,26 @@ export default function AgentForm() {
               </div>
               <div className="flex flex-col w-[100%] gap-1">
                 <div className='flex justify-between w-[100%]'>
-                  <div className='flex w-[20%] justify-start'>
-                    <label
-                      htmlFor="agentPhone"
-                      className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
-                    >
-                      전화번호
-                    </label>
-                  </div>
                   {(errors.agentPhone1?.type === 'required' ||
                     errors.agentPhone2?.type === 'required' ||
                     errors.agentPhone3?.type === 'required') && 
-                    (biddingForm.agentPhone === '') && 
+                    (biddingForm.agentPhone === '') ? 
                     (
-                    <div className="flex w-[80%] justify-end">
+                    <div className="flex w-[100%] justify-start">
                       <label
                         htmlFor="agentPhone"
                         className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                       >
                         전화번호를 입력해주세요
+                      </label>
+                    </div>
+                  ) : (
+                    <div className='flex w-[100%] justify-start'>
+                      <label
+                        htmlFor="agentPhone"
+                        className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
+                      >
+                        전화번호
                       </label>
                     </div>
                   )}
@@ -386,23 +389,24 @@ export default function AgentForm() {
               </div>
               <div className="flex flex-col w-[100%] gap-1">
                 <div className='flex justify-between w-[100%]'>
-                  <div className='flex w-[20%] justify-start'>
-                    <label
-                      htmlFor="agentIdNum"
-                      className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
-                    >
-                      주민등록번호
-                    </label>
-                  </div>
                   {errors.agentIdNum1?.type === 'required' &&
                     errors.agentIdNum2?.type === 'required' && 
-                    (biddingForm.agentIdNum === '') &&
+                    (biddingForm.agentIdNum === '') ?
                     (
-                      <div className="flex w-[80%] justify-end h-[15px] mb-1">
+                      <div className="flex w-[100%] justify-start h-[15px] mb-1">
                         <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
                           주민등록번호를 입력해주세요
                         </span>
                       </div>
+                    ) : (
+                    <div className='flex w-[100%] justify-start'>
+                      <label
+                        htmlFor="agentIdNum"
+                        className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
+                      >
+                        주민등록번호
+                      </label>
+                    </div>
                     )}
                 </div>
                 <div className="flex flex-row gap-[5%]">
@@ -469,23 +473,24 @@ export default function AgentForm() {
               <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>
                 <div className="flex flex-col w-[100%] gap-1">
                   <div className='flex justify-between w-[100%]'>
-                    <div className='flex w-[20%] justify-start'>
-                      <label
-                        htmlFor="agentJob"
-                        className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
-                      >
-                        직업
-                      </label>
-                    </div>
                     {errors.agentJob?.type === 'required' && 
-                    (biddingForm.agentJob === '') &&
+                    (biddingForm.agentJob === '') ?
                     (
-                      <div className="flex w-[80%] justify-end">
+                      <div className="flex w-[100%] justify-start">
                         <label
                           htmlFor="agentJob"
                           className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
                         >
                           {errors.agentJob?.message}
+                        </label>
+                      </div>
+                    ) : (
+                      <div className='flex w-[100%] justify-start'>
+                        <label
+                          htmlFor="agentJob"
+                          className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
+                        >
+                          직업
                         </label>
                       </div>
                     )}
