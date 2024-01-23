@@ -1989,7 +1989,7 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
                       </div>
                       <div className="flex w-[80%] justify-center items-center text-center">
                         <p>
-                          {biddingInfo.agentAddr + ' ' + biddingInfo.agentAddrDetail}
+                          {biddingInfo.agentAddr}
                         </p>
                       </div>
                     </div>
@@ -2070,7 +2070,7 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
                             </div>
                             <div className="flex gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
                               <p className="text-[16px]">
-                                {biddingInfo.bidCorpYn[index] === 'I' ? biddingInfo.bidIdNum1[index] + '-' + biddingInfo.bidIdNum2[index] : biddingInfo.bidCorpNum1[index] + '-' + biddingInfo.bidCorpNum2[index] + '-' + biddingInfo.bidCorpNum3[index]}
+                                {biddingInfo.bidCorpYn[index] === 'I' ? biddingInfo.bidIdNum[index]?.substring(0, 6) + '-' + biddingInfo.bidIdNum[index]?.substring(6, 13) : biddingInfo.bidCorpYn[index] === 'C' ? biddingInfo.bidCorpNum[index]?.substring(0, 3) + '-' + biddingInfo.bidCorpNum[index]?.substring(3, 5) + '-' + biddingInfo.bidCorpNum[index]?.substring(5, 10) : ''}
                               </p>
                             </div>
                             <div className="flex w-[20%] border-black border-r-[1px] justify-center items-center text-center">
@@ -2080,7 +2080,7 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
                             </div>
                             <div className="flex w-[30%] justify-center items-center text-center">
                               <p className="text-[16px]">
-                                {biddingInfo.bidPhone1[index] + '-' + biddingInfo.bidPhone2[index] + '-' + biddingInfo.bidPhone3[index]}
+                                {biddingInfo.bidPhone[index].length === 10 ? biddingInfo.bidPhone[index].substring(0, 2) + '-' + biddingInfo.bidPhone[index].substring(2, 6) + '-' + biddingInfo.bidPhone[index].substring(6, 10) : biddingInfo.bidPhone[index].substring(0, 3) + '-' + biddingInfo.bidPhone[index].substring(3, 7) + '-' + biddingInfo.bidPhone[index].substring(7, 11)}
                               </p>
                             </div>
                           </div>
@@ -2093,7 +2093,7 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
                           </div>
                           <div className="flex w-[80%] justify-center items-center text-center">
                             <p>
-                              {biddingInfo.bidAddr[index] + ' ' + biddingInfo.bidAddrDetail[index]}
+                              {biddingInfo.bidAddr[index]}
                             </p>
                           </div>
                         </div>

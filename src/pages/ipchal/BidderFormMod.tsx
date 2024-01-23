@@ -584,9 +584,23 @@ export default function BidderFormMod() {
           <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[50%] w-[80%] h-[100%] justify-center items-center'>
             <div className="flex flex-col w-[100%] h-[100%] gap-2">
               <div className="flex flex-col w-[100%] gap-1">
-                <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
-                  성명
-                </span>
+                <div className='flex justify-between w-[100%]'>
+                  <div className='flex w-[10%] justify-start'>
+                    <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
+                      성명
+                    </span>
+                  </div>
+                  {(errors.bidderName?.type === 'required') && (biddingForm.bidName[stepNum - 1] === '') && (
+                    <div className="flex w-[90%] justify-end">
+                      <label
+                        htmlFor="bidderName"
+                        className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
+                      >
+                        입찰자 성명을 입력해주세요
+                      </label>
+                    </div>
+                    )}
+                </div>
                 <input
                   value={biddingForm.bidName[stepNum - 1] || ''}
                   id="bidderName"
@@ -608,24 +622,26 @@ export default function BidderFormMod() {
                   }}
                 />
               </div>
-              {(errors.bidderName?.type === 'required' ||
-              errors.bidderName?.type === 'minLength') && (
-                <div className="flex w-[100%] justify-start">
-                  <label
-                    htmlFor="bidderName"
-                    className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
-                  >
-                    입찰자 성명을 입력해주세요
-                  </label>
-                </div>
-              )}
               <div className="flex flex-col w-[100%] gap-1">
-                <label
-                  htmlFor="bidderPhone"
-                  className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
-                >
-                  전화번호
-                </label>
+                <div className='flex justify-between w-[100%]'>
+                  <div className='flex justify-start w-[20%]'>
+                    <label
+                      htmlFor="bidderPhone"
+                      className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
+                    >
+                      전화번호
+                    </label>
+                  </div>
+                  {(errors.bidderPhone1?.type === 'required' ||
+                    errors.bidderPhone2?.type === 'required' ||
+                    errors.bidderPhone3?.type === 'required') && (biddingForm.bidPhone[stepNum - 1] === '') && (
+                    <div className="flex w-[80%] justify-end">
+                      <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
+                        전화번호를 입력해주세요
+                      </span>
+                    </div>
+                  )}
+                </div>
                 <div className="flex flex-row gap-[5%]">
                   <input
                     {...register('bidderPhone1', { required: true })}
@@ -721,21 +737,25 @@ export default function BidderFormMod() {
                   />
                 </div>
               </div>
-              {(errors.bidderPhone1?.type === 'required' ||
-                errors.bidderPhone2?.type === 'required' ||
-                errors.bidderPhone3?.type === 'required') && (
-                <div className="flex w-[100%] justify-start">
-                  <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
-                    전화번호를 입력해주세요
-                  </span>
-                </div>
-              )}
               {biddingForm.bidCorpYn[stepNum - 1] === 'I' ? (
                 <>
                   <div className={`${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'flex' : 'hidden'} flex-col w-[100%] gap-1`}>
-                    <label htmlFor="bidIdNum" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
-                      주민등록번호
-                    </label>
+                    <div className='flex justify-between w-[100%]'>
+                      <div className='flex justify-start w-[25%]'>
+                        <label htmlFor="bidIdNum" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
+                          주민등록번호
+                        </label>
+                      </div>
+                      {errors.bidderIdNum1?.type === 'required' &&
+                        errors.bidderIdNum2?.type === 'required' && 
+                        (biddingForm.bidIdNum[stepNum - 1] === '') && (
+                        <div className="flex w-[75%] justify-end h-[15px] mb-1">
+                          <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
+                            주민등록번호를 입력해주세요
+                          </span>
+                        </div>
+                      )}
+                    </div>
                     <div className="flex flex-row gap-[5%]">
                       <input
                         {...register('bidderIdNum1', { required: true })}
@@ -805,21 +825,27 @@ export default function BidderFormMod() {
                       />
                     </div>
                   </div>
-                    {errors.bidderIdNum1?.type === 'required' &&
-                      errors.bidderIdNum2?.type === 'required' && (
-                      <div className="flex w-[80%] justify-start h-[15px] mb-1">
-                        <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
-                          주민등록번호를 입력해주세요
-                        </span>
-                      </div>
-                    )}
                 </>
                 ) : (
                   <>
                     <div className={`${biddingForm.bidCorpYn[stepNum - 1] === 'C' ? 'flex' : 'hidden'} flex-col w-[100%] gap-1`}>
-                      <label htmlFor="bidCorpNum" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
-                        사업자 등록번호
-                      </label>
+                      <div className='flex justify-between w-[100%]'>
+                        <div className='flex justify-start w-[30%]'>
+                          <label htmlFor="bidCorpNum" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
+                            사업자 등록번호
+                          </label>
+                        </div>
+                        {(errors.bidderCorpNum1?.type === 'required' ||
+                          errors.bidderCorpNum2?.type === 'required' ||
+                          errors.bidderCorpNum3?.type === 'required') && 
+                          (biddingForm.bidCorpNum[stepNum - 1] === '') &&(
+                          <div className="flex w-[70%] justify-end mb-1">
+                            <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
+                              사업자등록번호를 입력해주세요
+                            </span>
+                          </div>
+                        )}
+                      </div>
                       <div className="flex flex-row gap-[5%]">
                         <input
                           {...register('bidderCorpNum1', { required: true })}
@@ -914,22 +940,27 @@ export default function BidderFormMod() {
                           }}
                         />
                       </div>
-                      {(errors.bidderCorpNum1?.type === 'required' ||
-                        errors.bidderCorpNum2?.type === 'required' ||
-                        errors.bidderCorpNum3?.type === 'required') && (
-                        <div className="flex w-[100%] justify-start mb-1">
-                          <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
-                            사업자등록번호를 입력해주세요
-                          </span>
-                        </div>
-                      )}
                       <div className="flex flex-col w-[100%] gap-1 mt-1">
-                        <label
-                          htmlFor="bidCorpRegiNum"
-                          className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
-                        >
-                          법인 등록번호
-                        </label>
+                        <div className='flex justify-between w-[100%]'>
+                          <div className='flex justify-start w-[30%]'>
+                            <label
+                              htmlFor="bidCorpRegiNum"
+                              className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
+                            >
+                              법인 등록번호
+                            </label>
+                          </div>
+                          {(errors.bidderCorpRegiNum1?.type === 'required' ||
+                            errors.bidderCorpRegiNum2?.type === 'required') &&
+                              (biddingForm.bidCorpRegiNum[stepNum - 1] === '') && 
+                            (
+                            <div className="flex w-[70%] justify-end mb-1">
+                              <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
+                                법인 등록번호를 입력해주세요
+                              </span>
+                            </div>
+                          )}
+                        </div>
                         <div className="flex flex-row gap-[5%]">
                           <input
                             {...register('bidderCorpRegiNum1', { required: true })}
@@ -1001,22 +1032,30 @@ export default function BidderFormMod() {
                         </div>
                       </div>
                     </div>
-                    {(errors.bidderCorpRegiNum1?.type === 'required' ||
-                      errors.bidderCorpRegiNum2?.type === 'required') && (
-                      <div className="flex w-[100%] justify-start mb-1">
-                        <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
-                          법인 등록번호를 입력해주세요
-                        </span>
-                      </div>
-                    )}
                   </>
                 )
               }
               <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>
                 <div className="flex flex-col w-[100%] gap-1">
-                  <label htmlFor="bidderJob" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
-                    직업
-                  </label>
+                  <div className='flex justify-between w-[100%]'>
+                    <div className='flex justify-start w-[30%]'>
+                      <label htmlFor="bidderJob" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
+                        직업
+                      </label>
+                    </div>
+                    {errors.bidderJob?.type === 'required' && 
+                    (biddingForm.bidJob[stepNum - 1] === '') &&
+                    (
+                      <div className="flex w-[100%] justify-end">
+                        <label
+                          htmlFor="agentJob"
+                          className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
+                        >
+                          {errors.bidderJob?.message}
+                        </label>
+                      </div>
+                    )}
+                  </div>
                   <input
                     {...register('bidderJob', { required: true })}
                     value={biddingForm.bidJob[stepNum - 1] || ''}
@@ -1038,16 +1077,6 @@ export default function BidderFormMod() {
                     }}
                   />
                 </div>
-                {errors.bidderJob?.type === 'required' && (
-                  <div className="flex w-[100%] justify-start">
-                    <label
-                      htmlFor="agentJob"
-                      className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
-                    >
-                      {errors.bidderJob?.message}
-                    </label>
-                  </div>
-                )}
                 <SearchAddress 
                   stepNum={stepNum}
                   register={register}

@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil'
 import LoadingResult from '@/components/LoadingResult'
 import CoIpchalContent from '@/components/CoIpchalContent/CoIpchalResult'
 import AgentListForm from '@/components/CoIpchalContent/AgentListForm'
-import { TotalResultType } from '@/interface/IpchalType'
+import { BidderList, TotalResultType } from '@/interface/IpchalType'
 import SingleIpchalResult from '@/components/SingleIpchalContent/SingleIpchalResult'
 
 export default function IpchalResult() {
@@ -14,6 +14,23 @@ export default function IpchalResult() {
 
   const [totalResult, setTotalResult] = useState<TotalResultType>()
   const [loading, setLoading] = useState<boolean>(false)
+
+  const totalPage = Math.ceil(biddingInfo.bidName.length / 3)
+  const listPerPage = 3
+  let currentPage = 1;
+  let currentList: any = [];
+
+  const handleReturnList = () => {
+    let startIndex = (currentPage - 1) * listPerPage
+    let endIndex = startIndex + listPerPage
+    for (let i = 0; i < totalPage; i++) {
+      currentList.push(totalResult?.bidders.slice(startIndex, endIndex))
+      startIndex = endIndex
+      endIndex = endIndex + listPerPage
+      currentPage++
+    }
+    return currentList
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -54,7 +71,12 @@ export default function IpchalResult() {
         <CoIpchalContent />
       )}
       {!loading && (totalResult && totalResult.agentYn === 'Y') && (
-        <AgentListForm totalResult={totalResult} />
+        totalResult && totalResult.bidders.length > 3 ? (
+          handleReturnList().map((item: any, index: number) => (
+            <AgentListForm totalResult={totalResult} bidders={item} key={index} />
+          ))
+        ) : 
+        (<AgentListForm totalResult={totalResult} />)
       )}
       {/* 버튼 */}
       <div className="flex justify-center items-center w-[100%] h-[100%] bg-white">

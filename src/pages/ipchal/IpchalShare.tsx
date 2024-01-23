@@ -1,6 +1,7 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import EmailForm from '@/components/EmailForm'
+import { useDisclosure } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 
@@ -10,6 +11,7 @@ export default function IpchalShare() {
   const [openEmailForm, setOpenEmailForm] = useState<boolean>(false)
   const [fileUrl, setFileUrl] = useState<string>('')
 
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const onShare = () => {
     if (window.Kakao) {
       window.Kakao.Share.uploadImage({
@@ -148,7 +150,7 @@ export default function IpchalShare() {
                   이메일로 보내기
                 </span>
               </div>
-              <div className="flex cursor-pointer relative" onClick={() => setOpenEmailForm(true)}>
+              <div className="flex cursor-pointer relative" onClick={() => onOpen()}>
                 <div className="flex relative">
                   <svg
                     width="40"
@@ -205,10 +207,10 @@ export default function IpchalShare() {
         </div>
         <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
       </div>
-      {openEmailForm && (
+      {isOpen && (
         <EmailForm
-          openEmailForm={openEmailForm}
-          setOpenEmailForm={setOpenEmailForm}
+          isOpen={isOpen}
+          onClose={onClose}
         />
       )}
     </>

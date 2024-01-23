@@ -179,6 +179,7 @@ export default function BiddingPrice() {
       try {
         const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}`)
         if (response.status === 200) {
+          console.log(response.data.data)
           setBiddingForm({
             ...biddingForm,
             bidName: response.data.data?.bidders?.map((item: any) => item.name),
@@ -224,12 +225,10 @@ export default function BiddingPrice() {
             minimumAmount: response.data.data.biddingInfo.minimumAmount,
             bidDeposit: response.data.data.biddingInfo.bidDeposit,
           })
-          if (biddingForm.depositPrice === 0) {
-            setBiddingForm({
-              ...biddingForm,
-              depositPrice: response.data.data.biddingInfo.bidDeposit,
-            })
-          }
+          setBiddingForm({
+            ...biddingForm,
+            depositPrice: biddingForm.depositPrice === 0 ? response.data.data.biddingInfo.bidDeposit : biddingForm.depositPrice,
+          })
         }
         setLoading(false)
       } catch (error) {
@@ -237,8 +236,8 @@ export default function BiddingPrice() {
         setLoading(false)
       }
     }
-    handleGetBiddingPrice()
     handleSyncBiddingForm()
+    handleGetBiddingPrice()
   }, [])
 
   console.log(biddingForm)
@@ -302,7 +301,7 @@ export default function BiddingPrice() {
                 일금
               </span>
               <span className="text-[12px] font-NanumGothic not-italic font-bold text-red-500 leading-[9px] mb-2">
-                {num2han(biddingPrice) + '원'}
+                {num2han(biddingForm.biddingPrice) + '원'}
               </span>
             </div>
             <div className="flex flex-row gap-[20px] w-[90%]">
@@ -328,7 +327,7 @@ export default function BiddingPrice() {
                 일금
               </span>
               <span className="text-[12px] font-NanumGothic not-italic font-bold text-red-500 leading-[9px] mb-2">
-                {num2han(depositPrice) + '원'}
+                {num2han(biddingForm.depositPrice) + '원'}
               </span>
             </div>
           </div>

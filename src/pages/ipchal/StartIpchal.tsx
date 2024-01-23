@@ -26,7 +26,7 @@ export default function StartIpchal() {
             idCode: idcode,
             biddingDate: startdate,
           },
-          {
+          { 
             headers: {
               'Content-Type': 'application/json',
             },
@@ -76,7 +76,6 @@ export default function StartIpchal() {
             </span>
           </div>
           <div className="flex sm:w-[50%] w-[100%] absolute top-32 justify-center">
-
             <Image
               priority
               src={'/visualImg_big.png'}
