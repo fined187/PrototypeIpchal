@@ -37,7 +37,7 @@ export default function EmailForm({
     handleSubmit,
     formState: { errors },
   } = useForm()
-console.log(errors)
+
   const sendEamil: SubmitHandler<any> = async (data) => {
     try {
       await emailjs.send(serviceId!, templateId!, {

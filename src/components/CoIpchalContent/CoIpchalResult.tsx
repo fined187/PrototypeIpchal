@@ -1,7 +1,7 @@
 import { biddingInfoState, stepState } from "@/atom";
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import LoadingResult from "../LoadingResult";
 import CoIpchalForm from "./CoIpchalForm";
 import IpchalText from "./IpchalText";
@@ -9,9 +9,8 @@ import CoIpchalList from "./CoIpchalList";
 
 export default function CoIpchalResult() {
   const [totalResult, setTotalResult] = useState<any>(null);
-  const biddingInfo = useRecoilValue(biddingInfoState);
-  const stateNum = useRecoilValue(stepState);
-  const setStateNum = useSetRecoilState(stepState);
+  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
+  const [stateNum, setStateNum] = useRecoilState(stepState);
   const [loading, setLoading] = useState<boolean>(false)
 
   const handlePrice = (len: number) => {
@@ -48,7 +47,7 @@ export default function CoIpchalResult() {
     }
     handleGetResult()
   }, [])
-  console.log(totalResult)
+  
   return (
     <>
     {loading && (

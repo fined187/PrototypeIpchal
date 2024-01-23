@@ -175,8 +175,6 @@ export default function ShareInfo() {
     handleShareList()
   }, [])
 
-  console.log(biddingInfo)
-
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">

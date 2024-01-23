@@ -494,8 +494,6 @@ export default function BidderFormMod() {
     })
   }
 
-  console.log(biddingForm)
-
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (

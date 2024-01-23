@@ -8,7 +8,6 @@ import { useRecoilState } from 'recoil'
 export default function IpchalShare() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
-  const [openEmailForm, setOpenEmailForm] = useState<boolean>(false)
   const [fileUrl, setFileUrl] = useState<string>('')
 
   const { isOpen, onOpen, onClose } = useDisclosure()

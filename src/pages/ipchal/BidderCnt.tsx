@@ -1,4 +1,4 @@
-import { bidderInfo, biddingInfoState, stepState } from '@/atom'
+import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { ChangeEvent, useState } from 'react'
@@ -45,7 +45,7 @@ export default function BidderCnt() {
         },
       })
       if (response.status === 200) {
-        console.log(response.data)
+        return
       }
     } catch (error) {
       console.log(error)

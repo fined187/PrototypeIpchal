@@ -221,7 +221,7 @@ export default function CreateFile() {
     }
     handleGetResult()
   }, [])
-  console.log(handleReturnList().map((item: any) => item))
+  
   return (
     <>
       {!loading && (
@@ -321,8 +321,8 @@ export default function CreateFile() {
       )}
       {totalResult && totalResult.bidders.length > 1 && (
           <>
-            <div className={`flex flex-col ${totalResult && totalResult.agentYn === 'Y' ? 'h-[5200px]' : 'h-[3900px]'} w-[50%] justify-center items-center mx-auto`} id="wrap-capture">
-              <div className="flex flex-col h-[100%] w-[100%] justify-center items-center" id="capture">
+            <div className={`hidden flex-col ${totalResult && totalResult.agentYn === 'Y' ? 'h-[5200px]' : 'h-[3900px]'} w-[50%] justify-center items-center mx-auto`} id="wrap-capture">
+              <div className="hidden flex-col h-[100%] w-[100%] justify-center items-center" id="capture">
                 <div className="flex flex-col bg-white h-[100%] w-[100%] mx-auto relative justify-center items-center">
                   <div className="min-w-[400px] md:max-w-[850px] overflow-x-scroll absolute top-[130px] h-[600px] bg-white scrollbar-hide">
                     <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-white">

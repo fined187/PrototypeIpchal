@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil'
 import LoadingResult from '@/components/LoadingResult'
 import CoIpchalContent from '@/components/CoIpchalContent/CoIpchalResult'
 import AgentListForm from '@/components/CoIpchalContent/AgentListForm'
-import { BidderList, TotalResultType } from '@/interface/IpchalType'
+import { TotalResultType } from '@/interface/IpchalType'
 import SingleIpchalResult from '@/components/SingleIpchalContent/SingleIpchalResult'
 
 export default function IpchalResult() {

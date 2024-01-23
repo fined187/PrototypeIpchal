@@ -179,7 +179,6 @@ export default function BiddingPrice() {
       try {
         const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}`)
         if (response.status === 200) {
-          console.log(response.data.data)
           setBiddingForm({
             ...biddingForm,
             bidName: response.data.data?.bidders?.map((item: any) => item.name),
@@ -239,8 +238,6 @@ export default function BiddingPrice() {
     handleSyncBiddingForm()
     handleGetBiddingPrice()
   }, [])
-
-  console.log(biddingForm)
 
   return (
     <>

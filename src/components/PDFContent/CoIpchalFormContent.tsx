@@ -7,7 +7,7 @@ interface CoIpchalFormProps {
 }
 
 export default function CoIpchalFormContent({ totalResult }: CoIpchalFormProps) {
-  const stateNum = useRecoilValue(stepState);
+  
   return (
     <div className={`flex flex-col bg-white h-[1300px] w-[100%] m-auto absolute top-[1300px] overflow-x-scroll scrollbar-hide `}>
       <div className="flex flex-col bg-white h-[100%] md:w-[100%] w-[100%] m-auto relative justify-center items-center">
