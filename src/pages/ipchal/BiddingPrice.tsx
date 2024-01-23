@@ -2,15 +2,13 @@ import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 export default function BiddingPrice() {
   const [biddingPrice, setBiddingPrice] = useState<number>(0)
   const [depositPrice, setDepositPrice] = useState<number>(0)
-  const stateNum = useRecoilValue(stepState)
-  const setStateNum = useSetRecoilState(stepState)
-  const biddingForm = useRecoilValue(biddingInfoState)
-  const setBiddingForm = useSetRecoilState(biddingInfoState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
+  const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
   const [paymentsInfo, setPaymentsInfo] = useState({
     biddingTime: '',
     appraisalAmount: 0,
@@ -335,7 +333,7 @@ export default function BiddingPrice() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[600px] w-[400px] gap-[10px] absolute md:top-[600px] top-[600px]">
+        <div className="flex flex-row justify-center items-center md:w-[600px] w-[90%] gap-[10px] absolute md:top-[600px] top-[500px]">
           <button
             type="button"
             className="flex md:w-[30%] w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

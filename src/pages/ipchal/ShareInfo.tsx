@@ -39,7 +39,7 @@ export default function ShareInfo() {
         temp[i] = {
           peopleSeq: i + 1,
           name: biddingInfo.bidName[i],
-          share: numerator + '/' + denominator,
+          share: biddingInfo.numerator[i] + '/' + biddingInfo.denominator[i],
         }
       }
       setShareList({
@@ -172,6 +172,7 @@ export default function ShareInfo() {
       }
     }
     handleSyncBiddingForm()
+    handleShareList()
   }, [])
 
   console.log(biddingInfo)
@@ -274,7 +275,7 @@ export default function ShareInfo() {
                         id="numerator"
                         type="text"
                         readOnly
-                        value={shareList.shareList[index]?.share?.split('/')[0]}
+                        value={'1'}
                         className={`border  border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
                       />
                       <span>/</span>
@@ -313,7 +314,7 @@ export default function ShareInfo() {
                       <input
                         id='denominator'
                         type="text"
-                        value={shareList.shareList[index].share?.split('/')[1] || ''}
+                        value={shareList.shareList[index]?.share?.split('/')[1] || ''}
                         className={`border-2 ${
                           (biddingInfo.shareWay === 'N') && goNext
                             ? 'border-red-500'

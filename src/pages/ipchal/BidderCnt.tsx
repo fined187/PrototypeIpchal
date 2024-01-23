@@ -126,7 +126,7 @@ export default function BidderCnt() {
               </div>
               {errorMsg && (
                 <div className="mt-5">
-                  <span className="text-[12px] font-bold text-red-500">
+                  <span className="text-[15px] font-NanumGothic font-bold text-red-500">
                     입찰자는 1명 이상이어야 합니다
                   </span>
                 </div>
@@ -134,7 +134,7 @@ export default function BidderCnt() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[600px]">
+        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[600px] top-[500px]">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

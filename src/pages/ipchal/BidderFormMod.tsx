@@ -483,7 +483,6 @@ export default function BidderFormMod() {
     setBiddingForm((prev: any) => {
       const newBidIdNum = [...prev.bidIdNum]
       const newBidderType = [...prev.bidCorpYn]
-
       if (newBidderType[index] === 'C' && newBidIdNum[index] !== '') {
         newBidIdNum.splice(index, 1, '')
       } else if (newBidderType[index + 1] === 'C' && newBidIdNum[index + 1] !== '') {

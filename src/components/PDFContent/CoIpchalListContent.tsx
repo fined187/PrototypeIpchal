@@ -91,7 +91,7 @@ export default function CoIpchalListContent({ totalResult }: CoIpchalListProps) 
                 <div className="flex flex-row w-[100%] h-[50%]">
                   <div className="flex w-[100%] h-[100%] border-black border-r-[1px] justify-center items-center text-center">
                     <span className="text-[12pt] font-batang">
-                    {biddingInfo.bidCorpYn[idx] === 'I' ? biddingInfo.bidIdNum[idx].substring(0, 6) + '-' + biddingInfo.bidIdNum[idx].substring(6, 13) : biddingInfo.bidCorpYn[idx] === 'C' ? '-' : ''}
+                      {totalResult && totalResult.bidders[idx]?.bidderType === 'I' ? biddingInfo.bidIdNum[idx]?.substring(0, 6) + '-' + biddingInfo.bidIdNum[idx]?.substring(6, 13) : totalResult && totalResult.bidders[idx]?.bidderType === 'C' ? totalResult && totalResult.bidders[idx]?.companyNo?.substring(0, 3) + '-' + totalResult.bidders[idx]?.companyNo?.substring(3, 5) + '-' + totalResult.bidders[idx]?.companyNo?.substring(5, 10): ''}
                     </span>
                   </div>
                   <div className="flex w-[100%] h-[100%] justify-center items-center text-center">

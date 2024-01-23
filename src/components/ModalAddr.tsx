@@ -214,15 +214,19 @@ export default function ModalAddr({
       <ModalOverlay />
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           <div className="fixed inset-0 z-10 w-screen h-screen overflow-y-auto justify-center items-center">
-            <div className="flex h-[100%] justify-center p-4 text-center items-center sm:p-0">
-              <ModalContent>
+            <div className="flex w-[100%] h-[100%] justify-center p-4 text-center items-center sm:p-0">
+              <ModalContent style={{
+                width: '100%',
+                height: '100%',
+                position: 'relative',
+              }}>
                 <ModalBody
                   style={{
-                    width: isLargerThan768 ? '40%' : '100%',
-                    position: 'relative'
+                    width: isLargerThan768 ? '30%' : '100%',
+                    height: '100%',
                   }}
                 >
-                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[100%] w-[100%] justify-center items-center absolute md:top-[100px] md:left-[75%] h-[700px] overflow-y-scroll scrollbar-hide">
+                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[30%] w-[100%] justify-center items-center h-[750px] overflow-x-scroll overflow-y-scroll scrollbar-hide rounded-md absolute sm:top-[100px] top-[0px] sm:left-[35%] left-[0%]">
                     <div className="flex justify-center flex-col">
                       <div className="flex flex-row justify-between">
                         <div className="">

@@ -74,41 +74,46 @@ export default function GetIpchalInfo() {
               사건 번호와 입찰일자를 확인해주세요
             </span>
           </div>
-          <div className="flex flex-col md:w-[550px] w-[90%] md:h-[300px] h-[300px] gap-[100px] bg-white absolute top-[107px] justify-center items-center rounded-lg">
-            <div className="flex flex-row absolute top-8 border-b w-[80%] border-gray-200  md:pt-[20px]">
-              <div className='flex md:w-[20%] w-[30%]'>
-                <span className="text-black md:text-[15px] text-[15px] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
-                  사건번호 :
+          <div className="flex flex-col md:w-[550px] w-[90%] h-[250px] max-h-[350px] gap-[100px] bg-white absolute top-[107px] justify-center items-center rounded-lg">
+            <div className="flex flex-between absolute top-8 border-b w-[80%] border-gray-200">
+              <div className='flex md:w-[30%] w-[30%] justify-start'>
+                <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+                  사건번호 {" : "}
                 </span>
               </div>
-              <div className='flex w-[80%]'>
-                <span className="text-mygray md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
+              <div className='flex md:w-[70%] w-[70%] justify-start'>
+                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
                   {biddingInfo.sagunNum}
                 </span>
               </div>
             </div>
-            <div className="flex flex-row absolute top-24 border-b w-[80%] border-gray-200 md:pt-[20px]">
-              <div className='flex w-[20%]'>
-                <span className="text-black md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
-                  입찰기일 :
+            <div className="flex flex-row absolute top-24 border-b w-[80%] border-gray-200">
+              <div className='flex md:w-[30%] w-[30%] justify-start'>
+                <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+                  입찰기일 {" : "}
                 </span>
               </div>
-              <div className='flex w-[80%]'>
-                <span className="text-mygray md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
+              <div className='flex md:w-[70%] w-[70%] justify-start'>
+                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
                   {biddingInfo.ipchalDate.substring(0, 4)}년{' '}
                   {biddingInfo.ipchalDate.substring(4, 6)}월{' '}
                   {biddingInfo.ipchalDate.substring(6, 8)}일
                 </span>
               </div>
             </div>
-            <div className="flex flex-row absolute top-40 border-b w-[80%] border-gray-200 md:pt-[20px]">
-              <div className='flex w-[15%]'>
-                <span className="text-black md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
-                  주소 :
-                </span>
+            <div className="flex flex-row absolute top-40 border-b w-[80%] border-gray-200">
+              <div className='flex md:w-[20%] w-[22%] justify-start'>
+                <div className='flex justify-between w-[100%]'>
+                  <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9 justify-start">
+                    주소 
+                  </span>
+                  <span className='text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9 justify-end'>
+                    {" : "}
+                  </span>
+                </div>
               </div>
-              <div className='flex w-[100%]'>
-                <span className="text-mygray md:text-[15px] text-[12px] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
+              <div className='flex md:w-[75%] w-[77%] justify-center'>
+                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9 text-left whitespace-normal">
                   {biddingInfo.sagunAddr}
                 </span>
               </div>

@@ -28,28 +28,28 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
         <div className="text-[22px] font-bold py-[60px] absolute top-0 bg-mybg">
           입찰표
         </div>
-        <div className="min-w-[400px] md:max-w-[850px] overflow-x-scroll absolute top-[130px] h-[600px] bg-mybg scrollbar-hide">
+        <div className="w-[100%] md:max-w-[850px] overflow-x-scroll absolute top-[130px] h-[600px] bg-mybg scrollbar-hide">
           <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-mybg">
             {/* 첫 번째 박스 */}
             <div className="flex flex-col border-black border-b-[1px] h-[15%] w-[100%] justify-center items-center relative">
               <div className="flex absolute top-[0px] left-[0px] w-[100%] pl-[5px]">
-                <span className="text-left text-[11pt] leading-[-1px]">
+                <span className="text-left md:text-[11pt] text-[12px] leading-[-1px]">
                   (앞면)
                 </span>
               </div>
               <div className="justify-center items-center text-center absolute top-[30%] w-[100%]">
-                <span className="text-[15pt] tracking-[20pt] leading-[23px] font-bold font-batang">
+                <span className="md:text-[15pt] text-[15px] tracking-[20pt] leading-[23px] font-bold font-batang">
                   기일입찰표
                 </span>
               </div>
               <div className="flex justify-between w-[100%] absolute bottom-[0px]">
                 <div>
-                  <span className="pl-[3px] text-[11pt] leading-[-1px] font-batang">
+                  <span className="pl-[3px] md:text-[11pt] text-[12px] leading-[-1px] font-batang">
                     {totalResult && totalResult.reqCourtName + ' 집행관 귀하'}
                   </span>
                 </div>
                 <div>
-                  <span className="text-[11pt] leading-[-1px] font-batang pr-[3px]">
+                  <span className="md:text-[11pt] text-[12px] leading-[-1px] font-batang pr-[3px]">
                     입찰기일 :{' '}
                     {totalResult &&
                       totalResult?.biddingDate?.substring(0, 4)}
@@ -62,14 +62,14 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
             {/* 두 번째 박스 */}
             <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[6.5%]">
               <div className="border-black border-r-[1px] leading-[50%] w-[82px] h-[100%] text-center">
-                <span className="text-[11pt] font-batang">
+                <span className="md:text-[11pt] text-[12px] font-batang">
                   사건
                   <br />
                   번호
                 </span>
               </div>
               <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
-                <span className="text-[11pt] font-batang">
+                <span className="md:text-[11pt] text-[12px] font-batang">
                   {totalResult &&
                     totalResult.caseYear +
                       ' 타경 ' +
@@ -77,20 +77,20 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                 </span>
               </div>
               <div className="border-black border-r-[1px] leading-[50%] w-[82px] h-[100%] text-center">
-                <span className="text-[11pt] font-batang">
+                <span className="md:text-[11pt] text-[12px] font-batang">
                   물건 
                   <br />
                   번호
                 </span>
               </div>
               <div className="flex flex-col justify-center items-center text-center md:w-[44%] w-[40%]">
-                <span className={`text-[11pt] font-batang`}
+                <span className={`md:text-[11pt] text-[12px] font-batang`}
                 >
                   {totalResult && totalResult?.mulNo
                     ? totalResult?.mulNo
                     : '1'}
                 </span>
-                <span className={`text-[9pt] font-batang`}>
+                <span className={`md:text-[9pt] text-[8px] font-batang`}>
                   ※ 물건번호가 여러개 있는 경우에는 꼭 기재
                 </span>
               </div>
@@ -98,39 +98,39 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
             {/* 세 번째 박스 */}
             <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[50%]">
               <div className="flex justify-center items-center leading-[300%] border-black border-r-[1px] w-[5.2%]">
-                <span className="text-[11pt] font-batang">
+                <span className="md:text-[11pt] text-[12px] font-batang">
                   입<br />찰<br />자
                 </span>
               </div>
               <div className="w-[100%] h-[100%]">
                 <div className="flex flex-row items-stretch border-black border-b-[1px] h-[50%]">
                   <div className="flex justify-center items-center border-black border-r-[1px] w-[12%]">
-                    <span className="text-[11pt] font-batang">본인</span>
+                    <span className="md:text-[11pt] text-[12px] font-batang">본인</span>
                   </div>
                   <div className="flex flex-col w-[100%] h-[100%]">
                     <div className="flex flex-row items-stretch border-black border-b-[1px] h-[30%]">
                       <div className="flex justify-center items-center border-black border-r-[1px] w-[20%]">
-                        <span className="text-[11pt] font-batang">성&nbsp;&nbsp;명</span>
+                        <span className="md:text-[11pt] text-[12px] font-batang">성&nbsp;&nbsp;명</span>
                       </div>
                       <div className="flex items-center justify-center border-black border-r-[1px] w-[30%]">
                         <div className="flex w-[60%] justify-end">
-                          <span className="text-[11pt] font-batang">
+                          <span className="md:text-[11pt] text-[12px] font-batang">
                             {totalResult && totalResult?.bidders?.length > 1
                               ? ''
                               : totalResult && totalResult?.bidders[0]?.name}
                           </span>
                         </div>
                         <div className="flex w-[40%] justify-end mr-1">
-                          <span className="text-[11pt] font-batang text-right">
+                          <span className="md:text-[11pt] text-[12px] font-batang text-right">
                             (인)
                           </span>
                         </div>
                       </div>
                       <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                        <span className="text-[11pt] font-batang">전화번호</span>
+                        <span className="md:text-[11pt] text-[12px] font-batang">전화번호</span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[30%]">
-                        <span className="text-[11pt] font-batang">
+                        <span className="md:text-[11pt] text-[12px] font-batang">
                           {
                             totalResult && totalResult?.bidders[0]?.phoneNo.length === 10 ? totalResult?.bidders[0]?.phoneNo.substring(0, 2) + '-' + totalResult?.bidders[0]?.phoneNo.substring(2, 6) + '-' + totalResult?.bidders[0]?.phoneNo.substring(6, 10) : totalResult && totalResult?.bidders[0]?.phoneNo.substring(0, 3) + '-' + totalResult?.bidders[0]?.phoneNo.substring(3, 7) + '-' + totalResult?.bidders[0]?.phoneNo.substring(7, 11)
                           }
@@ -139,14 +139,14 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                     </div>
                     <div className="flex flex-row border-black border-b-[1px] h-[35%]">
                       <div className="flex justify-center border-black border-r-[1px] w-[20%] leading-[-1px]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           주민(사업자)
                           <br />
                           등록번호
                         </span>
                       </div>
                       <div className="flex w-[30%] border-black border-r-[1px] justify-center items-center leading-[-1px]">
-                        <span className="text-[11pt] font-batang">
+                        <span className="md:text-[11pt] text-[12px] font-batang">
                           {biddingInfo.bidCorpYn[0] === 'I' ? (
                             biddingInfo.bidIdNum1[0] + '-' + biddingInfo.bidIdNum2[0]
                           ): (
@@ -155,14 +155,14 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                         </span>
                       </div>
                       <div className="flex justify-center items-center border-black border-r-[1px] w-[20%] leading-[-1px]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           법인등록
                           <br />
                           번호
                         </span>
                       </div>
                       <div className="flex justify-center items-center w-[30%] text-center leading-[-1px]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           {totalResult && totalResult?.bidders?.length > 1 || totalResult?.bidders[0]?.corporationNo === null
                             ? ''
                             : totalResult &&
@@ -172,10 +172,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                     </div>
                     <div className="flex flex-row h-[35%]">
                       <div className="flex w-[20%] border-black border-r-[1px] h-[100%] justify-center items-center text-center leading-[-1px]">
-                        <span className="text-[11pt] font-batang text-center">주&nbsp;&nbsp;소</span>
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">주&nbsp;&nbsp;소</span>
                       </div>
                       <div className="flex justify-center items-center w-[80%] leading-[-1px]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           {totalResult && totalResult?.bidders?.length > 1
                             ? ''
                             : totalResult &&
@@ -187,56 +187,56 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                 </div>
                 <div className="flex flex-row justify-between items-stretch w-[100%] h-[50%]">
                   <div className="flex justify-center items-center w-[10.8%] border-black border-r-[1px]">
-                    <span className="text-[14px] font-batang">대리인</span>
+                    <span className="md:text-[14px] text-[12px] font-batang">대리인</span>
                   </div>
                   <div className="w-[90%]">
                     <div className="flex flex-row items-stretch border-black border-b-[1px] h-[35%]">
                       <div className="flex justify-center items-center table__text w-[20%] border-black border-r-[1px]">
-                        <span className="text-[11pt] font-batang text-center">성&nbsp;&nbsp;명</span>
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">성&nbsp;&nbsp;명</span>
                       </div>
                       <div className="flex justify-center items-center w-[30%] border-black border-r-[1px]">
                         <div className="flex w-[60%] justify-end">
-                          <span className="text-[11pt] font-batang text-center">
+                          <span className="md:text-[11pt] text-[12px] font-batang text-center">
                             {biddingInfo.bidder === 'agent' && biddingInfo.agentName ? biddingInfo.agentName : ''}
                           </span>
                         </div>
                         <div className="flex w-[40%] justify-end mr-1">
-                          <span className="text-[11pt] font-batang text-center">(인)</span>
+                          <span className="md:text-[11pt] text-[12px] font-batang text-center">(인)</span>
                         </div>
                       </div>
                       <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           본인과의
                           <br />
                           관계
                         </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[30%]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           {biddingInfo.bidder === 'agent' && biddingInfo.agentRel ? biddingInfo.agentRel : ''}
                         </span>
                       </div>
                     </div>
                     <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] h-[35%]">
                       <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           주민등록번호
                         </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) +
                             '-' +
                             biddingInfo.agentIdNum.substring(6, 14) : ''}
                         </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           전화번호
                         </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[30%]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           {
                             totalResult && totalResult?.agent !== null ? 
                             totalResult?.agent?.phoneNo.length === 10 ?
@@ -248,10 +248,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                     </div>
                     <div className="flex flex-row justify-between items-stretch h-[30%]">
                       <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                        <span className="text-[11pt] font-batang text-center">주&nbsp;&nbsp;소</span>
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">주&nbsp;&nbsp;소</span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[80%]">
-                        <span className="text-[11pt] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           {
                             totalResult && totalResult?.agent !== null ? 
                             totalResult?.agent?.address : ''
@@ -266,7 +266,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
             {/* 네 번째 박스 */}
             <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[15%]">
               <div className="w-[27px] border-black border-r-[1px] h-[100%] leading-[70%] justify-center items-center text-center">
-                <span className="text-[11pt] font-batang">
+                <span className="md:text-[11pt] text-[12px] font-batang">
                   입찰
                   <br />
                   가격
@@ -274,10 +274,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] leading-[70%] border-b-[1px] text-center">
-                  <span className="text-[11pt] font-batang">천억</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">천억</span>
                 </div>
                 <div className="flex justify-center items-center w-[100%] h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -292,10 +292,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">백억</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">백억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -310,10 +310,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px]  leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">십억</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">십억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -328,13 +328,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">억</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px] ">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -349,10 +349,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">천만</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">천만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -367,10 +367,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">백만</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">백만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -385,10 +385,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">십만</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">십만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -403,13 +403,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">만</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -424,13 +424,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">천</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">천</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -445,13 +445,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">백</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">백</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -466,13 +466,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">십</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">십</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -487,13 +487,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">일</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">일</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -509,19 +509,19 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               <div className="w-[27px]">
                 <div className="h-[100%] w-[100%] border-black border-r-[2px] leading-[70%] text-center">
                   <div className="h-[50%]">
-                    <span className="text-[11pt] font-batang">
+                    <span className="md:text-[11pt] text-[12px] font-batang">
                       <br />
                     </span>
                   </div>
                   <div className="text-left mt-[10px]">
-                    <span className="text-[15px] font-batang">
+                    <span className="md:text-[15px] text-[14px] font-batang">
                       원
                     </span>
                   </div>
                 </div>
               </div>
               <div className="w-[27px] border-black border-r-[1px] h-[100%] leading-[70%] justify-center items-center text-center">
-                <span className="text-[11pt] font-batang">
+                <span className="md:text-[11pt] text-[12px] font-batang">
                   보증
                   <br />
                   금액
@@ -529,10 +529,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">천억</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">천억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                     totalResult?.bidDeposit?.toString().length === 12
                       ? totalResult?.bidDeposit?.toString()?.substring(0, 1)
@@ -542,10 +542,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">백억</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">백억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -560,10 +560,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">십억</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">십억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -578,13 +578,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">억</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -599,10 +599,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">천만</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">천만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -617,10 +617,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">백만</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">백만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -635,10 +635,10 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">십만</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">십만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -653,13 +653,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">만</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -674,13 +674,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">천</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">천</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -695,13 +695,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">백</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">백</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -716,13 +716,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">십</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">십</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -737,13 +737,13 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="w-[3%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     <br />
                   </span>
-                  <span className="text-[11pt] font-batang">일</span>
+                  <span className="md:text-[11pt] text-[12px] font-batang">일</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="text-[11pt] font-batang">
+                  <span className="md:text-[11pt] text-[12px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -759,12 +759,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               <div className="w-[27px]">
                 <div className="h-[100%] w-[100%] border-black leading-[70%] text-center">
                   <div className="h-[50%]">
-                    <span className="text-[11pt] font-batang">
+                    <span className="md:text-[11pt] text-[12px] font-batang">
                       <br />
                     </span>
                   </div>
                   <div className="text-left mt-[10px]">
-                    <span className="text-[11pt] font-batang">
+                    <span className="md:text-[15px] text-[14px] font-batang">
                       원
                     </span>
                   </div>
@@ -775,7 +775,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
             <div className="flex flex-row justify-between items-stretch w-[100%] h-[13.5%]">
               <div className="flex flex-row w-[49.7%] border-black border-r-[2px] h-[100%]">
                 <div className='flex items-center justify-start w-[30%] h-[100%]'>
-                  <span className="text-[11pt] text-left font-batang">
+                  <span className="md:text-[11pt] text-[12px] text-left font-batang">
                     보증의 
                     <br />
                     제공방법
@@ -789,7 +789,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                       className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
                       readOnly
                     />
-                    <span className="text-[11pt] mt-1">현금·자기앞수표</span>
+                    <span className="md:text-[11pt] text-[12px] mt-1">현금·자기앞수표</span>
                   </div>
                   <div className="flex flex-row w-[100%]">
                     <input
@@ -798,7 +798,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                       className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
                       readOnly
                     />
-                    <span className="text-[11pt] mt-1">
+                    <span className="md:text-[11pt] text-[12px] mt-1">
                       보증서
                     </span>
                   </div>
@@ -806,12 +806,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
               <div className="flex flex-col justify-around items-stretch w-[50%] h-[100%]">
                 <div className="flex justify-start">
-                  <span className="text-[11pt] text-left font-batang ml-[10px]">
+                  <span className="md:text-[11pt] text-[12px] text-left font-batang ml-[10px]">
                     보증을 반환 받았습니다.
                   </span>
                 </div>
                 <div className='flex justify-center'>
-                  <span className="text-[11pt] font-batang mr-[10px]">
+                  <span className="md:text-[11pt] text-[12px] font-batang mr-[10px]">
                     본인 또는 대리인{' '}
                     {totalResult && totalResult.agent !== null ? totalResult && totalResult?.agent?.name + ' (인)' : totalResult && totalResult.bidders[0].name + ' (인)'}
                   </span>

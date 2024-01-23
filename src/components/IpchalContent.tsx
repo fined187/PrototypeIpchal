@@ -1786,12 +1786,18 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
                   </span>
                 </div>
               </div>
-              <div className="flex absolute top-[750px]">
+              <div className="flex absolute top-[750px] justify-center items-center">
                 <div>
-                  <span className="text-[15px] font-batang">
-                    1. 공동입찰을 하는 때에는 입찰표에 각자의 지분을 분명하게 표시하여야 합니다.
+                  <span className="text-[10pt] font-batang">
+                    ※ 1. 공동입찰을 하는 때에는 {" "}
+                    <span className=" underline underline-offset-1">
+                      입찰표에 각자의 지분을 분명하게 표시하여야 합니다.
+                    </span>
                     <br />
-                    2. 별지 공동입찰자 목록과 사이에 공동입찰자 전원이 간인하십시오.
+                    &nbsp;&nbsp; 2. 별지 공동입찰자 목록과 사이에 {" "}
+                    <span className="text-[10pt] underline underline-offset-1">
+                      공동입찰자 전원이 간인하십시오.
+                    </span>
                   </span>
                 </div>
               </div>

@@ -58,7 +58,7 @@ export default function IpchalResult() {
       )}
       {/* 버튼 */}
       <div className="flex justify-center items-center w-[100%] h-[100%] bg-white">
-        <div className='flex flex-row justify-center items-center w-[50%] bg-mybg gap-[20px]'>
+        <div className='flex flex-row justify-center items-center md:w-[50%] w-[100%] bg-mybg md:gap-[20px] gap-[10px]'>
           <button
             type="button"
             className="flex md:w-[200px] w-[150px] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

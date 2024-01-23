@@ -2,14 +2,12 @@ import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { useState } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
 export default function BiddingPayment() {
   const [isWaySelected, setIsWaySelected] = useState<boolean>(false)
-  const setStateNum = useSetRecoilState(stepState)
-  const stateNum = useRecoilValue(stepState)
-  const biddingForm = useRecoilValue(biddingInfoState)
-  const setBiddingForm = useSetRecoilState(biddingInfoState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
+  const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
 
   const handleBiddingPayment = async (pay: string) => {
@@ -137,7 +135,7 @@ export default function BiddingPayment() {
           </div>
         )}
       </div>
-      <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[600px]">
+      <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[600px] top-[500px]">
         <button
           type="button"
           className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
