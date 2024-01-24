@@ -315,6 +315,28 @@ export default function BidderForm() {
     }
   }
 
+  const handleInputChange = (e: any) => {
+    const { name, value } = e.target
+    setValue(name, value, { shouldValidate: true })
+  }
+
+  useEffect(() => {
+    setValue('bidderName', [biddingForm.bidName[stepNum - 1] || ''])
+    setValue('bidderPhone1', [biddingForm.bidPhone1[stepNum - 1] || ''])
+    setValue('bidderPhone2', [biddingForm.bidPhone2[stepNum - 1] || ''])
+    setValue('bidderPhone3', [biddingForm.bidPhone3[stepNum - 1] || ''])
+    setValue('bidderIdNum1', [biddingForm.bidIdNum1[stepNum - 1] || ''])
+    setValue('bidderIdNum2', [biddingForm.bidIdNum2[stepNum - 1] || ''])
+    setValue('bidderAddr', [biddingForm.bidAddr[stepNum - 1] || ''])
+    setValue('bidderAddrDetail', [biddingForm.bidAddrDetail[stepNum - 1] || ''])
+    setValue('bidderCorpNum1', [biddingForm.bidCorpNum1[stepNum - 1] || ''])
+    setValue('bidderCorpNum2', [biddingForm.bidCorpNum2[stepNum - 1] || ''])
+    setValue('bidderCorpNum3', [biddingForm.bidCorpNum3[stepNum - 1] || ''])
+    setValue('bidderCorpRegiNum1', [biddingForm.bidCorpRegiNum1[stepNum - 1] || ''])
+    setValue('bidderCorpRegiNum2', [biddingForm.bidCorpRegiNum2[stepNum - 1] || ''])
+    setValue('bidderJob', [biddingForm.bidJob[stepNum - 1] || ''])
+  }, [stepNum, biddingForm])
+
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       {loading && (
@@ -416,7 +438,7 @@ export default function BidderForm() {
             <div className="flex flex-col w-[100%] gap-1">
               <div className='flex justify-between w-[100%]'>
                 {(errors.bidderName?.type === 'required') && 
-                  (biddingForm.bidName[stepNum - 1] === '') ?
+                  (biddingForm.bidName[stepNum - 1] === '' || biddingForm.bidName[stepNum - 1] === undefined) ?
                   (<div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="bidderName"
@@ -457,6 +479,7 @@ export default function BidderForm() {
                     temp[stepNum - 1] = e.target.value
                     return { ...prev, bidName: temp }
                   })
+                  handleInputChange(e)
                 }}
               />
             </div>
@@ -464,7 +487,7 @@ export default function BidderForm() {
               <div className='flex justify-between w-[100%]'>
                 {(errors.bidderPhone1?.type === 'required' ||
                   errors.bidderPhone2?.type === 'required' ||
-                  errors.bidderPhone3?.type === 'required') && (biddingForm.bidPhone[stepNum - 1] === '') ? (
+                  errors.bidderPhone3?.type === 'required') && (biddingForm.bidPhone[stepNum - 1] === '' || biddingForm.bidPhone[stepNum - 1] === undefined) ? (
                   <div className="flex w-[100%] justify-start">
                     <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
                       전화번호를 입력해주세요
@@ -507,6 +530,7 @@ export default function BidderForm() {
                       return { ...prev, bidPhone1: temp }
                     })
                     handlePhoneFocusMove(e.target)
+                    handleInputChange(e)
                   }}
                 />
                 <span className="flex text-mygray font-NanumGothic font-bold mt-1">
@@ -540,6 +564,7 @@ export default function BidderForm() {
                       return { ...prev, bidPhone2: temp }
                     })
                     handlePhoneFocusMove(e.target)
+                    handleInputChange(e)
                   }}
                 />
                 <span className="flex text-mygray font-NanumGothic font-bold mt-1">
@@ -581,6 +606,7 @@ export default function BidderForm() {
                       return { ...prev, bidPhone: temp }
                     })
                     handlePhoneFocusMove(e.target)
+                    handleInputChange(e)
                   }}
                 />
               </div>
@@ -591,7 +617,7 @@ export default function BidderForm() {
                   <div className='flex justify-between w-[100%]'>
                     {errors.bidderIdNum1?.type === 'required' &&
                         errors.bidderIdNum2?.type === 'required' && 
-                        (biddingForm.bidIdNum[stepNum - 1] === '') ? (
+                        (biddingForm.bidIdNum[stepNum - 1] === '' || biddingForm.bidIdNum[stepNum - 1] === undefined) ? (
                         <div className="flex w-[100%] justify-start h-[15px] mb-1">
                           <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
                             주민등록번호를 입력해주세요
@@ -635,6 +661,7 @@ export default function BidderForm() {
                           return { ...prev, bidIdNum1: temp }
                         })
                         handleIdNumFocusMove(e.target)
+                        handleInputChange(e)
                       }}
                     />
                     <span className="flex text-mygray font-NanumGothic font-bold mt-1">
@@ -673,6 +700,7 @@ export default function BidderForm() {
                             e.target.value
                           return { ...prev, bidIdNum: temp }
                         })
+                        handleInputChange(e)
                       }}
                     />
                   </div>
@@ -685,7 +713,7 @@ export default function BidderForm() {
                     {(errors.bidderCorpNum1?.type === 'required' ||
                       errors.bidderCorpNum2?.type === 'required' ||
                       errors.bidderCorpNum3?.type === 'required') && 
-                      (biddingForm.bidCorpNum[stepNum - 1] === '') ? (
+                      (biddingForm.bidCorpNum[stepNum - 1] === '' || biddingForm.bidCorpNum[stepNum - 1] === undefined) ? (
                       <div className="flex w-[100%] justify-start mb-1">
                         <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
                           사업자등록번호를 입력해주세요
@@ -728,6 +756,7 @@ export default function BidderForm() {
                           return { ...prev, bidCorpNum1: temp }
                         })
                         handleCorpNumFocusMove(e.target)
+                        handleInputChange(e)
                       }}
                     />
                     <span className="flex text-mygray font-NanumGothic font-bold mt-1">
@@ -761,6 +790,7 @@ export default function BidderForm() {
                           return { ...prev, bidCorpNum2: temp }
                         })
                         handleCorpNumFocusMove(e.target)
+                        handleInputChange(e)
                       }}
                     />
                     <span className="flex text-mygray font-NanumGothic font-bold mt-1">
@@ -802,6 +832,7 @@ export default function BidderForm() {
                           return { ...prev, bidCorpNum: temp }
                         })
                         handleCorpNumFocusMove(e.target)
+                        handleInputChange(e)
                       }}
                     />
                   </div>
@@ -809,7 +840,7 @@ export default function BidderForm() {
                     <div className='flex justify-between w-[100%]'>
                       {(errors.bidderCorpRegiNum1?.type === 'required' ||
                         errors.bidderCorpRegiNum2?.type === 'required') &&
-                          (biddingForm.bidCorpRegiNum[stepNum - 1] === '') ? 
+                        (biddingForm.bidCorpRegiNum[stepNum - 1] === '' || biddingForm.bidCorpRegiNum[stepNum - 1] === undefined) ? 
                         (
                         <div className="flex w-[100%] justify-start mb-1">
                           <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
@@ -856,6 +887,7 @@ export default function BidderForm() {
                             return { ...prev, bidCorpRegiNum1: temp }
                           })
                           handleCorpRegiNumFocusMove(e.target)
+                          handleInputChange(e)
                         }}
                       />
                       <span className="flex text-mygray font-NanumGothic font-bold mt-1">
@@ -896,6 +928,7 @@ export default function BidderForm() {
                               e.target.value
                             return { ...prev, bidCorpRegiNum: temp }
                           })
+                          handleInputChange(e)
                         }}
                       />
                     </div>
@@ -907,7 +940,7 @@ export default function BidderForm() {
               <div className="flex flex-col w-[100%] gap-1">
                 <div className='flex justify-between w-[100%]'>
                   {errors.bidderJob?.type === 'required' && 
-                    (biddingForm.bidJob[stepNum - 1] === '') ?
+                    (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.bidJob[stepNum - 1] === undefined) ?
                     (
                       <div className="flex w-[100%] justify-start">
                         <label
@@ -945,6 +978,7 @@ export default function BidderForm() {
                       temp[stepNum - 1] = e.target.value
                       return { ...prev, bidJob: temp }
                     })
+                    handleInputChange(e)
                   }}
                 />
                 
