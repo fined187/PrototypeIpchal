@@ -41,13 +41,13 @@ export default function IpchalShare() {
   return (
     <>
       <div className="flex w-[100%] h-screen justify-center bg-white relative">
-        <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-screen bg-mybg items-center text-center">
+        <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-screen bg-mybg items-center text-center md:py-[0px] py-[25px]">
           <span className="md:text-[1.5rem] text-[1.4rem] font-extrabold font-NanumGothic not-italic leading-8">
             입찰표파일이 만들어졌습니다
             <br />
             작성된 파일을 공유하시겠습니까?
           </span>
-          <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+          <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[257px] bg-white absolute top-[130px] justify-center items-center rounded-lg border-slate-500">
             <div className="flex justify-between w-[80%]">
               <div className="flex justify-start items-center w-[80%]">
                 <span className="text-black text-center font-NanumGothic text-[15px] font-extrabold leading-[13px]">

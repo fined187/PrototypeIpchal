@@ -1133,7 +1133,7 @@ export default function BidderFormMod() {
                   setValue={setValue}
                 />
               </div>
-              <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'top-[700px]' : 'top-[770px]'} justify-center items-center md:w-[50%] w-[80%]`}>
+              <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:top-[650px] top-[600px]' : 'md:top-[650px] top-[650px]'} justify-center items-center md:w-[50%] w-[80%]`}>
                 <button
                   type="button"
                   className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

@@ -43,7 +43,7 @@ export default function BiddingPayment() {
       {loading && (
         <Spinner />
       )}
-      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
+      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
         <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
           보증금 제공 방법을 선택해주세요
         </span>

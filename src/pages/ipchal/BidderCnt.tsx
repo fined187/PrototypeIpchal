@@ -94,7 +94,7 @@ export default function BidderCnt() {
         {loading && (
           <Spinner />
         )}
-        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
+        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
           <div className="flex">
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               입찰하시는 분이 몇 명 이신가요?

@@ -15,10 +15,10 @@ export default function BidderForm() {
       e.preventDefault()
     }
   })
-
   const setStateNum = useSetRecoilState(stepState)                  //  입찰표 작성 단계 set함수
   const [stepNum, setStepNum] = useState<number>(1)                 //  입찰자 정보 단계
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)  //  입찰표 작성 정보
+  console.log(biddingForm)
   const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
   const [loading, setLoading] = useState<boolean>(false)            //  로딩 상태
   const { isOpen, onClose, onOpen } = useDisclosure()                       //  주소검색 모달 상태
@@ -996,7 +996,7 @@ export default function BidderForm() {
                 setValue={setValue}
               />
             </div>
-            <div className={`flex flex-row gap-[10px] absolute ${biddingInfo.bidderCorpYn[stepNum - 1] === 'I' ? 'top-[600px]' : 'top-[680px]'} justify-center items-center md:w-[50%] w-[80%]`}>
+            <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:top-[650px] top-[600px]' : 'md:top-[650px] top-[650px]'} justify-center items-center md:w-[50%] w-[80%]`}>
               <button
                 type="button"
                 className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

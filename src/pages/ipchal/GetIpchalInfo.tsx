@@ -68,7 +68,7 @@ export default function GetIpchalInfo() {
         {loading && (
           <Spinner />
         )}
-        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
+        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
           <div className="flex">
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
               사건 번호와 입찰일자를 확인해주세요
@@ -120,7 +120,7 @@ export default function GetIpchalInfo() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[600px] top-[500px]">
+        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[600px] top-[450px]">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

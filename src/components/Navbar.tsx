@@ -54,7 +54,7 @@ export default function Navbar() {
   }, [stepStateNum])
 
   return (
-    <div className={`flex relative w-[100%] md:w-[50%] h-[100px] bg-mybg justify-center items-center mx-auto`}>
+    <div className={`flex relative w-[100%] md:w-[50%] md:h-[100px] h-[10%] bg-mybg justify-center items-center mx-auto`}>
       {stepStateNum === 0 ? (
         <div className="flex flex-row-reverse relative w-[100%] mr-5">
           <div className="flex">

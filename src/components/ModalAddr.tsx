@@ -177,7 +177,7 @@ export default function ModalAddr({
 
   const handleCombineAddr = () => {
     if (stepNum && setBiddingForm && setBiddingInfo) {
-      const updatedAddr = biddingForm?.bidAddr[stepNum - 1] + ' ' + biddingForm?.bidAddrDetail[stepNum - 1]
+      const updatedAddr = biddingForm?.bidAddr[stepNum - 1] + ' ' + (biddingForm.bidAddrDetail[stepNum - 1] !== undefined ? biddingForm.bidAddrDetail[stepNum - 1] : '')
       setBiddingForm((prev: any) => {
         const temp = prev.bidAddr
         temp[stepNum - 1] = updatedAddr
@@ -187,7 +187,7 @@ export default function ModalAddr({
         }
       })
     } else if (agentInfo && setAgentInfo) {
-      const updatedAddr = agentInfo?.agentAddr + ' ' + agentInfo?.agentAddrDetail
+      const updatedAddr = agentInfo?.agentAddr + ' ' + agentInfo?.agentAddrDetail ?? ''
       setBiddingForm((prev: any) => {
         let temp = prev.agentAddr
         temp = updatedAddr

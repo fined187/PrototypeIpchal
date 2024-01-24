@@ -506,7 +506,7 @@ export default function AgentForm() {
                 agentSetValue={setValue}
               />
             </div>
-            <div className="flex flex-row gap-[10px] absolute top-[630px] justify-center items-center md:w-[50%] w-[80%]">
+            <div className="flex flex-row gap-[10px] absolute top-[550px] justify-center items-center md:w-[50%] w-[80%]">
               <button
                 type="button"
                 className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

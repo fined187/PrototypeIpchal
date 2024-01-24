@@ -64,9 +64,9 @@ export default function StartIpchal() {
         {loading && (
           <Spinner />
         )}
-        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[20px]">
+        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]">
           <div className="flex">
-            <span className="md:text-[2rem] text-[1.4rem] font-extrabold font-NanumGothic not-italic">
+            <span className="md:text-[2rem] text-[1.4rem] font-extrabold font-NanumGothic not-italic md:py-[0px] py-[25px]">
               입찰표 작성을 시작합니다
             </span>
           </div>

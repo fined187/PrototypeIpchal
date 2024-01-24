@@ -176,8 +176,8 @@ export default function ShareInfo() {
   }, [])
 
   return (
-    <div className="flex w-[100%] h-screen bg-white justify-center relative">
-      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
+    <div className="flex w-[100%] h-screen bg-white justify-center relative ">
+      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
         <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
           공동입찰자 분의 지분을 입력해주세요
         </span>

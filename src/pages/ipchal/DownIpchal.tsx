@@ -35,7 +35,7 @@ export default function DownIpchal() {
   return (
     <>
       <div className="flex w-[100%] h-screen justify-center bg-white relative">
-        <div className="flex flex-col gap-[60px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
+        <div className="flex flex-col gap-[60px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative md:py-[0px] py-[25px]">
           <span className="md:text-[1.5rem] text-[1.4rem] font-extrabold font-NanumGothic not-italic leading-8">
             입찰표 작성이 모두 끝났습니다
             <br />
@@ -45,7 +45,7 @@ export default function DownIpchal() {
             꼭 낙찰 받으시길 기원합니다
           </span>
         </div>
-        <div className="flex flex-col gap-[30px] md:w-[520px] bg-mybg items-center text-center absolute top-[300px] cursor-pointer">
+        <div className="flex flex-col gap-[30px] md:w-[520px] bg-mybg items-center text-center absolute top-[250px] cursor-pointer">
           <div className="flex bg-mygold w-[200px] h-[40px] rounded-md justify-center items-center" onClick={() =>onOpen()}>
             <span className="text-center text-white font-NanumGothic text-[18px] font-bold leading-[15px]">
               입찰표 확인하기
@@ -58,7 +58,7 @@ export default function DownIpchal() {
             <TfiDownload className='bg-orange-400 ml-2 text-white stroke-[1px]' size={20} />
           </div>
         </div>
-        <div className="flex flex-row gap-[10px] absolute top-[578px]">
+        <div className="flex flex-row gap-[10px] absolute top-[500px]">
           <button
             type="button"
             className="flex w-[100px] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
