@@ -212,7 +212,7 @@ export default function ModalAddr({
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-          <div className="fixed inset-0 z-10 w-screen h-screen overflow-y-auto justify-center items-center">
+          <div className="fixed inset-0 z-10 w-[100%] h-[100%] overflow-y-auto justify-center items-center">
             <div className="flex w-[100%] h-[100%] justify-center p-4 text-center items-center sm:p-0">
               <ModalContent style={{
                 width: '100%',
@@ -243,7 +243,7 @@ export default function ModalAddr({
                           <IoClose className="flex" size={20} />
                         </div>
                       </div>
-                      <div className="mt-3 text-center justify-center items-center w-full">
+                      <div className="mt-3 text-center justify-center items-center w-[100%]">
                         <div className="flex flex-row w-full">
                           <input
                             type="text"
@@ -393,7 +393,7 @@ export default function ModalAddr({
                           >
                             {addrList?.length > 0 && !emptyView && (
                               <>
-                                <div className="w-full overflow-y-scroll sm:overflow-hidden">
+                                <div className="w-[100%] overflow-y-scroll sm:overflow-hidden">
                                   {addrList.map(
                                     (addr: any, index: number) => (
                                       <div
@@ -525,7 +525,7 @@ export default function ModalAddr({
                           </div>
                         )}
                         {detailAddr && (
-                          <div className="flex flex-col w-full h-[350px] p-1 relative">
+                          <div className="flex flex-col w-[100%] h-[350px] p-1 relative">
                             <div className="flex justify-start">
                               <span className="text-[12px] font-bold ">
                                 상세주소 입력
@@ -567,7 +567,7 @@ export default function ModalAddr({
                                 </div>
                               </div>
                             </div>
-                            <div className="flex absolute bottom-0 left-[40%] w-[100%]">
+                            <div className="flex justify-center items-center w-[100%] absolute top-[300px]">
                               <div
                                 className="flex justify-center items-center w-[100px] h-[40px] bg-blue-500 rounded-md cursor-pointer hover:bg-blue-300"
                                 onClick={() => {
