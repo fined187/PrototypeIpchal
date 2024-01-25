@@ -12,6 +12,8 @@ export default function DownIpchal() {
   const [loading, setLoading] = useState<boolean>(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  const date = new Date()
+  const nowDate = `${date.getFullYear()} ${date.getMonth() + 1} ${date.getDate()} ${date.getHours()} ${date.getMinutes()}`
   const handleDownload = async () => {
     setLoading(true)
     const url = `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`
@@ -20,7 +22,7 @@ export default function DownIpchal() {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `${biddingInfo.sagunNum} 입찰표.pdf`;
+        a.download = `${biddingInfo.sagunNum} ${nowDate}.pdf`;
         a.click();
         setLoading(false)
         alert('파일이 다운로드 되었습니다.');
