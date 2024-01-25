@@ -142,18 +142,13 @@ export default function GetIpchalInfo() {
               </div>
             </div>
             <div className="flex flex-row absolute top-40 border-b w-[80%] border-gray-200">
-              <div className='flex md:w-[22%] w-[28%] justify-start'>
-                <div className='flex justify-between w-[100%]'>
-                  <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9 justify-start">
-                    주소 
-                  </span>
-                  <span className='text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9 justify-end'>
-                    {" : "}
-                  </span>
-                </div>
+              <div className='flex md:w-[30%] w-[30%] justify-start'>
+                <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+                  주소 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {" : "}
+                </span>
               </div>
-              <div className='flex md:w-[75%] w-[77%] justify-start ml-[10%]'>
-                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9 text-left whitespace-normal">
+              <div className='flex md:w-[70%] w-[70%] justify-start'>
+                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic text-left leading-9 whitespace-normal">
                   {biddingInfo.sagunAddr}
                 </span>
               </div>

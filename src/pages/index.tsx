@@ -177,6 +177,8 @@ export default function Home() {
       setStateNum(16)
     } else if (bidders.state >= 4 && bidders.agentYn !== "Y") {
       setStateNum(15)
+    } else if (bidders.state >= 9) {
+      setStateNum(0)
     } else {
       setStateNum(1)
     }
