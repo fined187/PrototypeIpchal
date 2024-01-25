@@ -42,6 +42,7 @@ export default function StartIpchal() {
               ' 타경 ' +
               response.data.data.caseDetail,
             mulgunNum: response.data.data.mulSeq,
+            mulSeq: response.data.data.mulSeq,
             ipchalDate:
               (response.data.data.startYear) +
               (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
@@ -58,12 +59,18 @@ export default function StartIpchal() {
       }
   }
 
+  const handleNextStep = async () => {
+    if (biddingInfo.mstSeq === 0) {
+      await handleCheck()
+    } else {
+      setStateNum(1)
+    }
+  }
+
   return (
     <>
+
       <div className={`flex w-[100%] h-screen justify-center bg-white relative`}>
-        {loading && (
-          <Spinner />
-        )}
         <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]">
           <div className="flex">
             <span className="md:text-[2rem] text-[1.4rem] font-extrabold font-NanumGothic not-italic md:py-[0px] py-[25px]">
@@ -90,8 +97,8 @@ export default function StartIpchal() {
           </div>
           <div
             className="flex absolute top-[445px] bg-mygold w-[180px] h-[46px] rounded-md items-center justify-center cursor-pointer"
-            onClick={() => {
-              handleCheck()
+            onClick={async () => {
+              await handleNextStep()
             }}
           >
             <span className="text-white text-[16px] font-NanumGothic font-extrabold not-italic leading-4">

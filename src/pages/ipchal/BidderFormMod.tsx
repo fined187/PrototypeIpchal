@@ -494,11 +494,14 @@ export default function BidderFormMod() {
     setBiddingForm((prev: any) => {
       const newBidIdNum = [...prev.bidIdNum]
       const newBidderType = [...prev.bidCorpYn]
+      //  현재 스텝의 입찰자가 기업일 경우 + 현재 스텝의 주민등록번호가 빈 값이 아닐 경우 ==> 싱크 안맞으므로 해당 배열의 인덱스의 주민등록번호 초기화
       if (newBidderType[index] === 'C' && newBidIdNum[index] !== '') {
         newBidIdNum.splice(index, 1, '')
       } else if (newBidderType[index + 1] === 'C' && newBidIdNum[index + 1] !== '') {
+        //  다음 스텝의 입찰자가 기업일 경우 + 다음 스텝의 주민등록번호가 빈 값이 아닐 경우 ==> 싱크 안맞으므로 해당 배열의 인덱스의 주민등록번호 초기화
         newBidIdNum.splice(index + 1, 1, '')
-      } else if (newBidderType[index + 1] === undefined) {
+      } else if (newBidderType[index + 1] === undefined && newBidIdNum[index + 1] !== '') {
+        //  다음 스텝이 없을 경우 + 다음 스텝의 주민등록번호가 빈 값이 아닐 경우 ==> 싱크 안맞으므로 해당 배열의 인덱스의 주민등록번호 초기화
         newBidIdNum.splice(index + 1, 1, '')
       }
       return { ...prev, bidIdNum: newBidIdNum }
@@ -510,8 +513,8 @@ export default function BidderFormMod() {
     setValue('bidderPhone1', [biddingForm.bidPhone1[stepNum - 1] || ''])
     setValue('bidderPhone2', [biddingForm.bidPhone2[stepNum - 1] || ''])
     setValue('bidderPhone3', [biddingForm.bidPhone3[stepNum - 1] || ''])
-    setValue('bidderIdNum1', [biddingForm.bidIdNum[stepNum - 1]?.substring(0, 6) || ''])
-    setValue('bidderIdNum2', [biddingForm.bidIdNum[stepNum - 1]?.substring(6, 13) || ''])
+    setValue('bidderIdNum1', [biddingForm.bidIdNum1[stepNum - 1] || ''])
+    setValue('bidderIdNum2', [biddingForm.bidIdNum2[stepNum - 1] || ''])
     setValue('bidderAddr', [biddingForm.bidAddr[stepNum - 1] || ''])
     setValue('bidderAddrDetail', [biddingForm.bidAddrDetail[stepNum - 1] || ''])
     setValue('bidderCorpNum1', [biddingForm.bidCorpNum1[stepNum - 1] || ''])
@@ -803,7 +806,7 @@ export default function BidderFormMod() {
                         type="text"
                         maxLength={6}
                         className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
-                        value={biddingForm.bidIdNum1[stepNum - 1] || ''}
+                        value={biddingForm.bidIdNum1[stepNum - 1] || biddingInfo.bidderIdNum1[stepNum - 1] || ''}
                         onChange={(e) => {
                           setBiddingForm((prev: any) => {
                             const temp = prev.bidIdNum1
@@ -837,7 +840,7 @@ export default function BidderFormMod() {
                         type="text"
                         maxLength={7}
                         className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
-                        value={biddingForm.bidIdNum2[stepNum - 1] || ''}
+                        value={biddingForm.bidIdNum2[stepNum - 1] || biddingInfo.bidderIdNum2[stepNum - 1] || ''}
                         onChange={(e) => {
                           setBiddingForm((prev: any) => {
                             const temp = prev.bidIdNum2

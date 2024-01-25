@@ -1,4 +1,5 @@
 import { biddingInfoState, stepState } from '@/atom'
+import Spinner from '@/components/Spinner'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
@@ -8,6 +9,7 @@ export default function ShareInfo() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [isDataIn, setIsDataIn] = useState<any>([])
   const [goNext, setGoNext] = useState<boolean>(false)
+  const [loadding, setLoadding] = useState<boolean>(false)
 
   const [shareList, setShareList] = useState({
     shareList: Array(biddingInfo.bidderNum).fill({
@@ -86,6 +88,7 @@ export default function ShareInfo() {
   }
 
   const handlePutShare = async () => {
+    setLoadding(true)
     try {
       const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders/shares`, {
         bidderCount: biddingInfo.bidderNum,
@@ -99,13 +102,16 @@ export default function ShareInfo() {
           denominator: shareList.shareList.map((item: any) => item.share?.split('/')[1]),
         })
         setStateNum(stateNum + 1)
+        setLoadding(false)
       }
     } catch (error) {
       console.log(error)
+      setLoadding(false)
     }
   }
 
   const handleGetBiddingFormUpdate = async () => {
+    setLoadding(true)
     try {
       const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders`)
       if (response.status === 200) {
@@ -129,9 +135,11 @@ export default function ShareInfo() {
             }
           }),
         })
+        setLoadding(false)
       }
     } catch (error) {
       console.log(error)
+      setLoadding(false)
     }
   }
 
@@ -141,6 +149,7 @@ export default function ShareInfo() {
 
   useEffect(() => {
     const handleSyncBiddingForm = async () => {
+      setLoadding(true)
       try {
         const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`)
         if (response.status === 200) {
@@ -166,9 +175,11 @@ export default function ShareInfo() {
             denominator: biddingInfo.shareWay === 'S' ? Array(biddingInfo.bidderNum).fill(biddingInfo.bidderNum.toString()) : response.data.data?.bidders?.map((item: any) => item.share?.split('/')[1]),
             numerator: biddingInfo.shareWay === 'S' ? Array(biddingInfo.bidderNum).fill('1') : response.data.data?.bidders?.map((item: any) => item.share?.split('/')[0]),
           })
+          setLoadding(false)
         }
       } catch (error) {
         console.log(error)
+        setLoadding(false)
       }
     }
     handleSyncBiddingForm()
@@ -177,6 +188,7 @@ export default function ShareInfo() {
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative ">
+
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
         <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
           공동입찰자 분의 지분을 입력해주세요
@@ -258,6 +270,9 @@ export default function ShareInfo() {
           </div>
         </div>
         <div className="flex flex-col gap-10 md:w-[550px] w-[90%] md:h-[350px] pt-[30px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll scrollbar-hide">
+          {loadding && (
+            <Spinner />
+          )}
           {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
             return (
               <div key={index} className="flex justify-between mb-5 w-full">

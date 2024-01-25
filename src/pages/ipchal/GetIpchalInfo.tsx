@@ -152,7 +152,7 @@ export default function GetIpchalInfo() {
                   </span>
                 </div>
               </div>
-              <div className='flex md:w-[75%] w-[77%] justify-center ml-[10%]'>
+              <div className='flex md:w-[75%] w-[77%] justify-start ml-[10%]'>
                 <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9 text-left whitespace-normal">
                   {biddingInfo.sagunAddr}
                 </span>

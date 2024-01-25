@@ -231,11 +231,11 @@ export default function BiddingPrice() {
 
   return (
     <>
-      {loading && (
-        <Spinner />
-      )}
       <div className="flex w-[100%] h-screen bg-white justify-center relative">
         <div className="flex flex-col gap-[20px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative md:py-[0px] py-[25px]">
+          {loading && (
+              <Spinner />
+            )}
           <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
             입찰 가격을 입력해주세요
           </span>
@@ -258,7 +258,7 @@ export default function BiddingPrice() {
               </span>
             </div>
           </div>
-          <div className="flex flex-col gap-2 md:w-[550px] w-[90%] min-h-[300px] max-h-[500px] bg-white absolute top-[180px] border-slate-500 justify-center items-center">
+          <div className="flex flex-col gap-2 md:w-[550px] w-[90%] h-[30%] bg-white absolute top-[180px] border-slate-500 justify-center items-center">
             <div className="flex flex-row gap-[20px] w-[90%]">
               <div className='flex justify-start md:w-[15%] w-[20%] pt-[20px] md:ml-[10px]'>
                 <span className="md:text-[15px] text-[12px] font-NanumGothic not-italic font-bold leading-[9px]">

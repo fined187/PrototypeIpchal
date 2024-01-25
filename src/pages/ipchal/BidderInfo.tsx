@@ -55,10 +55,10 @@ export default function BidderInfo() {
   return (
     <>
       <div className="flex w-[100%] h-screen bg-white justify-center relative">
-        {loading && (
-          <Spinner />
-        )}
         <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
+          {loading && (
+            <Spinner />
+          )}
           <div className="flex">
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
               입찰하시는 본인이 맞으신가요?

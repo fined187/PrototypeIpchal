@@ -77,7 +77,6 @@ export default function ModalAddr({
         params: param,
       })
       if (result) {
-        console.log(result)
         setEmptyView(true)
         setAddrList(result.data.results.juso)
         setTotalCount(result.data.results.common.totalCount)
@@ -516,8 +515,8 @@ export default function ModalAddr({
                                 </div>
                               </>
                             )}
-                            {addrList?.length === 0 && emptyView && !detailAddr && (
-                              <div className="text-center items-center justify-center w-[100%] h-[150px] absolute top-[300px]">
+                            {addrList === null && (
+                              <div className="text-center items-center justify-center mx-auto w-[100%] h-[150px] absolute top-[300px] left-0">
                                 <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
                                   검색결과가 없습니다.
                                 </span>
