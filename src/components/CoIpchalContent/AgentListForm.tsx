@@ -62,7 +62,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
               <div className="flex w-[100%] h-[30%] border-black border-b-[1px]">
                 <div className="flex flex-row w-[100%] h-[100%]">
                   <div className="flex w-[20%] border-black border-r-[1px] items-center justify-center text-center">
-                    <span className="md:text-[12pt] text-[12px] tracking-[5pt] leading-[20px] font-batang">
+                    <span className="md:text-[12pt] text-[12px] leading-[20px] font-batang">
                       주민등록번호
                     </span>
                   </div>
@@ -180,7 +180,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                     <div className="flex w-[100%] h-[30%] border-black border-b-[1px]">
                       <div className="flex flex-row w-[100%] h-[100%]">
                         <div className="flex w-[20%] border-black border-r-[1px] items-center justify-center text-center">
-                          <span className="md:text-[12pt] text-[12px] tracking-[5pt] leading-[20px] font-batang">
+                          <span className="md:text-[12pt] text-[12px] leading-[20px] font-batang">
                             주민등록번호
                           </span>
                         </div>
@@ -270,7 +270,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                     <div className="flex w-[100%] h-[30%] border-black border-b-[1px]">
                       <div className="flex flex-row w-[100%] h-[100%]">
                         <div className="flex w-[20%] border-black border-r-[1px] items-center justify-center text-center">
-                          <span className="md:text-[12pt] text-[12px] tracking-[5pt] leading-[20px] font-batang">
+                          <span className="md:text-[12pt] text-[12px] leading-[20px] font-batang">
                             주민등록번호
                           </span>
                         </div>
