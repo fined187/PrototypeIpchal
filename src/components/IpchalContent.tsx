@@ -1,5 +1,4 @@
 import { biddingInfoState } from "@/atom"
-import { Dispatch, SetStateAction } from "react"
 import { useRecoilValue } from "recoil"
 
 export default function IpchalContent({ onClose }: {onClose: () => void}) {
@@ -791,7 +790,7 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
           </div>
           {/* 대리인 */}
           {biddingInfo.agentName !== '' && (
-            <div className={`flex flex-col bg-mybg h-[1600px] w-[100%] m-auto justify-center items-center overflow-x-scroll scrollbar-hide absolute top-[800px]`}>
+            <div className={`flex flex-col bg-mybg h-[1600px] w-[100%] md:w-[90%] m-auto justify-center items-center overflow-x-scroll scrollbar-hide absolute top-[800px]`}>
               <div className="flex w-[100%] absolute top-0">
                 <p className="md:text-[12pt] text-[10px] font-batang">
                   (뒷면)
@@ -1738,7 +1737,7 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
           </div>
           {/* 공동입찰 신고서 */}
           <div className="flex flex-col bg-mybg w-[100%] h-[800px] justify-center items-center mx-auto overflow-y-scroll scrollbar-hide absolute top-[600px]">
-            <div className="flex flex-col bg-mybg h-[100%] w-[100%] m-auto relative justify-center items-center">
+            <div className="flex flex-col bg-mybg h-[100%] w-[80%] m-auto relative justify-center items-center">
               <div className="md:text-[18pt] text-[18px] py-[60px] leading-[23px] font-batang absolute top-0 bg-mybg">
                 공 동 입 찰 신 고 서
               </div>
@@ -1801,7 +1800,7 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
                   </span>
                 </div>
               </div>
-              <div className="flex absolute top-[750px] justify-center items-center">
+              <div className="flex absolute top-[750px] justify-center items-center text-center w-[100%]">
                 <div>
                   <span className="md:text-[12pt] text-[12px] font-batang">
                     ※ 1. 공동입찰을 하는 때에는 {" "}
@@ -1825,7 +1824,7 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
                 공 동 입 찰 자 목 록
               </span>
             </div>
-            <div className="flex sm:w-[600px] h-[800px] border border-black absolute top-[150px]">
+            <div className="flex w-[100%] md:w-[90%] h-[800px] border border-black absolute top-[150px]">
               <div className="flex flex-col w-[10%] h-[100%] border-black border-r-[1px]">
                 <div className="flex justify-center items-center border-black border-b-[1px] w-[100%] h-[50px]">
                   번호
@@ -1930,7 +1929,7 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
           </div>
           {/* 대리인 */}
           {biddingInfo.agentName !== '' && (
-            <div className={`flex flex-col bg-mybg h-[1600px] w-[600px] m-auto justify-center items-center overflow-x-scroll scrollbar-hide absolute top-[2500px]`}>
+            <div className={`flex flex-col bg-mybg h-[1600px] w-[100%] md:w-[90%] m-auto justify-center items-center overflow-x-scroll scrollbar-hide absolute top-[2500px]`}>
               <div className="flex w-[100%] absolute top-0">
                 <p className="md:text-[12pt] text-[10px] font-batang">
                   (뒷면)

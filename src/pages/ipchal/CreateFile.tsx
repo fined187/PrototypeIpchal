@@ -130,7 +130,7 @@ export default function CreateFile() {
         }
         const blob = doc.output('blob')
         //  저장
-        doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
+        // doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
         file = new File([blob], `best_${format(date, 'yyyyMMddHHmmss')}.pdf`, {
           type: 'application/pdf',
         })
@@ -173,10 +173,10 @@ export default function CreateFile() {
       alert('파일 암호를 4자리 이상 입력해주세요')
       setLoading(false)
       return
-    // } else if (biddingInfo.isFileCreated) {
-    //   alert('이미 파일이 생성되었습니다')
-    //   setLoading(false)
-    //   return
+    } else if (biddingInfo.isFileCreated) {
+      alert('이미 파일이 생성되었습니다')
+      setLoading(false)
+      return
     } 
     else {
       await onCapture(false, null, null)
@@ -341,8 +341,8 @@ export default function CreateFile() {
       )}
       {totalResult && totalResult.bidders.length > 1 && (
           <>
-            <div className={`flex flex-col ${totalResult && totalResult.agentYn === 'Y' ? 'h-[5200px]' : 'h-[3900px]'} md:w-[50%] w-[100%] justify-center items-center mx-auto`} id="wrap-capture">
-              <div className="flex flex-col h-[100%] w-[100%] justify-center items-center" id="capture">
+            <div className={`hidden flex-col ${totalResult && totalResult.agentYn === 'Y' ? 'h-[5200px]' : 'h-[3900px]'} md:w-[50%] w-[100%] justify-center items-center mx-auto`} id="wrap-capture">
+              <div className="hidden flex-col h-[100%] w-[100%] justify-center items-center" id="capture">
                 <div className="flex flex-col bg-white h-[100%] md:w-[100%] w-[90%] mx-auto relative justify-center items-center">
                   <div className="w-[100%] md:max-w-[850px] overflow-x-scroll absolute top-[130px] h-[600px] bg-white scrollbar-hide">
                     <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-white">
@@ -1146,8 +1146,8 @@ export default function CreateFile() {
       )}
       {totalResult && totalResult.bidders.length === 1 && (
         <>
-          <div className={`flex flex-col bg-white max-h-[2600px] ${totalResult && totalResult.agentYn === 'Y' ? 'h-[2600px]' : 'h-[1300px]'} md:w-[50%] w-[100%] mx-auto relative justify-center items-center`} id="wrap-capture">
-            <div className="flex flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
+          <div className={`hidden flex-col bg-white max-h-[2600px] ${totalResult && totalResult.agentYn === 'Y' ? 'h-[2600px]' : 'h-[1300px]'} md:w-[50%] w-[100%] mx-auto relative justify-center items-center`} id="wrap-capture">
+            <div className="hidden flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
               <div className="flex flex-col bg-white h-[100%] md:w-[100%] w-[90%] mx-auto relative justify-center items-center">
                 <div className="w-[100%] md:max-w-[850px] overflow-x-scroll absolute top-[130px] h-[600px] bg-white scrollbar-hide">
                   <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-white">

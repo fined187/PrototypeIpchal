@@ -62,7 +62,7 @@ export default function BidderFormMod() {
     bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill('I'),
     bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
-  //  초기 컴포넌트 마운트 시 서버에 저장된 입찰자 정보를 불러온다.
+   // 초기 컴포넌트 마운트 시 서버에 저장된 입찰자 정보를 불러온다.
   useEffect(() => {
     const handleGetBidders = async () => {
       try {
@@ -155,6 +155,7 @@ export default function BidderFormMod() {
               let temp5 = prev.bidAddr
               let temp6 = prev.bidCorpYn
               let temp7 = prev.bidJob
+              let temp8 = prev.bidIdNum
               temp1 = response.data.data.bidders.map((item: any) => item.name)
               temp2 = response.data.data.bidders.map((item: any) => item.phoneNo)
               temp3 = response.data.data.bidders.map((item: any) => item.companyNo)
@@ -162,6 +163,7 @@ export default function BidderFormMod() {
               temp5 = response.data.data.bidders.map((item: any) => item.address)
               temp6 = response.data.data.bidders.map((item: any) => item.bidderType)
               temp7 = response.data.data.bidders.map((item: any) => item.job)
+              temp8 = biddingForm.bidIdNum.map((item: any) => item)
               return {
                 ...prev,
                 bidName: temp1,
@@ -171,6 +173,7 @@ export default function BidderFormMod() {
                 bidAddr: temp5,
                 bidCorpYn: temp6,
                 bidJob: temp7,
+                bidIdNum: temp8,
               }
             })
           }
@@ -507,8 +510,8 @@ export default function BidderFormMod() {
     setValue('bidderPhone1', [biddingForm.bidPhone1[stepNum - 1] || ''])
     setValue('bidderPhone2', [biddingForm.bidPhone2[stepNum - 1] || ''])
     setValue('bidderPhone3', [biddingForm.bidPhone3[stepNum - 1] || ''])
-    setValue('bidderIdNum1', [biddingForm.bidIdNum1[stepNum - 1] || ''])
-    setValue('bidderIdNum2', [biddingForm.bidIdNum2[stepNum - 1] || ''])
+    setValue('bidderIdNum1', [biddingForm.bidIdNum[stepNum - 1]?.substring(0, 6) || ''])
+    setValue('bidderIdNum2', [biddingForm.bidIdNum[stepNum - 1]?.substring(6, 13) || ''])
     setValue('bidderAddr', [biddingForm.bidAddr[stepNum - 1] || ''])
     setValue('bidderAddrDetail', [biddingForm.bidAddrDetail[stepNum - 1] || ''])
     setValue('bidderCorpNum1', [biddingForm.bidCorpNum1[stepNum - 1] || ''])
@@ -818,7 +821,6 @@ export default function BidderFormMod() {
                             return { ...prev, bidIdNum1: temp }
                           })
                           handleIdNumFocusMove(e.target)
-                          handleInputChange(e)
                         }}
                       />
                       <span className="flex text-mygray font-NanumGothic font-bold mt-1">

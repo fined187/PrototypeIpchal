@@ -413,7 +413,7 @@ export default function ModalAddr({
                                                 index +
                                                 1}
                                           </span>
-                                          <div className="flex flex-col flex-wrap sm:max-w-[300px] max-w-[200px] absolute left-8 cursor-pointer">
+                                          <div className="flex flex-col flex-wrap w-[60%] absolute left-8 cursor-pointer">
                                             <span
                                               className="text-left text-[12px] font-NanumGothic not-italic font-extrabold"
                                               onClick={() => {
@@ -478,7 +478,7 @@ export default function ModalAddr({
                                               </>
                                             )}
                                           </div>
-                                          <div className="flex flex-row gap-2 justify-end">
+                                          <div className="flex flex-row gap-2 w-[40%] justify-end">
                                             {detailOpen ===
                                             index.toString() ? (
                                               <div

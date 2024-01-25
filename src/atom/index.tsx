@@ -28,6 +28,12 @@ export const biddingInfoState = atom({
         bidDeposit: 0,
       },
     ],
+    biddingInfo: {
+      biddingTime: '',
+      appraisalAmount: 0,
+      minimumAmount: 0,
+      bidDeposit: 0,
+    },
     bidder: '',
     bidderNum: 0,
     biddingPrice: 0,
@@ -74,6 +80,7 @@ export const biddingInfoState = atom({
     shareWay: 'S',
     numerator: [''],
     denominator: [''],
+    mulSeq: '',
   },
   dangerouslyAllowMutability: true,
 })

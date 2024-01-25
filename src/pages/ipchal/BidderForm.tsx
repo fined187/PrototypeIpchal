@@ -18,7 +18,6 @@ export default function BidderForm() {
   const setStateNum = useSetRecoilState(stepState)                  //  입찰표 작성 단계 set함수
   const [stepNum, setStepNum] = useState<number>(1)                 //  입찰자 정보 단계
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)  //  입찰표 작성 정보
-  console.log(biddingForm)
   const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
   const [loading, setLoading] = useState<boolean>(false)            //  로딩 상태
   const { isOpen, onClose, onOpen } = useDisclosure()                       //  주소검색 모달 상태

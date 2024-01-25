@@ -177,8 +177,24 @@ export default function BiddingPrice() {
     const handleSyncBiddingForm = async () => {
       setLoading(true)
       try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}`)
+        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        const response2 = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
         if (response.status === 200) {
+          setPaymentsInfo({
+            ...paymentsInfo,
+            biddingTime: response2.data.data.biddingInfo.biddingTime,
+            appraisalAmount: response2.data.data.biddingInfo.appraisalAmount,
+            minimumAmount: response2.data.data.biddingInfo.minimumAmount,
+            bidDeposit: response2.data.data.biddingInfo.bidDeposit,
+          })
           setBiddingForm({
             ...biddingForm,
             bidName: response.data.data?.bidders?.map((item: any) => item.name),
@@ -201,32 +217,7 @@ export default function BiddingPrice() {
             numerator: response.data.data?.bidders?.length < biddingForm.numerator.length ? biddingForm.numerator?.splice(response.data.data?.bidders?.length) : biddingForm.numerator,
             bidIdNum1: biddingForm.bidIdNum.map((item) => item !== '' ? item?.substring(0, 6) : ''),
             bidIdNum2: biddingForm.bidIdNum.map((item) => item !== '' ? item?.substring(6, 13) : ''),
-          })
-        }
-        setLoading(false)
-      } catch (error) {
-        console.log(error)
-        setLoading(false)
-      }
-    }
-    const handleGetBiddingPrice = async () => {
-      setLoading(true)
-      try {
-        const response = await axios.get(
-          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`,
-        )
-        if (response.status === 200) {
-          setPaymentsInfo({
-            ...paymentsInfo,
-            biddingTime: response.data.data.biddingInfo.biddingTime,
-            appraisalAmount:
-              response.data.data.biddingInfo.appraisalAmount,
-            minimumAmount: response.data.data.biddingInfo.minimumAmount,
-            bidDeposit: response.data.data.biddingInfo.bidDeposit,
-          })
-          setBiddingForm({
-            ...biddingForm,
-            depositPrice: biddingForm.depositPrice === 0 ? response.data.data.biddingInfo.bidDeposit : biddingForm.depositPrice,
+            depositPrice: biddingForm.depositPrice === 0 ? response2.data.data.biddingInfo.bidDeposit : biddingForm.depositPrice,
           })
         }
         setLoading(false)
@@ -236,7 +227,6 @@ export default function BiddingPrice() {
       }
     }
     handleSyncBiddingForm()
-    handleGetBiddingPrice()
   }, [])
 
   return (

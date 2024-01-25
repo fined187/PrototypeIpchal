@@ -153,6 +153,9 @@ export default function Home() {
             numerator: response.data.data?.bidders ? response.data.data?.bidders.map((bidder: any) => bidder.share?.split('/')[0]) : [''],
             denominator: response.data.data?.bidders ? response.data.data?.bidders.map((bidder: any) => bidder.share?.split('/')[1]) : [''],
             shareWay: response.data.data?.bidders ? response.data.data?.bidders.every((ele: any) => ele.share === response.data.data?.bidders[0].share) ? 'S' : 'N' : 'S',
+            sagunAddr: response.data.data?.address ?? '',
+            biddingInfos: response.data.data?.biddingInfo,
+            biddingInfo: response.data.data?.biddingInfo,
           })
           setLoading(false)
         }
