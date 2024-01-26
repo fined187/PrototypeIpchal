@@ -3417,6 +3417,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-frame-component@npm:^4.1.6":
+  version: 4.1.6
+  resolution: "@types/react-frame-component@npm:4.1.6"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 2f5ddc562ac44fbf30f43de0efe4ef82698d7c85732320e56137720597cae5caa0a94857e1ebdb07673dde6147daf93fa07083c652fcb5d6efb751d4935a5b3d
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:*, @types/react@npm:^18":
   version: 18.2.43
   resolution: "@types/react@npm:18.2.43"
@@ -5854,6 +5863,7 @@ __metadata:
     "@types/react": "npm:^18"
     "@types/react-datepicker": "npm:^4"
     "@types/react-dom": "npm:^18"
+    "@types/react-frame-component": "npm:^4.1.6"
     "@types/uuid": "npm:^9.0.7"
     autoprefixer: "npm:^10.0.1"
     axios: "npm:^1.6.2"
@@ -5876,8 +5886,11 @@ __metadata:
     qpdf: "npm:^0.1.0-prealpha.1"
     react: "npm:^18"
     react-dom: "npm:^18"
+    react-frame-component: "npm:^5.2.6"
     react-hook-form: "npm:^7.48.2"
     react-icons: "npm:^4.12.0"
+    react-iframe: "npm:^1.8.5"
+    react-portal-popout: "npm:^1.9.3"
     react-query: "npm:^3.39.3"
     recoil: "npm:^0.7.7"
     tailwind-scrollbar-hide: "npm:^1.1.7"
@@ -7993,7 +8006,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18":
+"react-dom@npm:>=16.0.0, react-dom@npm:^18":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
   dependencies:
@@ -8032,6 +8045,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-frame-component@npm:^5.2.6":
+  version: 5.2.6
+  resolution: "react-frame-component@npm:5.2.6"
+  peerDependencies:
+    prop-types: ^15.5.9
+    react: ">= 16.3"
+    react-dom: ">= 16.3"
+  checksum: bb7453add14732066e1136fa865721a9b75c52d096cf03b3a419b7f87770fbe220a601b1ecd1c097c737a6371ab9f72ad5af3579cbf9b5a61943562b1965da0f
+  languageName: node
+  linkType: hard
+
 "react-hook-form@npm:^7.48.2":
   version: 7.49.0
   resolution: "react-hook-form@npm:7.49.0"
@@ -8047,6 +8071,17 @@ __metadata:
   peerDependencies:
     react: "*"
   checksum: 2170f43031ee7365539f72d4075cbe6c7fbf9a66d6cf4494aa9393b194272da0564f5b19d1b24dbfc567c0ac89f5fe5b8974d92dd83f61e252388dde6a226fb8
+  languageName: node
+  linkType: hard
+
+"react-iframe@npm:^1.8.5":
+  version: 1.8.5
+  resolution: "react-iframe@npm:1.8.5"
+  dependencies:
+    object-assign: "npm:^4.1.1"
+  peerDependencies:
+    react: ">=16.x.x"
+  checksum: ae5609bb88d9f36bd130d7a98cfc3067f8400ab57b29a6a72e07a20f882383f1807cb97c45dc8c536046ce2584d953780d4b6611edd66e6eea082555e5c0d62d
   languageName: node
   linkType: hard
 
@@ -8068,6 +8103,19 @@ __metadata:
     react: ^16.8.0 || ^17 || ^18
     react-dom: ^16.8.0 || ^17 || ^18
   checksum: 23f93540537ca4c035425bb8d5e51b11131fbc921d7ac1d041d0ae557feac8c877f3a012d36b94df8787803f52ed81e6df9257ac9e58719875f7805518d6db3f
+  languageName: node
+  linkType: hard
+
+"react-portal-popout@npm:^1.9.3":
+  version: 1.9.3
+  resolution: "react-portal-popout@npm:1.9.3"
+  dependencies:
+    react: "npm:>=16.0.0"
+    react-dom: "npm:>=16.0.0"
+  peerDependencies:
+    react: ">=16.0.0"
+    react-dom: ">=16.0.0"
+  checksum: 84e3eabf1aa353afbc22b1839d8fb3a7fa6e50b40d7d9affa37d0bb59328b14ae3295c15ae0b0b0764f03398db1e108882932105d5f82578a7f53eb884ffe2d9
   languageName: node
   linkType: hard
 
@@ -8141,7 +8189,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18":
+"react@npm:>=16.0.0, react@npm:^18":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:

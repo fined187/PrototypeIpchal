@@ -38,6 +38,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:18.2.43"],\
           ["@types/react-datepicker", "npm:4.19.5"],\
           ["@types/react-dom", "npm:18.2.17"],\
+          ["@types/react-frame-component", "npm:4.1.6"],\
           ["@types/uuid", "npm:9.0.7"],\
           ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.16"],\
           ["axios", "npm:1.6.2"],\
@@ -60,8 +61,11 @@ const RAW_RUNTIME_STATE =
           ["qpdf", "npm:0.1.0-prealpha.1"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:18.2.0"],\
+          ["react-frame-component", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.2.6"],\
           ["react-hook-form", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:7.49.0"],\
           ["react-icons", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.12.0"],\
+          ["react-iframe", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.8.5"],\
+          ["react-portal-popout", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.9.3"],\
           ["react-query", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:3.39.3"],\
           ["recoil", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:0.7.7"],\
           ["tailwind-scrollbar-hide", "npm:1.1.7"],\
@@ -6023,6 +6027,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/react-frame-component", [\
+      ["npm:4.1.6", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-react-frame-component-npm-4.1.6-e90345463b-10c0.zip/node_modules/@types/react-frame-component/",\
+        "packageDependencies": [\
+          ["@types/react-frame-component", "npm:4.1.6"],\
+          ["@types/react", "npm:18.2.43"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/scheduler", [\
       ["npm:0.16.8", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-scheduler-npm-0.16.8-303819b439-10c0.zip/node_modules/@types/scheduler/",\
@@ -9205,6 +9219,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:18.2.43"],\
           ["@types/react-datepicker", "npm:4.19.5"],\
           ["@types/react-dom", "npm:18.2.17"],\
+          ["@types/react-frame-component", "npm:4.1.6"],\
           ["@types/uuid", "npm:9.0.7"],\
           ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.16"],\
           ["axios", "npm:1.6.2"],\
@@ -9227,8 +9242,11 @@ const RAW_RUNTIME_STATE =
           ["qpdf", "npm:0.1.0-prealpha.1"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:18.2.0"],\
+          ["react-frame-component", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.2.6"],\
           ["react-hook-form", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:7.49.0"],\
           ["react-icons", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.12.0"],\
+          ["react-iframe", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.8.5"],\
+          ["react-portal-popout", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.9.3"],\
           ["react-query", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:3.39.3"],\
           ["recoil", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:0.7.7"],\
           ["tailwind-scrollbar-hide", "npm:1.1.7"],\
@@ -11691,6 +11709,36 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-frame-component", [\
+      ["npm:5.2.6", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/react-frame-component-npm-5.2.6-4af607b785-10c0.zip/node_modules/react-frame-component/",\
+        "packageDependencies": [\
+          ["react-frame-component", "npm:5.2.6"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.2.6", {\
+        "packageLocation": "./.yarn/__virtual__/react-frame-component-virtual-545a96644d/3/Users/woota/AppData/Local/Yarn/Berry/cache/react-frame-component-npm-5.2.6-4af607b785-10c0.zip/node_modules/react-frame-component/",\
+        "packageDependencies": [\
+          ["react-frame-component", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.2.6"],\
+          ["@types/prop-types", null],\
+          ["@types/react", "npm:18.2.43"],\
+          ["@types/react-dom", "npm:18.2.17"],\
+          ["prop-types", null],\
+          ["react", "npm:18.2.0"],\
+          ["react-dom", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/prop-types",\
+          "@types/react-dom",\
+          "@types/react",\
+          "prop-types",\
+          "react-dom",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-hook-form", [\
       ["npm:7.49.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/react-hook-form-npm-7.49.0-614f0c8ab6-10c0.zip/node_modules/react-hook-form/",\
@@ -11735,6 +11783,29 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-iframe", [\
+      ["npm:1.8.5", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/react-iframe-npm-1.8.5-d7ea2e0c6b-10c0.zip/node_modules/react-iframe/",\
+        "packageDependencies": [\
+          ["react-iframe", "npm:1.8.5"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.8.5", {\
+        "packageLocation": "./.yarn/__virtual__/react-iframe-virtual-1254872d52/3/Users/woota/AppData/Local/Yarn/Berry/cache/react-iframe-npm-1.8.5-d7ea2e0c6b-10c0.zip/node_modules/react-iframe/",\
+        "packageDependencies": [\
+          ["react-iframe", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.8.5"],\
+          ["@types/react", "npm:18.2.43"],\
+          ["object-assign", "npm:4.1.1"],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-is", [\
       ["npm:16.13.1", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/react-is-npm-16.13.1-a9b9382b4f-10c0.zip/node_modules/react-is/",\
@@ -11768,6 +11839,32 @@ const RAW_RUNTIME_STATE =
         "packagePeers": [\
           "@popperjs/core",\
           "@types/popperjs__core",\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-portal-popout", [\
+      ["npm:1.9.3", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/react-portal-popout-npm-1.9.3-a9bc7507c0-10c0.zip/node_modules/react-portal-popout/",\
+        "packageDependencies": [\
+          ["react-portal-popout", "npm:1.9.3"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.9.3", {\
+        "packageLocation": "./.yarn/__virtual__/react-portal-popout-virtual-e3c2cbab2d/3/Users/woota/AppData/Local/Yarn/Berry/cache/react-portal-popout-npm-1.9.3-a9bc7507c0-10c0.zip/node_modules/react-portal-popout/",\
+        "packageDependencies": [\
+          ["react-portal-popout", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.9.3"],\
+          ["@types/react", "npm:18.2.43"],\
+          ["@types/react-dom", "npm:18.2.17"],\
+          ["react", "npm:18.2.0"],\
+          ["react-dom", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
           "@types/react-dom",\
           "@types/react",\
           "react-dom",\
