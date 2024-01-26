@@ -13,7 +13,8 @@ export default function DownIpchal() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const date = new Date()
-  const nowDate = `${date.getFullYear()} ${date.getMonth() + 1} ${date.getDate()} ${date.getHours()} ${date.getMinutes()}`
+  const nowDate = `${date.getFullYear()}${(date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)}${date.getDate()}${date.getHours() < 10 ? ('0' + date.getHours()) : (date.getHours())}${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`
+  
   const handleDownload = async () => {
     setLoading(true)
     const url = `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`
@@ -22,7 +23,7 @@ export default function DownIpchal() {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `${biddingInfo.sagunNum} ${nowDate}.pdf`;
+        a.download = `${biddingInfo.sagunNum}_${nowDate}.pdf`;
         a.click();
         setLoading(false)
         alert('파일이 다운로드 되었습니다.');
