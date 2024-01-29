@@ -140,7 +140,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                     <span className="text-[12pt] font-batang">
                       본인
                       <br />
-                      {bidder[index]?.peopleSeq}
+                      {bidder.peopleSeq}
                     </span>
                   </div>
                   <div className="flex flex-col w-[100%] h-[100%]">
@@ -156,7 +156,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       <div className="flex flex-row md:gap-[50px] gap-[5%] w-[35%] border-black border-r-[1px] justify-center items-center text-center">
                         <div className="flex w-[80%] md:justify-end justify-center">
                           <span className="text-[12pt] font-batang">
-                            {totalResult.bidders[index].name ?? ''}
+                            {bidder.name ?? ''}
                           </span>
                         </div>
                         <div className="flex w-[20%] font-batang justify-end mr-1">
@@ -175,7 +175,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       </div>
                       <div className="flex w-[35%] justify-center items-center text-center">
                         <span className="text-[12pt] font-batang">
-                          {totalResult.bidders[index].job}
+                          {bidder.job ?? ''}
                         </span>
                       </div>
                     </div>
@@ -265,7 +265,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       </div>
                       <div className="flex w-[30%] justify-center items-center text-center">
                         <span className="text-[12pt] font-batang">
-                          {bidder.job}
+                          {bidder.job ?? ''}
                         </span>
                       </div>
                     </div>
@@ -304,7 +304,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       </div>
                       <div className="flex w-[80%] justify-center items-center text-center">
                         <span className="text-[12pt] font-batang">
-                          {bidders[index].address ?? ''}
+                          {bidder.address ?? ''}
                         </span>
                       </div>
                     </div>

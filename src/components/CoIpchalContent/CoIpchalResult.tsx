@@ -50,11 +50,6 @@ export default function CoIpchalResult() {
   
   return (
     <>
-    {loading && (
-      <div className="flex flex-col bg-mybg h-screen w-screen m-auto relative justify-center items-center">
-        <LoadingResult />
-      </div>
-    )}
     {!loading && (
       <>
         <div className="flex flex-col bg-white max-h-[2600px] h-[1300px] w-[100%] mx-auto relative justify-center items-center">

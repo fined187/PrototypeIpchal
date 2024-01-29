@@ -50,7 +50,7 @@ export default function IpchalShare() {
           <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[257px] bg-white absolute top-[130px] justify-center items-center rounded-lg border-slate-500">
             <div className="flex justify-between w-[80%]">
               <div className="flex justify-start items-center w-[80%]">
-                <span className="text-black text-center font-NanumGothic text-[15px] font-extrabold leading-[13px]">
+                <span className="text-black text-center font-NanumGothic text-[12pt] font-extrabold leading-[13px]">
                   아니요
                 </span>
               </div>
@@ -99,7 +99,7 @@ export default function IpchalShare() {
                 className="flex justify-start items-center w-[80%]"
                 onClick={onShare}
               >
-                <span className="text-black text-center font-NanumGothic text-[15px] font-extrabold leading-[13px]">
+                <span className="text-black text-center font-NanumGothic text-[12pt] font-extrabold leading-[13px]">
                   카카오톡으로 보내기
                 </span>
               </div>
@@ -145,7 +145,7 @@ export default function IpchalShare() {
               <div
                 className="flex w-[80%] items-center justify-start"
               >
-                <span className="text-black text-center font-NanumGothic text-[15px] font-extrabold leading-[13px]">
+                <span className="text-black text-center font-NanumGothic text-[12pt] font-extrabold leading-[13px]">
                   이메일로 보내기
                 </span>
               </div>

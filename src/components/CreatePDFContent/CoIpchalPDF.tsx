@@ -51,10 +51,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
   }, [totalResult && totalResult.bidders.length, totalResult && totalResult.agentYn])
 
   return (
-    <div className={`flex flex-col md:w-[50%] w-[800px] justify-center items-center mx-auto`} id="wrap-capture" style={{
+    <div className={`hidden flex-col md:w-[50%] w-[800px] justify-center items-center mx-auto`} id="wrap-capture" style={{
       height: `${maxHeight}px`
     }}>
-      <div className="flex flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
+      <div className="hidden flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
         <div className="flex flex-col bg-white h-[100%] md:w-[100%] w-[90%] mx-auto relative justify-center items-center">
           <div className="w-[100%] overflow-x-scroll absolute top-[130px] h-[650px] bg-white scrollbar-hide">
             <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-white">
