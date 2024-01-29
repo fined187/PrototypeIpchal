@@ -82,6 +82,21 @@ export default function AgentForm() {
       console.log(error)
     }
   }
+
+  //  전화번호 검증
+  const handleVerifyPhone = (phone: string) => {
+    // const phoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g
+    const telRegex = /^(070|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/
+    const smartPhoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g
+    const telCheck = telRegex.test(phone)
+    const smartPhoneCheck = smartPhoneRegex.test(phone)
+    if (telCheck || smartPhoneCheck) {
+      return true
+    } else {
+      return false
+    }
+    }
+
     //  민증 검증
   const handleVerifyIdNum = (idNum: string) => {
     if (idNum.length > 0 && idNum.length < 14) {
@@ -138,6 +153,10 @@ export default function AgentForm() {
   const onSubmit: SubmitHandler<AgentInfoType> = async () => {
     // if (handleVerifyIdNum(biddingForm.agentIdNum1 + biddingForm.agentIdNum2) === false) {
     //   alert('주민등록번호를 다시 확인해주세요')
+    //   return
+    // }
+    // if (handleVerifyPhone(biddingForm.bidPhone1[stepNum - 1] + biddingForm.bidPhone2[stepNum - 1] + biddingForm.bidPhone3[stepNum - 1]) === false) {
+    //   alert('전화번호를 확인해주세요')
     //   return
     // }
     if (isOpen === false) {

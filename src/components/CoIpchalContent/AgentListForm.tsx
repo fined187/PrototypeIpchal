@@ -6,7 +6,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
   
   return (
-    <div className={`flex flex-col bg-white h-[1300px] md:w-[50%] w-[100%] mx-auto justify-center items-center relativ overflow-x-scroll scrollbar-hide`}>
+    <div className={`flex flex-col bg-white h-[1300px] md:w-[50%] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
       <div className="flex flex-col bg-mybg h-[100%] w-[100%] m-auto relative justify-center items-center">
         <div className="flex md:w-[80%] w-[100%] absolute top-[5px]">
           <span className="md:text-[12pt] text-[10px] font-batang">
@@ -228,7 +228,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                     <span className="md:text-[12pt] text-[12px] font-batang">
                       본인
                       <br />
-                      {bidder[index]?.peopleSeq}
+                      {bidder.peopleSeq}
                     </span>
                   </div>
                   <div className="flex flex-col w-[750px] h-[100%]">

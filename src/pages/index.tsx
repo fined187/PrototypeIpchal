@@ -177,10 +177,8 @@ export default function Home() {
       setStateNum(16)
     } else if (bidders.state >= 4 && bidders.agentYn !== "Y") {
       setStateNum(15)
-    } else if (bidders.state >= 9) {
+    } else if (bidders.state === 9) {
       setStateNum(0)
-    } else {
-      setStateNum(1)
     }
   }
 
@@ -208,7 +206,7 @@ export default function Home() {
       )
       : (
         <>
-          {(stateNum === 0) && <StartIpchal />}
+          {((bidders.state === 9) && (stateNum === 0) ? <StartIpchal /> : (stateNum === 0) && <StartIpchal />)}
           {(stateNum === 1) && <GetIpchalInfo />}
           {stateNum === 2 && biddingForm.biddingInfos.length > 1 && <TimeInfo />}
           {(bidders.state === 0 && stateNum === 3) ? <BidderInfo /> : (stateNum === 3) && <BidderInfo />}

@@ -223,6 +223,20 @@ export default function BidderFormMod() {
     }
   }
 
+    //  전화번호 검증
+    const handleVerifyPhone = (phone: string) => {
+      // const phoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g
+      const telRegex = /^(070|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/
+      const smartPhoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g
+      const telCheck = telRegex.test(phone)
+      const smartPhoneCheck = smartPhoneRegex.test(phone)
+      if (telCheck || smartPhoneCheck) {
+        return true
+      } else {
+        return false
+      }
+    }
+
   //  민증 검증
   const handleVerifyIdNum = (idNum: string) => {
     if (idNum.length > 0 && idNum.length < 14) {
@@ -315,7 +329,6 @@ export default function BidderFormMod() {
   const handleUpdate = async () => {
     try {
       if (biddingForm?.bidCorpYn[stepNum - 1] === 'I') {
-        console.log("이쪽")
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
@@ -327,7 +340,6 @@ export default function BidderFormMod() {
           return
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
-        console.log("이쪽2")
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
@@ -352,7 +364,6 @@ export default function BidderFormMod() {
     setLoading(true)
     try {
       if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
-        console.log("이쪽3")
         const response = await axios.post(
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
           {
@@ -373,7 +384,6 @@ export default function BidderFormMod() {
           return
         }
       } else {
-        console.log("이쪽4")
         const response = await axios.post(
           `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
           {
@@ -461,7 +471,11 @@ export default function BidderFormMod() {
     // if (biddingForm.bidCorpYn[stepNum - 1] === 'C' && !handleVerifyCorpReiNum(biddingForm.bidCorpRegiNum1[stepNum - 1] + biddingForm.bidCorpRegiNum2[stepNum - 1])) {
     //   alert('법인등록번호를 확인해주세요')
     //   return
-    // } 
+    // }
+    // if (handleVerifyPhone(biddingForm.bidPhone1[stepNum - 1] + biddingForm.bidPhone2[stepNum - 1] + biddingForm.bidPhone3[stepNum - 1]) === false) {
+    //   alert('전화번호를 확인해주세요')
+    //   return
+    // }
     if (isOpen === false) {
       try {
         await handleNextStep()

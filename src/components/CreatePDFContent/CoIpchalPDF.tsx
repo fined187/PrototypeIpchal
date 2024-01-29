@@ -1,11 +1,12 @@
 import { biddingInfoState } from "@/atom";
 import { TotalResultType } from "@/interface/IpchalType";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import AgentListFormPDF from "./AgentListFormPDF";
 import IpcahlTextPDF from "./IpchalTextPDF";
 import CoIpchalFormPDF from "./CoIpchalFormPDF";
 import CoIpchalListPDF from "./CoIpchalListPDF";
+import AgentListForm from "../CoIpchalContent/AgentListForm";
 
 interface CoIpchalProps {
   totalResult: TotalResultType;
@@ -17,6 +18,8 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
   const totalPage = Math.ceil(biddingInfo.bidName.length / 3)
+  const [maxHeight, setMaxHeight] = useState<number>(3900)
+
   const listPerPage = 3
   let currentPage = 1;
   let currentList: any = [];
@@ -32,12 +35,30 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
     }
     return currentList
   }
+
+  useEffect(() => {
+    const handleMaxHeight = () => {
+      if (totalResult && totalResult.agentYn === 'Y' && totalResult.bidders.length <= 3) {
+        setMaxHeight(5200)
+      } else if (totalResult && totalResult.agentYn === 'Y' && totalResult.bidders.length > 3) {
+        setMaxHeight(Math.ceil(totalResult && totalResult.bidders.length / 3) * 1300 + 3900)
+      } else if (totalResult.bidders.length <= 3) {
+        setMaxHeight(3900)
+      } else {
+        setMaxHeight(3900)
+      }
+    }
+    handleMaxHeight()
+  }, [totalResult && totalResult.bidders.length, totalResult && totalResult.agentYn])
+  console.log(maxHeight)
   return (
-    <div className={`hidden flex-col ${totalResult && totalResult.agentYn === 'Y' ? 'h-[5200px]' : 'h-[3900px]'} md:w-[50%] w-[800px] justify-center items-center mx-auto`} id="wrap-capture">
-      <div className="hidden flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
+    <div className={`flex flex-col md:w-[50%] w-[800px] justify-center items-center mx-auto`} id="wrap-capture" style={{
+      height: `${maxHeight}px`
+    }}>
+      <div className="flex flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
         <div className="flex flex-col bg-white h-[100%] md:w-[100%] w-[90%] mx-auto relative justify-center items-center">
-          <div className="w-[100%]  overflow-x-scroll absolute top-[130px] h-[600px] bg-white scrollbar-hide">
-            <div className="border border-black text-[1.5rem] w-[100%] h-[100%] m-auto bg-white">
+          <div className="w-[100%] overflow-x-scroll absolute top-[130px] h-[650px] bg-white scrollbar-hide">
+            <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-white">
               {/* 첫 번째 박스 */}
               <div className="flex flex-col border-black border-b-[1px] h-[15%] w-[100%] justify-center items-center relative">
                 <div className="absolute top-[0px] left-[0px] w-[100%] pl-[5px]">
@@ -782,7 +803,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
           <IpcahlTextPDF />
           <CoIpchalFormPDF totalResult={totalResult} />
           <CoIpchalListPDF totalResult={totalResult} />
-          {!loading && (totalResult && totalResult.agentYn === 'Y') && (
+          {(totalResult && totalResult.agentYn === 'Y') && (
             totalResult && totalResult.bidders.length > 3 ? (
               handleReturnList().map((item: any, index: number) => (
                 <AgentListFormPDF totalResult={totalResult} bidders={item} key={index} />

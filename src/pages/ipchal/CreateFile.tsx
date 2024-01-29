@@ -1,18 +1,14 @@
 import { biddingInfoState, stepState } from '@/atom'
-import { Ref, useEffect, useRef, useState } from 'react'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import { LiaEyeSolid, LiaEyeSlashSolid } from 'react-icons/lia'
 import axios from 'axios'
 import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
 import { format } from 'date-fns'
-import AgentListFormContent from '@/components/PDFContent/AgentListFormContent'
 import Spinner from '@/components/Spinner'
 import { TotalResultType } from '@/interface/IpchalType'
-import CoIpchalFormContent from '@/components/PDFContent/CoIpchalFormContent'
-import CoIpchalListContent from '@/components/PDFContent/CoIpchalListContent'
 import SinglePDF from '@/components/CreatePDFContent/SinglePDF'
-import CoIpchalListPDF from '@/components/CreatePDFContent/CoIpchalListPDF'
 import CoIpchalPDF from '@/components/CreatePDFContent/CoIpchalPDF'
 
 export default function CreateFile() {
@@ -53,18 +49,18 @@ export default function CreateFile() {
       setGetHeight(295)
     } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum === 1) {
       //  2. 입찰자가 1명일 때 + 대리인이 있을 때
-      setGetHeight(600)
+      setGetHeight(590)
     } else if (biddingInfo.agentName === '' && biddingInfo.bidderNum > 1) {
       //  3. 입찰자가 2명 이상일 때 + 대리인이 없을 때
-      setGetHeight(890)
+      setGetHeight(885)
     } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum > 1) {
       //  4. 입찰자가 2명 이상일 때 + 대리인이 있을 때
-      if (biddingInfo.bidderNum === 2) {
+      if (biddingInfo.bidderNum <= 3) {
         //  4-1. 입찰자가 2명일 때
-        setGetHeight(1195)
-      } else {
-        //  4-2. 입찰자가 3명 이상일 때
         setGetHeight(1180)
+      } else if (biddingInfo.bidderNum > 3) {
+        //  4-2. 입찰자가 3명 이상일 때
+        setGetHeight(885 + (295 * Math.ceil(totalResult?.bidders.length! / 3)))
       }
     }
   }
@@ -89,7 +85,7 @@ export default function CreateFile() {
     if (captureWrap && captureDiv) {
       captureWrap.style.display = 'flex'
       captureDiv.style.display = 'flex'
-      
+
       await html2canvas(
         document.getElementById('capture') as HTMLElement
       ).then((canvas: any) => {
@@ -103,7 +99,8 @@ export default function CreateFile() {
           ...biddingInfo,
           imageFile: imgData,
         })
-        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+        doc.text('100', 100, 20)
+        doc?.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
         heightLeft -= pageHeight
         while (heightLeft >= 20) {
           position = heightLeft - imgHeight
@@ -113,7 +110,7 @@ export default function CreateFile() {
         }
         const blob = doc.output('blob')
         //  저장
-        // doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
+        doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
         file = new File([blob], `best_${format(date, 'yyyyMMddHHmmss')}.pdf`, {
           type: 'application/pdf',
         })
@@ -136,10 +133,10 @@ export default function CreateFile() {
       alert('파일 암호를 4자리 이상 입력해주세요')
       setLoading(false)
       return
-    } else if (biddingInfo.isFileCreated) {
-      alert('이미 파일이 생성되었습니다')
-      setLoading(false)
-      return
+    // } else if (biddingInfo.isFileCreated) {
+    //   alert('이미 파일이 생성되었습니다')
+    //   setLoading(false)
+    //   return
     } 
     else {
       await onCapture(false, null, null)
@@ -204,6 +201,8 @@ export default function CreateFile() {
     }
     handleGetResult()
   }, [])
+
+
   
   return (
     <>
@@ -301,9 +300,7 @@ export default function CreateFile() {
         </div>
       )}
       {totalResult && totalResult.bidders.length > 1 && (
-        <>
-          <CoIpchalPDF totalResult={totalResult} handlePrice={handlePrice} handleDepositPrice={handleDepositPrice} />
-        </>
+        <CoIpchalPDF totalResult={totalResult} handlePrice={handlePrice} handleDepositPrice={handleDepositPrice} />
       )}
       {totalResult && totalResult.bidders.length === 1 && (
         <SinglePDF totalResult={totalResult} handlePrice={handlePrice} handleDepositPrice={handleDepositPrice} />

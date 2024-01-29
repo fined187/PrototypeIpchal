@@ -5,8 +5,11 @@ import { useRecoilState } from "recoil";
 export default function AgentListFormPDF({ totalResult, bidders }: { totalResult: TotalResultType, bidders?: any }) {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
   return (
-    <div className={`flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center absolute ${totalResult && totalResult.bidders.length === 1 ? 'top-[1300px]' : 'top-[3900px]'} overflow-x-scroll scrollbar-hide`}>
-      <div className={`flex flex-col bg-white ${totalResult && totalResult.bidders.length === 3 ? 'h-[100%]' : totalResult && totalResult.bidders.length === 1 ? 'h-[97%]' : 'h-[94%]'} w-[90%] mx-auto ${totalResult && totalResult.bidders.length === 3 ? 'absolute top-[5px]' : 'absolute top-0'} justify-center items-center`}>
+    <div className={`flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`} style={{
+      top: totalResult && totalResult?.bidders.length === 1 ? '1300px' : '2000px',
+      position: 'relative',
+    }}>
+      <div className={`flex flex-col bg-white h-[100%] w-[90%] m-auto relative justify-center items-center`}>
         <div className="flex w-[100%] absolute top-[5px]">
           <span className="text-[12pt] font-batang">
             (뒷면)
@@ -137,7 +140,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                     <span className="text-[12pt] font-batang">
                       본인
                       <br />
-                      {index + 1}
+                      {bidder[index]?.peopleSeq}
                     </span>
                   </div>
                   <div className="flex flex-col w-[100%] h-[100%]">
@@ -227,7 +230,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                     <span className="text-[12pt] font-batang">
                       본인
                       <br />
-                      {bidder[index]?.peopleSeq}
+                      {bidder.peopleSeq}
                     </span>
                   </div>
                   <div className="flex flex-col w-[100%] h-[100%]">
@@ -243,7 +246,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       <div className="flex flex-row gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
                         <div className="flex w-[80%] justify-end">
                           <span className="text-[12pt] font-batang">
-                            {bidders[index].name ?? ''}
+                            {bidder.name ?? ''}
                           </span>
                         </div>
                         <div className="flex w-[20%] font-batang justify-end mr-1">
@@ -262,7 +265,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       </div>
                       <div className="flex w-[30%] justify-center items-center text-center">
                         <span className="text-[12pt] font-batang">
-                          {bidders && bidders[index].job}
+                          {bidder.job}
                         </span>
                       </div>
                     </div>
