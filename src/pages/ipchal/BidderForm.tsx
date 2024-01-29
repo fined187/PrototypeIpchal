@@ -692,6 +692,13 @@ export default function BidderForm() {
                           temp[stepNum - 1] = e.target.value
                           return { ...prev, bidIdNum1: temp }
                         })
+                        setBiddingForm((prev: any) => {
+                          const temp = prev.bidIdNum
+                          temp[stepNum - 1] =
+                            e.target.value +
+                            biddingInfo?.bidderIdNum2[stepNum - 1]
+                          return { ...prev, bidIdNum: temp }
+                        })
                         handleIdNumFocusMove(e.target)
                         handleInputChange(e)
                       }}
@@ -787,6 +794,14 @@ export default function BidderForm() {
                           temp[stepNum - 1] = e.target.value
                           return { ...prev, bidCorpNum1: temp }
                         })
+                        setBiddingForm((prev: any) => {
+                          const temp = prev.bidCorpNum
+                          temp[stepNum - 1] =
+                            e.target.value +
+                            biddingInfo?.bidderCorpNum2[stepNum - 1] +
+                            biddingInfo?.bidderCorpNum3[stepNum - 1]
+                          return { ...prev, bidCorpNum: temp }
+                        })
                         handleCorpNumFocusMove(e.target)
                         handleInputChange(e)
                       }}
@@ -820,6 +835,14 @@ export default function BidderForm() {
                           const temp = prev.bidCorpNum2
                           temp[stepNum - 1] = e.target.value
                           return { ...prev, bidCorpNum2: temp }
+                        })
+                        setBiddingForm((prev: any) => {
+                          const temp = prev.bidCorpNum
+                          temp[stepNum - 1] =
+                            biddingInfo?.bidderCorpNum1[stepNum - 1] +
+                            biddingInfo?.bidderCorpNum2[stepNum - 1] +
+                            e.target.value
+                          return { ...prev, bidCorpNum: temp }
                         })
                         handleCorpNumFocusMove(e.target)
                         handleInputChange(e)
@@ -917,6 +940,13 @@ export default function BidderForm() {
                             const temp = prev.bidCorpRegiNum1
                             temp[stepNum - 1] = e.target.value
                             return { ...prev, bidCorpRegiNum1: temp }
+                          })
+                          setBiddingForm((prev: any) => {
+                            const temp = prev.bidCorpRegiNum
+                            temp[stepNum - 1] =
+                              e.target.value +
+                              biddingInfo?.bidderCorpRegiNum2[stepNum - 1]
+                            return { ...prev, bidCorpRegiNum: temp }
                           })
                           handleCorpRegiNumFocusMove(e.target)
                           handleInputChange(e)

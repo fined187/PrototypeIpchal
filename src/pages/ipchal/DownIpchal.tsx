@@ -77,11 +77,11 @@ export default function DownIpchal() {
             type="button"
             className="flex w-[230px] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              window && window.location.reload()
+              setStateNum(17)
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-              닫기
+              다음
             </span>
           </button>
         </div>

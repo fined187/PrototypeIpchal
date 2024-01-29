@@ -6,7 +6,6 @@ import AgentListFormPDF from "./AgentListFormPDF";
 import IpcahlTextPDF from "./IpchalTextPDF";
 import CoIpchalFormPDF from "./CoIpchalFormPDF";
 import CoIpchalListPDF from "./CoIpchalListPDF";
-import AgentListForm from "../CoIpchalContent/AgentListForm";
 
 interface CoIpchalProps {
   totalResult: TotalResultType;
@@ -50,7 +49,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
     }
     handleMaxHeight()
   }, [totalResult && totalResult.bidders.length, totalResult && totalResult.agentYn])
-  console.log(maxHeight)
+
   return (
     <div className={`flex flex-col md:w-[50%] w-[800px] justify-center items-center mx-auto`} id="wrap-capture" style={{
       height: `${maxHeight}px`

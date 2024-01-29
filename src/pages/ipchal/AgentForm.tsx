@@ -319,6 +319,15 @@ export default function AgentForm() {
                     setBiddingForm((prev: any) => {
                       return { ...prev, agentPhone1: e.target.value }
                     })
+                    setBiddingForm((prev: any) => {
+                      return {
+                        ...prev,
+                        agentPhone:
+                          e.target.value +
+                          agentInfo?.agentPhone2 +
+                          agentInfo?.agentPhone3,
+                      }
+                    })
                     handlePhoneFocusMove(e.target)
                   }}
                 />
@@ -344,6 +353,15 @@ export default function AgentForm() {
                     })
                     setBiddingForm((prev: any) => {
                       return { ...prev, agentPhone2: e.target.value }
+                    })
+                    setBiddingForm((prev: any) => {
+                      return {
+                        ...prev,
+                        agentPhone:
+                          prev.agentPhone1 +
+                          e.target.value +
+                          prev.agentPhone3,
+                      }
                     })
                     handlePhoneFocusMove(e.target)
                   }}
@@ -375,8 +393,8 @@ export default function AgentForm() {
                       return {
                         ...prev,
                         agentPhone:
-                          agentInfo?.agentPhone1 +
-                          agentInfo?.agentPhone2 +
+                          prev.agentPhone1 +
+                          prev.agentPhone2 +
                           e.target.value,
                       }
                     })
@@ -430,6 +448,12 @@ export default function AgentForm() {
                     setBiddingForm((prev: any) => {
                       return { ...prev, agentIdNum1: e.target.value }
                     })
+                    setBiddingForm((prev: any) => {
+                      return {
+                        ...prev,
+                        agentIdNum: e.target.value + prev.agentIdNum2,
+                      }
+                    })
                     handleIdNumFocusMove(e.target)
                   }}
                 />
@@ -461,7 +485,7 @@ export default function AgentForm() {
                     setBiddingForm((prev: any) => {
                       return {
                         ...prev,
-                        agentIdNum: agentInfo?.agentIdNum1 + e.target.value,
+                        agentIdNum: prev.agentIdNum1 + e.target.value,
                       }
                     })
                   }}

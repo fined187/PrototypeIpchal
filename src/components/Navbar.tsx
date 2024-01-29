@@ -46,6 +46,8 @@ export default function Navbar() {
       setMenuTitle('입찰표 정보 입력')
     } else if (stepStateNum === 16) {
       setMenuTitle('대리인 정보 입력')
+    } else if (stepStateNum === 17) {
+      setMenuTitle('입찰시 준비 서류')
     }
   }
 

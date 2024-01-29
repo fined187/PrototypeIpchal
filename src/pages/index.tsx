@@ -21,6 +21,7 @@ import TimeInfo from './ipchal/TimeInfo'
 import AgentFormMod from './ipchal/AgentFormMod'
 import AgentForm from './ipchal/AgentForm'
 import Spinner from '@/components/Spinner'
+import PreparingList from './ipchal/PreparingList'
 
 export default function Home() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -223,6 +224,7 @@ export default function Home() {
           {stateNum === 14 && <DownIpchal />}
           {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 15) ? <BidderFormMod /> : (stateNum === 15) && <BidderFormMod />}
           {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 16) ? <AgentFormMod /> : (stateNum === 16) && <AgentFormMod />}
+          {stateNum === 17 && <PreparingList />}
         </>
       )}
     </>

@@ -152,7 +152,6 @@ export default function CreateFile() {
       formData.append('file', blobFile)
     }
     formData.append('filePassword', password)
-    console.log(formData)
     try {
       const response = await axios.post(
         `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`,

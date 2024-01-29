@@ -713,6 +713,11 @@ export default function BidderFormMod() {
                         temp[stepNum - 1] = e.target.value
                         return { ...prev, bidPhone1: temp }
                       })
+                      setBiddingForm((prev: any) => {
+                        const temp = prev.bidPhone
+                        temp[stepNum - 1] = e.target.value + biddingForm.bidPhone2[stepNum - 1] + biddingForm.bidPhone3[stepNum - 1]
+                        return { ...prev, bidPhone: temp }
+                      })
                       handlePhoneFocusMove(e.target)
                       handleInputChange(e)
                     }}
@@ -743,6 +748,11 @@ export default function BidderFormMod() {
                         const temp = prev.bidderPhone2
                         temp[stepNum - 1] = e.target.value
                         return { ...prev, bidPhone2: temp }
+                      })
+                      setBiddingForm((prev: any) => {
+                        const temp = prev.bidPhone
+                        temp[stepNum - 1] = biddingForm.bidPhone1[stepNum - 1] + e.target.value + biddingForm.bidPhone3[stepNum - 1]
+                        return { ...prev, bidPhone: temp }
                       })
                       handlePhoneFocusMove(e.target)
                       handleInputChange(e)
@@ -920,6 +930,11 @@ export default function BidderFormMod() {
                               temp[stepNum - 1] = e.target.value
                               return { ...prev, bidCorpNum1: temp }
                             })
+                            setBiddingForm((prev: any) => {
+                              const temp = prev.bidCorpNum
+                              temp[stepNum - 1] = e.target.value + biddingForm.bidCorpNum2[stepNum - 1] + biddingForm.bidCorpNum3[stepNum - 1]
+                              return { ...prev, bidCorpNum: temp }
+                            })
                             setBiddingInfo((prev: any) => {
                               const temp = prev.bidderCorpNum1
                               temp[stepNum - 1] = e.target.value
@@ -950,6 +965,11 @@ export default function BidderFormMod() {
                               const temp = prev.bidCorpNum2
                               temp[stepNum - 1] = e.target.value
                               return { ...prev, bidCorpNum2: temp }
+                            })
+                            setBiddingForm((prev: any) => {
+                              const temp = prev.bidCorpNum
+                              temp[stepNum - 1] = biddingForm.bidCorpNum1[stepNum - 1] + e.target.value + biddingForm.bidCorpNum3[stepNum - 1]
+                              return { ...prev, bidCorpNum: temp }
                             })
                             setBiddingInfo((prev: any) => {
                               const temp = prev.bidderCorpNum2
