@@ -1,13 +1,13 @@
-import { biddingInfoState, stepState } from "@/atom";
-import { GetBiddingInfoType, TotalResultType } from "@/interface/IpchalType";
-import { useRecoilValue } from "recoil";
+import { biddingInfoState } from "@/atom";
+import { TotalResultType } from "@/interface/IpchalType";
+import { useRecoilState } from "recoil";
 
 interface CoIpchalListProps {
   totalResult?: TotalResultType;
 }
 
 export default function CoIpchalListContent({ totalResult }: CoIpchalListProps) {
-  const biddingInfo = useRecoilValue(biddingInfoState);
+  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
 
   return (
     <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center absolute top-[2600px] overflow-x-scroll scrollbar-hide`}>

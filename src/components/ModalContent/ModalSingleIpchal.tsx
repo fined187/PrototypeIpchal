@@ -1,8 +1,8 @@
-import { biddingInfoState } from "@/atom";
+import { biddingInfoState } from "@/atom"
 import { useRecoilState } from "recoil"
 
-export default function ModalCoIpchal() {
-  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
+export default function ModalSingleIpchal() {
+  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const handlePrice = (len: number) => {
     if (12 - len > 0) {
       return '0'.repeat(12 - len) + biddingInfo?.biddingPrice
@@ -18,8 +18,6 @@ export default function ModalCoIpchal() {
       return biddingInfo?.depositPrice?.toString()
     }
   }
-
-  console.log(biddingInfo)
   return (
     <div className="flex flex-col bg-mybg md:w-[90%] w-[100%] mx-auto absolute top-0 justify-center items-center">
       <div className="flex flex-col bg-mybg h-[100%] w-[100%] mx-auto relative justify-center items-center">
@@ -85,110 +83,142 @@ export default function ModalCoIpchal() {
             {/* 세 번째 박스 */}
             <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[50%]">
               <div className="flex justify-center items-center leading-[300%] border-black border-r-[1px] w-[5.2%]">
-                <span className="md:text-[11pt] text-[10px] font-batang">
+                <span className="md:text-[11pt] text-[12px] font-batang">
                   입<br />찰<br />자
                 </span>
               </div>
               <div className="w-[100%] h-[100%]">
                 <div className="flex flex-row items-stretch border-black border-b-[1px] h-[50%]">
                   <div className="flex justify-center items-center border-black border-r-[1px] w-[12%]">
-                    <span className="md:text-[11pt] text-[10px] font-batang">본인</span>
+                    <span className="md:text-[11pt] text-[12px] font-batang">본인</span>
                   </div>
                   <div className="flex flex-col w-[100%] h-[100%]">
-                    <div className="flex flex-row items-stretc h-[30%]">
-                      <div className="flex justify-center items-center border-black border-b-[1px] border-r-[1px] w-[20%]">
-                        <span className="md:text-[11pt] text-[10px] font-batang">성&nbsp;&nbsp;명</span>
+                    <div className="flex flex-row items-stretch border-black border-b-[1px] h-[30%]">
+                      <div className="flex justify-center items-center border-black border-r-[1px] w-[20%]">
+                        <span className="md:text-[11pt] text-[12px] font-batang">성&nbsp;&nbsp;명</span>
+                      </div>
+                      <div className="flex items-center justify-center border-black border-r-[1px] w-[30%]">
+                        <div className="flex w-[60%] justify-end">
+                          <span className="md:text-[11pt] text-[12px] font-batang">
+                            {biddingInfo.bidName[0] ?? ''}
+                          </span>
+                        </div>
+                        <div className="flex w-[40%] justify-end mr-1">
+                          <span className="md:text-[11pt] text-[12px] font-batang text-right">
+                            (인)
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
+                        <span className="md:text-[11pt] text-[12px] font-batang">전화번호</span>
+                      </div>
+                      <div className="flex justify-center items-center text-center w-[30%]">
+                        <span className="md:text-[11pt] text-[12px] font-batang">
+                          {biddingInfo.bidPhone[0].length === 10 ? biddingInfo.bidPhone[0].substring(0, 2) + '-' + biddingInfo.bidPhone[0].substring(2, 6) + '-' + biddingInfo.bidPhone[0].substring(6, 10) : biddingInfo.bidPhone[0].substring(0, 3) + '-' + biddingInfo.bidPhone[0].substring(3, 7) + '-' + biddingInfo.bidPhone[0].substring(7, 11)}
+                        </span>
                       </div>
                     </div>
-                    <div className="flex flex-row h-[30%]">
-                      <div className="flex justify-center text-center border-black border-b-[1px] border-r-[1px] w-[20%]">
-                        <span className="md:text-[11pt] text-[10px] font-batang">
+                    <div className="flex flex-row border-black border-b-[1px] h-[35%]">
+                      <div className="flex justify-center border-black border-r-[1px] w-[20%] leading-[-1px]">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           주민(사업자)
                           <br />
                           등록번호
                         </span>
                       </div>
-                      <div className="flex justify-center items-center w-[80%]">
-                        <span className="md:text-[15px] text-[12px] font-batang font-bold text-red-500">
-                          별첨 목록과 같음
+                      <div className="flex w-[30%] border-black border-r-[1px] justify-center items-center leading-[-1px]">
+                        <span className="md:text-[11pt] text-[12px] font-batang">
+                          {biddingInfo.bidCorpYn[0] === 'I' ? biddingInfo.bidIdNum[0].substring(0, 6) + '-' + biddingInfo.bidIdNum[0].substring(6, 13) : biddingInfo.bidCorpYn[0] === 'C' ? biddingInfo.bidCorpNum[0].substring(0, 3) + '-' + biddingInfo.bidCorpNum[0].substring(3, 5) + '-' + biddingInfo.bidCorpNum[0].substring(5, 10) : ''}
+                        </span>
+                      </div>
+                      <div className="flex justify-center items-center border-black border-r-[1px] w-[20%] leading-[-1px]">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
+                          법인등록
+                          <br />
+                          번호
+                        </span>
+                      </div>
+                      <div className="flex justify-center items-center w-[30%] text-center leading-[-1px]">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
+                          {biddingInfo.bidCorpYn[0] === 'C' ? biddingInfo.bidCorpRegiNum[0]?.substring(0, 6) + '-' + biddingInfo.bidCorpRegiNum[0]?.substring(6, 13) : ''}
                         </span>
                       </div>
                     </div>
-                    <div className="flex flex-row h-[40%]">
+                    <div className="flex flex-row h-[35%]">
                       <div className="flex w-[20%] border-black border-r-[1px] h-[100%] justify-center items-center text-center leading-[-1px]">
-                        <span className="md:text-[11pt] text-[10px] font-batang text-center">주&nbsp;&nbsp;소</span>
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">주&nbsp;&nbsp;소</span>
+                      </div>
+                      <div className="flex justify-center items-center w-[80%] leading-[-1px]">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
+                          {biddingInfo.bidAddr[0] ?? ''}
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-row justify-between items-stretch w-[100%] h-[50%]">
                   <div className="flex justify-center items-center w-[10.8%] border-black border-r-[1px]">
-                    <span className="md:text-[14px] text-[10px] font-batang">대리인</span>
+                    <span className="md:text-[14px] text-[12px] font-batang">대리인</span>
                   </div>
                   <div className="w-[90%]">
                     <div className="flex flex-row items-stretch border-black border-b-[1px] h-[35%]">
                       <div className="flex justify-center items-center table__text w-[20%] border-black border-r-[1px]">
-                        <span className="md:text-[11pt] text-[10px] font-batang text-center">성&nbsp;&nbsp;명</span>
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">성&nbsp;&nbsp;명</span>
                       </div>
                       <div className="flex justify-center items-center w-[30%] border-black border-r-[1px]">
                         <div className="flex w-[60%] justify-end">
-                          <span className="md:text-[11pt] text-[10px] font-batang text-center">
+                          <span className="md:text-[11pt] text-[12px] font-batang text-center">
                             {biddingInfo.bidder === 'agent' && biddingInfo.agentName ? biddingInfo.agentName : ''}
                           </span>
                         </div>
                         <div className="flex w-[40%] justify-end mr-1">
-                          <span className="md:text-[11pt] text-[10px] font-batang text-center">(인)</span>
+                          <span className="md:text-[11pt] text-[12px] font-batang text-center">(인)</span>
                         </div>
                       </div>
                       <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                        <span className="md:text-[11pt] text-[10px] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           본인과의
                           <br />
                           관계
                         </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[30%]">
-                        <span className="md:text-[11pt] text-[10px] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           {biddingInfo.bidder === 'agent' && biddingInfo.agentRel ? biddingInfo.agentRel : ''}
                         </span>
                       </div>
                     </div>
                     <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] h-[35%]">
                       <div className="flex justify-center items-center w-[20%] border-black border-r-[1px]">
-                        <span className="md:text-[11pt] text-[10px] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           주민등록번호
                         </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[30%] border-black border-r-[1px]">
-                        <span className="md:text-[11pt] text-[10px] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           {biddingInfo.bidder === 'agent' ? biddingInfo.agentIdNum.substring(0, 6) +
                             '-' +
                             biddingInfo.agentIdNum.substring(6, 14) : ''}
                         </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[20%] border-black border-r-[1px]">
-                        <span className="md:text-[11pt] text-[10px] font-batang text-center">
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
                           전화번호
                         </span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[30%]">
-                        <span className="md:text-[11pt] text-[10px] font-batang text-center">
-                          {biddingInfo.bidder === 'agent' ? biddingInfo.agentPhone.length === 10 ? biddingInfo.agentPhone.substring(0, 2) + '-' +
-                            biddingInfo.agentPhone.substring(2, 6) + '-' +
-                            biddingInfo.agentPhone.substring(6, 10) : biddingInfo.agentPhone.substring(0, 3) + '-' +
-                            biddingInfo.agentPhone.substring(3, 7) + '-' +
-                            biddingInfo.agentPhone.substring(7, 11) : ''
-                          }
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
+                          {biddingInfo.agentPhone.length === 10 ? biddingInfo.agentPhone.substring(0, 2) + '-' + biddingInfo.agentPhone.substring(2, 6) + '-' + biddingInfo.agentPhone.substring(6, 10) : biddingInfo.agentPhone.substring(0, 3) + '-' + biddingInfo.agentPhone.substring(3, 7) + '-' + biddingInfo.agentPhone.substring(7, 11)}
                         </span>
                       </div>
                     </div>
                     <div className="flex flex-row justify-between items-stretch h-[30%]">
                       <div className="flex justify-center items-center text-center border-black border-r-[1px] w-[20%]">
-                        <span className="md:text-[11pt] text-[10px] font-batang text-center">주&nbsp;&nbsp;소</span>
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">주&nbsp;&nbsp;소</span>
                       </div>
                       <div className="flex justify-center items-center text-center w-[80%]">
-                        <span className="md:text-[11pt] text-[10px] font-batang text-center">
-                          {biddingInfo.bidder === 'agent' ? biddingInfo.agentAddr : ''}
+                        <span className="md:text-[11pt] text-[12px] font-batang text-center">
+                          {biddingInfo.bidder === 'agent' && biddingInfo.agentAddr ? biddingInfo.agentAddr : ''}
                         </span>
                       </div>
                     </div>

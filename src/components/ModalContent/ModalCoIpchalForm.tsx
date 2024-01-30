@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil"
 export default function ModalCoIpchalForm() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   return (
-    <div className={`flex flex-col bg-mybg h-[1300px] md:w-[90%] w-[100%] m-auto relative justify-center items-center top-[350px]`}>
+    <div className={`flex flex-col bg-mybg h-[1300px] md:w-[90%] w-[100%] m-auto absolute top-[650px] justify-center items-center `}>
       <div className="flex flex-col bg-mybg h-[100%] w-[100%] m-auto relative justify-center items-center">
         <div className="flex flex-col w-[100%] h-[100%] justify-center items-center">
           <div className="md:text-[18pt] text-[18px] py-[60px] leading-[23px] font-batang absolute top-0 bg-mybg">

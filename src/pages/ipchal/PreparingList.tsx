@@ -13,7 +13,7 @@ export default function PreparingList() {
       setMsg('본인이 직접 입찰하셨습니다.')
       setDetailList(['- 신분증', ' - 도장'])
     } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName !== '' && biddingInfo.bidCorpYn[0] === 'I') {
-      setMsg(`${biddingInfo.agentName}이 개인의 대리인으로 입찰하셨습니다.`)
+      setMsg(`${biddingInfo.agentName}님이 개인의 대리인으로 입찰하셨습니다.`)
       setDetailList(['- 본인의 인감증명서와 본인의 인감이 날인된 위임장', '- 대리인의 도장, 대리인의 신분증'])
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && biddingInfo.bidCorpYn.includes('C')) {
       setMsg(`법인명의를 포함한 ${biddingInfo.bidderNum}명의 공동입찰자가 입찰하셨습니다.`)
@@ -48,7 +48,7 @@ export default function PreparingList() {
           </div>
           <div className="flex flex-col md:w-[90%] w-[100%] h-[500px] rounded-lg absolute top-[100px] justify-center items-center">
             <div className="flex bg-gray-200 w-[90%] h-[10%] mx-auto rounded-xl justify-center items-center text-center absolute top-[25px]">
-              <span className="md:text-[14pt] text-[12pt] font-NanumGothic text-blue-600 font-bold text-center">
+              <span className="md:text-[14pt] text-[12pt] font-NanumGothic text-mygold font-bold text-center">
                 {msg}
               </span>
             </div>
