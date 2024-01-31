@@ -122,7 +122,7 @@ export default function CoIpchalListPDF({ totalResult }: CoIpchalProps) {
                 </div>
               </div>
               <div className="flex w-[20%] justify-center items-center">
-                <span className="text-[12pt] font-batang text-red-500 font-bold">
+                <span className="text-[12pt] font-batang text-black-500 font-bold">
                   {totalResult && totalResult.bidders[idx]?.share ? totalResult && totalResult.bidders[idx]?.share : ''}
                 </span>
               </div>

@@ -14,8 +14,10 @@ export default function IpchalResult() {
 
   const [totalResult, setTotalResult] = useState<TotalResultType>()
   const [loading, setLoading] = useState<boolean>(false)
+  const mandatesList = totalResult?.bidders.filter((item) => item.mandateYn === 'Y')
+  console.log(mandatesList?.length)
 
-  const totalPage = Math.ceil(biddingInfo.bidName.length / 3)
+  const totalPage = Math.ceil((mandatesList?.length ?? 0) / 3)
   const listPerPage = 3
   let currentPage = 1;
   let currentList: any = [];
@@ -56,7 +58,7 @@ export default function IpchalResult() {
     }
     handleGetResult()
   }, [])
-  
+  console.log(totalResult)
   return (
     <>
       {loading && (

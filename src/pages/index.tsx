@@ -22,6 +22,7 @@ import AgentFormMod from './ipchal/AgentFormMod'
 import AgentForm from './ipchal/AgentForm'
 import Spinner from '@/components/Spinner'
 import PreparingList from './ipchal/PreparingList'
+import AgentCheck from './ipchal/AgentCheck'
 
 export default function Home() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -94,6 +95,7 @@ export default function Home() {
           },
         })
         if (response.status === 200) {
+          console.log(response.data.data)
           setBidders({
             ...bidders,
             state: response.data.data.state ?? 0,
@@ -157,6 +159,8 @@ export default function Home() {
             sagunAddr: response.data.data?.address ?? '',
             biddingInfos: response.data.data?.biddingInfo,
             biddingInfo: response.data.data?.biddingInfo,
+            mandates: response.data.data?.bidders.map((bidder: any) => {return {name: bidder.name, peopleSeq: bidder.peopleSeq, mandateYn: bidder.mandateYn}}),
+            agentYn: response.data.data?.agentYn,
           })
           setLoading(false)
         }
@@ -214,7 +218,7 @@ export default function Home() {
           {(stateNum === 4) && <AgentForm />}
           {((bidders.state === 1 || bidders.state === 2) && stateNum === 5) ? <BidderCnt /> : (stateNum === 5) && <BidderCnt />}
           {(stateNum === 6) && <BidderForm />}
-          {stateNum === 7 && biddingForm.bidName.length > 1 && <ShareInfo />}
+          {stateNum === 7 && biddingForm.bidderNum > 1 && <ShareInfo />}
           {stateNum === 8 && <BiddingPrice />}
           {stateNum === 9 && <BiddingPayment />}
           {stateNum === 10 && <IpchalInfo />}
@@ -225,6 +229,7 @@ export default function Home() {
           {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 15) ? <BidderFormMod /> : (stateNum === 15) && <BidderFormMod />}
           {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 16) ? <AgentFormMod /> : (stateNum === 16) && <AgentFormMod />}
           {stateNum === 17 && <PreparingList />}
+          {stateNum === 18 && biddingForm.agentYn === "Y" && <AgentCheck />}
         </>
       )}
     </>

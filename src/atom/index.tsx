@@ -58,6 +58,7 @@ export const biddingInfoState = atom({
     bidCorpRegiNum2: [''],
     bidCorpRegiNum: [''],
     bidJob: [''],
+    agentYn: '',
     agentName: '',
     agentPhone1: '',
     agentPhone2: '',
@@ -81,6 +82,11 @@ export const biddingInfoState = atom({
     numerator: [''],
     denominator: [''],
     mulSeq: '',
+    mandates: {
+      peopleSeq: 0,
+      name: '',
+      mandateYn: '',
+    }
   },
   dangerouslyAllowMutability: true,
 })

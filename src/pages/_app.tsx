@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil'
 import Script from 'next/script'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools' 
+import { ChakraProvider } from '@chakra-ui/react'
 declare global {
   interface Window {
     Kakao: any

@@ -78,6 +78,7 @@ export default function BidderFormMod() {
           })
           //  입찰자 수가 기존 서버 저장 값보다 클 경우
           if (response.data.data.bidderCount < biddingForm.bidderNum) {
+            if (response.data.data.bidders.length === 0) return
             setBiddingForm((prev: any) => {
               const temp1 = prev.bidName
               const temp2 = prev.bidPhone
@@ -111,8 +112,8 @@ export default function BidderFormMod() {
               }
             })
           } else if (response.data.data.bidderCount > biddingForm.bidderNum) {
+            if (response.data.data.bidders.length === 0) return
             //  입찰자 수가 기존 서버 저장 값보다 작을 경우
-            console.log("여기")
             setBiddingForm((prev: any) => {
               const temp1 = prev.bidName
               const temp2 = prev.bidPhone
@@ -147,6 +148,7 @@ export default function BidderFormMod() {
             })
           } else {
             //  입찰자 수가 기존 서버 저장 값과 같을 경우
+            if (response.data.data.bidders.length === 0) return
             setBiddingForm((prev: any) => {
               let temp1 = prev.bidName
               let temp2 = prev.bidPhone
@@ -156,6 +158,8 @@ export default function BidderFormMod() {
               let temp6 = prev.bidCorpYn
               let temp7 = prev.bidJob
               let temp8 = prev.bidIdNum
+              let temp9 = prev.bidIdNum1
+              let temp10 = prev.bidIdNum2
               temp1 = response.data.data.bidders.map((item: any) => item.name)
               temp2 = response.data.data.bidders.map((item: any) => item.phoneNo)
               temp3 = response.data.data.bidders.map((item: any) => item.companyNo)
@@ -164,6 +168,8 @@ export default function BidderFormMod() {
               temp6 = response.data.data.bidders.map((item: any) => item.bidderType)
               temp7 = response.data.data.bidders.map((item: any) => item.job)
               temp8 = biddingForm.bidIdNum.map((item: any) => item)
+              temp9 = biddingForm.bidIdNum1.map((item: any) => item)
+              temp10 = biddingForm.bidIdNum2.map((item: any) => item)
               return {
                 ...prev,
                 bidName: temp1,
@@ -174,6 +180,8 @@ export default function BidderFormMod() {
                 bidCorpYn: temp6,
                 bidJob: temp7,
                 bidIdNum: temp8,
+                bidIdNum1: temp9,
+                bidIdNum2: temp10,
               }
             })
           }
@@ -418,10 +426,13 @@ export default function BidderFormMod() {
     if (biddingForm.bidderNum === 1) {
       setStateNum(8)
       await handleUpdate()
-    } else {
+    } else if (biddingForm.bidderNum > 1) {
       //  1. 입찰자 수 증가의 경우
       if (biddingForm.bidderNum > bidderList?.bidders.length!) {
-        if (stepNum === biddingForm.bidderNum) {
+        if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'Y') {
+          await handleBidderFormSave()
+          setStateNum(18)
+        } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'N') {
           await handleBidderFormSave()
           setStateNum(7)
         } else if (stepNum > bidderList?.bidders.length! && stepNum < biddingForm.bidderNum) {
@@ -435,7 +446,11 @@ export default function BidderFormMod() {
         }
       } else if (biddingForm.bidderNum < bidderList?.bidders.length!) {
         //  2. 입찰자 수 감소의 경우
-        if (stepNum === biddingForm.bidderNum) {
+        if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'Y') {
+          await handleUpdate()
+          // await handleDecreaseBidder()
+          setStateNum(18)
+        } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'N') {
           await handleUpdate()
           // await handleDecreaseBidder()
           setStateNum(7)
@@ -446,7 +461,11 @@ export default function BidderFormMod() {
         }
       } else {
         //  3. 입찰자 수 변경 없는 경우
-        if (stepNum === biddingForm.bidderNum) {
+        if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'Y') {
+          await handleUpdate()
+          // await handleDecreaseBidder()
+          setStateNum(18)
+        } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'N') {
           await handleUpdate()
           // await handleDecreaseBidder()
           setStateNum(7)
@@ -537,7 +556,8 @@ export default function BidderFormMod() {
     setValue('bidderCorpRegiNum1', [biddingForm.bidCorpRegiNum1[stepNum - 1] || ''])
     setValue('bidderCorpRegiNum2', [biddingForm.bidCorpRegiNum2[stepNum - 1] || ''])
     setValue('bidderJob', [biddingForm.bidJob[stepNum - 1] || ''])
-  }, [stepNum, biddingForm])
+  }, [stepNum])
+
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
@@ -583,7 +603,7 @@ export default function BidderFormMod() {
                   />
                 </svg>
               </div>
-              <span className={`text-[13px] font-NanumGothic not-italic font-extrabold ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'text-white' : 'text-myyellow'}`}>
+              <span className={`text-[13px] font-NanumGothic not-italic ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'text-white' : 'text-myyellow'}`}>
                 개인
               </span>
             </div>
@@ -617,7 +637,7 @@ export default function BidderFormMod() {
                   />
                 </svg>
               </div>
-              <span className={`text-[13px] font-NanumGothic not-italic font-extrabold ${biddingForm.bidCorpYn[stepNum - 1] === 'C' ? 'text-white' : 'text-myyellow'}`}>
+              <span className={`text-[13px] font-NanumGothic not-italic ${biddingForm.bidCorpYn[stepNum - 1] === 'C' ? 'text-white' : 'text-myyellow'}`}>
                 법인
               </span>
             </div>
@@ -633,13 +653,13 @@ export default function BidderFormMod() {
                     (<div className="flex w-[100%] justify-start">
                       <label
                         htmlFor="bidderName"
-                        className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
+                        className="text-[12px] font-NanumGothic not-italic    text-left text-red-500"
                       >
                         {"입찰자 성명을 입력해주세요"}
                       </label>
                     </div>) : 
                     (<div className='flex w-[100%] justify-start'>
-                      <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
+                      <span className="text-[12px] font-NanumGothic not-italic    text-left">
                         성명
                       </span>
                     </div>)
@@ -649,7 +669,7 @@ export default function BidderFormMod() {
                   value={biddingForm.bidName[stepNum - 1] || ''}
                   id="bidderName"
                   type="text"
-                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    text-left h-[40px] px-2"
                   placeholder="입찰자 성명을 입력해주세요"
                   {...register('bidderName', { required: true })}
                   onChange={(e) => {
@@ -673,7 +693,7 @@ export default function BidderFormMod() {
                     errors.bidderPhone2?.type === 'required' ||
                     errors.bidderPhone3?.type === 'required') && (biddingForm.bidPhone[stepNum - 1] === '' || biddingForm.bidPhone[stepNum - 1] === undefined) ? (
                     <div className="flex w-[100%] justify-start">
-                      <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
+                      <span className="text-[12px] font-NanumGothic not-italic    text-left text-red-500">
                         전화번호를 입력해주세요
                       </span>
                     </div>
@@ -681,7 +701,7 @@ export default function BidderFormMod() {
                     <div className='flex justify-start w-[100%]'>
                       <label
                         htmlFor="bidderPhone"
-                        className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
+                        className="text-[12px] font-NanumGothic not-italic    text-left"
                       >
                         전화번호
                       </label>
@@ -700,7 +720,7 @@ export default function BidderFormMod() {
                     type="text"
                     maxLength={3}
                     placeholder="010"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    h-[40px] px-2 w-[30%] text-center"
                     value={biddingForm.bidPhone1[stepNum - 1] || ''}
                     onChange={(e) => {
                       setBiddingForm((prev: any) => {
@@ -736,7 +756,7 @@ export default function BidderFormMod() {
                         .replace(/(\..*)\./g, '$1')
                     }}
                     placeholder="1234"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    h-[40px] px-2 w-[30%] text-center"
                     value={biddingForm.bidPhone2[stepNum - 1] || ''}
                     onChange={(e) => {
                       setBiddingForm((prev: any) => {
@@ -772,7 +792,7 @@ export default function BidderFormMod() {
                         .replace(/(\..*)\./g, '$1')
                     }}
                     placeholder="5678"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    h-[40px] px-2 w-[30%] text-center"
                     value={biddingForm.bidPhone3[stepNum - 1] || ''}
                     onChange={(e) => {
                       setBiddingForm((prev: any) => {
@@ -804,14 +824,14 @@ export default function BidderFormMod() {
                           errors.bidderIdNum2?.type === 'required' && 
                           (biddingForm.bidIdNum[stepNum - 1] === '' || biddingForm.bidIdNum[stepNum - 1] === undefined) ? (
                           <div className="flex w-[100%] justify-start h-[15px] mb-1">
-                            <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
+                            <span className="text-[12px] font-NanumGothic not-italic    text-left text-red-500">
                               주민등록번호를 입력해주세요
                             </span>
                           </div>
                         ) :
                         (
                           <div className='flex justify-start w-[100%]'>
-                            <label htmlFor="bidIdNum" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
+                            <label htmlFor="bidIdNum" className="text-[12px] font-NanumGothic not-italic    text-left">
                               주민등록번호
                             </label>
                           </div>
@@ -829,8 +849,8 @@ export default function BidderFormMod() {
                         }}
                         type="text"
                         maxLength={6}
-                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
-                        value={biddingForm.bidIdNum1[stepNum - 1] || biddingInfo.bidderIdNum1[stepNum - 1] || ''}
+                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    h-[40px] px-2 w-[45%] text-center"
+                        value={biddingForm.bidIdNum1[stepNum - 1]}
                         onChange={(e) => {
                           setBiddingForm((prev: any) => {
                             const temp = prev.bidIdNum1
@@ -844,7 +864,7 @@ export default function BidderFormMod() {
                           })
                           setBiddingInfo((prev: any) => {
                             const temp = prev.bidderIdNum1
-                            temp[stepNum - 1] = e.target.value
+                            temp[stepNum - 1] = e.target.value + biddingInfo.bidderIdNum2[stepNum - 1]
                             return { ...prev, bidIdNum1: temp }
                           })
                           handleIdNumFocusMove(e.target)
@@ -863,8 +883,8 @@ export default function BidderFormMod() {
                         }}
                         type="text"
                         maxLength={7}
-                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[45%] text-center"
-                        value={biddingForm.bidIdNum2[stepNum - 1] || biddingInfo.bidderIdNum2[stepNum - 1] || ''}
+                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    h-[40px] px-2 w-[45%] text-center"
+                        value={biddingForm.bidIdNum2[stepNum - 1]}
                         onChange={(e) => {
                           setBiddingForm((prev: any) => {
                             const temp = prev.bidIdNum2
@@ -880,7 +900,7 @@ export default function BidderFormMod() {
                           })
                           setBiddingInfo((prev: any) => {
                             const temp = prev.bidderIdNum2
-                            temp[stepNum - 1] = e.target.value
+                            temp[stepNum - 1] = biddingInfo.bidderIdNum1 + e.target.value
                             return { ...prev, bidIdNum2: temp }
                           })
                           handleInputChange(e)
@@ -898,13 +918,13 @@ export default function BidderFormMod() {
                           errors.bidderCorpNum3?.type === 'required') && 
                           (biddingForm.bidCorpNum[stepNum - 1] === '' || biddingForm.bidCorpNum[stepNum - 1] === undefined) ? (
                           <div className="flex w-[100%] justify-start mb-1">
-                            <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
+                            <span className="text-[12px] font-NanumGothic not-italic    text-left text-red-500">
                               사업자등록번호를 입력해주세요
                             </span>
                           </div>
                         ) : (
                           <div className='flex justify-start w-[100%]'>
-                            <label htmlFor="bidCorpNum" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
+                            <label htmlFor="bidCorpNum" className="text-[12px] font-NanumGothic not-italic    text-left">
                               사업자 등록번호
                             </label>
                           </div>
@@ -922,7 +942,7 @@ export default function BidderFormMod() {
                               .replace(/(\..*)\./g, '$1')
                           }}
                           maxLength={3}
-                          className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                          className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    h-[40px] px-2 w-[30%] text-center"
                           value={biddingForm.bidCorpNum1[stepNum - 1] || ''}
                           onChange={(e) => {
                             setBiddingForm((prev: any) => {
@@ -958,7 +978,7 @@ export default function BidderFormMod() {
                               .replace(/(\..*)\./g, '$1')
                           }}
                           maxLength={2}
-                          className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                          className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    h-[40px] px-2 w-[30%] text-center"
                           value={biddingForm.bidCorpNum2[stepNum - 1] || ''}
                           onChange={(e) => {
                             setBiddingForm((prev: any) => {
@@ -994,7 +1014,7 @@ export default function BidderFormMod() {
                               .replace(/(\..*)\./g, '$1')
                           }}
                           maxLength={5}
-                          className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[30%] text-center"
+                          className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    h-[40px] px-2 w-[30%] text-center"
                           value={biddingForm.bidCorpNum3[stepNum - 1] || ''}
                           onChange={(e) => {
                             setBiddingForm((prev: any) => {
@@ -1024,7 +1044,7 @@ export default function BidderFormMod() {
                               (biddingForm.bidCorpRegiNum[stepNum - 1] === '' || biddingForm.bidCorpRegiNum[stepNum - 1] === undefined) ? 
                             (
                             <div className="flex w-[100%] justify-start mb-1">
-                              <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500">
+                              <span className="text-[12px] font-NanumGothic not-italic    text-left text-red-500">
                                 법인 등록번호를 입력해주세요
                               </span>
                             </div>
@@ -1032,7 +1052,7 @@ export default function BidderFormMod() {
                             <div className='flex justify-start w-[100%]'>
                               <label
                                 htmlFor="bidCorpRegiNum"
-                                className="text-[12px] font-NanumGothic not-italic font-extrabold text-left"
+                                className="text-[12px] font-NanumGothic not-italic    text-left"
                               >
                                 법인 등록번호
                               </label>
@@ -1051,7 +1071,7 @@ export default function BidderFormMod() {
                             maxLength={6}
                             id="bidderCorpRegiNum1"
                             placeholder="123456"
-                            className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[50%] text-center"
+                            className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    h-[40px] px-2 w-[50%] text-center"
                             value={biddingForm.bidCorpRegiNum1[stepNum - 1] || ''}
                             onChange={(e) => {
                               setBiddingForm((prev: any) => {
@@ -1088,7 +1108,7 @@ export default function BidderFormMod() {
                             id="bidderCorpRegiNum2"
                             name="bidderCorpRegiNum2"
                             placeholder="1234567"
-                            className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold h-[40px] px-2 w-[50%] text-center"
+                            className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    h-[40px] px-2 w-[50%] text-center"
                             value={biddingForm.bidCorpRegiNum2[stepNum - 1] || ''}
                             onChange={(e) => {
                               setBiddingForm((prev: any) => {
@@ -1124,14 +1144,14 @@ export default function BidderFormMod() {
                         <div className="flex w-[100%] justify-start">
                           <label
                             htmlFor="agentJob"
-                            className="text-[12px] font-NanumGothic not-italic font-extrabold text-left text-red-500"
+                            className="text-[12px] font-NanumGothic not-italic    text-left text-red-500"
                           >
                             {"직업을 입력해주세요"}
                           </label>
                         </div>
                       ) : (
                         <div className='flex justify-start w-[100%]'>
-                          <label htmlFor="bidderJob" className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
+                          <label htmlFor="bidderJob" className="text-[12px] font-NanumGothic not-italic    text-left">
                             직업
                           </label>
                         </div>
@@ -1142,7 +1162,7 @@ export default function BidderFormMod() {
                     value={biddingForm.bidJob[stepNum - 1] || ''}
                     id="bidderJob"
                     type="text"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-left h-[40px] px-2"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic    text-left h-[40px] px-2"
                     placeholder="직업을 입력해주세요"
                     onChange={(e) => {
                       setBiddingForm((prev: any) => {
@@ -1180,7 +1200,7 @@ export default function BidderFormMod() {
                     stepNum === 1 ? setStateNum(5) : setStepNum((prev) => prev - 1)
                   }}
                 >
-                  <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                  <span className="text-white    font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                     이전
                   </span>
                 </button>
@@ -1188,7 +1208,7 @@ export default function BidderFormMod() {
                   type="submit"
                   className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
                 >
-                  <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                  <span className="text-white    font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                     다음
                   </span>
                 </button>

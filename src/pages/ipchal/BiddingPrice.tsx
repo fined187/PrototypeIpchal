@@ -188,6 +188,7 @@ export default function BiddingPrice() {
           },
         })
         if (response.status === 200) {
+          console.log(response.data.data)
           setPaymentsInfo({
             ...paymentsInfo,
             biddingTime: response2.data.data.biddingInfo.biddingTime,
@@ -258,7 +259,7 @@ export default function BiddingPrice() {
               </span>
             </div>
           </div>
-          <div className="flex flex-col gap-2 md:w-[550px] w-[90%] h-[30%] bg-white absolute top-[180px] border-slate-500 justify-center items-center">
+          <div className="flex flex-col gap-2 md:w-[550px] md:h-[300px] w-[90%] h-[30%] bg-white absolute top-[180px] border-slate-500 justify-center items-center">
             <div className="flex flex-row gap-[20px] w-[90%]">
               <div className='flex justify-start md:w-[15%] w-[20%] pt-[20px] md:ml-[10px]'>
                 <span className="md:text-[15px] text-[12px] font-NanumGothic not-italic font-bold leading-[9px]">

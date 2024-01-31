@@ -18,6 +18,7 @@ export default function BidderInfo() {
         setBiddingInfo({
           ...biddingInfo,
           bidder: 'self',
+          agentYn: 'N',
           agentName: '',
           agentPhone: '',
           agentAddr: '',
@@ -119,6 +120,7 @@ export default function BidderInfo() {
                 setBiddingInfo({
                   ...biddingInfo,
                   bidder: 'agent',
+                  agentYn: 'Y',
                 })
                 setTimeout(() => {
                   setStateNum(stateNum + 1)

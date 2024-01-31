@@ -71,6 +71,7 @@ export interface BidderList {
   companyNo: string
   corporationNo: string
   share: string
+  mandateYn: string
 }
 
 export interface GetAgentInfoType {

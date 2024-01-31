@@ -48,6 +48,8 @@ export default function Navbar() {
       setMenuTitle('대리인 정보 입력')
     } else if (stepStateNum === 17) {
       setMenuTitle('입찰시 준비 서류')
+    } else if (stepStateNum === 18) {
+      setMenuTitle('대리 입찰인 선택')
     }
   }
 

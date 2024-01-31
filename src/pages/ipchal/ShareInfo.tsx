@@ -28,7 +28,7 @@ export default function ShareInfo() {
       for (let i = 0; i < biddingInfo.bidderNum; i++) {
         temp[i] = {
           peopleSeq: i + 1,
-          name: biddingInfo.bidName[i],
+          name: biddingInfo.bidName[i] ?? '',
           share: '1/' + biddingInfo.bidderNum.toString(),
         }
       }
@@ -40,7 +40,7 @@ export default function ShareInfo() {
       for (let i = 0; i < biddingInfo.bidderNum; i++) {
         temp[i] = {
           peopleSeq: i + 1,
-          name: biddingInfo.bidName[i],
+          name: biddingInfo.bidName[i] ?? '',
           share: biddingInfo.numerator[i] + '/' + biddingInfo.denominator[i],
         }
       }
@@ -92,7 +92,7 @@ export default function ShareInfo() {
     try {
       const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders/shares`, {
         bidderCount: biddingInfo.bidderNum,
-        shareList: shareList.shareList,
+        shares: shareList.shareList,
       })
       if (response.status === 200) {
         console.log(response)
