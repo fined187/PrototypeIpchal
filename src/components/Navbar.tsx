@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 
+
 export default function Navbar() {
   const [menuTitle, setMenuTitle] = useState<string>('')
   const stepStateNum = useRecoilValue(stepState)
@@ -15,7 +16,7 @@ export default function Navbar() {
     } else if (stepStateNum === 2 && biddingForm.biddingInfos.length > 1) {
       setMenuTitle('경매 시간 선택')
     } else if (stepStateNum === 2 && biddingForm.biddingInfos.length === 1) {
-      setMenuTitle('대리인 확인')
+      setMenuTitle('사건 정보 확인')
     } else if (stepStateNum === 3) {
       setMenuTitle('대리인 확인')
     } else if (stepStateNum === 4 && biddingForm.bidder === 'agent') {
@@ -43,7 +44,7 @@ export default function Navbar() {
     } else if (stepStateNum === 14) {
       setMenuTitle('입찰표 작성 완료')
     } else if (stepStateNum === 15) {
-      setMenuTitle('입찰표 정보 입력')
+      setMenuTitle('입찰자 정보 입력')
     } else if (stepStateNum === 16) {
       setMenuTitle('대리인 정보 입력')
     } else if (stepStateNum === 17) {
@@ -53,15 +54,41 @@ export default function Navbar() {
     }
   }
 
+  const handleProgressBar = () => {
+    if (stepStateNum === 0) {
+      return '0'
+    } else if ((stepStateNum >= 1 && stepStateNum <= 3)) {
+      return '10'
+    } else if ((stepStateNum >= 4 && stepStateNum <= 6) || stepStateNum === 18 || (stepStateNum >= 15 && stepStateNum <= 16)) {
+      return '30'
+    } else if ((stepStateNum >= 7 && stepStateNum <= 9)) {
+      return '50'
+    } else if ((stepStateNum >= 10 && stepStateNum <= 12)) {
+      return '70'
+    } else if ((stepStateNum >= 13 && stepStateNum <= 14)) {
+      return '90'
+    } else if ((stepStateNum === 17)) {
+      return '100'
+    }
+  }
+
+  console.log(handleProgressBar())
+
   useEffect(() => {
     updateMenuTitle()
   }, [stepStateNum])
 
   return (
-    <div className={`flex relative w-[100%] md:w-[50%] md:h-[100px] h-[10%] bg-mybg justify-center items-center mx-auto`}>
+    <div className="flex justify-between relative w-[100%] md:w-[50%] md:h-[100px] h-[15%] bg-mybg mx-auto">
+      <div className="flex rounded-lg w-[30%] h-[20px] justify-start relative md:top-[20px] top-0 md:ml-5">
+        <div className="w-full z-1 bg-gray-300 h-[100%] rounded-full relative top-0">
+          <div className={`w-[${handleProgressBar()}%] z-2 h-full justify-center items-center text-center text-xs text-white bg-myyellow rounded-full relative top-[0px] transition-all`}>
+          </div>
+        </div>
+      </div>
       {stepStateNum === 0 ? (
-        <div className="flex flex-row-reverse relative w-[100%] mr-5">
-          <div className="flex">
+        <div className="flex flex-row-reverse md:mr-5 relative md:top-[10px] top-0 ">
+          <div className="flex w-30 h-10">
             <Image
               src={'/toplogo_red.png'}
               alt="logo"
@@ -75,46 +102,46 @@ export default function Navbar() {
           </div>
         </div>
       ) : (
-        <>
-          <div className="nav__bar-title">
-            <div className="flex relative mr-5 mt-5">
-              <div>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 10 10"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="5.09865"
-                    cy="5.23146"
-                    r="3.84084"
-                    stroke="#C39A28"
-                  />
-                </svg>
-              </div>
-              <div className="flex absolute top-0 left-1">
-                <svg
-                  width="15"
-                  height="15"
-                  viewBox="0 0 10 9"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.08879 1.26965C8.49937 2.0671 5.06283 5.89755 3.74544 7.69235L0.55957 3.03791"
-                    stroke="#C39A28"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </div>
+        <div className="flex flex-row-reverse justify-start w-[50%] relative md:top-[10px] top-[0px] md:mr-5">
+          <div className="flex relative ml-1">
+            <div className='flex'>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="5.09865"
+                  cy="5.23146"
+                  r="3.84084"
+                  stroke="#C39A28"
+                />
+              </svg>
             </div>
-            <span className="text-mygold text-sm font-extrabold font-nanumGothic mt-6 leading-3 not-italic">
+            <div className="flex absolute top-0 left-1">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 10 9"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.08879 1.26965C8.49937 2.0671 5.06283 5.89755 3.74544 7.69235L0.55957 3.03791"
+                  stroke="#C39A28"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+          <div className='flex mt-1'>
+            <span className="text-mygold text-sm font-extrabold font-nanumGothic leading-3 not-italic">
               {menuTitle}
             </span>
           </div>
-        </>
+        </div>
       )}
     </div>
   )

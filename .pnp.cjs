@@ -42,6 +42,7 @@ const RAW_RUNTIME_STATE =
           ["@types/uuid", "npm:9.0.7"],\
           ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.16"],\
           ["axios", "npm:1.6.2"],\
+          ["daisyui", "npm:4.6.1"],\
           ["date-fns", "npm:3.0.6"],\
           ["emailjs", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3"],\
           ["eslint", "npm:8.55.0"],\
@@ -7485,6 +7486,17 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["css-selector-tokenizer", [\
+      ["npm:0.8.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/css-selector-tokenizer-npm-0.8.0-b6bad298a3-10c0.zip/node_modules/css-selector-tokenizer/",\
+        "packageDependencies": [\
+          ["css-selector-tokenizer", "npm:0.8.0"],\
+          ["cssesc", "npm:3.0.0"],\
+          ["fastparse", "npm:1.1.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["cssesc", [\
       ["npm:3.0.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/cssesc-npm-3.0.0-15ec56f86f-10c0.zip/node_modules/cssesc/",\
@@ -7499,6 +7511,28 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/csstype-npm-3.1.3-e9a1c85013-10c0.zip/node_modules/csstype/",\
         "packageDependencies": [\
           ["csstype", "npm:3.1.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["culori", [\
+      ["npm:3.3.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/culori-npm-3.3.0-75ee2b3b84-10c0.zip/node_modules/culori/",\
+        "packageDependencies": [\
+          ["culori", "npm:3.3.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["daisyui", [\
+      ["npm:4.6.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/daisyui-npm-4.6.1-c2e053da34-10c0.zip/node_modules/daisyui/",\
+        "packageDependencies": [\
+          ["daisyui", "npm:4.6.1"],\
+          ["css-selector-tokenizer", "npm:0.8.0"],\
+          ["culori", "npm:3.3.0"],\
+          ["picocolors", "npm:1.0.0"],\
+          ["postcss-js", "virtual:c2e053da344524e3aa4ed7019a2ad211217c6968e82272aea6dd3af41c42371c06fdd8e5db1edb106009f32aeccd87d0e57c12da8cd4d75ea2312f6ff5fa5582#npm:4.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8821,6 +8855,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["fastparse", [\
+      ["npm:1.1.2", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/fastparse-npm-1.1.2-6a35154770-10c0.zip/node_modules/fastparse/",\
+        "packageDependencies": [\
+          ["fastparse", "npm:1.1.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["fastq", [\
       ["npm:1.15.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/fastq-npm-1.15.0-1013f6514e-10c0.zip/node_modules/fastq/",\
@@ -9223,6 +9266,7 @@ const RAW_RUNTIME_STATE =
           ["@types/uuid", "npm:9.0.7"],\
           ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.16"],\
           ["axios", "npm:1.6.2"],\
+          ["daisyui", "npm:4.6.1"],\
           ["date-fns", "npm:3.0.6"],\
           ["emailjs", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3"],\
           ["eslint", "npm:8.55.0"],\
@@ -11383,6 +11427,20 @@ const RAW_RUNTIME_STATE =
           ["@types/postcss", null],\
           ["camelcase-css", "npm:2.0.1"],\
           ["postcss", "npm:8.4.32"]\
+        ],\
+        "packagePeers": [\
+          "@types/postcss",\
+          "postcss"\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["virtual:c2e053da344524e3aa4ed7019a2ad211217c6968e82272aea6dd3af41c42371c06fdd8e5db1edb106009f32aeccd87d0e57c12da8cd4d75ea2312f6ff5fa5582#npm:4.0.1", {\
+        "packageLocation": "./.yarn/__virtual__/postcss-js-virtual-239c8639bd/3/Users/woota/AppData/Local/Yarn/Berry/cache/postcss-js-npm-4.0.1-2c4ee70bf3-10c0.zip/node_modules/postcss-js/",\
+        "packageDependencies": [\
+          ["postcss-js", "virtual:c2e053da344524e3aa4ed7019a2ad211217c6968e82272aea6dd3af41c42371c06fdd8e5db1edb106009f32aeccd87d0e57c12da8cd4d75ea2312f6ff5fa5582#npm:4.0.1"],\
+          ["@types/postcss", null],\
+          ["camelcase-css", "npm:2.0.1"],\
+          ["postcss", null]\
         ],\
         "packagePeers": [\
           "@types/postcss",\

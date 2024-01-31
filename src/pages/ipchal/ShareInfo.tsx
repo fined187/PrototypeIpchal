@@ -18,7 +18,7 @@ export default function ShareInfo() {
       share: '',
     }),
   })
-
+  console.log(biddingInfo)
   const handleShareList = () => {
     let numerator = (document && document.getElementById('numerator') as HTMLInputElement)?.value
     let denominator = (document && document.getElementById('denominator') as HTMLInputElement)?.value
@@ -240,6 +240,7 @@ export default function ShareInfo() {
               setBiddingInfo({
                 ...biddingInfo,
                 shareWay: 'N',
+                denominator: Array(biddingInfo.bidderNum).fill('100'),
               })
               handleClear()
             }}
@@ -305,7 +306,7 @@ export default function ShareInfo() {
                       <input
                         id="numerator"
                         type="text"
-                        value={shareList.shareList[index]?.share?.split('/')[0] || ''}
+                        value={shareList.shareList[index]?.share?.split('/')[0] === 'undefined' ? '' : shareList.shareList[index]?.share?.split('/')[0]}
                         className={`border-2 ${
                           (biddingInfo.shareWay === 'N') && goNext
                             ? 'border-red-500'
@@ -321,13 +322,18 @@ export default function ShareInfo() {
                             ...shareList,
                             shareList: temp,
                           })
+                          setBiddingInfo({
+                            ...biddingInfo,
+                            numerator: temp.map((item: any) => item.share?.split('/')[0]),
+                          })
                         }}
                       />
                       <span>/</span>
                       <input
+                        readOnly
                         id='denominator'
                         type="text"
-                        value={shareList.shareList[index]?.share?.split('/')[1] || ''}
+                        value={100}
                         className={`border-2 ${
                           (biddingInfo.shareWay === 'N') && goNext
                             ? 'border-red-500'

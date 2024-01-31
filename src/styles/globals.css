@@ -30,7 +30,7 @@
 }
 
 .nav__bar-title {
-  @apply flex flex-row-reverse md:w-[100%] w-[100%] h-[100%] bg-mybg;
+  @apply flex flex-row-reverse bg-mybg absolute top-0 right-0;
 }
 
 /*  */

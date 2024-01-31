@@ -66,14 +66,14 @@ export default function SearchAddress({
           <div className='flex justify-between w-[100%]'>
             {errors?.bidderAddr?.type === 'required' && stepNum && (biddingForm.bidAddr[stepNum - 1] === '' || biddingForm.bidAddr[stepNum - 1] === undefined) ? (
               <div className="flex w-[100%] justify-start">
-                <span className="text-[12px] font-NanumGothic not-italic text-left text-red-500">
+                <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
                   주소를 입력해주세요
                 </span>
               </div>
             ) : (
                 agentErrors?.agentAddr?.type === 'required' && (biddingForm.agentAddr === '') ? (
                   <div className="flex w-[70%] justify-start">
-                    <span className="text-[12px] font-NanumGothic not-italic text-left text-red-500">
+                    <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
                       주소를 입력해주세요
                     </span>
                   </div>
@@ -82,7 +82,7 @@ export default function SearchAddress({
                   <div className='flex justify-start w-[100%]'>
                     <label
                       htmlFor="addr"
-                      className="text-[12px] font-NanumGothic not-italic text-left"
+                      className="text-[11pt] font-semibold font-NanumGothic not-italic text-left"
                     >
                       주소
                     </label>
@@ -98,7 +98,7 @@ export default function SearchAddress({
               id="bidderAddr"
               readOnly
               type="text"
-              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic text-left h-[40px] px-2 w-[90%]"
+              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2 w-[90%]"
               value={stepNum && biddingForm.bidAddr[stepNum - 1] || ''}
             />
             
@@ -109,12 +109,12 @@ export default function SearchAddress({
               id="agentAddr"
               readOnly
               type="text"
-              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic text-left h-[40px] px-2 w-[90%]"
+              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2 w-[90%]"
               value={biddingForm.agentAddr || ''}
             />
           )}
           <button
-            className="text-white text-[13px] bg-myyellow focus:outline-2 focus:outline-myyellow rounded-md font-NanumGothic not-italic font-bold w-[25%] h-[40px]"
+            className="text-white text-[11pt] bg-myyellow focus:outline-2 focus:outline-myyellow rounded-md font-NanumGothic not-italic font-bold w-[25%] h-[40px]"
             onClick={() => {
               handleModal && handleModal()
             }}
@@ -122,9 +122,9 @@ export default function SearchAddress({
             주소검색
           </button>
         </div>
-        <div className="flex flex-col w-[100%] h-[60px] gap-1">
+        <div className="flex flex-col w-[100%] h-[80px] gap-1">
           <div className="flex">
-            <span className="text-[12px] font-NanumGothic not-italic text-left">
+            <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
               상세주소
             </span>
           </div>
@@ -133,7 +133,7 @@ export default function SearchAddress({
               id="bidAddrDetail"
               type="text"
               readOnly
-              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic text-left h-[40px] px-2 w-[100%]"
+              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2 w-[100%]"
               value={stepNum && biddingForm.bidAddrDetail[stepNum - 1] || ''}
             />
           ))}
@@ -142,7 +142,7 @@ export default function SearchAddress({
               id="agentAddrDetail"
               type="text"
               readOnly
-              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic text-left h-[40px] px-2 w-[100%]"
+              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2 w-[100%]"
               value={biddingForm.agentAddrDetail || ''}
             />
           ))}
