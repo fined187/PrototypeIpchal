@@ -79,13 +79,16 @@ export default function SearchAddress({
                   </div>
                 ) :
                 (
-                  <div className='flex justify-start w-[100%]'>
+                  <div className='flex flex-row justify-start w-[100%]'>
                     <label
                       htmlFor="addr"
                       className="text-[11pt] font-semibold font-NanumGothic not-italic text-left"
                     >
                       주소
                     </label>
+                    <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                      *
+                    </span>
                   </div>
                 )
             )}

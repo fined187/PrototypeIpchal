@@ -41,14 +41,21 @@ export default function StartIpchal() {
               response.data.data.caseYear +
               ' 타경 ' +
               response.data.data.caseDetail,
-            mulgunNum: response.data.data.mulSeq,
+            mulNo: response.data.data.mulNo === '' ? '1' : response.data.data.mulNo,
             mulSeq: response.data.data.mulSeq,
             ipchalDate:
-              (response.data.data.startYear) +
-              (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
-              (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
-            sagunAddr: response.data.data.address,
+              (response.data.data.startYear) + '년 ' +
+              (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) + '월 ' +
+              (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay) + '일',
+            biddingDate: (response.data.data.startYear) +
+            (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
+            (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
+            sagunAddr: response.data.data.address + "[일괄]",
+            usage: response.data.data.usage,
+            etcAddress: response.data.data.etcAddress,
+            roadAddress: response.data.data.roadAddress,
             biddingInfos: response.data.data.biddingInfos,
+            idcode: idcode as string,
           })
           setStateNum(1)
           setLoading(false)

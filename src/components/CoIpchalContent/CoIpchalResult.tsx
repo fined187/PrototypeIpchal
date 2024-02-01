@@ -64,7 +64,7 @@ export default function CoIpchalResult() {
                 {/* 첫 번째 박스 */}
                 <div className="flex flex-col border-black border-b-[1px] h-[15%] w-[100%] justify-center items-center relative">
                   <div className="absolute top-[0px] left-[0px] w-[100%] pl-[5px]">
-                    <span className="text-left md:text-[11pt] text-[10px] leading-[-1px]">
+                    <span className="text-left md:text-[11pt] font-batang text-[10px] leading-[-1px]">
                       (앞면)
                     </span>
                   </div>
@@ -769,7 +769,7 @@ export default function CoIpchalResult() {
                           className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
                           readOnly
                         />
-                        <span className="md:text-[11pt] text-[10px] mt-1">현금·자기앞수표</span>
+                        <span className="md:text-[11pt] font-batang text-[10px] mt-1">현금·자기앞수표</span>
                       </div>
                       <div className="flex flex-row w-[100%]">
                         <input
@@ -778,7 +778,7 @@ export default function CoIpchalResult() {
                           className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
                           readOnly
                         />
-                        <span className="md:text-[11pt] text-[10px] mt-1">
+                        <span className="md:text-[11pt] font-batang text-[10px] mt-1">
                           보증서
                         </span>
                       </div>

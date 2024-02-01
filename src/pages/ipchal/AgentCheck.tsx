@@ -9,7 +9,7 @@ export default function AgentCheck() {
   const [checkedItems, setCheckedItems] = useState(biddingInfo.bidName.map((name: any, index: number) => false));
 
   const allChecked = checkedItems.every(Boolean);
-
+  console.log(biddingInfo)
   useEffect(() => {
     const handleGetMandates = async () => {
       try {
@@ -21,7 +21,7 @@ export default function AgentCheck() {
         if (response.status === 200) {
           setBiddingInfo((prev) => ({
             ...prev,
-            mandates: response.data.data.mandates.map((mandate: any) => mandate)
+            mandates: response.data.data.mandates.map((mandate: any) => mandate.mandateYn === null ? { name: mandate.name, peopleSeq: mandate.peopleSeq, mandateYn: 'N' } : mandate)
           }))
         }
       } catch (error) {

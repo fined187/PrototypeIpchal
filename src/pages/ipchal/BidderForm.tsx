@@ -6,6 +6,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { LiaEyeSlashSolid, LiaEyeSolid } from 'react-icons/lia'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
 export default function BidderForm() {
@@ -38,6 +39,7 @@ export default function BidderForm() {
     bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(biddingForm.bidCorpYn[stepNum - 1] ? biddingForm.bidCorpYn[stepNum - 1] : 'I'),
     bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
+  const [passwordActive, setPasswordActive] = useState(false)
   const {
     register,
     handleSubmit,
@@ -107,7 +109,7 @@ export default function BidderForm() {
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
             address: biddingForm.bidAddr[stepNum - 1],
-            job: biddingForm.bidJob[stepNum - 1],
+            job: (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.agentYn === 'N') ? null : biddingForm.bidJob[stepNum - 1],
           },
           {
             headers: {
@@ -116,6 +118,7 @@ export default function BidderForm() {
           },
         )
         if (response.status === 200) {
+          console.log(response)
           setLoading(false)
           return
         }
@@ -127,7 +130,7 @@ export default function BidderForm() {
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
             address: biddingForm.bidAddr[stepNum - 1],
-            job: biddingForm.bidJob[stepNum - 1],
+            job: (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.agentYn === 'N') ? null : biddingForm.bidJob[stepNum - 1],
             companyNo: biddingForm.bidCorpNum[stepNum - 1],
             corporationNo: biddingForm.bidCorpRegiNum[stepNum - 1],
           },
@@ -362,15 +365,20 @@ export default function BidderForm() {
         <Spinner />
       )}
       <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
-        <div className="flex flex-row py-6 pt-4">
-          <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
-            본인 정보를 입력해주세요
-          </span>
-          {biddingForm.bidderNum > 1 && (
-            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8 ml-2">
-              {`(${stepNum} / ${biddingForm.bidderNum})`}
+        <div className='flex flex-col justify-center items-center w-[100%]'>
+          <div className="flex flex-row py-6 pt-4 flex-wrap justify-center items-center">
+            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
+              {stepNum === 1 ? "본인" : "공동입찰자"} 정보를 입력해주세요
             </span>
-          )}
+            {biddingForm.bidderNum > 1 && (
+              <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8 ml-2">
+                {`(${stepNum} / ${biddingForm.bidderNum})`}
+              </span>
+            )}
+          </div>
+          <span className="text-[12px] font-semibold font-NanumGothic not-italic text-left text-red-500">
+            (* 표시는 필수 입력사항입니다.)
+          </span>
         </div>
         <div className="flex flex-row gap-10 w-[80%] justify-center">
           <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${biddingForm?.bidCorpYn[stepNum - 1] === 'I' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`}
@@ -467,9 +475,12 @@ export default function BidderForm() {
                     </label>
                   </div>
                 ) : (
-                  <div className='flex w-[100%] justify-start'>
-                    <span className="text-[11pt] font-semibold font-NanumGothic not-italic   text-left">
+                  <div className='flex flex-row'>
+                    <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
                       성명
+                    </span>
+                    <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                      *
                     </span>
                   </div>
                 )}
@@ -513,13 +524,16 @@ export default function BidderForm() {
                     </span>
                   </div>
                 ) : (
-                  <div className='flex justify-start w-[100%]'>
+                  <div className='flex flex-row justify-start w-[100%]'>
                     <label
                       htmlFor="bidderPhone"
                       className="text-[11pt] font-semibold font-NanumGothic not-italic   text-left"
                     >
                       전화번호
                     </label>
+                    <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                      *
+                    </span>
                   </div>
                 )}
               </div>
@@ -660,15 +674,25 @@ export default function BidderForm() {
                         </div>
                       ) :
                       (
-                        <div className='flex justify-start w-[100%]'>
-                          <label htmlFor="bidIdNum" className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
-                            주민등록번호
-                          </label>
+                        <div className='flex flex-row justify-between w-[100%]'>
+                          <div className='flex flex-row justify-start'>
+                            <label htmlFor="bidIdNum" className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
+                              주민등록번호
+                            </label>
+                            <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                              *
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-[12px] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                              (주민등록번호는 저장되지 않습니다.)
+                            </span>
+                          </div>
                         </div>
                       )
                     }
                   </div>
-                  <div className="flex flex-row gap-[5%]">
+                  <div className="flex flex-row gap-[5%] relative">
                     <input
                       {...register('bidderIdNum1', {
                         required: true,
@@ -720,9 +744,9 @@ export default function BidderForm() {
                           .replace(/[^0-9.]/g, '')
                           .replace(/(\..*)\./g, '$1')
                       }}
-                      type="text"
+                      type={`${!passwordActive ? 'password' : 'text'}`}
                       maxLength={7}
-                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[45%] text-center"
+                      className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[45%] text-center"
                       value={biddingForm.bidIdNum2[stepNum - 1] || ''}
                       onChange={(e) => {
                         setBiddingInfo((prev: any) => {
@@ -745,6 +769,15 @@ export default function BidderForm() {
                         handleInputChange(e)
                       }}
                     />
+                    <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] md:w-[10%] w-[15%] cursor-pointer"
+                      onClick={() => setPasswordActive(!passwordActive)}
+                    >
+                      {passwordActive ? (
+                        <LiaEyeSolid className="cursor-pointer" size={'35%'} />
+                      ) : (
+                        <LiaEyeSlashSolid className="cursor-pointer" size={'35%'} />
+                      )}
+                    </div>
                   </div>
                 </div>
               </>
@@ -762,10 +795,13 @@ export default function BidderForm() {
                         </span>
                       </div>
                     ) : (
-                      <div className='flex justify-start w-[100%]'>
+                      <div className='flex flex-row justify-start w-[100%]'>
                         <label htmlFor="bidCorpNum" className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
                           사업자 등록번호
                         </label>
+                        <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                          *
+                        </span>
                       </div>
                     )}
                   </div>
@@ -906,13 +942,16 @@ export default function BidderForm() {
                           </span>
                         </div>
                       ) : (
-                        <div className='flex justify-start w-[100%]'>
+                        <div className='flex flex-row justify-start w-[100%]'>
                           <label
                             htmlFor="bidCorpRegiNum"
                             className="text-[11pt] font-semibold font-NanumGothic not-italic text-left"
                           >
                             법인 등록번호
                           </label>
+                          <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                            *
+                          </span>
                         </div>
                       )}
                     </div>
@@ -1017,10 +1056,13 @@ export default function BidderForm() {
                         </label>
                       </div>
                     ) : (
-                      <div className='flex justify-start w-[100%]'>
+                      <div className='flex flex-row justify-start w-[100%]'>
                         <label htmlFor="bidderJob" className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
                           직업
                         </label>
+                        <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                          *
+                        </span>
                       </div>
                     )}
                 </div>
@@ -1032,7 +1074,7 @@ export default function BidderForm() {
                   id="bidderJob"
                   type="text"
                   className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2"
-                  placeholder="직업을 입력해주세요"
+                  placeholder="직업을 입력해주세요 예) 회사원"
                   onChange={(e) => {
                     setBiddingInfo((prev: any) => {
                       const temp = prev.bidderJob
@@ -1063,7 +1105,7 @@ export default function BidderForm() {
               setValue={setValue}
             />
           </div>
-            <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:top-[650px] top-[600px]' : 'md:top-[650px] top-[650px]'} justify-center items-center md:w-[50%] w-[80%]`}>
+            <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'top-[650px]' : 'top-[720px]'} justify-center items-center md:w-[50%] w-[80%]`}>
               <button
                 type="button"
                 className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

@@ -22,7 +22,7 @@ export default function TimeInfo() {
           userId: router.query.userId,
           infoId: biddingInfo.infoId,
           caseNo: biddingInfo.caseNo,
-          mulSeq: biddingInfo.mulgunNum,
+          mulSeq: biddingInfo.mulNo,
           biddingDate: biddingInfo.ipchalDate,
           biddingTime: time,
         },

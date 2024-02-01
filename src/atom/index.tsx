@@ -12,14 +12,19 @@ export const biddingInfoState = atom({
   default: {
     isFileCreated: false,
     selectedTime: '0',
+    courtFullName: '',
     mstSeq: 0,
     state: 0,
     infoId: '',
     caseNo: '',
     sagunNum: '',
-    mulgunNum: '',
+    mulNo: '',
+    usage: '',
+    etcAddress: '',
+    roadAddress: '',
     sagunAddr: '',
     ipchalDate: '',
+    biddingDate: '',
     biddingInfos: [
       {
         biddingTime: '',
@@ -91,50 +96,3 @@ export const biddingInfoState = atom({
   dangerouslyAllowMutability: true,
 })
 
-export const loginState = atom({
-  key: `loginState/${v4()}`,
-  default: false,
-  dangerouslyAllowMutability: true,
-})
-
-export const bidderInfo = atom({
-  key: `bidderInfo/${v4()}`,
-  default: {
-    agentYn: '',
-    mstSeq: 0,
-    state: 0,
-    bidderCount: 0,
-    number: 0,
-    bidders:[
-      {
-        peopleSeq: 0,
-        bidderType: '',
-        name: '',
-        phoneNo: '',
-        address: '',
-        job: '',
-        companyNo: '',
-        corporationNo: '',
-        share: ''
-      }
-    ]
-  },
-  dangerouslyAllowMutability: true,
-})
-
-export const agentInfo = atom({
-  key: `agentInfo/${v4()}`,
-  default: {
-    agentYn: '',
-    mstSeq: 0,
-    state: 0,
-    agent: {
-      name: '',
-      phoneNo: '',
-      address: '',
-      job: '',
-      relationship: '',
-    },
-  },
-  dangerouslyAllowMutability: true,
-})

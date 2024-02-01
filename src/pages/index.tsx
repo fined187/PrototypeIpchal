@@ -1,6 +1,6 @@
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import StartIpchal from './ipchal/StartIpchal'
-import { biddingInfoState, loginState, stepState } from '@/atom'
+import { biddingInfoState, stepState } from '@/atom'
 import GetIpchalInfo from './ipchal/GetIpchalInfo'
 import BidderInfo from './ipchal/BidderInfo'
 import BidderCnt from './ipchal/BidderCnt'
@@ -27,7 +27,6 @@ import AgentCheck from './ipchal/AgentCheck'
 export default function Home() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
-  const setLoginState = useSetRecoilState(loginState)
   const [loading, setLoading] = useState<boolean>(false)
   const [bidders, setBidders] = useState({
     mstSeq: 0,
@@ -74,7 +73,6 @@ export default function Home() {
         `http://118.217.180.254:8081/ggi/api/bid-form/${id}/login-status`,
       )
       if (response.status === 200) {
-        setLoginState(true)
         setBiddingForm({
           ...biddingForm,
           userId: id,
@@ -119,11 +117,14 @@ export default function Home() {
             ...biddingForm,
             mstSeq: Number(query),
             state: response.data.data?.state,
-            mulgunNum: response.data.data?.mulNo,
+            mulNo: response.data.data?.mulNo === '' ? '1' : response.data.data?.mulNo,
             caseNo: response.data.data?.caseYear + " 타경 " + response.data.data.caseDetail,
             sagunNum: response.data.data?.caseYear + " 타경 " + response.data.data.caseDetail,
             reqCourtName: response.data.data?.reqCourtName,
-            ipchalDate: response.data.data?.startYear + "년 " + response.data.data.startMonth + "월 " + response.data.data.startDay + "일",
+            ipchalDate: (response.data.data.startYear) + '년 ' +
+            (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) + '월 ' +
+            (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay) + '일',
+            biddingDate: response.data.data?.biddingDate,
             biddingPrice: response.data.data?.bidPrice ?? 0,
             depositPrice: response.data.data.bidDeposit ?? 0,
             bidWay: response.data.data?.depositType,
@@ -161,6 +162,9 @@ export default function Home() {
             biddingInfo: response.data.data?.biddingInfo,
             mandates: response.data.data?.bidders.map((bidder: any) => {return {name: bidder.name, peopleSeq: bidder.peopleSeq, mandateYn: bidder.mandateYn}}),
             agentYn: response.data.data?.agentYn,
+            usage: response.data.data?.usage,
+            etcAddress: response.data.data?.etcAddress,
+            roadAddress: response.data.data?.roadAddress,
           })
           setLoading(false)
         }

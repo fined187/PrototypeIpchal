@@ -11,28 +11,28 @@ export default function GetIpchalInfo() {
   const [loading, setLoading] = useState<boolean>(false)
   const router = useRouter()
   
-  useEffect(() => {
-    const handleGetChecks = async () => {
-      try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/checks`, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        if (response.status === 200) {
-          setBiddingInfo({
-            ...biddingInfo,
-            infoId: response.data.data.infoId,
-            caseNo: response.data.data.caseNo,
-            mulSeq: response.data.data.mulSeq,
-          })
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    handleGetChecks()
-  }, [])
+  // useEffect(() => {
+  //   const handleGetChecks = async () => {
+  //     try {
+  //       const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/checks`, {
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //       })
+  //       if (response.status === 200) {
+  //         setBiddingInfo({
+  //           ...biddingInfo,
+  //           infoId: response.data.data.infoId,
+  //           caseNo: response.data.data.caseNo,
+  //           mulSeq: response.data.data.mulSeq,
+  //         })
+  //       }
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   handleGetChecks()
+  // }, [])
 
   const handleConfirm = async () => {
     setLoading(true)
@@ -50,7 +50,7 @@ export default function GetIpchalInfo() {
             infoId: biddingInfo.infoId,
             caseNo: biddingInfo.caseNo,
             mulSeq: biddingInfo.mulSeq,
-            biddingDate: biddingInfo.ipchalDate,
+            biddingDate: biddingInfo.biddingDate,
             biddingTime: biddingInfo.biddingInfos[0].biddingTime,
           },
           {
@@ -103,7 +103,7 @@ export default function GetIpchalInfo() {
       }
     }
   }
-  
+
   return (
     <>
       <div className="flex w-[100%] h-screen justify-center bg-white relative">
@@ -116,7 +116,7 @@ export default function GetIpchalInfo() {
               사건 번호와 입찰일자를 확인해주세요
             </span>
           </div>
-          <div className="flex flex-col md:w-[550px] w-[90%] h-[300px] max-h-[400px] gap-[100px] bg-white absolute top-[120px] justify-center items-center rounded-lg">
+          <div className="flex flex-col md:w-[550px] w-[90%] h-[400px] gap-[100px] bg-white absolute top-[120px] justify-center items-center rounded-lg">
             <div className="flex flex-between absolute top-8 border-b w-[80%] border-gray-200">
               <div className='flex md:w-[30%] w-[30%] justify-start'>
                 <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
@@ -129,7 +129,19 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-row absolute top-24 border-b w-[80%] border-gray-200">
+            <div className="flex flex-between absolute top-24 border-b w-[80%] border-gray-200">
+              <div className='flex md:w-[30%] w-[30%] justify-start'>
+                <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+                  물건번호 {" : "}
+                </span>
+              </div>
+              <div className='flex md:w-[70%] w-[70%] justify-start'>
+                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
+                  {biddingInfo.mulNo}
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-row absolute top-40 border-b w-[80%] border-gray-200">
               <div className='flex md:w-[30%] w-[30%] justify-start'>
                 <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   입찰기일 {" : "}
@@ -141,21 +153,24 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-row absolute top-40 border-b w-[80%] border-gray-200">
+            <div className="flex flex-row absolute top-56 border-b w-[80%] border-gray-200">
               <div className='flex md:w-[30%] w-[30%] justify-start'>
                 <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   주소 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {" : "}
                 </span>
               </div>
-              <div className='flex md:w-[70%] w-[70%] justify-start'>
+              <div className='flex flex-col md:w-[70%] w-[70%] justify-start'>
                 <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic text-left leading-9 whitespace-normal">
-                  {biddingInfo.sagunAddr}
+                  {biddingInfo.sagunAddr + biddingInfo.etcAddress}
+                </span>
+                <span className="text-blue-500 md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic text-left leading-9 whitespace-normal">
+                  {biddingInfo.roadAddress}
                 </span>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[600px] top-[450px]">
+        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[600px] top-[550px]">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

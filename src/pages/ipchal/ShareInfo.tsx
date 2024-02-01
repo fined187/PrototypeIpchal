@@ -18,7 +18,7 @@ export default function ShareInfo() {
       share: '',
     }),
   })
-  console.log(biddingInfo)
+
   const handleShareList = () => {
     let numerator = (document && document.getElementById('numerator') as HTMLInputElement)?.value
     let denominator = (document && document.getElementById('denominator') as HTMLInputElement)?.value
@@ -115,6 +115,7 @@ export default function ShareInfo() {
     try {
       const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders`)
       if (response.status === 200) {
+        console.log(response)
         setBiddingInfo({
           ...biddingInfo,
           bidName: response.data.data.bidders.map((item: any) => item.name),
@@ -147,12 +148,15 @@ export default function ShareInfo() {
     handleShareList()
   }, [biddingInfo.shareWay])
 
+  console.log(biddingInfo)
+
   useEffect(() => {
     const handleSyncBiddingForm = async () => {
       setLoadding(true)
       try {
         const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`)
         if (response.status === 200) {
+          console.log(response)
           setIsDataIn(response.data.data.bidders)
           setBiddingInfo({
             ...biddingInfo,
@@ -188,7 +192,6 @@ export default function ShareInfo() {
 
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative ">
-
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
         <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
           공동입찰자 분의 지분을 입력해주세요
@@ -357,11 +360,23 @@ export default function ShareInfo() {
               </div>
             )
           })}
-          {biddingInfo.shareWay === 'N' && goNext && (
-            <span className="text-[15px] text-red-500 font-bold">
-              지분 값을 확인해주세요
-            </span>
-          )}
+          <div className='flex flex-row'>
+            {biddingInfo.shareWay === 'N' && goNext && (
+              <span className="text-[15px] text-red-500 font-bold">
+                지분 값을 확인해주세요
+              </span>
+            )}
+            {biddingInfo.shareWay !== 'S' && (
+              <div className='flex flex-row'>
+                <span className='text-[11pt] font-semibold'>
+                  &nbsp;&nbsp;지분 합 : 
+                </span>
+                <span className={`text-[11pt] font-semibold ${biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0) === parseInt(biddingInfo.denominator[0]) ? 'text-green-500' : 'text-red-500'}`}>
+                  &nbsp;&nbsp;{biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
         <div className="flex flex-row justify-center items-center md:w-[600px] w-[400px] gap-[10px] absolute top-[600px]">
           <button

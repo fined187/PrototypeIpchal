@@ -31,7 +31,7 @@ export default function ModalCoIpchalForm() {
                 물건번호
               </span>
               <span className="md:text-[12pt] text-[12px] text-red-500 font-bold font-batang">
-                {biddingInfo.mulgunNum === '' ? '1' : biddingInfo.mulgunNum}
+                {biddingInfo.mulNo === '' ? '1' : biddingInfo.mulNo}
               </span>
             </div>
             <div className="flex flex-row w-[100%] sm:gap-[100px] gap-[135px] ">

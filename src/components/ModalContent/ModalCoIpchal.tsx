@@ -19,7 +19,6 @@ export default function ModalCoIpchal() {
     }
   }
 
-  console.log(biddingInfo)
   return (
     <div className="flex flex-col bg-mybg md:w-[90%] w-[100%] mx-auto absolute top-0 justify-center items-center">
       <div className="flex flex-col bg-mybg h-[100%] w-[100%] mx-auto relative justify-center items-center">
@@ -46,7 +45,7 @@ export default function ModalCoIpchal() {
                 <div>
                   <span className="md:text-[11pt] text-[10px] leading-[-1px] font-batang pr-[3px]">
                     입찰기일 :{' '}
-                    {biddingInfo.ipchalDate.length === 8 ? biddingInfo.ipchalDate.substring(0, 4) + '년 ' + biddingInfo.ipchalDate.substring(4, 6) + '월 ' + biddingInfo.ipchalDate.substring(6, 8) + '일 ' : ''}
+                    {biddingInfo.biddingDate.length === 8 ? biddingInfo.biddingDate.substring(0, 4) + '년 ' + biddingInfo.biddingDate.substring(4, 6) + '월 ' + biddingInfo.biddingDate.substring(6, 8) + '일 ' : ''}
                   </span>
                 </div>
               </div>

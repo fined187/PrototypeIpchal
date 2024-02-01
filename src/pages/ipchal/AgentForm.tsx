@@ -5,6 +5,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { LiaEyeSlashSolid, LiaEyeSolid } from 'react-icons/lia'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function AgentForm() {
@@ -12,7 +13,8 @@ export default function AgentForm() {
   const setBiddingForm = useSetRecoilState(biddingInfoState)
   const setStateNum = useSetRecoilState(stepState)
   const stateNum = useRecoilValue(stepState)
-  const { isOpen, onClose, onOpen } = useDisclosure() 
+  const { isOpen, onClose, onOpen } = useDisclosure()
+  const [passwordActive, setPasswordActive] = useState(false)
 
   if (typeof window === 'undefined') return null
   window.document.addEventListener('keydown', (e) => {
@@ -169,9 +171,12 @@ export default function AgentForm() {
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
-        <div className="flex flex-row py-6 pt-4">
+        <div className="flex flex-col gap-2 justify-center items-center py-6 pt-4">
           <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
             대리인 정보를 입력해주세요
+          </span>
+          <span className="text-[12px] font-semibold font-NanumGothic not-italic text-left text-red-500">
+            (* 표시는 필수 입력사항입니다.)
           </span>
         </div>
 
@@ -194,14 +199,14 @@ export default function AgentForm() {
                         </label>
                       </div>
                     ) : (
-                      <div className='flex w-[100%] justify-start'>
-                        <label
-                          htmlFor="agentName"
-                          className="text-[11pt] font-semibold font-NanumGothic not-italic   text-left"
-                        >
-                          성명
-                        </label>
-                      </div>
+                        <div className='flex flex-row'>
+                          <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
+                            성명
+                          </span>
+                          <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                            *
+                          </span>
+                        </div>
                     )}
                 </div>
                 <input
@@ -248,6 +253,9 @@ export default function AgentForm() {
                       >
                         입찰자와의 관계
                       </label>
+                      <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                        *
+                      </span>
                     </div>
                   )}
                 </div>
@@ -295,6 +303,9 @@ export default function AgentForm() {
                     >
                       전화번호
                     </label>
+                    <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                      *
+                    </span>
                   </div>
                 )}
               </div>
@@ -380,7 +391,7 @@ export default function AgentForm() {
                       .replace(/(\..*)\./g, '$1')
                   }}
                   placeholder="5678"
-                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
+                  className=" border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
                   value={biddingForm.agentPhone3 || ''}
                   onChange={(e) => {
                     setAgentInfo((prev: AgentInfoType) => {
@@ -422,10 +433,13 @@ export default function AgentForm() {
                     >
                       주민등록번호
                     </label>
+                    <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                      *
+                    </span>
                   </div>
                   )}
               </div>
-              <div className="flex flex-row gap-[5%]">
+              <div className="flex flex-row gap-[5%] relative">
                 <input
                   {...register('agentIdNum1', {
                     required: true,
@@ -471,9 +485,9 @@ export default function AgentForm() {
                       .replace(/[^0-9.]/g, '')
                       .replace(/(\..*)\./g, '$1')
                   }}
-                  type="text"
+                  type={`${!passwordActive ? 'password' : 'text'}`}
                   maxLength={7}
-                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic   h-[40px] px-2 w-[45%] text-center"
+                  className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic   h-[40px] px-2 w-[45%] text-center"
                   value={biddingForm.agentIdNum2 || ''}
                   onChange={(e) => {
                     setAgentInfo((prev: any) => {
@@ -490,6 +504,15 @@ export default function AgentForm() {
                     })
                   }}
                 />
+                <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] md:w-[10%] w-[15%] cursor-pointer"
+                  onClick={() => setPasswordActive(!passwordActive)}
+                >
+                  {passwordActive ? (
+                    <LiaEyeSolid className="cursor-pointer" size={'35%'} />
+                  ) : (
+                    <LiaEyeSlashSolid className="cursor-pointer" size={'35%'} />
+                  )}
+                </div>
               </div>
             </div>
             <div className={`flex flex-col w-[100%] h-[250px] gap-1 relative `}>
@@ -514,6 +537,9 @@ export default function AgentForm() {
                       >
                         직업
                       </label>
+                      <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                        *
+                      </span>
                     </div>
                   )}
                 </div>
@@ -548,7 +574,7 @@ export default function AgentForm() {
                 agentSetValue={setValue}
               />
             </div>
-            <div className="flex flex-row gap-[10px] absolute top-[550px] justify-center items-center md:w-[50%] w-[80%]">
+            <div className="flex flex-row gap-[10px] absolute top-[600px] justify-center items-center md:w-[50%] w-[80%]">
               <button
                 type="button"
                 className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

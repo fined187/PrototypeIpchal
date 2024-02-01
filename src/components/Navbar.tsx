@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil'
 
 
 export default function Navbar() {
+  const [statusBar, setStatusBar] = useState<number>(0)
   const [menuTitle, setMenuTitle] = useState<string>('')
   const stepStateNum = useRecoilValue(stepState)
   const biddingForm = useRecoilValue(biddingInfoState)
@@ -56,33 +57,32 @@ export default function Navbar() {
 
   const handleProgressBar = () => {
     if (stepStateNum === 0) {
-      return '0'
+      setStatusBar(0)
     } else if ((stepStateNum >= 1 && stepStateNum <= 3)) {
-      return '10'
+      setStatusBar(10)
     } else if ((stepStateNum >= 4 && stepStateNum <= 6) || stepStateNum === 18 || (stepStateNum >= 15 && stepStateNum <= 16)) {
-      return '30'
+      setStatusBar(30)
     } else if ((stepStateNum >= 7 && stepStateNum <= 9)) {
-      return '50'
+      setStatusBar(50)
     } else if ((stepStateNum >= 10 && stepStateNum <= 12)) {
-      return '70'
+      setStatusBar(70)
     } else if ((stepStateNum >= 13 && stepStateNum <= 14)) {
-      return '90'
+      setStatusBar(90)
     } else if ((stepStateNum === 17)) {
-      return '100'
+      setStatusBar(100)
     }
   }
 
-  console.log(handleProgressBar())
-
   useEffect(() => {
     updateMenuTitle()
+    handleProgressBar()
   }, [stepStateNum])
 
   return (
     <div className="flex justify-between relative w-[100%] md:w-[50%] md:h-[100px] h-[15%] bg-mybg mx-auto">
       <div className="flex rounded-lg w-[30%] h-[20px] justify-start relative md:top-[20px] top-0 md:ml-5">
         <div className="w-full z-1 bg-gray-300 h-[100%] rounded-full relative top-0">
-          <div className={`w-[${handleProgressBar()}%] z-2 h-full justify-center items-center text-center text-xs text-white bg-myyellow rounded-full relative top-[0px] transition-all`}>
+          <div className={`${stepStateNum === 0 ? 'w-[0%]' : `w-[${statusBar}%]`} z-2 h-full justify-center items-center text-center text-xs text-white bg-myyellow rounded-full relative top-[0px] transition-all animate-pulse`}>
           </div>
         </div>
       </div>
