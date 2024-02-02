@@ -4,7 +4,6 @@ import axios from 'axios'
 import Image from 'next/image'
 import { useRecoilState } from 'recoil'
 import { useState } from 'react'
-import Spinner from '@/components/Spinner'
 import { useRouter } from 'next/router'
 
 export default function StartIpchal() {

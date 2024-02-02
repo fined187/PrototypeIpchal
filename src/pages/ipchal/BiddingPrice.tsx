@@ -31,7 +31,6 @@ export default function BiddingPrice() {
       const mod = number % unit
       const modToArray = mod.toString().split('')
       const length = modToArray.length - 1
-
       const modToKorean = modToArray.reduce(
         (acc: string, value: string, index: number) => {
           const valueToNumer = +value
@@ -77,6 +76,36 @@ export default function BiddingPrice() {
         }
       })
   }
+
+  useEffect(() => {
+    const handleRegisterMandate = async () => {
+      if (biddingForm.agentYn === 'Y' && biddingForm.bidderNum === 1) {
+        try {
+          const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/mandates`, {
+            bidderCount: biddingForm.bidderNum,
+            mandates: [
+              { 
+                peopleSeq: 1,
+                name: biddingForm.bidName[0],
+                mandateYn: 'Y'
+              }
+            ]
+          }, {
+            headers: {
+              "Content-Type": "application/json",
+            }
+          })
+          if (response.status === 200) {
+            console.log(response)
+            return
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    }
+    handleRegisterMandate()
+  }, [])
 
   const handleCheckPrice = () => {
     if (biddingForm.biddingPrice < paymentsInfo.minimumAmount) {
@@ -188,7 +217,6 @@ export default function BiddingPrice() {
           },
         })
         if (response.status === 200) {
-          console.log(response.data.data)
           setPaymentsInfo({
             ...paymentsInfo,
             biddingTime: response2.data.data.biddingInfo.biddingTime,
@@ -229,7 +257,7 @@ export default function BiddingPrice() {
     }
     handleSyncBiddingForm()
   }, [])
-
+  
   return (
     <>
       <div className="flex w-[100%] h-screen bg-white justify-center relative">

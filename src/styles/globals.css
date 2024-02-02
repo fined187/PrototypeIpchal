@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
 @layer base {
   img {
     @apply inline-block;
   }
 }
+@tailwind components;
+@tailwind utilities;
 
 @import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css');
 

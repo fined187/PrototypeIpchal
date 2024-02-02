@@ -40,7 +40,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react-dom", "npm:18.2.17"],\
           ["@types/react-frame-component", "npm:4.1.6"],\
           ["@types/uuid", "npm:9.0.7"],\
-          ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.16"],\
+          ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.17"],\
           ["axios", "npm:1.6.2"],\
           ["daisyui", "npm:4.6.1"],\
           ["date-fns", "npm:3.0.6"],\
@@ -6750,20 +6750,20 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["autoprefixer", [\
-      ["npm:10.4.16", {\
-        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/autoprefixer-npm-10.4.16-e5a0ee424d-10c0.zip/node_modules/autoprefixer/",\
+      ["npm:10.4.17", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/autoprefixer-npm-10.4.17-8379be1d95-10c0.zip/node_modules/autoprefixer/",\
         "packageDependencies": [\
-          ["autoprefixer", "npm:10.4.16"]\
+          ["autoprefixer", "npm:10.4.17"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.16", {\
-        "packageLocation": "./.yarn/__virtual__/autoprefixer-virtual-ccc93777c7/3/Users/woota/AppData/Local/Yarn/Berry/cache/autoprefixer-npm-10.4.16-e5a0ee424d-10c0.zip/node_modules/autoprefixer/",\
+      ["virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.17", {\
+        "packageLocation": "./.yarn/__virtual__/autoprefixer-virtual-1d4438c96f/3/Users/woota/AppData/Local/Yarn/Berry/cache/autoprefixer-npm-10.4.17-8379be1d95-10c0.zip/node_modules/autoprefixer/",\
         "packageDependencies": [\
-          ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.16"],\
+          ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.17"],\
           ["@types/postcss", null],\
           ["browserslist", "npm:4.22.2"],\
-          ["caniuse-lite", "npm:1.0.30001568"],\
+          ["caniuse-lite", "npm:1.0.30001582"],\
           ["fraction.js", "npm:4.3.7"],\
           ["normalize-range", "npm:0.1.2"],\
           ["picocolors", "npm:1.0.0"],\
@@ -7182,6 +7182,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/caniuse-lite-npm-1.0.30001568-f3cd98cf9b-10c0.zip/node_modules/caniuse-lite/",\
         "packageDependencies": [\
           ["caniuse-lite", "npm:1.0.30001568"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:1.0.30001582", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/caniuse-lite-npm-1.0.30001582-1fc9952594-10c0.zip/node_modules/caniuse-lite/",\
+        "packageDependencies": [\
+          ["caniuse-lite", "npm:1.0.30001582"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -9264,7 +9271,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react-dom", "npm:18.2.17"],\
           ["@types/react-frame-component", "npm:4.1.6"],\
           ["@types/uuid", "npm:9.0.7"],\
-          ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.16"],\
+          ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.17"],\
           ["axios", "npm:1.6.2"],\
           ["daisyui", "npm:4.6.1"],\
           ["date-fns", "npm:3.0.6"],\

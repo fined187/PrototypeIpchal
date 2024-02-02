@@ -46,10 +46,10 @@ export default function CreateFile() {
   const handleGetHeight = () => {
     //  1. 입찰자가 1명일 때 + 대리인이 없을 때
     if (biddingInfo.agentName === '' && biddingInfo.bidderNum === 1) {
-      setGetHeight(295)
+      setGetHeight(590)
     } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum === 1) {
       //  2. 입찰자가 1명일 때 + 대리인이 있을 때
-      setGetHeight(590)
+      setGetHeight(885)
     } else if (biddingInfo.agentName === '' && biddingInfo.bidderNum > 1) {
       //  3. 입찰자가 2명 이상일 때 + 대리인이 없을 때
       setGetHeight(885)

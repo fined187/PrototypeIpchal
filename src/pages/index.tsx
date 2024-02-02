@@ -164,6 +164,7 @@ export default function Home() {
             usage: response.data.data?.usage,
             etcAddress: response.data.data?.etcAddress,
             roadAddress: response.data.data?.roadAddress,
+            courtFullName: response.data.data?.courtFullName,
           })
           setLoading(false)
         }

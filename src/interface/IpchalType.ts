@@ -125,6 +125,10 @@ export interface TotalResultType {
     address: string
     job: string
   },
+  courtFullName: string
+  usage: string
+  etcAddress: string
+  roadAddress: string
   bidderCount: number
   bidders: BidderList[]
 }

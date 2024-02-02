@@ -5,8 +5,8 @@ import { useRecoilState } from "recoil";
 export default function AgentListFormPDF({ totalResult, bidders }: { totalResult: TotalResultType, bidders?: any }) {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
   return (
-    <div className={`flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`} style={{
-      top: totalResult && totalResult?.bidders.length === 1 ? '1300px' : '2000px',
+    <div className={`flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center overflow-x-scroll scrollbar-hide`} style={{
+      top: totalResult && totalResult?.bidders.length === 1 ? '2600px' : '2000px',
       position: 'relative',
     }}>
       <div className={`flex flex-col bg-white h-[100%] md:w-[90%] w-[100%] m-auto relative justify-center items-center`}>
@@ -131,11 +131,11 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
             경매사건에 관한입찰행위 일체
           </span>
         </div>
-        <div className="flex flex-col w-[100%] justify-center items-center absolute top-[500px]">
+        <div className="flex flex-col gap-[10px] w-[100%] justify-center items-center absolute top-[500px]">
           {totalResult && totalResult?.bidders.length <= 3 ? (
             Array(3).fill('').map((_, index: any) => {
               return (
-                <div key={index} className={`flex w-[100%] h-[150px] ${index + 1 >= 2 ? 'border-black border-r-[2px] border-b-[2px] border-l-[2px]' : 'border-black border-[2px]'} `}>
+                <div key={index} className={`flex w-[100%] h-[150px] border-black border-r-[2px] border-b-[2px] border-l-[2px] border-t-[2px] `}>
                   <div className="flex w-[30px] justify-center items-center text-center border-black border-r-[1px]">
                     <span className="text-[12pt] font-batang">
                       본인

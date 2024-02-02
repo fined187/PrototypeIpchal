@@ -1,7 +1,7 @@
 import { biddingInfoState, stepState } from '@/atom'
 import SearchAddress from '@/components/SearchAddress'
 import Spinner from '@/components/Spinner'
-import { BidderList, BiddingInfoType } from '@/interface/IpchalType'
+import { BiddingInfoType } from '@/interface/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -116,19 +116,19 @@ export default function BidderForm() {
     }
   }
 
-useEffect(() => {
-  const handleGetBidders = async () => {
-    try {
-      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
-      if (response.status === 200) {
-        setBidderList(response.data.data)
+  useEffect(() => {
+    const handleGetBidders = async () => {
+      try {
+        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
+        if (response.status === 200) {
+          setBidderList(response.data.data)
+        }
+      } catch (error) {
+        console.log(error)
       }
-    } catch (error) {
-      console.log(error)
     }
-  }
-  handleGetBidders()
-}, [stepNum])
+    handleGetBidders()
+  }, [stepNum])
 
   //  수정 사항 반영
   const handleUpdate = async () => {
@@ -137,7 +137,7 @@ useEffect(() => {
         const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
-          job: biddingForm?.bidJob[stepNum - 1],
+          job: (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.agentYn === 'N') ? null : biddingForm.bidJob[stepNum - 1],
           name: biddingForm?.bidName[stepNum - 1],
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
@@ -150,7 +150,7 @@ useEffect(() => {
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           companyNo: biddingForm?.bidCorpNum[stepNum - 1],
           corporationNo: biddingForm?.bidCorpRegiNum[stepNum - 1],
-          job: biddingForm?.bidJob[stepNum - 1],
+          job: (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.agentYn === 'N') ? null : biddingForm.bidJob[stepNum - 1],
           name: biddingForm?.bidName[stepNum - 1],
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
@@ -185,7 +185,6 @@ useEffect(() => {
           },
         )
         if (response.status === 200) {
-          console.log(response)
           setLoading(false)
           return
         }
@@ -274,7 +273,6 @@ useEffect(() => {
     setBiddingForm((prev: any) => {
       const newBidIdNum = [...prev.bidIdNum]
       const newBidderType = [...prev.bidCorpYn]
-
       if (newBidderType[index] === 'I') {
         const isIdNum = newBidIdNum[index]?.length === 13
         if (!isIdNum) {
@@ -335,7 +333,6 @@ useEffect(() => {
           return item * 1
         }
       })
-
       const idNumArr3 = (idNumArr2 && idNumArr2.reduce((acc: any, cur: any) => acc + cur)) 
       const idNumArr4 = (idNumArr3 && (idNumArr3 - idNumArr2[12]!) % 11) 
       const idNumArr5 = (idNumArr4 && 11 - idNumArr4) 
@@ -375,12 +372,10 @@ useEffect(() => {
   const handleVerifyCorpReiNum = (num: string) => {
     const rawValue = num.replace(/[^\d]/g, '').split('').map(r => Number(r));
     const checkSum = rawValue.pop();
-
     const sum = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2].map((n, i) => n * rawValue[i]).reduce((sum, n) => {
       sum += n;
       return sum;
     }, 0) % 10;
-
     return sum === (10 - (checkSum ? checkSum : 0)) % 10;
   }
 
@@ -1190,7 +1185,7 @@ useEffect(() => {
                   }
                 }}
               >
-                <span className="text-white   font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                <span className="text-white font-bold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                   이전
                 </span>
               </button>
@@ -1198,7 +1193,7 @@ useEffect(() => {
                 type="submit"
                 className="flex w-[60%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               >
-                <span className="text-white   font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                <span className="text-white font-bold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                   다음
                 </span>
               </button>

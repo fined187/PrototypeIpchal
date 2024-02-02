@@ -10,29 +10,6 @@ export default function GetIpchalInfo() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
   const router = useRouter()
-  
-  // useEffect(() => {
-  //   const handleGetChecks = async () => {
-  //     try {
-  //       const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/checks`, {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //       })
-  //       if (response.status === 200) {
-  //         setBiddingInfo({
-  //           ...biddingInfo,
-  //           infoId: response.data.data.infoId,
-  //           caseNo: response.data.data.caseNo,
-  //           mulSeq: response.data.data.mulSeq,
-  //         })
-  //       }
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   handleGetChecks()
-  // }, [])
 
   const handleConfirm = async () => {
     setLoading(true)
@@ -103,7 +80,7 @@ export default function GetIpchalInfo() {
       }
     }
   }
-  console.log(biddingInfo)
+  
   return (
     <>
       <div className="flex w-[100%] h-screen justify-center bg-white relative">

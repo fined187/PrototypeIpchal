@@ -64,6 +64,21 @@ export default function BidderFormMod() {
     bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill('I'),
     bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
   })
+
+  const handleMandateYn = async() => {
+    if (biddingForm.agentYn === 'Y' && biddingForm.bidderNum === 1) {
+      setBiddingForm((prev: any) => {
+        return {
+          ...prev,
+          mandates: {
+            mandateYn: 'Y',
+            name: biddingForm.bidName[0],
+            peopleSeq: 1
+          }
+        }
+      })
+    }
+  } 
    // 초기 컴포넌트 마운트 시 서버에 저장된 입찰자 정보를 불러온다.
   useEffect(() => {
     const handleGetBidders = async () => {
@@ -195,6 +210,10 @@ export default function BidderFormMod() {
     handleGetBidders()
   }, [])
 
+  useEffect(() => {
+    handleMandateYn()
+  }, [biddingForm.bidName])
+
   const {
     register,
     handleSubmit,
@@ -232,20 +251,41 @@ export default function BidderFormMod() {
       setFocus('bidderIdNum2')
     }
   }
-  console.log("hi")
-    //  전화번호 검증
-    const handleVerifyPhone = (phone: string) => {
-      // const phoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g
-      const telRegex = /^(070|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/
-      const smartPhoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g
-      const telCheck = telRegex.test(phone)
-      const smartPhoneCheck = smartPhoneRegex.test(phone)
-      if (telCheck || smartPhoneCheck) {
-        return true
-      } else {
-        return false
+
+  const handleRegisterMandate = async () => {
+    try {
+      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/mandates`, {
+        bidderCount: biddingForm.bidderNum,
+        mandates: biddingForm.mandates
+      }, {
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+      if (response.status === 200) {
+        console.log(response)
+        return
       }
+    } catch (error) {
+      console.log(error)
     }
+  }
+
+
+
+  //  전화번호 검증
+  const handleVerifyPhone = (phone: string) => {
+    // const phoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g
+    const telRegex = /^(070|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/
+    const smartPhoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g
+    const telCheck = telRegex.test(phone)
+    const smartPhoneCheck = smartPhoneRegex.test(phone)
+    if (telCheck || smartPhoneCheck) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   //  민증 검증
   const handleVerifyIdNum = (idNum: string) => {
@@ -425,6 +465,7 @@ export default function BidderFormMod() {
   //  다음 스텝 / 단계 이동
   const handleNextStep = async () => {
     handleUpdateIdNum(stepNum - 1)
+    await handleRegisterMandate()
     if (biddingForm.bidderNum === 1) {
       setStateNum(8)
       await handleUpdate()
@@ -863,7 +904,7 @@ export default function BidderFormMod() {
                         )
                       }
                     </div>
-                    <div className="flex flex-row gap-[5%]">
+                    <div className="flex flex-row gap-[5%] relative">
                       <input
                         {...register('bidderIdNum1', { required: true })}
                         id="bidderIdNum1"
@@ -1195,10 +1236,13 @@ export default function BidderFormMod() {
                             </label>
                           </div>
                         ) : (
-                          <div className='flex justify-start w-[100%]'>
+                          <div className='flex flex-row justify-start w-[100%]'>
                             <label htmlFor="bidderJob" className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
                               직업
                             </label>
+                            <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                              *
+                            </span>
                           </div>
                         )}
                     </div>
@@ -1246,7 +1290,7 @@ export default function BidderFormMod() {
                     stepNum === 1 ? setStateNum(5) : setStepNum((prev) => prev - 1)
                   }}
                 >
-                  <span className="text-white    font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                  <span className="text-white font-bold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                     이전
                   </span>
                 </button>
@@ -1254,7 +1298,7 @@ export default function BidderFormMod() {
                   type="submit"
                   className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
                 >
-                  <span className="text-white    font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                  <span className="text-white font-bold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                     다음
                   </span>
                 </button>
