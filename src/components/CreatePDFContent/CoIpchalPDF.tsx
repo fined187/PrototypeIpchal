@@ -55,9 +55,9 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
       height: `${maxHeight}px`
     }}>
       <div className="flex flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
-        <div className="flex flex-col bg-white h-[100%] md:w-[100%] w-[90%] mx-auto relative justify-center items-center">
+        <div className="flex flex-col bg-white h-[100%] md:w-[100%] w-[100%] mx-auto relative justify-center items-center">
           <div className="w-[100%] overflow-x-scroll absolute top-[130px] h-[650px] bg-white scrollbar-hide">
-            <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-white">
+            <div className="border border-black text-[1.5rem] md:w-[800px] w-[85%] h-[100%] m-auto bg-white">
               {/* 첫 번째 박스 */}
               <div className="flex flex-col border-black border-b-[1px] h-[15%] w-[100%] justify-center items-center relative">
                 <div className="absolute top-[0px] left-[0px] w-[100%] pl-[5px]">
@@ -94,7 +94,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                     사건번호
                   </span>
                 </div>
-                <div className="flex justify-center items-center border-black border-r-[1px] w-[50%] text-center h-[100%]">
+                <div className="flex justify-center items-center border-black border-r-[1px] w-[40%] text-center h-[100%]">
                   <span className="text-[12pt] font-batang">
                     {totalResult &&
                       totalResult.caseYear +
@@ -107,7 +107,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                     물건번호
                   </span>
                 </div>
-                <div className="flex flex-col justify-center items-center text-center w-[50%]">
+                <div className="flex flex-col justify-center items-center text-center w-[40%]">
                   <span className={`text-[12pt] font-batang`}
                   >
                     {totalResult && totalResult?.mulNo

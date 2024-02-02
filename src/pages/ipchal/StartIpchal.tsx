@@ -56,6 +56,8 @@ export default function StartIpchal() {
             roadAddress: response.data.data.roadAddress,
             biddingInfos: response.data.data.biddingInfos,
             idcode: idcode as string,
+            courtFullName: response.data.data.courtFullName,
+            reqCourtName: response.data.data.reqCourtName,
           })
           setStateNum(1)
           setLoading(false)

@@ -426,17 +426,21 @@ export default function AgentForm() {
                       </span>
                     </div>
                   ) : (
-                  <div className='flex w-[100%] justify-start'>
-                    <label
-                      htmlFor="agentIdNum"
-                      className="text-[11pt] font-semibold font-NanumGothic not-italic text-left"
-                    >
-                      주민등록번호
-                    </label>
-                    <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
-                      *
-                    </span>
-                  </div>
+                    <div className='flex flex-row justify-between w-[100%]'>
+                      <div className='flex flex-row justify-start'>
+                        <label htmlFor="bidIdNum" className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
+                          주민등록번호
+                        </label>
+                        <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                          *
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-[12px] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                          (주민등록번호는 저장되지 않습니다.)
+                        </span>
+                      </div>
+                    </div>
                   )}
               </div>
               <div className="flex flex-row gap-[5%] relative">

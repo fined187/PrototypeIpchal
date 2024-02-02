@@ -96,8 +96,8 @@ export default function ModalCoIpchalList() {
                 </div>
               </div>
               <div className="flex w-[20%] justify-center items-center">
-                <span className="md:text-[12pt] text-[12px] font-batang text-red-500 font-bold">
-                  {biddingInfo.numerator[idx] ? biddingInfo.numerator[idx] : ''} / {biddingInfo.denominator[idx] ? biddingInfo.denominator[idx] : ''}
+                <span className="md:text-[12pt] text-[12px] font-batang text-black-500 font-bold">
+                  {biddingInfo.numerator[idx] ? biddingInfo.numerator[idx] + ' / ' : ''} {biddingInfo.denominator[idx] ? biddingInfo.denominator[idx] : ''}
                 </span>
               </div>
             </div>

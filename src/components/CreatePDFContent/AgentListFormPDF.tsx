@@ -9,7 +9,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
       top: totalResult && totalResult?.bidders.length === 1 ? '1300px' : '2000px',
       position: 'relative',
     }}>
-      <div className={`flex flex-col bg-white h-[100%] w-[90%] m-auto relative justify-center items-center`}>
+      <div className={`flex flex-col bg-white h-[100%] md:w-[90%] w-[100%] m-auto relative justify-center items-center`}>
         <div className="flex w-[100%] absolute top-[5px]">
           <span className="text-[12pt] font-batang">
             (뒷면)

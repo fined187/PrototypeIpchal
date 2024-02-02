@@ -1,7 +1,7 @@
 export default function IpcahlTextPDF() {
   return (
-    <div className="flex flex-col md:w-[800px] w-[100%] absolute top-[800px] leading-[-1px] justify-start items-center">
-      <div className="flex flex-col w-[100%] text-left items-start justify-start">
+    <div className="flex flex-col w-[800px] absolute top-[800px] leading-[-1px] justify-start items-center">
+      <div className="flex flex-col md:w-[100%] w-[85%] text-left items-start justify-start">
         <span className="text-[15pt] font-extrabold font-batang ">
           주의사항
         </span>

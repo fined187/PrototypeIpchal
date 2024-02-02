@@ -21,7 +21,7 @@ export default function ModalCoIpchalForm() {
                 사건번호
               </span>
               <div className="flex flex-row gap-3">
-                <span className="md:text-[12pt] text-[12px] text-red-500 font-bold font-batang">
+                <span className="md:text-[12pt] text-[12px] text-black-500 font-bold font-batang">
                   {biddingInfo.sagunNum + '호'}
                 </span>
               </div>
@@ -30,7 +30,7 @@ export default function ModalCoIpchalForm() {
               <span className="md:text-[12pt] text-[12px] font-bold font-batang">
                 물건번호
               </span>
-              <span className="md:text-[12pt] text-[12px] text-red-500 font-bold font-batang">
+              <span className="md:text-[12pt] text-[12px] text-black-500 font-bold font-batang">
                 {biddingInfo.mulNo === '' ? '1' : biddingInfo.mulNo}
               </span>
             </div>
@@ -38,7 +38,7 @@ export default function ModalCoIpchalForm() {
               <span className="md:text-[12pt] text-[12px] font-bold font-batang">
                 공동입찰자
               </span>
-              <span className="md:text-[12pt] text-[12px] text-black font-batang">
+              <span className="md:text-[12pt] text-[12px] text-black font-bold font-batang">
                 별지목록과 같음
               </span>
             </div>
@@ -49,20 +49,20 @@ export default function ModalCoIpchalForm() {
             </div>
           </div>
           <div className="flex flex-col gap-[30px] justify-center items-center w-[100%] md:w-[80%] absolute top-[600px] ">
-            <span className="md:text-[12pt] text-[12px] text-red-500 font-bold font-batang">
+            <span className="md:text-[12pt] text-[12px] text-black-500 font-bold font-batang">
               {biddingInfo.ipchalDate}
             </span>
             <div className="flex flex-row justify-center items-center gap-[10px] w-[100%]">
               <span className="md:text-[12pt] text-[12px] font-batang">
                 신청인
               </span>
-              <span className="text-[12pt] font-batang text-red-500 font-bold">
+              <span className="text-[12pt] font-batang text-black-500 font-bold">
                 {biddingInfo.bidName[0]}
               </span>
               <span className="md:text-[12pt] text-[12px] font-batang">
                 외
               </span>
-              <span className="md:text-[12pt] text-[12px] font-batang text-red-500 font-bold">
+              <span className="md:text-[12pt] text-[12px] font-batang text-black-500 font-bold">
                 {biddingInfo.bidName.length - 1}
               </span>
               <span className="md:text-[12pt] text-[12px] font-batang">

@@ -9,6 +9,26 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { LiaEyeSlashSolid, LiaEyeSolid } from 'react-icons/lia'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
+type BiddersProps = {
+  address: string
+  bidderType: string
+  companyNo: string
+  corporationNo: string
+  job: string
+  name: string
+  peopleSeq: number
+  phoneNo: string
+  share: any
+}
+interface BidderListProps {
+  agentYn: string | null
+  bidderCount: number
+  mstSeq: number
+  number: number
+  state: number
+  bidders: BiddersProps[]
+}
+
 export default function BidderForm() {
   if (typeof window === 'undefined') return null
   window.document.addEventListener('keydown', (e) => {
@@ -19,7 +39,7 @@ export default function BidderForm() {
   const setStateNum = useSetRecoilState(stepState)                  //  입찰표 작성 단계 set함수
   const [stepNum, setStepNum] = useState<number>(1)                 //  입찰자 정보 단계
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)  //  입찰표 작성 정보
-  const [bidderList, setBidderList] = useState<BidderList[]>([])    //  입찰자 정보 리스트
+  const [bidderList, setBidderList] = useState<BidderListProps>()    //  입찰자 정보 리스트
   const [loading, setLoading] = useState<boolean>(false)            //  로딩 상태
   const { isOpen, onClose, onOpen } = useDisclosure()                       //  주소검색 모달 상태
   const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
@@ -96,6 +116,53 @@ export default function BidderForm() {
     }
   }
 
+useEffect(() => {
+  const handleGetBidders = async () => {
+    try {
+      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
+      if (response.status === 200) {
+        setBidderList(response.data.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  handleGetBidders()
+}, [stepNum])
+
+  //  수정 사항 반영
+  const handleUpdate = async () => {
+    try {
+      if (biddingForm?.bidCorpYn[stepNum - 1] === 'I') {
+        const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
+          address: biddingForm?.bidAddr[stepNum - 1],
+          bidderType: biddingForm?.bidCorpYn[stepNum - 1],
+          job: biddingForm?.bidJob[stepNum - 1],
+          name: biddingForm?.bidName[stepNum - 1],
+          phoneNo: biddingForm?.bidPhone[stepNum - 1],
+        })
+        if (response.status === 200) {
+          return
+        }
+      } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
+        const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
+          address: biddingForm?.bidAddr[stepNum - 1],
+          bidderType: biddingForm?.bidCorpYn[stepNum - 1],
+          companyNo: biddingForm?.bidCorpNum[stepNum - 1],
+          corporationNo: biddingForm?.bidCorpRegiNum[stepNum - 1],
+          job: biddingForm?.bidJob[stepNum - 1],
+          name: biddingForm?.bidName[stepNum - 1],
+          phoneNo: biddingForm?.bidPhone[stepNum - 1],
+        })
+        if (response.status === 200) {
+          return
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   // 입찰자 정보 저장
   const handleBidderFormSave = async () => {
     handleUpdateIdNum(stepNum - 1)
@@ -166,9 +233,15 @@ export default function BidderForm() {
         await handleBidderFormSave()
         setStepNum(num + 1)
       } else {
-        await handleBidderFormSave()
-        setStepNum(num + 1)
-        reset()
+        if (bidderList && bidderList?.bidders?.length > 0 && bidderList?.bidders[stepNum - 1]?.peopleSeq === stepNum) {
+          await handleUpdate()
+          setStepNum(num + 1)
+          reset()
+        } else {
+          await handleBidderFormSave()
+          setStepNum(num + 1)
+          reset()
+        }
       }
     }
   }

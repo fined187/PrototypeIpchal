@@ -121,8 +121,8 @@ export default function CreateFile() {
           isFileCreated: true,
         })
       })
-      captureWrap.style.display = 'none'
-      captureDiv.style.display = 'none'
+      // captureWrap.style.display = 'none'
+      // captureDiv.style.display = 'none'
     }
   }
   

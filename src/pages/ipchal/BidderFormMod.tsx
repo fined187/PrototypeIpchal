@@ -232,7 +232,7 @@ export default function BidderFormMod() {
       setFocus('bidderIdNum2')
     }
   }
-
+  console.log("hi")
     //  전화번호 검증
     const handleVerifyPhone = (phone: string) => {
       // const phoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g

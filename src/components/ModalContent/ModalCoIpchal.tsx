@@ -32,7 +32,7 @@ export default function ModalCoIpchal() {
                 </span>
               </div>
               <div className="justify-center items-center text-center absolute top-[20%] w-[100%]">
-                <span className="md:text-[15pt] text-[15px] tracking-[20pt] leading-[23px] font-bold font-batang">
+                <span className="text-[15pt] tracking-[20pt] leading-[23px] font-bold font-batang">
                   기일입찰표
                 </span>
               </div>
@@ -51,30 +51,26 @@ export default function ModalCoIpchal() {
               </div>
             </div>
             {/* 두 번째 박스 */}
-            <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[6.5%]">
-              <div className="border-black border-r-[1px] leading-[50%] w-[82px] h-[100%] text-center">
+            <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[7%]">
+              <div className="border-black border-r-[1px] w-[82px] h-[100%] justify-center items-center text-center">
                 <span className="md:text-[11pt] text-[10px] font-batang">
-                  사건 
-                  <br />
-                  번호
+                  사건 번호
                 </span>
               </div>
               <div className="flex justify-center items-center border-black border-r-[1px] md:w-[45%] w-[40%] text-center h-[100%]">
                 <span className="md:text-[11pt] text-[10px] font-batang">
-                  {biddingInfo.sagunNum}
+                  {biddingInfo.sagunNum + '호'}
                 </span>
               </div>
-              <div className="border-black border-r-[1px] leading-[50%] w-[82px] h-[100%] text-center">
+              <div className="border-black border-r-[1px] w-[82px] h-[100%] text-center justify-center items-center">
                 <span className="md:text-[11pt] text-[10px] font-batang">
-                  물건 
-                  <br />
-                  번호
+                  물건 번호
                 </span>
               </div>
               <div className="flex flex-col justify-center items-center text-center md:w-[44%] w-[40%]">
                 <span className={`md:text-[11pt] text-[10px] font-batang`}
                 >
-                  {biddingInfo.mulSeq ? biddingInfo.mulSeq : '1'}
+                  {biddingInfo.mulNo ? biddingInfo.mulNo : '1'}
                 </span>
                 <span className={`md:text-[9pt] text-[8px] font-batang`}>
                   ※ 물건번호가 여러개 있는 경우에는 꼭 기재
@@ -83,17 +79,17 @@ export default function ModalCoIpchal() {
             </div>
             {/* 세 번째 박스 */}
             <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[50%]">
-              <div className="flex justify-center items-center leading-[300%] border-black border-r-[1px] w-[5.2%]">
+              <div className="flex justify-center items-center leading-[300%] border-black border-r-[1px] w-[5%]">
                 <span className="md:text-[11pt] text-[10px] font-batang">
                   입<br />찰<br />자
                 </span>
               </div>
-              <div className="w-[100%] h-[100%]">
-                <div className="flex flex-row items-stretch border-black border-b-[1px] h-[50%]">
-                  <div className="flex justify-center items-center border-black border-r-[1px] w-[12%]">
+              <div className="w-[97%] h-[100%]">
+                <div className="flex flex-row items-stretch border-black border-b-[1px] w-[100%] h-[50%]">
+                  <div className="flex justify-center items-center border-black border-r-[1px] w-[10%]">
                     <span className="md:text-[11pt] text-[10px] font-batang">본인</span>
                   </div>
-                  <div className="flex flex-col w-[100%] h-[100%]">
+                  <div className="flex flex-col w-[90%] h-[100%]">
                     <div className="flex flex-row items-stretc h-[30%]">
                       <div className="flex justify-center items-center border-black border-b-[1px] border-r-[1px] w-[20%]">
                         <span className="md:text-[11pt] text-[10px] font-batang">성&nbsp;&nbsp;명</span>
@@ -108,7 +104,7 @@ export default function ModalCoIpchal() {
                         </span>
                       </div>
                       <div className="flex justify-center items-center w-[80%]">
-                        <span className="md:text-[15px] text-[12px] font-batang font-bold text-red-500">
+                        <span className="md:text-[15px] text-[12px] font-batang font-bold text-black-500">
                           별첨 목록과 같음
                         </span>
                       </div>
@@ -121,10 +117,10 @@ export default function ModalCoIpchal() {
                   </div>
                 </div>
                 <div className="flex flex-row justify-between items-stretch w-[100%] h-[50%]">
-                  <div className="flex justify-center items-center w-[10.8%] border-black border-r-[1px]">
+                  <div className="flex justify-center items-center w-[10%] border-black border-r-[1px]">
                     <span className="md:text-[14px] text-[10px] font-batang">대리인</span>
                   </div>
-                  <div className="w-[90%]">
+                  <div className="w-[90%] h-[100%]">
                     <div className="flex flex-row items-stretch border-black border-b-[1px] h-[35%]">
                       <div className="flex justify-center items-center table__text w-[20%] border-black border-r-[1px]">
                         <span className="md:text-[11pt] text-[10px] font-batang text-center">성&nbsp;&nbsp;명</span>
@@ -196,15 +192,16 @@ export default function ModalCoIpchal() {
               </div>
             </div>
             {/* 네 번째 박스 */}
-            <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[15%]">
-              <div className="w-[27px] border-black border-r-[1px] h-[100%] leading-[70%] justify-center items-center text-center">
-                <span className="md:text-[11pt] text-[10px] font-batang">
+            <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[18%]">
+              <div className="w-[5%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
+                <span className="md:text-[11pt] text-[8px] font-batang">
                   입찰
-                  <br />
+                  <br className="md:flex hidden" />
+                  <br className="md:flex hidden" />
                   가격
                 </span>
               </div>
-              <div className="w-[3%] h-[100%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] leading-[70%] border-b-[1px] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">천억</span>
                 </div>
@@ -220,7 +217,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">백억</span>
                 </div>
@@ -237,7 +234,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px]  leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">십억</span>
                 </div>
@@ -255,7 +252,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -276,7 +273,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">천만</span>
                 </div>
@@ -294,7 +291,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">백만</span>
                 </div>
@@ -312,7 +309,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">십만</span>
                 </div>
@@ -330,7 +327,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -351,7 +348,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -372,7 +369,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -393,7 +390,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -414,7 +411,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -435,7 +432,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[27px]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[100%] w-[100%] border-black border-r-[2px] leading-[70%] text-center">
                   <div className="h-[50%]">
                     <span className="md:text-[11pt] text-[10px] font-batang">
@@ -443,20 +440,21 @@ export default function ModalCoIpchal() {
                     </span>
                   </div>
                   <div className="text-left mt-[10px]">
-                    <span className="md:text-[15px] text-[14px] font-batang">
+                    <span className="md:text-[15px] text-[10px] font-batang text-center">
                       원
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="w-[27px] border-black border-r-[1px] h-[100%] leading-[70%] justify-center items-center text-center">
-                <span className="md:text-[11pt] text-[10px] font-batang">
+              <div className="w-[5%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
+                <span className="md:text-[11pt] text-[8px] font-batang">
                   보증
-                  <br />
+                  <br className="md:flex hidden" />
+                  <br className="md:flex hidden" />
                   금액
                 </span>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">천억</span>
                 </div>
@@ -469,7 +467,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">백억</span>
                 </div>
@@ -487,7 +485,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">십억</span>
                 </div>
@@ -505,7 +503,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -526,7 +524,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">천만</span>
                 </div>
@@ -544,7 +542,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">백만</span>
                 </div>
@@ -562,7 +560,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">십만</span>
                 </div>
@@ -580,7 +578,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -601,7 +599,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -622,7 +620,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -643,7 +641,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -664,7 +662,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                   <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
@@ -685,7 +683,7 @@ export default function ModalCoIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="w-[27px]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[100%] w-[100%] border-black leading-[70%] text-center">
                   <div className="h-[50%]">
                     <span className="md:text-[11pt] text-[10px] font-batang">
@@ -693,7 +691,7 @@ export default function ModalCoIpchal() {
                     </span>
                   </div>
                   <div className="text-left mt-[10px]">
-                    <span className="md:text-[15px] text-[14px] font-batang">
+                    <span className="md:text-[15px] text-[10px] font-batang text-center">
                       원
                     </span>
                   </div>
@@ -701,8 +699,8 @@ export default function ModalCoIpchal() {
               </div>
             </div>
             {/* 다섯 번째 박스 */}
-            <div className="flex flex-row justify-between items-stretch w-[100%] h-[13.5%]">
-              <div className="flex flex-row w-[49.7%] border-black border-r-[2px] h-[100%]">
+            <div className="flex flex-row justify-between items-stretch w-[100%] h-[10%]">
+              <div className="flex flex-row w-[49.9%] border-black border-r-[2px] h-[100%]">
                 <div className='flex items-center justify-start w-[30%] h-[100%]'>
                   <span className="md:text-[11pt] text-[10px] text-left font-batang">
                     보증의 
@@ -718,7 +716,7 @@ export default function ModalCoIpchal() {
                       className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
                       readOnly
                     />
-                    <span className="md:text-[11pt] text-[10px] mt-1">현금·자기앞수표</span>
+                    <span className="md:text-[11pt] font-batang text-[10px] mt-1">현금·자기앞수표</span>
                   </div>
                   <div className="flex flex-row w-[100%]">
                     <input
@@ -727,7 +725,7 @@ export default function ModalCoIpchal() {
                       className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
                       readOnly
                     />
-                    <span className="md:text-[11pt] text-[10px] mt-1">
+                    <span className="md:text-[11pt] font-batang text-[10px] mt-1">
                       보증서
                     </span>
                   </div>

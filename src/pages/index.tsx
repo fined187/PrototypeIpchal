@@ -93,7 +93,6 @@ export default function Home() {
           },
         })
         if (response.status === 200) {
-          console.log(response.data.data)
           setBidders({
             ...bidders,
             state: response.data.data.state ?? 0,

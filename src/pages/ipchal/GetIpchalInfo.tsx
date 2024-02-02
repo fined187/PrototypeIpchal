@@ -103,7 +103,7 @@ export default function GetIpchalInfo() {
       }
     }
   }
-
+  console.log(biddingInfo)
   return (
     <>
       <div className="flex w-[100%] h-screen justify-center bg-white relative">
@@ -116,8 +116,20 @@ export default function GetIpchalInfo() {
               사건 번호와 입찰일자를 확인해주세요
             </span>
           </div>
-          <div className="flex flex-col md:w-[550px] w-[90%] h-[400px] gap-[100px] bg-white absolute top-[120px] justify-center items-center rounded-lg">
+          <div className="flex flex-col md:w-[550px] w-[90%] md:h-[400px] h-[450px] gap-[100px] bg-white absolute top-[120px] justify-center items-center rounded-lg">
             <div className="flex flex-between absolute top-8 border-b w-[80%] border-gray-200">
+              <div className='flex md:w-[30%] w-[30%] justify-start'>
+                <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+                  법원 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {" : "}
+                </span>
+              </div>
+              <div className='flex md:w-[70%] w-[70%] justify-start'>
+                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
+                  {biddingInfo.courtFullName}
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-between absolute top-24 border-b w-[80%] border-gray-200">
               <div className='flex md:w-[30%] w-[30%] justify-start'>
                 <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   사건번호 {" : "}
@@ -125,11 +137,11 @@ export default function GetIpchalInfo() {
               </div>
               <div className='flex md:w-[70%] w-[70%] justify-start'>
                 <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
-                  {biddingInfo.sagunNum}
+                  {biddingInfo.sagunNum + '호' + ' ' + biddingInfo.usage}
                 </span>
               </div>
             </div>
-            <div className="flex flex-between absolute top-24 border-b w-[80%] border-gray-200">
+            <div className="flex flex-between absolute top-40 border-b w-[80%] border-gray-200">
               <div className='flex md:w-[30%] w-[30%] justify-start'>
                 <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   물건번호 {" : "}
@@ -141,7 +153,7 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-row absolute top-40 border-b w-[80%] border-gray-200">
+            <div className="flex flex-row absolute top-56 border-b w-[80%] border-gray-200">
               <div className='flex md:w-[30%] w-[30%] justify-start'>
                 <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   입찰기일 {" : "}
@@ -153,7 +165,7 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-row absolute top-56 border-b w-[80%] border-gray-200">
+            <div className="flex flex-row absolute top-72 w-[80%] ">
               <div className='flex md:w-[30%] w-[30%] justify-start'>
                 <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   주소 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {" : "}
@@ -170,7 +182,7 @@ export default function GetIpchalInfo() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[600px] top-[550px]">
+        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[600px]">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

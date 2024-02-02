@@ -58,7 +58,7 @@ export default function IpchalResult() {
     }
     handleGetResult()
   }, [])
-  console.log(totalResult)
+  
   return (
     <>
       {loading && (
