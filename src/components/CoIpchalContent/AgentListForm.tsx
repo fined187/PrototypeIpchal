@@ -16,6 +16,8 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
     handleMandateList()
   }, [])
 
+  console.log('mandateList', mandateList)
+  console.log(bidders && bidders)
   return (
     <div className={`flex flex-col bg-white h-[1300px] md:w-[50%] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
       <div className="flex flex-col bg-mybg h-[100%] w-[100%] m-auto relative justify-center items-center">
@@ -240,7 +242,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
           :
           (bidders.length / 3 === 0 ? bidders && bidders.map((bidder: any, index: any) => {
             return (
-              <div key={index} className={`flex md:w-[80%] w-[100%] h-[150px] ${index + 1 >= 2 ? 'border-black border-r-[2px] border-b-[2px] border-l-[2px]' : 'border-black border-[2px]'} `}>
+              <div key={index} className={`flex md:w-[80%] w-[100%] h-[150px] border-black border-r-[2px] border-b-[2px] border-l-[2px] border-t-[2px] `}>
                 <div className="flex w-[30px] justify-center items-center text-center border-black border-r-[1px]">
                   <span className="md:text-[12pt] text-[12px] font-batang">
                     본인
@@ -333,9 +335,9 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
               </div>
             )
           })
-          : Array(Math.ceil(bidders.length / 3) * 3).fill('').map((_, index: any) => {
+          : Array(Math.ceil(bidders.length / 3) * 3).fill('').map((_, index: any) => {      //  3으로 나눈 몫을 올림한 값에 3을 곱한 값 => 3의 배수로 만들어주기 위함
             return (
-              <div key={index} className={`flex w-[100%] h-[150px] ${index + 1 >= 2 ? 'border-black border-r-[2px] border-b-[2px] border-l-[2px]' : 'border-black border-[2px]'} `}>
+              <div key={index} className={`flex md:w-[80%] w-[100%] h-[150px] border-black border-r-[2px] border-b-[2px] border-l-[2px] border-t-[2px] `}>
                 <div className="flex w-[30px] justify-center items-center text-center border-black border-r-[1px]">
                   <span className="text-[12pt] font-batang">
                     본인
@@ -359,7 +361,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                       <div className="flex w-[80%] justify-end">
                         <span className="text-[12pt] font-batang">
                           {
-                            (bidders[index]?.mandateYn === 'Y' && bidders[index]?.name) ?? ''
+                            bidders[index]?.name ?? ''
                           }
                         </span>
                       </div>
@@ -379,7 +381,9 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                     </div>
                     <div className="flex w-[30%] justify-center items-center text-center">
                       <span className="text-[12pt] font-batang">
-                        {(bidders[index]?.mandateYn === 'Y' && bidders[index]?.job) ?? ''}
+                        {
+                          bidders[index]?.job ?? ''
+                        }
                       </span>
                     </div>
                   </div>
@@ -393,7 +397,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                       <div className="flex gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
                         <span className="text-[12pt] font-batang">
                           {
-                            bidders[index]?.mandateYn === 'Y' ? (biddingInfo.bidCorpYn[index] === 'I' ? (biddingInfo.bidIdNum[index]?.substring(0, 6) + '-' + biddingInfo.bidIdNum[index]?.substring(6, 13)) : (biddingInfo.bidCorpYn[index] === 'C' ? (bidders[index]?.companyNo?.substring(0, 3) + '-' + bidders[index]?.companyNo?.substring(3, 5) + '-' + bidders[index]?.companyNo?.substring(5, 10)) : '')) : ''
+                            bidders[index]?.mandateYn === 'Y' ? (biddingInfo.bidCorpYn[bidders[index].peopleSeq - 1] === 'I' ? (biddingInfo.bidIdNum[bidders[index].peopleSeq - 1]?.substring(0, 6) + '-' + biddingInfo.bidIdNum[bidders[index].peopleSeq - 1]?.substring(6, 13)) : (biddingInfo.bidCorpYn[bidders[index].peopleSeq - 1] === 'C' ? (bidders[index]?.companyNo?.substring(0, 3) + '-' + bidders[index]?.companyNo?.substring(3, 5) + '-' + bidders[index]?.companyNo?.substring(5, 10)) : '')) : ''
                           }
                         </span>
                       </div>
@@ -424,7 +428,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                     </div>
                     <div className="flex w-[80%] justify-center items-center text-center">
                       <span className="text-[12pt] font-batang">
-                        {(bidders[index]?.mandateYn === 'Y' && bidders[index]?.address) ?? ''}
+                        {bidders[index]?.address ?? ''}
                       </span>
                     </div>
                   </div>
@@ -439,7 +443,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
             <span className="text-left font-batang md:text-[12pt] text-[12px]">
               * 본인이 법인인 경우에는 주민등록번호란에 사업자등록번호를 기재
             </span>
-            <span className="text-center font-extrabold font-batang md:text-[25px] text-[20px]">
+            <span className="text-center font-extrabold font-batang md:text-[25px] text-[20px] mt-[20px]">
               {totalResult && totalResult?.reqCourtName + ' 귀중' }
             </span>
           </div>

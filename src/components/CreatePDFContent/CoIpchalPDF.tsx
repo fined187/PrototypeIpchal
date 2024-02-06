@@ -17,9 +17,10 @@ interface CoIpchalProps {
 export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePrice }: CoIpchalProps) {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
-  const totalPage = Math.ceil(biddingInfo.bidName.length / 3)
   const [maxHeight, setMaxHeight] = useState<number>(3900)
+  const mandatesList = totalResult?.bidders.filter((item) => item.mandateYn === 'Y')
 
+  const totalPage = Math.ceil((mandatesList?.length ?? 0) / 3)
   const listPerPage = 3
   let currentPage = 1;
   let currentList: any = [];
@@ -28,12 +29,12 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
     let startIndex = (currentPage - 1) * listPerPage
     let endIndex = startIndex + listPerPage
     for (let i = 0; i < totalPage; i++) {
-      currentList.push(totalResult?.bidders.slice(startIndex, endIndex))
+      currentList.push(mandatesList?.slice(startIndex, endIndex))   //  0 ~ 3, 3 ~ 6, 6 ~ 9
       startIndex = endIndex
       endIndex = endIndex + listPerPage
       currentPage++
     }
-    return currentList
+    return currentList.filter((item: any) => item.length > 0)
   }
 
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
 
   return (
     <div className={`flex flex-col md:w-[50%] w-[800px] justify-center items-center mx-auto`} id="wrap-capture" style={{
-      height: `${maxHeight}px`
+      height: `${maxHeight}px` !== 'NaNpx' ? `${maxHeight}px` : '3900px'
     }}>
       <div className="flex flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
         <div className={`flex flex-col bg-white h-[100%] w-[100%] mx-auto relative justify-center items-center`}>

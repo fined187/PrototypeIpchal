@@ -23,6 +23,7 @@ export default function AgentCheck() {
             ...prev,
             mandates: response.data.data.mandates.map((mandate: any) => mandate.mandateYn === null ? { name: mandate.name, peopleSeq: mandate.peopleSeq, mandateYn: 'N' } : mandate)
           }))
+          setCheckedItems(response.data.data.mandates.map((mandate: any) => mandate.mandateYn === 'Y'))
         }
       } catch (error) {
         console.log(error)
@@ -90,10 +91,10 @@ export default function AgentCheck() {
             <label htmlFor="allChecked" className="ml-2 text-[14pt] text-black font-bold dark:text-gray-400">전체 선택</label>
           </div>
         </div>
-        <div className="flex flex-col gap-10 w-[90%] md:w-[40%] h-[350px] border border-gray-[1px] bg-white absolute top-[110px] justify-center items-center rounded-lg border-slate-500 ">
-          <div className="flex flex-col gap-[80px] justify-center items-center w-[80%] h-[70%] overflow-y-scroll scrollbar-hide">
+        <div className="flex flex-col gap-10 w-[90%] md:w-[40%] min-h-[350px] max-h-[450px] border border-gray-[1px] bg-white absolute top-[110px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
+          <div className="flex flex-col gap-[25px] justify-center items-center w-[80%] h-[100%] ">
             {biddingInfo.bidName.map((name: any, index: number) => (
-              <div className="flex w-[90%] justify-between ">
+              <div className="flex w-[90%] h-[100%] justify-between ">
                 <span className="md:text-[15pt] text-[12pt] font-NanumGothic font-bold">
                   {name}
                 </span>

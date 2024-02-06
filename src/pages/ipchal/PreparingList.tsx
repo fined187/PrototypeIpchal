@@ -12,24 +12,33 @@ export default function PreparingList() {
     if (biddingInfo.bidName.length === 1 && biddingInfo.agentName === '' && biddingInfo.bidCorpYn[0] === 'I') {
       setMsg('본인이 직접 입찰하셨습니다.')
       setDetailList(['- 신분증', ' - 도장'])
-    } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName !== '' && biddingInfo.bidCorpYn[0] === 'I') {
-      setMsg(`${biddingInfo.agentName}님이 개인의 대리인으로 입찰하셨습니다.`)
-      setDetailList(['- 본인의 인감증명서와 본인의 인감이 날인된 위임장', '- 대리인의 도장, 대리인의 신분증'])
-    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && biddingInfo.bidCorpYn.includes('C')) {
-      setMsg(`법인명의를 포함한 ${biddingInfo.bidderNum}명의 공동입찰자가 입찰하셨습니다.`)
-      setDetailList(['- 공동입찰신고서 (구법사건일 경우: 입찰하기 전에 집행관에게 사전신고 필요)', '- 공동입찰자목록 (상호간의 지분 표시)', '- 불참자의 인감증명서', '- 불참자의 인감이 날인된 위임장', '- 법인의 등기부등본', '- 대표이사의 신분증, 대표이사의 도장'])
-    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName !== '' && biddingInfo.bidCorpYn.includes('C')) {
-      setMsg(`법인명의를 포함한 ${biddingInfo.bidderNum}명의 공동입찰자의 대리인으로 입찰하셨습니다.`)
-      setDetailList(['- 법인의 등기부등본', '- 법인 인감증명서, 위임장', '- 대리인의 신분증, 대리인의 도장', '- 공동입찰신고서 (구법사건일 경우: 입찰하기 전에 집행관에게 사전신고 필요)','- 공동입찰자목록 (상호간의 지분 표시)', '- 불참자의 인감증명서', '- 불참자의 인감이 날인된 위임장', '- 법인의 등기부등본', '- 대표이사의 신분증, 대표이사의 도장'])
-    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && !biddingInfo.bidCorpYn.includes('C')) {
-      setMsg(`${biddingInfo.bidderNum}명의 공동입찰자가 입찰하셨습니다.`)
-      setDetailList(['- 공동입찰신고서 (구법사건일 경우: 입찰하기 전에 집행관에게 사전신고 필요)', '- 공동입찰자목록 (상호간의 지분 표시)', '- 불참자의 인감증명서', '- 불참자의 인감이 날인된 위임장'])
-    } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName !== '' && biddingInfo.bidCorpYn[0] === 'C') {
-      setMsg(`${biddingInfo.agentName}이 법인의 대리인으로 입찰하셨습니다.`)
-      setDetailList(['- 법인의 등기부등본', '- 법인 인감증명서, 위임장', '- 대리인의 신분증, 대리인의 도장'])
     } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName === '' && biddingInfo.bidCorpYn[0] === 'C') {
-      setMsg('법인이 입찰하셨습니다.')
-      setDetailList(['- 법인의 등기부등본', '- 대표이사의 신분증, 대표이사의 도장'])
+      setMsg('법인이 직접 입찰하셨습니다.')
+      setDetailList(['- 법인등기부', '- 대표이사 신분증', '- 대표이사 도장'])
+    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && !biddingInfo.bidCorpYn.includes('C')) {
+      setMsg(`${biddingInfo.bidderNum} 명이 직접 입찰하셨습니다.`)
+      setDetailList(['- 신분증', '- 도장', '- 불참자 인감증명서', '- 불참자의 인감이 날인된 위임장', '- 공동입찰신고서', '- 공동입찰자 목록'])
+    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && !biddingInfo.bidCorpYn.includes('I')) {
+      setMsg(`${biddingInfo.bidderNum} 명의 법인이 직접 입찰하셨습니다.`)
+      setDetailList(['- 법인등기부', '- 대표이사 신분증', '- 대표이사 도장', '- 불참법인 인감증명서', '- 불참법인의 인감이 날인된 위임장', '- 공동입찰신고서', '- 공동입찰자 목록'])
+    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && (biddingInfo.bidCorpYn.includes('I') && biddingInfo.bidCorpYn.includes('C'))) {
+      setMsg(`${biddingInfo.bidderNum} 명이 직접 입찰하셨습니다.`)
+      setDetailList(['- 신분증', '- 도장', '- 법인등기부', '- 대표이사 신분증', '- 대표이사 도장', '- 불참자 인감증명서', '- 불참자의 인감이 날인된 위임장', '- 공동입찰신고서', '- 공동입찰자 목록', '- 불참법인 인감증명서', '- 불참법인의 인감이 날인된 위임장', '- 불참법인 등기부'])
+    } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName !== '' && biddingInfo.bidCorpYn[0] === 'I') {
+      setMsg(`${biddingInfo.agentName}님이 대리입찰하셨습니다.`)
+      setDetailList(['- 본인의 인감증명서', '- 본인의 인감이 날인된 위임장', '- 대리인 도장', '- 대리인 신분증'])
+    } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName !== '' && biddingInfo.bidCorpYn[0] === 'C') {
+      setMsg(`${biddingInfo.agentName}님이 법인 대리입찰하셨습니다.`)
+      setDetailList(['- 법인 등기부', '- 법인의 인감증명서', '- 법인의 인감이 날인된 위임장', '- 대리인 도장', '- 대리인 신분증'])
+    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName !== '' && !biddingInfo.bidCorpYn.includes('C')) {
+      setMsg(`${biddingInfo.agentName}님이 ${biddingInfo.bidderNum} 명의 공동대리입찰하셨습니다.`)
+      setDetailList(['- 본인의 인감증명서', '- 본인의 인감이 날인된 위임장', '- 대리인 도장', '- 대리인 신분증', '- 공동입찰신고서', '- 공동입찰자 목록'])
+    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName !== '' && !biddingInfo.bidCorpYn.includes('I')) {
+      setMsg(`${biddingInfo.agentName}님이 ${biddingInfo.bidderNum} 명의 법인 대리입찰하셨습니다.`)
+      setDetailList(['- 법인 등기부', '- 법인의 인감증명서', '- 법인의 인감이 날인된 위임장', '- 대리인 도장', '- 대리인 신분증', '- 공동입찰신고서', '- 공동입찰자 목록'])
+    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName !== '' && (biddingInfo.bidCorpYn.includes('I') && biddingInfo.bidCorpYn.includes('C'))) {
+      setMsg(`${biddingInfo.agentName}님이 법인을 포함한 ${biddingInfo.bidderNum} 명의 공동대리입찰하셨습니다.`)
+      setDetailList(['- 본인의 인감증명서', '- 본인의 인감이 날인된 위임장', '- 대리인 도장', '- 대리인 신분증', '- 법인 등기부', '- 법인의 인감증명서', '- 법인의 인감이 날인된 위임장', '- 공동입찰신고서', '- 공동입찰자 목록'])
     }
   }
 

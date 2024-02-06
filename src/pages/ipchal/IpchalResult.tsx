@@ -25,12 +25,12 @@ export default function IpchalResult() {
     let startIndex = (currentPage - 1) * listPerPage
     let endIndex = startIndex + listPerPage
     for (let i = 0; i < totalPage; i++) {
-      currentList.push(totalResult?.bidders.slice(startIndex, endIndex))
+      currentList.push(mandatesList?.slice(startIndex, endIndex))   //  0 ~ 3, 3 ~ 6, 6 ~ 9
       startIndex = endIndex
       endIndex = endIndex + listPerPage
       currentPage++
     }
-    return currentList
+    return currentList.filter((item: any) => item.length > 0)
   }
 
   useEffect(() => {

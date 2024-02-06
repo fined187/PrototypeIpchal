@@ -144,7 +144,6 @@ export default function CreateFile() {
     }
   }
 
-
   const handleUploadFile = async () => {
     setLoading(true)
     const formData = new FormData()
@@ -201,8 +200,6 @@ export default function CreateFile() {
     handleGetResult()
   }, [])
 
-
-  
   return (
     <>
       {!loading && (

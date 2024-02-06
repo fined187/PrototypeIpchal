@@ -273,7 +273,7 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-10 md:w-[550px] w-[90%] md:h-[350px] pt-[30px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll scrollbar-hide">
+        <div className="flex flex-col gap-[15px] pt-[10px] md:w-[550px] w-[90%] md:min-h-[350px] md:max-h-[450px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
           {loadding && (
             <Spinner />
           )}
@@ -378,7 +378,7 @@ export default function ShareInfo() {
             )}
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[600px] w-[400px] gap-[10px] absolute top-[600px]">
+        <div className="flex flex-row justify-center items-center md:w-[600px] w-[400px] gap-[10px] absolute top-[700px]">
           <button
             type="button"
             className="flex w-[30%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

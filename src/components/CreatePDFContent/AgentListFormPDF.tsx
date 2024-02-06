@@ -17,11 +17,11 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
   }, [])
 
   return (
-    <div className={`flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center overflow-x-scroll scrollbar-hide`} style={{
+    <div className="flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center overflow-x-scroll scrollbar-hide" style={{
       top: totalResult && totalResult?.bidders.length === 1 ? '2600px' : '2650px',
       position: 'relative',
     }}>
-      <div className={`flex flex-col bg-white h-[100%] md:w-[90%] w-[100%] m-auto relative justify-center items-center`}>
+      <div className="flex flex-col bg-white h-[100%] md:w-[90%] w-[100%] m-auto relative justify-center items-center">
         <div className="flex w-[100%] absolute top-[5px]">
           <span className="text-[12pt] font-batang">
             (뒷면)
@@ -243,7 +243,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
             :
             (bidders.length / 3 === 0 ? bidders && bidders.map((bidder: any, index: any) => {
               return (
-                <div key={index} className={`flex w-[100%] h-[150px] ${index + 1 >= 2 ? 'border-black border-r-[2px] border-b-[2px] border-l-[2px]' : 'border-black border-[2px]'} `}>
+                <div key={index} className={`flex w-[100%] h-[150px] border-black border-r-[2px] border-b-[2px] border-l-[2px] border-t-[2px]`}>
                   <div className="flex w-[30px] justify-center items-center text-center border-black border-r-[1px]">
                     <span className="text-[12pt] font-batang">
                       본인
@@ -338,7 +338,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
             }) : 
             Array(Math.ceil(bidders.length / 3) * 3).fill('').map((_, index: any) => {
               return (
-                <div key={index} className={`flex w-[100%] h-[150px] ${index + 1 >= 2 ? 'border-black border-r-[2px] border-b-[2px] border-l-[2px]' : 'border-black border-[2px]'} `}>
+                <div key={index} className="flex w-[100%] h-[150px] border-black border-r-[2px] border-b-[2px] border-l-[2px] border-t-[2px]">
                   <div className="flex w-[30px] justify-center items-center text-center border-black border-r-[1px]">
                     <span className="text-[12pt] font-batang">
                       본인
@@ -362,7 +362,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                         <div className="flex w-[80%] justify-end">
                           <span className="text-[12pt] font-batang">
                             {
-                              (bidders[index]?.mandateYn === 'Y' && bidders[index]?.name) ?? ''
+                              bidders[index]?.name ?? ''
                             }
                           </span>
                         </div>
@@ -382,7 +382,9 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       </div>
                       <div className="flex w-[30%] justify-center items-center text-center">
                         <span className="text-[12pt] font-batang">
-                          {(bidders[index]?.mandateYn === 'Y' && bidders[index]?.job) ?? ''}
+                          {
+                            bidders[index]?.job ?? ''
+                          }
                         </span>
                       </div>
                     </div>
@@ -396,7 +398,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                         <div className="flex gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
                           <span className="text-[12pt] font-batang">
                             {
-                              bidders[index]?.mandateYn === 'Y' ? (biddingInfo.bidCorpYn[index] === 'I' ? (biddingInfo.bidIdNum[index]?.substring(0, 6) + '-' + biddingInfo.bidIdNum[index]?.substring(6, 13)) : (biddingInfo.bidCorpYn[index] === 'C' ? (bidders[index]?.companyNo?.substring(0, 3) + '-' + bidders[index]?.companyNo?.substring(3, 5) + '-' + bidders[index]?.companyNo?.substring(5, 10)) : '')) : ''
+                              bidders[index]?.mandateYn === 'Y' ? (biddingInfo.bidCorpYn[bidders[index].peopleSeq - 1] === 'I' ? (biddingInfo.bidIdNum[bidders[index].peopleSeq - 1]?.substring(0, 6) + '-' + biddingInfo.bidIdNum[bidders[index].peopleSeq - 1]?.substring(6, 13)) : (biddingInfo.bidCorpYn[bidders[index].peopleSeq - 1] === 'C' ? (bidders[index]?.companyNo?.substring(0, 3) + '-' + bidders[index]?.companyNo?.substring(3, 5) + '-' + bidders[index]?.companyNo?.substring(5, 10)) : '')) : ''
                             }
                           </span>
                         </div>
@@ -427,7 +429,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       </div>
                       <div className="flex w-[80%] justify-center items-center text-center">
                         <span className="text-[12pt] font-batang">
-                          {(bidders[index]?.mandateYn === 'Y' && bidders[index]?.address) ?? ''}
+                          {bidders[index]?.address ?? ''}
                         </span>
                       </div>
                     </div>
