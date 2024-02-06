@@ -1,12 +1,24 @@
 import { biddingInfoState } from "@/atom";
 import { TotalResultType } from "@/interface/IpchalType"
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 export default function AgentListFormPDF({ totalResult, bidders }: { totalResult: TotalResultType, bidders?: any }) {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
+  const [mandateList, setMandateList] = useState<any>([])
+
+  const handleMandateList = () => {
+    let mandatesList = totalResult?.bidders.filter((item) => item.mandateYn === 'Y')
+    setMandateList(mandatesList)
+  }
+
+  useEffect(() => {
+    handleMandateList()
+  }, [])
+
   return (
     <div className={`flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center overflow-x-scroll scrollbar-hide`} style={{
-      top: totalResult && totalResult?.bidders.length === 1 ? '2600px' : '2000px',
+      top: totalResult && totalResult?.bidders.length === 1 ? '2600px' : '2650px',
       position: 'relative',
     }}>
       <div className={`flex flex-col bg-white h-[100%] md:w-[90%] w-[100%] m-auto relative justify-center items-center`}>
@@ -108,11 +120,11 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
             위 사람을 대리인으로 정하고 다음 사항을 위임함.
           </span>
           <span className="text-[12pt] font-batang">
-            다&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음
+            - 다&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음 -
           </span>
           <div className="flex flex-row md:w-[100%] justify-center items-center text-center">
             <span className="text-[12pt] font-batang">
-              {totalResult && totalResult?.reqCourtName + ' 본원 ' }
+              {totalResult && totalResult?.reqCourtName}
             </span>
             <span className="text-[12pt] text-black-500 font-bold font-batang">
               &nbsp;{totalResult && totalResult?.caseYear}
@@ -128,7 +140,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
             </span>
           </div>
           <span className="text-[12pt] font-batang">
-            경매사건에 관한입찰행위 일체
+            경매사건에 관한 입찰행위 일체
           </span>
         </div>
         <div className="flex flex-col gap-[10px] w-[100%] justify-center items-center absolute top-[500px]">
@@ -156,7 +168,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       <div className="flex flex-row md:gap-[50px] gap-[5%] w-[35%] border-black border-r-[1px] justify-center items-center text-center">
                         <div className="flex w-[80%] md:justify-end justify-center">
                           <span className="text-[12pt] font-batang">
-                            {(totalResult.bidders[index]?.mandateYn === 'Y' && totalResult.bidders[index]?.name) ?? ''}
+                          {mandateList[index]?.name ?? ''}
                           </span>
                         </div>
                         <div className="flex w-[20%] font-batang justify-end mr-1">
@@ -175,7 +187,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       </div>
                       <div className="flex w-[35%] justify-center items-center text-center">
                         <span className="text-[12pt] font-batang">
-                          {(totalResult.bidders[index]?.mandateYn === 'Y' && totalResult.bidders[index]?.job) ?? ''}
+                        {mandateList[index]?.job ?? ''}
                         </span>
                       </div>
                     </div>
@@ -189,7 +201,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                         <div className="flex gap-[50px] w-[35%] border-black border-r-[1px] justify-center items-center text-center">
                           <span className="text-[12pt] font-batang">
                             {
-                              totalResult.bidders[index]?.mandateYn === 'Y' ? (biddingInfo.bidCorpYn[index] === 'I' ? (biddingInfo.bidIdNum[index]?.substring(0, 6) + '-' + biddingInfo.bidIdNum[index]?.substring(6, 13)) : (biddingInfo.bidCorpYn[index] === 'C' ? (totalResult.bidders[index]?.companyNo?.substring(0, 3) + '-' + totalResult.bidders[index]?.companyNo?.substring(3, 5) + '-' + totalResult.bidders[index]?.companyNo?.substring(5, 10)) : '')) : ''
+                              mandateList[index]?.mandateYn === 'Y' ? (biddingInfo.bidCorpYn[mandateList[index].peopleSeq - 1] === 'I' ? (biddingInfo.bidIdNum[mandateList[index].peopleSeq - 1]?.substring(0, 6) + '-' + biddingInfo.bidIdNum[mandateList[index].peopleSeq - 1]?.substring(6, 13)) : (biddingInfo.bidCorpYn[mandateList[index].peopleSeq - 1] === 'C' ? (mandateList[index]?.companyNo?.substring(0, 3) + '-' + mandateList[index]?.companyNo?.substring(3, 5) + '-' + mandateList[index]?.companyNo?.substring(5, 10)) : '')) : ''
                             }
                           </span>
                         </div>
@@ -201,8 +213,8 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                         <div className="flex w-[35%] justify-center items-center text-center">
                           <span className="text-[12pt] font-batang">
                             {
-                              totalResult.bidders[index]?.mandateYn === 'Y' ? (totalResult.bidders[index]?.phoneNo.length === 10 ? (totalResult.bidders[index]?.phoneNo?.substring(0, 2) + '-' + totalResult.bidders[index]?.phoneNo?.substring(2, 6) + '-' + totalResult.bidders[index]?.phoneNo?.substring(6, 10)) : (
-                                totalResult.bidders[index]?.phoneNo?.substring(0, 3) + '-' + totalResult.bidders[index]?.phoneNo?.substring(3, 7) + '-' + totalResult.bidders[index]?.phoneNo?.substring(7, 11)
+                              mandateList[index]?.mandateYn === 'Y' ? (mandateList[index]?.phoneNo.length === 10 ? (mandateList[index]?.phoneNo?.substring(0, 2) + '-' + mandateList[index]?.phoneNo?.substring(2, 6) + '-' + mandateList[index]?.phoneNo?.substring(6, 10)) : (
+                                mandateList[index]?.phoneNo?.substring(0, 3) + '-' + mandateList[index]?.phoneNo?.substring(3, 7) + '-' + mandateList[index]?.phoneNo?.substring(7, 11)
                               )) : ''
                             }
                           </span>
@@ -220,7 +232,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                       </div>
                       <div className="flex w-[85%] justify-center items-center text-center">
                         <span className="text-[12pt] font-batang">
-                          {(totalResult.bidders[index]?.mandateYn === 'Y' && totalResult.bidders[index]?.address) ?? ''}
+                          {mandateList[index]?.address ?? ''}
                         </span>
                       </div>
                     </div>

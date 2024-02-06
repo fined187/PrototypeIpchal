@@ -52,7 +52,7 @@ export default function PreparingList() {
                 {msg}
               </span>
             </div>
-            <div className="flex flex-col border-gray border-[1px] w-[90%] h-[70%] bg-white rounded-xl absolute top-[100px] gap-[10px] p-[15px] overflow-y-scroll">
+            <div className="flex flex-col border-gray border-[1px] w-[90%] max-h-[70%] bg-white rounded-xl absolute top-[100px] gap-[10px] p-[15px] overflow-y-scroll">
               <span className="md:text-[14pt] text-[11pt] font-NanumGothic font-semibold text-left">
                 - 매수신청보증금(최저매각대금의 10%, 재매각일 경우 법원마다 달라 확인요구 보통 20 ~ 30%)
               </span>
@@ -66,7 +66,7 @@ export default function PreparingList() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row gap-[10px] absolute md:top-[700px] justify-center items-center top-[600px] w-[100%]">
+        <div className="flex flex-row gap-[10px] absolute md:top-[65%] justify-center items-center top-[600px] w-[100%]">
           <button
             type="button"
             className="flex w-[100px] h-[36px] md:w-[10%] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

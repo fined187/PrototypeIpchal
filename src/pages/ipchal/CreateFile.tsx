@@ -52,15 +52,15 @@ export default function CreateFile() {
       setGetHeight(885)
     } else if (biddingInfo.agentName === '' && biddingInfo.bidderNum > 1) {
       //  3. 입찰자가 2명 이상일 때 + 대리인이 없을 때
-      setGetHeight(885)
+      setGetHeight(1180)
     } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum > 1) {
       //  4. 입찰자가 2명 이상일 때 + 대리인이 있을 때
       if (biddingInfo.bidderNum <= 3) {
         //  4-1. 입찰자가 2명일 때
-        setGetHeight(1180)
+        setGetHeight(1475)
       } else if (biddingInfo.bidderNum > 3) {
         //  4-2. 입찰자가 3명 이상일 때
-        setGetHeight(885 + (295 * Math.ceil(totalResult?.bidders.length! / 3)))
+        setGetHeight(1180 + (295 * Math.ceil(totalResult?.bidders.length! / 3)))
       }
     }
   }

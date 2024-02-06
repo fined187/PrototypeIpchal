@@ -8,7 +8,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 export default function DownIpchal() {
   const biddingInfo = useRecoilValue(biddingInfoState)
   const [stateNum, setStateNum] = useRecoilState(stepState)
-  const [openPdf, setOpenPdf] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -35,6 +34,14 @@ export default function DownIpchal() {
     });
   }
 
+  const newWindowPdf = () => {
+    if (window) {
+      const url = window.URL.createObjectURL(new Blob([biddingInfo.pdfFile], {type: 'application/pdf'}))
+      window.open(url, "blob", "width=1200, height=600, resizeable, scrollbars, noopener")
+      window.URL.revokeObjectURL(url)
+    }
+  }
+
   return (
     <>
       <div className="flex w-[100%] h-screen justify-center bg-white relative">
@@ -49,7 +56,7 @@ export default function DownIpchal() {
           </span>
         </div>
         <div className="flex flex-col gap-[30px] md:w-[520px] bg-mybg items-center text-center absolute top-[250px] cursor-pointer">
-          <div className="flex bg-mygold w-[200px] h-[40px] rounded-md justify-center items-center" onClick={() =>onOpen()}>
+          <div className="flex bg-mygold w-[200px] h-[40px] rounded-md justify-center items-center" onClick={newWindowPdf}>
             <span className="text-center text-white font-NanumGothic text-[18px] font-bold leading-[15px]">
               입찰표 확인하기
             </span>

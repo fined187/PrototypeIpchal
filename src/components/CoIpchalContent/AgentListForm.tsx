@@ -1,10 +1,21 @@
 import { biddingInfoState } from "@/atom";
 import { TotalResultType } from "@/interface/IpchalType";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 export default function AgentListForm({ totalResult, index, bidders }: { totalResult: TotalResultType, index?: number, bidders?: any }) {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
-  
+  const [mandateList, setMandateList] = useState<any>([])
+
+  const handleMandateList = () => {
+    let mandatesList = totalResult?.bidders.filter((item) => item.mandateYn === 'Y')
+    setMandateList(mandatesList)
+  }
+
+  useEffect(() => {
+    handleMandateList()
+  }, [])
+
   return (
     <div className={`flex flex-col bg-white h-[1300px] md:w-[50%] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
       <div className="flex flex-col bg-mybg h-[100%] w-[100%] m-auto relative justify-center items-center">
@@ -106,11 +117,11 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
             위 사람을 대리인으로 정하고 다음 사항을 위임함.
           </span>
           <span className="md:text-[12pt] text-[14px] font-batang">
-            다&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음
+            - 다&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음 -
           </span>
           <div className="flex flex-row md:w-[100%] justify-center items-center text-center">
             <span className="md:text-[12pt] text-[14px] font-batang">
-              {totalResult && totalResult?.reqCourtName + ' 본원 ' }
+              {totalResult && totalResult?.reqCourtName}
             </span>
             <span className="md:text-[12pt] text-[14px] text-black-500 font-bold font-batang">
               &nbsp;{totalResult && totalResult?.caseYear}
@@ -122,11 +133,11 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
               {totalResult && totalResult?.caseDetail}
             </span>
             <span className="md:text-[12pt] text-[14px] font-batang">
-              &nbsp;호
+              &nbsp;호 부동산
             </span>
           </div>
           <span className="md:text-[12pt] text-[14px] font-batang">
-            경매사건에 관한입찰행위 일체
+            경매사건에 관한 입찰행위 일체
           </span>
         </div>
         <div className="flex flex-col gap-[10px] w-[100%] justify-center items-center absolute top-[550px]">
@@ -154,7 +165,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                     <div className="flex flex-row md:gap-[50px] gap-[5%] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
                       <div className="flex w-[80%] md:justify-end justify-center">
                         <span className="md:text-[12pt] text-[12px] font-batang">
-                          {(totalResult.bidders[index]?.mandateYn === 'Y' && totalResult.bidders[index]?.name) ?? ''}
+                          {mandateList[index]?.name ?? ''}
                         </span>
                       </div>
                       <div className="flex w-[20%] font-batang justify-end mr-1">
@@ -173,7 +184,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                     </div>
                     <div className="flex w-[30%] justify-center items-center text-center">
                       <span className="md:text-[12pt] text-[12px] font-batang">
-                        {(totalResult.bidders[index]?.mandateYn === 'Y' && totalResult.bidders[index]?.job) ?? ''}
+                        {mandateList[index]?.job ?? ''}
                       </span>
                     </div>
                   </div>
@@ -187,7 +198,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                       <div className="flex gap-[50px] w-[30%] border-black border-r-[1px] justify-center items-center text-center">
                         <span className="md:text-[12pt] text-[12px] font-batang">
                           {
-                            totalResult.bidders[index]?.mandateYn === 'Y' ? (biddingInfo.bidCorpYn[index] === 'I' ? (biddingInfo.bidIdNum[index]?.substring(0, 6) + '-' + biddingInfo.bidIdNum[index]?.substring(6, 13)) : (biddingInfo.bidCorpYn[index] === 'C' ? (totalResult.bidders[index]?.companyNo?.substring(0, 3) + '-' + totalResult.bidders[index]?.companyNo?.substring(3, 5) + '-' + totalResult.bidders[index]?.companyNo?.substring(5, 10)) : '')) : ''
+                            mandateList[index]?.mandateYn === 'Y' ? (biddingInfo.bidCorpYn[mandateList[index].peopleSeq - 1] === 'I' ? (biddingInfo.bidIdNum[mandateList[index].peopleSeq - 1]?.substring(0, 6) + '-' + biddingInfo.bidIdNum[mandateList[index].peopleSeq - 1]?.substring(6, 13)) : (biddingInfo.bidCorpYn[mandateList[index].peopleSeq - 1] === 'C' ? (mandateList[index]?.companyNo?.substring(0, 3) + '-' + mandateList[index]?.companyNo?.substring(3, 5) + '-' + mandateList[index]?.companyNo?.substring(5, 10)) : '')) : ''
                           }
                         </span>
                       </div>
@@ -199,8 +210,8 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                       <div className="flex w-[30%] justify-center items-center text-center">
                         <span className="md:text-[12pt] text-[12px] font-batang">
                           {
-                            totalResult.bidders[index]?.mandateYn === 'Y' ? (totalResult.bidders[index]?.phoneNo.length === 10 ? (totalResult.bidders[index]?.phoneNo?.substring(0, 2) + '-' + totalResult.bidders[index]?.phoneNo?.substring(2, 6) + '-' + totalResult.bidders[index]?.phoneNo?.substring(6, 10)) : (
-                              totalResult.bidders[index]?.phoneNo?.substring(0, 3) + '-' + totalResult.bidders[index]?.phoneNo?.substring(3, 7) + '-' + totalResult.bidders[index]?.phoneNo?.substring(7, 11)
+                            mandateList[index]?.mandateYn === 'Y' ? (mandateList[index]?.phoneNo.length === 10 ? (mandateList[index]?.phoneNo?.substring(0, 2) + '-' + mandateList[index]?.phoneNo?.substring(2, 6) + '-' + mandateList[index]?.phoneNo?.substring(6, 10)) : (
+                              mandateList[index]?.phoneNo?.substring(0, 3) + '-' + mandateList[index]?.phoneNo?.substring(3, 7) + '-' + mandateList[index]?.phoneNo?.substring(7, 11)
                             )) : ''
                           }
                         </span>
@@ -218,7 +229,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                     </div>
                     <div className="flex w-[80%] justify-center items-center text-center">
                       <span className="md:text-[12pt] text-[12px] font-batang">
-                        {(totalResult.bidders[index]?.mandateYn === 'Y' && totalResult.bidders[index]?.address) ?? ''}
+                        {mandateList[index]?.address ?? ''}
                       </span>
                     </div>
                   </div>
@@ -421,7 +432,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
               </div>
             )}))
         }
-          <div className="flex flex-col justify-center gap-[25px] w-[80%] mt-[25px]">
+          <div className="flex flex-col justify-center w-[80%] mt-[25px]">
             <span className="text-left font-batang md:text-[12pt] text-[12px]">
               * 본인의 인감 증명서 첨부
             </span>

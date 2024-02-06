@@ -17,7 +17,7 @@ export default function CoIpchalForm({ totalResult }: CoIpchalFormProps) {
           </div>
           <div className="flex justify-end text-right w-[100%] md:w-[80%] absolute top-[200px] mr-2">
             <span className="md:text-[12pt] text-[12px] font-batang">
-              {totalResult && totalResult?.reqCourtName + ' 본원 집행관 귀하'}
+              {totalResult && totalResult?.reqCourtName + ' 집행관 귀하'}
             </span>
           </div>
           <div className="flex flex-col gap-[10px] justify-start w-[100%] md:w-[80%] ml-2 absolute top-[350px]">
@@ -62,7 +62,7 @@ export default function CoIpchalForm({ totalResult }: CoIpchalFormProps) {
               </span>
             </div>
           </div>
-          <div className="flex flex-col gap-[30px] justify-center items-center w-[100%] md:w-[80%] absolute top-[600px] ">
+          <div className="flex flex-col gap-[30px] text-left justify-center items-center w-[100%] md:w-[80%] absolute top-[600px] ">
             <span className="md:text-[12pt] text-[12px] text-black-500 font-bold font-batang">
               {totalResult && totalResult?.biddingDate.substring(0, 4) + ' 년 ' + totalResult?.biddingDate.substring(4, 6) + ' 월 ' + totalResult?.biddingDate.substring(6, 8) + ' 일'}
             </span>

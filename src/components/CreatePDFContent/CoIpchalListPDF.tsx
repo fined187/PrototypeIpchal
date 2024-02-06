@@ -30,7 +30,7 @@ export default function CoIpchalListPDF({ totalResult }: CoIpchalProps) {
     return currentList
   }
   return (
-    <div className={`flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center absolute top-[2600px] overflow-x-scroll scrollbar-hide`}>
+    <div className={`flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center absolute top-[3900px] overflow-x-scroll scrollbar-hide`}>
       <div className="flex flex-col bg-white h-[100%] md:w-[90%] w-[100%] m-auto absolute top-0 items-center">
         <span className="text-[18pt] font-batang py-[30px]">
           공 동 입 찰 자 목 록

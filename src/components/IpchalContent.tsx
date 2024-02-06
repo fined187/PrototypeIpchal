@@ -18,7 +18,7 @@ export default function IpchalContent({ onClose }: {onClose: () => void}) {
             {biddingInfo.agentName !== '' && (
               <ModalAgentList />
             )}
-            <div className="fixed md:w-[40%] w-[80%] justify-center items-center text-center bg-mygold rounded-md h-[4%] cursor-pointer md:top-[80%] top-[90%]" onClick={() => {
+            <div className="flex fixed md:w-[40%] w-[80%] justify-center items-center text-center bg-mygold rounded-md h-[4%] cursor-pointer md:top-[80%] top-[90%]" onClick={() => {
               onClose()
             }}>
               <span className="text-white font-bold text-center justify-center items-center">
