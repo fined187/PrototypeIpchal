@@ -2,9 +2,7 @@ import { biddingInfoState, stepState } from "@/atom";
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil";
-import LoadingResult from "../LoadingResult";
 import CoIpchalForm from "./CoIpchalForm";
-import IpchalText from "./IpchalText";
 import CoIpchalList from "./CoIpchalList";
 
 export default function CoIpchalResult() {
@@ -12,6 +10,11 @@ export default function CoIpchalResult() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
   const [stateNum, setStateNum] = useRecoilState(stepState);
   const [loading, setLoading] = useState<boolean>(false)
+
+  const totalPage = Math.ceil((totalResult?.bidders.length ?? 0) / 10) // 10개씩 나눠서 페이지 수 계산
+  const listPerPage = 10 // 한 페이지에 보여줄 리스트 수
+  let currentPage = 1
+  let currentList: any = []
 
   const handlePrice = (len: number) => {
     if (12 - len > 0) {
@@ -27,6 +30,18 @@ export default function CoIpchalResult() {
     } else {
       return totalResult?.bidDeposit?.toString()
     }
+  }
+
+  const handleCoIpchalReturnList = () => {
+    let startIndex = (currentPage - 1) * listPerPage
+    let endIndex = startIndex + listPerPage
+    for (let i = 0; i < totalPage; i++) {
+      currentList.push(totalResult?.bidders.slice(startIndex, endIndex))
+      startIndex = endIndex
+      endIndex = endIndex + listPerPage
+      currentPage++
+    }
+    return currentList.filter((item: any) => item.length > 0)
   }
 
   useEffect(() => {
@@ -847,7 +862,17 @@ export default function CoIpchalResult() {
           </div>
         </div>
         <CoIpchalForm totalResult={totalResult} />
-        <CoIpchalList totalResult={totalResult} />
+        {totalResult && totalResult?.bidders.length > 10 ? (
+          handleCoIpchalReturnList().map((item: any, index: number) => (
+            <CoIpchalList
+              key={index}
+              item={item}
+              totalResult={totalResult}
+            />
+          ))
+        ) : (
+          <CoIpchalList totalResult={totalResult} />
+        )}
       </>
     )}
     </>

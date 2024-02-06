@@ -273,13 +273,13 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-[15px] pt-[10px] md:w-[550px] w-[90%] md:min-h-[350px] md:max-h-[450px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
+        <div className="flex flex-col gap-[20px] md:w-[550px] w-[90%] md:min-h-[350px] md:max-h-[450px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll pt-[150px]">
           {loadding && (
             <Spinner />
           )}
           {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
             return (
-              <div key={index} className="flex justify-between mb-5 w-full">
+              <div key={index} className="flex justify-between mb-5 w-full relative top-[50px]">
                 <div className="flex w-[40%] ml-5">
                   <span className="text-[15px] text-center font-bold font-NanumGothic">
                     {name}

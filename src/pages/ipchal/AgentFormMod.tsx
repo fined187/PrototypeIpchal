@@ -191,9 +191,12 @@ export default function AgentForm() {
       )}
       {!loading && (
         <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
-          <div className="flex flex-row py-6 pt-4">
+          <div className="flex flex-col gap-2 justify-center items-center py-6 pt-4">
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               대리인 정보를 입력해주세요
+            </span>
+            <span className="text-[12px] font-semibold font-NanumGothic not-italic text-left text-red-500">
+              (* 표시는 필수 입력사항입니다.)
             </span>
           </div>
 
@@ -216,13 +219,13 @@ export default function AgentForm() {
                           </label>
                         </div>
                       ) : (
-                        <div className='flex w-[100%] justify-start'>
-                          <label
-                            htmlFor="agentName"
-                            className="text-[11pt] font-semibold font-NanumGothic not-italic text-left"
-                          >
+                        <div className='flex flex-row'>
+                          <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
                             성명
-                          </label>
+                          </span>
+                          <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                            *
+                          </span>
                         </div>
                       )}
                   </div>
@@ -266,10 +269,13 @@ export default function AgentForm() {
                       <div className='flex w-[100%] justify-start'>
                         <label
                           htmlFor="agentRel"
-                          className="text-[11pt] font-semibold font-NanumGothic not-italic text-left"
+                          className="text-[11pt] font-semibold font-NanumGothic not-italic   text-left"
                         >
                           입찰자와의 관계
                         </label>
+                        <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                          *
+                        </span>
                       </div>
                     )}
                   </div>
@@ -312,10 +318,13 @@ export default function AgentForm() {
                     <div className='flex w-[100%] justify-start'>
                       <label
                         htmlFor="agentPhone"
-                        className="text-[11pt] font-semibold font-NanumGothic not-italic text-left"
+                        className="text-[11pt] font-semibold font-NanumGothic not-italic   text-left"
                       >
                         전화번호
                       </label>
+                      <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                        *
+                      </span>
                     </div>
                   )}
                 </div>
@@ -542,6 +551,9 @@ export default function AgentForm() {
                         >
                           직업
                         </label>
+                        <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                          *
+                        </span>
                       </div>
                     )}
                   </div>
@@ -576,7 +588,7 @@ export default function AgentForm() {
                   setValue={setValue}
                 />
               </div>
-              <div className="flex flex-row gap-[10px] absolute top-[550px] justify-center items-center md:w-[50%] w-[80%]">
+              <div className="flex flex-row gap-[10px] absolute top-[600px] justify-center items-center md:w-[50%] w-[80%]">
                 <button
                   type="button"
                   className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

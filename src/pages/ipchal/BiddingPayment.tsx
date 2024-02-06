@@ -27,7 +27,6 @@ export default function BiddingPayment() {
         },
       )
       if (response.status === 200) {
-        console.log(response.data)
         setTimeout(() => {
           setLoading(false)
           setStateNum(stateNum + 1)

@@ -43,24 +43,31 @@ export default function CreateFile() {
     }
   }
 
+  const mandateNumber = totalResult?.bidders.map((item) => item.mandateYn).filter((item) => item === 'Y').length
   const handleGetHeight = () => {
     //  1. 입찰자가 1명일 때 + 대리인이 없을 때
-    if (biddingInfo.agentName === '' && biddingInfo.bidderNum === 1) {
+    if (biddingInfo.agentName === '' && biddingInfo.bidderNum === 1) {          //  2장
       setGetHeight(590)
-    } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum === 1) {
+    } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum === 1) {   //  3장
       //  2. 입찰자가 1명일 때 + 대리인이 있을 때
       setGetHeight(885)
-    } else if (biddingInfo.agentName === '' && biddingInfo.bidderNum > 1) {
+    } else if (biddingInfo.agentName === '' && biddingInfo.bidderNum > 1) {     //  4장
       //  3. 입찰자가 2명 이상일 때 + 대리인이 없을 때
       setGetHeight(1180)
-    } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum > 1) {
+    } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum > 1) {     
       //  4. 입찰자가 2명 이상일 때 + 대리인이 있을 때
-      if (biddingInfo.bidderNum <= 3) {
-        //  4-1. 입찰자가 2명일 때
+      if (mandateNumber && mandateNumber <= 3 && biddingInfo.bidderNum <= 10) {   //  5장
+        //  4-1. 대리인이 3명 이하일 때
         setGetHeight(1475)
-      } else if (biddingInfo.bidderNum > 3) {
+      } else if (biddingInfo.bidderNum > 10 && (mandateNumber && mandateNumber <= 3)) {   //  6장 이상
         //  4-2. 입찰자가 3명 이상일 때
-        setGetHeight(1180 + (295 * Math.ceil(totalResult?.bidders.length! / 3)))
+        setGetHeight(1180 + (295 * Math.ceil(totalResult?.bidders.length! / 10)))
+      } else if (biddingInfo.bidderNum > 10 && (mandateNumber && mandateNumber > 3)) {
+        setGetHeight(885 + (295 * Math.ceil(totalResult?.bidders.length! / 10)) + (295 * Math.ceil(mandateNumber / 3)))
+      } else if (biddingInfo.bidderNum <= 10 && (mandateNumber && mandateNumber > 3)) {
+        setGetHeight(1180 + (295 * Math.ceil(mandateNumber / 3)))
+      } else {
+        setGetHeight(1475)
       }
     }
   }
@@ -100,12 +107,13 @@ export default function CreateFile() {
           imageFile: imgData,
         })
         doc.text('100', 100, 20)
+
         doc?.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
         heightLeft -= pageHeight
         while (heightLeft >= 20) {
           position = heightLeft - imgHeight
-          doc.addPage()
-          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+          doc?.addPage()
+          doc?.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
           heightLeft -= pageHeight
         }
         const blob = doc.output('blob')

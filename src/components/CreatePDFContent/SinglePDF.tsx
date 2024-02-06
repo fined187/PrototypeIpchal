@@ -15,8 +15,8 @@ export default function SinglePDF({ totalResult, handlePrice, handleDepositPrice
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
 
   return (
-    <div className={`flex flex-col bg-white ${totalResult && totalResult.agentYn === 'Y' ? 'h-[3900px]' : 'h-[2600px]'} md:w-[50%] w-[800px] mx-auto relative justify-center items-center`} id="wrap-capture">
-      <div className="flex flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
+    <div className={`hidden flex-col bg-white ${totalResult && totalResult.agentYn === 'Y' ? 'h-[3900px]' : 'h-[2600px]'} md:w-[50%] w-[800px] mx-auto relative justify-center items-center`} id="wrap-capture">
+      <div className="hidden flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
         <div className="flex flex-col bg-white h-[100%] md:w-[100%] w-[100%] mx-auto relative justify-center items-center">
           <CoverPage totalResult={totalResult} />
           <div className="w-[100%] overflow-x-scroll absolute top-[1400px] h-[650px] bg-white scrollbar-hide">

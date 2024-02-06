@@ -9,7 +9,6 @@ export default function AgentCheck() {
   const [checkedItems, setCheckedItems] = useState(biddingInfo.bidName.map((name: any, index: number) => false));
 
   const allChecked = checkedItems.every(Boolean);
-  console.log(biddingInfo)
   useEffect(() => {
     const handleGetMandates = async () => {
       try {
@@ -91,8 +90,8 @@ export default function AgentCheck() {
             <label htmlFor="allChecked" className="ml-2 text-[14pt] text-black font-bold dark:text-gray-400">전체 선택</label>
           </div>
         </div>
-        <div className="flex flex-col gap-10 w-[90%] md:w-[40%] min-h-[350px] max-h-[450px] border border-gray-[1px] bg-white absolute top-[110px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
-          <div className="flex flex-col gap-[25px] justify-center items-center w-[80%] h-[100%] ">
+        <div className="flex flex-col gap-10 w-[90%] md:w-[40%] min-h-[350px] max-h-[400px] border border-gray-[1px] bg-white absolute top-[110px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll pt-[120px]">
+          <div className="flex flex-col gap-[20px] justify-center items-center w-[80%] h-[100%] ">
             {biddingInfo.bidName.map((name: any, index: number) => (
               <div className="flex w-[90%] h-[100%] justify-between ">
                 <span className="md:text-[15pt] text-[12pt] font-NanumGothic font-bold">
@@ -128,6 +127,9 @@ export default function AgentCheck() {
         <button
           type="button"
           className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+          onClick={() => {
+            setStateNum(15)
+          }}
         >
           <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
             이전

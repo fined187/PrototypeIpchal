@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 export default function AgentListFormPDF({ totalResult, bidders }: { totalResult: TotalResultType, bidders?: any }) {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
   const [mandateList, setMandateList] = useState<any>([])
+  const [topHeight, setTopHeight] = useState<any>('')
 
   const handleMandateList = () => {
     let mandatesList = totalResult?.bidders.filter((item) => item.mandateYn === 'Y')
@@ -16,9 +17,23 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
     handleMandateList()
   }, [])
 
+  const handleTop = () => {
+    if (totalResult && totalResult?.bidders.length === 1) {
+      setTopHeight('2600px')
+    } else if (totalResult && totalResult.bidders.length > 10) {
+      setTopHeight(`${(1000 * Math.ceil(totalResult && totalResult?.bidders.length / 10))}px`)
+    } else {
+      setTopHeight('2050px')
+    }
+  }
+  
+  useEffect(() => {
+    handleTop()
+  }, [])
+
   return (
     <div className="flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center overflow-x-scroll scrollbar-hide" style={{
-      top: totalResult && totalResult?.bidders.length === 1 ? '2600px' : '2650px',
+      top: topHeight ? topHeight : '2050px',
       position: 'relative',
     }}>
       <div className="flex flex-col bg-white h-[100%] md:w-[90%] w-[100%] m-auto relative justify-center items-center">

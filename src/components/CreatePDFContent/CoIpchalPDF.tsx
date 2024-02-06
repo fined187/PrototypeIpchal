@@ -18,6 +18,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
   const [maxHeight, setMaxHeight] = useState<number>(3900)
+  
   const mandatesList = totalResult?.bidders.filter((item) => item.mandateYn === 'Y')
 
   const totalPage = Math.ceil((mandatesList?.length ?? 0) / 3)
@@ -39,12 +40,14 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
 
   useEffect(() => {
     const handleMaxHeight = () => {
-      if (totalResult && totalResult.agentYn === 'Y' && totalResult.bidders.length <= 3) {
+      if (totalResult && totalResult.agentYn === 'Y' && mandatesList.length <= 3 && totalResult.bidders.length <= 10) {
         setMaxHeight(6500)
-      } else if (totalResult && totalResult.agentYn === 'Y' && totalResult.bidders.length > 3) {
-        setMaxHeight(Math.ceil(totalResult && totalResult.bidders.length / 3) * 1300 + 5200)
-      } else if (totalResult.bidders.length <= 3) {
-        setMaxHeight(5200)
+      } else if (totalResult && totalResult.agentYn === 'Y' && mandatesList.length > 3 && totalResult.bidders.length <= 10) {
+        setMaxHeight(Math.ceil(mandatesList.length / 3) * 1300 + 5200)
+      } else if (totalResult && totalResult.agentYn === 'Y' && mandatesList.length <= 3 && totalResult.bidders.length > 10) {
+        setMaxHeight(Math.ceil(totalResult.bidders.length / 10) * 1300 + 5200)
+      } else if (totalResult && totalResult.agentYn === 'Y' && mandatesList.length > 3 && totalResult.bidders.length > 10) {
+        setMaxHeight(Math.ceil(totalResult.bidders.length / 10) * 1300 + Math.ceil(mandatesList.length / 3) * 1300 + 3900)
       } else {
         setMaxHeight(5200)
       }
@@ -52,12 +55,29 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
     handleMaxHeight()
   }, [totalResult && totalResult.bidders.length, totalResult && totalResult.agentYn])
 
+  const listTotalPage = Math.ceil((totalResult?.bidders.length ?? 0) / 10)
+  const ipchalPerPage = 10
+  let listCurrentPage = 1
+  let listCurrentList: any = []
+
+  const handleCoIpchalReturnList = () => {
+    let startIndex = (listCurrentPage - 1) * ipchalPerPage
+    let endIndex = startIndex + ipchalPerPage
+    for (let i = 0; i < listTotalPage; i++) {
+      listCurrentList.push(totalResult?.bidders.slice(startIndex, endIndex))
+      startIndex = endIndex
+      endIndex = endIndex + ipchalPerPage
+      listCurrentPage++
+    }
+    return listCurrentList.filter((item: any) => item.length > 0)
+  }
+
   return (
-    <div className={`flex flex-col md:w-[50%] w-[800px] justify-center items-center mx-auto`} id="wrap-capture" style={{
-      height: `${maxHeight}px` !== 'NaNpx' ? `${maxHeight}px` : '3900px'
+    <div className="hidden flex-col md:w-[50%] w-[800px] justify-center items-center mx-auto" id="wrap-capture" style={{
+      height: `${maxHeight} !== NaN` ? `${maxHeight}px` : '3900px' 
     }}>
-      <div className="flex flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
-        <div className={`flex flex-col bg-white h-[100%] w-[100%] mx-auto relative justify-center items-center`}>
+      <div className="hidden flex-col h-[100%] w-[100%] justify-center items-center relative" id="capture">
+        <div className="flex flex-col bg-white h-[100%] w-[100%] mx-auto relative justify-center items-center">
           <CoverPage totalResult={totalResult} />
           <div className="w-[100%] overflow-x-scroll absolute top-[1400px] h-[650px] bg-white scrollbar-hide">
             <div className="border border-black text-[1.5rem] md:w-[800px] w-[85%] h-[100%] m-auto bg-white">
@@ -800,7 +820,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
           </div>
           <IpcahlTextPDF />
           <CoIpchalFormPDF totalResult={totalResult} />
-          <CoIpchalListPDF totalResult={totalResult} />
+          {totalResult && totalResult?.bidders.length > 10 ? (
+            handleCoIpchalReturnList().map((item: any, index: number) => (
+              <CoIpchalListPDF totalResult={totalResult} item={item} key={index} />
+            ))
+          ) : (
+            <CoIpchalListPDF totalResult={totalResult} />
+          )}
           {(totalResult && totalResult.agentYn === 'Y') && (
             totalResult && totalResult.bidders.length > 3 ? (
               handleReturnList().map((item: any, index: number) => (

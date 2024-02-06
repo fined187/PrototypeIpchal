@@ -263,15 +263,13 @@ export default function BidderFormMod() {
         }
       })
       if (response.status === 200) {
-        console.log(response)
+        
         return
       }
     } catch (error) {
       console.log(error)
     }
   }
-
-
 
   //  전화번호 검증
   const handleVerifyPhone = (phone: string) => {

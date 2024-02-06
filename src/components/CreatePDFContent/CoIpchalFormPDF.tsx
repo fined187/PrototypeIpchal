@@ -9,7 +9,9 @@ interface CoIpchalFormProps {
 export default function CoIpchalFormPDF({ totalResult }: CoIpchalFormProps) {
   const [stateNum, setStateNum] = useRecoilState(stepState)
   return (
-    <div className={`flex flex-col bg-white h-[1300px] w-[800px] m-auto absolute top-[2600px] overflow-x-scroll scrollbar-hide `}>
+    <div className={`flex flex-col bg-white w-[800px] m-auto absolute top-[2600px] overflow-x-scroll scrollbar-hide `} style={{
+      height: '1300px',
+    }}>
       <div className="flex flex-col bg-white h-[100%] md:w-[90%] w-[100%] m-auto relative justify-center items-center">
         <div className="flex flex-col w-[100%] h-[100%] justify-center items-center">
           <div className="text-[18pt] py-[60px] leading-[23px] font-batang absolute top-0">

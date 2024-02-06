@@ -15,9 +15,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
   useEffect(() => {
     handleMandateList()
   }, [])
-
-  console.log('mandateList', mandateList)
-  console.log(bidders && bidders)
+  
   return (
     <div className={`flex flex-col bg-white h-[1300px] md:w-[50%] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
       <div className="flex flex-col bg-mybg h-[100%] w-[100%] m-auto relative justify-center items-center">

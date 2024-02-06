@@ -3,10 +3,10 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import LoadingResult from '@/components/LoadingResult'
-import CoIpchalContent from '@/components/CoIpchalContent/CoIpchalResult'
 import AgentListForm from '@/components/CoIpchalContent/AgentListForm'
 import { TotalResultType } from '@/interface/IpchalType'
 import SingleIpchalResult from '@/components/SingleIpchalContent/SingleIpchalResult'
+import CoIpchalResult from '@/components/CoIpchalContent/CoIpchalResult'
 
 export default function IpchalResult() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
@@ -69,7 +69,7 @@ export default function IpchalResult() {
         <SingleIpchalResult totalResult={totalResult} />
       )}
       {!loading && (totalResult && totalResult.bidders.length > 1) && (
-        <CoIpchalContent />
+        <CoIpchalResult />
       )}
       {!loading && (totalResult && totalResult.agentYn === 'Y') && (
         totalResult && totalResult.bidders.length > 3 ? (
