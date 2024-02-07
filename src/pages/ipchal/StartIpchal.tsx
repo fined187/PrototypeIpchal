@@ -49,7 +49,7 @@ export default function StartIpchal() {
             biddingDate: (response.data.data.startYear) +
             (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
             (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
-            sagunAddr: response.data.data.address + "[일괄]",
+            sagunAddr: response.data.data.address,
             usage: response.data.data.usage,
             etcAddress: response.data.data.etcAddress,
             roadAddress: response.data.data.roadAddress,

@@ -26,16 +26,16 @@ export default function CoIpchalForm({ totalResult }: CoIpchalFormProps) {
                 사건번호
               </span>
               <div className="flex flex-row gap-3">
-                <span className="md:text-[12pt] text-[12px] text-black-500 font-bold font-batang">
+                <span className="md:text-[12pt] text-[12px] text-black-500 font-batang">
                   {totalResult && totalResult?.caseYear}
                 </span>
-                <span className="md:text-[12pt] text-[12px] text-black font-bold font-batang">
+                <span className="md:text-[12pt] text-[12px] text-black font-batang">
                   {' 타경 '}
                 </span>
-                <span className="md:text-[12pt] text-[12px] text-black-500 font-bold font-batang">
+                <span className="md:text-[12pt] text-[12px] text-black-500 font-batang">
                   {totalResult && totalResult?.caseDetail }
                 </span>
-                <span className="md:text-[12pt] text-[12px] text-black font-bold">
+                <span className="md:text-[12pt] text-[12px] text-black ">
                   {'호'}
                 </span>
               </div>
@@ -44,7 +44,7 @@ export default function CoIpchalForm({ totalResult }: CoIpchalFormProps) {
               <span className="md:text-[12pt] text-[12px] font-bold font-batang">
                 물건번호
               </span>
-              <span className="md:text-[12pt] text-[12px] text-black-500 font-bold font-batang">
+              <span className="md:text-[12pt] text-[12px] text-black-500 font-batang">
                 {totalResult && totalResult?.mulNo === '' ? '1' : totalResult?.mulNo}
               </span>
             </div>
@@ -63,20 +63,20 @@ export default function CoIpchalForm({ totalResult }: CoIpchalFormProps) {
             </div>
           </div>
           <div className="flex flex-col gap-[30px] text-left justify-center items-center w-[100%] md:w-[80%] absolute top-[600px] ">
-            <span className="md:text-[12pt] text-[12px] text-black-500 font-bold font-batang">
+            <span className="md:text-[12pt] text-[12px] text-black-500 font-batang">
               {totalResult && totalResult?.biddingDate.substring(0, 4) + ' 년 ' + totalResult?.biddingDate.substring(4, 6) + ' 월 ' + totalResult?.biddingDate.substring(6, 8) + ' 일'}
             </span>
             <div className="flex flex-row justify-center items-center gap-[10px] w-[100%]">
               <span className="md:text-[12pt] text-[12px] font-batang">
                 신청인
               </span>
-              <span className="text-[12pt] font-batang text-black-500 font-bold">
+              <span className="text-[12pt] font-batang text-black-500">
                 {totalResult && totalResult?.bidders[0]?.name}
               </span>
               <span className="md:text-[12pt] text-[12px] font-batang">
                 외
               </span>
-              <span className="md:text-[12pt] text-[12px] font-batang text-black-500 font-bold">
+              <span className="md:text-[12pt] text-[12px] font-batang text-black-500">
                 {totalResult && totalResult?.bidders.length - 1}
               </span>
               <span className="md:text-[12pt] text-[12px] font-batang">

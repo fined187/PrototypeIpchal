@@ -148,15 +148,12 @@ export default function ShareInfo() {
     handleShareList()
   }, [biddingInfo.shareWay])
 
-  console.log(biddingInfo)
-
   useEffect(() => {
     const handleSyncBiddingForm = async () => {
       setLoadding(true)
       try {
         const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`)
         if (response.status === 200) {
-          console.log(response)
           setIsDataIn(response.data.data.bidders)
           setBiddingInfo({
             ...biddingInfo,
@@ -273,14 +270,14 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-[50px] md:w-[550px] w-[90%] md:min-h-[350px] md:max-h-[450px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
+        <div className="flex flex-col gap-[25px] md:w-[550px] w-[90%] min-h-[350px] md:max-h-[450px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
           {loadding && (
             <Spinner />
           )}
           {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
             return (
-              <div key={index} className="flex justify-between mb-5 w-full relative">
-                <div className="flex w-[40%] ml-5">
+              <div key={index} className="flex justify-between mb-5 md:w-[70%] w-[90%] relative">
+                <div className="flex w-[40%] mt-[10px]">
                   <span className="text-[15px] text-center font-bold font-NanumGothic">
                     {name}
                   </span>
@@ -378,7 +375,7 @@ export default function ShareInfo() {
             )}
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[600px] w-[400px] gap-[10px] absolute top-[700px]">
+        <div className="flex flex-row justify-center items-center md:w-[600px] w-[400px] gap-[10px] absolute top-[600px]">
           <button
             type="button"
             className="flex w-[30%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

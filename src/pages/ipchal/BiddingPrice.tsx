@@ -96,7 +96,6 @@ export default function BiddingPrice() {
             }
           })
           if (response.status === 200) {
-            console.log(response)
             return
           }
         } catch (error) {
@@ -114,7 +113,7 @@ export default function BiddingPrice() {
       return
     }
     if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 2) {
-      if (window.confirm('최저가의 100% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
+      if (window.confirm('최저가의 200% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
         setErrorMsg(false)
         handleGetBiddingFormUpdate()
       } else {
@@ -123,7 +122,7 @@ export default function BiddingPrice() {
       }
     }
     if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 1.1 && biddingForm.biddingPrice < paymentsInfo.minimumAmount * 1.2) {
-      if (window.confirm('최저가의 10% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
+      if (window.confirm('최저가의 110% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
         setErrorMsg(false)
         handleGetBiddingFormUpdate()
       } else {
@@ -132,7 +131,7 @@ export default function BiddingPrice() {
       }
     }
     if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 1.2 && biddingForm.biddingPrice < paymentsInfo.minimumAmount * 2) {
-      if (window.confirm('최저가의 20% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
+      if (window.confirm('최저가의 120% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
         setErrorMsg(false)
         handleGetBiddingFormUpdate()
       } else {
@@ -275,23 +274,31 @@ export default function BiddingPrice() {
               </span>
             </div>
           </div>
-          <div className="flex flex-col gap-2 md:w-[550px] md:h-[250px] w-[90%] h-[35%] bg-white absolute top-[100px] border-slate-500 justify-center items-center">
-            <div className='flex flex-col gap-[10px] w-[100%] justify-center items-center'>
-              <div className='flex flex-row w-[90%] justify-center'>
-                <span className="text-[15px] font-bold font-NanumGothic text-center leading-[11px]">
-                  감정가 :
-                </span>
-                <span className="text-mygold text-[15px] font-bold font-NanumGothic leading-[11px]">
-                  &nbsp;&nbsp;&nbsp;{paymentsInfo.appraisalAmount.toLocaleString('ko-KR')}
-                </span>
+          <div className="flex flex-col gap-2 md:w-[550px] md:h-[300px] w-[90%] h-[35%] bg-white absolute top-[100px] border-slate-500 justify-center items-center">
+            <div className='flex flex-col w-[100%] justify-center items-center'>
+              <div className='flex justify-between md:w-[35%] w-[50%]'>
+                <div className='flex md:w-[30%] w-[40%] justify-center items-center'>
+                  <span className="md:text-[15px] text-[14px] font-bold font-NanumGothic text-center">
+                    감정가 :
+                  </span>
+                </div>
+                <div className='flex w-[50%] justify-end'>
+                  <span className="text-mygold md:text-[15px] text-[14px] font-bold font-NanumGothic text-right">
+                    &nbsp;&nbsp;&nbsp;{paymentsInfo.appraisalAmount.toLocaleString('ko-KR')}
+                  </span>
+                </div>
               </div>
-              <div className='flex flex-row w-[90%] justify-center '>
-                <span className="text-[15px] font-bold font-Nanum Gothic text-center leading-[11px]">
-                  최저가 :
-                </span>
-                <span className="text-mygold text-[15px] font-bold font-Nanum Gothic leading-[11px]">
-                &nbsp;&nbsp;&nbsp;{paymentsInfo.minimumAmount.toLocaleString('ko-KR')}
-                </span>
+              <div className='flex justify-between md:w-[35%] w-[50%]'>
+                <div className='flex md:w-[30%] w-[40%] justify-center items-center'>
+                  <span className="md:text-[15px] text-[14px] font-bold font-NanumGothic text-center ">
+                    최저가 :
+                  </span>
+                </div>
+                <div className='flex w-[40%] justify-end'>
+                  <span className="text-mygold md:text-[15px] text-[14px] font-bold font-NanumGothic text-right">
+                    &nbsp;&nbsp;&nbsp;{paymentsInfo.minimumAmount.toLocaleString('ko-KR')}
+                  </span>
+                </div>
               </div>
             </div>
             <div className="flex flex-row gap-[20px] w-[90%]">
@@ -320,19 +327,19 @@ export default function BiddingPrice() {
             </div>
             <div className="flex justify-between w-[85%] h-[40px] md:h-[30px] border-b-2 border-myyellow">
               <div className='flex w-[20%]'>
-                <span className="text-[12px] text-mygold font-NanumGothic not-italic font-bold leading-[9px] mb-2">
+                <span className="text-[12px] text-mygold font-NanumGothic not-italic font-bold mb-2">
                   일금
                 </span>
               </div>
               <div className='flex w-[80%] justify-end'>
                 <span className="text-[12px] font-NanumGothic not-italic font-bold text-red-500 mb-2">
-                  {num2han(biddingForm.biddingPrice) + '원'  + "(최저가 대비 " + (((biddingForm.biddingPrice - paymentsInfo.minimumAmount) / (paymentsInfo.minimumAmount)) * 100).toFixed(2) + "%)"}
+                  {num2han(biddingForm.biddingPrice) + '원'  + "(최저가의 " + (((biddingForm.biddingPrice - paymentsInfo.minimumAmount) / (paymentsInfo.minimumAmount)) * 100 + 100).toFixed(2) + "%)"}
                 </span>
               </div>
             </div>
             <div className="flex flex-row gap-[20px] w-[90%]">
               <div className="flex justify-start md:w-[20%] w-[30%] pt-[20px] md:ml-[10px]">
-                <span className="md:text-[15px] text-[12px] font-NanumGothic not-italic font-bold leading-[9px]">
+                <span className="md:text-[15px] text-[12px] font-NanumGothic not-italic font-bold ">
                   입찰보증금
                 </span>
               </div>

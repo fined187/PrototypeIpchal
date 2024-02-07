@@ -170,7 +170,6 @@ export default function CreateFile() {
         },
       )
       if (response.status === 200) {
-        console.log(response)
         setLoading(false)
         return
       }

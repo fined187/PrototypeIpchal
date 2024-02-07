@@ -37,7 +37,7 @@ export default function PreparingList() {
       setMsg(`${biddingInfo.agentName}님이 ${biddingInfo.bidderNum} 명의 법인 대리입찰하셨습니다.`)
       setDetailList(['- 법인 등기부', '- 법인의 인감증명서', '- 법인의 인감이 날인된 위임장', '- 대리인 도장', '- 대리인 신분증', '- 공동입찰신고서', '- 공동입찰자 목록'])
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName !== '' && (biddingInfo.bidCorpYn.includes('I') && biddingInfo.bidCorpYn.includes('C'))) {
-      setMsg(`${biddingInfo.agentName}님이 법인을 포함한 ${biddingInfo.bidderNum} 명의 공동대리입찰하셨습니다.`)
+      setMsg(`${biddingInfo.agentName}님이 법인을 포함한 ${biddingInfo.bidderNum} 명의 대리 공동입찰하셨습니다.`)
       setDetailList(['- 본인의 인감증명서', '- 본인의 인감이 날인된 위임장', '- 대리인 도장', '- 대리인 신분증', '- 법인 등기부', '- 법인의 인감증명서', '- 법인의 인감이 날인된 위임장', '- 공동입찰신고서', '- 공동입찰자 목록'])
     }
   }

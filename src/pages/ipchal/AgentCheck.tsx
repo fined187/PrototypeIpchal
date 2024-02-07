@@ -42,7 +42,6 @@ export default function AgentCheck() {
         }
       })
       if (response.status === 200) {
-        console.log(response)
         return
       }
     } catch (error) {
@@ -67,11 +66,11 @@ export default function AgentCheck() {
           <span className="md:text-[1.5rem] text-[1.2rem] font-bold font-Nanum Gothic not-italic leading-8">
             어느 입찰자를 대리하시겠습니까?
           </span>
-          <div className="flex items-center absolute bottom-0 justify-end w-[100%]">
+          <div className="flex items-center relative md:top-[40px] top-[10px] md:right-[10px] right-[20px] justify-end w-[100%]">
             <input 
               id="allChecked"
               checked={allChecked}
-              className="w-[20px] h-[20px] accent-mygold text-white bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600" 
+              className="md:w-[20px] md:h-[20px] w-[15px] h-[15px] accent-mygold text-white bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600" 
               type="checkbox"
               onChange={(e) => {
                 const newCheckedItems = [...checkedItems];
@@ -87,13 +86,13 @@ export default function AgentCheck() {
                 })
               }}
             />
-            <label htmlFor="allChecked" className="ml-2 text-[14pt] text-black font-bold dark:text-gray-400">전체 선택</label>
+            <label htmlFor="allChecked" className="ml-2 md:text-[14pt] text-[12pt] text-black font-bold dark:text-gray-400">전체 선택</label>
           </div>
         </div>
         <div className="flex flex-col gap-10 w-[90%] md:w-[40%] min-h-[350px] max-h-[400px] border border-gray-[1px] bg-white absolute top-[110px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
           <div className="flex flex-col gap-[50px] justify-center items-center w-[80%] h-[100%] ">
             {biddingInfo.bidName.map((name: any, index: number) => (
-              <div className="flex w-[90%] h-[100%] justify-between ">
+              <div className="flex md:w-[50%] w-[90%] h-[100%] justify-between" key={index}>
                 <span className="md:text-[15pt] text-[12pt] font-NanumGothic font-bold">
                   {name}
                 </span>
@@ -101,7 +100,7 @@ export default function AgentCheck() {
                   <input 
                     id={name}
                     checked={checkedItems[index]}
-                    className="w-[20px] h-[20px] accent-mygold text-white bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600" 
+                    className="md:w-[20px] md:h-[20px] w-[15px] h-[15px] accent-mygold text-white bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600" 
                     type="checkbox"
                     onChange={(e) => {
                       const newCheckedItems = [...checkedItems];

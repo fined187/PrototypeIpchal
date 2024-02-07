@@ -60,7 +60,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
             </div>
             {/* 두 번째 박스 */}
-            <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[6.5%]">
+            <div className="flex flex-row justify-between items-center border-black border-b-[1px] text-center h-[7%]">
               <div className="border-black border-r-[1px] leading-[50%] w-[82px] h-[100%] text-center">
                 <span className="md:text-[11pt] text-[12px] font-batang">
                   사건
@@ -97,7 +97,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
             </div>
             {/* 세 번째 박스 */}
             <div className="flex flex-row justify-between items-stretch border-black border-b-[1px] relative h-[50%]">
-              <div className="flex justify-center items-center leading-[300%] border-black border-r-[1px] w-[5.2%]">
+              <div className="flex justify-center items-center leading-[300%] border-black border-r-[1px] w-[5%]">
                 <span className="md:text-[11pt] text-[12px] font-batang">
                   입<br />찰<br />자
                 </span>
@@ -265,19 +265,19 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
             </div>
             {/* 네 번째 박스 */}
             <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[15%]">
-              <div className="w-[27px] border-black border-r-[1px] h-[100%] leading-[70%] justify-center items-center text-center">
-                <span className="md:text-[11pt] text-[12px] font-batang">
+              <div className="w-[5%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
+                <span className="md:text-[12pt] text-[10px] font-batang">
                   입찰
                   <br />
                   가격
                 </span>
               </div>
-              <div className="w-[3%] h-[100%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] leading-[70%] border-b-[1px] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">천억</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">천억</span>
                 </div>
                 <div className="flex justify-center items-center w-[100%] h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -290,12 +290,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">백억</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">백억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -308,12 +308,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px]  leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">십억</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">십억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -326,15 +326,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">억</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px] ">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -347,12 +347,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">천만</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">천만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -365,12 +365,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">백만</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">백만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -383,12 +383,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">십만</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">십만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -401,15 +401,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">만</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -422,15 +422,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">천</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">천</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -443,15 +443,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">백</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">백</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -464,15 +464,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">십</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">십</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -485,15 +485,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">일</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">일</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     handlePrice(
                       totalResult?.bidPrice?.toString().length,
@@ -506,33 +506,33 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[27px]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[100%] w-[100%] border-black border-r-[2px] leading-[70%] text-center">
                   <div className="h-[50%]">
-                    <span className="md:text-[11pt] text-[12px] font-batang">
+                    <span className="md:text-[11pt] text-[10px] font-batang">
                       <br />
                     </span>
                   </div>
-                  <div className="text-left mt-[10px]">
-                    <span className="md:text-[15px] text-[14px] font-batang">
+                  <div>
+                    <span className="md:text-[11pt] text-[14px] font-batang">
                       원
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="w-[27px] border-black border-r-[1px] h-[100%] leading-[70%] justify-center items-center text-center">
-                <span className="md:text-[11pt] text-[12px] font-batang">
+              <div className="w-[5%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
+                <span className="md:text-[11pt] text-[10px] font-batang">
                   보증
                   <br />
                   금액
                 </span>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">천억</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">천억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                     totalResult?.bidDeposit?.toString().length === 12
                       ? totalResult?.bidDeposit?.toString()?.substring(0, 1)
@@ -540,12 +540,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">백억</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">백억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -558,12 +558,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">십억</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">십억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -576,15 +576,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">억</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">억</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -597,12 +597,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">천만</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">천만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -615,12 +615,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">백만</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">백만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -633,12 +633,12 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">십만</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">십만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -651,15 +651,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">만</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">만</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -672,15 +672,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">천</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">천</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -693,15 +693,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">백</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">백</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -714,15 +714,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">십</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">십</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -735,15 +735,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[3%]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     <br />
                   </span>
-                  <span className="md:text-[11pt] text-[12px] font-batang">일</span>
+                  <span className="md:text-[11pt] text-[10px] font-batang">일</span>
                 </div>
                 <div className="flex justify-center items-center h-[50%] border-black border-[2px]">
-                  <span className="md:text-[11pt] text-[12px] font-batang">
+                  <span className="md:text-[11pt] text-[10px] font-batang">
                     {totalResult &&
                       (handleDepositPrice(
                         totalResult?.bidDeposit?.toString().length,
@@ -756,15 +756,15 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                   </span>
                 </div>
               </div>
-              <div className="w-[27px]">
+              <div className="w-[3.46%] h-[100%]">
                 <div className="h-[100%] w-[100%] border-black leading-[70%] text-center">
                   <div className="h-[50%]">
-                    <span className="md:text-[11pt] text-[12px] font-batang">
+                    <span className="md:text-[11pt] text-[10px] font-batang">
                       <br />
                     </span>
                   </div>
-                  <div className="text-left mt-[10px]">
-                    <span className="md:text-[15px] text-[14px] font-batang">
+                  <div>
+                    <span className="md:text-[11pt] text-[14px] font-batang">
                       원
                     </span>
                   </div>
@@ -772,52 +772,59 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               </div>
             </div>
             {/* 다섯 번째 박스 */}
-            <div className="flex flex-row justify-between items-stretch w-[100%] h-[13.5%]">
-              <div className="flex flex-row w-[49.7%] border-black border-r-[2px] h-[100%]">
-                <div className='flex items-center justify-start w-[30%] h-[100%]'>
-                  <span className="md:text-[11pt] text-[12px] text-left font-batang">
-                    보증의 
-                    <br />
-                    제공방법
-                  </span>
-                </div>
-                <div className="flex flex-col justify-center w-[70%] h-[100%]">
-                  <div className="flex flex-row w-[100%]">
-                    <input
-                      type="checkbox"
-                      checked={biddingInfo.bidWay === 'M' ? true : false}
-                      className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
-                      readOnly
-                    />
-                    <span className="md:text-[11pt] text-[12px] mt-1">현금·자기앞수표</span>
-                  </div>
-                  <div className="flex flex-row w-[100%]">
-                    <input
-                      type="checkbox"
-                      checked={biddingInfo.bidWay === 'W' ? true : false}
-                      className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
-                      readOnly
-                    />
-                    <span className="md:text-[11pt] text-[12px] mt-1">
-                      보증서
+            <div className="flex flex-row justify-between items-stretch w-[100%] h-[13%]">
+                <div className="flex flex-row w-[49.9%] border-black border-r-[2px] h-[100%]">
+                  <div className='flex items-center justify-start w-[30%] h-[100%] ml-[10px]'>
+                    <span className="text-[11pt] text-left font-batang">
+                      보증의 
+                      <br />
+                      제공방법
                     </span>
                   </div>
+                  <div className="flex flex-col justify-center w-[70%] h-[100%]">
+                    <div className="flex flex-row w-[100%]">
+                      <input
+                        type="checkbox"
+                        checked={biddingInfo.bidWay === 'M' ? true : false}
+                        className="w-[15px] h-[15px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
+                        readOnly
+                      />
+                      <span className="text-[11pt] font-batang mt-1">현금·자기앞수표</span>
+                    </div>
+                    <div className="flex flex-row w-[100%]">
+                      <input
+                        type="checkbox"
+                        checked={biddingInfo.bidWay === 'W' ? true : false}
+                        className="w-[15px] h-[15px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
+                        readOnly
+                      />
+                      <span className="text-[11pt] font-batang mt-1">
+                        보증서
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col justify-around items-stretch w-[50%] h-[100%]">
+                  <div className="flex justify-start">
+                    <span className="text-[11pt] text-left font-batang ml-[10px]">
+                      보증을 반환 받았습니다.
+                    </span>
+                  </div>
+                  <div className="flex justify-end">
+                    <div className='flex justify-between w-[70%] items-center'>
+                      <span className="text-[11pt] font-batang mr-[10px]">
+                        입찰자{' '}
+                      </span>
+                      <span className="text-[11pt] font-batang mr-[10px]">
+                        {totalResult && totalResult.agent !== null ? totalResult && totalResult?.agent?.name : totalResult && totalResult.bidders[0].name}
+                      </span>
+                      <span className="text-[11pt] font-batang mr-[10px]">
+                        (인)
+                      </span>
+                  </div>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col justify-around items-stretch w-[50%] h-[100%]">
-                <div className="flex justify-start">
-                  <span className="md:text-[11pt] text-[12px] text-left font-batang ml-[10px]">
-                    보증을 반환 받았습니다.
-                  </span>
-                </div>
-                <div className='flex justify-center'>
-                  <span className="md:text-[11pt] text-[12px] font-batang mr-[10px]">
-                    본인 또는 대리인{' '}
-                    {totalResult && totalResult.agent !== null ? totalResult && totalResult?.agent?.name + ' (인)' : totalResult && totalResult.bidders[0].name + ' (인)'}
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <IpchalText />

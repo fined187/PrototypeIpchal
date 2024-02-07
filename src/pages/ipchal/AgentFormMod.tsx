@@ -598,7 +598,7 @@ export default function AgentForm() {
                     }
                   }}
                 >
-                  <span className="text-white font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                  <span className="text-white font-bold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                     이전
                   </span>
                 </button>
@@ -606,7 +606,7 @@ export default function AgentForm() {
                   type="submit"
                   className="flex w-[60%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
                 >
-                  <span className="text-white   font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+                  <span className="text-white font-bold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                     다음
                   </span>
                 </button>

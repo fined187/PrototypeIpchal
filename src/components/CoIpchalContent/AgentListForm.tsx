@@ -123,13 +123,13 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
             <span className="md:text-[12pt] text-[14px] font-batang">
               {totalResult && totalResult?.reqCourtName}
             </span>
-            <span className="md:text-[12pt] text-[14px] text-black-500 font-bold font-batang">
+            <span className="md:text-[12pt] text-[14px] text-black-500 font-batang">
               &nbsp;{totalResult && totalResult?.caseYear}
             </span>
             <span className="md:text-[12pt] text-[14px] font-batang">
               &nbsp;타경&nbsp;
             </span>
-            <span className="md:text-[12pt] text-[14px] text-black-500 font-bold font-batang">
+            <span className="md:text-[12pt] text-[14px] text-black-500 font-batang">
               {totalResult && totalResult?.caseDetail}
             </span>
             <span className="md:text-[12pt] text-[14px] font-batang">
