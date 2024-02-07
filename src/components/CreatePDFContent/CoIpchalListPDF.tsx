@@ -116,7 +116,7 @@ export default function CoIpchalListPDF({ totalResult, item }: CoIpchalProps) {
                   </div>
                 </div>
                 <div className="flex w-[20%] justify-center items-center">
-                  <span className="text-[12pt] font-batang text-black-500 font-bold">
+                  <span className="text-[12pt] font-batang text-black-500">
                     {totalResult && totalResult.bidders[idx]?.share ? totalResult && totalResult.bidders[idx]?.share : ''}
                   </span>
                 </div>
@@ -170,9 +170,9 @@ export default function CoIpchalListPDF({ totalResult, item }: CoIpchalProps) {
                     </div>
                   </div>
                   <div className="flex w-[20%] justify-center items-center">
-                    <span className="text-[12pt] font-batang text-black-500 font-bold">
-                    {
-                          ipchalList[idx]?.share ?? ''
+                    <span className="text-[12pt] font-batang text-black-500">
+                      {
+                        ipchalList[idx]?.share ?? ''
                       }
                     </span>
                   </div>

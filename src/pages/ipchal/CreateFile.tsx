@@ -96,7 +96,7 @@ export default function CreateFile() {
       await html2canvas(
         document.getElementById('capture') as HTMLElement
       ).then((canvas: any) => {
-        let imgData = canvas.toDataURL('image/png')
+        let imgData = canvas.toDataURL('image/png', 1.0)
         let imgWidth = 210
         let pageHeight = 295
         let imgHeight = getHeight
@@ -118,7 +118,7 @@ export default function CreateFile() {
         }
         const blob = doc.output('blob')
         //  저장
-        doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
+        // doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
         file = new File([blob], `best_${format(date, 'yyyyMMddHHmmss')}.pdf`, {
           type: 'application/pdf',
         })
@@ -129,8 +129,8 @@ export default function CreateFile() {
           isFileCreated: true,
         })
       })
-      // captureWrap.style.display = 'none'
-      // captureDiv.style.display = 'none'
+      captureWrap.style.display = 'none'
+      captureDiv.style.display = 'none'
     }
   }
   
@@ -141,10 +141,10 @@ export default function CreateFile() {
       alert('파일 암호를 4자리 이상 입력해주세요')
       setLoading(false)
       return
-    // } else if (biddingInfo.isFileCreated) {
-    //   alert('이미 파일이 생성되었습니다')
-    //   setLoading(false)
-    //   return
+    } else if (biddingInfo.isFileCreated) {
+      alert('이미 파일이 생성되었습니다')
+      setLoading(false)
+      return
     } 
     else {
       await onCapture(false, null, null)

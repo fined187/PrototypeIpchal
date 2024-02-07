@@ -36,7 +36,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
       top: topHeight ? topHeight : '2050px',
       position: 'relative',
     }}>
-      <div className="flex flex-col bg-white h-[100%] md:w-[90%] w-[100%] m-auto relative justify-center items-center">
+      <div className="flex flex-col bg-white h-[100%] w-[90%] m-auto relative justify-center items-center">
         <div className="flex w-[100%] absolute top-[5px]">
           <span className="text-[12pt] font-batang">
             (뒷면)
@@ -141,13 +141,13 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
             <span className="text-[12pt] font-batang">
               {totalResult && totalResult?.reqCourtName}
             </span>
-            <span className="text-[12pt] text-black-500 font-bold font-batang">
+            <span className="text-[12pt] text-black-500 font-batang">
               &nbsp;{totalResult && totalResult?.caseYear}
             </span>
             <span className="text-[12pt] font-batang">
               &nbsp;타경&nbsp;
             </span>
-            <span className="text-[12pt] text-black-500 font-bold font-batang">
+            <span className="text-[12pt] text-black-500 font-batang">
               {totalResult && totalResult?.caseDetail}
             </span>
             <span className="text-[12pt] font-batang">

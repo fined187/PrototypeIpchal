@@ -169,7 +169,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                           </span>
                         </div>
                         <div className="flex justify-center items-center w-[80%]">
-                          <span className="text-[15px] font-batang font-bold text-black-500">
+                          <span className="text-[15px] font-batang text-black-500">
                             별첨 목록과 같음
                           </span>
                         </div>
@@ -260,20 +260,19 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                 </div>
               </div>
               {/* 네 번째 박스 */}
-              <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[18%]">
+              <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[15%]">
                 <div className="w-[5%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
-                  <span className="text-[11pt] font-batang">
+                  <span className="text-[12pt] font-batang">
                     입찰
-                    <br />
                     <br />
                     가격
                   </span>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] border-black border-r-[1px] leading-[70%] border-b-[1px] text-center w-[100%]">
+                  <div className="h-[45%] border-black border-r-[1px] leading-[70%] border-b-[1px] text-center w-[100%]">
                     <span className="text-[11pt] font-batang">천억</span>
                   </div>
-                  <div className="flex justify-center items-center w-[100%] h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center w-[100%] h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         handlePrice && handlePrice(
@@ -288,10 +287,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
+                  <div className="h-[45%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">백억</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice && handlePrice(
@@ -306,10 +305,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] border-black border-r-[1px] border-b-[1px]  leading-[70%] text-center">
+                  <div className="h-[45%] border-black border-r-[1px] tracking-wide border-b-[1px]  leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">십억</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice && handlePrice(
@@ -324,13 +323,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">억</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px] ">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px] ">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice(
@@ -345,10 +344,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">천만</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice(
@@ -363,10 +362,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">백만</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice(
@@ -381,10 +380,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">십만</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice(
@@ -399,13 +398,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">만</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice(
@@ -420,13 +419,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">천</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice(
@@ -441,13 +440,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">백</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice(
@@ -462,13 +461,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">십</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice(
@@ -483,13 +482,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] leading-[70%] text-center">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">일</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       handlePrice(
@@ -510,7 +509,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                         <br />
                       </span>
                     </div>
-                    <div className="text-left mt-[10px]">
+                    <div className="">
                       <span className="text-[11pt] font-batang">
                         &nbsp;원
                       </span>
@@ -518,18 +517,17 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[5%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
-                  <span className="text-[11pt] font-batang">
+                  <span className="text-[12pt] font-batang">
                     보증
-                    <br />
                     <br />
                     금액
                   </span>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">천억</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                       totalResult?.bidDeposit?.toString().length === 12
@@ -539,10 +537,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">백억</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -557,10 +555,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">십억</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -575,13 +573,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">억</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -596,10 +594,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">천만</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -614,10 +612,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">백만</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -632,10 +630,10 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">십만</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -650,13 +648,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">만</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -671,13 +669,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">천</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -692,13 +690,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">백</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -713,13 +711,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">십</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -734,13 +732,13 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                   </div>
                 </div>
                 <div className="w-[3.46%] h-[100%]">
-                  <div className="h-[40%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
+                  <div className="h-[45%] w-[100%] border-black border-r-[1px] border-b-[1px] text-center leading-[70%]">
                     <span className="text-[11pt] font-batang">
                       <br />
                     </span>
                     <span className="text-[11pt] font-batang">일</span>
                   </div>
-                  <div className="flex justify-center items-center h-[60%] border-black border-[2px]">
+                  <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
                     <span className="text-[11pt] font-batang">
                       {totalResult &&
                         (handleDepositPrice(
@@ -761,7 +759,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                         <br />
                       </span>
                     </div>
-                    <div className="text-left mt-[10px]">
+                    <div className="">
                       <span className="text-[11pt] font-batang">
                         &nbsp;원
                       </span>
@@ -770,9 +768,9 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                 </div>
               </div>
               {/* 다섯 번째 박스 */}
-              <div className="flex flex-row justify-between items-stretch w-[100%] h-[10%]">
+              <div className="flex flex-row justify-between items-stretch w-[100%] h-[13%]">
                 <div className="flex flex-row w-[49.9%] border-black border-r-[2px] h-[100%]">
-                  <div className='flex items-center justify-start w-[30%] h-[100%]'>
+                  <div className='flex items-center justify-start w-[30%] h-[100%] ml-[10px]'>
                     <span className="text-[11pt] text-left font-batang">
                       보증의 
                       <br />
@@ -784,7 +782,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                       <input
                         type="checkbox"
                         checked={biddingInfo.bidWay === 'M' ? true : false}
-                        className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
+                        className="w-[15px] h-[15px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
                         readOnly
                       />
                       <span className="text-[11pt] font-batang mt-1">현금·자기앞수표</span>
@@ -793,7 +791,7 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                       <input
                         type="checkbox"
                         checked={biddingInfo.bidWay === 'W' ? true : false}
-                        className="w-[10px] h-[10px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
+                        className="w-[15px] h-[15px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
                         readOnly
                       />
                       <span className="text-[11pt] font-batang mt-1">
@@ -808,11 +806,18 @@ export default function CoIpchalPDF({ totalResult, handleDepositPrice, handlePri
                       보증을 반환 받았습니다.
                     </span>
                   </div>
-                  <div className='flex justify-center'>
-                    <span className="text-[11pt] font-batang mr-[10px]">
-                      본인 또는 대리인{' '}
-                      {totalResult && totalResult.agent !== null ? totalResult && totalResult?.agent?.name + ' (인)' : totalResult && totalResult.bidders[0].name + ' (인)'}
-                    </span>
+                  <div className="flex justify-end">
+                    <div className='flex justify-between w-[70%] items-center'>
+                      <span className="text-[11pt] font-batang text-center">
+                        입찰자{' '}
+                      </span>
+                      <span className="text-[11pt] font-batang text-center">
+                        {totalResult && totalResult.agent !== null ? totalResult && totalResult?.agent?.name : totalResult && totalResult.bidders[0].name}
+                      </span>
+                      <span className="text-[11pt] font-batang mr-[10px]">
+                        (인)
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

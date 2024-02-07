@@ -433,8 +433,8 @@ export default function BidderForm() {
         <Spinner />
       )}
       <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
-        <div className='flex flex-col justify-center items-center w-[100%]'>
-          <div className="flex flex-row py-6 pt-4 flex-wrap justify-center items-center">
+        <div className='flex flex-col justify-center items-center w-[100%] gap-0'>
+          <div className="flex flex-row flex-wrap justify-center items-center mt-[20px] md:mt-0">
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               {stepNum === 1 ? "본인" : "공동입찰자"} 정보를 입력해주세요
             </span>
@@ -444,9 +444,11 @@ export default function BidderForm() {
               </span>
             )}
           </div>
-          <span className="text-[12px] font-semibold font-NanumGothic not-italic text-left text-red-500">
-            (* 표시는 필수 입력사항입니다.)
-          </span>
+          <div className='flex'>
+            <span className="text-[12px] font-semibold font-NanumGothic not-italic text-left text-red-500">
+              (* 표시는 필수 입력사항입니다.)
+            </span>
+          </div>
         </div>
         <div className="flex flex-row gap-10 w-[80%] justify-center">
           <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${biddingForm?.bidCorpYn[stepNum - 1] === 'I' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`}
@@ -1173,7 +1175,7 @@ export default function BidderForm() {
               setValue={setValue}
             />
           </div>
-            <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'top-[650px]' : 'top-[720px]'} justify-center items-center md:w-[50%] w-[80%]`}>
+            <div className={`flex flex-row gap-[10px] absolute ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'top-[550px]' : 'top-[650px]'} justify-center items-center md:w-[50%] w-[80%]`}>
               <button
                 type="button"
                 className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

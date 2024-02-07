@@ -71,7 +71,7 @@ export default function AgentCheck() {
             <input 
               id="allChecked"
               checked={allChecked}
-              className="w-[20px] h-[20px] text-yellow-400 bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+              className="w-[20px] h-[20px] accent-mygold text-white bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600" 
               type="checkbox"
               onChange={(e) => {
                 const newCheckedItems = [...checkedItems];
@@ -90,8 +90,8 @@ export default function AgentCheck() {
             <label htmlFor="allChecked" className="ml-2 text-[14pt] text-black font-bold dark:text-gray-400">전체 선택</label>
           </div>
         </div>
-        <div className="flex flex-col gap-10 w-[90%] md:w-[40%] min-h-[350px] max-h-[400px] border border-gray-[1px] bg-white absolute top-[110px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll pt-[120px]">
-          <div className="flex flex-col gap-[20px] justify-center items-center w-[80%] h-[100%] ">
+        <div className="flex flex-col gap-10 w-[90%] md:w-[40%] min-h-[350px] max-h-[400px] border border-gray-[1px] bg-white absolute top-[110px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
+          <div className="flex flex-col gap-[50px] justify-center items-center w-[80%] h-[100%] ">
             {biddingInfo.bidName.map((name: any, index: number) => (
               <div className="flex w-[90%] h-[100%] justify-between ">
                 <span className="md:text-[15pt] text-[12pt] font-NanumGothic font-bold">
@@ -101,7 +101,7 @@ export default function AgentCheck() {
                   <input 
                     id={name}
                     checked={checkedItems[index]}
-                    className="w-[20px] h-[20px] text-yellow-400 bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                    className="w-[20px] h-[20px] accent-mygold text-white bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600" 
                     type="checkbox"
                     onChange={(e) => {
                       const newCheckedItems = [...checkedItems];

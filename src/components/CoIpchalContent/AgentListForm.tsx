@@ -30,7 +30,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
           </span>
           <div className="flex flex-row w-[100%] h-[150px] border-black border-[2px] absolute top-[80px]">
             <div className="flex w-[30px] justify-center items-center text-center border-black border-r-[1px]">
-              <span className="md:text-[12pt] text-[11pt] font-batang">
+              <span className="md:text-[12pt] text-[12pt] font-batang">
                 대리인
               </span>
             </div>

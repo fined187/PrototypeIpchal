@@ -273,13 +273,13 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-[20px] md:w-[550px] w-[90%] md:min-h-[350px] md:max-h-[450px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll pt-[150px]">
+        <div className="flex flex-col gap-[50px] md:w-[550px] w-[90%] md:min-h-[350px] md:max-h-[450px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
           {loadding && (
             <Spinner />
           )}
           {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
             return (
-              <div key={index} className="flex justify-between mb-5 w-full relative top-[50px]">
+              <div key={index} className="flex justify-between mb-5 w-full relative">
                 <div className="flex w-[40%] ml-5">
                   <span className="text-[15px] text-center font-bold font-NanumGothic">
                     {name}
@@ -383,7 +383,7 @@ export default function ShareInfo() {
             type="button"
             className="flex w-[30%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
-              setStateNum(15)
+              biddingInfo.agentYn ==='Y' && biddingInfo.bidName.length > 1 ? setStateNum(18) : setStateNum(15)
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

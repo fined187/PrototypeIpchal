@@ -7,7 +7,7 @@ interface SingleProps {
 
 export default function CoverPage({ totalResult }: SingleProps) {
   return (
-    <div className="flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center absolute top-[0px]">
+    <div className="flex flex-col bg-white h-[1300px] md:w-[800px] w-[700px] mx-auto justify-center items-center absolute top-[0px]">
       <div className="flex absolute top-[150px] text-center">
         <span className="font-nanum text-[20pt] font-bold">
           {totalResult && totalResult?.courtFullName + " " + totalResult?.caseYear + " - " + totalResult?.caseDetail + "[" + (totalResult?.mulNo === '' ? '1' : totalResult?.mulNo) + "]" + " " + totalResult?.usage}
@@ -31,16 +31,12 @@ export default function CoverPage({ totalResult }: SingleProps) {
           - 표지는 제출 시 제거하여 주시기 바랍니다.
         </span>
       </div>
-      <div className="flex absolute bottom-[150px]">
-        <Image  
+      <div className="flex absolute top-[1150px]">
+        <img  
           src={'/toplogo_red.png'}
           alt="logo"
-          width={100}
-          height={100}
-          style={{
-            width: 'auto',
-            height: 'auto',
-          }} 
+          width={200}
+          height={200}
         />
       </div>
     </div>
