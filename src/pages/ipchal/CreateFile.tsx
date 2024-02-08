@@ -287,7 +287,7 @@ export default function CreateFile() {
             </button>
             <button
               type="button"
-              className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+              className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               onClick={handleNextStep}
             >
               <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">

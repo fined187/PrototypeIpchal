@@ -23,7 +23,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
     } else if (totalResult && totalResult.bidders.length > 10) {
       setTopHeight(`${(1000 * Math.ceil(totalResult && totalResult?.bidders.length / 10))}px`)
     } else {
-      setTopHeight('2100px')
+      setTopHeight('2000px')
     }
   }
   
@@ -33,7 +33,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
 
   return (
     <div className="flex flex-col bg-white h-[1300px] w-[800px] mx-auto justify-center items-center overflow-x-scroll scrollbar-hide" style={{
-      top: topHeight ? topHeight : '2100px',
+      top: topHeight ? topHeight : '2000px',
       position: 'relative',
     }}>
       <div className="flex flex-col bg-white h-[100%] w-[90%] m-auto relative justify-center items-center">
@@ -96,7 +96,7 @@ export default function AgentListFormPDF({ totalResult, bidders }: { totalResult
                     </span>
                   </div>
                   <div className="flex gap-[50px] w-[35%] border-black border-r-[1px] justify-center items-center text-center">
-                    <span className="text-[12pt]">
+                    <span className="text-[12pt] font-batang">
                       {biddingInfo.agentIdNum.substring(0, 6) + '-' + biddingInfo.agentIdNum.substring(6, 13)}
                     </span>
                   </div>

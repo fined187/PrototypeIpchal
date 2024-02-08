@@ -62,11 +62,11 @@ export default function AgentCheck() {
   return (
     <div className="flex w-[100%] h-screen bg-white justify-center relative">
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
-        <div className="flex flex-col relative md:w-[80%] w-[100%] h-[100px]">
+        <div className="flex flex-col relative md:w-[550px] w-[90%] h-[100px]">
           <span className="md:text-[1.5rem] text-[1.2rem] font-bold font-Nanum Gothic not-italic leading-8">
             어느 입찰자를 대리하시겠습니까?
           </span>
-          <div className="flex items-center relative md:top-[40px] top-[10px] md:right-[10px] right-[20px] justify-end w-[100%]">
+          <div className="flex items-center relative md:top-[40px] top-[10px] right-[10px] justify-end w-[100%]">
             <input 
               id="allChecked"
               checked={allChecked}
@@ -89,7 +89,7 @@ export default function AgentCheck() {
             <label htmlFor="allChecked" className="ml-2 md:text-[14pt] text-[12pt] text-black font-bold dark:text-gray-400">전체 선택</label>
           </div>
         </div>
-        <div className="flex flex-col gap-10 w-[90%] md:w-[40%] min-h-[350px] max-h-[400px] border border-gray-[1px] bg-white absolute top-[110px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
+        <div className="flex flex-col gap-10 w-[90%] md:w-[550px] min-h-[250px] max-h-[400px] border border-gray-[1px] bg-white absolute top-[110px] items-center rounded-lg border-slate-500 overflow-y-scroll pt-[50px]">
           <div className="flex flex-col gap-[50px] justify-center items-center w-[80%] h-[100%] ">
             {biddingInfo.bidName.map((name: any, index: number) => (
               <div className="flex md:w-[50%] w-[90%] h-[100%] justify-between" key={index}>
@@ -122,7 +122,7 @@ export default function AgentCheck() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-center items-center md:w-[40%] w-[90%] gap-[10px] absolute md:top-[600px] top-[500px]">
+      <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[450px]">
         <button
           type="button"
           className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

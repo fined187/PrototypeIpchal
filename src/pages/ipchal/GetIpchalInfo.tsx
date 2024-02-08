@@ -87,13 +87,13 @@ export default function GetIpchalInfo() {
         {loading && (
           <Spinner />
         )}
-        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[50px]">
+        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[50px] relative">
           <div className="flex">
             <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
               사건 번호와 입찰일자를 확인해주세요
             </span>
           </div>
-          <div className="flex flex-col gap-[30px] md:w-[550px] w-[90%] min-h-[600px] max-h-[800px] bg-white top-[30px] justify-center items-center rounded-lg relative">
+          <div className="flex flex-col gap-[30px] md:w-[550px] w-[90%] h-[550px] bg-white top-[100px] justify-center items-center rounded-lg absolute overflow-auto pt-[100px] md:pt-[50px]">
             <div className="flex flex-between relative border-b w-[80%] border-gray-200">
               <div className='flex w-[30%] justify-start items-center'>
                 <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
@@ -159,7 +159,7 @@ export default function GetIpchalInfo() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[700px] top-[800px]">
+        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[700px] top-[750px] ">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

@@ -191,7 +191,7 @@ export default function ShareInfo() {
     <div className="flex w-[100%] h-screen bg-white justify-center relative ">
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
         <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
-          공동입찰자 분의 지분을 입력해주세요
+          입찰자의 지분을 입력해주세요
         </span>
         <div className="flex flex-row gap-10 w-[80%] justify-center absolute top-[80px]">
           <div className={`flex flex-row w-[100px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
@@ -270,7 +270,7 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-[25px] md:w-[550px] w-[90%] min-h-[350px] md:max-h-[450px] bg-white absolute top-[170px] justify-center items-center rounded-lg border-slate-500 overflow-y-scroll">
+        <div className="flex flex-col gap-[25px] md:w-[550px] w-[90%] min-h-[250px] md:max-h-[450px] bg-white absolute top-[170px] items-center rounded-lg border-slate-500 pt-[50px] overflow-y-scroll">
           {loadding && (
             <Spinner />
           )}
@@ -375,10 +375,10 @@ export default function ShareInfo() {
             )}
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[600px] w-[400px] gap-[10px] absolute top-[600px]">
+        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[500px]">
           <button
             type="button"
-            className="flex w-[30%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+            className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
               biddingInfo.agentYn ==='Y' && biddingInfo.bidName.length > 1 ? setStateNum(18) : setStateNum(15)
             }}

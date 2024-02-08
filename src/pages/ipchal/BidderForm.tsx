@@ -703,7 +703,7 @@ export default function BidderForm() {
                       .replace(/(\..*)\./g, '$1')
                   }}
                   placeholder="5678"
-                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic   h-[40px] px-2 w-[30%] text-center"
+                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
                   value={biddingForm.bidPhone3[stepNum - 1] || ''}
                   onChange={(e) => {
                     setBiddingInfo((prev: any) => {

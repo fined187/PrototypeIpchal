@@ -135,7 +135,7 @@ export default function BiddingPayment() {
           </div>
         )}
       </div>
-      <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[600px] top-[500px]">
+      <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[450px]">
         <button
           type="button"
           className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
@@ -149,7 +149,7 @@ export default function BiddingPayment() {
         </button>
         <button
           type="button"
-          className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+          className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
           onClick={async () => {
             await handleBiddingPayment(biddingForm.bidWay)
           }}

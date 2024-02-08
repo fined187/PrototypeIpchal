@@ -268,13 +268,13 @@ export default function BiddingPrice() {
             입찰 가격을 입력해주세요
           </span>
           <div className="flex flex-col w-full gap-[10px] relative justify-center items-center">
-            <div className="flex justify-center absolute top-[15px]">
+            <div className="flex justify-center absolute md:top-[15px] top-[0px]">
               <span className="text-[15px] font-bold font-Nanum Gothic text-center leading-[11px] mt-[10px] text-red-500">
                 ※ 최저가 이상으로 입력해주세요
               </span>
             </div>
           </div>
-          <div className="flex flex-col gap-2 md:w-[550px] md:h-[300px] w-[90%] h-[35%] bg-white absolute top-[100px] border-slate-500 justify-center items-center">
+          <div className="flex flex-col gap-2 md:w-[550px] md:h-[300px] w-[90%] h-[35%] bg-white absolute md:top-[100px] top-[110px] border-slate-500 justify-center items-center">
             <div className='flex flex-col w-[100%] justify-center items-center'>
               <div className='flex justify-between md:w-[35%] w-[50%]'>
                 <div className='flex md:w-[30%] w-[40%] justify-center items-center'>
@@ -333,7 +333,7 @@ export default function BiddingPrice() {
               </div>
               <div className='flex w-[80%] justify-end'>
                 <span className="text-[12px] font-NanumGothic not-italic font-bold text-red-500 mb-2">
-                  {num2han(biddingForm.biddingPrice) + '원'  + "(최저가의 " + (((biddingForm.biddingPrice - paymentsInfo.minimumAmount) / (paymentsInfo.minimumAmount)) * 100 + 100).toFixed(2) + "%)"}
+                  {num2han(biddingForm.biddingPrice) + '원'  + "(최저가의 " + Math.floor(((biddingForm.biddingPrice - paymentsInfo.minimumAmount) / (paymentsInfo.minimumAmount)) * 100 + 100) + "%)"}
                 </span>
               </div>
             </div>
@@ -363,13 +363,13 @@ export default function BiddingPrice() {
               </div>
               <div className='flex w-[80%] h-[100%] justify-end'>
                 <span className="text-[12px] font-NanumGothic not-italic font-bold text-red-500 mb-2">
-                  {num2han(biddingForm.depositPrice) + '원' + "(최저가의 " + (((biddingForm.depositPrice) / (paymentsInfo.minimumAmount)) * 100).toFixed(2) + "%)"}
+                  {num2han(biddingForm.depositPrice) + '원' + "(최저가의 " + Math.floor(((biddingForm.depositPrice) / (paymentsInfo.minimumAmount)) * 100) + "%)"}
                 </span>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[600px] w-[90%] gap-[10px] absolute md:top-[500px] top-[400px]">
+        <div className="flex flex-row justify-center items-center md:w-[600px] w-[90%] gap-[10px] absolute  top-[450px]">
           <button
             type="button"
             className="flex md:w-[30%] w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

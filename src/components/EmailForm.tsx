@@ -23,6 +23,7 @@ export default function EmailForm({
   const recipientRef = useRef<HTMLInputElement>(null)
   const messageRef = useRef<HTMLTextAreaElement>(null)
 
+  const [pdfUrl, setPdfUrl] = useState<string>('')
   const [msg, setMsg] = useState<string>('')
   const [data, setData] = useState({
     title: '',
@@ -53,16 +54,19 @@ export default function EmailForm({
     }
   }
 
-  const handleMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setMsg(e.target.value)
-    setData({
-      ...data,
-      message: e.target.value,
-    })
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY!)
+  }, [])
+
+  const newWindowPdf = () => {
+    if (window) {
+      const url = window.URL.createObjectURL(new Blob([biddingInfo.pdfFile], {type: 'application/pdf'}))
+      setPdfUrl(url)
+    }
   }
 
   useEffect(() => {
-    emailjs.init(process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY!)
+    newWindowPdf()
   }, [])
 
   return (
@@ -165,9 +169,12 @@ export default function EmailForm({
                           id="message"
                           placeholder="메시지를 입력해주세요"
                           name="message"
-                          value={`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files` || ''}
+                          value={`${biddingInfo.pdfFile}` || ''}
                           onChange={(e) => {
-                            handleMessage(e)
+                            setData({
+                              ...data,
+                              message: e.target.value,
+                            })
                           }}
                         />
                       </div>

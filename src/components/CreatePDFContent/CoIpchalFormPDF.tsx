@@ -37,7 +37,7 @@ export default function CoIpchalFormPDF({ totalResult }: CoIpchalFormProps) {
                 <span className="text-[12pt] text-black-500 font-batang">
                   {totalResult && totalResult?.caseDetail }
                 </span>
-                <span className="text-[12pt] text-black">
+                <span className="text-[12pt] font-batang text-black">
                   {'호'}
                 </span>
               </div>
