@@ -81,13 +81,13 @@ export default function Button({
   }
 
   return (
-    <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[450px]">
+    <div className="flex flex-row fixed items-center md:w-[26%] w-[80%] md:bottom-[80px] bottom-[10px] gap-[10px] ">
       <button
         type="button"
         className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
         onClick={handlePrevStep}
       >
-        <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+        <span className="text-white font-extrabold font-NanumGothic md:text-[1.1rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
           이전
         </span>
       </button>
@@ -99,7 +99,7 @@ export default function Button({
           handleNextStep(e)
         }}
       >
-        <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+        <span className="text-white font-extrabold font-NanumGothic md:text-[1.1rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
           {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
         </span>
       </button>

@@ -188,12 +188,12 @@ export default function ShareInfo() {
   }, [])
 
   return (
-    <div className="flex w-[100%] h-screen bg-white justify-center relative ">
-      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
+    <div className="flex w-[100%] md:h-[97.5vh] h-[87vh] bg-white justify-center relative ">
+      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center mt-[20px] md:pt-[100px] pt-[50px]">
         <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
           입찰자의 지분을 입력해주세요
         </span>
-        <div className="flex flex-row gap-10 w-[80%] justify-center absolute top-[80px]">
+        <div className="flex flex-row gap-10 w-[80%] justify-center mt-[20px]">
           <div className={`flex flex-row w-[100px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
               biddingInfo.shareWay === 'S'
                 ? 'text-white bg-myyellow'
@@ -270,7 +270,7 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-[25px] md:w-[550px] w-[90%] min-h-[250px] md:max-h-[450px] bg-white absolute top-[170px] items-center rounded-lg border-slate-500 pt-[50px] overflow-y-scroll">
+        <div className="flex flex-col gap-[25px] md:w-[550px] w-[90%] min-h-[250px] md:max-h-[450px] bg-white absolute top-[170px] items-center rounded-lg border-slate-500 md:mt-[80px] mt-[30px] pt-[50px] overflow-y-scroll">
           {loadding && (
             <Spinner />
           )}
@@ -375,7 +375,7 @@ export default function ShareInfo() {
             )}
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[500px]">
+        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[26%] w-[80%]">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
@@ -383,18 +383,18 @@ export default function ShareInfo() {
               biddingInfo.agentYn ==='Y' && biddingInfo.bidName.length > 1 ? setStateNum(18) : setStateNum(15)
             }}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               이전
             </span>
           </button>
           <button
             type="button"
-            className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
               handleValidate()
             }}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
             </span>
           </button>

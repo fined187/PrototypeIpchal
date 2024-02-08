@@ -52,19 +52,20 @@ export default function BidderInfo() {
       setIsSelected(false)
     }
   }
+
   return (
     <>
-      <div className="flex w-[100%] h-screen bg-white justify-center relative">
+      <div className="flex w-[100%] md:h-screen h-[90vh] bg-white justify-center relative">
         <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
           {loading && (
             <Spinner />
           )}
-          <div className="flex">
-            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
+          <div className="flex md:pt-[100px] pt-[50px]">
+            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
               입찰하시는 본인이 맞으신가요?
             </span>
           </div>
-          <div className="flex flex-col gap-10 md:w-[550px] w-[90%] md:h-[200px] h-[200px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+          <div className="flex flex-col gap-10 md:w-[550px] w-[90%] md:h-[200px] h-[200px] bg-white justify-center items-center rounded-lg border-slate-500 mt-[60px] ">
             <div
               className={`flex flex-row w-[124px] h-[40px] rounded-sm border ${
                 isSelected ? 'border-myyellow border-[2px]' : 'border-red-600 border-[2px]'
@@ -167,7 +168,7 @@ export default function BidderInfo() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[450px]">
+        <div className="flex flex-row items-center md:w-[26%] w-[80%] gap-[10px] fixed md:bottom-[80px] bottom-[10px]">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
@@ -175,18 +176,18 @@ export default function BidderInfo() {
               biddingInfo.biddingInfos.length > 2 ? setStateNum(stateNum - 1) : setStateNum(stateNum - 2)
             }}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               이전
             </span>
           </button>
           <button
             type="button"
-            className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
               handleNextStep()
             }}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               다음
             </span>
           </button>

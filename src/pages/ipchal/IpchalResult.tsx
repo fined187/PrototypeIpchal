@@ -81,24 +81,24 @@ export default function IpchalResult() {
       )}
       {/* 버튼 */}
       <div className="flex justify-center items-center w-[100%] h-[100%] bg-white">
-        <div className='flex flex-row justify-center items-center md:w-[50%] w-[100%] bg-mybg md:gap-[20px] gap-[10px]'>
+        <div className='flex flex-row items-center md:w-[26%] w-[80%] fixed bottom-[10px] gap-[10px]'>
           <button
             type="button"
-            className="flex md:w-[200px] w-[150px] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+            className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => setStateNum(stateNum - 1)}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               이전
             </span>
           </button>
           <button
             type="button"
-            className="flex md:w-[280px] w-[230px] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            className="flex w-[60%] md:w-[65%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
               setStateNum(stateNum + 1)
             }}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               확인했습니다
             </span>
           </button>

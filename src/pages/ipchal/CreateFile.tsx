@@ -210,14 +210,14 @@ export default function CreateFile() {
   return (
     <>
       {!loading && (
-        <div className="flex w-[100%] h-screen justify-center bg-white relative">
-          <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative md:py-[0px] py-[25px]">
-            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
+        <div className="flex w-[100%] md:h-screen h-[90vh] justify-center bg-white relative">
+          <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
+            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               파일명과 암호를 입력하세요
             </span>
-            <div className="flex flex-col gap-5 md:w-[550px] w-[90%] h-[200px] justify-center items-left bg-white absolute top-[130px] rounded-md border-gray-400">
+            <div className="flex flex-col gap-5 md:w-[550px] w-[90%] h-[200px] justify-center items-left bg-white mt-[30px] rounded-md border-gray-400">
               <div className="flex flex-col justify-start text-left gap-3">
-                <span className="text-black text-[15px] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
+                <span className="text-black text-[1rem] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
                   파일이름
                 </span>
                 <input
@@ -229,7 +229,7 @@ export default function CreateFile() {
                 />
               </div>
               <div className="flex flex-col justify-start text-left gap-3 relative">
-                <span className="text-black text-[15px] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
+                <span className="text-black text-[1rem] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
                   파일암호
                 </span>
                 <input
@@ -251,29 +251,29 @@ export default function CreateFile() {
               </div>
             </div>
             <div
-              className="flex w-[293px] h-[35px] bg-mygold border-[1px] border-gray-300 justify-center items-center rounded-md absolute top-[400px]"
+              className="flex w-[293px] h-[35px] bg-mygold border-[1px] border-gray-300 justify-center items-center rounded-md mt-[30px]"
               onClick={onClickPdf}
             >
-              <span className="flex text-white text-center text-[18px] not-italic font-extrabold leading-[15px] font-NanumGothic cursor-pointer">
+              <span className="flex text-white text-center text-[1rem] not-italic font-extrabold leading-[15px] font-NanumGothic cursor-pointer">
                 파일만들기
               </span>
             </div>
             {!biddingInfo.isFileCreated && (
-              <div className="flex absolute top-[450px]">
-                <span className="text-red-500 text-[15px] font-bold">
+              <div className="flex mt-[30px]">
+                <span className="text-red-500 md:text-[0.9rem] text-[0.8rem] font-bold">
                   파일을 생성해주세요
                 </span>
               </div>
             )}
             {biddingInfo.isFileCreated && (
-              <div className="flex absolute top-[450px]">
+              <div className="flex mt-[30px]">
                 <span className="text-[15px] font-bold text-green-500">
                   파일이 생성되었습니다
                 </span>
               </div>
             )}
           </div>
-          <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[600px]">
+          <div className="flex flex-row items-center md:w-[26%] w-[80%] gap-[10px] fixed md:bottom-[80px] bottom-[10px]">
             <button
               type="button"
               className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
@@ -281,7 +281,7 @@ export default function CreateFile() {
                 biddingInfo.isFileCreated ? alert('파일이 생성되어 이전 단계로 되돌아갈 수 없습니다.') : setStateNum(11)
               }}
             >
-              <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+              <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
                 이전
               </span>
             </button>
@@ -290,7 +290,7 @@ export default function CreateFile() {
               className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               onClick={handleNextStep}
             >
-              <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+              <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
                 다음
               </span>
             </button>

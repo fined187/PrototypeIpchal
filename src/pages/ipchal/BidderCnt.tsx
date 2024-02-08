@@ -90,20 +90,20 @@ export default function BidderCnt() {
 
   return (
     <>
-      <div className="flex w-[100%] h-screen bg-white justify-center relative">
+      <div className="flex w-[100%] md:h-screen h-[90vh] bg-white justify-center relative">
         <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
-          <div className="flex">
-            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
+          <div className="flex md:pt-[100px] pt-[50px]">
+            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               입찰하시는 분이 몇 명 이신가요?
             </span>
           </div>
-          <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[257px] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+          <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[257px] bg-white mt-[50px] justify-center items-center rounded-lg border-slate-500">
             {loading && (
               <Spinner />
             )}
-            <div className="absolute top-[113px]">
+            <div className="flex flex-col">
               <div className="flex flex-row justify-center items-center">
-                <span className="text-[20px] font-semibold mr-5">
+                <span className="md:text-[1.1rem] text-[1rem] font-semibold mr-5">
                   입찰자 수
                 </span>
                 <input
@@ -120,13 +120,13 @@ export default function BidderCnt() {
                     handleErrorOk(e)
                   }}
                 />
-                <span className="text-[20px] font-bold font-NanumGothic leading-[30px] ml-2">
+                <span className="md:text-[1.1rem] text-[1rem] font-bold font-NanumGothic leading-[30px] ml-2">
                   명
                 </span>
               </div>
               {errorMsg && (
                 <div className="mt-5">
-                  <span className="text-[15px] font-NanumGothic font-bold text-red-500">
+                  <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic font-bold text-red-500">
                     입찰자는 1명 이상이어야 합니다
                   </span>
                 </div>
@@ -134,7 +134,7 @@ export default function BidderCnt() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute top-[450px]">
+        <div className="flex flex-row fixed items-center md:w-[26%] w-[80%] md:bottom-[80px] bottom-[10px]  gap-[10px] ">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
@@ -142,18 +142,18 @@ export default function BidderCnt() {
               biddingInfo.bidder === 'agent' ? setStateNum(16) : setStateNum(3)
             }}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               이전
             </span>
           </button>
           <button
             type="button"
-            className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
               handleNextStep()
             }}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               다음
             </span>
           </button>

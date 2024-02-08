@@ -25,9 +25,9 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
   return (
     <div className="flex flex-col bg-white max-h-[2600px] h-[1300px] w-[100%] mx-auto relative justify-center items-center" id="wrap-capture">
       <div className="flex flex-col bg-mybg h-[100%] md:w-[50%] w-[100%] mx-auto relative justify-center items-center" id="capture">
-        <div className="md:text-[22px] text-[18px] font-batang font-bold md:py-[60px] py-[25px] absolute top-0 bg-mybg">
+        {/* <div className="md:text-[22px] text-[18px] font-batang font-bold md:py-[60px] py-[25px] absolute top-0 bg-mybg">
           입찰표
-        </div>
+        </div> */}
         <div className="w-[100%] md:max-w-[850px] overflow-x-scroll absolute top-[100px] h-[600px] bg-mybg scrollbar-hide">
           <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-mybg">
             {/* 첫 번째 박스 */}
@@ -268,9 +268,8 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
               <div className="w-[5%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
                 <span className="md:text-[12pt] text-[10px] font-batang">
                   입찰
-                  <br />
                   가격
-                </span>
+                </span> 
               </div>
               <div className="w-[3.46%] h-[100%]">
                 <div className="h-[50%] border-black border-r-[1px] leading-[70%] border-b-[1px] text-center">

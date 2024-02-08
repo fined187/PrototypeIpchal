@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useRecoilState } from 'recoil'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { calc } from '@chakra-ui/react'
 
 export default function StartIpchal() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -75,22 +76,23 @@ export default function StartIpchal() {
     }
   }
 
+  const deviceHeight: number = typeof window !== 'undefined' ? window.screen.height! : 0
+  console.log(deviceHeight)
   return (
     <>
-
-      <div className={`flex w-[100%] h-screen justify-center bg-white relative`}>
-        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]">
-          <div className="flex">
-            <span className="md:text-[2rem] text-[1.4rem] font-extrabold font-NanumGothic not-italic md:py-[0px] py-[25px]">
+      <div className={`flex w-[100%] justify-center md:h-screen h-[90vh] bg-white relative`} >
+        <div className={`flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}>
+          <div className="flex md:pt-[100px] pt-[50px]">
+            <span className="md:text-[2rem] text-[1.6rem] font-extrabold font-NanumGothic not-italic md:py-[0px] py-[25px]">
               입찰표 작성을 시작합니다
             </span>
           </div>
-          <div className="flex">
-            <span className="md:text-[1rem] text-mygray font-bold font-NanumGothic not-italic">
+          {/* <div className="flex">
+            <span className="text-[1rem] text-mygray font-bold font-NanumGothic not-italic">
               질문에 답변해 주세요.
             </span>
-          </div>
-          <div className="flex sm:w-[50%] w-[100%] absolute top-32 justify-center">
+          </div> */}
+          <div className="flex sm:w-[50%] w-[100%] justify-center pt-[30px]">
             <Image
               priority
               src={'/visualImg_big.png'}
@@ -104,20 +106,20 @@ export default function StartIpchal() {
             />
           </div>
           <div
-            className="flex absolute top-[445px] bg-mygold w-[180px] h-[46px] rounded-md items-center justify-center cursor-pointer"
+            className="flex bg-mygold w-[180px] h-[46px] rounded-md items-center justify-center cursor-pointer mt-[30px]"
             onClick={async () => {
               await handleNextStep()
             }}
           >
-            <span className="text-white text-[16px] font-NanumGothic font-extrabold not-italic leading-4">
+            <span className="text-white md:text-[1.2rem] text-[1rem] font-NanumGothic font-extrabold not-italic leading-4">
               시작하기
             </span>
           </div>
-          <div className="flex flex-col absolute top-[540px] w-[80%] justify-center">
-            <span className="text-[12px] font-NanumGothic text-mygray font-normal">
+          <div className="flex flex-col w-[80%] justify-center pt-[50px]">
+            <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic text-mygray font-normal">
               ※ 입찰표의 주민등록번호는 저장하지 않습니다
             </span>
-            <span className="text-[12px] font-NanumGothic text-mygray font-normal">
+            <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic text-mygray font-normal">
               다음 번 입찰표 작성 시, 개인정보를 다시 입력해주셔야합니다.
             </span>
           </div>

@@ -79,15 +79,18 @@ export default function Navbar() {
   }, [stepStateNum])
 
   return (
-    <div className="flex justify-between relative w-[100%] md:w-[50%] md:h-[100px] h-[15%] bg-mybg mx-auto">
-      <div className="flex rounded-lg w-[30%] h-[20px] justify-start relative md:top-[20px] top-0 md:ml-5">
+    <div className="flex justify-between absolute w-[100%] md:w-[50%] md:h-[100px] h-[50px] left-[50%] bg-mybg mx-auto" style={{
+      transform: 'translateX(-50%)',
+      zIndex: 10,
+    }}>
+      <div className="flex rounded-lg w-[30%] h-[20px] justify-start relative md:top-[20px] top-[10px] left-[10px] md:ml-5">
         <div className="w-full z-1 bg-gray-300 h-[100%] rounded-full relative top-0">
           <div className={`${stepStateNum === 0 ? 'w-[0%]' : `w-[${statusBar}%]`} z-2 h-full justify-center items-center text-center text-xs text-white bg-myyellow rounded-full relative top-[0px] transition-all animate-pulse`}>
           </div>
         </div>
       </div>
       {stepStateNum === 0 ? (
-        <div className="flex flex-row-reverse md:mr-5 relative md:top-[10px] top-0 ">
+        <div className="flex flex-row-reverse mr-5 relative top-[10px] ">
           <div className="flex w-30 h-10">
             <Image
               src={'/toplogo_red.png'}
@@ -102,7 +105,7 @@ export default function Navbar() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-row-reverse justify-start w-[50%] relative md:top-[10px] top-[0px] md:mr-5">
+        <div className="flex flex-row-reverse justify-start w-[50%] relative top-[10px] mr-2">
           <div className="flex relative ml-1">
             <div className='flex'>
               <svg

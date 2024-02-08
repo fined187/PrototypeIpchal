@@ -80,103 +80,103 @@ export default function GetIpchalInfo() {
       }
     }
   }
-  
+  const deviceHeight = typeof window !== 'undefined' ? window.innerHeight : 0
   return (
     <>
-      <div className="flex w-[100%] h-screen justify-center bg-white relative">
+      <div className="flex w-[100%] justify-center bg-white relative md:h-[100vh] h-[90vh]">
         {loading && (
           <Spinner />
         )}
-        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[50px] relative">
-          <div className="flex">
-            <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
+        <div className="flex flex-col md:w-[50%] w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
+          <div className="flex md:pt-[100px] pt-[50px]">
+            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
               사건 번호와 입찰일자를 확인해주세요
             </span>
           </div>
-          <div className="flex flex-col gap-[30px] md:w-[550px] w-[90%] h-[550px] bg-white top-[100px] justify-center items-center rounded-lg absolute overflow-auto pt-[100px] md:pt-[50px]">
+          <div className="flex flex-col md:w-[550px] w-[90%] h-[400px] bg-white md:mt-[200px] mt-[130px] items-center rounded-lg absolute overflow-auto pt-[30px]">
             <div className="flex flex-between relative border-b w-[80%] border-gray-200">
               <div className='flex w-[30%] justify-start items-center'>
-                <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+                <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   법원 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {" : "}
                 </span>
               </div>
               <div className='flex md:w-[70%] w-[70%] justify-start items-center'>
-                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
+                <span className="text-mygray md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
                   {biddingInfo.courtFullName}
                 </span>
               </div>
             </div>
             <div className="flex flex-between relative border-b w-[80%] border-gray-200">
               <div className='flex w-[30%] justify-start items-center'>
-                <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+                <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   사건번호 {" : "}
                 </span>
               </div>
               <div className='flex w-[70%] justify-start'>
-                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9 whitespace-normal text-left">
+                <span className="text-mygray md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9 whitespace-normal text-left">
                   {biddingInfo.sagunNum + '호' + ' ' + biddingInfo.usage}
                 </span>
               </div>
             </div>
             <div className="flex flex-between border-b relative w-[80%] border-gray-200">
               <div className='flex w-[30%] justify-start'>
-                <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+                <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   물건번호 {" : "}
                 </span>
               </div>
               <div className='flex w-[70%] justify-start'>
-                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
+                <span className="text-mygray md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
                   {biddingInfo.mulNo}
                 </span>
               </div>
             </div>
             <div className="flex flex-row border-b relative w-[80%] border-gray-200">
               <div className='flex w-[30%] justify-start'>
-                <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+                <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   입찰기일 {" : "}
                 </span>
               </div>
               <div className='flex w-[70%] justify-start'>
-                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
+                <span className="text-mygray md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic leading-9">
                   {biddingInfo.ipchalDate}
                 </span>
               </div>
             </div>
             <div className="flex flex-row border-b relative w-[80%] ">
               <div className='flex w-[30%] justify-start'>
-                <span className="text-black md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
+                <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold mb-3 font-NanumGothic leading-9">
                   주소 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {" : "}
                 </span>
               </div>
               <div className='flex flex-col w-[70%] justify-start'>
-                <span className="text-mygray md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic text-left leading-9 whitespace-normal">
+                <span className="text-mygray md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic text-left leading-9 whitespace-normal">
                   {biddingInfo.sagunAddr + (biddingInfo.etcAddress !== '' ? '[일괄]' + biddingInfo.etcAddress : '')}
                 </span>
-                <span className="text-blue-500 md:text-[15pt] text-[12pt] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic text-left leading-9 whitespace-normal">
+                <span className="text-blue-500 md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold justify-end ml-3 mb-3 font-NanumGothic text-left leading-9 whitespace-normal">
                   {biddingInfo.roadAddress}
                 </span>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[700px] top-[750px] ">
+        <div className="flex flex-row fixed items-center md:bottom-[80px] bottom-[10px] gap-[10px] md:w-[26%] w-[80%] ">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => setStateNum(stateNum - 1)}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               이전
             </span>
           </button>
           <button
             type="button"
-            className="flex w-[60%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={async () => {
               await handleNextStep()
             }}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
             </span>
           </button>

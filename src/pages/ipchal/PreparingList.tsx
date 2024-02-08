@@ -48,53 +48,53 @@ export default function PreparingList() {
 
   return (
     <>
-      <div className="flex flex-col justify-center w-[100%] h-screen bg-white items-center text-center relative">
-        <div className="flex flex-col justify-center items-center md:w-[50%] w-[100%] h-[100%] bg-mybg relative top-[0px]">
-          <div className="flex w-[100%] justify-center items-center absolute top-[20px] md:top-[0px]">
-            <span className="text-[18pt] font-NanumGothic font-bold">
+      <div className="flex flex-col justify-center w-[100%] md:h-screen h-[90vh] bg-white items-center text-center relative">
+        <div className="flex flex-col justify-center items-center md:w-[50%] w-[100%] h-[100%] bg-mybg relative">
+          <div className="flex flex-col gap-[60px] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
+            <span className="md:text-[1.7rem] text-[1.4rem] font-NanumGothic font-bold">
               입찰시 준비 서류
             </span>
-          </div>
-          <div className="flex flex-col md:w-[90%] w-[100%] h-[500px] rounded-lg absolute top-[100px] justify-center items-center">
-            <div className="flex bg-gray-200 w-[90%] h-[10%] mx-auto rounded-xl justify-center items-center text-center absolute top-[25px]">
-              <span className="md:text-[14pt] text-[12pt] font-NanumGothic text-mygold font-bold text-center">
-                {msg}
-              </span>
-            </div>
-            <div className="flex flex-col border-gray border-[1px] w-[90%] max-h-[70%] bg-white rounded-xl absolute top-[100px] gap-[10px] p-[15px] overflow-y-scroll">
-              <span className="md:text-[14pt] text-[11pt] font-NanumGothic font-semibold text-left">
-                - 매수신청보증금(최저매각대금의 10%, 재매각일 경우 법원마다 달라 확인요구 보통 20 ~ 30%)
-              </span>
-              {detailList.map((item, index) => (
-                <div key={index} className="flex flex-col gap-[10px] w-[100%] justify-start">
-                  <span className="md:text-[14pt] text-[11pt] font-NanumGothic font-semibold text-left">
-                    {item}
-                  </span>
-                </div>
-              ))}
+            <div className="flex flex-col md:w-[90%] w-[100%] h-[500px] rounded-lg mt-[25px] items-center">
+              <div className="flex bg-gray-200 w-[90%] h-[10%] mx-auto rounded-xl justify-center items-center text-center">
+                <span className="text-[1rem] font-NanumGothic text-mygold font-bold text-center">
+                  {msg}
+                </span>
+              </div>
+              <div className="flex flex-col border-gray border-[1px] w-[90%] max-h-[70%] mt-[15px] bg-white rounded-xl gap-[10px] p-[15px] overflow-y-scroll">
+                <span className="text-[1rem] font-NanumGothic font-semibold text-left">
+                  - 매수신청보증금(최저매각대금의 10%, 재매각일 경우 법원마다 달라 확인요구 보통 20 ~ 30%)
+                </span>
+                {detailList.map((item, index) => (
+                  <div key={index} className="flex flex-col gap-[10px] w-[100%] justify-start">
+                    <span className="text-[1rem] font-NanumGothic font-semibold text-left">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-row gap-[10px] absolute md:top-[65%] justify-center items-center top-[600px] w-[100%]">
+        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[26%] w-[80%]">
           <button
             type="button"
-            className="flex w-[100px] h-[36px] md:w-[10%] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+            className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
               setStateNum(14)
             }}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               이전
             </span>
           </button>
           <button
             type="button"
-            className="flex w-[230px] h-[37px] md:w-[30%] bg-mygold rounded-md justify-center items-center cursor-pointer"
+            className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
             onClick={() => {
               setStateNum(0)
             }}
           >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
+            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               닫기
             </span>
           </button>
