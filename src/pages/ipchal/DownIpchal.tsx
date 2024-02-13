@@ -1,7 +1,7 @@
 import { biddingInfoState, stepState } from "@/atom";
 import PdfContent from "@/components/PdfContent";
 import { useDisclosure } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TfiDownload } from "react-icons/tfi";
 import { useRecoilState, useRecoilValue } from "recoil";
 
@@ -42,9 +42,27 @@ export default function DownIpchal() {
     }
   }
 
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
+
   return (
     <>
-      <div className="flex w-[100%] md:h-screen h-[90vh] justify-center bg-white relative">
+      <div id="box" className="flex w-[100%] justify-center bg-white relative">
         <div className="flex flex-col gap-[60px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
           <span className="md:text-[1.7rem] text-[1.4rem] font-extrabold font-NanumGothic not-italic leading-8">
             입찰표 작성이 모두 끝났습니다
@@ -67,7 +85,7 @@ export default function DownIpchal() {
               <TfiDownload className='bg-orange-400 ml-2 text-white stroke-[1px]' size={20} />
             </div>
           </div>
-          <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[26%] w-[80%]">
+          <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[550px] w-[90%]">
             <button
               type="button"
               className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

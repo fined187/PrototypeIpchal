@@ -2,7 +2,7 @@ import { biddingInfoState, stepState } from '@/atom'
 import Button from '@/components/Button'
 import EmailForm from '@/components/EmailForm'
 import { useDisclosure } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 export default function IpchalShare() {
@@ -37,10 +37,28 @@ export default function IpchalShare() {
       })
     }
   }  
+
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
   
   return (
     <>
-      <div className="flex w-[100%] md:h-screen h-[90vh] justify-center bg-white relative">
+      <div id='box' className="flex w-[100%] justify-center bg-white relative">
         <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:pt-[100px] pt-[50px]">
           <span className="md:text-[1.7rem] text-[1.4rem] font-extrabold font-NanumGothic not-italic leading-8">
             입찰표파일이 만들어졌습니다

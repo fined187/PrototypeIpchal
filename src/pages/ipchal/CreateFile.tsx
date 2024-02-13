@@ -10,6 +10,8 @@ import Spinner from '@/components/Spinner'
 import { TotalResultType } from '@/interface/IpchalType'
 import SinglePDF from '@/components/CreatePDFContent/SinglePDF'
 import CoIpchalPDF from '@/components/CreatePDFContent/CoIpchalPDF'
+import { sleep } from 'react-query/types/core/utils'
+import { useSleep } from '@/components/hooks/useSleep'
 
 export default function CreateFile() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -106,6 +108,7 @@ export default function CreateFile() {
           ...biddingInfo,
           imageFile: imgData,
         })
+        
         
         doc.text('100', 100, 20)
         doc?.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
@@ -228,7 +231,7 @@ export default function CreateFile() {
   return (
     <>
       {!loading && (
-        <div className="flex w-[100%] md:h-screen h-[90vh] justify-center bg-white relative">
+        <div className="flex w-[100%] h-screen justify-center bg-white relative">
           <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               파일명과 암호를 입력하세요
@@ -291,7 +294,7 @@ export default function CreateFile() {
               </div>
             )}
           </div>
-          <div className="flex flex-row items-center md:w-[550px] w-[80%] gap-[10px] fixed md:bottom-[80px] bottom-[10px]">
+          <div className="flex flex-row items-center md:w-[550px] w-[90%] gap-[10px] fixed md:bottom-[80px] bottom-[10px]">
             <button
               type="button"
               className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

@@ -74,14 +74,14 @@ export default function SearchAddress({
           <div className='flex justify-between w-[100%]'>
             {errors?.bidderAddr?.type === 'required' && stepNum && (biddingForm.bidAddr[stepNum - 1] === '' || biddingForm.bidAddr[stepNum - 1] === undefined) ? (
               <div className="flex w-[100%] justify-start">
-                <span className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
                   주소를 입력해주세요
                 </span>
               </div>
             ) : (
                 agentErrors?.agentAddr?.type === 'required' && (biddingForm.agentAddr === '') ? (
                   <div className="flex w-[70%] justify-start">
-                    <span className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                    <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
                       주소를 입력해주세요
                     </span>
                   </div>

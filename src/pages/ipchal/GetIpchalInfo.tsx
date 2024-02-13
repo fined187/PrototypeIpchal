@@ -177,7 +177,7 @@ export default function GetIpchalInfo() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row fixed items-center md:bottom-[80px] bottom-[10px] gap-[10px] md:w-[26%] w-[80%] ">
+        <div className="flex flex-row fixed items-center md:bottom-[80px] bottom-[10px] gap-[10px] md:w-[550px] w-[90%] ">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

@@ -46,9 +46,27 @@ export default function PreparingList() {
     handlePreparingMsg()
   }, [])
 
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
+
   return (
     <>
-      <div className="flex flex-col justify-center w-[100%] md:h-screen h-[90vh] bg-white items-center text-center relative">
+      <div id="box" className="flex flex-col justify-center w-[100%] bg-white items-center text-center relative">
         <div className="flex flex-col justify-center items-center md:w-[50%] w-[100%] h-[100%] bg-mybg relative">
           <div className="flex flex-col gap-[60px] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-NanumGothic font-bold">
@@ -75,7 +93,7 @@ export default function PreparingList() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[26%] w-[80%]">
+        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[550px] w-[90%]">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

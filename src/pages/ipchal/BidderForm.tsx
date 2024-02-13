@@ -540,7 +540,7 @@ export default function BidderForm() {
                   (<div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="bidderName"
-                      className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic   text-left text-red-500"
+                      className="text-[1rem] font-semibold font-NanumGothic not-italic   text-left text-red-500"
                     >
                       {errors.bidderName?.message}
                     </label>
@@ -590,7 +590,7 @@ export default function BidderForm() {
                   errors.bidderPhone2?.type === 'required' ||
                   errors.bidderPhone3?.type === 'required') && (biddingForm.bidPhone[stepNum - 1] === '' || biddingForm.bidPhone[stepNum - 1] === undefined) ? (
                   <div className="flex w-[100%] justify-start">
-                    <span className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                    <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
                       전화번호를 입력해주세요
                     </span>
                   </div>
@@ -739,7 +739,7 @@ export default function BidderForm() {
                         errors.bidderIdNum2?.type === 'required' && 
                         (biddingForm.bidIdNum[stepNum - 1] === '' || biddingForm.bidIdNum[stepNum - 1] === undefined) ? (
                         <div className="flex w-[100%] justify-start h-[15px] mb-1">
-                          <span className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                          <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
                             주민등록번호를 입력해주세요
                           </span>
                         </div>
@@ -840,7 +840,7 @@ export default function BidderForm() {
                         handleInputChange(e)
                       }}
                     />
-                    <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] md:w-[10%] w-[15%] cursor-pointer"
+                    <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] w-[10%] cursor-pointer"
                       onClick={() => setPasswordActive(!passwordActive)}
                     >
                       {passwordActive ? (
@@ -861,7 +861,7 @@ export default function BidderForm() {
                       errors.bidderCorpNum3?.type === 'required') && 
                       (biddingForm.bidCorpNum[stepNum - 1] === '' || biddingForm.bidCorpNum[stepNum - 1] === undefined) ? (
                       <div className="flex w-[100%] justify-start mb-1">
-                        <span className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                        <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
                           사업자등록번호를 입력해주세요
                         </span>
                       </div>
@@ -1008,7 +1008,7 @@ export default function BidderForm() {
                         (biddingForm.bidCorpRegiNum[stepNum - 1] === '' || biddingForm.bidCorpRegiNum[stepNum - 1] === undefined) ? 
                         (
                         <div className="flex w-[100%] justify-start mb-1">
-                          <span className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                          <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
                             법인 등록번호를 입력해주세요
                           </span>
                         </div>
@@ -1121,17 +1121,17 @@ export default function BidderForm() {
                         <div className="flex w-[100%] justify-start">
                           <label
                             htmlFor="agentJob"
-                            className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500"
+                            className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500"
                           >
                             {errors.bidderJob?.message}
                           </label>
                         </div>
                       ) : (
                         <div className='flex flex-row justify-start w-[100%]'>
-                          <label htmlFor="bidderJob" className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
+                          <label htmlFor="bidderJob" className="text-[1rem] font-semibold font-NanumGothic not-italic text-left">
                             직업
                           </label>
-                          <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                          <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
                             *
                           </span>
                         </div>
@@ -1144,7 +1144,7 @@ export default function BidderForm() {
                     value={biddingForm.bidJob[stepNum - 1] || ''}
                     id="bidderJob"
                     type="text"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2"
                     placeholder="직업을 입력해주세요 예) 회사원"
                     onChange={(e) => {
                       setBiddingInfo((prev: any) => {

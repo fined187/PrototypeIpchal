@@ -216,7 +216,7 @@ export default function ModalAddr({
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-          <div className="fixed inset-0 z-10 w-[100%] h-[100%] overflow-y-auto justify-center items-center">
+          <div className="fixed inset-0 z-10 w-[100%] h-[100%] overflow-auto justify-center items-center">
             <div className="flex w-[100%] h-[100%] justify-center p-4 text-center items-center sm:p-0">
               <ModalContent style={{
                 width: '100%',
@@ -229,7 +229,7 @@ export default function ModalAddr({
                     height: '100%',
                   }}
                 >
-                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[30%] w-[100%] justify-center items-center h-[750px] overflow-x-scroll overflow-y-scroll scrollbar-hide rounded-md absolute sm:top-[100px] top-[0px] sm:left-[35%] left-[0%]" style={{
+                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[30%] w-[100%] justify-center items-center h-[750px] overflow-auto scrollbar-hide rounded-md absolute sm:top-[100px] top-[0px] sm:left-[35%] left-[0%]" style={{
                     zIndex: 11
                   }}>
                     <div className="flex justify-center flex-col">
@@ -399,16 +399,16 @@ export default function ModalAddr({
                               addrList?.length === 0
                                 ? ''
                                 : 'border border-spacing-1'
-                            } rounded-md overflow-y-scroll sm:overflow-hidden`}
+                            } rounded-md overflow-auto md:overflow-hidden`}
                           >
                             {addrList?.length > 0 && !emptyView && (
                               <>
-                                <div className="w-[100%] overflow-y-scroll sm:overflow-hidden">
+                                <div className="w-[100%] overflow-auto md:overflow-hidden">
                                   {addrList.map(
                                     (addr: any, index: number) => (
                                       <div
                                         key={index}
-                                        className={`flex flex-row justify-between sm:overflow-hidden overflow-y-auto w-full items-center h-[120px] sm:max-h-[150px] sm:min-h-[100px] border-b-[1px] ${
+                                        className={`flex flex-row justify-between md:overflow-hidden overflow-auto w-full items-center h-[120px] sm:max-h-[150px] sm:min-h-[100px] border-b-[1px] ${
                                           index % 2 === 0
                                             ? 'bg-gray-50 hover:bg-gray-100'
                                             : 'bg-white hover:bg-gray-100'

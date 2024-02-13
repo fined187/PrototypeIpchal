@@ -6,6 +6,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { LiaEyeSlashSolid, LiaEyeSolid } from 'react-icons/lia'
 import { useRecoilState } from 'recoil'
 
 export default function AgentForm() {
@@ -27,6 +28,7 @@ export default function AgentForm() {
     agentAddrDetail: '',
     agentJob: '',
   })
+  const [passwordActive, setPasswordActive] = useState(false)
 
   if (typeof window === 'undefined') return null
   window.document.addEventListener('keydown', (e) => {
@@ -309,7 +311,7 @@ export default function AgentForm() {
                     <div className="flex w-[100%] justify-start">
                       <label
                         htmlFor="agentPhone"
-                        className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500"
+                        className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500"
                       >
                         전화번호를 입력해주세요
                       </label>
@@ -527,6 +529,15 @@ export default function AgentForm() {
                       })
                     }}
                   />
+                  <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] w-[10%] cursor-pointer"
+                    onClick={() => setPasswordActive(!passwordActive)}
+                  >
+                    {passwordActive ? (
+                      <LiaEyeSolid className="cursor-pointer" size={'35%'} />
+                    ) : (
+                      <LiaEyeSlashSolid className="cursor-pointer" size={'35%'} />
+                    )}
+                  </div>
                 </div>
               </div>
               <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>

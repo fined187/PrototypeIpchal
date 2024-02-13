@@ -308,7 +308,7 @@ export default function AgentForm() {
                   <div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="agentPhone"
-                      className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic   text-left text-red-500"
+                      className="text-[1rem] font-semibold font-NanumGothic not-italic   text-left text-red-500"
                     >
                       전화번호를 입력해주세요
                     </label>
@@ -526,7 +526,7 @@ export default function AgentForm() {
                     })
                   }}
                 />
-                <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] md:w-[10%] w-[15%] cursor-pointer"
+                <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] w-[10%] cursor-pointer"
                   onClick={() => setPasswordActive(!passwordActive)}
                 >
                   {passwordActive ? (
@@ -546,7 +546,7 @@ export default function AgentForm() {
                     <div className="flex w-[100%] justify-start">
                       <label
                         htmlFor="agentJob"
-                        className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500"
+                        className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500"
                       >
                         {errors.agentJob?.message}
                       </label>
