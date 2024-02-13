@@ -18,6 +18,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@ionic-native/file": "^5.36.0",
     "@ionic-native/file-opener": "^5.36.0",
+    "@ionic/cli": "^7.2.0",
     "@types/html-pdf": "^3.0.3",
     "@types/jspdf": "^2.0.0",
     "@types/react-frame-component": "^4.1.6",

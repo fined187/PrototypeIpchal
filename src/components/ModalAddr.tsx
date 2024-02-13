@@ -204,6 +204,10 @@ export default function ModalAddr({
         handleGetAddr()
         handleCombineAddr()
         onClose()
+        setBiddingForm((prev: any) => ({
+          ...prev,
+          isModalOpen: false,
+        }))
       }
     } 
   }
@@ -225,7 +229,9 @@ export default function ModalAddr({
                     height: '100%',
                   }}
                 >
-                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[30%] w-[100%] justify-center items-center h-[750px] overflow-x-scroll overflow-y-scroll scrollbar-hide rounded-md absolute sm:top-[100px] top-[0px] sm:left-[35%] left-[0%]">
+                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[30%] w-[100%] justify-center items-center h-[750px] overflow-x-scroll overflow-y-scroll scrollbar-hide rounded-md absolute sm:top-[100px] top-[0px] sm:left-[35%] left-[0%]" style={{
+                    zIndex: 11
+                  }}>
                     <div className="flex justify-center flex-col">
                       <div className="flex flex-row justify-between">
                         <div className="">
@@ -238,6 +244,10 @@ export default function ModalAddr({
                           onClick={() => {
                             onClose()
                             setDetailAddr(false)
+                            setBiddingForm((prev: any) => ({
+                              ...prev,
+                              isModalOpen: false,
+                            }))
                           }}
                         >
                           <IoClose className="flex" size={20} />
@@ -574,6 +584,10 @@ export default function ModalAddr({
                                   handleGetAddr()
                                   handleCombineAddr()
                                   onClose()
+                                  setBiddingForm((prev: any) => ({
+                                    ...prev,
+                                    isModalOpen: false,
+                                  }))
                                 }}
                               >
                                 <span className="text-sm text-white rounded-md">

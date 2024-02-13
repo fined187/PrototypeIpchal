@@ -81,7 +81,7 @@ export default function Navbar() {
   return (
     <div className="flex justify-between absolute w-[100%] md:w-[50%] md:h-[100px] h-[50px] left-[50%] bg-mybg mx-auto" style={{
       transform: 'translateX(-50%)',
-      zIndex: 10,
+      zIndex: biddingForm.isModalOpen ? 0 : 10,
     }}>
       <div className="flex rounded-lg w-[30%] h-[20px] justify-start relative md:top-[20px] top-[10px] left-[10px] md:ml-5">
         <div className="w-full z-1 bg-gray-300 h-[100%] rounded-full relative top-0">

@@ -91,7 +91,7 @@ export const biddingInfoState = atom({
       peopleSeq: 0,
       name: '',
       mandateYn: '',
-    }
+    },
   },
   dangerouslyAllowMutability: true,
 })

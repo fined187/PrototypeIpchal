@@ -106,6 +106,7 @@ export default function CreateFile() {
           ...biddingInfo,
           imageFile: imgData,
         })
+        
         doc.text('100', 100, 20)
 
         doc?.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)

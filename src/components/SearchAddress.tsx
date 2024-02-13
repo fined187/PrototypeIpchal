@@ -3,7 +3,7 @@
 import { AgentInfoType, BiddingInfoType } from '@/interface/IpchalType'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { FieldErrors, UseFormRegister, UseFormSetError } from 'react-hook-form'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { biddingInfoState } from '@/atom'
 import ModalAddr from './ModalAddr'
 import { createPortal } from 'react-dom';
@@ -45,7 +45,7 @@ export default function SearchAddress({
   agentSetValue,
 }: SearchAddressProps) {
   let [portalElement, setPortalElement] = useState<Element | null>(null);
-  const biddingForm = useRecoilValue(biddingInfoState)
+  const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
 
   useEffect(() => {
     setPortalElement(document.getElementById('portal'));
@@ -54,8 +54,16 @@ export default function SearchAddress({
   const handleModal = () => {
     if (isOpen && onClose) {
       onClose()
+      setBiddingForm((prev) => ({
+        ...prev,
+        isModalOpen: true,
+      }))
     } else {
       onOpen && onOpen()
+      setBiddingForm((prev) => ({
+        ...prev,
+        isModalOpen: true,
+      }))
     }
   }
   
