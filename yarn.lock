@@ -3072,6 +3072,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ionic-native/file-opener@npm:^5.36.0":
+  version: 5.36.0
+  resolution: "@ionic-native/file-opener@npm:5.36.0"
+  dependencies:
+    "@types/cordova": "npm:latest"
+  peerDependencies:
+    "@ionic-native/core": ^5.1.0
+    rxjs: ^5.5.0 || ^6.5.0
+  checksum: 273ac4b649a7b7e28c26edebb0967602f819fa1b4b43b1dd897ebcf5ec597573a574e19a1684dcb0fef6f97748fb3d605b7aed2c3edad76513c76503a4a66c8f
+  languageName: node
+  linkType: hard
+
+"@ionic-native/file@npm:^5.36.0":
+  version: 5.36.0
+  resolution: "@ionic-native/file@npm:5.36.0"
+  dependencies:
+    "@types/cordova": "npm:latest"
+  peerDependencies:
+    "@ionic-native/core": ^5.1.0
+    rxjs: ^5.5.0 || ^6.5.0
+  checksum: d1a4e2082c0de41d30815269f945b8e706e534a1f931ff072f29835453d871a85f569c2ed23d7caff81a5c6cf5554b8fde2c92e2804fede9da7a2085df674c8c
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -3306,6 +3330,13 @@ __metadata:
   dependencies:
     tslib: "npm:^2.4.0"
   checksum: b6fa49bcf6c00571d0eb7837b163f8609960d4d77538160585e27ed167361e9776bd6e5eb9646ffac2fb4d43c58df9ca50dab9d96ab097e6591bc82a75fd1164
+  languageName: node
+  linkType: hard
+
+"@types/cordova@npm:latest":
+  version: 11.0.3
+  resolution: "@types/cordova@npm:11.0.3"
+  checksum: 18add442a8178d1f1909e201bace6e2f5b25980d5f233ec46be4bf5ce74d69858651661558d4b2de3cee32ee892c33e1626d6d50947dd3c5158c1bb69d517b02
   languageName: node
   linkType: hard
 
@@ -4519,6 +4550,20 @@ __metadata:
   dependencies:
     toggle-selection: "npm:^1.0.6"
   checksum: 3ebf5e8ee00601f8c440b83ec08d838e8eabb068c1fae94a9cda6b42f288f7e1b552f3463635f419af44bf7675afc8d0390d30876cf5c2d5d35f86d9c56a3e5f
+  languageName: node
+  linkType: hard
+
+"cordova-plugin-file-opener2@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "cordova-plugin-file-opener2@npm:4.0.0"
+  checksum: 4c83f15bbe74e006b78d0abf6cec3504024be51c33c91edbf7539da8f449e0be63818d7e7f9c4bf143c5487d92e8725a269f5f52d90886aebfb9e4987adc79c9
+  languageName: node
+  linkType: hard
+
+"cordova-plugin-file@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "cordova-plugin-file@npm:8.0.1"
+  checksum: e27a9d170e42ff4f2f44206c13365f98c89dc7ec9ad9fa8b423fbef575643f5a79239d569c2371f350ac7ccaeafc15ba1404414e4c6b84bbde12e11f6bab973f
   languageName: node
   linkType: hard
 
@@ -5900,6 +5945,8 @@ __metadata:
     "@emotion/styled": "npm:^11.11.0"
     "@headlessui/react": "npm:^1.7.17"
     "@hookform/resolvers": "npm:^3.3.2"
+    "@ionic-native/file": "npm:^5.36.0"
+    "@ionic-native/file-opener": "npm:^5.36.0"
     "@types/html-pdf": "npm:^3.0.3"
     "@types/jspdf": "npm:^2.0.0"
     "@types/node": "npm:^20"
@@ -5910,6 +5957,8 @@ __metadata:
     "@types/uuid": "npm:^9.0.7"
     autoprefixer: "npm:^10.4.17"
     axios: "npm:^1.6.2"
+    cordova-plugin-file: "npm:^8.0.1"
+    cordova-plugin-file-opener2: "npm:^4.0.0"
     daisyui: "npm:^4.6.1"
     date-fns: "npm:^3.0.6"
     emailjs: "npm:^4.0.3"

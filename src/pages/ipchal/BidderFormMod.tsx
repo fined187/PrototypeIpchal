@@ -601,7 +601,7 @@ export default function BidderFormMod() {
 
 
   return (
-    <div className="flex w-[100%] md:h-screen h-[90vh] bg-white justify-center relative">
+    <div className={`flex w-[100%] md:h-screen ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'h-[95vh]' : 'h-[100vh]'} bg-white justify-center relative`}>
       {loading && (
         <Spinner />
       )}
@@ -1282,7 +1282,7 @@ export default function BidderFormMod() {
                   setValue={setValue}
                 />
               </div>
-              <div className={`flex flex-row gap-[10px] fixed ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:bottom-[80px] bottom-[10px]' : 'md:bottom-[80px] bottom-[10px]'} items-center md:w-[26%] w-[80%]`}>
+              <div className={`flex flex-row gap-[10px] fixed ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:bottom-[80px] bottom-[0px]' : 'md:bottom-[80px] bottom-[0px]'} items-center md:w-[26%] w-[80%]`}>
                 <button
                   type="button"
                   className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

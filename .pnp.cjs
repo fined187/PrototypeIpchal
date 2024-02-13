@@ -32,6 +32,8 @@ const RAW_RUNTIME_STATE =
           ["@emotion/styled", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:11.11.0"],\
           ["@headlessui/react", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.7.17"],\
           ["@hookform/resolvers", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:3.3.2"],\
+          ["@ionic-native/file", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0"],\
+          ["@ionic-native/file-opener", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0"],\
           ["@types/html-pdf", "npm:3.0.3"],\
           ["@types/jspdf", "npm:2.0.0"],\
           ["@types/node", "npm:20.10.4"],\
@@ -42,6 +44,8 @@ const RAW_RUNTIME_STATE =
           ["@types/uuid", "npm:9.0.7"],\
           ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.17"],\
           ["axios", "npm:1.6.2"],\
+          ["cordova-plugin-file", "npm:8.0.1"],\
+          ["cordova-plugin-file-opener2", "npm:4.0.0"],\
           ["daisyui", "npm:4.6.1"],\
           ["date-fns", "npm:3.0.6"],\
           ["emailjs", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3"],\
@@ -5600,6 +5604,60 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@ionic-native/file", [\
+      ["npm:5.36.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@ionic-native-file-npm-5.36.0-f0e4af537e-10c0.zip/node_modules/@ionic-native/file/",\
+        "packageDependencies": [\
+          ["@ionic-native/file", "npm:5.36.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0", {\
+        "packageLocation": "./.yarn/__virtual__/@ionic-native-file-virtual-659c9a685e/3/Users/woota/AppData/Local/Yarn/Berry/cache/@ionic-native-file-npm-5.36.0-f0e4af537e-10c0.zip/node_modules/@ionic-native/file/",\
+        "packageDependencies": [\
+          ["@ionic-native/file", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0"],\
+          ["@ionic-native/core", null],\
+          ["@types/cordova", "npm:11.0.3"],\
+          ["@types/ionic-native__core", null],\
+          ["@types/rxjs", null],\
+          ["rxjs", null]\
+        ],\
+        "packagePeers": [\
+          "@ionic-native/core",\
+          "@types/ionic-native__core",\
+          "@types/rxjs",\
+          "rxjs"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@ionic-native/file-opener", [\
+      ["npm:5.36.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@ionic-native-file-opener-npm-5.36.0-21247b7ac9-10c0.zip/node_modules/@ionic-native/file-opener/",\
+        "packageDependencies": [\
+          ["@ionic-native/file-opener", "npm:5.36.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0", {\
+        "packageLocation": "./.yarn/__virtual__/@ionic-native-file-opener-virtual-e6156ae6a3/3/Users/woota/AppData/Local/Yarn/Berry/cache/@ionic-native-file-opener-npm-5.36.0-21247b7ac9-10c0.zip/node_modules/@ionic-native/file-opener/",\
+        "packageDependencies": [\
+          ["@ionic-native/file-opener", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0"],\
+          ["@ionic-native/core", null],\
+          ["@types/cordova", "npm:11.0.3"],\
+          ["@types/ionic-native__core", null],\
+          ["@types/rxjs", null],\
+          ["rxjs", null]\
+        ],\
+        "packagePeers": [\
+          "@ionic-native/core",\
+          "@types/ionic-native__core",\
+          "@types/rxjs",\
+          "rxjs"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@isaacs/cliui", [\
       ["npm:8.0.2", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@isaacs-cliui-npm-8.0.2-f4364666d5-10c0.zip/node_modules/@isaacs/cliui/",\
@@ -5887,6 +5945,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@swc/helpers", "npm:0.5.2"],\
           ["tslib", "npm:2.6.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/cordova", [\
+      ["npm:11.0.3", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-cordova-npm-11.0.3-c324be7fea-10c0.zip/node_modules/@types/cordova/",\
+        "packageDependencies": [\
+          ["@types/cordova", "npm:11.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7408,6 +7475,24 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["copy-to-clipboard", "npm:3.3.3"],\
           ["toggle-selection", "npm:1.0.6"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["cordova-plugin-file", [\
+      ["npm:8.0.1", {\
+        "packageLocation": "./.yarn/unplugged/cordova-plugin-file-npm-8.0.1-27cf483808/node_modules/cordova-plugin-file/",\
+        "packageDependencies": [\
+          ["cordova-plugin-file", "npm:8.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["cordova-plugin-file-opener2", [\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/unplugged/cordova-plugin-file-opener2-npm-4.0.0-4e09a3a76c/node_modules/cordova-plugin-file-opener2/",\
+        "packageDependencies": [\
+          ["cordova-plugin-file-opener2", "npm:4.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -9263,6 +9348,8 @@ const RAW_RUNTIME_STATE =
           ["@emotion/styled", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:11.11.0"],\
           ["@headlessui/react", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.7.17"],\
           ["@hookform/resolvers", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:3.3.2"],\
+          ["@ionic-native/file", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0"],\
+          ["@ionic-native/file-opener", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0"],\
           ["@types/html-pdf", "npm:3.0.3"],\
           ["@types/jspdf", "npm:2.0.0"],\
           ["@types/node", "npm:20.10.4"],\
@@ -9273,6 +9360,8 @@ const RAW_RUNTIME_STATE =
           ["@types/uuid", "npm:9.0.7"],\
           ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.17"],\
           ["axios", "npm:1.6.2"],\
+          ["cordova-plugin-file", "npm:8.0.1"],\
+          ["cordova-plugin-file-opener2", "npm:4.0.0"],\
           ["daisyui", "npm:4.6.1"],\
           ["date-fns", "npm:3.0.6"],\
           ["emailjs", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3"],\

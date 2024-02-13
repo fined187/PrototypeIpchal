@@ -76,8 +76,6 @@ export default function StartIpchal() {
     }
   }
 
-  const deviceHeight: number = typeof window !== 'undefined' ? window.screen.height! : 0
-  console.log(deviceHeight)
   return (
     <>
       <div className={`flex w-[100%] justify-center md:h-screen h-[90vh] bg-white relative`} >
