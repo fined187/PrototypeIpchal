@@ -776,7 +776,7 @@ export default function BidderFormMod() {
                     type="text"
                     maxLength={3}
                     placeholder="010"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
                     value={biddingForm.bidPhone1[stepNum - 1] || ''}
                     onChange={(e) => {
                       setBiddingForm((prev: any) => {
@@ -812,7 +812,7 @@ export default function BidderFormMod() {
                         .replace(/(\..*)\./g, '$1')
                     }}
                     placeholder="1234"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
                     value={biddingForm.bidPhone2[stepNum - 1] || ''}
                     onChange={(e) => {
                       setBiddingForm((prev: any) => {
@@ -848,7 +848,7 @@ export default function BidderFormMod() {
                         .replace(/(\..*)\./g, '$1')
                     }}
                     placeholder="5678"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
                     value={biddingForm.bidPhone3[stepNum - 1] || ''}
                     onChange={(e) => {
                       setBiddingForm((prev: any) => {
@@ -915,7 +915,7 @@ export default function BidderFormMod() {
                         }}
                         type="text"
                         maxLength={6}
-                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[45%] text-center"
+                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[45%] text-center"
                         value={biddingForm.bidIdNum1[stepNum - 1]}
                         onChange={(e) => {
                           setBiddingForm((prev: any) => {
@@ -949,7 +949,7 @@ export default function BidderFormMod() {
                         }}
                         type={`${!passwordActive ? 'password' : 'text'}`}
                         maxLength={7}
-                        className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[45%] text-center"
+                        className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[45%] text-center"
                         value={biddingForm.bidIdNum2[stepNum - 1]}
                         onChange={(e) => {
                           setBiddingForm((prev: any) => {

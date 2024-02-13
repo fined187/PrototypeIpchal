@@ -776,7 +776,7 @@ export default function BidderForm() {
                       }}
                       type="text"
                       maxLength={6}
-                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[1rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[45%] text-center"
+                      className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[45%] text-center"
                       value={biddingForm.bidIdNum1[stepNum - 1] || ''}
                       onChange={(e) => {
                         setBiddingInfo((prev: any) => {
@@ -816,7 +816,7 @@ export default function BidderForm() {
                       }}
                       type={`${!passwordActive ? 'password' : 'text'}`}
                       maxLength={7}
-                      className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[1rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[45%] text-center"
+                      className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[45%] text-center"
                       value={biddingForm.bidIdNum2[stepNum - 1] || ''}
                       onChange={(e) => {
                         setBiddingInfo((prev: any) => {
