@@ -86,13 +86,13 @@ export default function AgentCheck() {
                 })
               }}
             />
-            <label htmlFor="allChecked" className="ml-2 md:text-[14pt] text-[12pt] text-black font-bold dark:text-gray-400">전체 선택</label>
+            <label htmlFor="allChecked" className="ml-2 md:text-[1.1rem] text-[1rem] text-black font-bold dark:text-gray-400">전체 선택</label>
           </div>
         </div>
-        <div className="flex flex-col gap-10 w-[90%] md:w-[550px] min-h-[250px] max-h-[400px] border border-gray-[1px] bg-white md:mt-[150px] mt-[100px] items-center rounded-lg border-slate-500 overflow-y-scroll pt-[25px]">
-          <div className="flex flex-col gap-[50px]  items-center w-[80%] h-[100%] ">
+        <div className="flex flex-col w-[90%] md:w-[550px] min-h-[250px] max-h-[400px] border border-gray-[1px] bg-white md:mt-[150px] mt-[100px] items-center rounded-lg border-slate-500 overflow-y-auto">
+          <div className="flex flex-col justify-center gap-[30px] items-center w-[80%] h-[100%] ">
             {biddingInfo.bidName.map((name: any, index: number) => (
-              <div className="flex md:w-[50%] w-[90%] h-[100%] justify-between" key={index}>
+              <div className="flex md:w-[50%] w-[90%] justify-between" key={index}>
                 <span className="md:text-[15pt] text-[12pt] font-NanumGothic font-bold">
                   {name}
                 </span>

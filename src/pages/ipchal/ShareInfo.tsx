@@ -270,7 +270,7 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-[25px] md:w-[550px] w-[90%] min-h-[250px] md:max-h-[450px] bg-white absolute top-[170px] items-center rounded-lg border-slate-500 md:mt-[80px] mt-[30px] pt-[50px] overflow-y-scroll">
+        <div className="flex flex-col gap-[30px] md:w-[550px] w-[90%] min-h-[250px] md:max-h-[450px] bg-white absolute top-[170px] items-center rounded-lg border-slate-500 md:mt-[80px] mt-[30px] pt-[50px] overflow-y-auto">
           {loadding && (
             <Spinner />
           )}

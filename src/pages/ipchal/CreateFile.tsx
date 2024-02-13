@@ -108,7 +108,6 @@ export default function CreateFile() {
         })
         
         doc.text('100', 100, 20)
-
         doc?.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
         heightLeft -= pageHeight
         while (heightLeft >= 20) {
@@ -134,7 +133,7 @@ export default function CreateFile() {
       captureDiv.style.display = 'none'
     }
   }
-  
+
   const onClickPdf = async (e: any) => {
     setLoading(true)
     e.preventDefault()

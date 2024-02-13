@@ -37,7 +37,7 @@ export default function DownIpchal() {
   const newWindowPdf = () => {
     if (window) {
       const url = window.URL.createObjectURL(new Blob([biddingInfo.pdfFile], {type: 'application/pdf'}))
-      window.open(url, "blob", "width=600, height=600, resizeable, scrollbars, noopener")
+      window.open(url, "blob", "width=1200, height=1200, resizeable, scrollbars, noopener")
       window.URL.revokeObjectURL(url)
     }
   }

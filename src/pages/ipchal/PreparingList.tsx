@@ -16,10 +16,10 @@ export default function PreparingList() {
       setMsg('법인이 직접 입찰하셨습니다.')
       setDetailList(['- 법인등기부', '- 대표이사 신분증', '- 대표이사 도장'])
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && !biddingInfo.bidCorpYn.includes('C')) {
-      setMsg(`${biddingInfo.bidderNum} 명이 직접 입찰하셨습니다.`)
+      setMsg(`${biddingInfo.bidderNum} 명이 직접 공동입찰하셨습니다.`)
       setDetailList(['- 신분증', '- 도장', '- 불참자 인감증명서', '- 불참자의 인감이 날인된 위임장', '- 공동입찰신고서', '- 공동입찰자 목록'])
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && !biddingInfo.bidCorpYn.includes('I')) {
-      setMsg(`${biddingInfo.bidderNum} 명의 법인이 직접 입찰하셨습니다.`)
+      setMsg(`${biddingInfo.bidderNum} 명의 법인이 직접 공동입찰하셨습니다.`)
       setDetailList(['- 법인등기부', '- 대표이사 신분증', '- 대표이사 도장', '- 불참법인 인감증명서', '- 불참법인의 인감이 날인된 위임장', '- 공동입찰신고서', '- 공동입찰자 목록'])
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && (biddingInfo.bidCorpYn.includes('I') && biddingInfo.bidCorpYn.includes('C'))) {
       setMsg(`${biddingInfo.bidderNum} 명이 직접 입찰하셨습니다.`)
