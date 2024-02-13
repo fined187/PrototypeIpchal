@@ -3,7 +3,7 @@ import { biddingInfoState, stepState } from '@/atom'
 import axios from 'axios'
 import Image from 'next/image'
 import { useRecoilState } from 'recoil'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { calc } from '@chakra-ui/react'
 
@@ -76,9 +76,27 @@ export default function StartIpchal() {
     }
   }
 
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
+
   return (
     <>
-      <div className={`flex w-[100%] justify-center md:h-screen h-[90vh] bg-white relative`} >
+      <div id='box' className={`flex w-[100%] justify-center bg-white relative`} >
         <div className={`flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}>
           <div className="flex md:pt-[100px] pt-[50px]">
             <span className="md:text-[2rem] text-[1.6rem] font-extrabold font-NanumGothic not-italic md:py-[0px] py-[25px]">

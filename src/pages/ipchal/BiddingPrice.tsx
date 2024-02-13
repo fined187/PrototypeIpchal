@@ -80,6 +80,7 @@ export default function BiddingPrice() {
   useEffect(() => {
     const handleRegisterMandate = async () => {
       if (biddingForm.agentYn === 'Y' && biddingForm.bidderNum === 1) {
+        console.log("입찰자 대리인 연결 실행")
         try {
           const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/mandates`, {
             bidderCount: biddingForm.bidderNum,
@@ -100,10 +101,13 @@ export default function BiddingPrice() {
           }
         } catch (error) {
           console.log(error)
+          console.log("입찰자 대리인 연결 실패")
         }
       }
     }
-    handleRegisterMandate()
+    setTimeout(() => {
+      handleRegisterMandate()
+    }, 1000)
   }, [])
 
   const handleCheckPrice = () => {
@@ -256,10 +260,28 @@ export default function BiddingPrice() {
     }
     handleSyncBiddingForm()
   }, [])
+
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
   
   return (
     <>
-      <div className="flex w-[100%] md:h-[97.5vh] h-[87vh] bg-white justify-center relative">
+      <div id='box' className="flex w-[100%] bg-white justify-center relative">
         <div className="flex flex-col gap-[20px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative mt-[20px] md:pt-[100px] pt-[50px]">
           {loading && (
               <Spinner />
@@ -369,7 +391,7 @@ export default function BiddingPrice() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[26%] w-[80%]">
+        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[550px] w-[80%]">
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

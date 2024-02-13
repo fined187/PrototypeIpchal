@@ -3,7 +3,7 @@ import SearchAddress from '@/components/SearchAddress'
 import { AgentInfoType } from '@/interface/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { LiaEyeSlashSolid, LiaEyeSolid } from 'react-icons/lia'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
@@ -167,9 +167,27 @@ export default function AgentForm() {
       }
     }
   }
+
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
   
   return (
-    <div className="flex w-[100%] h-[100vh] bg-white justify-center relative">
+    <div id='box' className="flex w-[100%] bg-white justify-center relative">
       <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
         <div className="flex flex-col gap-2 justify-center items-center md:pt-[100px] pt-[50px]">
           <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
@@ -436,7 +454,7 @@ export default function AgentForm() {
                         </span>
                       </div>
                       <div>
-                        <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                        <span className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
                           (주민등록번호는 저장되지 않습니다.)
                         </span>
                       </div>

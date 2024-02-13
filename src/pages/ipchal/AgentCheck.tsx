@@ -59,8 +59,26 @@ export default function AgentCheck() {
     }
   }
 
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
+
   return (
-    <div className="flex w-[100%] h-screen bg-white justify-center relative">
+    <div id="box" className="flex w-[100%] bg-white justify-center relative">
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
         <div className="flex flex-col relative md:w-[550px] w-[90%] h-[100px] md:pt-[100px] pt-[50px]">
           <span className="md:text-[1.5rem] text-[1.2rem] font-bold font-Nanum Gothic not-italic leading-8">
@@ -89,7 +107,7 @@ export default function AgentCheck() {
             <label htmlFor="allChecked" className="ml-2 md:text-[1.1rem] text-[1rem] text-black font-bold dark:text-gray-400">전체 선택</label>
           </div>
         </div>
-        <div className="flex flex-col w-[90%] md:w-[550px] min-h-[250px] max-h-[400px] border border-gray-[1px] bg-white md:mt-[150px] mt-[100px] items-center rounded-lg border-slate-500 overflow-y-auto">
+        <div className="flex flex-col w-[90%] md:w-[550px] min-h-[250px] max-h-[400px] border border-gray-[1px] bg-white md:mt-[150px] mt-[100px] items-center rounded-lg border-slate-500 overflow-auto">
           <div className="flex flex-col justify-center gap-[30px] items-center w-[80%] h-[100%] ">
             {biddingInfo.bidName.map((name: any, index: number) => (
               <div className="flex md:w-[50%] w-[90%] justify-between" key={index}>

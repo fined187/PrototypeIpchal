@@ -207,6 +207,24 @@ export default function CreateFile() {
     handleGetResult()
   }, [])
 
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
+
   return (
     <>
       {!loading && (
@@ -273,7 +291,7 @@ export default function CreateFile() {
               </div>
             )}
           </div>
-          <div className="flex flex-row items-center md:w-[26%] w-[80%] gap-[10px] fixed md:bottom-[80px] bottom-[10px]">
+          <div className="flex flex-row items-center md:w-[550px] w-[80%] gap-[10px] fixed md:bottom-[80px] bottom-[10px]">
             <button
               type="button"
               className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

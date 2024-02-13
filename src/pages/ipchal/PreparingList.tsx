@@ -60,7 +60,7 @@ export default function PreparingList() {
                   {msg}
                 </span>
               </div>
-              <div className="flex flex-col border-gray border-[1px] w-[90%] max-h-[70%] mt-[15px] bg-white rounded-xl gap-[10px] p-[15px] overflow-y-scroll">
+              <div className="flex flex-col border-gray border-[1px] w-[90%] max-h-[70%] mt-[15px] bg-white rounded-xl gap-[10px] p-[15px] overflow-auto">
                 <span className="text-[1rem] font-NanumGothic font-semibold text-left">
                   - 매수신청보증금(최저매각대금의 10%, 재매각일 경우 법원마다 달라 확인요구 보통 20 ~ 30%)
                 </span>

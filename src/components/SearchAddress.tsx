@@ -69,8 +69,8 @@ export default function SearchAddress({
   
   return (
     <>
-      <div className="flex flex-col w-[100%] h-[60px] gap-1">
-        <div className="flex w-[100%]">
+      <div className="flex flex-col w-[full]  gap-1">
+        <div className="flex w-[100%] ">
           <div className='flex justify-between w-[100%]'>
             {errors?.bidderAddr?.type === 'required' && stepNum && (biddingForm.bidAddr[stepNum - 1] === '' || biddingForm.bidAddr[stepNum - 1] === undefined) ? (
               <div className="flex w-[100%] justify-start">
@@ -133,7 +133,7 @@ export default function SearchAddress({
             주소검색
           </button>
         </div>
-        <div className="flex flex-col w-[100%] h-[80px] gap-1">
+        <div className="flex flex-col w-[100%] bg-mybg gap-1">
           <div className="flex">
             <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left">
               상세주소

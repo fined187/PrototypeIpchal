@@ -80,10 +80,28 @@ export default function GetIpchalInfo() {
       }
     }
   }
-  const deviceHeight = typeof window !== 'undefined' ? window.innerHeight : 0
+  
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
+
   return (
     <>
-      <div className="flex w-[100%] justify-center bg-white relative md:h-[100vh] h-[90vh]">
+      <div id='box' className="flex w-[100%] justify-center bg-white relative">
         {loading && (
           <Spinner />
         )}

@@ -1,7 +1,7 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 export default function BiddingPayment() {
@@ -38,8 +38,26 @@ export default function BiddingPayment() {
     }
   }
 
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
+
   return (
-    <div className="flex w-[100%] md:h-[100vh] h-[90vh] bg-white justify-center relative">
+    <div id='box' className="flex w-[100%] bg-white justify-center relative">
       {loading && (
         <Spinner />
       )}

@@ -60,11 +60,11 @@ export default function TimeInfo() {
   }
 
   return (
-    <div className="flex w-[100%] h-screen bg-white justify-center relative">
+    <div className="flex w-[100%] md:h-screen h-[95vh] bg-white justify-center relative">
       {loading && (
         <Spinner />
       )}
-      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center">
+      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:pt-[100px] pt-[50px]">
         <div className="flex">
           <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
             입찰일에 두 번의 경매가 진행됩니다
@@ -72,7 +72,7 @@ export default function TimeInfo() {
             원하시는 경매를 선택하세요
           </span>
         </div>
-        <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[60%] bg-white absolute top-[107px] justify-center items-center rounded-lg border-slate-500">
+        <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[60%] bg-white mt-[50px] justify-center items-center rounded-lg border-slate-500">
           <div className={`flex flex-col justify-center items-center border-2 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1000" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} 
             onClick={() => {
             setTimeClicked('1000')
@@ -104,7 +104,7 @@ export default function TimeInfo() {
             </div>
           )}
         </div>
-        <div className="flex flex-row justify-center items-center md:w-[550px] w-[90%] gap-[10px] absolute md:top-[750px] top-[650px]">
+        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[26%] w-[80%]">
           <button
             type="button"
             className="flex w-[40%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

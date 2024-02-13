@@ -427,8 +427,9 @@ export default function BidderForm() {
     setValue('bidderJob', [biddingForm.bidJob[stepNum - 1] || ''])
   }, [stepNum, biddingForm])
 
+
   return (
-    <div className={`flex w-[100%] md:h-screen ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'h-[95vh]' : 'h-[100vh]'} bg-white justify-center relative`}>
+    <div className={`flex w-[100%] h-[100vh] bg-white justify-center relative`}>
       {loading && (
         <Spinner />
       )}
@@ -1110,75 +1111,75 @@ export default function BidderForm() {
                 </div>
               </>
             )}
-            <div className={`flex flex-col w-[100%] h-[60px] gap-1 relative`}>
-            {biddingForm.agentYn === 'Y' && (
-              <div className="flex flex-col w-[100%] gap-1">
-                <div className='flex justify-between w-[100%]'>
-                  {errors.bidderJob?.type === 'required' && 
-                    (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.bidJob[stepNum - 1] === undefined) ?
-                    (
-                      <div className="flex w-[100%] justify-start">
-                        <label
-                          htmlFor="agentJob"
-                          className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500"
-                        >
-                          {errors.bidderJob?.message}
-                        </label>
-                      </div>
-                    ) : (
-                      <div className='flex flex-row justify-start w-[100%]'>
-                        <label htmlFor="bidderJob" className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
-                          직업
-                        </label>
-                        <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
-                          *
-                        </span>
-                      </div>
-                    )}
+            <div className={`flex flex-col w-[100%] h-[100%] bg-mybg gap-1 relative`}>
+              {biddingForm.agentYn === 'Y' && (
+                <div className="flex flex-col w-[100%] gap-1">
+                  <div className='flex justify-between w-[100%]'>
+                    {errors.bidderJob?.type === 'required' && 
+                      (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.bidJob[stepNum - 1] === undefined) ?
+                      (
+                        <div className="flex w-[100%] justify-start">
+                          <label
+                            htmlFor="agentJob"
+                            className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500"
+                          >
+                            {errors.bidderJob?.message}
+                          </label>
+                        </div>
+                      ) : (
+                        <div className='flex flex-row justify-start w-[100%]'>
+                          <label htmlFor="bidderJob" className="text-[11pt] font-semibold font-NanumGothic not-italic text-left">
+                            직업
+                          </label>
+                          <span className="text-[11pt] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                            *
+                          </span>
+                        </div>
+                      )}
+                  </div>
+                  <input
+                    {...register('bidderJob', {
+                      required: '직업을 입력해주세요',
+                    })}
+                    value={biddingForm.bidJob[stepNum - 1] || ''}
+                    id="bidderJob"
+                    type="text"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2"
+                    placeholder="직업을 입력해주세요 예) 회사원"
+                    onChange={(e) => {
+                      setBiddingInfo((prev: any) => {
+                        const temp = prev.bidderJob
+                        temp[stepNum - 1] = e.target.value
+                        return { ...prev, bidderJob: temp }
+                      })
+                      setBiddingForm((prev: any) => {
+                        const temp = prev.bidJob
+                        temp[stepNum - 1] = e.target.value
+                        return { ...prev, bidJob: temp }
+                      })
+                      handleInputChange(e)
+                    }}
+                  />
+                  
                 </div>
-                <input
-                  {...register('bidderJob', {
-                    required: '직업을 입력해주세요',
-                  })}
-                  value={biddingForm.bidJob[stepNum - 1] || ''}
-                  id="bidderJob"
-                  type="text"
-                  className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[11pt] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2"
-                  placeholder="직업을 입력해주세요 예) 회사원"
-                  onChange={(e) => {
-                    setBiddingInfo((prev: any) => {
-                      const temp = prev.bidderJob
-                      temp[stepNum - 1] = e.target.value
-                      return { ...prev, bidderJob: temp }
-                    })
-                    setBiddingForm((prev: any) => {
-                      const temp = prev.bidJob
-                      temp[stepNum - 1] = e.target.value
-                      return { ...prev, bidJob: temp }
-                    })
-                    handleInputChange(e)
-                  }}
-                />
-                
-              </div>
-            )}
-            <SearchAddress 
-              stepNum={stepNum}
-              register={register}
-              errors={errors}
-              setError={setError}
-              biddingInfo={biddingInfo}
-              setBiddingInfo={setBiddingInfo}
-              isOpen={isOpen}
-              onOpen={onOpen}
-              onClose={onClose}
-              setValue={setValue}
-            />
-          </div>
-            <div className={`flex flex-row bg-mybg gap-[10px] fixed ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:bottom-[80px] bottom-[0px]' : 'md:bottom-[80px] bottom-[0px]'} items-center md:w-[26%] w-[80%]`}>
+              )}
+              <SearchAddress 
+                stepNum={stepNum}
+                register={register}
+                errors={errors}
+                setError={setError}
+                biddingInfo={biddingInfo}
+                setBiddingInfo={setBiddingInfo}
+                isOpen={isOpen}
+                onOpen={onOpen}
+                onClose={onClose}
+                setValue={setValue}
+              />
+            </div>
+            <div className={`flex flex-row bg-mybg gap-[10px] justify-center absolute left-0 md:left-[50%] md:translate-x-[-50%] ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:bottom-[80px] bottom-[-20px]' : 'md:bottom-[80px] bottom-[-20px]'} items-center md:w-[50%] w-[100%]`}>
               <button
                 type="button"
-                className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+                className="flex md:w-[35%] w-[33%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
                 onClick={() => {
                   {
                     stepNum === 1
@@ -1193,7 +1194,7 @@ export default function BidderForm() {
               </button>
               <button
                 type="submit"
-                className="flex md:w-[60%] w-[65%]  h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+                className="flex md:w-[65%] w-[46%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               >
                 <span className="text-white font-bold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
                   다음
