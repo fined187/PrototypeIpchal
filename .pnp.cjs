@@ -35,6 +35,7 @@ const RAW_RUNTIME_STATE =
           ["@ionic-native/file", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0"],\
           ["@ionic-native/file-opener", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0"],\
           ["@ionic/cli", "npm:7.2.0"],\
+          ["@types/express", "npm:4.17.21"],\
           ["@types/html-pdf", "npm:3.0.3"],\
           ["@types/jspdf", "npm:2.0.0"],\
           ["@types/node", "npm:20.10.4"],\
@@ -56,11 +57,14 @@ const RAW_RUNTIME_STATE =
           ["eslint-config-react-app", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:7.0.1"],\
           ["eslint-plugin-prettier", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.0.1"],\
           ["eslint-plugin-react", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:7.33.2"],\
+          ["express", "npm:4.18.2"],\
           ["framer-motion", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.18.0"],\
           ["html-pdf", "npm:3.0.1"],\
+          ["html-to-image", "npm:1.11.11"],\
           ["html2canvas", "npm:1.4.1"],\
           ["jspdf", "npm:2.5.1"],\
           ["next", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:14.0.3"],\
+          ["pdf-lib", "npm:1.17.1"],\
           ["phantomjs-prebuilt", "npm:2.1.16"],\
           ["postcss", "npm:8.4.32"],\
           ["prettier", "npm:3.1.1"],\
@@ -6089,6 +6093,26 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@pdf-lib/standard-fonts", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@pdf-lib-standard-fonts-npm-1.0.0-963255903e-10c0.zip/node_modules/@pdf-lib/standard-fonts/",\
+        "packageDependencies": [\
+          ["@pdf-lib/standard-fonts", "npm:1.0.0"],\
+          ["pako", "npm:1.0.11"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@pdf-lib/upng", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@pdf-lib-upng-npm-1.0.1-b6cf54efaf-10c0.zip/node_modules/@pdf-lib/upng/",\
+        "packageDependencies": [\
+          ["@pdf-lib/upng", "npm:1.0.1"],\
+          ["pako", "npm:1.0.11"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@pkgjs/parseargs", [\
       ["npm:0.11.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@pkgjs-parseargs-npm-0.11.0-cd2a3fe948-10c0.zip/node_modules/@pkgjs/parseargs/",\
@@ -6150,11 +6174,58 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/body-parser", [\
+      ["npm:1.19.5", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-body-parser-npm-1.19.5-97fb106976-10c0.zip/node_modules/@types/body-parser/",\
+        "packageDependencies": [\
+          ["@types/body-parser", "npm:1.19.5"],\
+          ["@types/connect", "npm:3.4.38"],\
+          ["@types/node", "npm:20.10.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/connect", [\
+      ["npm:3.4.38", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-connect-npm-3.4.38-a8a4c38337-10c0.zip/node_modules/@types/connect/",\
+        "packageDependencies": [\
+          ["@types/connect", "npm:3.4.38"],\
+          ["@types/node", "npm:20.10.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/cordova", [\
       ["npm:11.0.3", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-cordova-npm-11.0.3-c324be7fea-10c0.zip/node_modules/@types/cordova/",\
         "packageDependencies": [\
           ["@types/cordova", "npm:11.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/express", [\
+      ["npm:4.17.21", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-express-npm-4.17.21-be92a0245e-10c0.zip/node_modules/@types/express/",\
+        "packageDependencies": [\
+          ["@types/express", "npm:4.17.21"],\
+          ["@types/body-parser", "npm:1.19.5"],\
+          ["@types/express-serve-static-core", "npm:4.17.43"],\
+          ["@types/qs", "npm:6.9.11"],\
+          ["@types/serve-static", "npm:1.15.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/express-serve-static-core", [\
+      ["npm:4.17.43", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-express-serve-static-core-npm-4.17.43-9cbdf8ef01-10c0.zip/node_modules/@types/express-serve-static-core/",\
+        "packageDependencies": [\
+          ["@types/express-serve-static-core", "npm:4.17.43"],\
+          ["@types/node", "npm:20.10.5"],\
+          ["@types/qs", "npm:6.9.11"],\
+          ["@types/range-parser", "npm:1.2.7"],\
+          ["@types/send", "npm:0.17.4"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6175,6 +6246,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/html-pdf", "npm:3.0.3"],\
           ["@types/node", "npm:20.10.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/http-errors", [\
+      ["npm:2.0.4", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-http-errors-npm-2.0.4-8b39ca5d7c-10c0.zip/node_modules/@types/http-errors/",\
+        "packageDependencies": [\
+          ["@types/http-errors", "npm:2.0.4"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6226,6 +6306,22 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/mime", [\
+      ["npm:1.3.5", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-mime-npm-1.3.5-48d28990db-10c0.zip/node_modules/@types/mime/",\
+        "packageDependencies": [\
+          ["@types/mime", "npm:1.3.5"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:3.0.4", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-mime-npm-3.0.4-5cb286d662-10c0.zip/node_modules/@types/mime/",\
+        "packageDependencies": [\
+          ["@types/mime", "npm:3.0.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/node", [\
       ["npm:20.10.4", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-node-npm-20.10.4-45b062d723-10c0.zip/node_modules/@types/node/",\
@@ -6262,11 +6358,29 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/qs", [\
+      ["npm:6.9.11", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-qs-npm-6.9.11-e12802ac61-10c0.zip/node_modules/@types/qs/",\
+        "packageDependencies": [\
+          ["@types/qs", "npm:6.9.11"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/raf", [\
       ["npm:3.4.3", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-raf-npm-3.4.3-afd3c6d2bc-10c0.zip/node_modules/@types/raf/",\
         "packageDependencies": [\
           ["@types/raf", "npm:3.4.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/range-parser", [\
+      ["npm:1.2.7", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-range-parser-npm-1.2.7-a83c0b6429-10c0.zip/node_modules/@types/range-parser/",\
+        "packageDependencies": [\
+          ["@types/range-parser", "npm:1.2.7"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6330,6 +6444,29 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-semver-npm-7.5.6-9d2637fc95-10c0.zip/node_modules/@types/semver/",\
         "packageDependencies": [\
           ["@types/semver", "npm:7.5.6"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/send", [\
+      ["npm:0.17.4", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-send-npm-0.17.4-9d7c55577f-10c0.zip/node_modules/@types/send/",\
+        "packageDependencies": [\
+          ["@types/send", "npm:0.17.4"],\
+          ["@types/mime", "npm:1.3.5"],\
+          ["@types/node", "npm:20.10.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/serve-static", [\
+      ["npm:1.15.5", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/@types-serve-static-npm-1.15.5-b911ffc092-10c0.zip/node_modules/@types/serve-static/",\
+        "packageDependencies": [\
+          ["@types/serve-static", "npm:1.15.5"],\
+          ["@types/http-errors", "npm:2.0.4"],\
+          ["@types/mime", "npm:3.0.4"],\
+          ["@types/node", "npm:20.10.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6712,6 +6849,17 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["accepts", [\
+      ["npm:1.3.8", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/accepts-npm-1.3.8-9a812371c9-10c0.zip/node_modules/accepts/",\
+        "packageDependencies": [\
+          ["accepts", "npm:1.3.8"],\
+          ["mime-types", "npm:2.1.35"],\
+          ["negotiator", "npm:0.6.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["acorn", [\
       ["npm:8.11.2", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/acorn-npm-8.11.2-a470f49bb6-10c0.zip/node_modules/acorn/",\
@@ -6893,6 +7041,15 @@ const RAW_RUNTIME_STATE =
           ["array-buffer-byte-length", "npm:1.0.0"],\
           ["call-bind", "npm:1.0.5"],\
           ["is-array-buffer", "npm:3.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["array-flatten", [\
+      ["npm:1.1.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/array-flatten-npm-1.1.1-9d94ad5f1d-10c0.zip/node_modules/array-flatten/",\
+        "packageDependencies": [\
+          ["array-flatten", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7353,6 +7510,27 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["body-parser", [\
+      ["npm:1.20.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/body-parser-npm-1.20.1-759fd14db9-10c0.zip/node_modules/body-parser/",\
+        "packageDependencies": [\
+          ["body-parser", "npm:1.20.1"],\
+          ["bytes", "npm:3.1.2"],\
+          ["content-type", "npm:1.0.5"],\
+          ["debug", "virtual:7ae0a14aba053de92fdeace23b0c28665504c562e01e67c5e5d41d1e74b0ee9d66e50ec566deba40eeadab0e9e2d254455014a7bc7c2a5ed1ee4981ca67161b6#npm:2.6.9"],\
+          ["depd", "npm:2.0.0"],\
+          ["destroy", "npm:1.2.0"],\
+          ["http-errors", "npm:2.0.0"],\
+          ["iconv-lite", "npm:0.4.24"],\
+          ["on-finished", "npm:2.4.1"],\
+          ["qs", "npm:6.11.0"],\
+          ["raw-body", "npm:2.5.1"],\
+          ["type-is", "npm:1.6.18"],\
+          ["unpipe", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["bplist-parser", [\
       ["npm:0.2.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/bplist-parser-npm-0.2.0-91a681e495-10c0.zip/node_modules/bplist-parser/",\
@@ -7465,6 +7643,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["busboy", "npm:1.6.0"],\
           ["streamsearch", "npm:1.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["bytes", [\
+      ["npm:3.1.2", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/bytes-npm-3.1.2-28b8643004-10c0.zip/node_modules/bytes/",\
+        "packageDependencies": [\
+          ["bytes", "npm:3.1.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -7766,6 +7953,25 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["content-disposition", [\
+      ["npm:0.5.4", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/content-disposition-npm-0.5.4-2d93678616-10c0.zip/node_modules/content-disposition/",\
+        "packageDependencies": [\
+          ["content-disposition", "npm:0.5.4"],\
+          ["safe-buffer", "npm:5.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["content-type", [\
+      ["npm:1.0.5", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/content-type-npm-1.0.5-3e037bf9ab-10c0.zip/node_modules/content-type/",\
+        "packageDependencies": [\
+          ["content-type", "npm:1.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["convert-source-map", [\
       ["npm:1.9.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/convert-source-map-npm-1.9.0-e294555f4b-10c0.zip/node_modules/convert-source-map/",\
@@ -7778,6 +7984,24 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/convert-source-map-npm-2.0.0-7ab664dc4e-10c0.zip/node_modules/convert-source-map/",\
         "packageDependencies": [\
           ["convert-source-map", "npm:2.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["cookie", [\
+      ["npm:0.5.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/cookie-npm-0.5.0-e2d58a161a-10c0.zip/node_modules/cookie/",\
+        "packageDependencies": [\
+          ["cookie", "npm:0.5.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["cookie-signature", [\
+      ["npm:1.0.6", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/cookie-signature-npm-1.0.6-93f325f7f0-10c0.zip/node_modules/cookie-signature/",\
+        "packageDependencies": [\
+          ["cookie-signature", "npm:1.0.6"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8148,11 +8372,29 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["depd", [\
+      ["npm:2.0.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/depd-npm-2.0.0-b6c51a4b43-10c0.zip/node_modules/depd/",\
+        "packageDependencies": [\
+          ["depd", "npm:2.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["dequal", [\
       ["npm:2.0.3", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/dequal-npm-2.0.3-53a630c60e-10c0.zip/node_modules/dequal/",\
         "packageDependencies": [\
           ["dequal", "npm:2.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["destroy", [\
+      ["npm:1.2.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/destroy-npm-1.2.0-6a511802e2-10c0.zip/node_modules/destroy/",\
+        "packageDependencies": [\
+          ["destroy", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8280,6 +8522,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["ee-first", [\
+      ["npm:1.1.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/ee-first-npm-1.1.1-33f8535b39-10c0.zip/node_modules/ee-first/",\
+        "packageDependencies": [\
+          ["ee-first", "npm:1.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["electron-to-chromium", [\
       ["npm:1.4.610", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/electron-to-chromium-npm-1.4.610-2c8098dea2-10c0.zip/node_modules/electron-to-chromium/",\
@@ -8333,6 +8584,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/emoji-regex-npm-9.2.2-e6fac8d058-10c0.zip/node_modules/emoji-regex/",\
         "packageDependencies": [\
           ["emoji-regex", "npm:9.2.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["encodeurl", [\
+      ["npm:1.0.2", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/encodeurl-npm-1.0.2-f8c8454c41-10c0.zip/node_modules/encodeurl/",\
+        "packageDependencies": [\
+          ["encodeurl", "npm:1.0.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8515,6 +8775,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/escalade-npm-3.1.1-e02da076aa-10c0.zip/node_modules/escalade/",\
         "packageDependencies": [\
           ["escalade", "npm:3.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["escape-html", [\
+      ["npm:1.0.3", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/escape-html-npm-1.0.3-376c22ee74-10c0.zip/node_modules/escape-html/",\
+        "packageDependencies": [\
+          ["escape-html", "npm:1.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -9231,6 +9500,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["etag", [\
+      ["npm:1.8.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/etag-npm-1.8.1-54a3b989d9-10c0.zip/node_modules/etag/",\
+        "packageDependencies": [\
+          ["etag", "npm:1.8.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["execa", [\
       ["npm:4.1.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/execa-npm-4.1.0-cc675b4189-10c0.zip/node_modules/execa/",\
@@ -9286,6 +9564,46 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/exponential-backoff-npm-3.1.1-04df458b30-10c0.zip/node_modules/exponential-backoff/",\
         "packageDependencies": [\
           ["exponential-backoff", "npm:3.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["express", [\
+      ["npm:4.18.2", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/express-npm-4.18.2-bb15ff679a-10c0.zip/node_modules/express/",\
+        "packageDependencies": [\
+          ["express", "npm:4.18.2"],\
+          ["accepts", "npm:1.3.8"],\
+          ["array-flatten", "npm:1.1.1"],\
+          ["body-parser", "npm:1.20.1"],\
+          ["content-disposition", "npm:0.5.4"],\
+          ["content-type", "npm:1.0.5"],\
+          ["cookie", "npm:0.5.0"],\
+          ["cookie-signature", "npm:1.0.6"],\
+          ["debug", "virtual:7ae0a14aba053de92fdeace23b0c28665504c562e01e67c5e5d41d1e74b0ee9d66e50ec566deba40eeadab0e9e2d254455014a7bc7c2a5ed1ee4981ca67161b6#npm:2.6.9"],\
+          ["depd", "npm:2.0.0"],\
+          ["encodeurl", "npm:1.0.2"],\
+          ["escape-html", "npm:1.0.3"],\
+          ["etag", "npm:1.8.1"],\
+          ["finalhandler", "npm:1.2.0"],\
+          ["fresh", "npm:0.5.2"],\
+          ["http-errors", "npm:2.0.0"],\
+          ["merge-descriptors", "npm:1.0.1"],\
+          ["methods", "npm:1.1.2"],\
+          ["on-finished", "npm:2.4.1"],\
+          ["parseurl", "npm:1.3.3"],\
+          ["path-to-regexp", "npm:0.1.7"],\
+          ["proxy-addr", "npm:2.0.7"],\
+          ["qs", "npm:6.11.0"],\
+          ["range-parser", "npm:1.2.1"],\
+          ["safe-buffer", "npm:5.2.1"],\
+          ["send", "npm:0.18.0"],\
+          ["serve-static", "npm:1.15.0"],\
+          ["setprototypeof", "npm:1.2.0"],\
+          ["statuses", "npm:2.0.1"],\
+          ["type-is", "npm:1.6.18"],\
+          ["utils-merge", "npm:1.0.1"],\
+          ["vary", "npm:1.1.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -9476,6 +9794,22 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["finalhandler", [\
+      ["npm:1.2.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/finalhandler-npm-1.2.0-593d001463-10c0.zip/node_modules/finalhandler/",\
+        "packageDependencies": [\
+          ["finalhandler", "npm:1.2.0"],\
+          ["debug", "virtual:7ae0a14aba053de92fdeace23b0c28665504c562e01e67c5e5d41d1e74b0ee9d66e50ec566deba40eeadab0e9e2d254455014a7bc7c2a5ed1ee4981ca67161b6#npm:2.6.9"],\
+          ["encodeurl", "npm:1.0.2"],\
+          ["escape-html", "npm:1.0.3"],\
+          ["on-finished", "npm:2.4.1"],\
+          ["parseurl", "npm:1.3.3"],\
+          ["statuses", "npm:2.0.1"],\
+          ["unpipe", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["find-root", [\
       ["npm:1.1.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/find-root-npm-1.1.0-a16a94005f-10c0.zip/node_modules/find-root/",\
@@ -9614,6 +9948,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["forwarded", [\
+      ["npm:0.2.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/forwarded-npm-0.2.0-6473dabe35-10c0.zip/node_modules/forwarded/",\
+        "packageDependencies": [\
+          ["forwarded", "npm:0.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["fraction.js", [\
       ["npm:4.3.7", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/fraction.js-npm-4.3.7-c2c7e95a8e-10c0.zip/node_modules/fraction.js/",\
@@ -9657,6 +10000,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["framesync", "npm:6.1.2"],\
           ["tslib", "npm:2.4.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["fresh", [\
+      ["npm:0.5.2", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/fresh-npm-0.5.2-ad2bb4c0a2-10c0.zip/node_modules/fresh/",\
+        "packageDependencies": [\
+          ["fresh", "npm:0.5.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -9868,6 +10220,7 @@ const RAW_RUNTIME_STATE =
           ["@ionic-native/file", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0"],\
           ["@ionic-native/file-opener", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.36.0"],\
           ["@ionic/cli", "npm:7.2.0"],\
+          ["@types/express", "npm:4.17.21"],\
           ["@types/html-pdf", "npm:3.0.3"],\
           ["@types/jspdf", "npm:2.0.0"],\
           ["@types/node", "npm:20.10.4"],\
@@ -9889,11 +10242,14 @@ const RAW_RUNTIME_STATE =
           ["eslint-config-react-app", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:7.0.1"],\
           ["eslint-plugin-prettier", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.0.1"],\
           ["eslint-plugin-react", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:7.33.2"],\
+          ["express", "npm:4.18.2"],\
           ["framer-motion", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.18.0"],\
           ["html-pdf", "npm:3.0.1"],\
+          ["html-to-image", "npm:1.11.11"],\
           ["html2canvas", "npm:1.4.1"],\
           ["jspdf", "npm:2.5.1"],\
           ["next", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:14.0.3"],\
+          ["pdf-lib", "npm:1.17.1"],\
           ["phantomjs-prebuilt", "npm:2.1.16"],\
           ["postcss", "npm:8.4.32"],\
           ["prettier", "npm:3.1.1"],\
@@ -10209,6 +10565,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["html-to-image", [\
+      ["npm:1.11.11", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/html-to-image-npm-1.11.11-faab8eba97-10c0.zip/node_modules/html-to-image/",\
+        "packageDependencies": [\
+          ["html-to-image", "npm:1.11.11"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["html2canvas", [\
       ["npm:1.4.1", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/html2canvas-npm-1.4.1-fa13983145-10c0.zip/node_modules/html2canvas/",\
@@ -10225,6 +10590,20 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/http-cache-semantics-npm-4.1.1-1120131375-10c0.zip/node_modules/http-cache-semantics/",\
         "packageDependencies": [\
           ["http-cache-semantics", "npm:4.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["http-errors", [\
+      ["npm:2.0.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/http-errors-npm-2.0.0-3f1c503428-10c0.zip/node_modules/http-errors/",\
+        "packageDependencies": [\
+          ["http-errors", "npm:2.0.0"],\
+          ["depd", "npm:2.0.0"],\
+          ["inherits", "npm:2.0.4"],\
+          ["setprototypeof", "npm:1.2.0"],\
+          ["statuses", "npm:2.0.1"],\
+          ["toidentifier", "npm:1.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -10429,6 +10808,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/ip-npm-2.0.0-204facb3cc-10c0.zip/node_modules/ip/",\
         "packageDependencies": [\
           ["ip", "npm:2.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["ipaddr.js", [\
+      ["npm:1.9.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/ipaddr.js-npm-1.9.1-19ae7878b4-10c0.zip/node_modules/ipaddr.js/",\
+        "packageDependencies": [\
+          ["ipaddr.js", "npm:1.9.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -11380,6 +11768,24 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["media-typer", [\
+      ["npm:0.3.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/media-typer-npm-0.3.0-8674f8f0f5-10c0.zip/node_modules/media-typer/",\
+        "packageDependencies": [\
+          ["media-typer", "npm:0.3.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["merge-descriptors", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/merge-descriptors-npm-1.0.1-615287aaa8-10c0.zip/node_modules/merge-descriptors/",\
+        "packageDependencies": [\
+          ["merge-descriptors", "npm:1.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["merge-stream", [\
       ["npm:2.0.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/merge-stream-npm-2.0.0-2ac83efea5-10c0.zip/node_modules/merge-stream/",\
@@ -11428,6 +11834,13 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["mime", [\
+      ["npm:1.6.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/mime-npm-1.6.0-60ae95038a-10c0.zip/node_modules/mime/",\
+        "packageDependencies": [\
+          ["mime", "npm:1.6.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:2.6.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/mime-npm-2.6.0-88b89d8de0-10c0.zip/node_modules/mime/",\
         "packageDependencies": [\
@@ -11963,6 +12376,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["on-finished", [\
+      ["npm:2.4.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/on-finished-npm-2.4.1-907af70f88-10c0.zip/node_modules/on-finished/",\
+        "packageDependencies": [\
+          ["on-finished", "npm:2.4.1"],\
+          ["ee-first", "npm:1.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["once", [\
       ["npm:1.4.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/once-npm-1.4.0-ccf03ef07a-10c0.zip/node_modules/once/",\
@@ -12106,6 +12529,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["pako", [\
+      ["npm:1.0.11", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/pako-npm-1.0.11-b8f1b69d3e-10c0.zip/node_modules/pako/",\
+        "packageDependencies": [\
+          ["pako", "npm:1.0.11"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["parent-module", [\
       ["npm:1.0.1", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/parent-module-npm-1.0.1-1fae11b095-10c0.zip/node_modules/parent-module/",\
@@ -12125,6 +12557,15 @@ const RAW_RUNTIME_STATE =
           ["error-ex", "npm:1.3.2"],\
           ["json-parse-even-better-errors", "npm:2.3.1"],\
           ["lines-and-columns", "npm:1.2.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["parseurl", [\
+      ["npm:1.3.3", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/parseurl-npm-1.3.3-1542397e00-10c0.zip/node_modules/parseurl/",\
+        "packageDependencies": [\
+          ["parseurl", "npm:1.3.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -12183,11 +12624,33 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["path-to-regexp", [\
+      ["npm:0.1.7", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/path-to-regexp-npm-0.1.7-2605347373-10c0.zip/node_modules/path-to-regexp/",\
+        "packageDependencies": [\
+          ["path-to-regexp", "npm:0.1.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["path-type", [\
       ["npm:4.0.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/path-type-npm-4.0.0-10d47fc86a-10c0.zip/node_modules/path-type/",\
         "packageDependencies": [\
           ["path-type", "npm:4.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["pdf-lib", [\
+      ["npm:1.17.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/pdf-lib-npm-1.17.1-131ca75702-10c0.zip/node_modules/pdf-lib/",\
+        "packageDependencies": [\
+          ["pdf-lib", "npm:1.17.1"],\
+          ["@pdf-lib/standard-fonts", "npm:1.0.0"],\
+          ["@pdf-lib/upng", "npm:1.0.1"],\
+          ["pako", "npm:1.0.11"],\
+          ["tslib", "npm:1.14.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -12525,6 +12988,17 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["proxy-addr", [\
+      ["npm:2.0.7", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/proxy-addr-npm-2.0.7-dae6552872-10c0.zip/node_modules/proxy-addr/",\
+        "packageDependencies": [\
+          ["proxy-addr", "npm:2.0.7"],\
+          ["forwarded", "npm:0.2.0"],\
+          ["ipaddr.js", "npm:1.9.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["proxy-agent", [\
       ["npm:6.4.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/proxy-agent-npm-6.4.0-21d2d38035-10c0.zip/node_modules/proxy-agent/",\
@@ -12592,6 +13066,14 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["qs", [\
+      ["npm:6.11.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/qs-npm-6.11.0-caf1bc9dea-10c0.zip/node_modules/qs/",\
+        "packageDependencies": [\
+          ["qs", "npm:6.11.0"],\
+          ["side-channel", "npm:1.0.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:6.11.2", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/qs-npm-6.11.2-b118bc1c6f-10c0.zip/node_modules/qs/",\
         "packageDependencies": [\
@@ -12623,6 +13105,28 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["raf", "npm:3.4.1"],\
           ["performance-now", "npm:2.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["range-parser", [\
+      ["npm:1.2.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/range-parser-npm-1.2.1-1a470fa390-10c0.zip/node_modules/range-parser/",\
+        "packageDependencies": [\
+          ["range-parser", "npm:1.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["raw-body", [\
+      ["npm:2.5.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/raw-body-npm-2.5.1-9dd1d9fff9-10c0.zip/node_modules/raw-body/",\
+        "packageDependencies": [\
+          ["raw-body", "npm:2.5.1"],\
+          ["bytes", "npm:3.1.2"],\
+          ["http-errors", "npm:2.0.0"],\
+          ["iconv-lite", "npm:0.4.24"],\
+          ["unpipe", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -13446,6 +13950,41 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["send", [\
+      ["npm:0.18.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/send-npm-0.18.0-faadf6353f-10c0.zip/node_modules/send/",\
+        "packageDependencies": [\
+          ["send", "npm:0.18.0"],\
+          ["debug", "virtual:7ae0a14aba053de92fdeace23b0c28665504c562e01e67c5e5d41d1e74b0ee9d66e50ec566deba40eeadab0e9e2d254455014a7bc7c2a5ed1ee4981ca67161b6#npm:2.6.9"],\
+          ["depd", "npm:2.0.0"],\
+          ["destroy", "npm:1.2.0"],\
+          ["encodeurl", "npm:1.0.2"],\
+          ["escape-html", "npm:1.0.3"],\
+          ["etag", "npm:1.8.1"],\
+          ["fresh", "npm:0.5.2"],\
+          ["http-errors", "npm:2.0.0"],\
+          ["mime", "npm:1.6.0"],\
+          ["ms", "npm:2.1.3"],\
+          ["on-finished", "npm:2.4.1"],\
+          ["range-parser", "npm:1.2.1"],\
+          ["statuses", "npm:2.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["serve-static", [\
+      ["npm:1.15.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/serve-static-npm-1.15.0-86c81879f5-10c0.zip/node_modules/serve-static/",\
+        "packageDependencies": [\
+          ["serve-static", "npm:1.15.0"],\
+          ["encodeurl", "npm:1.0.2"],\
+          ["escape-html", "npm:1.0.3"],\
+          ["parseurl", "npm:1.3.3"],\
+          ["send", "npm:0.18.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["set-function-length", [\
       ["npm:1.1.1", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/set-function-length-npm-1.1.1-d362bf8221-10c0.zip/node_modules/set-function-length/",\
@@ -13467,6 +14006,15 @@ const RAW_RUNTIME_STATE =
           ["define-data-property", "npm:1.1.1"],\
           ["functions-have-names", "npm:1.2.3"],\
           ["has-property-descriptors", "npm:1.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["setprototypeof", [\
+      ["npm:1.2.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/setprototypeof-npm-1.2.0-0fedbdcd3a-10c0.zip/node_modules/setprototypeof/",\
+        "packageDependencies": [\
+          ["setprototypeof", "npm:1.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -13648,6 +14196,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/stackblur-canvas-npm-2.6.0-d3fae40ffc-10c0.zip/node_modules/stackblur-canvas/",\
         "packageDependencies": [\
           ["stackblur-canvas", "npm:2.6.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["statuses", [\
+      ["npm:2.0.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/statuses-npm-2.0.1-81d2b97fee-10c0.zip/node_modules/statuses/",\
+        "packageDependencies": [\
+          ["statuses", "npm:2.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -14135,6 +14692,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["toidentifier", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/toidentifier-npm-1.0.1-f759712599-10c0.zip/node_modules/toidentifier/",\
+        "packageDependencies": [\
+          ["toidentifier", "npm:1.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["toposort", [\
       ["npm:2.0.2", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/toposort-npm-2.0.2-d472329c7d-10c0.zip/node_modules/toposort/",\
@@ -14320,6 +14886,17 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["type-is", [\
+      ["npm:1.6.18", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/type-is-npm-1.6.18-6dee4d4961-10c0.zip/node_modules/type-is/",\
+        "packageDependencies": [\
+          ["type-is", "npm:1.6.18"],\
+          ["media-typer", "npm:0.3.0"],\
+          ["mime-types", "npm:2.1.35"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["typed-array-buffer", [\
       ["npm:1.0.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/typed-array-buffer-npm-1.0.0-95cb610310-10c0.zip/node_modules/typed-array-buffer/",\
@@ -14499,6 +15076,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["unpipe", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/unpipe-npm-1.0.0-2ed2a3c2bf-10c0.zip/node_modules/unpipe/",\
+        "packageDependencies": [\
+          ["unpipe", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["untildify", [\
       ["npm:4.0.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/untildify-npm-4.0.0-4a8b569825-10c0.zip/node_modules/untildify/",\
@@ -14598,6 +15184,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["utils-merge", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/utils-merge-npm-1.0.1-363bbdfbca-10c0.zip/node_modules/utils-merge/",\
+        "packageDependencies": [\
+          ["utils-merge", "npm:1.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["utrie", [\
       ["npm:1.0.2", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/utrie-npm-1.0.2-909cbd985c-10c0.zip/node_modules/utrie/",\
@@ -14620,6 +15215,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/uuid-npm-9.0.1-39a8442bc6-10c0.zip/node_modules/uuid/",\
         "packageDependencies": [\
           ["uuid", "npm:9.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["vary", [\
+      ["npm:1.1.2", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/vary-npm-1.1.2-b49f70ae63-10c0.zip/node_modules/vary/",\
+        "packageDependencies": [\
+          ["vary", "npm:1.1.2"]\
         ],\
         "linkType": "HARD"\
       }]\

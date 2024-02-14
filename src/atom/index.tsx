@@ -92,6 +92,7 @@ export const biddingInfoState = atom({
       name: '',
       mandateYn: '',
     },
+    pdfPassword: '',
   },
   dangerouslyAllowMutability: true,
 })

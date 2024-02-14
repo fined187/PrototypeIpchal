@@ -10,8 +10,8 @@ import Spinner from '@/components/Spinner'
 import { TotalResultType } from '@/interface/IpchalType'
 import SinglePDF from '@/components/CreatePDFContent/SinglePDF'
 import CoIpchalPDF from '@/components/CreatePDFContent/CoIpchalPDF'
-import { sleep } from 'react-query/types/core/utils'
-import { useSleep } from '@/components/hooks/useSleep'
+import * as htmlToImage from 'html-to-image'
+import generatePdf from '../api/pdf/generatePdf'
 
 export default function CreateFile() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -94,7 +94,6 @@ export default function CreateFile() {
     if (captureWrap && captureDiv) {
       captureWrap.style.display = 'flex'
       captureDiv.style.display = 'flex'
-
       await html2canvas(
         document.getElementById('capture') as HTMLElement
       ).then((canvas: any) => {
@@ -108,7 +107,6 @@ export default function CreateFile() {
           ...biddingInfo,
           imageFile: imgData,
         })
-        
         
         doc.text('100', 100, 20)
         doc?.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
@@ -210,28 +208,10 @@ export default function CreateFile() {
     handleGetResult()
   }, [])
 
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
-      }
-    }
-  }
-
-  useEffect(() => {
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
-  }, [])
-
   return (
     <>
       {!loading && (
-        <div className="flex w-[100%] h-screen justify-center bg-white relative">
+        <div className="flex w-[100%] md:h-[100vh] h-[90vh] justify-center bg-white relative">
           <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               파일명과 암호를 입력하세요
@@ -257,7 +237,13 @@ export default function CreateFile() {
                   type={`${passwordActive ? 'text' : 'password'}`}
                   className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
                   value={password || ''}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                    setBiddingInfo({
+                      ...biddingInfo,
+                      pdfPassword: e.target.value,
+                    })
+                  }}
                 />
                 <div
                   className="absolute inset-y-0 right-0 flex items-center pr-8 pt-5 cursor-pointer"

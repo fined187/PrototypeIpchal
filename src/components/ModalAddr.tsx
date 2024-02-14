@@ -408,7 +408,7 @@ export default function ModalAddr({
                                     (addr: any, index: number) => (
                                       <div
                                         key={index}
-                                        className={`flex flex-row justify-between md:overflow-hidden overflow-auto w-full items-center h-[120px] sm:max-h-[150px] sm:min-h-[100px] border-b-[1px] ${
+                                        className={`flex flex-row justify-between md:overflow-hidden overflow-auto w-full items-center h-[120px] md:max-h-[150px] md:min-h-[100px] border-b-[1px] ${
                                           index % 2 === 0
                                             ? 'bg-gray-50 hover:bg-gray-100'
                                             : 'bg-white hover:bg-gray-100'

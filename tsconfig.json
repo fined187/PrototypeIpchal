@@ -17,7 +17,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/SearchAddr.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/SearchAddr.js", "Server.js"],
   "exclude": ["node_modules"],
   "plugins": ["tailwind-scrollbar-hide"]
 }
