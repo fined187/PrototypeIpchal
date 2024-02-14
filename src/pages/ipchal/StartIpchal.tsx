@@ -133,7 +133,7 @@ export default function StartIpchal() {
           </div>
           <div className="flex flex-col w-[80%] justify-center pt-[50px]">
             <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic text-mygray font-normal">
-              ※ 입찰표의 주민등록번호는 저장하지 않습니다
+              ※ 입찰표의 주민등록번호는 저장하지 않습니다.
             </span>
             <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic text-mygray font-normal">
               다음 번 입찰표 작성 시, 개인정보를 다시 입력해주셔야합니다.

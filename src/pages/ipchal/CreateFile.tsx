@@ -10,8 +10,6 @@ import Spinner from '@/components/Spinner'
 import { TotalResultType } from '@/interface/IpchalType'
 import SinglePDF from '@/components/CreatePDFContent/SinglePDF'
 import CoIpchalPDF from '@/components/CreatePDFContent/CoIpchalPDF'
-import * as htmlToImage from 'html-to-image'
-import generatePdf from '../api/pdf/generatePdf'
 
 export default function CreateFile() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -24,8 +22,6 @@ export default function CreateFile() {
   const [loading, setLoading] = useState<boolean>(false)
   const [blobFile, setBlobFile] = useState<File | null>(null)
   const [getHeight, setGetHeight] = useState<number>(0)
-
-  let file = File && new File([], '')
 
   const date = new Date()
   
@@ -74,67 +70,67 @@ export default function CreateFile() {
     }
   }
 
+  const dataURItoBlob = (dataURI: string) => {
+    let byteString = atob(dataURI.split(',')[1])
+    let ab = new ArrayBuffer(byteString.length)
+    let ia = new Uint8Array(ab)
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i)
+    }
+    return new Blob([ab], { type: 'image/png' })
+  }
+
+  const generatePDF = async (img: string) => {
+    try {
+      const response = await axios.post(`http://localhost:4000/test`, {
+          height: getHeight,
+          password: password,
+          imgData: img,
+          mstSeq: biddingInfo.mstSeq,
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+        if (response.status === 200) {
+          setBiddingInfo({
+            ...biddingInfo,
+            isFileCreated: true,
+          })
+          console.log(response)
+          captureWrap.style.display = 'none'
+          captureDiv.style.display = 'none'
+          return
+        }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     handleGetHeight()
   }, [biddingInfo.agentName, biddingInfo.bidderNum])
+  const captureWrap = document && document.getElementById('wrap-capture') as HTMLElement
+  const captureDiv = document && document.getElementById('capture') as HTMLElement
 
-  const onCapture = async (isMobile: false, viewportMetaTag = null, canvas = null) => {
-    const doc = new jsPDF({
-      orientation: 'p',
-      unit: 'mm',
-      format: 'a4',
-      encryption: {
-        userPassword: password,
-        ownerPassword: password,
-        userPermissions: ['print', 'modify', 'copy', 'annot-forms'],
-      },
-    })
-    const captureWrap = document && document.getElementById('wrap-capture') as HTMLElement
-    const captureDiv = document && document.getElementById('capture') as HTMLElement
+  const onCapture = async () => {
     if (captureWrap && captureDiv) {
       captureWrap.style.display = 'flex'
       captureDiv.style.display = 'flex'
       await html2canvas(
         document.getElementById('capture') as HTMLElement
-      ).then((canvas: any) => {
+      ).then(async (canvas: any) => {
         let imgData = canvas.toDataURL('image/png', 1.0)
-        let imgWidth = 210
-        let pageHeight = 295
-        let imgHeight = getHeight
-        let heightLeft = imgHeight
-        let position = 0
         setBiddingInfo({
           ...biddingInfo,
           imageFile: imgData,
         })
-        
-        doc.text('100', 100, 20)
-        doc?.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
-        heightLeft -= pageHeight
-        while (heightLeft >= 20) {
-          position = heightLeft - imgHeight
-          doc?.addPage()
-          doc?.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
-          heightLeft -= pageHeight
-        }
-        const blob = doc.output('blob')
-        //  저장
-        // doc.save(`best_${format(date, 'yyyyMMddHHmmss')}.pdf`)
-        file = new File([blob], `best_${format(date, 'yyyyMMddHHmmss')}.pdf`, {
-          type: 'application/pdf',
-        })
-        setBlobFile(file)
-        setBiddingInfo({
-          ...biddingInfo,
-          pdfFile: file,
-          isFileCreated: true,
-        })
-      })
+        await generatePDF(imgData)
+    })
       captureWrap.style.display = 'none'
       captureDiv.style.display = 'none'
     }
   }
-
   const onClickPdf = async (e: any) => {
     setLoading(true)
     e.preventDefault()
@@ -142,13 +138,13 @@ export default function CreateFile() {
       alert('파일 암호를 4자리 이상 입력해주세요')
       setLoading(false)
       return
-    } else if (biddingInfo.isFileCreated) {
-      alert('이미 파일이 생성되었습니다')
-      setLoading(false)
-      return
+    // } else if (biddingInfo.isFileCreated) {
+    //   alert('이미 파일이 생성되었습니다')
+    //   setLoading(false)
+    //   return
     } 
     else {
-      await onCapture(false, null, null)
+      await onCapture()
       setLoading(false)
     }
   }
@@ -171,6 +167,7 @@ export default function CreateFile() {
         },
       )
       if (response.status === 200) {
+        console.log(response)
         setLoading(false)
         return
       }
@@ -295,7 +292,7 @@ export default function CreateFile() {
             <button
               type="button"
               className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-              onClick={handleNextStep}
+              onClick={() => setStateNum(stateNum + 1)}
             >
               <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
                 다음
