@@ -6,7 +6,7 @@ import { TfiDownload } from "react-icons/tfi";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 export default function DownIpchal() {
-  const biddingInfo = useRecoilValue(biddingInfoState)
+  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [loading, setLoading] = useState<boolean>(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -33,10 +33,25 @@ export default function DownIpchal() {
       });
     });
   }
+  
+  useEffect(() => {
+    const handleGetPdfUrl = async () => {
+      try {
+        const url = `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`
+        const response = await fetch(url, { method: 'GET' })
+        const data = await response.blob()
+        const pdfUrl = window.URL.createObjectURL(data)
+        setBiddingInfo({ ...biddingInfo, pdfFile: data })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    handleGetPdfUrl()
+  }, [])
 
   const newWindowPdf = () => {
     if (window) {
-      const url = window.URL.createObjectURL(new Blob([biddingInfo.pdfFile], {type: 'application/pdf'}))
+      const url = window.URL.createObjectURL(new Blob([biddingInfo.pdfFile], { type: 'application/pdf' }))
       window.open(url, "blob", "width=1200, height=1200, resizeable, scrollbars, noopener")
       window.URL.revokeObjectURL(url)
     }

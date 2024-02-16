@@ -76,7 +76,7 @@ export const biddingInfoState = atom({
     agentAddrDetail: '',
     agentJob: '',
     agentRel: '',
-    pdfFile: new File([], ''),
+    pdfFile: new Blob(),
     reqCourtName: '',
     idcode: '',
     userId: '',

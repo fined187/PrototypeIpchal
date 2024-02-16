@@ -49,6 +49,7 @@ const RAW_RUNTIME_STATE =
           ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.17"],\
           ["axios", "npm:1.6.2"],\
           ["body-parser", "npm:1.20.2"],\
+          ["classnames", "npm:2.5.1"],\
           ["cordova-plugin-file", "npm:8.0.1"],\
           ["cordova-plugin-file-opener2", "npm:4.0.0"],\
           ["cors", "npm:2.8.5"],\
@@ -82,6 +83,8 @@ const RAW_RUNTIME_STATE =
           ["react-portal-popout", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.9.3"],\
           ["react-query", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:3.39.3"],\
           ["recoil", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:0.7.7"],\
+          ["sass", "npm:1.71.0"],\
+          ["scss", "npm:0.2.4"],\
           ["tailwind-scrollbar-hide", "npm:1.1.7"],\
           ["tailwindcss", "npm:3.3.6"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
@@ -7827,6 +7830,21 @@ const RAW_RUNTIME_STATE =
           ["readdirp", "npm:3.6.0"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:3.6.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/chokidar-npm-3.6.0-3c413a828f-10c0.zip/node_modules/chokidar/",\
+        "packageDependencies": [\
+          ["chokidar", "npm:3.6.0"],\
+          ["anymatch", "npm:3.1.3"],\
+          ["braces", "npm:3.0.2"],\
+          ["fsevents", "patch:fsevents@npm%3A2.3.3#optional!builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"],\
+          ["glob-parent", "npm:5.1.2"],\
+          ["is-binary-path", "npm:2.1.0"],\
+          ["is-glob", "npm:4.0.3"],\
+          ["normalize-path", "npm:3.0.0"],\
+          ["readdirp", "npm:3.6.0"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["chownr", [\
@@ -7834,6 +7852,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/chownr-npm-2.0.0-638f1c9c61-10c0.zip/node_modules/chownr/",\
         "packageDependencies": [\
           ["chownr", "npm:2.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["classnames", [\
+      ["npm:2.5.1", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/classnames-npm-2.5.1-c7273f3423-10c0.zip/node_modules/classnames/",\
+        "packageDependencies": [\
+          ["classnames", "npm:2.5.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -10278,6 +10305,7 @@ const RAW_RUNTIME_STATE =
           ["autoprefixer", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:10.4.17"],\
           ["axios", "npm:1.6.2"],\
           ["body-parser", "npm:1.20.2"],\
+          ["classnames", "npm:2.5.1"],\
           ["cordova-plugin-file", "npm:8.0.1"],\
           ["cordova-plugin-file-opener2", "npm:4.0.0"],\
           ["cors", "npm:2.8.5"],\
@@ -10311,6 +10339,8 @@ const RAW_RUNTIME_STATE =
           ["react-portal-popout", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.9.3"],\
           ["react-query", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:3.39.3"],\
           ["recoil", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:0.7.7"],\
+          ["sass", "npm:1.71.0"],\
+          ["scss", "npm:0.2.4"],\
           ["tailwind-scrollbar-hide", "npm:1.1.7"],\
           ["tailwindcss", "npm:3.3.6"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
@@ -10754,6 +10784,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/ignore-npm-5.3.0-fb0f5fa062-10c0.zip/node_modules/ignore/",\
         "packageDependencies": [\
           ["ignore", "npm:5.3.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["immutable", [\
+      ["npm:4.3.5", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/immutable-npm-4.3.5-5958499808-10c0.zip/node_modules/immutable/",\
+        "packageDependencies": [\
+          ["immutable", "npm:4.3.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -12206,7 +12245,7 @@ const RAW_RUNTIME_STATE =
           ["postcss", "npm:8.4.31"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:18.2.0"],\
-          ["sass", null],\
+          ["sass", "npm:1.71.0"],\
           ["styled-jsx", "virtual:3a06a8b5d498f5ca2684c7d80a9a1284a59ed505510f8bbe1fcf8c8b4404d551104ad8fc7d542d433ddbb5a9d433c0cc70eac3e7cbcf3e7107b6f7d5623f9059#npm:5.1.1"],\
           ["watchpack", "npm:2.4.0"]\
         ],\
@@ -12420,6 +12459,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/oblivious-set-npm-1.0.0-8e7336b241-10c0.zip/node_modules/oblivious-set/",\
         "packageDependencies": [\
           ["oblivious-set", "npm:1.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["ometa", [\
+      ["npm:0.2.2", {\
+        "packageLocation": "./.yarn/unplugged/ometa-npm-0.2.2-a91ea6ee26/node_modules/ometa/",\
+        "packageDependencies": [\
+          ["ometa", "npm:0.2.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -13965,6 +14013,18 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["sass", [\
+      ["npm:1.71.0", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/sass-npm-1.71.0-38088726c4-10c0.zip/node_modules/sass/",\
+        "packageDependencies": [\
+          ["sass", "npm:1.71.0"],\
+          ["chokidar", "npm:3.6.0"],\
+          ["immutable", "npm:4.3.5"],\
+          ["source-map-js", "npm:1.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["sax", [\
       ["npm:1.1.4", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/sax-npm-1.1.4-d8d67c74c5-10c0.zip/node_modules/sax/",\
@@ -13980,6 +14040,16 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["scheduler", "npm:0.23.0"],\
           ["loose-envify", "npm:1.4.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["scss", [\
+      ["npm:0.2.4", {\
+        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/scss-npm-0.2.4-97993b1bc4-10c0.zip/node_modules/scss/",\
+        "packageDependencies": [\
+          ["scss", "npm:0.2.4"],\
+          ["ometa", "npm:0.2.2"]\
         ],\
         "linkType": "HARD"\
       }]\

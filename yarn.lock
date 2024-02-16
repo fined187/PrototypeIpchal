@@ -4849,6 +4849,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chokidar@npm:>=3.0.0 <4.0.0":
+  version: 3.6.0
+  resolution: "chokidar@npm:3.6.0"
+  dependencies:
+    anymatch: "npm:~3.1.2"
+    braces: "npm:~3.0.2"
+    fsevents: "npm:~2.3.2"
+    glob-parent: "npm:~5.1.2"
+    is-binary-path: "npm:~2.1.0"
+    is-glob: "npm:~4.0.1"
+    normalize-path: "npm:~3.0.0"
+    readdirp: "npm:~3.6.0"
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  checksum: 8361dcd013f2ddbe260eacb1f3cb2f2c6f2b0ad118708a343a5ed8158941a39cb8fb1d272e0f389712e74ee90ce8ba864eece9e0e62b9705cb468a2f6d917462
+  languageName: node
+  linkType: hard
+
 "chokidar@npm:^3.5.3":
   version: 3.5.3
   resolution: "chokidar@npm:3.5.3"
@@ -4872,6 +4891,13 @@ __metadata:
   version: 2.0.0
   resolution: "chownr@npm:2.0.0"
   checksum: 594754e1303672171cc04e50f6c398ae16128eb134a88f801bf5354fd96f205320f23536a045d9abd8b51024a149696e51231565891d4efdab8846021ecf88e6
+  languageName: node
+  linkType: hard
+
+"classnames@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "classnames@npm:2.5.1"
+  checksum: afff4f77e62cea2d79c39962980bf316bacb0d7c49e13a21adaadb9221e1c6b9d3cdb829d8bb1b23c406f4e740507f37e1dcf506f7e3b7113d17c5bab787aa69
   languageName: node
   linkType: hard
 
@@ -6779,6 +6805,7 @@ __metadata:
     autoprefixer: "npm:^10.4.17"
     axios: "npm:^1.6.2"
     body-parser: "npm:^1.20.2"
+    classnames: "npm:^2.5.1"
     cordova-plugin-file: "npm:^8.0.1"
     cordova-plugin-file-opener2: "npm:^4.0.0"
     cors: "npm:^2.8.5"
@@ -6812,6 +6839,8 @@ __metadata:
     react-portal-popout: "npm:^1.9.3"
     react-query: "npm:^3.39.3"
     recoil: "npm:^0.7.7"
+    sass: "npm:^1.71.0"
+    scss: "npm:^0.2.4"
     tailwind-scrollbar-hide: "npm:^1.1.7"
     tailwindcss: "npm:^3.3.0"
     typescript: "npm:^5"
@@ -7222,6 +7251,13 @@ __metadata:
   version: 5.3.0
   resolution: "ignore@npm:5.3.0"
   checksum: dc06bea5c23aae65d0725a957a0638b57e235ae4568dda51ca142053ed2c352de7e3bc93a69b2b32ac31966a1952e9a93c5ef2e2ab7c6b06aef9808f6b55b571
+  languageName: node
+  linkType: hard
+
+"immutable@npm:^4.0.0":
+  version: 4.3.5
+  resolution: "immutable@npm:4.3.5"
+  checksum: 63d2d7908241a955d18c7822fd2215b6e89ff5a1a33cc72cd475b013cbbdef7a705aa5170a51ce9f84a57f62fdddfaa34e7b5a14b33d8a43c65cc6a881d6e894
   languageName: node
   linkType: hard
 
@@ -8738,6 +8774,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ometa@npm:0.2.2":
+  version: 0.2.2
+  resolution: "ometa@npm:0.2.2"
+  checksum: 6d834b01cf92e5020c63d9a2c2cbfa131b7e03c1ce78cbac42263e93a57dd33d3d8f10c96d8bce4721513f1d09e147891ac33951da6ea1c77d14cca3eb652283
+  languageName: node
+  linkType: hard
+
 "on-finished@npm:2.4.1":
   version: 2.4.1
   resolution: "on-finished@npm:2.4.1"
@@ -9957,6 +10000,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sass@npm:^1.71.0":
+  version: 1.71.0
+  resolution: "sass@npm:1.71.0"
+  dependencies:
+    chokidar: "npm:>=3.0.0 <4.0.0"
+    immutable: "npm:^4.0.0"
+    source-map-js: "npm:>=0.6.2 <2.0.0"
+  bin:
+    sass: sass.js
+  checksum: a20ff6e59ed560a01175adc75a4fbafa5bbfbc4d6f0c89225348d54bc9e53a0c519105d1ae595a9216fc2fe9001d3bd7629ed10ccd6fceeb42b07e8393694627
+  languageName: node
+  linkType: hard
+
 "sax@npm:1.1.4":
   version: 1.1.4
   resolution: "sax@npm:1.1.4"
@@ -9970,6 +10026,15 @@ __metadata:
   dependencies:
     loose-envify: "npm:^1.1.0"
   checksum: b777f7ca0115e6d93e126ac490dbd82642d14983b3079f58f35519d992fa46260be7d6e6cede433a92db70306310c6f5f06e144f0e40c484199e09c1f7be53dd
+  languageName: node
+  linkType: hard
+
+"scss@npm:^0.2.4":
+  version: 0.2.4
+  resolution: "scss@npm:0.2.4"
+  dependencies:
+    ometa: "npm:0.2.2"
+  checksum: 41aa26a7d6baaa1b264c3bc6005f865ceb895050ef62563368491db12b63fda7fc73a46dbe129f68255abdc8aab9c6ef83f8a5dfda0f57857e8cf96846e92f3e
   languageName: node
   linkType: hard
 
@@ -10154,7 +10219,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map-js@npm:^1.0.2":
+"source-map-js@npm:>=0.6.2 <2.0.0, source-map-js@npm:^1.0.2":
   version: 1.0.2
   resolution: "source-map-js@npm:1.0.2"
   checksum: 32f2dfd1e9b7168f9a9715eb1b4e21905850f3b50cf02cf476e47e4eebe8e6b762b63a64357896aa29b37e24922b4282df0f492e0d2ace572b43d15525976ff8

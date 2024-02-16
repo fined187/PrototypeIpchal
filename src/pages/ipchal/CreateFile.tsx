@@ -3,13 +3,11 @@ import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { LiaEyeSolid, LiaEyeSlashSolid } from 'react-icons/lia'
 import axios from 'axios'
-import html2canvas from 'html2canvas'
-import jsPDF from 'jspdf'
 import { format } from 'date-fns'
 import Spinner from '@/components/Spinner'
 import { TotalResultType } from '@/interface/IpchalType'
-import SinglePDF from '@/components/CreatePDFContent/SinglePDF'
 import CoIpchalPDF from '@/components/CreatePDFContent/CoIpchalPDF'
+import SinglePDF from '@/components/CreatePDFContent/SinglePDF'
 
 export default function CreateFile() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -37,7 +35,7 @@ export default function CreateFile() {
     if (12 - len > 0) {
       return '0'.repeat(12 - len) + totalResult?.bidDeposit
     } else {
-      return totalResult?.bidDeposit?.toString()
+      return totalResult?.bidDeposit?.toString() 
     }
   }
 
@@ -45,47 +43,37 @@ export default function CreateFile() {
   const handleGetHeight = () => {
     //  1. 입찰자가 1명일 때 + 대리인이 없을 때
     if (biddingInfo.agentName === '' && biddingInfo.bidderNum === 1) {          //  2장
-      setGetHeight(590)
+      setGetHeight(580)
     } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum === 1) {   //  3장
       //  2. 입찰자가 1명일 때 + 대리인이 있을 때
-      setGetHeight(885)
+      setGetHeight(870)
     } else if (biddingInfo.agentName === '' && biddingInfo.bidderNum > 1) {     //  4장
       //  3. 입찰자가 2명 이상일 때 + 대리인이 없을 때
-      setGetHeight(1180)
+      setGetHeight(1160)
     } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum > 1) {     
       //  4. 입찰자가 2명 이상일 때 + 대리인이 있을 때
       if (mandateNumber && mandateNumber <= 3 && biddingInfo.bidderNum <= 10) {   //  5장
         //  4-1. 대리인이 3명 이하일 때
-        setGetHeight(1475)
+        setGetHeight(1450)
       } else if (biddingInfo.bidderNum > 10 && (mandateNumber && mandateNumber <= 3)) {   //  6장 이상
         //  4-2. 입찰자가 3명 이상일 때
-        setGetHeight(1180 + (295 * Math.ceil(totalResult?.bidders.length! / 10)))
+        setGetHeight(1160 + (290 * Math.ceil(totalResult?.bidders.length! / 10)))
       } else if (biddingInfo.bidderNum > 10 && (mandateNumber && mandateNumber > 3)) {
-        setGetHeight(885 + (295 * Math.ceil(totalResult?.bidders.length! / 10)) + (295 * Math.ceil(mandateNumber / 3)))
+        setGetHeight(870 + (290 * Math.ceil(totalResult?.bidders.length! / 10)) + (295 * Math.ceil(mandateNumber / 3)))
       } else if (biddingInfo.bidderNum <= 10 && (mandateNumber && mandateNumber > 3)) {
-        setGetHeight(1180 + (295 * Math.ceil(mandateNumber / 3)))
+        setGetHeight(1160 + (290 * Math.ceil(mandateNumber / 3)))
       } else {
-        setGetHeight(1475)
+        setGetHeight(1450)
       }
     }
   }
 
-  const dataURItoBlob = (dataURI: string) => {
-    let byteString = atob(dataURI.split(',')[1])
-    let ab = new ArrayBuffer(byteString.length)
-    let ia = new Uint8Array(ab)
-    for (let i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i)
-    }
-    return new Blob([ab], { type: 'image/png' })
-  }
-
-  const generatePDF = async (img: string) => {
+  const generatePDF = async (element: string) => {
     try {
       const response = await axios.post(`http://localhost:4000/test`, {
           height: getHeight,
           password: password,
-          imgData: img,
+          htmlElement: JSON.stringify(element),
           mstSeq: biddingInfo.mstSeq,
         }, {
           headers: {
@@ -107,9 +95,45 @@ export default function CreateFile() {
     }
   }
 
+  const handleGeneratePDF = async () => {  
+    const responese = await axios
+    .post( 
+      "http://59.26.32.159:8781/download",
+      {
+        html: `${htmlElement}`,
+        mstSeq: biddingInfo.mstSeq,
+        password: password,
+        name: fileName,
+        getHeight: getHeight,
+      },
+      {
+        responseType: "blob", // important
+      }
+    ) 
+    .then((data) => {
+      const file = new Blob([data.data], { type: "application/pdf" });
+      setBlobFile(new File([file], `${fileName}.pdf`, { type: "application/pdf" }));
+      setBiddingInfo({
+        ...biddingInfo,
+        isFileCreated: true,
+        pdfFile: file,
+      });
+    });
+}
+
   useEffect(() => {
     handleGetHeight()
   }, [biddingInfo.agentName, biddingInfo.bidderNum])
+
+  let htmlElement = ''
+
+  const handleHtml = () => {
+    const captureDiv = document.getElementById('capture') as HTMLElement
+    if (captureDiv) {
+      htmlElement = captureDiv.innerHTML
+    }
+  }
+
   const captureWrap = document && document.getElementById('wrap-capture') as HTMLElement
   const captureDiv = document && document.getElementById('capture') as HTMLElement
 
@@ -117,18 +141,11 @@ export default function CreateFile() {
     if (captureWrap && captureDiv) {
       captureWrap.style.display = 'flex'
       captureDiv.style.display = 'flex'
-      await html2canvas(
-        document.getElementById('capture') as HTMLElement
-      ).then(async (canvas: any) => {
-        let imgData = canvas.toDataURL('image/png', 1.0)
-        setBiddingInfo({
-          ...biddingInfo,
-          imageFile: imgData,
-        })
-        await generatePDF(imgData)
-    })
-      captureWrap.style.display = 'none'
-      captureDiv.style.display = 'none'
+      handleHtml()
+      // await generatePDF(htmlElement)
+      await handleGeneratePDF()
+      // captureWrap.style.display = 'none'
+      // captureDiv.style.display = 'none'
     }
   }
   const onClickPdf = async (e: any) => {
@@ -187,6 +204,7 @@ export default function CreateFile() {
   }
 
   useEffect(() => {
+    setFileName(`${biddingInfo.userId ?? ''}_` + format(date, 'yyyyMMddHHmmss'))
     setLoading(true)
     const handleGetResult = async () => {
       try {
@@ -220,7 +238,7 @@ export default function CreateFile() {
                 </span>
                 <input
                   className="w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
-                  value={'best_' + format(date, 'yyyyMMddHHmmss')}
+                  value={`${biddingInfo.userId ?? ''}_` + format(date, 'yyyyMMddHHmmss')}
                   onChange={(e) => {
                     setFileName(e.target.value)
                   }}
