@@ -8,6 +8,7 @@ import Spinner from '@/components/Spinner'
 import { TotalResultType } from '@/interface/IpchalType'
 import CoIpchalPDF from '@/components/CreatePDFContent/CoIpchalPDF'
 import SinglePDF from '@/components/CreatePDFContent/SinglePDF'
+import CoverPage from '@/components/CreatePDFContent/CoverPage'
 
 export default function CreateFile() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -20,7 +21,8 @@ export default function CreateFile() {
   const [loading, setLoading] = useState<boolean>(false)
   const [blobFile, setBlobFile] = useState<File | null>(null)
   const [getHeight, setGetHeight] = useState<number>(0)
-
+  const [pageNum, setPageNum] = useState<number>(2)
+  const captureDiv = document && document.getElementById('capture') as HTMLElement
   const date = new Date()
   
   const handlePrice = (len: number) => {
@@ -44,67 +46,49 @@ export default function CreateFile() {
     //  1. 입찰자가 1명일 때 + 대리인이 없을 때
     if (biddingInfo.agentName === '' && biddingInfo.bidderNum === 1) {          //  2장
       setGetHeight(580)
+      setPageNum(2)
     } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum === 1) {   //  3장
       //  2. 입찰자가 1명일 때 + 대리인이 있을 때
       setGetHeight(870)
+      setPageNum(3)
     } else if (biddingInfo.agentName === '' && biddingInfo.bidderNum > 1) {     //  4장
       //  3. 입찰자가 2명 이상일 때 + 대리인이 없을 때
       setGetHeight(1160)
+      setPageNum(4)
     } else if (biddingInfo.agentName !== '' && biddingInfo.bidderNum > 1) {     
       //  4. 입찰자가 2명 이상일 때 + 대리인이 있을 때
       if (mandateNumber && mandateNumber <= 3 && biddingInfo.bidderNum <= 10) {   //  5장
         //  4-1. 대리인이 3명 이하일 때
         setGetHeight(1450)
+        setPageNum(5)
       } else if (biddingInfo.bidderNum > 10 && (mandateNumber && mandateNumber <= 3)) {   //  6장 이상
         //  4-2. 입찰자가 3명 이상일 때
         setGetHeight(1160 + (290 * Math.ceil(totalResult?.bidders.length! / 10)))
+        setPageNum(6 + Math.ceil(totalResult?.bidders.length! / 10))
       } else if (biddingInfo.bidderNum > 10 && (mandateNumber && mandateNumber > 3)) {
         setGetHeight(870 + (290 * Math.ceil(totalResult?.bidders.length! / 10)) + (295 * Math.ceil(mandateNumber / 3)))
+        setPageNum(3 + Math.ceil(totalResult?.bidders.length! / 10) + Math.ceil(mandateNumber / 3))
       } else if (biddingInfo.bidderNum <= 10 && (mandateNumber && mandateNumber > 3)) {
         setGetHeight(1160 + (290 * Math.ceil(mandateNumber / 3)))
+        setPageNum(4 + Math.ceil(mandateNumber / 3))
       } else {
         setGetHeight(1450)
+        setPageNum(5)
       }
     }
   }
 
-  const generatePDF = async (element: string) => {
-    try {
-      const response = await axios.post(`http://localhost:4000/test`, {
-          height: getHeight,
-          password: password,
-          htmlElement: JSON.stringify(element),
-          mstSeq: biddingInfo.mstSeq,
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        })
-        if (response.status === 200) {
-          setBiddingInfo({
-            ...biddingInfo,
-            isFileCreated: true,
-          })
-          console.log(response)
-          captureWrap.style.display = 'none'
-          captureDiv.style.display = 'none'
-          return
-        }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   const handleGeneratePDF = async () => {  
+    captureDiv && captureDiv.style.display === 'none' ? captureDiv.style.display = 'block' : captureDiv.style.display = 'none'
     const responese = await axios
     .post( 
-      "http://59.26.32.159:8781/download",
+      "http://210.16.195.57:4000/download",
       {
         html: `${htmlElement}`,
         mstSeq: biddingInfo.mstSeq,
         password: password,
         name: fileName,
-        getHeight: getHeight,
+        pageNum: pageNum,
       },
       {
         responseType: "blob", // important
@@ -119,6 +103,7 @@ export default function CreateFile() {
         pdfFile: file,
       });
     });
+    captureDiv && captureDiv.style.display === 'block' ? captureDiv.style.display = 'none' : captureDiv.style.display = 'none'
 }
 
   useEffect(() => {
@@ -134,20 +119,15 @@ export default function CreateFile() {
     }
   }
 
-  const captureWrap = document && document.getElementById('wrap-capture') as HTMLElement
-  const captureDiv = document && document.getElementById('capture') as HTMLElement
+
 
   const onCapture = async () => {
-    if (captureWrap && captureDiv) {
-      captureWrap.style.display = 'flex'
-      captureDiv.style.display = 'flex'
+    if (captureDiv) {
       handleHtml()
-      // await generatePDF(htmlElement)
       await handleGeneratePDF()
-      // captureWrap.style.display = 'none'
-      // captureDiv.style.display = 'none'
     }
   }
+
   const onClickPdf = async (e: any) => {
     setLoading(true)
     e.preventDefault()
@@ -324,12 +304,16 @@ export default function CreateFile() {
           <Spinner />
         </div>
       )}
-      {totalResult && totalResult.bidders.length > 1 && (
-        <CoIpchalPDF totalResult={totalResult} handlePrice={handlePrice} handleDepositPrice={handleDepositPrice} />
-      )}
-      {totalResult && totalResult.bidders.length === 1 && (
-        <SinglePDF totalResult={totalResult} handlePrice={handlePrice} handleDepositPrice={handleDepositPrice} />
-      )}
+      <div className='hidden flex-col' id='capture'>
+        {totalResult && (
+          <CoverPage totalResult={totalResult} />)}
+        {totalResult && totalResult.bidders.length > 1 && (
+          <CoIpchalPDF totalResult={totalResult} handlePrice={handlePrice} handleDepositPrice={handleDepositPrice} />
+        )}
+        {totalResult && totalResult.bidders.length === 1 && (
+          <SinglePDF totalResult={totalResult} handlePrice={handlePrice} handleDepositPrice={handleDepositPrice} />
+        )}
+      </div>
     </>
   )
 }
