@@ -144,34 +144,6 @@ export default function CreateFile() {
     }
   }
 
-  const handleUploadFile = async () => {
-    setLoading(true)
-    const formData = new FormData()
-    if (blobFile) {
-      formData.append('file', blobFile)
-    }
-    formData.append('filePassword', password)
-    try {
-      const response = await axios.post(
-        `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        },
-      )
-      if (response.status === 200) {
-        console.log(response)
-        setLoading(false)
-        return
-      }
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
     setFileName(`${biddingInfo.userId ?? ''}_` + format(date, 'yyyyMMddHHmmss'))
     setLoading(true)
