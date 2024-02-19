@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p ${PORT:-4000}",
+    "start": "next start -p ${PORT:-80}",
     "lint": "next lint",
     "prod": "next export",
     "server": "node ./src/server"

@@ -119,8 +119,6 @@ export default function CreateFile() {
     }
   }
 
-
-
   const onCapture = async () => {
     if (captureDiv) {
       handleHtml()
@@ -135,10 +133,10 @@ export default function CreateFile() {
       alert('파일 암호를 4자리 이상 입력해주세요')
       setLoading(false)
       return
-    // } else if (biddingInfo.isFileCreated) {
-    //   alert('이미 파일이 생성되었습니다')
-    //   setLoading(false)
-    //   return
+    } else if (biddingInfo.isFileCreated) {
+      alert('이미 파일이 생성되었습니다')
+      setLoading(false)
+      return
     } 
     else {
       await onCapture()
@@ -171,15 +169,6 @@ export default function CreateFile() {
     } catch (error) {
       console.log(error)
       setLoading(false)
-    }
-  }
-
-  const handleNextStep = async () => {
-    if (biddingInfo.isFileCreated) {
-      await handleUploadFile()
-      setStateNum(stateNum + 1)
-    } else {
-      alert('파일을 생성해주세요')
     }
   }
 
