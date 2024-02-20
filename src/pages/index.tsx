@@ -23,6 +23,7 @@ import AgentForm from './ipchal/AgentForm'
 import Spinner from '@/components/Spinner'
 import PreparingList from './ipchal/PreparingList'
 import AgentCheck from './ipchal/AgentCheck'
+import SearchIpchal from './ipchal/SearchIpchal'
 
 export default function Home() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -70,7 +71,7 @@ export default function Home() {
   const handleLoginStatus = async (id: string) => {
     try {
       const response = await axios.get(
-        `http://118.217.180.254:8081/ggi/api/bid-form/${id}/login-status`,
+        `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/${id}/login-status`,
       )
       if (response.status === 200) {
         setBiddingForm({
@@ -87,7 +88,7 @@ export default function Home() {
     setLoading(true)
     if (typeof window !== 'undefined') {
       try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${Number(query)}`, {
+        const response = await axios.get(`https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/${Number(query)}`, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -216,7 +217,8 @@ export default function Home() {
       : (
         <>
           {((bidders.state === 9) && (stateNum === 0) ? <StartIpchal /> : (stateNum === 0) && <StartIpchal />)}
-          {(stateNum === 1) && <GetIpchalInfo />}
+          {(stateNum === 1) && <SearchIpchal />}
+          {/* {(stateNum === 1) && <GetIpchalInfo />} */}
           {stateNum === 2 && biddingForm.biddingInfos.length > 1 && <TimeInfo />}
           {(bidders.state === 0 && stateNum === 3) ? <BidderInfo /> : (stateNum === 3) && <BidderInfo />}
           {(stateNum === 4) && <AgentForm />}

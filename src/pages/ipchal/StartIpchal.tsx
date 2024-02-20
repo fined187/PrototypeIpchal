@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { useRecoilState } from 'recoil'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { calc } from '@chakra-ui/react'
 
 export default function StartIpchal() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -109,8 +108,7 @@ export default function StartIpchal() {
             </span>
           </div> */}
           <div className="flex sm:w-[50%] w-[100%] justify-center pt-[30px]">
-            <Image
-              priority
+            <img
               src={'/visualImg_big.png'}
               alt="MainImg"
               width={350}
