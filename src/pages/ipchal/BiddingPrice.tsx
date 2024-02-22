@@ -331,6 +331,8 @@ export default function BiddingPrice() {
               </div>
               <div className="flex justify-end w-[75%] pt-[10px] mr-[10px]">
                 <input
+                  aria-label="입찰금액"
+                  placeholder=""
                   type="text"
                   id="number"
                   onBlur={handleCheckPrice}
@@ -367,6 +369,8 @@ export default function BiddingPrice() {
               </div>
               <div className="flex justify-end w-[100%] pt-[10px] mr-[10px]">
                 <input
+                  aria-label="입찰보증금"
+                  placeholder=""
                   type="text"
                   id="number2"
                   value={biddingForm.depositPrice.toLocaleString('ko-KR') || 0}

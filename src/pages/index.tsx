@@ -1,7 +1,6 @@
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import StartIpchal from './ipchal/StartIpchal'
 import { biddingInfoState, stepState } from '@/atom'
-import GetIpchalInfo from './ipchal/GetIpchalInfo'
 import BidderInfo from './ipchal/BidderInfo'
 import BidderCnt from './ipchal/BidderCnt'
 import ShareInfo from './ipchal/ShareInfo'

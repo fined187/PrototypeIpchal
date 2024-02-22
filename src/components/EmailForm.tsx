@@ -6,6 +6,7 @@ import { biddingInfoState } from '@/atom'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react'
 
+
 interface EmailFormProps {
   isOpen: boolean
   onClose: () => void
@@ -79,7 +80,7 @@ export default function EmailForm({
               {/* Background overlay */}
                 <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-[100%] w-[100%]">
                   <div className='flex justify-end p-[10px] border border-b-[1px] border-gray-300'>
-                    <button>
+                    <button aria-label='close'>
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-mygray hover:mygray cursor-pointer " fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={onClose}>
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
