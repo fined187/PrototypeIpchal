@@ -61,7 +61,7 @@ export default function AgentForm() {
   const handleAgentSave = async () => {
     try {
       const response = await axios.post(
-        `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/agents`,
+        `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/${biddingForm.mstSeq}/agents`,
         {
           name: biddingForm.agentName,
           relationship: biddingForm.agentRel,

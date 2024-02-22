@@ -10,11 +10,9 @@ export default function StartIpchal() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState(false)
-
   const router = useRouter()
 
-  let { idcode } = router.query
-  let { startdate } = router.query
+  const { idcode } = router.query
 
   const handleCheck = async () => {
     setLoading(true)
@@ -23,7 +21,6 @@ export default function StartIpchal() {
           `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/checks`,
           {
             idCode: idcode,
-            biddingDate: startdate,
           },
           { 
             headers: {
@@ -68,8 +65,9 @@ export default function StartIpchal() {
   }
 
   const handleNextStep = async () => {
-    if (biddingInfo.mstSeq === 0) {
+    if (idcode) {
       await handleCheck()
+      setStateNum(2)
     } else {
       setStateNum(1)
     }
@@ -102,13 +100,13 @@ export default function StartIpchal() {
               입찰표 작성을 시작합니다
             </span>
           </div>
-          {/* <div className="flex">
+          <div className="flex">
             <span className="text-[1rem] text-mygray font-bold font-NanumGothic not-italic">
               질문에 답변해 주세요.
             </span>
-          </div> */}
+          </div>
           <div className="flex sm:w-[50%] w-[100%] justify-center pt-[30px]">
-            <img
+            <Image
               src={'/visualImg_big.png'}
               alt="MainImg"
               width={350}

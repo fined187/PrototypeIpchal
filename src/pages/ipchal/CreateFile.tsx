@@ -143,14 +143,14 @@ export default function CreateFile() {
       setLoading(false)
     }
   }
-
+  console.log(biddingInfo.aesUserId)
   useEffect(() => {
-    setFileName(`${biddingInfo.userId ?? ''}_` + format(date, 'yyyyMMddHHmmss'))
+    setFileName(`${'best'}_` + format(date, 'yyyyMMddHHmmss'))
     setLoading(true)
     const handleGetResult = async () => {
       try {
         const response = await axios.get(
-          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`,
+          `${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}`,
         )
         if (response.status === 200) {
           setTotalResult(response.data.data)
@@ -178,8 +178,9 @@ export default function CreateFile() {
                   파일이름
                 </span>
                 <input
+                  aria-label='파일 이름'
                   className="w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
-                  value={`${biddingInfo.userId ?? ''}_` + format(date, 'yyyyMMddHHmmss')}
+                  value={`${'best'}_` + format(date, 'yyyyMMddHHmmss')}
                   onChange={(e) => {
                     setFileName(e.target.value)
                   }}
@@ -190,6 +191,7 @@ export default function CreateFile() {
                   파일암호
                 </span>
                 <input
+                  aria-label='파일 암호'
                   type={`${passwordActive ? 'text' : 'password'}`}
                   className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
                   value={password || ''}

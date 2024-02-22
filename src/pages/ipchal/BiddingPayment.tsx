@@ -14,7 +14,7 @@ export default function BiddingPayment() {
     setLoading(true)
     try {
       const response = await axios.put(
-        `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`,
+        `${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/payments`,
         {
           bidPrice: biddingForm.biddingPrice,
           bidDeposit: biddingForm.depositPrice,

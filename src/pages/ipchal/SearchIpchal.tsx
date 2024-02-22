@@ -66,8 +66,8 @@ export default function SearchIpchal() {
           biddingDate: (response.data.data.startYear) +
           (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
           (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
-          courtFullName: response.data.courtFullName,
-          reqCourtName: response.data.reqCourtName,
+          courtFullName: response.data.data.courtFullName,
+          reqCourtName: response.data.data.reqCourtName,
           mulNo: response.data.data.mulNo === '' ? '1' : response.data.data.mulNo,
           sagunNum:
               response.data.data.caseYear +
@@ -83,7 +83,7 @@ export default function SearchIpchal() {
           biddingInfos: response.data.data.biddingInfos,
         })
         setLoading(false)
-        setStateNum(3)
+        setStateNum(2)
       }
     } catch (error) {
       console.log(error)
@@ -156,7 +156,7 @@ export default function SearchIpchal() {
                 </span>
               </div>
             </div>
-            <div className="md:flex hidden flex-row w-[95%] h-[50px] border border-black bg-gray-100">
+            <div className="md:flex hidden flex-row w-[95%] h-[50px] border border-black bg-gray-300">
               <div className="flex flex-col w-[15%] h-[100%] border-black border-r-[1px] justify-center items-center">
                 <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-bold ">
                   매각기일
@@ -181,7 +181,7 @@ export default function SearchIpchal() {
             </div>
             <div className={`border-r-[1px] ${getData?.cases.length <= 4 ? '' : 'border-b-[1px]'} border-l-[1px] border-black w-[95%] min-h-[100px] max-h-[500px] overflow-y-auto scrollbar-hide`}>
               {getData?.cases?.map((data: any, index: number) => (
-                <div key={index} className={`flex flex-row w-[100%] h-[100px] ${index > 3 && (getData.cases.length - 1 === index) ? '' : 'border-b-[1px]'} border-black ${index % 2 === 0 ? 'bg-gray-200' : 'bg-gray-50'} items-center hover:bg-gray-300 cursor-pointer`} onClick={() => {
+                <div key={index} className={`flex flex-row w-[100%] h-[100px] ${index > 3 && (getData.cases.length - 1 === index) ? '' : 'border-b-[1px]'} border-black ${index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-50'} items-center hover:bg-gray-300 cursor-pointer`} onClick={() => {
                   handleNextStep(data.infoId, data.caseNo, data.mulSeq)
                 }}>
                   <div className="flex flex-col w-[15%] h-[100%] border-black border-r-[1px] justify-center items-center">
@@ -240,7 +240,7 @@ export default function SearchIpchal() {
           type="button"
           className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
           onClick={() => {
-            searchResult === 1 ? setStateNum(1) : setSearchResult(1)
+            searchResult === 1 ? setStateNum(0) : setSearchResult(1)
           }}
         >
           <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">

@@ -12,7 +12,7 @@ export default function AgentCheck() {
   useEffect(() => {
     const handleGetMandates = async () => {
       try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders/mandates`, {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}/bidders/mandates`, {
           headers: {
             "Content-Type": "application/json",
           }
@@ -33,7 +33,7 @@ export default function AgentCheck() {
 
   const handlePostMandates = async () => {
     try {
-      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders/mandates`, {
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}/bidders/mandates`, {
         bidderCount: biddingInfo.bidderNum,
         mandates: biddingInfo.mandates
       }, {
@@ -55,7 +55,7 @@ export default function AgentCheck() {
       return
     } else {
       handlePostMandates()
-      setStateNum(7)
+      setStateNum(8)
     }
   }
 
@@ -88,7 +88,7 @@ export default function AgentCheck() {
             <input 
               id="allChecked"
               checked={allChecked}
-              className="md:w-[20px] md:h-[20px] w-[15px] h-[15px] accent-mygold text-white bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600" 
+              className="md:w-[20px] md:h-[20px] w-[15px] h-[15px] bg-white peer relative appearance-none checked:bg-mygold border focus:ouline-none hover:ring hover:ring-mygold after:bg-[url('/public/images/checked.png')]"
               type="checkbox"
               onChange={(e) => {
                 const newCheckedItems = [...checkedItems];
@@ -116,9 +116,10 @@ export default function AgentCheck() {
                 </span>
                 <div>
                   <input 
+                    aria-label="mandate"
                     id={name}
                     checked={checkedItems[index]}
-                    className="md:w-[20px] md:h-[20px] w-[15px] h-[15px] accent-mygold text-white bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600" 
+                    className="md:w-[20px] md:h-[20px] w-[15px] h-[15px] text-white md:text-white bg-gray-100 border-gray-300 rounded ring-yellow-500 focus:ring-yellow-500 dark:focus:ring-yellow-600" 
                     type="checkbox"
                     onChange={(e) => {
                       const newCheckedItems = [...checkedItems];

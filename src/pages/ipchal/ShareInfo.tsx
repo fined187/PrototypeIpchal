@@ -90,7 +90,7 @@ export default function ShareInfo() {
   const handlePutShare = async () => {
     setLoadding(true)
     try {
-      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders/shares`, {
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}/bidders/shares`, {
         bidderCount: biddingInfo.bidderNum,
         shares: shareList.shareList,
       })
@@ -113,7 +113,7 @@ export default function ShareInfo() {
   const handleGetBiddingFormUpdate = async () => {
     setLoadding(true)
     try {
-      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidders`)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}/bidders`)
       if (response.status === 200) {
         console.log(response)
         setBiddingInfo({
@@ -152,7 +152,7 @@ export default function ShareInfo() {
     const handleSyncBiddingForm = async () => {
       setLoadding(true)
       try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`)
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}`)
         if (response.status === 200) {
           setIsDataIn(response.data.data.bidders)
           setBiddingInfo({
@@ -204,7 +204,6 @@ export default function ShareInfo() {
       window.removeEventListener('resize', handleHeight)
     }
   }, [])
-  console.log(biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0) == parseInt(biddingInfo.denominator[0]))
 
   return (
     <div id='box' className="flex w-[100%] bg-white justify-center relative ">
@@ -313,6 +312,7 @@ export default function ShareInfo() {
                       />
                       <span>/</span>
                       <input
+                        aria-label="denominator"
                         id='denominator'
                         type="text"
                         readOnly

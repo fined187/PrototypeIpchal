@@ -10,6 +10,7 @@ export default function GetIpchalInfo() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
   const router = useRouter()
+  const { idcode } = router.query
 
   const handleConfirm = async () => {
     setLoading(true)
@@ -21,9 +22,9 @@ export default function GetIpchalInfo() {
     } else {
       try {
         const response = await axios.post(
-          `http://118.217.180.254:8081/ggi/api/bid-form/inits`,
+          `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/inits`,
           {
-            userId: router.query.userId ?? '',
+            aesUserId: "Ug3033i0SuUmGQaRK2XcxQ==",
             infoId: biddingInfo.infoId,
             caseNo: biddingInfo.caseNo,
             mulSeq: biddingInfo.mulSeq,
@@ -181,7 +182,9 @@ export default function GetIpchalInfo() {
           <button
             type="button"
             className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-            onClick={() => setStateNum(stateNum - 1)}
+            onClick={() => {
+              idcode ? setStateNum(0) : setStateNum(stateNum - 1)
+            }}
           >
             <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
               이전
@@ -195,7 +198,7 @@ export default function GetIpchalInfo() {
             }}
           >
             <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
+              확인
             </span>
           </button>
         </div>

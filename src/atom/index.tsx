@@ -79,7 +79,7 @@ export const biddingInfoState = atom({
     pdfFile: new Blob(),
     reqCourtName: '',
     idcode: '',
-    userId: '',
+    aesUserId: '',
     bidders: [],
     imageFile: '',
     isModalOpen: false,

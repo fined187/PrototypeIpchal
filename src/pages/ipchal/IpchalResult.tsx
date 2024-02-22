@@ -38,7 +38,7 @@ export default function IpchalResult() {
     const handleGetResult = async () => {
       try {
         const response = await axios.get(
-          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}`,
+          `${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}`,
         )
         if (response.status === 200) {
           setBiddingInfo({

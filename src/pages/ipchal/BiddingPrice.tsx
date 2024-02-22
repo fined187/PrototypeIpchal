@@ -82,7 +82,7 @@ export default function BiddingPrice() {
       if (biddingForm.agentYn === 'Y' && biddingForm.bidderNum === 1) {
         console.log("입찰자 대리인 연결 실행")
         try {
-          const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/mandates`, {
+          const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/mandates`, {
             bidderCount: biddingForm.bidderNum,
             mandates: [
               { 
@@ -182,7 +182,7 @@ export default function BiddingPrice() {
 
   const handleGetBiddingFormUpdate = async () => {
     try {
-      const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`)
       if (response.status === 200) {
         setIsDataIn(response.data.data.bidders)
         setBiddingForm({
@@ -209,12 +209,12 @@ export default function BiddingPrice() {
     const handleSyncBiddingForm = async () => {
       setLoading(true)
       try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}`, {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}`, {
           headers: {
             "Content-Type": "application/json",
           },
         })
-        const response2 = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/payments`, {
+        const response2 = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/payments`, {
           headers: {
             "Content-Type": "application/json",
           },

@@ -36,7 +36,7 @@ export default function BidderForm() {
       e.preventDefault()
     }
   })
-  const setStateNum = useSetRecoilState(stepState)                  //  입찰표 작성 단계 set함수
+  const [stateNum, setStateNum] = useRecoilState(stepState)                  //  입찰표 작성 단계 set함수
   const [stepNum, setStepNum] = useState<number>(1)                 //  입찰자 정보 단계
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)  //  입찰표 작성 정보
   const [bidderList, setBidderList] = useState<BidderListProps>()    //  입찰자 정보 리스트
@@ -119,7 +119,7 @@ export default function BidderForm() {
   useEffect(() => {
     const handleGetBidders = async () => {
       try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`)
         if (response.status === 200) {
           setBidderList(response.data.data)
         }
@@ -134,7 +134,7 @@ export default function BidderForm() {
   const handleUpdate = async () => {
     try {
       if (biddingForm?.bidCorpYn[stepNum - 1] === 'I') {
-        const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           job: (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.agentYn === 'N') ? null : biddingForm.bidJob[stepNum - 1],
@@ -145,7 +145,7 @@ export default function BidderForm() {
           return
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
-        const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           companyNo: biddingForm?.bidCorpNum[stepNum - 1],
@@ -170,7 +170,7 @@ export default function BidderForm() {
     try {
       if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
         const response = await axios.post(
-          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
+          `${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`,
           {
             bidderType: biddingForm.bidCorpYn[stepNum - 1],
             name: biddingForm.bidName[stepNum - 1],
@@ -190,7 +190,7 @@ export default function BidderForm() {
         }
       } else {
         const response = await axios.post(
-          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
+          `${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`,
           {
             bidderType: biddingForm.bidCorpYn[stepNum - 1],
             name: biddingForm.bidName[stepNum - 1],
@@ -220,14 +220,14 @@ export default function BidderForm() {
   const handleNextStepNew = async (num: number) => {
     if (biddingForm.bidderNum === 1) {
       await handleBidderFormSave()
-      setStateNum(8)
+      setStateNum(stateNum + 2)
     } else if (biddingForm.bidderNum > 1) {
       if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'N') {
         await handleBidderFormSave()
-        setStateNum(7)
+        setStateNum(stateNum + 1)
       } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'Y') {
         await handleBidderFormSave()
-        setStateNum(18)
+        setStateNum(19)
       } else if (biddingForm.bidName[stepNum] === '') {
         await handleBidderFormSave()
         setStepNum(num + 1)
@@ -250,7 +250,7 @@ export default function BidderForm() {
     const handleGetBidderForm = async () => {
       try {
         const response = await axios.get(
-          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
+          `${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`,
         )
         if (response.status === 200) {
           setBidderList(response.data.data.bidders)

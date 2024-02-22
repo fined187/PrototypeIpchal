@@ -1,4 +1,4 @@
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import StartIpchal from './ipchal/StartIpchal'
 import { biddingInfoState, stepState } from '@/atom'
 import BidderInfo from './ipchal/BidderInfo'
@@ -23,6 +23,7 @@ import Spinner from '@/components/Spinner'
 import PreparingList from './ipchal/PreparingList'
 import AgentCheck from './ipchal/AgentCheck'
 import SearchIpchal from './ipchal/SearchIpchal'
+import GetIpchalInfo from './ipchal/GetIpchalInfo'
 
 export default function Home() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -67,21 +68,6 @@ export default function Home() {
   })
 
   const router = useRouter()
-  const handleLoginStatus = async (id: string) => {
-    try {
-      const response = await axios.get(
-        `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/${id}/login-status`,
-      )
-      if (response.status === 200) {
-        setBiddingForm({
-          ...biddingForm,
-          userId: id,
-        })
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const handleGetIpchalInfo = async (query: string) => {
     setLoading(true)
@@ -191,18 +177,69 @@ export default function Home() {
     }
   }
 
+  const handleCheck = async (idcode: string) => {
+    setLoading(true)
+    try {
+        const response = await axios.post(
+          `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/checks`,
+          {
+            idCode: idcode,
+          },
+          { 
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        if (response.status === 200) {
+          setBiddingForm({
+            ...biddingForm,
+            caseNo: response.data.data.caseNo,
+            infoId: response.data.data.infoId,
+            sagunNum:
+              response.data.data.caseYear +
+              ' 타경 ' +
+              response.data.data.caseDetail,
+            mulNo: response.data.data.mulNo === '' ? '1' : response.data.data.mulNo,
+            mulSeq: response.data.data.mulSeq,
+            ipchalDate:
+              (response.data.data.startYear) + '년 ' +
+              (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) + '월 ' +
+              (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay) + '일',
+            biddingDate: (response.data.data.startYear) +
+            (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
+            (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
+            sagunAddr: response.data.data.address,
+            usage: response.data.data.usage,
+            etcAddress: response.data.data.etcAddress,
+            roadAddress: response.data.data.roadAddress,
+            biddingInfos: response.data.data.biddingInfos,
+            idcode: idcode as string,
+            courtFullName: response.data.data.courtFullName,
+            reqCourtName: response.data.data.reqCourtName,
+          })
+          setStateNum(1)
+          setLoading(false)
+          console.log(response.data.data)
+        }
+      } catch (error) {
+        console.log(error)
+        setLoading(false)
+      }
+  }
+
   useEffect(() => {
-    const { mstSeq }: any = router.query
-    const { userId }: any = router.query
+    const { idcode } = router.query
+    const { mstSeq } = router.query
+    const { userId } = router.query
     if (mstSeq !== undefined) {
       handleGetIpchalInfo(mstSeq as string)
       handleStateNum()
+    } else if (idcode !== undefined) {
+      handleCheck(idcode as string)
+      console.log("here")
     }
-      
-    if (userId !== undefined) {
-      handleLoginStatus(userId as string)
-    }
-  }, [router.query.mstSeq, router.query.userId, bidders.state, bidders.agentYn])
+  }, [router.query.mstSeq, router.query.userId, bidders.state, bidders.agentYn, router.query.idcode])
 
   return (
     <>
@@ -217,24 +254,24 @@ export default function Home() {
         <>
           {((bidders.state === 9) && (stateNum === 0) ? <StartIpchal /> : (stateNum === 0) && <StartIpchal />)}
           {(stateNum === 1) && <SearchIpchal />}
-          {/* {(stateNum === 1) && <GetIpchalInfo />} */}
-          {stateNum === 2 && biddingForm.biddingInfos.length > 1 && <TimeInfo />}
-          {(bidders.state === 0 && stateNum === 3) ? <BidderInfo /> : (stateNum === 3) && <BidderInfo />}
-          {(stateNum === 4) && <AgentForm />}
-          {((bidders.state === 1 || bidders.state === 2) && stateNum === 5) ? <BidderCnt /> : (stateNum === 5) && <BidderCnt />}
-          {(stateNum === 6) && <BidderForm />}
-          {stateNum === 7 && biddingForm.bidderNum > 1 && <ShareInfo />}
-          {stateNum === 8 && <BiddingPrice />}
-          {stateNum === 9 && <BiddingPayment />}
-          {stateNum === 10 && <IpchalInfo />}
-          {stateNum === 11 && <IpchalResult />}
-          {stateNum === 12 && <CreateFile />}
-          {stateNum === 13 && <IpchalShare />}
-          {stateNum === 14 && <DownIpchal />}
-          {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 15) ? <BidderFormMod /> : (stateNum === 15) && <BidderFormMod />}
-          {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 16) ? <AgentFormMod /> : (stateNum === 16) && <AgentFormMod />}
-          {stateNum === 17 && <PreparingList />}
-          {stateNum === 18 && biddingForm.agentYn === "Y" && <AgentCheck />}
+          {(stateNum === 2) && <GetIpchalInfo />}
+          {stateNum === 3 && biddingForm.biddingInfos.length > 1 && <TimeInfo />}
+          {(bidders.state === 0 && stateNum === 4) ? <BidderInfo /> : (stateNum === 4) && <BidderInfo />}
+          {(stateNum === 5) && <AgentForm />}
+          {((bidders.state === 1 || bidders.state === 2) && stateNum === 6) ? <BidderCnt /> : (stateNum === 6) && <BidderCnt />}
+          {(stateNum === 7) && <BidderForm />}
+          {stateNum === 8 && biddingForm.bidderNum > 1 && <ShareInfo />}
+          {stateNum === 9 && <BiddingPrice />}
+          {stateNum === 10 && <BiddingPayment />}
+          {stateNum === 11 && <IpchalInfo />}
+          {stateNum === 12 && <IpchalResult />}
+          {stateNum === 13 && <CreateFile />}
+          {stateNum === 14 && <IpchalShare />}
+          {stateNum === 15 && <DownIpchal />}
+          {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 16) ? <BidderFormMod /> : (stateNum === 15) && <BidderFormMod />}
+          {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 17) ? <AgentFormMod /> : (stateNum === 16) && <AgentFormMod />}
+          {stateNum === 18 && <PreparingList />}
+          {stateNum === 19 && biddingForm.agentYn === "Y" && <AgentCheck />}
         </>
       )}
     </>

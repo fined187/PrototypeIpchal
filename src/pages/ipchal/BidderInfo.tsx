@@ -13,7 +13,7 @@ export default function BidderInfo() {
   const handleDeleteAgent = async () => {
     setLoading(true)
     try {
-      const response = await axios.delete(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/agents`)
+      const response = await axios.delete(`https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/${biddingInfo.mstSeq}/agents`)
       if (response.status === 200) {
         setBiddingInfo({
           ...biddingInfo,
