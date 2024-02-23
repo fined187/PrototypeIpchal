@@ -223,7 +223,7 @@ export default function IpchalShare() {
           </div>
         </div>
         <Button nextText='다음' 
-          handleNextStep={() => setStateNum(stateNum + 1)}
+          handleNextStep={() => biddingInfo.aesUserId !== "" ? setStateNum(stateNum + 1) : setStateNum(18)}
           handlePrevStep={() => setStateNum(stateNum - 1)}
         />
       </div>

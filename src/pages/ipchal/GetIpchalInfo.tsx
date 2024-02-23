@@ -25,7 +25,7 @@ export default function GetIpchalInfo() {
         const response = await axios.post(
           `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/inits`,
           {
-            aesUserId: biddingInfo.aesUserId,
+            aesUserId: biddingInfo.aesUserId ?? "",
             infoId: biddingInfo.infoId,
             caseNo: biddingInfo.caseNo,
             mulSeq: biddingInfo.mulSeq,

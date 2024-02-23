@@ -66,9 +66,8 @@ export default function Home() {
         }
     ]
   })
-
   const router = useRouter()
-
+  
   const handleGetIpchalInfo = async (query: string) => {
     setLoading(true)
     if (typeof window !== 'undefined') {
@@ -217,21 +216,19 @@ export default function Home() {
             idcode: idcode as string,
             courtFullName: response.data.data.courtFullName,
             reqCourtName: response.data.data.reqCourtName,
-            aesUserId: "Ug3033i0SuUmGQaRK2XcxQ=="
           })
           setLoading(false)
-          console.log(response.data.data)
         }
       } catch (error) {
         console.log(error)
         setLoading(false)
       }
   }
-  console.log(biddingForm)
+
   useEffect(() => {
     const { idcode } = router.query
     const { mstSeq } = router.query
-    
+
     if (idcode) {
       handleCheck(idcode as string)
     }
@@ -239,7 +236,7 @@ export default function Home() {
       handleGetIpchalInfo(mstSeq as string)
       handleStateNum()
     }
-  }, [router.query.mstSeq, bidders.state, bidders.agentYn, router.query.idcode])
+  }, [router.query, bidders.state, bidders.agentYn])
 
   return (
     <>
@@ -267,7 +264,7 @@ export default function Home() {
           {stateNum === 12 && <IpchalResult />}
           {stateNum === 13 && <CreateFile />}
           {stateNum === 14 && <IpchalShare />}
-          {stateNum === 15 && <DownIpchal />}
+          {(stateNum === 15 && (biddingForm.aesUserId !== "")) && <DownIpchal />}
           {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 16) ? <BidderFormMod /> : (stateNum === 16) && <BidderFormMod />}
           {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 17) ? <AgentFormMod /> : (stateNum === 17) && <AgentFormMod />}
           {stateNum === 18 && <PreparingList />}

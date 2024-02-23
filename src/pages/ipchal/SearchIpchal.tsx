@@ -41,7 +41,7 @@ export default function SearchIpchal() {
   const handleSearch = async() => {
     try {
       setLoading(true)
-      const response = await axios.get(`https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/cases/${getCase}/${getAuction}`)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}cases/${getCase}/${getAuction}`)
       if (response.status === 200) {
         setGetData(response.data.data)
         setLoading(false)
@@ -55,7 +55,7 @@ export default function SearchIpchal() {
   const handleNextStep = async(infoId: string, caseNo: string, mulSeq: string) => {
     setLoading(true)
     try {
-      const response = await axios.post(`https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/cases/checks`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}cases/checks`, {
         infoId: infoId,
         caseNo: caseNo,
         mulSeq: mulSeq
@@ -146,7 +146,9 @@ export default function SearchIpchal() {
             <label htmlFor="yearSelect" className="sr-only">Select Year</label>
             <select id="yearSelect" className="border-gray border w-[150px] h-[40px] rounded-lg outline-myyellow" onChange={(e) => {
               setGetCase(e.target.value)
-            }}>
+            }}
+              value={getCase || '2024'}
+            >
               {Array.from({ length: parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - 1994 + 1) : (parseInt(nowDate.substring(0, 4)) - 1994 + 2) }).map((_, index) => (
                 <option key={index} value={parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - index) : (parseInt(nowDate.substring(0, 4)) + 1 - index)}>{parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - index) : (parseInt(nowDate.substring(0, 4)) + 1 - index)}</option>
               ))}
@@ -166,7 +168,7 @@ export default function SearchIpchal() {
               placeholder="사건번호를 입력해주세요."
               onKeyUp={(e) => handleEnter(e)}
             />
-            <div className="w-[60px] h-[40px] bg-mygold ml-2 flex justify-center items-center cursor-pointer rounded-lg" onClick={() => handleSearch()}>
+            <div className="w-[60px] h-[40px] bg-mygold ml-2 flex justify-center items-center cursor-pointer rounded-lg" onClick={() => handleNextButton(searchResult, biddingInfo.infoId, biddingInfo.caseNo, biddingInfo.mulSeq)}>
               <span className="text-white font-bold font-NanumGothic md:text-[1rem] text-[0.8rem]">
                 검색
               </span>
@@ -258,8 +260,14 @@ export default function SearchIpchal() {
             </div>
           </div>
         ) : (
-          <div>
-            검색결과가 없습니다.
+          <div className="flex flex-col md:w-[550px] w-[90%] h-[200px] bg-white md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto pt-[30px] pb-[30px]">
+            <span className="md:text-[1.2rem] text-[1rem] font-nanum font-bold text-center text-black">
+              검색결과가 없습니다. 
+            </span>
+            <br />
+            <span className="md:text-[1rem] text-[0.8rem] font-nanum font-bold text-center text-gray-400">
+              이전 버튼을 눌러 다시 검색해주세요.
+            </span>
           </div>
         )}
       </div>

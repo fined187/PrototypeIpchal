@@ -83,7 +83,7 @@ export default function BidderFormMod() {
   useEffect(() => {
     const handleGetBidders = async () => {
       try {
-        const response = await axios.get(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`)
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`)
         if (response.status === 200) {
           setBidderList({
             agentYn: response.data.data.agentYn ?? null,
@@ -1284,7 +1284,7 @@ export default function BidderFormMod() {
                   type="button"
                   className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
                   onClick={() => {
-                    stepNum === 1 ? setStateNum(5) : setStepNum((prev) => prev - 1)
+                    stepNum === 1 ? setStateNum(6) : setStepNum((prev) => prev - 1)
                   }}
                 >
                   <span className="text-white font-bold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">

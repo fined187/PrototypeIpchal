@@ -13,44 +13,44 @@ export default function Navbar() {
     if (stepStateNum === 0) {
       setMenuTitle('')
     } else if (stepStateNum === 1) {
-      setMenuTitle('사건번호 입찰일자 확인')
-    } else if (stepStateNum === 2 && biddingForm.biddingInfos.length > 1) {
+      setMenuTitle('입찰 사건 검색')
+    } else if (stepStateNum === 3 && biddingForm.biddingInfos.length > 1) {
       setMenuTitle('경매 시간 선택')
     } else if (stepStateNum === 2 && biddingForm.biddingInfos.length === 1) {
       setMenuTitle('사건 정보 확인')
-    } else if (stepStateNum === 3) {
+    } else if (stepStateNum === 4) {
       setMenuTitle('대리인 확인')
-    } else if (stepStateNum === 4 && biddingForm.bidder === 'agent') {
+    } else if (stepStateNum === 5 && biddingForm.bidder === 'agent') {
       setMenuTitle('대리인 정보 입력')
-    } else if (stepStateNum === 5) {
+    } else if (stepStateNum === 6) {
       setMenuTitle('입찰자 수')
-    } else if (stepStateNum === 6 && biddingForm.bidder === 'agent') {
-      setMenuTitle('입찰자 대리인 정보')
-    } else if (stepStateNum === 6 && biddingForm.bidder === 'self') {
+    } else if (stepStateNum === 7 && biddingForm.bidder === 'agent') {
+      setMenuTitle('대리인 입찰자 정보 입력')
+    } else if (stepStateNum === 7 && biddingForm.bidder === 'self') {
       setMenuTitle('입찰자 정보 입력')
-    } else if (stepStateNum === 7 && biddingForm.bidderNum > 1) {
+    } else if (stepStateNum === 8 && biddingForm.bidderNum > 1) {
       setMenuTitle('공동 입찰자 지분')
-    } else if (stepStateNum === 8) {
-      setMenuTitle('입찰 가격')
     } else if (stepStateNum === 9) {
-      setMenuTitle('보증금 제공 방법')
+      setMenuTitle('입찰 가격')
     } else if (stepStateNum === 10) {
-      setMenuTitle('입찰표 입력 완료')
+      setMenuTitle('보증금 제공 방법')
     } else if (stepStateNum === 11) {
-      setMenuTitle('입찰표 확인')
+      setMenuTitle('입찰표 입력 완료')
     } else if (stepStateNum === 12) {
-      setMenuTitle('파일 만들기')
+      setMenuTitle('입찰표 확인')
     } else if (stepStateNum === 13) {
-      setMenuTitle('입찰표 파일 공유')
+      setMenuTitle('파일 만들기')
     } else if (stepStateNum === 14) {
-      setMenuTitle('입찰표 작성 완료')
+      setMenuTitle('입찰표 파일 공유')
     } else if (stepStateNum === 15) {
-      setMenuTitle('입찰자 정보 입력')
+      setMenuTitle('입찰표 작성 완료')
     } else if (stepStateNum === 16) {
-      setMenuTitle('대리인 정보 입력')
+      setMenuTitle('입찰자 정보 입력')
     } else if (stepStateNum === 17) {
-      setMenuTitle('입찰시 준비 서류')
+      setMenuTitle('대리인 정보 입력')
     } else if (stepStateNum === 18) {
+      setMenuTitle('입찰시 준비 서류')
+    } else if (stepStateNum === 19) {
       setMenuTitle('대리 입찰인 선택')
     }
   }
@@ -58,17 +58,17 @@ export default function Navbar() {
   const handleProgressBar = () => {
     if (stepStateNum === 0) {
       setStatusBar(0)
-    } else if ((stepStateNum >= 1 && stepStateNum <= 3)) {
+    } else if ((stepStateNum >= 2 && stepStateNum <= 4)) {
       setStatusBar(10)
-    } else if ((stepStateNum >= 4 && stepStateNum <= 6) || stepStateNum === 18 || (stepStateNum >= 15 && stepStateNum <= 16)) {
+    } else if ((stepStateNum >= 5 && stepStateNum <= 7)  || (stepStateNum >= 16 && stepStateNum <= 17)) {
       setStatusBar(30)
-    } else if ((stepStateNum >= 7 && stepStateNum <= 9)) {
+    } else if ((stepStateNum >= 8 && stepStateNum <= 10) || stepStateNum === 19) {
       setStatusBar(50)
-    } else if ((stepStateNum >= 10 && stepStateNum <= 12)) {
+    } else if ((stepStateNum >= 11 && stepStateNum <= 13)) {
       setStatusBar(70)
-    } else if ((stepStateNum >= 13 && stepStateNum <= 14)) {
+    } else if ((stepStateNum >= 14 && stepStateNum <= 15)) {
       setStatusBar(90)
-    } else if ((stepStateNum === 17)) {
+    } else if ((stepStateNum === 18)) {
       setStatusBar(100)
     }
   }

@@ -12,64 +12,30 @@ export default function StartIpchal() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const { idcode } = router.query
+  const { userId } = router.query
 
-  const handleCheck = async () => {
+  const handleStart = () => {
     setLoading(true)
-    try {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}checks`,
-          {
-            idCode: idcode,
-          },
-          { 
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          },
-        )
-        if (response.status === 200) {
-          setBiddingInfo({
-            ...biddingInfo,
-            caseNo: response.data.data.caseNo,
-            infoId: response.data.data.infoId,
-            sagunNum:
-              response.data.data.caseYear +
-              ' 타경 ' +
-              response.data.data.caseDetail,
-            mulNo: response.data.data.mulNo === '' ? '1' : response.data.data.mulNo,
-            mulSeq: response.data.data.mulSeq,
-            ipchalDate:
-              (response.data.data.startYear) + '년 ' +
-              (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) + '월 ' +
-              (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay) + '일',
-            biddingDate: (response.data.data.startYear) +
-            (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
-            (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
-            sagunAddr: response.data.data.address,
-            usage: response.data.data.usage,
-            etcAddress: response.data.data.etcAddress,
-            roadAddress: response.data.data.roadAddress,
-            biddingInfos: response.data.data.biddingInfos,
-            idcode: idcode as string,
-            courtFullName: response.data.data.courtFullName,
-            reqCourtName: response.data.data.reqCourtName,
-          })
-          setStateNum(1)
-          setLoading(false)
-        }
-      } catch (error) {
-        console.log(error)
-        setLoading(false)
-      }
-  }
-
-  const handleNextStep = async () => {
-    if (idcode) {
-      await handleCheck()
+    if (userId && biddingInfo.idcode !== "") {
+      setBiddingInfo({
+        ...biddingInfo,
+        aesUserId: userId as string
+      })
       setStateNum(2)
+      setLoading(false)
+    } else if (userId && biddingInfo.idcode === "") {
+      setBiddingInfo({
+        ...biddingInfo,
+        aesUserId: userId as string
+      })
+      setStateNum(1)
+      setLoading(false)
+    } else if (!userId && biddingInfo.idcode !== "") {
+      setStateNum(2)
+      setLoading(false)
     } else {
       setStateNum(1)
+      setLoading(false)
     }
   }
 
@@ -119,9 +85,7 @@ export default function StartIpchal() {
           </div>
           <div
             className="flex bg-mygold w-[180px] h-[46px] rounded-md items-center justify-center cursor-pointer mt-[30px]"
-            onClick={async () => {
-              await handleNextStep()
-            }}
+            onClick={handleStart}
           >
             <span className="text-white md:text-[1.2rem] text-[1rem] font-NanumGothic font-extrabold not-italic leading-4">
               시작하기

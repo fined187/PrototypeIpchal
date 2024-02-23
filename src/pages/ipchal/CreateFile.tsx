@@ -172,7 +172,7 @@ export default function CreateFile() {
     }
     handleGetResult()
   }, [])
-
+  
   return (
     <>
       {!loading && (
@@ -189,7 +189,7 @@ export default function CreateFile() {
                 <input
                   aria-label='파일 이름'
                   className="w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
-                  value={`${'best'}_` + format(date, 'yyyyMMddHHmmss')}
+                  value={`${biddingInfo.aesUserId ?? 'best'}_` + format(date, 'yyyyMMddHHmmss')}
                   onChange={(e) => {
                     setFileName(e.target.value)
                   }} 
