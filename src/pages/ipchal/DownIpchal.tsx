@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from "@/atom";
 import Spinner from "@/components/Spinner";
+import Button from "@/components/shared/ButtonCp";
 import { useEffect, useState } from "react";
 import { TfiDownload } from "react-icons/tfi";
 import { useRecoilState } from "recoil";
@@ -15,8 +16,14 @@ export default function DownIpchal() {
   
   async function handleDownload() {
     setLoading(true)
-    const url = `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`
-    await fetch(url, {method: 'GET'}).then((response) => {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}/download `
+    await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(biddingInfo.aesUserId)
+    }).then((response) => {
       response.blob().then(blob => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -46,12 +53,16 @@ export default function DownIpchal() {
     }
   }
 
-  useEffect(() => {
+  useEffect(() => { 
     setLoading(true)
     const handleGetPdfUrl = async () => {
       try {
-        const url = `http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/files`
-        const response = await fetch(url, { method: 'GET' })
+        const url = `${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}/download `
+        const response = await fetch(url, { method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(biddingInfo.aesUserId) })
         const data = await response.blob()
         setBiddingInfo({ ...biddingInfo, pdfFile: data })
         const newUrl = window.URL.createObjectURL(new Blob([data], { type: 'application/pdf' }))
@@ -64,7 +75,7 @@ export default function DownIpchal() {
     }
     handleGetPdfUrl()
   }, [])
-  
+  console.log(pdfUrl)
   const handleHeight = () => {
     let height = window.innerHeight;
     if (document && document.getElementById('box')) {
@@ -114,30 +125,15 @@ export default function DownIpchal() {
                   <TfiDownload className='bg-orange-400 ml-2 text-white stroke-[1px]' size={20} />
                 </div>
               </div>
-              <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[550px] w-[90%]">
-                <button
-                  type="button"
-                  className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-                  onClick={() => {
-                    setStateNum(stateNum - 1)
-                  }}
-                >
-                  <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-                    이전
-                  </span>
-                </button>
-                <button
-                  type="button"
-                  className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-                  onClick={() => {
-                    setStateNum(17)
-                  }}
-                >
-                  <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-                    다음
-                  </span>
-                </button>
-              </div>
+              <Button 
+                nextText="다음"
+                handleNextStep={() => {
+                  setStateNum(18)
+                }}
+                handlePrevStep={() => {
+                  setStateNum(stateNum - 1)
+                }}
+              />
             </>
           )}
         </div>

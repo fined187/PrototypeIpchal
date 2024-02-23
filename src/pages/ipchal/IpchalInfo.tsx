@@ -1,5 +1,5 @@
 import { stepState } from '@/atom'
-import Button from '@/components/Button'
+import Button from '@/components/shared/ButtonCp'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 
@@ -45,7 +45,11 @@ export default function IpchalInfo() {
           </span>
         </div>
       </div>
-      <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
+      <Button 
+        nextText='다음'
+        handleNextStep={() => setStateNum(stateNum + 1)}
+        handlePrevStep={() => setStateNum(stateNum - 1)}
+      />
     </div>
   )
 }

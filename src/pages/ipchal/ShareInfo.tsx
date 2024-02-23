@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
+import Button from '@/components/shared/ButtonCp'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
@@ -187,6 +188,14 @@ export default function ShareInfo() {
     handleShareList()
   }, [])
 
+  const handlePrevStep = () => {
+    if (biddingInfo.agentYn === 'Y' && biddingInfo.bidName.length > 1) {
+      setStateNum(19)
+    } else {
+      setStateNum(16)
+    }
+  }
+
   const handleHeight = () => {
     let height = window.innerHeight;
     if (document && document.getElementById('box')) {
@@ -308,7 +317,7 @@ export default function ShareInfo() {
                         type="text"
                         readOnly
                         value={'1'}
-                        className={`border  border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
+                        className={`border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
                       />
                       <span>/</span>
                       <input
@@ -330,7 +339,7 @@ export default function ShareInfo() {
                           (biddingInfo.shareWay === 'N') && goNext
                             ? 'border-red-500'
                             : 'border-gray-300'
-                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
+                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[80px]`}
                         onChange={(e) => {
                           let temp = [...shareList.shareList]
                           temp[index] = {
@@ -357,7 +366,7 @@ export default function ShareInfo() {
                           (biddingInfo.shareWay === 'N') && goNext
                             ? 'border-red-500'
                             : 'border-gray-300'
-                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
+                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[80px]`}
                         onChange={(e) => {
                           let temp = [...shareList.shareList]
                           temp[index] = {
@@ -376,48 +385,32 @@ export default function ShareInfo() {
               </div>
             )
           })}
-          <div className='flex flex-row'>
+          <div className='flex flex-row justify-start items-center mb-[15px] md:w-[70%] w-[90%]'>
             {biddingInfo.shareWay === 'N' && goNext && (
               <span className="text-[15px] text-red-500 font-bold">
                 지분 값을 확인해주세요
               </span>
             )}
             {biddingInfo.shareWay !== 'S' && (
-              <div className='flex flex-row'>
+              <div className='flex flex-row w-[70%] gap-[47%] mb-1'>
                 <span className='text-[11pt] font-semibold'>
-                  &nbsp;&nbsp;지분 합 : 
+                  지분 합
                 </span>
-                <span className={`text-[11pt] font-semibold ${biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0) == parseInt(biddingInfo.denominator[0]) ? 'text-green-500' : 'text-red-500'}`}>
-                  &nbsp;&nbsp;{isNaN(biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)) ? 0 : biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)}
-                </span>
+                <input 
+                  className={`w-[80px] text-center h-[40px] rounded-lg px-2 border-2 border-gray-300 text-[11pt] font-semibold ${biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0) == parseInt(biddingInfo.denominator[0]) ? 'text-green-500' : 'text-red-500'}`}
+                  type="text"
+                  readOnly
+                  value={isNaN(biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)) ? 0 : biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)}
+                />
               </div>
             )}
           </div>
         </div>
-        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[550px] w-[90%]">
-          <button
-            type="button"
-            className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              biddingInfo.agentYn ==='Y' && biddingInfo.bidName.length > 1 ? setStateNum(18) : setStateNum(15)
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              이전
-            </span>
-          </button>
-          <button
-            type="button"
-            className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              handleValidate()
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
-            </span>
-          </button>
-        </div>
+        <Button 
+          nextText='다음'
+          handleNextStep={handleValidate}
+          handlePrevStep={handlePrevStep}
+        />
       </div>
     </div>
   )

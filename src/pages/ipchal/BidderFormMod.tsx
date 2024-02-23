@@ -254,7 +254,7 @@ export default function BidderFormMod() {
 
   const handleRegisterMandate = async () => {
     try {
-      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/mandates`, {
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/mandates`, {
         bidderCount: biddingForm.bidderNum,
         mandates: biddingForm.mandates
       }, {
@@ -377,7 +377,7 @@ export default function BidderFormMod() {
   const handleUpdate = async () => {
     try {
       if (biddingForm?.bidCorpYn[stepNum - 1] === 'I') {
-        const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           job: biddingForm?.bidJob[stepNum - 1],
@@ -388,7 +388,7 @@ export default function BidderFormMod() {
           return
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
-        const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           companyNo: biddingForm?.bidCorpNum[stepNum - 1],
@@ -413,7 +413,7 @@ export default function BidderFormMod() {
     try {
       if (biddingForm.bidCorpYn[stepNum - 1] === 'I') {
         const response = await axios.post(
-          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
+          `${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`,
           {
             bidderType: biddingForm.bidCorpYn[stepNum - 1],
             name: biddingForm.bidName[stepNum - 1],
@@ -433,7 +433,7 @@ export default function BidderFormMod() {
         }
       } else {
         const response = await axios.post(
-          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/bidders`,
+          `${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`,
           {
             bidderType: biddingForm.bidCorpYn[stepNum - 1],
             name: biddingForm.bidName[stepNum - 1],
@@ -465,17 +465,17 @@ export default function BidderFormMod() {
     handleUpdateIdNum(stepNum - 1)
     await handleRegisterMandate()
     if (biddingForm.bidderNum === 1) {
-      setStateNum(8)
+      setStateNum(9)
       await handleUpdate()
     } else if (biddingForm.bidderNum > 1) {
       //  1. 입찰자 수 증가의 경우
       if (biddingForm.bidderNum > bidderList?.bidders.length!) {
         if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'Y') {
           await handleBidderFormSave()
-          setStateNum(18)
+          setStateNum(19)
         } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'N') {
           await handleBidderFormSave()
-          setStateNum(7)
+          setStateNum(8)
         } else if (stepNum > bidderList?.bidders.length! && stepNum < biddingForm.bidderNum) {
           await handleBidderFormSave()
           setStepNum(stepNum + 1)
@@ -490,11 +490,11 @@ export default function BidderFormMod() {
         if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'Y') {
           await handleUpdate()
           // await handleDecreaseBidder()
-          setStateNum(18)
+          setStateNum(19)
         } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'N') {
           await handleUpdate()
           // await handleDecreaseBidder()
-          setStateNum(7)
+          setStateNum(8)
         } else {
           await handleUpdate()
           // await handleDecreaseBidder()
@@ -504,15 +504,12 @@ export default function BidderFormMod() {
         //  3. 입찰자 수 변경 없는 경우
         if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'Y') {
           await handleUpdate()
-          // await handleDecreaseBidder()
-          setStateNum(18)
+          setStateNum(19)
         } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'N') {
           await handleUpdate()
-          // await handleDecreaseBidder()
-          setStateNum(7)
+          setStateNum(8)
         } else {
           await handleUpdate()
-          // await handleDecreaseBidder()
           setStepNum(stepNum + 1)
         }
       }

@@ -6,9 +6,10 @@ import axios from 'axios'
 import { format } from 'date-fns'
 import Spinner from '@/components/Spinner'
 import { TotalResultType } from '@/interface/IpchalType'
-import CoIpchalPDF from '@/components/CreatePDFContent/CoIpchalPDF'
-import SinglePDF from '@/components/CreatePDFContent/SinglePDF'
-import CoverPage from '@/components/CreatePDFContent/CoverPage'
+import CoIpchalPDF from '@/components/createPDFContent/CoIpchalPDF'
+import SinglePDF from '@/components/createPDFContent/SinglePDF'
+import CoverPage from '@/components/createPDFContent/CoverPage'
+import Button from '@/components/shared/ButtonCp'
 
 export default function CreateFile() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
@@ -143,7 +144,15 @@ export default function CreateFile() {
       setLoading(false)
     }
   }
-  console.log(biddingInfo.aesUserId)
+  
+  const handlePrevStep = () => {
+    if (biddingInfo.isFileCreated) {
+      alert('파일이 생성되어 이전 단계로 되돌아갈 수 없습니다.')
+    } else {
+      setStateNum(stateNum - 1)
+    }
+  }
+
   useEffect(() => {
     setFileName(`${'best'}_` + format(date, 'yyyyMMddHHmmss'))
     setLoading(true)
@@ -183,7 +192,7 @@ export default function CreateFile() {
                   value={`${'best'}_` + format(date, 'yyyyMMddHHmmss')}
                   onChange={(e) => {
                     setFileName(e.target.value)
-                  }}
+                  }} 
                 />
               </div>
               <div className="flex flex-col justify-start text-left gap-3 relative">
@@ -238,28 +247,11 @@ export default function CreateFile() {
               </div>
             )}
           </div>
-          <div className="flex flex-row items-center md:w-[550px] w-[90%] gap-[10px] fixed md:bottom-[80px] bottom-[10px]">
-            <button
-              type="button"
-              className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-              onClick={() => {
-                biddingInfo.isFileCreated ? alert('파일이 생성되어 이전 단계로 되돌아갈 수 없습니다.') : setStateNum(11)
-              }}
-            >
-              <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-                이전
-              </span>
-            </button>
-            <button
-              type="button"
-              className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-              onClick={() => setStateNum(stateNum + 1)}
-            >
-              <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-                다음
-              </span>
-            </button>
-          </div>
+          <Button 
+            nextText='다음'
+            handleNextStep={() => setStateNum(stateNum + 1)}
+            handlePrevStep={handlePrevStep}
+          />
         </div>
       )}
       {loading && (

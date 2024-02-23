@@ -1183,7 +1183,7 @@ export default function BidderForm() {
                 onClick={() => {
                   {
                     stepNum === 1
-                      ? setStateNum(5)
+                      ? setStateNum(stateNum - 1)
                       : setStepNum(stepNum - 1)
                   }
                 }}

@@ -1,6 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
-import Button from '@/components/Button'
 import EmailForm from '@/components/EmailForm'
+import Button from '@/components/shared/ButtonCp'
 import { useDisclosure } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
@@ -222,7 +222,10 @@ export default function IpchalShare() {
             </div>
           </div>
         </div>
-        <Button prevStepNum={stateNum - 1} nextStepNum={stateNum + 1} />
+        <Button nextText='다음' 
+          handleNextStep={() => setStateNum(stateNum + 1)}
+          handlePrevStep={() => setStateNum(stateNum - 1)}
+        />
       </div>
       {isOpen && (
         <EmailForm

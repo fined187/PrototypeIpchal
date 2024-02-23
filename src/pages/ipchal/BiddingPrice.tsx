@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
+import Button from '@/components/shared/ButtonCp'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
@@ -261,6 +262,25 @@ export default function BiddingPrice() {
     handleSyncBiddingForm()
   }, [])
 
+  const handleNextStep = () => {
+    if (biddingForm.biddingPrice < paymentsInfo.minimumAmount) {
+      alert('최저가 이상으로 입력해주세요')
+      setErrorMsg(true)
+      return
+    } else {
+      setErrorMsg(false)
+      handleGetBiddingFormUpdate()
+    }
+  }
+
+  const handlePrevStep = () => {
+    if (biddingForm.bidderNum > 1) {
+      setStateNum(stateNum - 1)
+    } else {
+      setStateNum(16)
+    }
+  }
+
   const handleHeight = () => {
     let height = window.innerHeight;
     if (document && document.getElementById('box')) {
@@ -395,30 +415,11 @@ export default function BiddingPrice() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[550px] w-[90%]">
-          <button
-            type="button"
-            className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              biddingForm.bidderNum > 1 ? setStateNum(7) : setStateNum(15)
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              이전
-            </span>
-          </button>
-          <button
-            type="button"
-            className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              biddingForm.biddingPrice < paymentsInfo.minimumAmount ? alert('최저가 이상으로 입찰해주세요') : handleGetBiddingFormUpdate()
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              다음
-            </span>
-          </button>
-        </div>
+        <Button 
+          nextText='다음'
+          handleNextStep={handleNextStep}
+          handlePrevStep={handlePrevStep}
+        />
       </div>
     </>
   )

@@ -73,7 +73,7 @@ export default function Home() {
     setLoading(true)
     if (typeof window !== 'undefined') {
       try {
-        const response = await axios.get(`https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/${Number(query)}`, {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${Number(query)}`, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -181,7 +181,7 @@ export default function Home() {
     setLoading(true)
     try {
         const response = await axios.post(
-          `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/checks`,
+          `${process.env.NEXT_PUBLIC_API_URL}checks`,
           {
             idCode: idcode,
           },
@@ -217,8 +217,8 @@ export default function Home() {
             idcode: idcode as string,
             courtFullName: response.data.data.courtFullName,
             reqCourtName: response.data.data.reqCourtName,
+            aesUserId: "Ug3033i0SuUmGQaRK2XcxQ=="
           })
-          setStateNum(1)
           setLoading(false)
           console.log(response.data.data)
         }
@@ -227,19 +227,19 @@ export default function Home() {
         setLoading(false)
       }
   }
-
+  console.log(biddingForm)
   useEffect(() => {
     const { idcode } = router.query
     const { mstSeq } = router.query
-    const { userId } = router.query
-    if (mstSeq !== undefined) {
+    
+    if (idcode) {
+      handleCheck(idcode as string)
+    }
+    if (mstSeq) {
       handleGetIpchalInfo(mstSeq as string)
       handleStateNum()
-    } else if (idcode !== undefined) {
-      handleCheck(idcode as string)
-      console.log("here")
     }
-  }, [router.query.mstSeq, router.query.userId, bidders.state, bidders.agentYn, router.query.idcode])
+  }, [router.query.mstSeq, bidders.state, bidders.agentYn, router.query.idcode])
 
   return (
     <>
@@ -268,8 +268,8 @@ export default function Home() {
           {stateNum === 13 && <CreateFile />}
           {stateNum === 14 && <IpchalShare />}
           {stateNum === 15 && <DownIpchal />}
-          {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 16) ? <BidderFormMod /> : (stateNum === 15) && <BidderFormMod />}
-          {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 17) ? <AgentFormMod /> : (stateNum === 16) && <AgentFormMod />}
+          {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 16) ? <BidderFormMod /> : (stateNum === 16) && <BidderFormMod />}
+          {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 17) ? <AgentFormMod /> : (stateNum === 17) && <AgentFormMod />}
           {stateNum === 18 && <PreparingList />}
           {stateNum === 19 && biddingForm.agentYn === "Y" && <AgentCheck />}
         </>

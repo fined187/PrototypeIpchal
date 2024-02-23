@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
+import Button from '@/components/shared/ButtonCp'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -24,7 +25,7 @@ export default function GetIpchalInfo() {
         const response = await axios.post(
           `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/inits`,
           {
-            aesUserId: "Ug3033i0SuUmGQaRK2XcxQ==",
+            aesUserId: biddingInfo.aesUserId,
             infoId: biddingInfo.infoId,
             caseNo: biddingInfo.caseNo,
             mulSeq: biddingInfo.mulSeq,
@@ -61,6 +62,10 @@ export default function GetIpchalInfo() {
         setLoading(false)
       }
     }
+  }
+
+  const handlePrevStep = () => {
+    idcode ? setStateNum(0) : setStateNum(stateNum - 1)
   }
 
   const handleNextStep = async () => {
@@ -178,30 +183,7 @@ export default function GetIpchalInfo() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row fixed items-center md:bottom-[80px] bottom-[10px] gap-[10px] md:w-[550px] w-[90%] ">
-          <button
-            type="button"
-            className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              idcode ? setStateNum(0) : setStateNum(stateNum - 1)
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              이전
-            </span>
-          </button>
-          <button
-            type="button"
-            className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-            onClick={async () => {
-              await handleNextStep()
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              확인
-            </span>
-          </button>
-        </div>
+        <Button nextText='확인' handleNextStep={handleNextStep} handlePrevStep={handlePrevStep} />
       </div>
     </>
   )

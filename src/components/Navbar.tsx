@@ -93,7 +93,7 @@ export default function Navbar() {
         <div className="flex flex-row-reverse mr-5 relative top-[10px] ">
           <div className="flex w-30 h-10">
             <Image
-              src={'/toplogo_red.png'}
+              src={'/images/toplogo_red.png'}
               alt="logo"
               width={100}
               height={100}

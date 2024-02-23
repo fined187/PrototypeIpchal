@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
+import Button from '@/components/shared/ButtonCp'
 import axios from 'axios'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
@@ -88,6 +89,14 @@ export default function BidderCnt() {
     }
   }
 
+  const handlePrevStep = () => {
+    if (biddingInfo.bidder === 'agent') {
+      setStateNum(16)
+    } else {
+      setStateNum(stateNum - 2)
+    }
+  }
+
   const handleHeight = () => {
     let height = window.innerHeight;
     if (document && document.getElementById('box')) {
@@ -153,30 +162,11 @@ export default function BidderCnt() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row fixed items-center md:w-[550px] w-[90%] md:bottom-[80px] bottom-[10px]  gap-[10px] ">
-          <button
-            type="button"
-            className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              biddingInfo.bidder === 'agent' ? setStateNum(16) : setStateNum(3)
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              이전
-            </span>
-          </button>
-          <button
-            type="button"
-            className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              handleNextStep()
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              다음
-            </span>
-          </button>
-        </div>
+        <Button 
+          nextText='다음'
+          handleNextStep={handleNextStep}
+          handlePrevStep={handlePrevStep}
+        />
       </div>
     </>
   )

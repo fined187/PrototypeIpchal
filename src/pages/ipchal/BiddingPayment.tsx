@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
+import Button from '@/components/shared/ButtonCp'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
@@ -55,6 +56,15 @@ export default function BiddingPayment() {
       window.removeEventListener('resize', handleHeight)
     }
   }, [])
+
+  const handleNextStep = () => {
+    if (biddingForm.bidWay === '') {
+      setIsWaySelected(true)
+    } else {
+      setIsWaySelected(false)
+      handleBiddingPayment(biddingForm.bidWay)
+    }
+  }
 
   return (
     <div id='box' className="flex w-[100%] bg-white justify-center relative">
@@ -152,30 +162,11 @@ export default function BiddingPayment() {
             </div>
           )}
         </div>
-        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[550px] w-[90%]">
-          <button
-            type="button"
-            className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              setStateNum(stateNum - 1)
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              이전
-            </span>
-          </button>
-          <button
-            type="button"
-            className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-            onClick={async () => {
-              biddingForm.bidWay === '' ? setIsWaySelected(true) : await handleBiddingPayment(biddingForm.bidWay)
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              {stateNum <= 3 ? '확인' : stateNum === 10 ? '확인했습니다' : '다음'}
-            </span>
-          </button>
-        </div>
+        <Button 
+          nextText='다음'
+          handleNextStep={handleNextStep}
+          handlePrevStep={() => setStateNum(stateNum - 1)}
+        />
       </div>
     </div>
   )

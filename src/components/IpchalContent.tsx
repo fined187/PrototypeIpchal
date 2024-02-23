@@ -1,10 +1,10 @@
 import { biddingInfoState } from "@/atom"
 import { useRecoilState } from "recoil"
-import ModalCoIpchal from "./ModalContent/ModalCoIpchal"
-import ModalCoIpchalForm from "./ModalContent/ModalCoIpchalForm"
-import ModalCoIpchalList from "./ModalContent/ModalCoIpchalList"
-import ModalAgentList from "./ModalContent/ModalAgentList"
-import ModalSingleIpchal from "./ModalContent/ModalSingleIpchal"
+import ModalCoIpchal from "./modalContent/ModalCoIpchal"
+import ModalCoIpchalForm from "./modalContent/ModalCoIpchalForm"
+import ModalCoIpchalList from "./modalContent/ModalCoIpchalList"
+import ModalAgentList from "./modalContent/ModalAgentList"
+import ModalSingleIpchal from "./modalContent/ModalSingleIpchal"
 
 export default function IpchalContent({ onClose }: {onClose: () => void}) {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)

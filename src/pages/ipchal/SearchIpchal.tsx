@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from "@/atom";
 import Spinner from "@/components/Spinner";
+import Button from "@/components/shared/ButtonCp";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -20,6 +21,12 @@ export default function SearchIpchal() {
       if (boxElement) {
         boxElement.style.height = height + 'px';
       }
+    }
+  }
+
+  const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearch()
     }
   }
 
@@ -93,16 +100,36 @@ export default function SearchIpchal() {
 
   const handleNextButton = (number: number, infoId: string, caseNo: string, mulSeq: string) => {
     if (number === 1) {
-      setSearchResult(2)
-      handleSearch()
+      handleGetAlert()
     } else if (number === 2) {
       handleNextStep(infoId, caseNo, mulSeq)
     }
   }
 
+  const handleGetAlert = () => {
+    if (getAuction === '') {
+      alert('경매번호를 입력해 주세요.')
+    } else if (getData === '' && searchResult === 1) {
+      alert('입찰하실 사건번호를 검색해주세요.')
+    } else if (getData === '' && searchResult === 2) {
+      alert('검색결과가 없습니다. 이전 버튼을 눌러 다시 검색해주세요.')
+    } else {
+      setSearchResult(2)
+      handleSearch()
+    }
+  }
+
+  const handlePrevButton = () => {
+    if (searchResult === 2) {
+      setSearchResult(1)
+    } else {
+      setStateNum(stateNum - 1)
+    }
+  }
+
   const date = new Date()
   const nowDate = date.getFullYear().toString() + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) :  (date.getMonth() + 1)).toString() + date.getDate().toString()
-  console.log(getData.cases)
+  
   return (
     <div id='box' className="flex w-[100%] justify-center bg-white relative">
       {loading && (
@@ -133,10 +160,11 @@ export default function SearchIpchal() {
             <input 
               id="auctionInput"
               type="text"
-              className="border-gray border w-[200px] h-[40px] rounded-lg outline-myyellow font-['nanum'] md:text-[1rem] text-[0.8rem] p-[10px]"
+              className="border-gray border w-[250px] h-[40px] rounded-lg outline-myyellow font-['nanum'] md:text-[1rem] text-[0.8rem] p-[10px]"
               value={getAuction}
               onChange={(e) => setGetAuction(e.target.value)}
-              placeholder="Enter Auction Number"
+              placeholder="사건번호를 입력해주세요."
+              onKeyUp={(e) => handleEnter(e)}
             />
             <div className="w-[60px] h-[40px] bg-mygold ml-2 flex justify-center items-center cursor-pointer rounded-lg" onClick={() => handleSearch()}>
               <span className="text-white font-bold font-NanumGothic md:text-[1rem] text-[0.8rem]">
@@ -144,8 +172,8 @@ export default function SearchIpchal() {
               </span>
             </div>
           </div>
-        ) : searchResult === 2 && getData.cases.length > 0 ? (
-          <div className="flex flex-col w-[95%] h-[650px] bg-white md:mt-[150px] mt-[100px] items-center rounded-lg absolute pt-[20px]">
+        ) : searchResult === 2 && getData?.cases?.length > 0 ? (
+          <div className="flex flex-col w-[95%] min-h-[250px] max-h-[650px] bg-white md:mt-[150px] mt-[100px] items-center rounded-lg absolute pt-[20px]">
             <div className="flex flex-row w-[95%]">
               <div className="flex justify-start">
                 <span className="md:text-[1rem] text-[0.8rem] font-bold font-NanumGothic not-italic">
@@ -181,7 +209,7 @@ export default function SearchIpchal() {
             </div>
             <div className={`border-r-[1px] ${getData?.cases.length <= 4 ? '' : 'border-b-[1px]'} border-l-[1px] border-black w-[95%] min-h-[100px] max-h-[500px] overflow-y-auto scrollbar-hide`}>
               {getData?.cases?.map((data: any, index: number) => (
-                <div key={index} className={`flex flex-row w-[100%] h-[100px] ${index > 3 && (getData.cases.length - 1 === index) ? '' : 'border-b-[1px]'} border-black ${index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-50'} items-center hover:bg-gray-300 cursor-pointer`} onClick={() => {
+                <div key={index} className={`flex flex-row w-[100%] h-[100px] ${index > 3 && (getData.cases.length - 1 === index) ? '' : 'border-b-[1px]'} border-black ${index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-50'} items-center hover:bg-gray-200 cursor-pointer`} onClick={() => {
                   handleNextStep(data.infoId, data.caseNo, data.mulSeq)
                 }}>
                   <div className="flex flex-col w-[15%] h-[100%] border-black border-r-[1px] justify-center items-center">
@@ -235,28 +263,13 @@ export default function SearchIpchal() {
           </div>
         )}
       </div>
-      <div className="flex flex-row fixed items-center md:bottom-[80px] bottom-[10px] gap-[10px] md:w-[550px] w-[90%] ">
-        <button
-          type="button"
-          className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-          onClick={() => {
-            searchResult === 1 ? setStateNum(0) : setSearchResult(1)
-          }}
-        >
-          <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-            이전
-          </span>
-        </button>
-        <button
-          type="button"
-          className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-          
-        >
-          <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-            다음
-          </span>
-        </button>
-      </div>
+      <Button 
+        nextText="다음"
+        handleNextStep={() => {
+          handleNextButton(searchResult, biddingInfo.infoId, biddingInfo.caseNo, biddingInfo.mulSeq)
+        }}
+        handlePrevStep={handlePrevButton}
+      />
     </div>
   )
 }
