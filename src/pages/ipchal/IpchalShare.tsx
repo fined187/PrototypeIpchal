@@ -1,6 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import EmailForm from '@/components/EmailForm'
-import Button from '@/components/shared/ButtonCp'
+import Button from '@/components/shared/Button'
 import { useDisclosure } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'

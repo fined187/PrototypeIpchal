@@ -63,7 +63,7 @@ export default function AgentForm() {
   const handleAgentUpdate = async () => {
     try {
       const response = await axios.put(
-        `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/agents`,
+        `${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/agents`,
         {
           name: biddingForm.agentName,
           relationship: biddingForm.agentRel,
@@ -78,7 +78,7 @@ export default function AgentForm() {
         },
       )
       if (response.status === 200) {
-        setStateNum(5)
+        setStateNum(6)
       }
     } catch (error) {
       console.log(error)
@@ -174,7 +174,7 @@ export default function AgentForm() {
     const handleGetAgentForm = async () => {
       try {
         const response = await axios.get(
-          `http://118.217.180.254:8081/ggi/api/bid-form/${biddingForm.mstSeq}/agents`,
+          `${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/agents`,
         )
         if (response.status === 200) {
           setAgentList(response.data.data)

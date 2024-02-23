@@ -18,7 +18,7 @@ export default function StartIpchal() {
     setLoading(true)
     try {
         const response = await axios.post(
-          `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/checks`,
+          `${process.env.NEXT_PUBLIC_API_URL}checks`,
           {
             idCode: idcode,
           },

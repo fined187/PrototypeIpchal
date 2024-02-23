@@ -1,4 +1,5 @@
 import { biddingInfoState, stepState } from "@/atom"
+import Button from "@/components/shared/Button"
 import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
 
@@ -93,30 +94,15 @@ export default function PreparingList() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[550px] w-[90%]">
-          <button
-            type="button"
-            className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              setStateNum(14)
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              이전
-            </span>
-          </button>
-          <button
-            type="button"
-            className="flex md:w-[60%] w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              setStateNum(0)
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
-              닫기
-            </span>
-          </button>
-        </div>
+        <Button 
+          nextText="닫기"
+          handleNextStep={() => {
+            window && window.location.reload()
+          }}
+          handlePrevStep={() => {
+            setStateNum(15)
+          }}
+        />
       </div>
     </>
   )

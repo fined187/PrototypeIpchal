@@ -1,9 +1,10 @@
-import { biddingInfoState } from "@/atom";
-import { TotalResultType } from "@/interface/IpchalType";
+import React from "react";
+import { TotalResultType } from "../../interface/IpchalType"
+import { biddingInfoState } from "../../atom/index";
 import { useRecoilState } from "recoil";
 import IpchalText from "../coIpchalContent/IpchalText";
 
-export default function SingleIpchalResult({ totalResult }: { totalResult: TotalResultType}) {
+export default function SingleIpchalResult({ totalResult }: { totalResult: TotalResultType }) {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
 
   const handlePrice = (len: number) => {

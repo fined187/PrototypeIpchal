@@ -1,6 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
-import Button from '@/components/shared/ButtonCp'
+import Button from '@/components/shared/Button'
 import axios from 'axios'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
@@ -91,7 +91,7 @@ export default function BidderCnt() {
 
   const handlePrevStep = () => {
     if (biddingInfo.bidder === 'agent') {
-      setStateNum(16)
+      setStateNum(17)
     } else {
       setStateNum(stateNum - 2)
     }

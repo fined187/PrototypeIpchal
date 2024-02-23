@@ -1,4 +1,5 @@
 import { biddingInfoState, stepState } from "@/atom"
+import Button from "@/components/shared/Button";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil"
@@ -141,7 +142,7 @@ export default function AgentCheck() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-center items-center fixed md:w-[26%] w-[80%] gap-[10px] md:bottom-[80px] bottom-[10px]">
+      {/* <div className="flex flex-row justify-center items-center fixed md:w-[26%] w-[80%] gap-[10px] md:bottom-[80px] bottom-[10px]">
         <button
           type="button"
           className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
@@ -162,7 +163,14 @@ export default function AgentCheck() {
             다음
           </span>
         </button>
-      </div>
+      </div> */}
+      <Button 
+        nextText='다음'
+        handleNextStep={handleNextStep}
+        handlePrevStep={() => {
+          setStateNum(16)
+        }}
+      />
     </div>
   )
 }

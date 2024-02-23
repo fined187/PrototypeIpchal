@@ -9,7 +9,7 @@ import { TotalResultType } from '@/interface/IpchalType'
 import CoIpchalPDF from '@/components/createPDFContent/CoIpchalPDF'
 import SinglePDF from '@/components/createPDFContent/SinglePDF'
 import CoverPage from '@/components/createPDFContent/CoverPage'
-import Button from '@/components/shared/ButtonCp'
+import Button from '@/components/shared/Button'
 
 export default function CreateFile() {
   const [stateNum, setStateNum] = useRecoilState(stepState)

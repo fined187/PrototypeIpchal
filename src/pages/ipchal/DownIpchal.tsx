@@ -1,6 +1,6 @@
 import { biddingInfoState, stepState } from "@/atom";
 import Spinner from "@/components/Spinner";
-import Button from "@/components/shared/ButtonCp";
+import Button from "@/components/shared/Button";
 import { useEffect, useState } from "react";
 import { TfiDownload } from "react-icons/tfi";
 import { useRecoilState } from "recoil";

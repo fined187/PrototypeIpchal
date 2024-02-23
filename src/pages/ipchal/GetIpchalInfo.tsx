@@ -1,6 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
-import Button from '@/components/shared/ButtonCp'
+import Button from '@/components/shared/Button'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'

@@ -5,9 +5,9 @@ import { useRecoilState } from 'recoil'
 import LoadingResult from '@/components/LoadingResult'
 import AgentListForm from '@/components/coIpchalContent/AgentListForm'
 import { TotalResultType } from '@/interface/IpchalType'
-import SingleIpchalResult from '@/components/SingleIpchalContent/SingleIpchalResult'
+import SingleIpchalResult from '@/components/singleIpchalContent/SingleIpchalResult'
 import CoIpchalResult from '@/components/coIpchalContent/CoIpchalResult'
-import Button from '@/components/shared/ButtonCp'
+import Button from '@/components/shared/Button'
 
 export default function IpchalResult() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)

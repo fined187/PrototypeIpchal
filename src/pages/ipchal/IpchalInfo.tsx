@@ -1,5 +1,5 @@
 import { stepState } from '@/atom'
-import Button from '@/components/shared/ButtonCp'
+import Button from '@/components/shared/Button'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 

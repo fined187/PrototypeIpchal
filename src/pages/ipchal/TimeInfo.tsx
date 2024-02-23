@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from "@/atom"
 import Spinner from "@/components/Spinner"
+import Button from "@/components/shared/Button"
 import axios from "axios"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
@@ -17,7 +18,7 @@ export default function TimeInfo() {
     setLoading(true)
     try {
       const response = await axios.post(
-        `http://118.217.180.254:8081/ggi/api/bid-form/inits`,
+        `${process.env.NEXT_PUBLIC_API_URL}inits`,
         {
           userId: router.query.userId,
           infoId: biddingInfo.infoId,
@@ -104,27 +105,13 @@ export default function TimeInfo() {
             </div>
           )}
         </div>
-        <div className="flex flex-row items-center gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[26%] w-[80%]">
-          <button
-            type="button"
-            className="flex w-[40%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-          >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-              이전
-            </span>
-          </button>
-          <button
-            type="button"
-            className="flex w-[60%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-            onClick={() => {
-              handleNextStep(biddingInfo.selectedTime)
-            }}
-          >
-            <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-              다음
-            </span>
-          </button>
-        </div>
+        <Button 
+          nextText="다음"
+          handleNextStep={() => handleNextStep(biddingInfo.selectedTime)}
+          handlePrevStep={() => {
+            setStateNum(stateNum - 1)
+          }}
+        />
       </div>
     </div>
   )
