@@ -87,11 +87,11 @@ export const biddingInfoState = atom({
     numerator: [''],
     denominator: [''],
     mulSeq: '',
-    mandates: {
+    mandates: [{
       peopleSeq: 0,
       name: '',
       mandateYn: '',
-    },
+    }],
     pdfPassword: '',
   },
   dangerouslyAllowMutability: true,

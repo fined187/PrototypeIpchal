@@ -42,7 +42,7 @@ export default function ModalAddr({
 }: PopupContentProps) {
   const [searchAddr, setSearchAddr] = useState<string>('')
   const [emptyView, setEmptyView] = useState<boolean>(false) // 검색결과 없을 때 뷰
-  const [addrList, setAddrList] = useState([])
+  const [addrList, setAddrList] = useState<any>([])
   const [totalCount, setTotalCount] = useState<number>(0)
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [hstry, setHstry] = useState<boolean>(false) // 변동된 주소정보 포함 여부 [true: 포함, false: 미포함
@@ -76,10 +76,13 @@ export default function ModalAddr({
       const result = await baseApiInstance.get('/addrlink/addrLinkApi.do', {
         params: param,
       })
-      if (result) {
+      if (result.data.results.common.errorCode === '0' && result.data.results.juso.length > 0) {
         setEmptyView(true)
         setAddrList(result.data.results.juso)
         setTotalCount(result.data.results.common.totalCount)
+      } else {
+        setAddrList(null)
+        setEmptyView(true)
       }
       setEmptyView(false)
     } catch (error) {
@@ -401,7 +404,7 @@ export default function ModalAddr({
                                 : 'border border-spacing-1'
                             } rounded-md overflow-auto md:overflow-hidden`}
                           >
-                            {addrList?.length > 0 && !emptyView && (
+                            {addrList?.length > 0 && !emptyView ? (
                               <>
                                 <div className="w-[100%] overflow-auto md:overflow-hidden">
                                   {addrList.map(
@@ -524,8 +527,14 @@ export default function ModalAddr({
                                   )}
                                 </div>
                               </>
+                            ) : (
+                              <div className="text-center items-center justify-center mx-auto w-[100%] h-[150px] absolute top-[300px] left-0">
+                                <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
+                                  검색결과가 없습니다.
+                                </span>
+                              </div>
                             )}
-                            {addrList === null && (
+                            { emptyView && (
                               <div className="text-center items-center justify-center mx-auto w-[100%] h-[150px] absolute top-[300px] left-0">
                                 <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
                                   검색결과가 없습니다.

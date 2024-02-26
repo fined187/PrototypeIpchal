@@ -100,7 +100,7 @@ export default function PreparingList() {
             window && window.location.reload()
           }}
           handlePrevStep={() => {
-            setStateNum(15)
+            biddingInfo.aesUserId === '' ? setStateNum(14) : setStateNum(15)
           }}
         />
       </div>

@@ -43,6 +43,7 @@ export default function CreateFile() {
   }
 
   const mandateNumber = totalResult?.bidders.map((item) => item.mandateYn).filter((item) => item === 'Y').length
+  
   const handleGetHeight = () => {
     //  1. 입찰자가 1명일 때 + 대리인이 없을 때
     if (biddingInfo.agentName === '' && biddingInfo.bidderNum === 1) {          //  2장
@@ -61,18 +62,21 @@ export default function CreateFile() {
       if (mandateNumber && mandateNumber <= 3 && biddingInfo.bidderNum <= 10) {   //  5장
         //  4-1. 대리인이 3명 이하일 때
         setGetHeight(1450)
-        setPageNum(5)
+        setPageNum(5)  
       } else if (biddingInfo.bidderNum > 10 && (mandateNumber && mandateNumber <= 3)) {   //  6장 이상
-        //  4-2. 입찰자가 3명 이상일 때
+        //  4-2. 입찰자 10명 이상 + 대리인 3명 이하
         setGetHeight(1160 + (290 * Math.ceil(totalResult?.bidders.length! / 10)))
-        setPageNum(6 + Math.ceil(totalResult?.bidders.length! / 10))
+        setPageNum(4 + Math.ceil(totalResult?.bidders.length! / 10))
       } else if (biddingInfo.bidderNum > 10 && (mandateNumber && mandateNumber > 3)) {
-        setGetHeight(870 + (290 * Math.ceil(totalResult?.bidders.length! / 10)) + (295 * Math.ceil(mandateNumber / 3)))
+        //  4-3. 입찰자 10명 이상 + 대리인 3명 이상
+        setGetHeight(870 + (290 * Math.ceil(totalResult?.bidders.length! / 10)) + (290 * Math.ceil(mandateNumber / 3)))
         setPageNum(3 + Math.ceil(totalResult?.bidders.length! / 10) + Math.ceil(mandateNumber / 3))
       } else if (biddingInfo.bidderNum <= 10 && (mandateNumber && mandateNumber > 3)) {
+        //  4-4. 입찰자 10명 이하 + 대리인 3명 이상 
         setGetHeight(1160 + (290 * Math.ceil(mandateNumber / 3)))
         setPageNum(4 + Math.ceil(mandateNumber / 3))
       } else {
+        //  4-5. 입찰자 10명 이하 + 대리인 3명 이하
         setGetHeight(1450)
         setPageNum(5)
       }
@@ -99,7 +103,6 @@ export default function CreateFile() {
         }
       ) 
       .then((data) => {
-        console.log(data)
         const file = new Blob([data.data], { type: "application/pdf" });
         setBlobFile(new File([file], `${fileName}.pdf`, { type: "application/pdf" }));
         setBiddingInfo({
@@ -107,18 +110,19 @@ export default function CreateFile() {
           isFileCreated: true,
           pdfFile: file,
         });
+        handleDownload(file)
       });
-      handleDownload()
       captureDiv && captureDiv.style.display === 'block' ? captureDiv.style.display = 'none' : captureDiv.style.display = 'none'
     }
 }
+console.log(mandateNumber)
+console.log(pageNum)
+console.log(getHeight)
 
-const handleDownload = () => {
+const handleDownload = (file: Blob) => {
   if (biddingInfo.pdfFile) {
-    const url = window.URL.createObjectURL(biddingInfo.pdfFile);
+    const url = window.URL.createObjectURL(file);
     const a = document.createElement("a");
-    document.body.appendChild
-    (a);
     a.href = url;
     a.download = `${fileName}.pdf`;
     a.click();
@@ -128,7 +132,7 @@ const handleDownload = () => {
 
   useEffect(() => {
     handleGetHeight()
-  }, [biddingInfo.agentName, biddingInfo.bidderNum])
+  }, [biddingInfo.bidderNum, biddingInfo.agentName, totalResult?.bidders.length, mandateNumber])
 
   let htmlElement = ''
 

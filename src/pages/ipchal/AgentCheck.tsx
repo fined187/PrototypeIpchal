@@ -43,6 +43,7 @@ export default function AgentCheck() {
         }
       })
       if (response.status === 200) {
+        console.log(response.data)
         return
       }
     } catch (error) {
@@ -77,7 +78,7 @@ export default function AgentCheck() {
       window.removeEventListener('resize', handleHeight)
     }
   }, [])
-
+  console.log(biddingInfo)
   return (
     <div id="box" className="flex w-[100%] bg-white justify-center relative">
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
@@ -109,7 +110,7 @@ export default function AgentCheck() {
           </div>
         </div>
         <div className="flex flex-col w-[90%] md:w-[550px] min-h-[250px] max-h-[400px] border border-gray-[1px] bg-white md:mt-[150px] mt-[100px] items-center rounded-lg border-slate-500 overflow-auto">
-          <div className="flex flex-col justify-center gap-[30px] items-center w-[80%] h-[100%] ">
+          <div className="flex flex-col gap-[30px] items-center w-[80%] h-[100%] ">
             {biddingInfo.bidName.map((name: any, index: number) => (
               <div className="flex md:w-[50%] w-[90%] justify-between" key={index}>
                 <span className="md:text-[15pt] text-[12pt] font-NanumGothic font-bold">
@@ -142,28 +143,6 @@ export default function AgentCheck() {
           </div>
         </div>
       </div>
-      {/* <div className="flex flex-row justify-center items-center fixed md:w-[26%] w-[80%] gap-[10px] md:bottom-[80px] bottom-[10px]">
-        <button
-          type="button"
-          className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-          onClick={() => {
-            setStateNum(15)
-          }}
-        >
-          <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-            이전
-          </span>
-        </button>
-        <button
-          type="button"
-          className="flex w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-          onClick={handleNextStep}
-        >
-          <span className="text-white font-extrabold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-            다음
-          </span>
-        </button>
-      </div> */}
       <Button 
         nextText='다음'
         handleNextStep={handleNextStep}

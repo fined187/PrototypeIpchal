@@ -316,7 +316,7 @@ export default function BiddingPrice() {
               </span>
             </div>
           </div>
-          <div className="flex flex-col gap-2 md:w-[550px] md:h-[300px] w-[90%] h-[45%] bg-white mt-[50px] border-slate-500 justify-center items-center">
+          <div className="flex flex-col gap-2 md:w-[550px] w-[90%] h-[300px] bg-white mt-[50px] border-slate-500 justify-center items-center">
             <div className='flex flex-col w-[100%] justify-center items-center'>
               <div className='flex justify-between md:w-[35%] w-[50%]'>
                 <div className='flex w-[40%] justify-center items-center'>
@@ -376,7 +376,7 @@ export default function BiddingPrice() {
                 </span>
               </div>
               <div className='flex w-[80%] justify-end'>
-                <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic not-italic font-bold text-red-500 mb-2">
+                <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic not-italic font-bold text-red-500 mb-2 text-left">
                   {num2han(biddingForm.biddingPrice) + '원'  + "(최저가의 " + Math.floor(((biddingForm.biddingPrice - paymentsInfo.minimumAmount) / (paymentsInfo.minimumAmount)) * 100 + 100) + "%)"}
                 </span>
               </div>
@@ -408,7 +408,7 @@ export default function BiddingPrice() {
                 </span>
               </div>
               <div className='flex w-[80%] h-[100%] justify-end'>
-                <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic not-italic font-bold text-red-500 mb-2">
+                <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic not-italic font-bold text-red-500 mb-2 text-left">
                   {num2han(biddingForm.depositPrice) + '원' + "(최저가의 " + Math.floor(((biddingForm.depositPrice) / (paymentsInfo.minimumAmount)) * 100) + "%)"}
                 </span>
               </div>

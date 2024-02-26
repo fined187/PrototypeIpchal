@@ -67,9 +67,6 @@ export default function Home() {
     ]
   })
   const router = useRouter()
-
-
-  
   const handleGetIpchalInfo = async (query: string) => {
     setLoading(true)
     if (typeof window !== 'undefined') {
@@ -177,7 +174,6 @@ export default function Home() {
       setStateNum(0)
     }
   }
-  console.log(biddingForm)
   const handleCheck = async (idcode: string) => {
     setLoading(true)
     try {
