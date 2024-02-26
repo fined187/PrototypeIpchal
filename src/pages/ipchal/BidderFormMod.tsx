@@ -473,7 +473,7 @@ export default function BidderFormMod() {
         if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'Y') {
           await handleBidderFormSave()
           setStateNum(19)
-        } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'N') {
+        } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn !== 'Y') {
           await handleBidderFormSave()
           setStateNum(8)
         } else if (stepNum > bidderList?.bidders.length! && stepNum < biddingForm.bidderNum) {
@@ -491,7 +491,7 @@ export default function BidderFormMod() {
           await handleUpdate()
           // await handleDecreaseBidder()
           setStateNum(19)
-        } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'N') {
+        } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn !== 'Y') {
           await handleUpdate()
           // await handleDecreaseBidder()
           setStateNum(8)
@@ -505,7 +505,7 @@ export default function BidderFormMod() {
         if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'Y') {
           await handleUpdate()
           setStateNum(19)
-        } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn === 'N') {
+        } else if (stepNum === biddingForm.bidderNum && biddingForm.agentYn !== 'Y') {
           await handleUpdate()
           setStateNum(8)
         } else {
@@ -515,7 +515,6 @@ export default function BidderFormMod() {
       }
     }
   }
-    
   const onSubmit: SubmitHandler<BiddingInfoType> = async () => {
     // if (biddingForm.bidCorpYn[stepNum - 1] === 'I' && !handleVerifyIdNum(biddingForm.bidIdNum1[stepNum - 1] + biddingForm.bidIdNum2[stepNum - 1])) {
     //   alert('주민등록번호를 확인해주세요')

@@ -92,12 +92,14 @@ export default function CreateFile() {
           password: password,
           name: fileName,
           pageNum: pageNum,
+          userIdYn: biddingInfo.aesUserId ? 'Y' : 'N',
         },
         {
           responseType: "blob", // important
         }
       ) 
       .then((data) => {
+        console.log(data)
         const file = new Blob([data.data], { type: "application/pdf" });
         setBlobFile(new File([file], `${fileName}.pdf`, { type: "application/pdf" }));
         setBiddingInfo({
@@ -106,8 +108,22 @@ export default function CreateFile() {
           pdfFile: file,
         });
       });
+      handleDownload()
       captureDiv && captureDiv.style.display === 'block' ? captureDiv.style.display = 'none' : captureDiv.style.display = 'none'
     }
+}
+
+const handleDownload = () => {
+  if (biddingInfo.pdfFile) {
+    const url = window.URL.createObjectURL(biddingInfo.pdfFile);
+    const a = document.createElement("a");
+    document.body.appendChild
+    (a);
+    a.href = url;
+    a.download = `${fileName}.pdf`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
 }
 
   useEffect(() => {
@@ -192,7 +208,7 @@ export default function CreateFile() {
                 <input
                   aria-label='파일 이름'
                   className="w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
-                  value={`${biddingInfo.aesUserId ?? 'best'}_` + format(date, 'yyyyMMddHHmmss')}
+                  value={`${biddingInfo.aesUserId !== '' ? biddingInfo.aesUserId : `${biddingInfo.sagunNum}`}_` + format(date, 'yyyyMMddHHmmss')}
                   onChange={(e) => {
                     setFileName(e.target.value)
                   }} 

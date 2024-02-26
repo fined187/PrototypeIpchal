@@ -164,20 +164,20 @@ export default function Home() {
 
   const handleStateNum = () => {
     if (bidders.state === 0) {
-      setStateNum(3)
+      setStateNum(4)
     } else if ((bidders.state === 1 || bidders.state === 2) && bidders.agentYn === "Y") {
-      setStateNum(16)
+      setStateNum(17)
     } else if ((bidders.state === 1 || bidders.state === 2) && bidders.agentYn !== "Y") {
-      setStateNum(5)
+      setStateNum(6)
     } else if (bidders.state >= 4 && bidders.agentYn === "Y") {
-      setStateNum(16)
+      setStateNum(17)
     } else if (bidders.state >= 4 && bidders.agentYn !== "Y") {
-      setStateNum(15)
+      setStateNum(16)
     } else if (bidders.state === 9) {
       setStateNum(0)
     }
   }
-
+  console.log(biddingForm)
   const handleCheck = async (idcode: string) => {
     setLoading(true)
     try {
