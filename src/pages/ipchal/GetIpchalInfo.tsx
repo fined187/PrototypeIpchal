@@ -10,6 +10,7 @@ export default function GetIpchalInfo() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
+  const [data, getData] = useState<any>([])
   const router = useRouter()
   const { idcode } = router.query
 
@@ -23,7 +24,7 @@ export default function GetIpchalInfo() {
     } else {
       try {
         const response = await axios.post(
-          `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/inits`,
+          `${process.env.NEXT_PUBLIC_API_URL}inits`,
           {
             aesUserId: biddingInfo.aesUserId ?? "",
             infoId: biddingInfo.infoId,
@@ -97,7 +98,34 @@ export default function GetIpchalInfo() {
     }
   }
 
+  const handleGetCaseCheck = async () => {
+    setLoading(true)
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}cases/checks`,
+        {
+          infoId: biddingInfo.infoId,
+          caseNo: biddingInfo.caseNo,
+          mulSeq: biddingInfo.mulSeq,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      if (response.status === 200) {
+        getData(response.data.data)
+        setLoading(false)
+      }
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
+    handleGetCaseCheck()
     handleHeight()
     window.addEventListener('resize', handleHeight)
     return () => {
@@ -117,8 +145,8 @@ export default function GetIpchalInfo() {
               사건 번호와 입찰일자를 확인해주세요
             </span>
           </div>
-          <div className="flex flex-col md:w-[550px] w-[90%] h-[400px] bg-white md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto pt-[30px] pb-[30px]">
-            <div className="flex flex-between relative border-b w-[80%] border-gray-200 h-[15%]">
+          <div className={`flex flex-col md:w-[550px] w-[90%]  bg-white md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto`}>
+            <div className="flex flex-between relative border-b w-[80%] border-gray-200 h-[50px] mt-4 items-center">
               <div className='flex w-[30%] justify-start items-center'>
                 <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold font-NanumGothic ">
                   법원 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {" : "}
@@ -130,7 +158,7 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-between  relative border-b w-[80%] border-gray-200 h-[15%]">
+            <div className="flex flex-between  relative border-b w-[80%] border-gray-200 h-[50px] items-center">
               <div className='flex w-[30%] justify-start items-center'>
                 <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold font-NanumGothic ">
                   사건번호 {" : "}
@@ -142,7 +170,7 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-between border-b relative w-[80%] border-gray-200 h-[15%]">
+            <div className="flex flex-between border-b relative w-[80%] border-gray-200 h-[50px] items-center">
               <div className='flex w-[30%] justify-start items-center'>
                 <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold font-NanumGothic">
                   물건번호 {" : "}
@@ -154,7 +182,7 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-row border-b relative w-[80%] border-gray-200 h-[15%]">
+            <div className="flex flex-row border-b relative w-[80%] border-gray-200 h-[50px] items-center">
               <div className='flex w-[30%] justify-start items-center'>
                 <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold font-NanumGothic ">
                   입찰기일 {" : "}
@@ -166,14 +194,30 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
             </div>
-            <div className="flex flex-row border-b relative w-[80%]">
+            {biddingInfo.usage === ('차량' || '중기') ? (
+              <div className="flex flex-row border-b relative w-[80%] border-gray-200 min-h-[75px] items-center pt-4 pb-4">
+                <div className='flex w-[30%] justify-start items-center'>
+                  <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold font-NanumGothic ">
+                    차량정보 {" : "}
+                  </span>
+                </div>
+                <div className='flex w-[70%] justify-start items-center'>
+                  <span className="text-mygray md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold justify-end text-left  font-NanumGothic whitespace-normal">
+                    {data.carInfo}
+                  </span>
+                </div>
+              </div>
+            ) : (
+              null
+            )}
+            <div className="flex flex-row relative items-center w-[80%] min-h-[60px] pt-4 pb-4">
               <div className='flex w-[30%] justify-start items-center '>
                 <span className="text-black md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold font-NanumGothic ">
                   주소 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {" : "}
                 </span>
               </div>
-              <div className='flex flex-col w-[70%] mt-4 mb-4 justify-start items-center '>
-                <span className=" w-[100%] text-mygray md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold justify-end font-NanumGothic text-left whitespace-normal">
+              <div className='flex flex-col w-[70%] justify-start items-center'>
+                <span className="w-[100%] text-mygray md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold justify-end font-NanumGothic text-left whitespace-normal">
                   {biddingInfo.sagunAddr + (biddingInfo.etcAddress !== '' ? '[일괄]' + biddingInfo.etcAddress : '')}
                 </span>
                 <span className="w-[100%] text-blue-500 md:text-[1.1rem] text-[1rem] tracking-[-0.45px] font-extrabold justify-end font-NanumGothic text-left whitespace-normal">

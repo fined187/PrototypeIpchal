@@ -529,7 +529,7 @@ export default function AgentForm() {
                       })
                     }}
                   />
-                  <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] w-[10%] cursor-pointer"
+                  <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] md:w-[10%] w-[15%] cursor-pointer"
                     onClick={() => setPasswordActive(!passwordActive)}
                   >
                     {passwordActive ? (

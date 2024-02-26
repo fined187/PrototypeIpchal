@@ -186,7 +186,7 @@ export default function ModalAddr({
         }
       })
     } else if (agentInfo && setAgentInfo) {
-      const updatedAddr = agentInfo?.agentAddr + ' ' + agentInfo?.agentAddrDetail ?? ''
+      const updatedAddr = agentInfo?.agentAddr + (" " + agentInfo?.agentAddrDetail) ?? ''
       setBiddingForm((prev: any) => {
         let temp = prev.agentAddr
         temp = updatedAddr

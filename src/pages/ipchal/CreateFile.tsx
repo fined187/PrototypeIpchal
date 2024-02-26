@@ -23,7 +23,7 @@ export default function CreateFile() {
   const [blobFile, setBlobFile] = useState<File | null>(null)
   const [getHeight, setGetHeight] = useState<number>(0)
   const [pageNum, setPageNum] = useState<number>(2)
-  const captureDiv = document && document.getElementById('capture') as HTMLElement
+  
   const date = new Date()
   
   const handlePrice = (len: number) => {
@@ -79,32 +79,35 @@ export default function CreateFile() {
     }
   }
 
-  const handleGeneratePDF = async () => {  
-    captureDiv && captureDiv.style.display === 'none' ? captureDiv.style.display = 'block' : captureDiv.style.display = 'none'
-    const responese = await axios
-    .post( 
-      "http://210.16.195.57:4000/download",
-      {
-        html: `${htmlElement}`,
-        mstSeq: biddingInfo.mstSeq,
-        password: password,
-        name: fileName,
-        pageNum: pageNum,
-      },
-      {
-        responseType: "blob", // important
-      }
-    ) 
-    .then((data) => {
-      const file = new Blob([data.data], { type: "application/pdf" });
-      setBlobFile(new File([file], `${fileName}.pdf`, { type: "application/pdf" }));
-      setBiddingInfo({
-        ...biddingInfo,
-        isFileCreated: true,
-        pdfFile: file,
+  const handleGeneratePDF = async () => { 
+    if (window) {
+      const captureDiv = document && document.getElementById('capture') as HTMLElement
+      captureDiv && captureDiv.style.display === 'none' ? captureDiv.style.display = 'block' : captureDiv.style.display = 'none'
+      const responese = await axios
+      .post( 
+        `${process.env.NEXT_PUBLIC_SERVER_URL}download`,
+        {
+          html: `${htmlElement}`,
+          mstSeq: biddingInfo.mstSeq,
+          password: password,
+          name: fileName,
+          pageNum: pageNum,
+        },
+        {
+          responseType: "blob", // important
+        }
+      ) 
+      .then((data) => {
+        const file = new Blob([data.data], { type: "application/pdf" });
+        setBlobFile(new File([file], `${fileName}.pdf`, { type: "application/pdf" }));
+        setBiddingInfo({
+          ...biddingInfo,
+          isFileCreated: true,
+          pdfFile: file,
+        });
       });
-    });
-    captureDiv && captureDiv.style.display === 'block' ? captureDiv.style.display = 'none' : captureDiv.style.display = 'none'
+      captureDiv && captureDiv.style.display === 'block' ? captureDiv.style.display = 'none' : captureDiv.style.display = 'none'
+    }
 }
 
   useEffect(() => {
@@ -114,17 +117,17 @@ export default function CreateFile() {
   let htmlElement = ''
 
   const handleHtml = () => {
-    const captureDiv = document.getElementById('capture') as HTMLElement
-    if (captureDiv) {
-      htmlElement = captureDiv.innerHTML
+    if (document) {
+      const captureDiv = document.getElementById('capture') as HTMLElement
+      if (captureDiv) {
+        htmlElement = captureDiv.innerHTML
+      }
     }
   }
 
   const onCapture = async () => {
-    if (captureDiv) {
-      handleHtml()
-      await handleGeneratePDF()
-    }
+    handleHtml()
+    await handleGeneratePDF()
   }
 
   const onClickPdf = async (e: any) => {

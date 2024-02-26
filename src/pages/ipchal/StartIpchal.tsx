@@ -11,31 +11,67 @@ export default function StartIpchal() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-
   const { userId } = router.query
+  const [biddingStatus, setBiddingStatus] = useState(false)
 
-  const handleStart = () => {
-    setLoading(true)
-    if (userId && biddingInfo.idcode !== "") {
-      setBiddingInfo({
-        ...biddingInfo,
-        aesUserId: userId as string
-      })
-      setStateNum(2)
-      setLoading(false)
-    } else if (userId && biddingInfo.idcode === "") {
-      setBiddingInfo({
-        ...biddingInfo,
-        aesUserId: userId as string
-      })
-      setStateNum(1)
-      setLoading(false)
-    } else if (!userId && biddingInfo.idcode !== "") {
-      setStateNum(2)
-      setLoading(false)
+  useEffect(() => {
+    const { idcode } = router.query
+    const handleGetBiddingStatus = async (idCode: string) => {
+      try {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}case-status`,
+          {
+            idCode: idCode,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        if (response.status === 200) {
+          setBiddingStatus(response.data.data.isBiddingStatus)
+          return true;
+        } else {
+          return false;
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    } 
+    if (idcode) {
+      handleGetBiddingStatus(idcode as string)
     } else {
-      setStateNum(1)
-      setLoading(false)
+      setBiddingStatus(true)
+    }
+  }, [router.query.idcode])
+
+  const handleStart = async () => {
+    setLoading(true)
+    if (!biddingStatus) {
+      alert('입찰기일이 지났거나 현재 입찰 중인 사건이 아닙니다.')
+    } else {
+      if (userId && biddingInfo.idcode !== "") {
+        setBiddingInfo({
+          ...biddingInfo,
+          aesUserId: userId as string
+        })
+        setStateNum(2)
+        setLoading(false)
+      } else if (userId && biddingInfo.idcode === "") {
+        setBiddingInfo({
+          ...biddingInfo,
+          aesUserId: userId as string
+        })
+        setStateNum(1)
+        setLoading(false)
+      } else if (!userId && biddingInfo.idcode !== "") {
+        setStateNum(2)
+        setLoading(false)
+      } else {
+        setStateNum(1)
+        setLoading(false)
+      }
     }
   }
 

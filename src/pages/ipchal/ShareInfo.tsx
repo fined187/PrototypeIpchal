@@ -309,7 +309,7 @@ export default function ShareInfo() {
                     {name}
                   </span>
                 </div>
-                <div className="flex flex-row gap-[5%] w-[60%] justify-end mr-5">
+                <div className="flex flex-row gap-[10px] w-[60%] justify-end mr-5">
                   {biddingInfo.shareWay === 'S' ? (
                     <>
                       <input
@@ -385,24 +385,35 @@ export default function ShareInfo() {
               </div>
             )
           })}
-          <div className='flex flex-row justify-start items-center mb-[15px] md:w-[70%] w-[90%]'>
+          <div className='flex flex-row justify-start items-start mb-[15px] md:w-[70%] w-[90%] relative'>
             {biddingInfo.shareWay === 'N' && goNext && (
-              <span className="text-[15px] text-red-500 font-bold">
-                지분 값을 확인해주세요
-              </span>
+                <span className="text-[15px] text-red-500 font-bold">
+                  지분 값을 확인해주세요
+                </span>
             )}
             {biddingInfo.shareWay !== 'S' && (
-              <div className='flex flex-row w-[70%] gap-[47%] mb-1'>
-                <span className='text-[11pt] font-semibold'>
-                  지분 합
-                </span>
-                <input 
-                  className={`w-[80px] text-center h-[40px] rounded-lg px-2 border-2 border-gray-300 text-[11pt] font-semibold ${biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0) == parseInt(biddingInfo.denominator[0]) ? 'text-green-500' : 'text-red-500'}`}
-                  type="text"
-                  readOnly
-                  value={isNaN(biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)) ? 0 : biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)}
-                />
-              </div>
+              <>
+                <div className="flex w-[40%] mt-[10px]">
+                  <span className='text-[11pt] font-semibold text-left'>
+                    지분 합
+                  </span>
+                </div>
+                <div className="flex flex-row gap-[10px] w-[60%] justify-end mr-5">
+                  <input 
+                    className={`w-[80px] text-center h-[40px] rounded-lg px-2 border-2 border-gray-300 text-[11pt] font-semibold ${biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0) == parseInt(biddingInfo.denominator[0]) ? 'text-green-500' : 'text-red-500'}`}
+                    type="text"
+                    readOnly
+                    value={isNaN(biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)) ? 0 : biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)}
+                  />
+                  <span className='mt-[5px]'> / </span>
+                  <input 
+                    className={`w-[80px] text-center h-[40px] rounded-lg px-2 border-2 border-gray-300 text-[11pt] font-semibold  text-black`}
+                    type="text"
+                    readOnly
+                    value={'100'}
+                  />
+                </div>
+              </>
             )}
           </div>
         </div>

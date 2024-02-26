@@ -33,7 +33,7 @@ export default function CoverPage({ totalResult }: SingleProps) {
       </div>
       <div className="flex absolute top-[1100px]">
         <img  
-          src="http://localhost:4000/logo"
+          src="http://210.16.195.57:8000/logo"
           alt="logo"
           width="150"
           height="150"

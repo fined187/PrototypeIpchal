@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "next start -p ${PORT:-80}",
+    "start": "next start -p ${PORT: -3000}",
     "lint": "next lint",
     "prod": "next export",
     "storybook": "storybook dev -p 6006",

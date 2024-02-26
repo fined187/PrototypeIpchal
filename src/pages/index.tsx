@@ -67,6 +67,8 @@ export default function Home() {
     ]
   })
   const router = useRouter()
+
+
   
   const handleGetIpchalInfo = async (query: string) => {
     setLoading(true)
@@ -228,14 +230,16 @@ export default function Home() {
   useEffect(() => {
     const { idcode } = router.query
     const { mstSeq } = router.query
-
-    if (idcode) {
-      handleCheck(idcode as string)
+    const handleStart = async () => {
+      if (idcode) {
+        await handleCheck(idcode as string)
+      }
+      if (mstSeq) {
+        await handleGetIpchalInfo(mstSeq as string)
+        handleStateNum()
+      }
     }
-    if (mstSeq) {
-      handleGetIpchalInfo(mstSeq as string)
-      handleStateNum()
-    }
+    handleStart()
   }, [router.query, bidders.state, bidders.agentYn])
 
   return (
