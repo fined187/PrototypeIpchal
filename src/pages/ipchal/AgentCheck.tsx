@@ -78,6 +78,7 @@ export default function AgentCheck() {
       window.removeEventListener('resize', handleHeight)
     }
   }, [])
+
   console.log(biddingInfo)
   return (
     <div id="box" className="flex w-[100%] bg-white justify-center relative">
@@ -109,10 +110,10 @@ export default function AgentCheck() {
             <label htmlFor="allChecked" className="ml-2 md:text-[1.1rem] text-[1rem] text-black font-bold dark:text-gray-400">전체 선택</label>
           </div>
         </div>
-        <div className="flex flex-col w-[90%] md:w-[550px] min-h-[250px] max-h-[400px] border border-gray-[1px] bg-white md:mt-[150px] mt-[100px] items-center rounded-lg border-slate-500 overflow-auto">
+        <div className="flex flex-col gap-[30px] md:w-[550px] w-[90%] min-h-[250px] max-h-[450px] bg-white absolute top-[170px] items-center rounded-lg border-slate-500 md:mt-[80px] mt-[50px] pt-[50px] pb-[50px] overflow-y-auto">
           <div className="flex flex-col gap-[30px] items-center w-[80%] h-[100%] ">
             {biddingInfo.bidName.map((name: any, index: number) => (
-              <div className="flex md:w-[50%] w-[90%] justify-between" key={index}>
+              <div className="flex md:w-[50%] w-[90%] mt-[15px] justify-between" key={index}>
                 <span className="md:text-[15pt] text-[12pt] font-NanumGothic font-bold">
                   {name}
                 </span>

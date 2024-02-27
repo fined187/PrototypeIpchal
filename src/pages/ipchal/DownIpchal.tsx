@@ -131,7 +131,7 @@ export default function DownIpchal() {
                   setStateNum(18)
                 }}
                 handlePrevStep={() => {
-                  setStateNum(stateNum - 1)
+                  setStateNum(stateNum - 2)
                 }}
               />
             </>

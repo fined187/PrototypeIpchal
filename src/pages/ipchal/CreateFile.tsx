@@ -115,9 +115,6 @@ export default function CreateFile() {
       captureDiv && captureDiv.style.display === 'block' ? captureDiv.style.display = 'none' : captureDiv.style.display = 'none'
     }
 }
-console.log(mandateNumber)
-console.log(pageNum)
-console.log(getHeight)
 
 const handleDownload = (file: Blob) => {
   if (biddingInfo.pdfFile) {
@@ -157,12 +154,7 @@ const handleDownload = (file: Blob) => {
       alert('파일 암호를 4자리 이상 입력해주세요')
       setLoading(false)
       return
-    } else if (biddingInfo.isFileCreated) {
-      alert('이미 파일이 생성되었습니다')
-      setLoading(false)
-      return
-    } 
-    else {
+    } else {
       await onCapture()
       setLoading(false)
     }
@@ -177,7 +169,7 @@ const handleDownload = (file: Blob) => {
   }
 
   useEffect(() => {
-    setFileName(`${'best'}_` + format(date, 'yyyyMMddHHmmss'))
+    setFileName(`${biddingInfo.sagunNum}_` + format(date, 'yyyyMMddHHmmss'))
     setLoading(true)
     const handleGetResult = async () => {
       try {
@@ -272,7 +264,7 @@ const handleDownload = (file: Blob) => {
           </div>
           <Button 
             nextText='다음'
-            handleNextStep={() => setStateNum(stateNum + 1)}
+            handleNextStep={() => biddingInfo.isFileCreated ? biddingInfo.aesUserId === "" ? setStateNum(18) : setStateNum(stateNum + 2) : alert('파일을 생성해주세요')}
             handlePrevStep={handlePrevStep}
           />
         </div>

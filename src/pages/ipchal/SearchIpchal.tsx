@@ -370,7 +370,7 @@ export default function SearchIpchal() {
       <Button 
         nextText="다음"
         handleNextStep={() => {
-          getData?.cases?.length === 1 ? handleNextButton(searchResult, biddingInfo.infoId, biddingInfo.caseNo, biddingInfo.mulSeq) : alert('검색결과가 2건 이상입니다. 원하시는 입찰 사건을 선택해주세요.')
+          getData?.cases?.length === 1 ?  handleNextButton(searchResult, biddingInfo.infoId, biddingInfo.caseNo, biddingInfo.mulSeq) : searchResult === 1 ? handleSearch(getCase, getAuction) : alert('검색결과가 2건 이상입니다. 원하시는 입찰 사건을 선택해주세요.')
         }}
         handlePrevStep={handlePrevButton}
       />

@@ -154,11 +154,12 @@ export default function Home() {
         }
       } catch (error) {
         console.log(error)
+        setStateNum(0)
         setLoading(false)
       }
     }
   }
-
+  
   const handleStateNum = () => {
     if (bidders.state === 0) {
       setStateNum(4)
@@ -249,7 +250,7 @@ export default function Home() {
       )
       : (
         <>
-          {((bidders.state === 9) && (stateNum === 0) ? <StartIpchal /> : (stateNum === 0) && <StartIpchal />)}
+          {(((bidders.state === 9) || (stateNum === 0)) ? <StartIpchal /> : (stateNum === 0) && <StartIpchal />)}
           {(stateNum === 1) && <SearchIpchal />}
           {(stateNum === 2) && <GetIpchalInfo />}
           {stateNum === 3 && biddingForm.biddingInfos.length > 1 && <TimeInfo />}
@@ -263,7 +264,7 @@ export default function Home() {
           {stateNum === 11 && <IpchalInfo />}
           {stateNum === 12 && <IpchalResult />}
           {stateNum === 13 && <CreateFile />}
-          {stateNum === 14 && <IpchalShare />}
+          {/* {stateNum === 14 && <IpchalShare />} */}
           {(stateNum === 15 && (biddingForm.aesUserId !== "")) && <DownIpchal />}
           {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 16) ? <BidderFormMod /> : (stateNum === 16) && <BidderFormMod />}
           {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 17) ? <AgentFormMod /> : (stateNum === 17) && <AgentFormMod />}

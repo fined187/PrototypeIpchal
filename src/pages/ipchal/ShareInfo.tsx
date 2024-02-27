@@ -214,6 +214,18 @@ export default function ShareInfo() {
     }
   }, [])
 
+  useEffect(() => {
+    let valid = 0
+    for(let i = 0; i < biddingInfo.bidderNum; i++) {
+      valid += parseInt(biddingInfo.numerator[i])
+      if (valid !== parseInt(biddingInfo.denominator[0])) {
+        setGoNext(true)
+      } else {
+        setGoNext(false)
+      }
+    }
+  }, [biddingInfo.numerator])
+
   return (
     <div id='box' className="flex w-[100%] bg-white justify-center relative ">
       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center mt-[20px] md:pt-[100px] pt-[50px]">
@@ -297,7 +309,7 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-[30px] md:w-[550px] w-[90%] min-h-[250px] md:max-h-[450px] bg-white absolute top-[170px] items-center rounded-lg border-slate-500 md:mt-[80px] mt-[30px] pt-[50px] overflow-auto">
+        <div className="flex flex-col gap-[30px] md:w-[550px] w-[90%] min-h-[250px] max-h-[450px] bg-white absolute top-[170px] items-center rounded-lg border-slate-500 md:mt-[80px] mt-[30px] pt-[50px] overflow-auto">
           {loadding && (
             <Spinner />
           )}
@@ -386,33 +398,37 @@ export default function ShareInfo() {
             )
           })}
           <div className='flex flex-row justify-start items-start mb-[15px] md:w-[70%] w-[90%] relative'>
-            {biddingInfo.shareWay === 'N' && goNext && (
-                <span className="text-[15px] text-red-500 font-bold">
-                  지분 값을 확인해주세요
-                </span>
-            )}
             {biddingInfo.shareWay !== 'S' && (
               <>
-                <div className="flex w-[40%] mt-[10px]">
-                  <span className='text-[11pt] font-semibold text-left'>
-                    지분 합
+              <div className='flex flex-col w-[100%]'>
+                {biddingInfo.shareWay === 'N' && goNext && (
+                  <span className="text-[15px] text-red-500 font-bold mb-[15px]">
+                    지분 값을 확인해주세요
                   </span>
+                )}
+                <div className="flex flex-row w-[100%]">
+                  <div className="flex flex-row w-[40%] mt-[10px]">
+                    <span className='text-[11pt] font-semibold text-left'>
+                      지분 합
+                    </span>
+                  </div>
+                  <div className="flex flex-row gap-[10px] w-[60%] justify-end mr-5">
+                    <input 
+                      className={`w-[80px] text-center h-[40px] rounded-lg px-2 border-2 border-gray-300 text-[11pt] font-semibold ${biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0) == parseInt(biddingInfo.denominator[0]) ? 'text-green-500' : 'text-red-500'}`}
+                      type="text"
+                      readOnly
+                      value={isNaN(biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)) ? 0 : biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)}
+                    />
+                    <span className='mt-[5px]'> / </span>
+                    <input 
+                      className={`w-[80px] text-center h-[40px] rounded-lg px-2 border-2 border-gray-300 text-[11pt] font-semibold  text-black`}
+                      type="text"
+                      readOnly
+                      value={'100'}
+                    />
+                  </div>
                 </div>
-                <div className="flex flex-row gap-[10px] w-[60%] justify-end mr-5">
-                  <input 
-                    className={`w-[80px] text-center h-[40px] rounded-lg px-2 border-2 border-gray-300 text-[11pt] font-semibold ${biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0) == parseInt(biddingInfo.denominator[0]) ? 'text-green-500' : 'text-red-500'}`}
-                    type="text"
-                    readOnly
-                    value={isNaN(biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)) ? 0 : biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)}
-                  />
-                  <span className='mt-[5px]'> / </span>
-                  <input 
-                    className={`w-[80px] text-center h-[40px] rounded-lg px-2 border-2 border-gray-300 text-[11pt] font-semibold  text-black`}
-                    type="text"
-                    readOnly
-                    value={'100'}
-                  />
-                </div>
+              </div>
               </>
             )}
           </div>
