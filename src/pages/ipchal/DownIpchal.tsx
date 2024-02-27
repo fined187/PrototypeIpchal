@@ -28,7 +28,7 @@ export default function DownIpchal() {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `${biddingInfo.sagunNum}_${nowDate}.pdf`;
+        a.download = `${biddingInfo.fileName}.pdf`;
         a.click();
         console.log(response)
         if (response.status === 200) {
@@ -75,7 +75,6 @@ export default function DownIpchal() {
     }
     handleGetPdfUrl()
   }, [])
-  console.log(pdfUrl)
   const handleHeight = () => {
     let height = window.innerHeight;
     if (document && document.getElementById('box')) {

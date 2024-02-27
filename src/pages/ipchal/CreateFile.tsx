@@ -110,7 +110,9 @@ export default function CreateFile() {
           isFileCreated: true,
           pdfFile: file,
         });
-        handleDownload(file)
+        if (biddingInfo.aesUserId === '') {
+          handleDownload(file)
+        }
       });
       captureDiv && captureDiv.style.display === 'block' ? captureDiv.style.display = 'none' : captureDiv.style.display = 'none'
     }
@@ -170,6 +172,10 @@ const handleDownload = (file: Blob) => {
 
   useEffect(() => {
     setFileName(`${biddingInfo.sagunNum}_` + format(date, 'yyyyMMddHHmmss'))
+    setBiddingInfo({
+      ...biddingInfo,
+      fileName: `${biddingInfo.sagunNum}_` + format(date, 'yyyyMMddHHmmss'),
+    })
     setLoading(true)
     const handleGetResult = async () => {
       try {
@@ -204,9 +210,13 @@ const handleDownload = (file: Blob) => {
                 <input
                   aria-label='파일 이름'
                   className="w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
-                  value={`${biddingInfo.aesUserId !== '' ? biddingInfo.aesUserId : `${biddingInfo.sagunNum}`}_` + format(date, 'yyyyMMddHHmmss')}
+                  value={fileName || biddingInfo.fileName}
                   onChange={(e) => {
                     setFileName(e.target.value)
+                    setBiddingInfo({
+                      ...biddingInfo,
+                      fileName: e.target.value,
+                    })
                   }} 
                 />
               </div>
