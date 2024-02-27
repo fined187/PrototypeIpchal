@@ -140,6 +140,30 @@ export default function SearchIpchal() {
     }
   }
 
+  const getScrollbarWidth = () => {
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.width = '100px';
+
+    document.body.appendChild(outer);
+
+    const widthNoScroll = outer.offsetWidth;
+    // force scrollbars
+    outer.style.overflow = 'scroll';
+
+    // add innerdiv
+    const inner = document.createElement('div');
+    inner.style.width = '100%';
+    outer.appendChild(inner);        
+
+    const widthWithScroll = inner.offsetWidth;
+
+    // remove divs
+    outer.parentNode?.removeChild(outer);
+
+    return widthNoScroll - widthWithScroll; 
+  }
+
   const date = new Date()
   const nowDate = date.getFullYear().toString() + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) :  (date.getMonth() + 1)).toString() + date.getDate().toString()
   
@@ -194,7 +218,7 @@ export default function SearchIpchal() {
           </div>
         ) : searchResult === 2 && getData?.cases?.length > 0 ? (
           <>
-            <div className="md:flex hidden flex-col w-[95%] bg-white md:mt-[200px] mt-[100px] items-center rounded-lg absolute pt-[20px] pb-[30px]">
+            <div className="md:flex hidden flex-col w-[95%] bg-white max-h-[600px] md:mt-[150px] mt-[100px] items-center rounded-lg absolute pt-[20px] pb-[30px] ">
               <div className="flex flex-row w-[95%]">
                 <div className="flex justify-start">
                   <span className="md:text-[1rem] text-[0.8rem] font-bold font-NanumGothic not-italic">
@@ -205,7 +229,7 @@ export default function SearchIpchal() {
                   </span>
                 </div>
               </div>
-              <div className="md:flex hidden flex-row w-[95%] h-[50px] border border-black bg-gray-300">
+              <div className={`md:flex hidden flex-row h-[50px] border border-black bg-gray-300 w-[95%]`}>
                 <div className="flex flex-col w-[15%] h-[100%] border-black border-r-[1px] justify-center items-center">
                   <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-bold ">
                     매각기일
@@ -276,7 +300,7 @@ export default function SearchIpchal() {
                 ))}
               </div>
             </div>
-            <div className="md:hidden flex flex-col w-[95%] bg-white md:mt-[200px] mt-[100px] items-center rounded-lg absolute pt-[20px] pb-[30px] overflow-y-auto scrollbar-hide">
+            <div className="md:hidden flex flex-col w-[95%] bg-white md:mt-[200px] mt-[100px] items-center rounded-lg absolute pt-[20px] pb-[30px] overflow-y-auto ">
               <div className="flex flex-row w-[95%]">
                 <div className="flex justify-start">
                   <span className="text-[1rem] font-bold font-NanumGothic not-italic">

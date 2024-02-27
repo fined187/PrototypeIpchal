@@ -32,7 +32,6 @@ export default function DownIpchal() {
         a.click();
         console.log(response)
         if (response.status === 200) {
-          alert('파일 다운로드가 성공했습니다.');
           setLoading(false)
         } else {
           alert('파일 다운로드가 실패했습니다.');

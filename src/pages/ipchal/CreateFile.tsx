@@ -171,10 +171,10 @@ const handleDownload = (file: Blob) => {
   }
 
   useEffect(() => {
-    setFileName(`${biddingInfo.sagunNum}_` + format(date, 'yyyyMMddHHmmss'))
+    setFileName(`${biddingInfo.sagunNum.trim()}_` + format(date, 'yyyyMMddHHmmss'))
     setBiddingInfo({
       ...biddingInfo,
-      fileName: `${biddingInfo.sagunNum}_` + format(date, 'yyyyMMddHHmmss'),
+      fileName: `${biddingInfo.sagunNum.trim()}_` + format(date, 'yyyyMMddHHmmss'),
     })
     setLoading(true)
     const handleGetResult = async () => {
@@ -210,7 +210,7 @@ const handleDownload = (file: Blob) => {
                 <input
                   aria-label='파일 이름'
                   className="w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
-                  value={fileName || biddingInfo.fileName}
+                  value={fileName.trim() || biddingInfo.fileName.trim()}
                   onChange={(e) => {
                     setFileName(e.target.value)
                     setBiddingInfo({

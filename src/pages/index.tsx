@@ -67,11 +67,11 @@ export default function Home() {
     ]
   })
   const router = useRouter()
-  const handleGetIpchalInfo = async (query: string) => {
+  const handleGetIpchalInfo = async (mstSeq: string, userId: string) => {
     setLoading(true)
     if (typeof window !== 'undefined') {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${Number(query)}`, {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${Number(mstSeq)}`, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -98,7 +98,8 @@ export default function Home() {
           })
           setBiddingForm({
             ...biddingForm,
-            mstSeq: Number(query),
+            mstSeq: Number(mstSeq),
+            aesUserId: userId ?? '',
             state: response.data.data?.state,
             mulNo: response.data.data?.mulNo === '' ? '1' : response.data.data?.mulNo,
             caseNo: response.data.data?.caseYear + " 타경 " + response.data.data.caseDetail,
@@ -227,12 +228,13 @@ export default function Home() {
   useEffect(() => {
     const { idcode } = router.query
     const { mstSeq } = router.query
+    const { userId } = router.query
     const handleStart = async () => {
       if (idcode) {
         await handleCheck(idcode as string)
       }
       if (mstSeq) {
-        await handleGetIpchalInfo(mstSeq as string)
+        await handleGetIpchalInfo(mstSeq as string, userId as string)
         handleStateNum()
       }
     }

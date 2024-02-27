@@ -281,7 +281,6 @@ export default function ShareInfo() {
                 shareWay: 'N',
                 denominator: Array(biddingInfo.bidderNum).fill('100'),
               })
-              handleClear()
             }}
           >
             <div className={`${biddingInfo.shareWay === 'N' ? 'flex mr-1' : 'hidden'}`}>
@@ -402,7 +401,7 @@ export default function ShareInfo() {
               <>
               <div className='flex flex-col w-[100%]'>
                 {biddingInfo.shareWay === 'N' && goNext && (
-                  <span className="text-[15px] text-red-500 font-bold mb-[15px]">
+                  <span className="text-[15px] text-red-500 font-bold mb-[15px] text-right mr-[20px]">
                     지분 값을 확인해주세요
                   </span>
                 )}
