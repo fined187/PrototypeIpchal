@@ -232,7 +232,7 @@ export default function ModalAddr({
                     height: '100%',
                   }}
                 >
-                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[70%] w-[100%] justify-center items-center h-[750px] overflow-auto scrollbar-hide rounded-md absolute top-[0px] sm:left-[50%] left-[0%]" style={{
+                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[70%] w-[100%] justify-center items-center md:h-[80vh] h-[100vh] overflow-auto scrollbar-hide rounded-md absolute top-[0px] sm:left-[50%] left-[50%]" style={{
                     zIndex: 11,
                     transform: 'translate(-50%, 0)',
                   }}>
@@ -528,14 +528,13 @@ export default function ModalAddr({
                                   )}
                                 </div>
                               </>
-                            ) : (
+                            ) : addrList?.length === 0 && !emptyView ? (
                               <div className="text-center items-center justify-center mx-auto w-[100%] h-[150px] absolute top-[300px] left-0">
                                 <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
-                                  검색결과가 없습니다.
+                                  검색어를 입력해주세요.
                                 </span>
                               </div>
-                            )}
-                            { emptyView && (
+                            ) : (
                               <div className="text-center items-center justify-center mx-auto w-[100%] h-[150px] absolute top-[300px] left-0">
                                 <span className="text-[12px] font-NanumGothic not-italic font-extrabold text-left">
                                   검색결과가 없습니다.

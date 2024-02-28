@@ -2,7 +2,7 @@ export default function LoadingResult() {
   return (
     <div
       role="status"
-      className="flex items-center justify-center h-[100%] md:w-[50%] w-[100%] bg-mybg rounded-lg animate-pulse dark:bg-gray-700"
+      className="flex items-center justify-center h-[100%] w-[100%] bg-mybg rounded-lg animate-pulse dark:bg-gray-700"
     >
       <svg
         className="w-10 h-10 text-gray-200 dark:text-gray-600"

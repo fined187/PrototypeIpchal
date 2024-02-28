@@ -152,7 +152,7 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
                     {(totalResult.bidders[index]?.peopleSeq) ?? index + 1}
                   </span>
                 </div>
-                <div className="flex flex-col w-[750px] h-[100%]">
+                <div className="flex flex-col w-[100%] h-[100%]">
                   <div className="flex flex-row w-[100%] h-[30%] border-black border-b-[1px]">
                     <div className="flex justify-between w-[20%] border-black border-r-[1px] items-center text-center">
                       <span className="md:text-[12pt] text-[12px] font-batang ml-1">

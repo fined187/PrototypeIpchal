@@ -197,7 +197,7 @@ const handleDownload = (file: Blob) => {
   return (
     <>
       {!loading && (
-        <div className="flex w-[100%] md:h-[100vh] h-[90vh] justify-center bg-white relative">
+        <div className="flex w-[100%] md:h-[100vh] h-[100vh] justify-center bg-white relative">
           <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               파일명과 암호를 입력하세요

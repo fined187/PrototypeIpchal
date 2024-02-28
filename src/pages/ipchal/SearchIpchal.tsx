@@ -106,7 +106,7 @@ export default function SearchIpchal() {
       console.log(error)
       setLoading(false)
     }
-  }
+  } 
   
   const handleNextButton = (number: number, infoId: string, caseNo: string, mulSeq: string) => {
     if (number === 1 && (getAuction === '' || getAuction === null || getAuction === undefined)) {

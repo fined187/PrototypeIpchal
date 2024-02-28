@@ -427,14 +427,14 @@ export default function BidderForm() {
     setValue('bidderJob', [biddingForm.bidJob[stepNum - 1] || ''])
   }, [stepNum, biddingForm])
 
-
+  console.log("bidderForm")
   return (
-    <div className={`flex w-[100%] h-[100vh] bg-white justify-center relative`}>
+    <div className={`flex w-[100%] h-[100vh] bg-mybg justify-center relative overflow-y-auto`}>
       {loading && (
         <Spinner />
       )}
       <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative">
-        <div className='flex flex-col justify-center items-center w-[100%] gap-0'>
+        <div className='flex flex-col justify-center items-center w-[100%]'>
           <div className="flex flex-row flex-wrap justify-center items-center md:pt-[100px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               {stepNum === 1 ? "본인" : "공동입찰자"} 정보를 입력해주세요
@@ -452,7 +452,8 @@ export default function BidderForm() {
           </div>
         </div>
         <div className="flex flex-row gap-10 w-[80%] justify-center">
-          <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${biddingForm?.bidCorpYn[stepNum - 1] === 'I' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`}
+          <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center 
+          ${biddingForm?.bidCorpYn[stepNum - 1] === 'I' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`}
             onClick={() => {
               setBiddingInfo((prev: any) => {
                 const temp = prev.bidderCorpYn
@@ -492,7 +493,8 @@ export default function BidderForm() {
               개인
             </span>
           </div>
-          <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${biddingForm?.bidCorpYn[stepNum - 1] === 'C' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`}
+          <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center 
+            ${biddingForm?.bidCorpYn[stepNum - 1] === 'C' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`}
             onClick={() => {
               setBiddingInfo((prev: any) => {
                 const temp = prev.bidderCorpYn
@@ -540,7 +542,7 @@ export default function BidderForm() {
                   (<div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="bidderName"
-                      className="text-[1rem] font-semibold font-NanumGothic not-italic   text-left text-red-500"
+                      className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500"
                     >
                       {errors.bidderName?.message}
                     </label>
@@ -1176,10 +1178,10 @@ export default function BidderForm() {
                 setValue={setValue}
               />
             </div>
-            <div className={`flex flex-row bg-mybg gap-[10px] justify-center absolute left-0 md:left-[50%] md:translate-x-[-50%] ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:bottom-[10px] bottom-[0px]' : 'md:bottom-[0px] bottom-[0px]'} items-center md:w-[50%] w-[100%]`}>
+            <div className={`flex justify-between gap-[2%] bg-mybg h-[100%] w-[100%] items-center ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'bottom-[0px]' : 'md:bottom-[-20px] bottom-[0px]'}`}>
               <button
                 type="button"
-                className="flex md:w-[35%] w-[33%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+                className="flex w-[34%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
                 onClick={() => {
                   {
                     stepNum === 1
@@ -1194,7 +1196,7 @@ export default function BidderForm() {
               </button>
               <button
                 type="submit"
-                className="flex md:w-[65%] w-[46%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+                className="flex w-[64%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               >
                 <span className="text-white font-bold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
                   다음

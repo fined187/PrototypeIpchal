@@ -597,32 +597,33 @@ export default function BidderFormMod() {
 
 
   return (
-    <div className={`flex w-[100%] md:h-screen ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'h-[95vh]' : 'h-[100vh]'} bg-white justify-center relative`}>
+    <div className={`flex w-[100%] h-[100vh] bg-mybg justify-center relative overflow-y-auto`} style={{
+      zIndex: 1
+    }}>
       {loading && (
         <Spinner />
       )}
-      {!loading && (
-        <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
+        <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative">
           <div className='flex flex-col justify-center items-center w-[100%]'>
             <div className="flex flex-row flex-wrap justify-center items-center md:pt-[100px] pt-[50px]">
-              <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
+              <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
                 {stepNum === 1 ? "본인" : "공동입찰자"} 정보를 입력해주세요
               </span>
               {biddingForm.bidderNum > 1 && (
-                <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8 ml-2">
+                <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8 ml-2">
                   {`(${stepNum} / ${biddingForm.bidderNum})`}
                 </span>
               )}
             </div>
             <div className='flex'>
-              <span className="text-[12px] font-semibold font-NanumGothic not-italic text-left text-red-500">
+              <span className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
                 (* 표시는 필수 입력사항입니다.)
               </span>
             </div>
           </div>
           <div className="flex flex-row gap-10 w-[80%] justify-center">
-            <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-              biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`} 
+            <div className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center 
+            ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'text-white bg-myyellow' : 'text-myyellow bg-white'}`} 
               onClick={() => {
                 setBiddingForm((prev: any) => {
                   const temp = prev.bidCorpYn
@@ -652,8 +653,8 @@ export default function BidderFormMod() {
               </span>
             </div>
             <div
-              className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-                biddingForm.bidCorpYn[stepNum - 1] === 'C'
+              className={`flex flex-row w-[80px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center 
+              ${biddingForm.bidCorpYn[stepNum - 1] === 'C'
                   ? 'text-white bg-myyellow'
                   : 'text-myyellow bg-white'
               }`}
@@ -1216,7 +1217,7 @@ export default function BidderFormMod() {
                   </>
                 )
               }
-              <div className={`flex flex-col w-[100%] h-[60px] gap-1 `}>
+              <div className={`flex flex-col w-[100%] h-[60px] bg-mybg gap-1 relative`}>
                 {biddingForm.agentYn === 'Y' && (
                   <div className="flex flex-col w-[100%] gap-1">
                     <div className='flex justify-between w-[100%]'>
@@ -1278,10 +1279,10 @@ export default function BidderFormMod() {
                   setValue={setValue}
                 />
               </div>
-              <div className={`flex flex-row gap-[10px] fixed ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:bottom-[10px] bottom-[0px]' : 'md:bottom-[0px] bottom-[0px]'} items-center md:w-[26%] w-[80%]`}>
+              <div className={`flex justify-between gap-[2%] bg-mybg items-center md:w-[50%] w-[80%] absolute  ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'bottom-[20px]' : 'bottom-[-25px]'} `}>
                 <button
                   type="button"
-                  className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
+                  className="flex w-[34%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
                   onClick={() => {
                     stepNum === 1 ? setStateNum(6) : setStepNum((prev) => prev - 1)
                   }}
@@ -1292,7 +1293,7 @@ export default function BidderFormMod() {
                 </button>
                 <button
                   type="submit"
-                  className="flex w-[60%] md:w-[65%] h-[37px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+                  className="flex w-[64%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
                 >
                   <span className="text-white font-bold font-NanumGothic md:text-[1.2rem] text-[1rem] leading-[15px] tracking-[-0.9px]">
                     다음
@@ -1302,7 +1303,6 @@ export default function BidderFormMod() {
             </div>
           </form>
         </div>
-      )}
     </div>
   )
 }
