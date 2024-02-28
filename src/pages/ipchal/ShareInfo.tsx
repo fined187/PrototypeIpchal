@@ -227,8 +227,8 @@ export default function ShareInfo() {
   }, [biddingInfo.numerator])
 
   return (
-    <div id='box' className="flex w-[100%] bg-white justify-center relative ">
-      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center mt-[20px] md:pt-[100px] pt-[50px]">
+    <div className={`flex w-[100%] bg-white justify-center relative`}>
+      <div className="flex flex-col w-[100%] h-[100vh] bg-mybg items-center text-center md:pt-[100px] pt-[50px]">
         <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
           입찰자의 지분을 입력해주세요
         </span>
@@ -308,7 +308,7 @@ export default function ShareInfo() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-[30px] md:w-[550px] w-[90%] min-h-[250px] max-h-[450px] bg-white absolute top-[170px] items-center rounded-lg border-slate-500 md:mt-[80px] mt-[30px] pt-[50px] overflow-auto">
+        <div className="flex flex-col gap-[30px] md:w-[550px] w-[90%] min-h-[250px] max-h-[450px] bg-white absolute top-[150px] items-center rounded-lg border-slate-500 md:mt-[80px] mt-[30px] pt-[50px] overflow-auto">
           {loadding && (
             <Spinner />
           )}
@@ -328,7 +328,7 @@ export default function ShareInfo() {
                         type="text"
                         readOnly
                         value={'1'}
-                        className={`border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]`}
+                        className={`border-2 border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[80px]`}
                       />
                       <span>/</span>
                       <input
@@ -337,7 +337,7 @@ export default function ShareInfo() {
                         type="text"
                         readOnly
                         value={biddingInfo.bidderNum}
-                        className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[15px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[40%]"
+                        className="border-2 border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[80px]"
                       />
                     </>
                   ) : (

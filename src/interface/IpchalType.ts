@@ -132,3 +132,61 @@ export interface TotalResultType {
   bidderCount: number
   bidders: BidderList[]
 }
+
+export interface SearchResultType {
+  infoId: string
+  caseNo: string
+  mulSeq: string
+  caseNoString: string
+  subCaseNoString: string
+  biddingDate: string
+  usage: string
+  reqCourtName: string
+  mulNo: string
+  address: string
+  etcAddress: string
+  roadAddress: string
+  oldAddress: string
+  landArea: string
+  landPyungArea: string
+  buildingArea: string
+  buildingPyungArea: string
+  pyungHyung: string
+  failedBidsCount: string
+  checkInfo: string
+  biddingTime: string
+  bidderCount: string
+  nextLowestAmt: number
+  carInfo: string
+  appraisalAmount: number
+  minimumAmount: number
+}
+
+export interface BiddingInfosType {
+  biddingTime: string
+  appraisalAmount: number
+  minimumAmount: number
+  bidDeposit: number
+}
+export interface SearchCheckType {
+  infoId: string
+  caseNo: string
+  mulSeq: string
+  biddingDate: string
+  courtFullName: string
+  reqCourtName: string
+  mulNo: string
+  caseYear: string
+  caseDetail: string
+  startYear: string
+  startMonth: string
+  startDay: string
+  usage: string
+  address: string
+  etcAddress: string
+  roadAddress: string
+  oldAddress: string
+  checkInfo: string
+  carInfo: string
+  biddingInfos: BiddingInfosType[]
+}

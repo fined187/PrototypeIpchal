@@ -301,8 +301,10 @@ export default function BiddingPrice() {
   
   return (
     <>
-      <div id='box' className="flex w-[100%] bg-white justify-center relative">
-        <div className="flex flex-col gap-[20px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative mt-[20px] md:pt-[100px] pt-[50px]">
+      <div className="flex w-[100%] bg-white justify-center relative" style={{
+        height: '100%',
+      }}>
+        <div className="flex flex-col gap-[20px] w-[100%] h-[100vh] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
           {loading && (
               <Spinner />
             )}

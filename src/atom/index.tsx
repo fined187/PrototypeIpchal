@@ -94,6 +94,8 @@ export const biddingInfoState = atom({
     }],
     pdfPassword: '',
     fileName: '',
+    searchResults: [] || null,
+    searchResultState: 1,
   },
   dangerouslyAllowMutability: true,
 })

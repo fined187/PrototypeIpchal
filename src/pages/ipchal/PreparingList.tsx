@@ -68,18 +68,18 @@ export default function PreparingList() {
   return (
     <>
       <div id="box" className="flex flex-col justify-center w-[100%] bg-white items-center text-center relative">
-        <div className="flex flex-col justify-center items-center md:w-[50%] w-[100%] h-[100%] bg-mybg relative">
+        <div className="flex flex-col justify-center items-center w-[100%] h-[100%] bg-mybg relative">
           <div className="flex flex-col gap-[60px] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-NanumGothic font-bold">
               입찰시 준비 서류
             </span>
-            <div className="flex flex-col md:w-[90%] w-[100%] h-[500px] rounded-lg mt-[25px] items-center">
-              <div className="flex bg-gray-200 w-[90%] h-[10%] mx-auto rounded-xl justify-center items-center text-center">
+            <div className="flex flex-col md:w-[550px] w-[100%] h-[500px] rounded-lg items-center">
+              <div className="flex bg-gray-200 w-[100%] h-[10%] mx-auto rounded-xl justify-center items-center text-center">
                 <span className="text-[1rem] font-NanumGothic text-mygold font-bold text-center">
                   {msg}
                 </span>
               </div>
-              <div className="flex flex-col border-gray border-[1px] w-[90%] max-h-[70%] mt-[15px] bg-white rounded-xl gap-[10px] p-[15px] overflow-auto">
+              <div className="flex flex-col border-gray border-[1px] w-[100%] max-h-[70%] mt-[15px] bg-white rounded-xl gap-[10px] p-[15px] overflow-auto">
                 <span className="text-[1rem] font-NanumGothic font-semibold text-left">
                   - 매수신청보증금(최저매각대금의 10%, 재매각일 경우 법원마다 달라 확인요구 보통 20 ~ 30%)
                 </span>
@@ -97,7 +97,7 @@ export default function PreparingList() {
         <Button 
           nextText="닫기"
           handleNextStep={() => {
-            window && window.location.reload()
+            window && window.close()
           }}
           handlePrevStep={() => {
             biddingInfo.aesUserId === '' ? setStateNum(13) : setStateNum(15)

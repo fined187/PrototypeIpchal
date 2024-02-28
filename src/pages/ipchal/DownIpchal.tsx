@@ -95,7 +95,7 @@ export default function DownIpchal() {
   return (
     <>
       <div id="box" className="flex w-[100%] justify-center bg-white relative">
-        <div className="flex flex-col gap-[60px] md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
+        <div className="flex flex-col gap-[60px] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
           {loading ? (
             <Spinner />
           ) : (

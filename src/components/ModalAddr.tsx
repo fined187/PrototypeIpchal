@@ -232,8 +232,9 @@ export default function ModalAddr({
                     height: '100%',
                   }}
                 >
-                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[30%] w-[100%] justify-center items-center h-[750px] overflow-auto scrollbar-hide rounded-md absolute sm:top-[100px] top-[0px] sm:left-[35%] left-[0%]" style={{
-                    zIndex: 11
+                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[70%] w-[100%] justify-center items-center h-[750px] overflow-auto scrollbar-hide rounded-md absolute top-[0px] sm:left-[50%] left-[0%]" style={{
+                    zIndex: 11,
+                    transform: 'translate(-50%, 0)',
                   }}>
                     <div className="flex justify-center flex-col">
                       <div className="flex flex-row justify-between">

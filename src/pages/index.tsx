@@ -160,7 +160,7 @@ export default function Home() {
       }
     }
   }
-  
+
   const handleStateNum = () => {
     if (bidders.state === 0) {
       setStateNum(4)

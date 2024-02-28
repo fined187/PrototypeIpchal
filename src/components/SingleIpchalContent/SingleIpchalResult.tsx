@@ -25,7 +25,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
 
   return (
     <div className="flex flex-col bg-white max-h-[2600px] h-[1300px] w-[100%] mx-auto relative justify-center items-center" id="wrap-capture">
-      <div className="flex flex-col bg-mybg h-[100%] md:w-[50%] w-[100%] mx-auto relative justify-center items-center" id="capture">
+      <div className="flex flex-col bg-mybg h-[100%] w-[100%] mx-auto relative justify-center items-center" id="capture">
         <div className="w-[100%] md:max-w-[850px] overflow-x-scroll absolute top-[100px] h-[600px] bg-mybg scrollbar-hide">
           <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-mybg">
             {/* 첫 번째 박스 */}

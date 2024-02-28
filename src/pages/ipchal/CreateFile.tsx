@@ -198,7 +198,7 @@ const handleDownload = (file: Blob) => {
     <>
       {!loading && (
         <div className="flex w-[100%] md:h-[100vh] h-[90vh] justify-center bg-white relative">
-          <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
+          <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               파일명과 암호를 입력하세요
             </span>
@@ -280,7 +280,7 @@ const handleDownload = (file: Blob) => {
         </div>
       )}
       {loading && (
-        <div className="flex justify-center items-center md:w-[50%] w-[100%] mx-auto bg-mybg h-screen">
+        <div className="flex justify-center items-center w-[100%] mx-auto bg-mybg h-screen">
           <Spinner />
         </div>
       )}

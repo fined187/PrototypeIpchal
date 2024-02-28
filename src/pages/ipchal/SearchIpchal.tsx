@@ -1,6 +1,7 @@
 import { biddingInfoState, stepState } from "@/atom";
 import Spinner from "@/components/Spinner";
 import Button from "@/components/shared/Button";
+import { SearchResultType } from "@/interface/IpchalType";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -12,7 +13,7 @@ export default function SearchIpchal() {
   const [getCase, setGetCase] = useState<string>('2024')
   const [getAuction, setGetAuction] = useState<string>('')
   const [searchResult, setSearchResult] = useState<number>(1)
-  const [getData, setGetData] = useState<any>([])
+  const [getData, setGetData] = useState<SearchResultType[] | null>(null)
   const handleHeight = () => {
     let height = window.innerHeight;
     if (document && document.getElementById('box')) {
@@ -43,10 +44,14 @@ export default function SearchIpchal() {
       const response = await axios.get(`https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/cases/${caseNum}/${autionNum}`)
       if (response.status === 200) {
         if (response.data.data.cases.length > 0) {
-          setGetData(response.data.data)
+          setGetData(response.data.data.cases)
+          setBiddingInfo({
+            ...biddingInfo,
+            searchResults: response.data.data.cases
+          })
           setSearchResult(2)
         } else {
-          setGetData([])
+          setGetData(null)
           setSearchResult(3)
         }
         setLoading(false)
@@ -58,7 +63,7 @@ export default function SearchIpchal() {
     }
   }
 
-  const handleNextStep = async(infoId: string, caseNo: string, mulSeq: string) => {
+  const handleSearchResult = async(infoId: string, caseNo: string, mulSeq: string) => {
     setLoading(true)
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}cases/checks`, {
@@ -71,6 +76,7 @@ export default function SearchIpchal() {
         }
       })
       if (response.status === 200) {
+        console.log(response)
         setBiddingInfo({
           ...biddingInfo,
           infoId: response.data.data.infoId,
@@ -96,37 +102,29 @@ export default function SearchIpchal() {
           biddingInfos: response.data.data.biddingInfos,
         })
         setLoading(false)
-        setStateNum(2)
+        setStateNum(stateNum + 1)
       } 
     } catch (error) {
       console.log(error)
       setLoading(false)
     }
   }
-
+  
   const handleNextButton = (number: number, infoId: string, caseNo: string, mulSeq: string) => {
-    if (number === 1) {
-      handleGetAlert()
+    if (number === 1 && getAuction === '') {
+      alert('사건번호를 입력해 주세요.')
+    } else if (number === 1 && getAuction !== '') {
+      handleSearch(getCase, getAuction)
     } else if (number === 2) {
-      if (getData?.cases?.length > 1) {
-        handleNextStep(infoId, caseNo, mulSeq)
-      } else if (getData?.cases?.length === 1) {
-        handleNextStep(getData.cases[0].infoId, getData.cases[0].caseNo, getData.cases[0].mulSeq)
+      if (getData?.length === 1) {
+        handleSearchResult(infoId, caseNo, mulSeq)
+      } else {
+        alert('검색결과가 2건 이상입니다. 검색 결과를 클릭해주세요.')
       }
     } else if (number === 3) {
-      handleGetAlert()
-    }
-  }
-
-  const handleGetAlert = () => {
-    if (getAuction === '') {
-      alert('경매번호를 입력해 주세요.')
-    } else if (getData === '' && searchResult === 1) {
-      alert('입찰하실 사건번호를 검색해주세요.')
-    } else if (searchResult === 3) {
       alert('검색결과가 없습니다. 이전 버튼을 눌러 다시 검색해주세요.')
     } else {
-      handleSearch(getCase, getAuction)
+      setStateNum(stateNum + 1)
     }
   }
 
@@ -140,39 +138,28 @@ export default function SearchIpchal() {
     }
   }
 
-  const getScrollbarWidth = () => {
-    const outer = document.createElement('div');
-    outer.style.visibility = 'hidden';
-    outer.style.width = '100px';
-
-    document.body.appendChild(outer);
-
-    const widthNoScroll = outer.offsetWidth;
-    // force scrollbars
-    outer.style.overflow = 'scroll';
-
-    // add innerdiv
-    const inner = document.createElement('div');
-    inner.style.width = '100%';
-    outer.appendChild(inner);        
-
-    const widthWithScroll = inner.offsetWidth;
-
-    // remove divs
-    outer.parentNode?.removeChild(outer);
-
-    return widthNoScroll - widthWithScroll; 
-  }
-
   const date = new Date()
   const nowDate = date.getFullYear().toString() + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) :  (date.getMonth() + 1)).toString() + date.getDate().toString()
-  
+
+  useEffect(() => {
+    if (biddingInfo.searchResults.length > 0 && biddingInfo.searchResultState === 2) {
+      setGetCase((biddingInfo.searchResults[0] as { caseNoString: string })?.caseNoString?.substring(0, 4))
+      setGetAuction((biddingInfo.searchResults[0] as { caseNoString: string })?.caseNoString.replace("-", "")?.substring(4, (biddingInfo.searchResults[0] as { caseNoString: string })?.caseNoString?.length))
+      setGetData(biddingInfo.searchResults)
+      setSearchResult(2)
+    } else {
+      setGetCase((biddingInfo.searchResults[0] as { caseNoString: string })?.caseNoString.substring(0, 4))
+      setGetAuction((biddingInfo.searchResults[0] as { caseNoString: string })?.caseNoString.replace("-", "")?.substring(4, (biddingInfo.searchResults[0] as { caseNoString: string })?.caseNoString?.length))
+      setSearchResult(1)
+    }
+  }, [])
+
   return (
     <div id='box' className="flex w-[100%] justify-center bg-white relative">
       {loading && (
           <Spinner />
         )}
-      <div className="flex flex-col md:w-[50%] w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
+      <div className="flex flex-col w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
         <div className="flex md:pt-[100px] pt-[50px]">
           <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
             입찰예정 경매사건을 입력해 주세요.
@@ -186,7 +173,7 @@ export default function SearchIpchal() {
                 <select id="yearSelect" className="border-gray border w-[150px] h-[40px] rounded-lg outline-myyellow md:text-[1rem] text-[0.8rem]" onChange={(e) => {
                   setGetCase(e.target.value)
                 }}
-                  value={getCase || '2024'}
+                  value={getCase}
                 >
                   {Array.from({ length: parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - 1994 + 1) : (parseInt(nowDate.substring(0, 4)) - 1994 + 2) }).map((_, index) => (
                     <option key={index} value={parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - index) : (parseInt(nowDate.substring(0, 4)) + 1 - index)}>{parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - index) : (parseInt(nowDate.substring(0, 4)) + 1 - index)}</option>
@@ -209,111 +196,29 @@ export default function SearchIpchal() {
                 />
               </div>
               <div className="w-[60px] h-[40px] bg-mygold ml-2 flex justify-center items-center cursor-pointer rounded-lg" 
-                onClick={() => handleSearch(getCase, getAuction)}>
+                onClick={() => handleNextButton(searchResult, '', '', '')}>
                 <span className="text-white font-bold font-NanumGothic md:text-[1rem] text-[0.8rem]">
                   검색
                 </span>
               </div>
             </div>
           </div>
-        ) : searchResult === 2 && getData?.cases?.length > 0 ? (
+        ) : searchResult === 2 && (getData?.length ?? 0) > 0 ? (
           <>
-            <div className="md:flex hidden flex-col w-[95%] bg-white max-h-[600px] md:mt-[150px] mt-[100px] items-center rounded-lg absolute pt-[20px] pb-[30px] ">
-              <div className="flex flex-row w-[95%]">
-                <div className="flex justify-start">
-                  <span className="md:text-[1rem] text-[0.8rem] font-bold font-NanumGothic not-italic">
-                    검색 결과
-                  </span>
-                  <span className="md:text-[1rem] text-[0.8rem] font-bold font-NanumGothic not-italic text-mygold">
-                    {"(" + getData.cases.length + ")"}
-                  </span>
-                </div>
-              </div>
-              <div className={`md:flex hidden flex-row h-[50px] border border-black bg-gray-300 w-[95%]`}>
-                <div className="flex flex-col w-[15%] h-[100%] border-black border-r-[1px] justify-center items-center">
-                  <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-bold ">
-                    매각기일
-                  </span>
-                  <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-bold ">
-                    용도
-                  </span>
-                </div>
-                <div className="flex w-[60%] h-[100%] border-black border-r-[1px] justify-center items-center">
-                  <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-bold ">
-                    물건기본내역
-                  </span>
-                </div>
-                <div className="flex flex-col w-[25%] h-[100%] border-black justify-center items-center">
-                  <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-bold ">
-                    감정가
-                  </span>
-                  <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-bold ">
-                    최저가
-                  </span>
-                </div>
-              </div>
-              <div className={`border-r-[1px] ${getData?.cases.length <= 4 ? '' : 'border-b-[1px]'} border-l-[1px] border-black w-[95%] min-h-[100px] max-h-[500px] overflow-y-auto scrollbar-hide`}>
-                {getData?.cases?.map((data: any, index: number) => (
-                  <div key={index} className={`flex flex-row w-[100%] h-[100px] ${index > 3 && (getData.cases.length - 1 === index) ? '' : 'border-b-[1px]'} border-black ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'} items-center hover:bg-gray-200 cursor-pointer`} onClick={() => {handleNextButton(searchResult, data.infoId, data.caseNo, data.mulSeq)}}>
-                    <div className="flex flex-col w-[15%] h-[100%] border-black border-r-[1px] justify-center items-center">
-                      <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-semibold ">
-                        {data.biddingDate.substring(0, 4) + '년 ' + data.biddingDate.substring(4, 6) + '월 ' + data.biddingDate.substring(6, 8) + '일'}
-                      </span>
-                      <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-bold text-blue-500">
-                        {"(" + data.usage + ")"}
-                      </span>
-                    </div>
-                    <div className="flex flex-col w-[60%] h-[100%] border-black border-r-[1px] items-start justify-center p-[5px] whitespace-normal">
-                      <span className="md:text-[0.9rem] text-[0.7rem] font-nanum font-semibold text-mygold text-left">
-                        {data.reqCourtName + "계 " + data.caseNoString + "[" + (data.mulNo ? data.mulNo : "1") + "]" + (data.subCaseNoString ? "[" + data.subCaseNoString + "]" : '')}
-                      </span>
-                      <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-semibold text-left">
-                        {data.address + (data.oldAddress ? "(구: " + data.oldAddress + ")" : '') + (data.roadAddress ? "[" + data.roadAddress + "]" : '') +(data.etcAddress ? "[일괄]" + data.etcAddress : '')}
-                      </span>
-                      <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-semibold text-left text-red-500">
-                        {(data.checkInfo ? "[" + data.checkInfo + "]" : '')}
-                      </span>
-                      {
-                        data.usage === ('차량' || '중기') && (data.carInfo) ? 
-                        (
-                          <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-semibold text-left text-black">
-                            {"차량 정보 [" + data.carInfo + "]"}
-                          </span>
-                        )
-                        :
-                        (
-                        <span className="md:text-[0.8rem] text-[0.7rem] font-nanum font-semibold text-left text-black">
-                          {(data.buildingArea ? "건물 " + data.buildingArea + "㎡" + (data.landPyungArea ? "(" + data.landPyungArea + "평)" : "") + (data.pyungHyung > 0 ? "[" + data.pyungHyung + "평형]" : "") + (data.landArea ? " | 토지 " + data.landArea + "㎡" + (data.landPyungArea ? "(" + data.landPyungArea + "평)" : "") : "") : "")}
-                        </span>
-                        )
-                      }
-                    </div>
-                    <div className="flex flex-col w-[25%] h-[100%] justify-center items-center">
-                      <span className="md:text-[1rem] text-[0.8rem] font-nanum font-bold text-center text-black">
-                        {data.appraisalAmount.toLocaleString('ko-KR')}
-                      </span>
-                      <span className="md:text-[1rem] text-[0.8rem] font-nanum font-bold text-center text-blue-500">
-                        {data.minimumAmount.toLocaleString('ko-KR')}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="md:hidden flex flex-col w-[95%] bg-white md:mt-[200px] mt-[100px] items-center rounded-lg absolute pt-[20px] pb-[30px] overflow-y-auto ">
+            <div className="flex flex-col md:w-[55%] w-[95%] bg-white  max-h-[50%] md:mt-[200px] mt-[100px] items-center rounded-lg absolute pt-[20px] pb-[30px] overflow-y-auto cursor-pointer">
               <div className="flex flex-row w-[95%]">
                 <div className="flex justify-start">
                   <span className="text-[1rem] font-bold font-NanumGothic not-italic">
                     검색 결과
                   </span>
                   <span className="text-[1rem] font-bold font-NanumGothic not-italic text-mygold">
-                    {"(" + getData.cases.length + ")"}
+                    {"(" + getData?.length + ")"}
                   </span>
                 </div>
               </div>
-              {getData?.cases?.map((data: any, index: number) => (
+              {getData?.map((data: any, index: number) => (
                 <div key={index} className={`border border-black rounded-lg w-[95%] flex flex-col mt-[10px] pl-[10px] pr-[10px] ${index % 2 === 0 ? 'bg-white' : 'bg-white'} `}
-                  onClick={() => {handleNextButton(searchResult, data.infoId, data.caseNo, data.mulSeq)}}
+                  onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}
                 >
                   <div className="flex flex-row w-[100%] mt-[10px]">
                     <span className="text-[1rem] font-nanum font-bold text-black text-left">
@@ -349,7 +254,7 @@ export default function SearchIpchal() {
                   }
                   <div className="flex justify-between w-[100%]">
                     <div className="flex flex-row">
-                      <div className="flex bg-blue-500 rounded-lg w-[40px] h-[20px] justify-center items-center mt-[5px] mb-[5px]">
+                      <div className="flex bg-blue-500 rounded-lg w-[40px] h-[25px] justify-center items-center mt-[5px] mb-[5px]">
                         <span className="text-[0.7rem] font-nanum font-bold text-white text-center">
                           감정
                         </span>
@@ -361,7 +266,7 @@ export default function SearchIpchal() {
                       </div>
                     </div>
                     <div className="flex flex-row">
-                      <div className="flex bg-mygold rounded-lg w-[40px] h-[20px] justify-center items-center mt-[5px] mb-[5px]">
+                      <div className="flex bg-mygold rounded-lg w-[40px] h-[25px] justify-center items-center mt-[5px] mb-[5px]">
                         <span className="text-[0.7rem] font-nanum font-bold text-white text-center">
                           최저
                         </span>
@@ -394,7 +299,7 @@ export default function SearchIpchal() {
       <Button 
         nextText="다음"
         handleNextStep={() => {
-          getData?.cases?.length === 1 ?  handleNextButton(searchResult, biddingInfo.infoId, biddingInfo.caseNo, biddingInfo.mulSeq) : searchResult === 1 ? handleSearch(getCase, getAuction) : alert('검색결과가 2건 이상입니다. 원하시는 입찰 사건을 선택해주세요.')
+          getData?.length === 1 ? handleSearchResult(getData[0]?.infoId, getData[0]?.caseNo, getData[0]?.mulSeq) : handleNextButton(searchResult, '', '', '')
         }}
         handlePrevStep={handlePrevButton}
       />

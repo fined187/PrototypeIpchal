@@ -82,7 +82,7 @@ export default function AgentCheck() {
   console.log(biddingInfo)
   return (
     <div id="box" className="flex w-[100%] bg-white justify-center relative">
-      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
+      <div className="flex flex-col w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
         <div className="flex flex-col relative md:w-[550px] w-[90%] h-[100px] md:pt-[100px] pt-[50px]">
           <span className="md:text-[1.5rem] text-[1.2rem] font-bold font-Nanum Gothic not-italic leading-8">
             어느 입찰자를 대리하시겠습니까?

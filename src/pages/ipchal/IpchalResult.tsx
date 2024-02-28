@@ -86,6 +86,7 @@ export default function IpchalResult() {
           nextText='확인했습니다'
           handleNextStep={() => setStateNum(stateNum + 1)}
           handlePrevStep={() => setStateNum(stateNum - 1)}
+          bottom='10px'
         />
       </div>
     </>

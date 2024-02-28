@@ -188,7 +188,7 @@ export default function AgentForm() {
   
   return (
     <div id='box' className="flex w-[100%] bg-white justify-center relative">
-      <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
+      <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative">
         <div className="flex flex-col gap-2 justify-center items-center md:pt-[100px] pt-[50px]">
           <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
             대리인 정보를 입력해주세요
@@ -596,7 +596,7 @@ export default function AgentForm() {
                 agentSetValue={setValue}
               />
             </div>
-            <div className="flex flex-row gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[26%] w-[80%] justify-center items-center">
+            <div className="flex flex-row gap-[10px] fixed md:bottom-[80px] bottom-[10px] w-[50%] justify-between items-center">
               <button
                 type="button"
                 className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
@@ -612,7 +612,7 @@ export default function AgentForm() {
               </button>
               <button
                 type="submit"
-                className="flex w-[60%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
+                className="flex w-[65%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
               >
                 <span className="text-white font-bold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
                   다음

@@ -24,7 +24,7 @@ export default function IpchalInfo() {
   }, [])
   return (
     <div id='box' className="flex w-[100%] bg-white justify-center relative">
-      <div className="flex flex-col gap-4 md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:pt-[100px] pt-[50px]">
+      <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center md:pt-[100px] pt-[50px]">
         <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8 bg-mybg">
           입력이 모두 끝났습니다
         </span>

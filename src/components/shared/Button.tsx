@@ -3,11 +3,12 @@ interface ButtonProps {
   handleNextStep?: () => void
   handlePrevStep?: () => void
   nextText?: string
+  bottom?: string
 }
 
-const Button = ({ isDisabled, handlePrevStep, handleNextStep, nextText }: ButtonProps) => {
+const Button = ({ isDisabled, handlePrevStep, handleNextStep, nextText, bottom }: ButtonProps) => {
   return (
-    <div className="flex flex-row fixed items-center md:w-[550px] w-[90%] md:bottom-[80px] bottom-[10px] gap-[10px] ">
+    <div className={`flex flex-row fixed items-center md:w-[550px] w-[90%] ${bottom ? `md:bottom-[${bottom}px] bottom-[10px]` : 'md:bottom-[80px] bottom-[10px]'}   gap-[10px]`} >
       <button
         type="button"
         className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"

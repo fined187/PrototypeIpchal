@@ -63,13 +63,21 @@ export default function StartIpchal() {
           ...biddingInfo,
           aesUserId: userId as string
         })
-        setStateNum(1)
+        setStateNum(stateNum + 1)
+        setBiddingInfo({
+          ...biddingInfo,
+          searchResultState: 1,
+        })
         setLoading(false)
       } else if (!userId && biddingInfo.idcode !== "") {
         setStateNum(2)
         setLoading(false)
       } else {
-        setStateNum(1)
+        setStateNum(stateNum + 1)
+        setBiddingInfo({
+          ...biddingInfo,
+          searchResultState: 1,
+        })
         setLoading(false)
       }
     }
@@ -96,7 +104,7 @@ export default function StartIpchal() {
   return (
     <>
       <div id='box' className={`flex w-[100%] justify-center bg-white relative`} >
-        <div className={`flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}>
+        <div className={`flex flex-col w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}>
           <div className="flex md:pt-[100px] pt-[50px]">
             <span className="md:text-[2rem] text-[1.6rem] font-extrabold font-NanumGothic not-italic md:py-[0px] py-[25px]">
               입찰표 작성을 시작합니다

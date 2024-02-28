@@ -118,7 +118,7 @@ export default function BidderCnt() {
   return (
     <>
       <div id='box' className="flex w-[100%] bg-white justify-center relative">
-        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
+        <div className="flex flex-col w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
           <div className="flex md:pt-[100px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
               입찰하시는 분이 몇 명 이신가요?

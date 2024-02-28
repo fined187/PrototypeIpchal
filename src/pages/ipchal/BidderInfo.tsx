@@ -83,7 +83,7 @@ export default function BidderInfo() {
   return (
     <>
       <div id='box' className="flex w-[100%] bg-white justify-center relative">
-        <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
+        <div className="flex flex-col w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
           {loading && (
             <Spinner />
           )}

@@ -79,7 +79,7 @@ export default function Navbar() {
   }, [stepStateNum])
 
   return (
-    <div className="flex justify-between absolute w-[100%] md:w-[50%] md:h-[100px] h-[50px] left-[50%] bg-mybg mx-auto" style={{
+    <div className="flex justify-between absolute w-[100%] md:h-[100px] h-[50px] left-[50%] bg-mybg mx-auto" style={{
       transform: 'translateX(-50%)',
       zIndex: biddingForm.isModalOpen ? 0 : 10,
     }}>

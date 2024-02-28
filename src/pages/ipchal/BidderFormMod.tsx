@@ -604,7 +604,7 @@ export default function BidderFormMod() {
       {!loading && (
         <div className="flex flex-col gap-4  md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center relative">
           <div className='flex flex-col justify-center items-center w-[100%]'>
-            <div className="flex flex-row flex-wrap justify-center items-center mt-[20px] md:pt-[100px] pt-[50px]">
+            <div className="flex flex-row flex-wrap justify-center items-center md:pt-[100px] pt-[50px]">
               <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
                 {stepNum === 1 ? "본인" : "공동입찰자"} 정보를 입력해주세요
               </span>
@@ -1278,7 +1278,7 @@ export default function BidderFormMod() {
                   setValue={setValue}
                 />
               </div>
-              <div className={`flex flex-row gap-[10px] fixed ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:bottom-[80px] bottom-[0px]' : 'md:bottom-[80px] bottom-[0px]'} items-center md:w-[26%] w-[80%]`}>
+              <div className={`flex flex-row gap-[10px] fixed ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:bottom-[10px] bottom-[0px]' : 'md:bottom-[0px] bottom-[0px]'} items-center md:w-[26%] w-[80%]`}>
                 <button
                   type="button"
                   className="flex w-[35%] h-[36px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
