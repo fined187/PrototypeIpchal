@@ -17,7 +17,7 @@ export default function BidderCnt() {
     } else {
       try {
         const response = await axios.put(
-          `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`,
+          `${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}/bidder-count`,
           {
             bidderCount: Number(e.target.value),
           },
@@ -38,7 +38,7 @@ export default function BidderCnt() {
 
   const handleBiddingCntNextBtn = async () => {
     try {
-      const response = await axios.put(`http://118.217.180.254:8081/ggi/api/bid-form/${biddingInfo.mstSeq}/bidder-count`, {
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}/bidder-count`, {
         bidderCount: biddingInfo.bidderNum,
       }, {
         headers: {

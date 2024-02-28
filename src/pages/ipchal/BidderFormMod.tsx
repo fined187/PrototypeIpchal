@@ -578,24 +578,6 @@ export default function BidderFormMod() {
     })
   }
 
-  useEffect(() => {
-    setValue('bidderName', [biddingForm.bidName[stepNum - 1] || ''])
-    setValue('bidderPhone1', [biddingForm.bidPhone1[stepNum - 1] || ''])
-    setValue('bidderPhone2', [biddingForm.bidPhone2[stepNum - 1] || ''])
-    setValue('bidderPhone3', [biddingForm.bidPhone3[stepNum - 1] || ''])
-    setValue('bidderIdNum1', [biddingForm.bidIdNum1[stepNum - 1] || ''])
-    setValue('bidderIdNum2', [biddingForm.bidIdNum2[stepNum - 1] || ''])
-    setValue('bidderAddr', [biddingForm.bidAddr[stepNum - 1] || ''])
-    setValue('bidderAddrDetail', [biddingForm.bidAddrDetail[stepNum - 1] || ''])
-    setValue('bidderCorpNum1', [biddingForm.bidCorpNum1[stepNum - 1] || ''])
-    setValue('bidderCorpNum2', [biddingForm.bidCorpNum2[stepNum - 1] || ''])
-    setValue('bidderCorpNum3', [biddingForm.bidCorpNum3[stepNum - 1] || ''])
-    setValue('bidderCorpRegiNum1', [biddingForm.bidCorpRegiNum1[stepNum - 1] || ''])
-    setValue('bidderCorpRegiNum2', [biddingForm.bidCorpRegiNum2[stepNum - 1] || ''])
-    setValue('bidderJob', [biddingForm.bidJob[stepNum - 1] || ''])
-  }, [stepNum])
-
-
   return (
     <div className={`flex w-[100%] h-[100vh] bg-mybg justify-center relative overflow-y-auto`} style={{
       zIndex: 1
@@ -1279,7 +1261,7 @@ export default function BidderFormMod() {
                   setValue={setValue}
                 />
               </div>
-              <div className={`flex justify-between gap-[2%] bg-mybg items-center md:w-[50%] w-[80%] absolute  ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'bottom-[20px]' : 'bottom-[-25px]'} `}>
+              <div className={`flex justify-between gap-[2%] bg-mybg items-center md:w-[50%] w-[80%] absolute  ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'bottom-[20px]' : 'bottom-[20px]'}`}>
                 <button
                   type="button"
                   className="flex w-[34%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
