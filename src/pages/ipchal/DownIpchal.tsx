@@ -28,7 +28,7 @@ export default function DownIpchal() {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `${biddingInfo.fileName}.pdf`;
+        a.download = `${biddingInfo.fileName.replace(" ", "")}.pdf`;
         a.click();
         console.log(response)
         if (response.status === 200) {

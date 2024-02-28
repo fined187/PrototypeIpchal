@@ -11,65 +11,67 @@ export default function StartIpchal() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const { userId } = router.query
   const [biddingStatus, setBiddingStatus] = useState(false)
-
+  
   useEffect(() => {
+    const { userId } = router.query
     const { idcode } = router.query
+    if (userId) {
+      setBiddingInfo({
+        ...biddingInfo,
+        aesUserId: userId as string,
+      })
+    }
     const handleGetBiddingStatus = async (idCode: string) => {
-      try {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}case-status`,
-          {
-            idCode: idCode,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
+      if (idcode) {
+        try {
+          const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_API_URL}case-status`,
+            {
+              idCode: idCode,
             },
-          },
-        )
-        if (response.status === 200) {
-          setBiddingStatus(response.data.data.isBiddingStatus)
-          return true;
-        } else {
-          return false;
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            },
+          )
+          if (response.status === 200) {
+            setBiddingStatus(response.data.data.isBiddingStatus)
+            setBiddingInfo({
+              ...biddingInfo,
+              idcode: idCode,
+            })
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
+          console.log(error)
         }
-      } catch (error) {
-        console.log(error)
+      } else {
+        setBiddingStatus(true)
       }
     } 
-    if (idcode) {
-      handleGetBiddingStatus(idcode as string)
-    } else {
-      setBiddingStatus(true)
-    }
-  }, [router.query.idcode])
-
+    handleGetBiddingStatus(idcode as string)
+  }, [router.query.idcode, router.query.userId])
+  
   const handleStart = async () => {
     setLoading(true)
     if (!biddingStatus) {
       alert('입찰기일이 지났거나 현재 입찰 중인 사건이 아닙니다.')
     } else {
-      if (userId && biddingInfo.idcode !== "") {
-        setBiddingInfo({
-          ...biddingInfo,
-          aesUserId: userId as string
-        })
+      if (biddingInfo.idcode !== "") {
         setStateNum(2)
         setLoading(false)
-      } else if (userId && biddingInfo.idcode === "") {
-        setBiddingInfo({
-          ...biddingInfo,
-          aesUserId: userId as string
-        })
+      } else if (biddingInfo.idcode === "") {
         setStateNum(stateNum + 1)
         setBiddingInfo({
           ...biddingInfo,
           searchResultState: 1,
         })
         setLoading(false)
-      } else if (!userId && biddingInfo.idcode !== "") {
+      } else if (biddingInfo.idcode !== "") {
         setStateNum(2)
         setLoading(false)
       } else {
@@ -82,7 +84,6 @@ export default function StartIpchal() {
       }
     }
   }
-
   const handleHeight = () => {
     let height = window.innerHeight;
     if (document && document.getElementById('box')) {

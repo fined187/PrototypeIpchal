@@ -94,7 +94,7 @@ export default function CreateFile() {
           html: `${htmlElement}`,
           mstSeq: biddingInfo.mstSeq,
           password: password,
-          name: fileName,
+          name: fileName.replace(" ", ""),
           pageNum: pageNum,
           userIdYn: biddingInfo.aesUserId ? 'Y' : 'N',
         },
@@ -123,7 +123,7 @@ const handleDownload = (file: Blob) => {
     const url = window.URL.createObjectURL(file);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${fileName}.pdf`;
+    a.download = `${fileName.replace(" ", "")}.pdf`;
     a.click();
     window.URL.revokeObjectURL(url);
   }
@@ -171,10 +171,10 @@ const handleDownload = (file: Blob) => {
   }
 
   useEffect(() => {
-    setFileName(`${biddingInfo.sagunNum.trim()}_` + format(date, 'yyyyMMddHHmmss'))
+    setFileName(`${biddingInfo.sagunNum.replace(" ", "")}_` + format(date, 'yyyyMMddHHmmss'))
     setBiddingInfo({
       ...biddingInfo,
-      fileName: `${biddingInfo.sagunNum.trim()}_` + format(date, 'yyyyMMddHHmmss'),
+      fileName: `${biddingInfo.sagunNum.replace(" ", "")}_` + format(date, 'yyyyMMddHHmmss'),
     })
     setLoading(true)
     const handleGetResult = async () => {
@@ -210,7 +210,7 @@ const handleDownload = (file: Blob) => {
                 <input
                   aria-label='파일 이름'
                   className="w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
-                  value={fileName.trim() || biddingInfo.fileName.trim()}
+                  value={fileName.replace(" ", "") || biddingInfo.fileName.replace(" ", "")}
                   onChange={(e) => {
                     setFileName(e.target.value)
                     setBiddingInfo({

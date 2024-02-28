@@ -11,7 +11,7 @@ export default function SearchIpchal() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [loading, setLoading] = useState<boolean>(false)
   const [getCase, setGetCase] = useState<string>('2024')
-  const [getAuction, setGetAuction] = useState<string>('')
+  const [getAuction, setGetAuction] = useState<string | null>(null)
   const [searchResult, setSearchResult] = useState<number>(1)
   const [getData, setGetData] = useState<SearchResultType[] | null>(null)
   const handleHeight = () => {
@@ -26,10 +26,10 @@ export default function SearchIpchal() {
 
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      handleSearch(getCase, getAuction)
+      handleSearch(getCase, getAuction || '') // Provide a default value of an empty string if getAuction is null
     }
   }
-
+  console.log(getAuction)
   useEffect(() => {
     handleHeight()
     window.addEventListener('resize', handleHeight)
@@ -62,7 +62,6 @@ export default function SearchIpchal() {
       setLoading(false)
     }
   }
-
   const handleSearchResult = async(infoId: string, caseNo: string, mulSeq: string) => {
     setLoading(true)
     try {
@@ -76,7 +75,6 @@ export default function SearchIpchal() {
         }
       })
       if (response.status === 200) {
-        console.log(response)
         setBiddingInfo({
           ...biddingInfo,
           infoId: response.data.data.infoId,
@@ -111,10 +109,11 @@ export default function SearchIpchal() {
   }
   
   const handleNextButton = (number: number, infoId: string, caseNo: string, mulSeq: string) => {
-    if (number === 1 && getAuction === '') {
+    if (number === 1 && (getAuction === '' || getAuction === null || getAuction === undefined)) {
       alert('사건번호를 입력해 주세요.')
-    } else if (number === 1 && getAuction !== '') {
-      handleSearch(getCase, getAuction)
+      return
+    } else if (number === 1 && (getAuction !== '' && getAuction !== null && getAuction !== undefined)) {
+      handleSearch(getCase, getAuction ?? '')
     } else if (number === 2) {
       if (getData?.length === 1) {
         handleSearchResult(infoId, caseNo, mulSeq)
@@ -189,7 +188,7 @@ export default function SearchIpchal() {
                   id="auctionInput"
                   type="text"
                   className="border-gray border md:w-[200px] w-[150px] h-[40px] rounded-lg outline-myyellow font-['nanum'] md:text-[1rem] text-[0.8rem] p-[10px]"
-                  value={getAuction}
+                  value={getAuction || ''}
                   onChange={(e) => setGetAuction(e.target.value)}
                   placeholder="사건번호 입력"
                   onKeyUp={(e) => handleEnter(e)}
