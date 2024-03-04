@@ -134,7 +134,7 @@ export default function BidderForm() {
   const handleUpdate = async () => {
     try {
       if (biddingForm?.bidCorpYn[stepNum - 1] === 'I') {
-        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${stepNum}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           job: (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.agentYn === 'N') ? null : biddingForm.bidJob[stepNum - 1],
@@ -145,7 +145,7 @@ export default function BidderForm() {
           return
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
-        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${bidderList?.bidders[stepNum - 1]?.peopleSeq}`, {
+        const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${stepNum}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           companyNo: biddingForm?.bidCorpNum[stepNum - 1],
@@ -427,7 +427,8 @@ export default function BidderForm() {
     setValue('bidderJob', [biddingForm.bidJob[stepNum - 1] || ''])
   }, [stepNum, biddingForm])
 
-  console.log("bidderForm")
+  console.log(biddingForm)
+
   return (
     <div className={`flex w-[100%] h-[100vh] bg-mybg justify-center relative overflow-y-auto`}>
       {loading && (

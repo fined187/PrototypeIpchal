@@ -225,7 +225,6 @@ export default function ShareInfo() {
       }
     }
   }, [biddingInfo.numerator])
-
   return (
     <div className={`flex w-[100%] bg-white justify-center relative`}>
       <div className="flex flex-col w-[100%] h-[100vh] bg-mybg items-center text-center md:pt-[100px] pt-[50px]">
