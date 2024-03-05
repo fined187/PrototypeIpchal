@@ -29,7 +29,6 @@ export default function SearchIpchal() {
       handleSearch(getCase, getAuction || '') // Provide a default value of an empty string if getAuction is null
     }
   }
-  console.log(getAuction)
   useEffect(() => {
     handleHeight()
     window.addEventListener('resize', handleHeight)

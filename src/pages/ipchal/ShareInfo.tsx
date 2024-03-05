@@ -20,6 +20,8 @@ export default function ShareInfo() {
     }),
   })
 
+  console.log(biddingInfo)
+
   const handleShareList = () => {
     let numerator = (document && document.getElementById('numerator') as HTMLInputElement)?.value
     let denominator = (document && document.getElementById('denominator') as HTMLInputElement)?.value

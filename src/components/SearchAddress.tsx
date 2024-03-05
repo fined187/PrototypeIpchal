@@ -72,7 +72,7 @@ export default function SearchAddress({
       <div className="flex flex-col w-[full]  gap-1">
         <div className="flex w-[100%] ">
           <div className='flex justify-between w-[100%]'>
-            {errors?.bidderAddr?.type === 'required' && stepNum && (biddingForm.bidAddr[stepNum - 1] === '' || biddingForm.bidAddr[stepNum - 1] === undefined) ? (
+            {errors?.bidderAddr?.type === 'required' && stepNum && (biddingForm?.bidAddr[stepNum - 1] === '') ? (
               <div className="flex w-[100%] justify-start">
                 <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
                   주소를 입력해주세요
@@ -107,10 +107,11 @@ export default function SearchAddress({
             <input
               {...register('bidderAddr', { required: true })}
               id="bidderAddr"
+              name='bidderAddr'
               readOnly
               type="text"
               className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2 w-[90%]"
-              value={stepNum && biddingForm.bidAddr[stepNum - 1] ? biddingForm.bidAddr[stepNum - 1] : ''}
+              value={stepNum && biddingForm?.bidAddr[stepNum - 1] ? biddingForm?.bidAddr[stepNum - 1] : ''}
             />
             
           )}
@@ -133,6 +134,7 @@ export default function SearchAddress({
             주소검색
           </button>
         </div>
+        {/* 상세주소 */}
         <div className="flex flex-col w-[100%] bg-mybg gap-1">
           <div className="flex">
             <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left">
@@ -145,7 +147,7 @@ export default function SearchAddress({
               type="text"
               readOnly
               className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2 w-[100%]"
-              value={stepNum && biddingForm.bidAddrDetail[stepNum - 1] ? biddingForm.bidAddrDetail[stepNum - 1] : ''}
+              value={stepNum && biddingForm?.bidAddrDetail[stepNum - 1] ? biddingForm?.bidAddrDetail[stepNum - 1] : ''}
             />
           ))}
           {(agentRegister && (

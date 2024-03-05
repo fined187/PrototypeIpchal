@@ -4,7 +4,7 @@ import Spinner from '@/components/Spinner'
 import { BiddingInfoType } from '@/interface/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { LiaEyeSlashSolid, LiaEyeSolid } from 'react-icons/lia'
 import { useRecoilState, useSetRecoilState } from 'recoil'
@@ -410,6 +410,14 @@ export default function BidderForm() {
     setValue(name, value, { shouldValidate: true })
   }
 
+  // const handleFormValues = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target
+  //   setBiddingForm((prev: any) => {
+  //     const temp = prev
+  //     temp[name][stepNum - 1] = value
+  //     return { ...prev, temp }
+  //   })
+  // }, [])
   useEffect(() => {
     setValue('bidderName', [biddingForm.bidName[stepNum - 1] || ''])
     setValue('bidderPhone1', [biddingForm.bidPhone1[stepNum - 1] || ''])
@@ -426,8 +434,6 @@ export default function BidderForm() {
     setValue('bidderCorpRegiNum2', [biddingForm.bidCorpRegiNum2[stepNum - 1] || ''])
     setValue('bidderJob', [biddingForm.bidJob[stepNum - 1] || ''])
   }, [stepNum, biddingForm])
-
-  console.log(biddingForm)
 
   return (
     <div className={`flex w-[100%] h-[100vh] bg-mybg justify-center relative overflow-y-auto`}>
@@ -539,7 +545,7 @@ export default function BidderForm() {
             <div className="flex flex-col w-[100%] gap-1">
               <div className='flex justify-between w-[100%]'>
                 {(errors.bidderName?.type === 'required') && 
-                  (biddingForm.bidName[stepNum - 1] === '' || biddingForm.bidName[stepNum - 1] === undefined) ?
+                  (biddingInfo.bidderName[stepNum - 1] === '' || biddingInfo.bidderName[stepNum - 1] === undefined) ?
                   (<div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="bidderName"
@@ -567,13 +573,14 @@ export default function BidderForm() {
                     message: '이름은 2자 이상 입력해주세요',
                   },
                 })}
-                value={biddingForm.bidName[stepNum - 1] || ''}
+                value={biddingInfo.bidderName[stepNum - 1] || ''}
                 id="bidderName"
+                name="bidName"
                 type="text"
                 className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2"
                 placeholder="입찰자 성명을 입력해주세요"
                 onChange={(e) => {
-                  setBiddingInfo((prev: any) => {
+                  setBiddingInfo((prev) => {
                     const temp = prev.bidderName
                     temp[stepNum - 1] = e.target.value
                     return { ...prev, bidderName: temp }
@@ -630,6 +637,14 @@ export default function BidderForm() {
                       const temp = prev.bidderPhone1
                       temp[stepNum - 1] = e.target.value
                       return { ...prev, bidderPhone1: temp }
+                    })
+                    setBiddingInfo((prev: any) => {
+                      const temp = prev.bidderPhone1
+                      temp[stepNum - 1] =
+                        e.target.value +
+                        biddingInfo?.bidderPhone2[stepNum - 1] +
+                        biddingInfo?.bidderPhone3[stepNum - 1]
+                      return { ...prev, bidderPhone: temp }
                     })
                     setBiddingForm((prev: any) => {
                       const temp = prev.bidPhone1
