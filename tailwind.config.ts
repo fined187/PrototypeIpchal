@@ -13,6 +13,7 @@ const config: Config = {
       fontFamily: {
         nanum: ['NanumGothic', 'sans-serif'],
         batang: ['Batang', 'serif'],
+        suit: ['Suit', 'serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -48,7 +49,7 @@ const config: Config = {
       mygraybg: '#D1D1D1',
       myyellow: '#D3AB3B',
       myRed: '#FF0000',
-      myBlue: '#4a81a4'
+      myBlue: '#4945FF'
     }
   },
   plugins: [require("tailwind-scrollbar-hide")],

@@ -104,44 +104,38 @@ export default function StartIpchal() {
 
   return (
     <>
-      <div id='box' className={`flex w-[100%] justify-center bg-white relative`} >
-        <div className={`flex flex-col w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}>
+      <div id='box' className={`flex w-[100%] justify-center bg-mybg relative`} >
+        <div className={`flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}>
           <div className="flex md:pt-[100px] pt-[50px]">
-            <span className="md:text-[2rem] text-[1.6rem] font-extrabold font-NanumGothic not-italic md:py-[0px] py-[25px]">
+            <span className="md:text-[40px] text-[1.2rem] font-bold font-['suit'] not-italic">
               입찰표 작성을 시작합니다
             </span>
           </div>
           <div className="flex">
-            <span className="text-[1rem] text-mygray font-bold font-NanumGothic not-italic">
-              질문에 답변해 주세요.
+            <span className="md:text-[1rem] text-[0.8rem] text-mygray font-normal font-['suit'] not-italic">
+              누구나 쉽게 써보는 경매 입찰표
             </span>
           </div>
           <div className="flex sm:w-[50%] w-[100%] justify-center pt-[30px]">
-            <Image
-              src={'/visualImg_big.png'}
-              alt="MainImg"
-              width={350}
-              height={350}
-              style={{
-                height: 'auto',
-                width: 'auto',
-              }}
-            />
+            
           </div>
           <div
-            className="flex bg-mygold w-[180px] h-[46px] rounded-md items-center justify-center cursor-pointer mt-[30px]"
+            className="flex bg-myBlue w-[180px] h-[46px] rounded-full items-center justify-center cursor-pointer mt-[30px]"
             onClick={handleStart}
           >
-            <span className="text-white md:text-[1.2rem] text-[1rem] font-NanumGothic font-extrabold not-italic leading-4">
-              시작하기
+            <span className="text-white md:text-[20px] text-[1rem] font-['suit'] font-extrabold not-italic leading-4">
+              입찰표 작성하기
             </span>
           </div>
-          <div className="flex flex-col w-[80%] justify-center pt-[50px]">
-            <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic text-mygray font-normal">
-              ※ 입찰표의 주민등록번호는 저장하지 않습니다.
+          <div className="flex flex-col justify-center pt-[50px]">
+            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-mygray font-normal text-left">
+              ※ 저장된 입찰표는 해당 물건의 예정된 매각기일 3일 이후 자동으로 삭제됩니다.
             </span>
-            <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic text-mygray font-normal">
-              다음 번 입찰표 작성 시, 개인정보를 다시 입력해주셔야합니다.
+            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-mygray font-normal text-left">
+              ※ 입력하신 주민등록번호 등 개인정보는 저장되지 않으며 새로운 입찰표 작성 시 
+            </span>
+            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-mygray font-normal text-left">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;재입력하셔야 합니다.
             </span>
           </div>
         </div>
