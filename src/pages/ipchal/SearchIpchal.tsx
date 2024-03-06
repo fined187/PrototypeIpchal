@@ -158,120 +158,100 @@ export default function SearchIpchal() {
           <Spinner />
         )}
       <div className="flex flex-col w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
-        <div className="flex md:pt-[100px] pt-[50px]">
-          <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
-            입찰예정 경매사건을 입력해 주세요.
+        <div className="flex flex-col md:pt-[100px] pt-[50px] gap-[25px]">
+          <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic leading-8">
+            {searchResult === 1 ? "입찰 예정인 경매물건을 검색해주세요" : searchResult === 2 ? "입찰서를 작성할 물건을 선택해주세요" : "검색 결과가 없습니다"}
+          </span>
+          <span className="md:text-[1rem] text-[0.8rem] font-normal font-['suit'] not-italic leading-8 text-sutTitle">
+            {searchResult === 1 ? "입찰표 하나 당 한 개의 물건만 검색할 수 있습니다" : searchResult === 2 ? "검색결과가 많을 경우 물건번호, 법원, 감정가, 입찰일을 확인해주세요" : "이전으로 버튼을 눌러 재검색해주세요"}
           </span>
         </div>
         {searchResult === 1 ? (
-          <div className="flex flex-row md:w-[550px] w-[90%] h-[200px] bg-white md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto pt-[30px] pb-[30px]">
-            <div className="flex flex-col w-[100%] justify-center items-center gap-[25px]">
-              <div className="flex flex-row w-[100%] justify-center items-center">
-                <label htmlFor="yearSelect" className="sr-only">Select Year</label>
-                <select id="yearSelect" className="border-gray border w-[150px] h-[40px] rounded-lg outline-myyellow md:text-[1rem] text-[0.8rem]" onChange={(e) => {
-                  setGetCase(e.target.value)
-                }}
-                  value={getCase}
-                >
-                  {Array.from({ length: parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - 1994 + 1) : (parseInt(nowDate.substring(0, 4)) - 1994 + 2) }).map((_, index) => (
-                    <option key={index} value={parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - index) : (parseInt(nowDate.substring(0, 4)) + 1 - index)}>{parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - index) : (parseInt(nowDate.substring(0, 4)) + 1 - index)}</option>
-                  ))}
-                </select>
-                &nbsp;
-                <span className="font-['nanum] md:text-[1rem] text-[0.8rem]">
-                  타경
-                </span>
-                &nbsp;
-                <label htmlFor="auctionInput" className="sr-only">Auction Number</label>
-                <input 
-                  id="auctionInput"
-                  type="text"
-                  className="border-gray border md:w-[200px] w-[150px] h-[40px] rounded-lg outline-myyellow font-['nanum'] md:text-[1rem] text-[0.8rem] p-[10px]"
-                  value={getAuction || ''}
-                  onChange={(e) => setGetAuction(e.target.value)}
-                  placeholder="사건번호 입력"
-                  onKeyUp={(e) => handleEnter(e)}
-                />
-              </div>
-              <div className="w-[60px] h-[40px] bg-mygold ml-2 flex justify-center items-center cursor-pointer rounded-lg" 
-                onClick={() => handleNextButton(searchResult, '', '', '')}>
-                <span className="text-white font-bold font-NanumGothic md:text-[1rem] text-[0.8rem]">
-                  검색
-                </span>
-              </div>
+          <div className="flex flex-row md:w-[550px] w-[90%] h-[200px] md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto pt-[30px] pb-[30px]">
+            <div className="flex w-[80%] justify-between items-center">
+              <label htmlFor="yearSelect" className="sr-only">Select Year</label>
+              <select id="yearSelect" className="border-gray border w-[150px] h-[40px] rounded-lg outline-myBlue md:text-[1rem] text-[0.8rem] text-right pr-1" onChange={(e) => {
+                setGetCase(e.target.value)
+              }}
+                value={getCase}
+              >
+                {Array.from({ length: parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - 1994 + 1) : (parseInt(nowDate.substring(0, 4)) - 1994 + 2) }).map((_, index) => (
+                  <option key={index} value={parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - index) : (parseInt(nowDate.substring(0, 4)) + 1 - index)}>{parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - index) : (parseInt(nowDate.substring(0, 4)) + 1 - index)}</option>
+                ))}
+              </select>
+              <span className="font-['suit'] font-bold md:text-[1.2rem] text-[1rem]">
+                타경
+              </span>
+              <label htmlFor="auctionInput" className="sr-only">Auction Number</label>
+              <input 
+                id="auctionInput"
+                type="text"
+                className="border-gray border md:w-[200px] w-[150px] h-[40px] rounded-lg outline-myBlue font-['suit'] md:text-[1rem] text-[0.8rem] p-[10px] text-right"
+                value={getAuction || ''}
+                onChange={(e) => setGetAuction(e.target.value)}
+                placeholder="사건번호 (ex.10522)"
+                onKeyUp={(e) => handleEnter(e)}
+              />
+            </div>
+            <div className="w-[60px] h-[40px] bg-myBlue flex justify-center items-center cursor-pointer rounded-lg ml-[10px]" 
+              onClick={() => handleNextButton(searchResult, '', '', '')}>
+              <span className="text-white font-bold font-NanumGothic md:text-[1rem] text-[0.8rem]">
+                검색
+              </span>
             </div>
           </div>
         ) : searchResult === 2 && (getData?.length ?? 0) > 0 ? (
           <>
-            <div className="flex flex-col md:w-[55%] w-[95%] bg-white  max-h-[50%] md:mt-[200px] mt-[100px] items-center rounded-lg absolute pt-[20px] pb-[30px] overflow-y-auto cursor-pointer">
-              <div className="flex flex-row w-[95%]">
-                <div className="flex justify-start">
-                  <span className="text-[1rem] font-bold font-NanumGothic not-italic">
-                    검색 결과
-                  </span>
-                  <span className="text-[1rem] font-bold font-NanumGothic not-italic text-mygold">
-                    {"(" + getData?.length + ")"}
-                  </span>
-                </div>
-              </div>
+            <div className="flex flex-col justify-start items-center w-[550px] h-[350px] overflow-y-auto pt-[10px] gap-[10px]">
               {getData?.map((data: any, index: number) => (
-                <div key={index} className={`border border-black rounded-lg w-[95%] flex flex-col mt-[10px] pl-[10px] pr-[10px] ${index % 2 === 0 ? 'bg-white' : 'bg-white'} `}
+              <div className="flex flex-col md:w-[500px] w-[90%] bg-white h-[110px]  items-center rounded-lg pb-[10px] cursor-pointer">
+                <div key={index} className={`w-[95%] flex flex-col`}
                   onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}
                 >
                   <div className="flex flex-row w-[100%] mt-[10px]">
+                    <span className="text-[1rem] font-nanum font-bold text-myOrange text-left">
+                      {data.reqCourtName + "계 "}
+                    </span>
                     <span className="text-[1rem] font-nanum font-bold text-black text-left">
-                      {data.reqCourtName + "계 " + data.caseNoString + "[" + (data.mulNo ? data.mulNo : "1") + "]" + (data.subCaseNoString ? "[" + data.subCaseNoString + "]" : '')}
+                      &nbsp;{data.caseNoString + "[" + (data.mulNo ? data.mulNo : "1") + "]" + (data.subCaseNoString ? "[" + data.subCaseNoString + "]" : '')}
                     </span>
-                    <span className="text-[1rem] font-nanum font-bold text-mygold text-left ml-[10px]">
-                      {data.biddingDate.substring(4, 6) + '.' + data.biddingDate.substring(6, 8)}
-                    </span>
-                  </div>
-                  <div className="flex w-[100%] justify-start whitespace-normal">
-                    <span className="text-[0.8rem] font-nanum font-bold text-left">
-                      {data.address + (data.oldAddress ? "(구: " + data.oldAddress + ")" : '') + (data.roadAddress ? "[" + data.roadAddress + "]" : '') +(data.etcAddress ? "[일괄]" + data.etcAddress : '')}
+                    <span className="text-[1rem] font-nanum font-bold text-black text-left ml-[10px]">
+                      {data.usage}
                     </span>
                   </div>
-                  <div className="flex w-[100%] justify-start whitespace-normal">
-                    <span className="text-[0.8rem] font-nanum font-bold text-left text-red-500">
-                      {(data.checkInfo ? "[" + data.checkInfo + "]" : '')}
-                    </span>
-                  </div>
-                  {
-                    data.usage === ('차량' || '중기') && (data.carInfo) ? 
-                    (
-                      <span className="text-[0.8rem] font-nanum font-semibold text-left text-black">
-                        {"차량 정보 [" + data.carInfo + "]"}
-                      </span>
-                    )
-                    :
-                    (
-                    <span className="text-[0.8rem] font-nanum font-semibold text-left text-black">
-                      {(data.buildingArea ? "건물 " + data.buildingArea + "㎡" + (data.landPyungArea ? "(" + data.landPyungArea + "평)" : "") + (data.pyungHyung > 0 ? "[" + data.pyungHyung + "평형]" : "") + (data.landArea ? " | 토지 " + data.landArea + "㎡" + (data.landPyungArea ? "(" + data.landPyungArea + "평)" : "") : "") : "")}
-                    </span>
-                    )
-                  }
-                  <div className="flex justify-between w-[100%]">
-                    <div className="flex flex-row">
-                      <div className="flex bg-blue-500 rounded-lg w-[40px] h-[25px] justify-center items-center mt-[5px] mb-[5px]">
-                        <span className="text-[0.7rem] font-nanum font-bold text-white text-center">
-                          감정
-                        </span>
+                    <div className="flex justify-between w-[100%]">
+                      <div className="flex flex-col w-[50%] h-[60px]">
+                        <div className="flex flex-row mt-[5px] mb-[5px]">
+                          <div className="flex justify-center items-center">
+                            <span className="text-[1rem] font-['suit'] text-black text-center">
+                              감정가
+                            </span>
+                          </div>
+                          <div className="flex justify-center items-center">
+                            <span className="text-[1rem] font-['suit'] text-black ml-[10px]">
+                              {data.appraisalAmount.toLocaleString('ko-KR')}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex flex-row">
+                          <div className="flex justify-center items-center">
+                            <span className="text-[1rem] font-['suit'] text-black text-center">
+                              최저가
+                            </span>
+                          </div>
+                          <div className="flex flex-row justify-center items-center">
+                            <span className="text-[1rem] font-['suit'] text-myBlue ml-[10px]">
+                              {"(" + data.rate + ")"}
+                            </span>
+                            <span className="text-[1rem] font-['suit'] text-black ml-[10px]">
+                              {data.minimumAmount.toLocaleString('ko-KR')}
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex justify-center items-center mt-[5px] mb-[5px]">
-                        <span className="text-[0.8rem] font-nanum font-bold text-black ml-[10px]">
-                          {data.appraisalAmount.toLocaleString('ko-KR')}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex flex-row">
-                      <div className="flex bg-mygold rounded-lg w-[40px] h-[25px] justify-center items-center mt-[5px] mb-[5px]">
-                        <span className="text-[0.7rem] font-nanum font-bold text-white text-center">
-                          최저
-                        </span>
-                      </div>
-                      <div className="flex justify-center items-center mt-[5px] mb-[5px]">
-                        <span className="text-[0.8rem] font-nanum font-bold text-black ml-[10px]">
-                          {data.minimumAmount.toLocaleString('ko-KR')}
+                      <div className="flex w-[150px] h-[60px] rounded-md justify-center items-center bg-searchBg">
+                        <span className="text-center font-['suit'] text-[1rem] font-bold">
+                          {data.biddingDateString + " " + "입찰"}
                         </span>
                       </div>
                     </div>
@@ -295,11 +275,11 @@ export default function SearchIpchal() {
         )}
       </div>
       <Button 
-        nextText="다음"
         handleNextStep={() => {
           getData?.length === 1 ? handleSearchResult(getData[0]?.infoId, getData[0]?.caseNo, getData[0]?.mulSeq) : handleNextButton(searchResult, '', '', '')
         }}
         handlePrevStep={handlePrevButton}
+        isDisabled={getAuction === '' || getAuction === null || getAuction === undefined}
       />
     </div>
   )

@@ -6,59 +6,14 @@ import { useRecoilValue } from 'recoil'
 
 export default function Navbar() {
   const [statusBar, setStatusBar] = useState<number>(0)
-  const [menuTitle, setMenuTitle] = useState<string>('')
   const stepStateNum = useRecoilValue(stepState)
   const biddingForm = useRecoilValue(biddingInfoState)
-  const updateMenuTitle = () => {
-    if (stepStateNum === 0) {
-      setMenuTitle('')
-    } else if (stepStateNum === 1) {
-      setMenuTitle('입찰 사건 검색')
-    } else if (stepStateNum === 3 && biddingForm.biddingInfos.length > 1) {
-      setMenuTitle('경매 시간 선택')
-    } else if (stepStateNum === 2 && biddingForm.biddingInfos.length === 1) {
-      setMenuTitle('사건 정보 확인')
-    } else if (stepStateNum === 4) {
-      setMenuTitle('대리인 확인')
-    } else if (stepStateNum === 5 && biddingForm.bidder === 'agent') {
-      setMenuTitle('대리인 정보 입력')
-    } else if (stepStateNum === 6) {
-      setMenuTitle('입찰자 수')
-    } else if (stepStateNum === 7 && biddingForm.bidder === 'agent') {
-      setMenuTitle('대리인 입찰자 정보 입력')
-    } else if (stepStateNum === 7 && biddingForm.bidder === 'self') {
-      setMenuTitle('입찰자 정보 입력')
-    } else if (stepStateNum === 8 && biddingForm.bidderNum > 1) {
-      setMenuTitle('공동 입찰자 지분')
-    } else if (stepStateNum === 9) {
-      setMenuTitle('입찰 가격')
-    } else if (stepStateNum === 10) {
-      setMenuTitle('보증금 제공 방법')
-    } else if (stepStateNum === 11) {
-      setMenuTitle('입찰표 입력 완료')
-    } else if (stepStateNum === 12) {
-      setMenuTitle('입찰표 확인')
-    } else if (stepStateNum === 13) {
-      setMenuTitle('파일 만들기')
-    } else if (stepStateNum === 14) {
-      setMenuTitle('입찰표 파일 공유')
-    } else if (stepStateNum === 15) {
-      setMenuTitle('입찰표 작성 완료')
-    } else if (stepStateNum === 16) {
-      setMenuTitle('입찰자 정보 입력')
-    } else if (stepStateNum === 17) {
-      setMenuTitle('대리인 정보 입력')
-    } else if (stepStateNum === 18) {
-      setMenuTitle('입찰시 준비 서류')
-    } else if (stepStateNum === 19) {
-      setMenuTitle('대리 입찰인 선택')
-    }
-  }
+  
 
   const handleProgressBar = () => {
     if (stepStateNum === 0) {
       setStatusBar(0)
-    } else if ((stepStateNum >= 2 && stepStateNum <= 4)) {
+    } else if ((stepStateNum >= 1 && stepStateNum <= 4)) {
       setStatusBar(10)
     } else if ((stepStateNum >= 5 && stepStateNum <= 7)  || (stepStateNum >= 16 && stepStateNum <= 17)) {
       setStatusBar(30)
@@ -74,12 +29,11 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-    updateMenuTitle()
     handleProgressBar()
   }, [stepStateNum])
 
   return (
-    <div className={`flex justify-center absolute w-[100%] md:h-[100px] h-[50px] left-[50%] bg-mybg mx-auto`} style={{
+    <div className={`flex justify-center items-center absolute w-[100%] md:h-[100px] h-[50px] left-[50%] bg-mybg mx-auto`} style={{
       transform: 'translateX(-50%)',
       zIndex: biddingForm.isModalOpen ? 0 : 10,
     }}>
@@ -87,56 +41,16 @@ export default function Navbar() {
         <div className="flex justify-center items-center top-[10px] ">
           <div className="flex">
             <img
-              src={'/MainLogo.png'}
+              src={'/images/TopLogo.png'}
               alt="logo"
               width={80}
               height={80}
-              // style={{
-              //   width: 'auto',
-              //   height: 'auto',
-              // }}
             />
           </div>
         </div>
       ) : (
-        <div className="flex flex-row-reverse justify-start w-[50%] relative top-[10px] mr-2">
-          <div className="flex relative ml-1">
-            <div className='flex'>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 10 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="5.09865"
-                  cy="5.23146"
-                  r="3.84084"
-                  stroke="#C39A28"
-                />
-              </svg>
-            </div>
-            <div className="flex absolute top-0 left-1">
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 10 9"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9.08879 1.26965C8.49937 2.0671 5.06283 5.89755 3.74544 7.69235L0.55957 3.03791"
-                  stroke="#C39A28"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-          </div>
-          <div className='flex mt-1'>
-            <span className="text-mygold text-sm font-extrabold font-nanumGothic leading-3 not-italic">
-              {menuTitle}
-            </span>
+        <div className='flex justify-start w-[550px] h-[2.5px] bg-gray-200 absolute top-[50px]'>
+          <div className={`flex w-[${statusBar}%] h-[2.5px] bg-myBlue ease-in`}>
           </div>
         </div>
       )}

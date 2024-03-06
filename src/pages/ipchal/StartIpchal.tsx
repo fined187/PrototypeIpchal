@@ -1,4 +1,3 @@
-'use client'
 import { biddingInfoState, stepState } from '@/atom'
 import axios from 'axios'
 import Image from 'next/image'
@@ -116,9 +115,12 @@ export default function StartIpchal() {
               누구나 쉽게 써보는 경매 입찰표
             </span>
           </div>
-          <div className="flex sm:w-[50%] w-[100%] justify-center pt-[30px]">
-            
-          </div>
+            <img 
+              src="/images/MainLogo.png"
+              alt="logo"
+              width={300}
+              height={300}
+            />
           <div
             className="flex bg-myBlue w-[180px] h-[46px] rounded-full items-center justify-center cursor-pointer mt-[30px]"
             onClick={handleStart}
@@ -128,14 +130,11 @@ export default function StartIpchal() {
             </span>
           </div>
           <div className="flex flex-col justify-center pt-[50px]">
-            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-mygray font-normal text-left">
-              ※ 저장된 입찰표는 해당 물건의 예정된 매각기일 3일 이후 자동으로 삭제됩니다.
+            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-mygray font-normal text-center">
+              입력하신 주민등록번호 등 개인정보는 저장되지 않으며,
             </span>
-            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-mygray font-normal text-left">
-              ※ 입력하신 주민등록번호 등 개인정보는 저장되지 않으며 새로운 입찰표 작성 시 
-            </span>
-            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-mygray font-normal text-left">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;재입력하셔야 합니다.
+            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-mygray font-normal text-center">
+              새로운 입찰표 작성 시 재입력하셔야 합니다.
             </span>
           </div>
         </div>

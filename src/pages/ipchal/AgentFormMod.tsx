@@ -330,7 +330,7 @@ export default function AgentForm() {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-row gap-[5%]">
+                <div className="flex flex-row gap-[0.5%]">
                   <input
                     {...register('agentPhone1', { required: true, maxLength: 3 })}
                     id="agentPhone1"
@@ -342,7 +342,7 @@ export default function AgentForm() {
                     type="text"
                     maxLength={3}
                     placeholder="010"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[33%] text-center"
                     value={biddingForm.agentPhone1 || ''}
                     onChange={(e) => {
                       setAgentInfo((prev: AgentInfoType) => {
@@ -363,9 +363,6 @@ export default function AgentForm() {
                       handlePhoneFocusMove(e.target)
                     }}
                   />
-                  <span className="flex text-mygray font-NanumGothic font-bold mt-1">
-                    -
-                  </span>
                   <input
                     {...register('agentPhone2', { required: true, maxLength: 4 })}
                     type="text"
@@ -377,7 +374,7 @@ export default function AgentForm() {
                         .replace(/(\..*)\./g, '$1')
                     }}
                     placeholder="1234"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[33%] text-center"
                     value={biddingForm.agentPhone2 || ''}
                     onChange={(e) => {
                       setAgentInfo((prev: AgentInfoType) => {
@@ -398,9 +395,6 @@ export default function AgentForm() {
                       handlePhoneFocusMove(e.target)
                     }}
                   />
-                  <span className="flex text-mygray font-NanumGothic font-bold mt-1">
-                    -
-                  </span>
                   <input
                     {...register('agentPhone3', { required: true, maxLength: 4 })}
                     type="text"
@@ -412,7 +406,7 @@ export default function AgentForm() {
                         .replace(/(\..*)\./g, '$1')
                     }}
                     placeholder="5678"
-                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[30%] text-center"
+                    className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic h-[40px] px-2 w-[33%] text-center"
                     value={biddingForm.agentPhone3 || ''}
                     onChange={(e) => {
                       setAgentInfo((prev: AgentInfoType) => {
@@ -458,7 +452,7 @@ export default function AgentForm() {
                         </div>
                         <div>
                           <span className="md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left text-red-500">
-                            (주민등록번호는 저장되지 않습니다.)
+                            주민등록번호는 저장되지 않습니다
                           </span>
                         </div>
                       </div>
@@ -599,29 +593,29 @@ export default function AgentForm() {
                   setValue={setValue}
                 />
               </div>
-              <div className="flex flex-row gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[50%] w-[80%] justify-between items-center">
-                <button
-                  type="button"
-                  className="flex w-[35%] h-[40px] bg-mygraybg rounded-md justify-center items-center cursor-pointer"
-                  onClick={() => {
-                    {
-                      setStateNum(3)
-                    }
-                  }}
-                >
-                  <span className="text-white font-bold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-                    이전
-                  </span>
-                </button>
-                <button
-                  type="submit"
-                  className="flex w-[65%] h-[40px] bg-mygold rounded-md justify-center items-center cursor-pointer"
-                >
-                  <span className="text-white font-bold font-NanumGothic text-[18px] leading-[15px] tracking-[-0.9px]">
-                    다음
-                  </span>
-                </button>
-              </div>
+            </div>
+            <div className="flex flex-row gap-[10px] fixed bottom-[50px] md:w-[550px] w-[90%]">
+              <button
+                type="button"
+                className="flex w-[35%] h-[50px] bg-prevBtn rounded-full justify-center items-center cursor-pointer"
+                onClick={() => {
+                  {
+                    setStateNum(3)
+                  }
+                }}
+              >
+                <span className="text-sutTitle font-extrabold font-['suit'] md:text-[1.2rem] text-[1rem]">
+                  이전으로
+                </span>
+              </button>
+              <button
+                type="submit"
+                className="flex w-[60%] md:w-[65%] h-[50px] bg-myBlue rounded-full justify-center items-center cursor-pointer"
+              >
+                <span className="text-white font-extrabold font-['suit'] md:text-[1.2rem] text-[1rem]">
+                  다음으로
+                </span>
+              </button>
             </div>
           </form>
         </div>

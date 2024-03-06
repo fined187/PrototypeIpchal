@@ -148,90 +148,81 @@ export default function GetIpchalInfo() {
           <Spinner />
         )}
         <div className="flex flex-col w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
-          <div className="flex md:pt-[100px] pt-[50px]">
+          <div className="flex flex-col gap-[25px] md:pt-[100px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
-              사건 번호와 입찰일자를 확인해주세요
+              상세 내역을 확인해주세요
+            </span>
+            <span className="md:text-[1rem] text-[0.8rem] font-normal font-['suit'] not-italic leading-8 text-sutTitle">
+              선택한 경매 사건이 맞는지 체크합니다
             </span>
           </div>
-          <div className={`flex flex-col md:w-[550px] w-[90%]  bg-white md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto`}>
-            <div className="flex flex-between relative border-b w-[80%] border-gray-200 h-[50px] mt-4 items-center">
-              <div className='flex w-[30%] justify-start items-center'>
-                <span className="text-black md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold font-NanumGothic ">
-                  법원 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {" : "}
-                </span>
-              </div>
-              <div className='flex md:w-[70%] w-[70%] justify-start items-center'>
-                <span className="text-mygray md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold justify-end  font-NanumGothic ">
-                  {biddingInfo.courtFullName}
-                </span>
-              </div>
+          <div className={`flex flex-col md:w-[500px] h-[350px] w-[90%] overflow-y-auto gap-[5px] bg-mybg mt-[30px]`}>
+            <div className="flex flex-col relative h-[100px] items-start justify-start bg-white pt-[10px] pl-[25px]">
+              <span className="text-subTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] tracking-[-0.45px] font-bold">
+                법원
+              </span>
+              <span className="text-black md:text-[1rem] text-[0.8rem] font-extrabold">
+                {biddingInfo.courtFullName}
+              </span>
             </div>
-            <div className="flex flex-between  relative border-b w-[80%] border-gray-200 h-[50px] items-center">
-              <div className='flex w-[30%] justify-start items-center'>
-                <span className="text-black md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold font-NanumGothic ">
-                  사건번호 {" : "}
+            <div className='flex justify-between bg-white pt-[10px] pl-[25px] h-[100px]'>
+              <div className="flex flex-col relative justify-start items-start w-[80%]">
+                <span className="text-subTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] tracking-[-0.45px] font-bold">
+                  사건번호
                 </span>
-              </div>
-              <div className='flex w-[70%] justify-start items-center'>
-                <span className="text-mygray md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold justify-end font-NanumGothic whitespace-normal text-left">
+                <span className="text-black md:text-[1rem] text-[0.8rem] font-extrabold">
                   {biddingInfo.sagunNum + '호' + ' ' + biddingInfo.usage}
                 </span>
               </div>
-            </div>
-            <div className="flex flex-between border-b relative w-[80%] border-gray-200 h-[50px] items-center">
-              <div className='flex w-[30%] justify-start items-center'>
-                <span className="text-black md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold font-NanumGothic">
-                  물건번호 {" : "}
+              <div className="flex flex-col relative justify-start items-start w-[20%]">
+                <span className="text-subTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] tracking-[-0.45px] font-bold">
+                  물건번호
                 </span>
-              </div>
-              <div className='flex w-[70%] justify-start items-center'>
-                <span className="text-mygray md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold justify-end font-NanumGothic">
+                <span className="text-black md:text-[1rem] text-[0.8rem] font-extrabold">
                   {biddingInfo.mulNo}
                 </span>
               </div>
             </div>
-            <div className="flex flex-row border-b relative w-[80%] border-gray-200 h-[50px] items-center">
-              <div className='flex w-[30%] justify-start items-center'>
-                <span className="text-black md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold font-NanumGothic ">
-                  입찰기일 {" : "}
+            <div className='flex justify-between bg-white pt-[10px] pl-[25px] h-[100px]'>
+              <div className="flex flex-col relative justify-start items-start w-[80%]">
+                <span className="text-subTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] tracking-[-0.45px] font-bold">
+                  입찰기일
+                </span>
+                <span className="text-black md:text-[1rem] text-[0.8rem] font-extrabold">
+                  {biddingInfo.ipchalDate}
                 </span>
               </div>
-              <div className='flex w-[70%] justify-start items-center'>
-                <span className="text-mygray md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold justify-end  font-NanumGothic ">
-                  {biddingInfo.ipchalDate}
+              <div className="flex flex-col relative justify-center items-start w-[20%]">
+                <span className="text-subTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] tracking-[-0.45px] font-bold">
+                  {" "}
+                </span>
+                <span className="text-black md:text-[1rem] text-[0.8rem] font-extrabold">
+                  {data.dayDay}
                 </span>
               </div>
             </div>
             {biddingInfo.usage === ('차량' || '중기') ? (
-              <div className="flex flex-row border-b relative w-[80%] border-gray-200 min-h-[75px] items-center pt-4 pb-4">
-                <div className='flex w-[30%] justify-start items-center'>
-                  <span className="text-black md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold font-NanumGothic ">
-                    차량정보 {" : "}
-                  </span>
-                </div>
-                <div className='flex w-[70%] justify-start items-center'>
-                  <span className="text-mygray md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold justify-end text-left  font-NanumGothic whitespace-normal">
-                    {data.carInfo}
-                  </span>
-                </div>
+              <div className="flex flex-col relative h-[100px] items-start justify-start bg-white pt-[10px] pl-[25px]">
+                <span className="text-subTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] tracking-[-0.45px] font-bold">
+                  차량정보
+                </span>
+                <span className="text-black md:text-[1rem] text-[0.8rem] font-extrabold">
+                  {data.carInfo}
+                </span>
               </div>
             ) : (
               null
             )}
-            <div className="flex flex-row relative items-center w-[80%] min-h-[60px] pt-4 pb-4">
-              <div className='flex w-[30%] justify-start items-center '>
-                <span className="text-black md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold font-NanumGothic ">
-                  주소 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {" : "}
-                </span>
-              </div>
-              <div className='flex flex-col w-[70%] justify-start items-center'>
-                <span className="w-[100%] text-mygray md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold justify-end font-NanumGothic text-left whitespace-normal">
-                  {biddingInfo.sagunAddr + (biddingInfo.etcAddress !== '' ? '[일괄]' + biddingInfo.etcAddress : '')}
-                </span>
-                <span className="w-[100%] text-blue-500 md:text-[1rem] text-[0.8rem] tracking-[-0.45px] font-extrabold justify-end font-NanumGothic text-left whitespace-normal">
-                  {biddingInfo.roadAddress}
-                </span>
-              </div>
+            <div className="flex flex-col relative h-[100px] items-start justify-start bg-white pt-[10px] pb-[20px] pl-[25px]">
+              <span className="text-subTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] tracking-[-0.45px] font-bold">
+                물건지 주소
+              </span>
+              <span className="text-black md:text-[1rem] text-[0.8rem] font-extrabold text-left">
+                {biddingInfo.sagunAddr + (biddingInfo.etcAddress !== '' ? '[일괄]' + biddingInfo.etcAddress : '')}
+              </span>
+              <span className="text-myBlue md:text-[1rem] text-[0.8rem] font-extrabold text-left">
+                {biddingInfo.roadAddress}
+              </span>
             </div>
           </div>
         </div>

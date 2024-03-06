@@ -87,17 +87,20 @@ export default function BidderInfo() {
           {loading && (
             <Spinner />
           )}
-          <div className="flex md:pt-[100px] pt-[50px]">
-            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
-              입찰하시는 본인이 맞으신가요?
+          <div className="flex flex-col md:pt-[100px] pt-[50px] gap-[25px]">
+            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic leading-8">
+              입찰하는 본인이 맞으신가요?
+            </span>
+            <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-normal font-['suit'] not-italic leading-8">
+              본인이 아닌 경우 대리인을 선택해주세요
             </span>
           </div>
-          <div className="flex flex-col gap-10 md:w-[550px] w-[90%] md:h-[200px] h-[200px] bg-white justify-center items-center rounded-lg border-slate-500 mt-[60px] ">
+          <div className="flex flex-row md:w-[500px] w-[90%] h-[200px] mt-[50px] gap-[40px]">
             <div
-              className={`flex flex-row w-[124px] h-[40px] rounded-sm border ${
-                isSelected ? 'border-myyellow border-[2px]' : 'border-red-600 border-[2px]'
+              className={`flex flex-row w-[230px] h-[200px] rounded-xl ${
+                isSelected ? '' : 'border-red-600 border-[2px]'
               } justify-center items-center cursor-pointer ${
-                biddingInfo.bidder === 'self' ? 'bg-myyellow' : 'bg-white'
+                biddingInfo.bidder === 'self' ? 'bg-mySelect' : 'bg-white'
               } relative`}
               onClick={() => {
                 handleDeleteAgent()
@@ -107,41 +110,29 @@ export default function BidderInfo() {
                 }, 1000)
               }}
             >
-              <div
-                className={`${
-                  biddingInfo.bidder === 'self'
-                    ? 'flex absolute left-[25px]'
-                    : 'hidden'
-                }`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="11"
-                  height="10"
-                  viewBox="0 0 11 10"
-                  fill="none"
-                >
-                  <path
-                    d="M1.61523 3.02486L4.15471 7.80153L9.95324 1.46643"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
+              <div className={`flex flex-col w-[100%] justify-center items-center border rounded-xl h-[100%] gap-[10px]`}>
+                <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M50 45.8333C59.2048 45.8333 66.6667 38.3714 66.6667 29.1667C66.6667 19.9619 59.2048 12.5 50 12.5C40.7953 12.5 33.3334 19.9619 33.3334 29.1667C33.3334 38.3714 40.7953 45.8333 50 45.8333Z" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M16.6666 87.5V70.8333C16.6666 66.2308 20.3976 62.5 25 62.5H75C79.6025 62.5 83.3333 66.2308 83.3333 70.8333V87.5" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+
+                <div className='flex flex-col gap-[40px] justify-center items-center'>
+                  <span
+                    className={`flex text-[1.5rem] text-black not-italic font-bold font-['suit'] leading-[13px] tracking-[-0.39px]`}
+                  >
+                    본인(입찰자)
+                  </span>
+                  <span className={`flex text-[1rem] text-subTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
+                    개인 또는 법인
+                  </span>
+                </div>
               </div>
-              <span
-                className={`flex text-[1rem] not-italic font-extrabold font-NanumGothic leading-[13px] tracking-[-0.39px] ${
-                  biddingInfo.bidder === 'self' ? 'text-white' : 'text-myyellow'
-                }`}
-              >
-                본인
-              </span>
             </div>
             <div
-              className={`flex flex-row w-[124px] h-[40px] rounded-sm border ${
-                isSelected ? 'border-myyellow border-[2px]' : 'border-red-600 border-[2px]'
+              className={`flex flex-row w-[230px] h-[200px] rounded-xl ${
+                isSelected ? '' : 'border-red-600 border-[2px]'
               } justify-center items-center cursor-pointer ${
-                biddingInfo.bidder === 'agent' ? 'bg-myyellow' : 'bg-white'
+                biddingInfo.bidder === 'agent' ? 'bg-mySelect' : 'bg-white'
               } relative`}
               onClick={() => {
                 setLoading(true)
@@ -156,47 +147,43 @@ export default function BidderInfo() {
                 }, 1000)
               }}
             >
-              <div
-                className={`${
-                  biddingInfo.bidder === 'agent'
-                    ? 'flex absolute left-[20px]'
-                    : 'hidden'
-                }`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="11"
-                  height="10"
-                  viewBox="0 0 11 10"
-                  fill="none"
-                >
-                  <path
-                    d="M1.61523 3.02486L4.15471 7.80153L9.95324 1.46643"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
+              <div className={`flex flex-col w-[100%] justify-center items-center border rounded-xl h-[100%] gap-[10px]`}>
+                <div className='flex flex-row w-[100%] justify-center items-center'>
+                  <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 45.8333C59.2048 45.8333 66.6667 38.3714 66.6667 29.1667C66.6667 19.9619 59.2048 12.5 50 12.5C40.7953 12.5 33.3334 19.9619 33.3334 29.1667C33.3334 38.3714 40.7953 45.8333 50 45.8333Z" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16.6666 87.5V70.8333C16.6666 66.2308 20.3976 62.5 25 62.5H75C79.6025 62.5 83.3333 66.2308 83.3333 70.8333V87.5" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <svg width="10" height="10" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 9.75H17.5" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round"/>
+                      <path d="M9.75 17.5L9.75 2" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div className='flex flex-col gap-[20px] justify-center items-center'>
+                  <span
+                    className={`flex text-[1.5rem] text-black not-italic font-bold font-['suit'] leading-[13px] tracking-[-0.39px]`}
+                  >
+                    대리인
+                  </span>
+                  <div className='flex flex-col justify-center items-center gap-[10px]'>
+                    <span className={`flex text-[1rem] text-subTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
+                      개인의 대리인 또는
+                    </span>
+                    <span className={`flex text-[1rem] text-subTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
+                      법인대리인, 공동입찰대리인
+                    </span>
+                  </div>
+                </div>
               </div>
-              <span
-                className={`flex text-[1rem] not-italic font-extrabold font-NanumGothic leading-[13px] tracking-[-0.39px] ${
-                  biddingInfo.bidder === 'agent'
-                    ? 'text-white ml-1'
-                    : 'text-myyellow'
-                }`}
-              >
-                대리인
-              </span>
             </div>
-            <div className={`${isSelected ? 'hidden' : 'flex'}`}>
-              <span className="text-[12px] font-bold text-myRed font-NanumGothic leading-[-0.3px] ">
-                본인 / 대리인 버튼을 선택해주세요.
-              </span>
-            </div>
+          </div>
+          <div className={`${isSelected ? 'hidden' : 'flex'} mt-[50px]`}>
+            <span className="text-[1rem] font-bold text-myRed font-NanumGothic leading-[-0.3px] ">
+              본인 / 대리인 버튼을 선택해주세요.
+            </span>
           </div>
         </div>
         <Button 
-          nextText='다음'
+          nextText='다음으로'
           handleNextStep={handleNextStep}
           handlePrevStep={handlePrevStep}
         />

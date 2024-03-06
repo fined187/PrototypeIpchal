@@ -410,14 +410,6 @@ export default function BidderForm() {
     setValue(name, value, { shouldValidate: true })
   }
 
-  // const handleFormValues = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target
-  //   setBiddingForm((prev: any) => {
-  //     const temp = prev
-  //     temp[name][stepNum - 1] = value
-  //     return { ...prev, temp }
-  //   })
-  // }, [])
   useEffect(() => {
     setValue('bidderName', [biddingForm.bidName[stepNum - 1] || ''])
     setValue('bidderPhone1', [biddingForm.bidPhone1[stepNum - 1] || ''])
@@ -441,13 +433,13 @@ export default function BidderForm() {
         <Spinner />
       )}
       <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative">
-        <div className='flex flex-col justify-center items-center w-[100%]'>
+        <div className='flex flex-col justify-center items-center md:w-[550px] w-[100%]'>
           <div className="flex flex-row flex-wrap justify-center items-center md:pt-[100px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
-              {stepNum === 1 ? "본인" : "공동입찰자"} 정보를 입력해주세요
+              {stepNum === 1 ? "입찰자(본인)" : "본인 외 "} 정보를 입력해주세요
             </span>
             {biddingForm.bidderNum > 1 && (
-              <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8 ml-2">
+              <span className="md:text-[1rem] text-[0.8rem] font-bold font-['suit'] Gothic not-italic leading-8 ml-2">
                 {`(${stepNum} / ${biddingForm.bidderNum})`}
               </span>
             )}
@@ -540,7 +532,7 @@ export default function BidderForm() {
         {/* 입력정보 */}
         <form onSubmit={handleSubmit(async () => {
           await onSubmit(stepNum)
-        })} className='flex flex-col md:w-[50%] w-[80%] h-[100%] justify-center items-center'>
+        })} className='flex flex-col md:w-[550px] w-[80%] h-[100%] justify-center items-center'>
           <div className="flex flex-col w-[100%] h-[100%] gap-2">
             <div className="flex flex-col w-[100%] gap-1">
               <div className='flex justify-between w-[100%]'>

@@ -126,7 +126,7 @@ export default function SearchAddress({
             />
           )}
           <button
-            className="text-white md:text-[1rem] text-[0.9rem] bg-myyellow focus:outline-2 focus:outline-myyellow rounded-md font-NanumGothic not-italic font-bold w-[25%] h-[40px]"
+            className="text-black md:text-[1rem] text-[0.9rem] bg-mySelect focus:outline-2 rounded-md font-NanumGothic not-italic font-bold w-[25%] h-[40px]"
             onClick={() => {
               handleModal && handleModal()
             }}
@@ -136,11 +136,6 @@ export default function SearchAddress({
         </div>
         {/* 상세주소 */}
         <div className="flex flex-col w-[100%] bg-mybg gap-1">
-          <div className="flex">
-            <span className="text-[1rem] font-semibold font-NanumGothic not-italic text-left">
-              상세주소
-            </span>
-          </div>
           {(register && (
             <input
               id="bidAddrDetail"

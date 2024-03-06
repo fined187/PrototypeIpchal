@@ -46,10 +46,16 @@ const config: Config = {
       mybg: '#F6F6F6',
       myborder: '#E0E0E0',
       mygold: '#C89C23',
-      mygraybg: '#D1D1D1',
+      mygraybg: '#EAEAEF',
       myyellow: '#D3AB3B',
       myRed: '#FF0000',
-      myBlue: '#4945FF'
+      myBlue: '#4945FF',
+      sutTitle: '#4A4A6A',
+      disabled: '#6D6E70',
+      prevBtn: '#EAEAEF',
+      myOrange: '#FF6433',
+      searchBg: '#F4F6FF',
+      mySelect: '#DCDBFF'
     }
   },
   plugins: [require("tailwind-scrollbar-hide")],
