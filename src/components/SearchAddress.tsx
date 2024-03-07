@@ -102,7 +102,7 @@ export default function SearchAddress({
             )}
           </div>
         </div>
-        <div className="flex flex-row gap-[5%]">
+        <div className="flex flex-row gap-[1%]">
           {register && (
             <input
               {...register('bidderAddr', { required: true })}
@@ -110,7 +110,7 @@ export default function SearchAddress({
               name='bidderAddr'
               readOnly
               type="text"
-              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2 w-[90%]"
+              className="border border-gray-300 rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic text-left h-[40px] px-2 w-[95%] focus:outline-2 focus:outline-myBlue"
               value={stepNum && biddingForm?.bidAddr[stepNum - 1] ? biddingForm?.bidAddr[stepNum - 1] : ''}
             />
             
@@ -121,12 +121,12 @@ export default function SearchAddress({
               id="agentAddr"
               readOnly
               type="text"
-              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2 w-[90%]"
+              className="border border-gray-300 rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic text-left h-[40px] px-2 w-[95%] focus:outline-2 focus:outline-myBlue"
               value={biddingForm.agentAddr ?? ''}
             />
           )}
           <button
-            className="text-black md:text-[1rem] text-[0.9rem] bg-mySelect focus:outline-2 rounded-md font-NanumGothic not-italic font-bold w-[25%] h-[40px]"
+            className="text-black md:text-[1rem] text-[0.9rem] bg-mySelect focus:outline-2 focus:outline-myBlue rounded-md font-NanumGothic not-italic font-bold w-[25%] h-[40px]"
             onClick={() => {
               handleModal && handleModal()
             }}
@@ -141,7 +141,7 @@ export default function SearchAddress({
               id="bidAddrDetail"
               type="text"
               readOnly
-              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2 w-[100%]"
+              className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-semibold font-['suit'] not-italic text-left h-[40px] px-2 w-[100%]"
               value={stepNum && biddingForm?.bidAddrDetail[stepNum - 1] ? biddingForm?.bidAddrDetail[stepNum - 1] : ''}
             />
           ))}
@@ -150,7 +150,7 @@ export default function SearchAddress({
               id="agentAddrDetail"
               type="text"
               readOnly
-              className="border border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md md:text-[0.9rem] text-[0.8rem] font-semibold font-NanumGothic not-italic text-left h-[40px] px-2 w-[100%]"
+              className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-semibold font-['suit'] not-italic text-left h-[40px] px-2 w-[100%]"
               value={biddingForm.agentAddrDetail}
             />
           ))}

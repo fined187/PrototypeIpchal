@@ -272,7 +272,7 @@ export default function ModalAddr({
                               text-left 
                               h-[30px] 
                               px-2 
-                              w-[80%]"
+                              w-[80%] focus:outline-2 focus:outline-myBlue"
                             onChange={(e) => handleInput(e.target)}
                             onKeyUp={(e) => handleEnter(e)}
                           />

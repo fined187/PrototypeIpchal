@@ -69,9 +69,12 @@ export default function PreparingList() {
     <>
       <div id="box" className="flex flex-col justify-center w-[100%] bg-white items-center text-center relative">
         <div className="flex flex-col justify-center items-center w-[100%] h-[100%] bg-mybg relative">
-          <div className="flex flex-col gap-[60px] w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
+          <div className="flex flex-col gap-[25px] w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-NanumGothic font-bold">
-              입찰시 준비 서류
+              입찰시 준비를 알려드릴게요
+            </span>
+            <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-normal font-['suit'] not-italic leading-8">
+              지지옥션이 성공적인 낙찰을 응원합니다
             </span>
             <div className="flex flex-col md:w-[550px] w-[100%] h-[500px] rounded-lg items-center">
               <div className="flex bg-gray-200 w-[100%] h-[10%] mx-auto rounded-xl justify-center items-center text-center">
@@ -95,12 +98,12 @@ export default function PreparingList() {
           </div>
         </div>
         <Button 
-          nextText="닫기"
+          nextText="종료하기"
           handleNextStep={() => {
             window && window.close()
           }}
           handlePrevStep={() => {
-            biddingInfo.aesUserId === '' ? setStateNum(13) : setStateNum(15)
+            setStateNum(stateNum - 1)
           }}
         />
       </div>

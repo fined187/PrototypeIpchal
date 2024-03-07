@@ -213,7 +213,7 @@ export default function GetIpchalInfo() {
             ) : (
               null
             )}
-            <div className="flex flex-col relative h-[100px] items-start justify-start bg-white pt-[10px] pb-[20px] pl-[25px]">
+            <div className="flex flex-col relative h-[200px] items-start justify-center bg-white pt-[10px] pb-[10px] pl-[25px]">
               <span className="text-subTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] tracking-[-0.45px] font-bold">
                 물건지 주소
               </span>

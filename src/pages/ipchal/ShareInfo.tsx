@@ -228,217 +228,170 @@ export default function ShareInfo() {
     }
   }, [biddingInfo.numerator])
   return (
-    <div className={`flex w-[100%] bg-white justify-center relative`}>
-      <div className="flex flex-col w-[100%] h-[100vh] bg-mybg items-center text-center md:pt-[100px] pt-[50px]">
-        <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
+    <div className={`flex w-screen bg-mybg justify-center relative`}>
+      <div className="flex flex-col w-[100%] h-[100vh] bg-mybg items-center text-center pt-[50px] gap-[25px]">
+        <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
           입찰자의 지분을 입력해주세요
         </span>
-        <div className="flex flex-row gap-10 w-[80%] justify-center mt-[20px]">
-          <div className={`flex flex-row w-[100px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-              biddingInfo.shareWay === 'S'
-                ? 'text-white bg-myyellow'
-                : 'text-myyellow bg-white'
-            }`}
-            onClick={() => {
-              setBiddingInfo({
-                ...biddingInfo,
-                shareWay: 'S',
-              })
-            }}
-          >
-            <div className={`${biddingInfo.shareWay === 'S' ? 'flex mr-1' : 'hidden'}`}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="11"
-                height="9"
-                viewBox="0 0 11 9"
-                fill="none"
-              >
-                <path
-                  d="M1.47559 2.65157L4.01506 7.42824L9.8136 1.09314"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-            <span
-              className={`text-[13px] font-NanumGothic not-italic font-extrabold ${
-                biddingInfo.shareWay === 'S' ? 'text-white' : 'text-myyellow'
-              }`}
-            >
-              동일배분
-            </span>
+        <div className='flex flex-row gap-[20px] md:w-[550px] w-[90%] justify-center items-center'>
+          <div className='flex flex-row gap-[5px]'>
+            <input 
+              id='shareWay'
+              name='shareWay'
+              checked={biddingInfo.shareWay === 'S'}
+              className='cursor-pointer w-[15px]'
+              type='radio'
+              onClick={() => {
+                setBiddingInfo({
+                  ...biddingInfo,
+                  shareWay: 'S',
+                })
+              }}
+            />
+            <label>
+              <span className="md:text-[1.2rem] text-[1rem] font-semibold font-['suit'] not-italic text-left">
+                균등배분
+              </span>
+            </label>
           </div>
-          <div
-            className={`flex flex-row w-[100px] h-[40px] border border-myyellow rounded-md cursor-pointer justify-center items-center ${
-              biddingInfo.shareWay === 'N'
-                ? 'text-white bg-myyellow'
-                : 'text-myyellow bg-white'
-            }`}
-            onClick={() => {
-              setBiddingInfo({
-                ...biddingInfo,
-                shareWay: 'N',
-                denominator: Array(biddingInfo.bidderNum).fill('100'),
-              })
-            }}
-          >
-            <div className={`${biddingInfo.shareWay === 'N' ? 'flex mr-1' : 'hidden'}`}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="11"
-                height="9"
-                viewBox="0 0 11 9"
-                fill="none"
-              >
-                <path
-                  d="M1.47559 2.65157L4.01506 7.42824L9.8136 1.09314"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-            <span
-              className={`text-[13px] font-NanumGothic not-italic font-extrabold ${
-                biddingInfo.shareWay === 'N' ? 'text-white' : 'text-myyellow'
-              }`}
-            >
-              각자배분
+          <div className='flex flex-row gap-[5px]'>
+            <input 
+              id='shareWay'
+              className='cursor-pointer w-[15px]'
+              checked={biddingInfo.shareWay === 'N'}
+              name='shareWay'
+              type='radio'
+              onClick={() => {
+                setBiddingInfo({
+                  ...biddingInfo,
+                  shareWay: 'N',
+                })
+              }}
+          />
+          <label>
+            <span className="md:text-[1.2rem] text-[1rem] font-semibold font-['suit'] not-italic text-left">
+              각자입력
             </span>
+          </label>
           </div>
         </div>
-        <div className="flex flex-col gap-[30px] md:w-[550px] w-[90%] min-h-[250px] max-h-[450px] bg-white absolute top-[150px] items-center rounded-lg border-slate-500 md:mt-[80px] mt-[30px] pt-[50px] overflow-auto">
-          {loadding && (
-            <Spinner />
-          )}
-          {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
+      </div>
+      <div className="flex flex-col gap-[10px] md:w-[550px] w-[90%] h-[500px] absolute top-[150px] items-center rounded-lg border-slate-500 pt-[25px] pb-[25px] overflow-auto bg-mybg">
+        {loadding && (
+          <Spinner />
+        )}
+        {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
             return (
-              <div key={index} className="flex justify-between mb-5 md:w-[70%] w-[90%] relative">
-                <div className="flex w-[40%] mt-[10px]">
-                  <span className="text-[15px] text-center font-bold font-NanumGothic">
-                    {name}
-                  </span>
-                </div>
-                <div className="flex flex-row gap-[10px] w-[60%] justify-end mr-5">
-                  {biddingInfo.shareWay === 'S' ? (
-                    <>
-                      <input
-                        id="numerator"
-                        type="text"
-                        readOnly
-                        value={'1'}
-                        className={`border-2 border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[80px]`}
-                      />
-                      <span>/</span>
-                      <input
-                        aria-label="denominator"
-                        id='denominator'
-                        type="text"
-                        readOnly
-                        value={biddingInfo.bidderNum}
-                        className="border-2 border-gray-300 focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[80px]"
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <input
-                        id="numerator"
-                        type="text"
-                        value={shareList.shareList[index]?.share?.split('/')[0] === 'undefined' ? '1' : shareList.shareList[index]?.share?.split('/')[0]}
-                        className={`border-2 ${
-                          (biddingInfo.shareWay === 'N') && goNext
-                            ? 'border-red-500'
-                            : 'border-gray-300'
-                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[80px]`}
-                        onChange={(e) => {
-                          let temp = [...shareList.shareList]
-                          temp[index] = {
-                            ...temp[index],
-                            share: e.target.value + '/' + (document && document.getElementById('denominator') as HTMLInputElement)?.value,
-                          }
-                          setShareList({
-                            ...shareList,
-                            shareList: temp,
-                          })
-                          setBiddingInfo({
-                            ...biddingInfo,
-                            numerator: temp.map((item: any) => item.share?.split('/')[0]),
-                          })
-                        }}
-                      />
-                      <span className='mt-2'>/</span>
-                      <input
-                        readOnly
-                        id='denominator'
-                        type="text"
-                        value={100}
-                        className={`border-2 ${
-                          (biddingInfo.shareWay === 'N') && goNext
-                            ? 'border-red-500'
-                            : 'border-gray-300'
-                        }  focus:outline-2 focus:outline-myyellow rounded-md text-[12px] font-NanumGothic not-italic font-extrabold text-center h-[40px] px-2 w-[80px]`}
-                        onChange={(e) => {
-                          let temp = [...shareList.shareList]
-                          temp[index] = {
-                            ...temp[index],
-                            share: (document && document.getElementById('numerator') as HTMLInputElement)?.value + '/' + e.target.value,
-                          }
-                          setShareList({
-                            ...shareList,
-                            shareList: temp,
-                          })
-                        }}
-                      />
-                    </>
-                  )}
-                </div>
+            <div key={index} className="flex justify-between w-[100%] h-[100px] bg-white border-2 border-gray-300 relative">
+              <div className="flex flex-col w-[100%] justify-center items-start ml-5">
+              <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-sutTitle font-normal">
+                {"#" + (index + 1)}
+              </span>
+              <span className="md:text-[1.2rem] text-[1rem] font-['suit'] font-normal">
+                {name + (biddingInfo.bidCorpYn[index] === 'I' ? ' (개인)' : ' (법인)')}
+              </span>
               </div>
+              <div className="flex flex-row gap-[10px] w-[30%] justify-center h-[50px] absolute top-[50%]  border-b-2 border-b-unClicked transform translate-y-[-50%] right-5">
+              {biddingInfo.shareWay === 'S' ? (
+                <>
+                <input
+                  id="numerator"
+                  type="text"
+                  readOnly
+                  value={'1'}
+                  className={`rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center text-sutTitle h-[40px] w-[40px] bg-white border-none focus:border-transparent focus:outline-none`}
+                />
+                <span className='flex mt-[7px]'>/</span>
+                <input
+                  aria-label="denominator"
+                  id='denominator'
+                  type="text"
+                  readOnly
+                  value={biddingInfo.bidderNum}
+                  className="rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center text-sutTitle h-[40px] w-[40px] bg-white border-none focus:border-transparent focus:outline-none"
+                />
+                </>
+              ) : (
+                <>
+                <input
+                  id="numerator"
+                  type="text"
+                  value={shareList.shareList[index]?.share?.split('/')[0] === 'undefined' ? '1' : shareList.shareList[index]?.share?.split('/')[0]}
+                  className={`border-2 ${
+                  (biddingInfo.shareWay === 'N') && goNext
+                    ? 'border-red-500'
+                    : 'border-gray-300'
+                  } rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center h-[40px] w-[80px]`}
+                  onChange={(e) => {
+                  let temp = [...shareList.shareList]
+                  temp[index] = {
+                    ...temp[index],
+                    share: e.target.value + '/' + (document && document.getElementById('denominator') as HTMLInputElement)?.value,
+                  }
+                  setShareList({
+                    ...shareList,
+                    shareList: temp,
+                  })
+                  setBiddingInfo({
+                    ...biddingInfo,
+                    numerator: temp.map((item: any) => item.share?.split('/')[0]),
+                  })
+                  }}
+                  onFocus={(e) => {
+                  e.target.style.border = 'none';
+                  }}
+                  onBlur={(e) => {
+                  e.target.style.border = '2px solid';
+                  }}
+                />
+                <span className='mt-2'>/</span>
+                <input
+                  readOnly
+                  id='denominator'
+                  type="text"
+                  value={100}
+                  className={`border-2 ${
+                  (biddingInfo.shareWay === 'N') && goNext
+                    ? 'border-red-500'
+                    : 'border-gray-300'
+                  } rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center h-[40px] w-[80px]`}
+                  onChange={(e) => {
+                  let temp = [...shareList.shareList]
+                  temp[index] = {
+                    ...temp[index],
+                    share: (document && document.getElementById('numerator') as HTMLInputElement)?.value + '/' + e.target.value,
+                  }
+                  setShareList({
+                    ...shareList,
+                    shareList: temp,
+                  })
+                  }}
+                  onFocus={(e) => {
+                  e.target.style.border = 'none';
+                  }}
+                  onBlur={(e) => {
+                  e.target.style.border = '2px solid';
+                  }}
+                />
+                </>
+              )}
+              </div>
+            </div>
             )
-          })}
-          <div className='flex flex-row justify-start items-start mb-[15px] md:w-[70%] w-[90%] relative'>
-            {biddingInfo.shareWay !== 'S' && (
-              <>
-              <div className='flex flex-col w-[100%]'>
-                {biddingInfo.shareWay === 'N' && goNext && (
-                  <span className="text-[15px] text-red-500 font-bold mb-[15px] text-right mr-[20px]">
-                    지분 값을 확인해주세요
-                  </span>
-                )}
-                <div className="flex flex-row w-[100%]">
-                  <div className="flex flex-row w-[40%] mt-[10px]">
-                    <span className='text-[11pt] font-semibold text-left'>
-                      지분 합
-                    </span>
-                  </div>
-                  <div className="flex flex-row gap-[10px] w-[60%] justify-end mr-5">
-                    <input 
-                      className={`w-[80px] text-center h-[40px] rounded-lg px-2 border-2 border-gray-300 text-[11pt] font-semibold ${biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0) == parseInt(biddingInfo.denominator[0]) ? 'text-green-500' : 'text-red-500'}`}
-                      type="text"
-                      readOnly
-                      value={isNaN(biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)) ? 0 : biddingInfo.numerator.reduce((a: any, b) => parseInt(a) + parseInt(b), 0)}
-                    />
-                    <span className='mt-[5px]'> / </span>
-                    <input 
-                      className={`w-[80px] text-center h-[40px] rounded-lg px-2 border-2 border-gray-300 text-[11pt] font-semibold  text-black`}
-                      type="text"
-                      readOnly
-                      value={'100'}
-                    />
-                  </div>
-                </div>
-              </div>
-              </>
-            )}
+        })}
+        {biddingInfo.shareWay === 'N' && goNext && (
+          <div className='flex w-[100%] flex-row-reverse'>
+            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] font-bold text-red-500 text-right">
+              입력하신 지분 값을 다시 확인해주세요
+            </span>
           </div>
-        </div>
+        )}
+      </div>
         <Button 
-          nextText='다음'
+          nextText='다음으로'
           handleNextStep={handleValidate}
           handlePrevStep={handlePrevStep}
         />
-      </div>
     </div>
   )
 }

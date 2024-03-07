@@ -55,7 +55,8 @@ const config: Config = {
       prevBtn: '#EAEAEF',
       myOrange: '#FF6433',
       searchBg: '#F4F6FF',
-      mySelect: '#DCDBFF'
+      mySelect: '#DCDBFF',
+      unClicked: '#EFEFEF'
     }
   },
   plugins: [require("tailwind-scrollbar-hide")],

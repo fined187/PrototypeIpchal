@@ -33,7 +33,7 @@ export default function Navbar() {
   }, [stepStateNum])
 
   return (
-    <div className={`flex justify-center items-center absolute w-[100%] md:h-[100px] h-[50px] left-[50%] bg-mybg mx-auto`} style={{
+    <div className={`flex justify-center items-center absolute w-[100%] h-[50px] left-[50%] top-0 bg-mybg mx-auto`} style={{
       transform: 'translateX(-50%)',
       zIndex: biddingForm.isModalOpen ? 0 : 10,
     }}>
@@ -49,7 +49,7 @@ export default function Navbar() {
           </div>
         </div>
       ) : (
-        <div className='flex justify-start w-[550px] h-[2.5px] bg-gray-200 absolute top-[50px]'>
+        <div className='flex justify-start w-[550px] h-[2.5px] bg-gray-200 absolute top-[25px]'>
           <div className={`flex w-[${statusBar}%] h-[2.5px] bg-myBlue ease-in`}>
           </div>
         </div>

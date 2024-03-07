@@ -265,11 +265,11 @@ export default function Home() {
           {stateNum === 11 && <IpchalInfo />}
           {stateNum === 12 && <IpchalResult />}
           {stateNum === 13 && <CreateFile />}
+          {stateNum === 14 && <PreparingList />}
           {/* {stateNum === 14 && <IpchalShare />} */}
-          {(stateNum === 15 && (biddingForm.aesUserId !== "")) && <DownIpchal />}
+          {/* {(stateNum === 15 && (biddingForm.aesUserId !== "")) && <DownIpchal />} */}
           {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 16) ? <BidderFormMod /> : (stateNum === 16) && <BidderFormMod />}
           {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 17) ? <AgentFormMod /> : (stateNum === 17) && <AgentFormMod />}
-          {stateNum === 18 && <PreparingList />}
           {stateNum === 19 && biddingForm.agentYn === "Y" && <AgentCheck />}
         </>
       )}

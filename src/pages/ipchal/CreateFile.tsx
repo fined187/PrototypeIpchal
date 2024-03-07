@@ -101,7 +101,7 @@ export default function CreateFile() {
         {
           responseType: "blob", // important
         }
-      ) 
+      )
       .then((data) => {
         const file = new Blob([data.data], { type: "application/pdf" });
         setBlobFile(new File([file], `${fileName}.pdf`, { type: "application/pdf" }));
@@ -197,19 +197,22 @@ const handleDownload = (file: Blob) => {
   return (
     <>
       {!loading && (
-        <div className="flex w-[100%] md:h-[100vh] h-[100vh] justify-center bg-white relative">
-          <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative md:pt-[100px] pt-[50px]">
+        <div className="flex w-[100%] md:h-[100vh] h-[100vh] justify-center bg-mybg relative">
+          <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
-              파일명과 암호를 입력하세요
+              입찰표 작성이 끝났습니다
             </span>
-            <div className="flex flex-col gap-5 md:w-[550px] w-[90%] h-[200px] justify-center items-left bg-white mt-[30px] rounded-md border-gray-400">
+            <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-normal font-['suit'] not-italic leading-8">
+              생성하기 버튼을 눌러 파일을 다운로드 받아주세요
+            </span>
+            <div className="flex flex-col gap-5 md:w-[550px] w-[90%] h-[200px] justify-center items-left mt-[30px] rounded-md border-gray-400">
               <div className="flex flex-col justify-start text-left gap-3">
                 <span className="text-black text-[1rem] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
-                  파일이름
+                  파일명
                 </span>
                 <input
                   aria-label='파일 이름'
-                  className="w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
+                  className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myBlue"
                   value={fileName.replace(" ", "") || biddingInfo.fileName.replace(" ", "")}
                   onChange={(e) => {
                     setFileName(e.target.value)
@@ -222,40 +225,43 @@ const handleDownload = (file: Blob) => {
               </div>
               <div className="flex flex-col justify-start text-left gap-3 relative">
                 <span className="text-black text-[1rem] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
-                  파일암호
+                  비밀번호
                 </span>
-                <input
-                  aria-label='파일 암호'
-                  type={`${passwordActive ? 'text' : 'password'}`}
-                  className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myyellow"
-                  value={password || ''}
-                  onChange={(e) => {
-                    setPassword(e.target.value)
-                    setBiddingInfo({
-                      ...biddingInfo,
-                      pdfPassword: e.target.value,
-                    })
-                  }}
-                />
-                <div
-                  className="absolute inset-y-0 right-0 flex items-center pr-8 pt-5 cursor-pointer"
-                  onClick={() => setPasswordActive(!passwordActive)}
-                >
-                  {passwordActive ? (
-                    <LiaEyeSolid className="cursor-pointer" />
-                  ) : (
-                    <LiaEyeSlashSolid className="cursor-pointer" />
-                  )}
+                <div className='flex flex-row w-[100%] gap-[1%]'>
+                  <div className='relative w-[65%] h-[40px]'>
+                    <input
+                      aria-label='비밀번호'
+                      type={`${passwordActive ? 'text' : 'password'}`}
+                      className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[7%] focus:outline-2 focus:outline-myBlue"
+                      value={password || ''}
+                      onChange={(e) => {
+                        setPassword(e.target.value)
+                        setBiddingInfo({
+                          ...biddingInfo,
+                          pdfPassword: e.target.value,
+                        })
+                      }}
+                    />
+                    <div className="flex justify-center items-center w-[10%] h-[40px] cursor-pointer absolute right-2 top-1/2 transform -translate-y-1/2"
+                      onClick={() => setPasswordActive(!passwordActive)}
+                    >
+                      {passwordActive ? (
+                        <LiaEyeSolid className="cursor-pointer" />
+                      ) : (
+                        <LiaEyeSlashSolid className="cursor-pointer" />
+                      )}
+                    </div>
+                  </div>
+                  <div
+                    className="flex w-[30%] h-[40px] bg-myBlue border-[1px] border-gray-300 justify-center items-center rounded-md"
+                    onClick={onClickPdf}
+                  >
+                    <span className="flex text-white text-center text-[1rem] not-italic font-extrabold leading-[15px] font-NanumGothic cursor-pointer">
+                      생성하기
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="flex w-[293px] h-[35px] bg-mygold border-[1px] border-gray-300 justify-center items-center rounded-md mt-[30px]"
-              onClick={onClickPdf}
-            >
-              <span className="flex text-white text-center text-[1rem] not-italic font-extrabold leading-[15px] font-NanumGothic cursor-pointer">
-                파일만들기
-              </span>
             </div>
             {!biddingInfo.isFileCreated && (
               <div className="flex mt-[30px]">
@@ -267,14 +273,14 @@ const handleDownload = (file: Blob) => {
             {biddingInfo.isFileCreated && (
               <div className="flex mt-[30px]">
                 <span className="text-[15px] font-bold text-green-500">
-                  파일이 생성되었습니다
+                  입찰표 파일이 다운로드 되었습니다
                 </span>
               </div>
             )}
           </div>
           <Button 
-            nextText='다음'
-            handleNextStep={() => biddingInfo.isFileCreated ? biddingInfo.aesUserId === "" ? setStateNum(18) : setStateNum(stateNum + 2) : alert('파일을 생성해주세요')}
+            nextText='준비서류를 확인합니다'
+            handleNextStep={() => biddingInfo.isFileCreated ? setStateNum(stateNum + 1) : alert('파일을 생성해주세요')}
             handlePrevStep={handlePrevStep}
           />
         </div>
