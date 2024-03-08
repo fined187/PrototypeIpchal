@@ -339,7 +339,7 @@ export default function BiddingPrice() {
                 <div className='flex flex-row w-[80%] justify-start'>
                   <input 
                     readOnly
-                    className="text-sutTitle md:text-[1.2rem] text-[1rem] md:w-[100%] w-[70%] font-bold font-['suit'] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md" 
+                    className="text-sutTitle md:text-[1.2rem] text-[1rem] md:w-[80%] w-[70%] font-bold font-['suit'] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md" 
                     value={paymentsInfo.appraisalAmount.toLocaleString('ko-KR')} 
                   />
                   <span className="text-sutTitle md:text-[1.2rem] text-[1rem] font-bold font-['suit'] mt-[5px]">
@@ -356,7 +356,7 @@ export default function BiddingPrice() {
                 <div className='flex flex-row w-[80%] justify-start'>
                   <input 
                     value={paymentsInfo.minimumAmount.toLocaleString('ko-KR')}
-                    className="text-myBlue md:text-[1.2rem] text-[1rem] font-bold font-['suit'] md:w-[100%] w-[70%] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md" 
+                    className="text-myBlue md:text-[1.2rem] text-[1rem] font-bold font-['suit'] md:w-[80%] w-[70%] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md" 
                     readOnly
                   />
                   <span className="text-sutTitle md:text-[1.2rem] text-[1rem] font-bold font-['suit'] mt-[5px]">

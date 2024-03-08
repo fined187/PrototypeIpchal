@@ -55,7 +55,7 @@ export default function BidderInfo() {
   }
   
   const handlePrevStep = () => {
-    if (biddingInfo.biddingInfos.length > 2) {
+    if (biddingInfo.biddingInfos.length > 1) {
       setStateNum(stateNum - 1)
     } else {
       setStateNum(stateNum - 2)
@@ -87,11 +87,11 @@ export default function BidderInfo() {
           {loading && (
             <Spinner />
           )}
-          <div className="flex flex-col md:pt-[100px] pt-[50px] gap-[25px]">
-            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic leading-8">
+          <div className="flex flex-col pt-[50px] gap-[10px]">
+            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
               입찰하는 본인이 맞으신가요?
             </span>
-            <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-normal font-['suit'] not-italic leading-8">
+            <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic">
               본인이 아닌 경우 대리인을 선택해주세요
             </span>
           </div>
@@ -110,18 +110,18 @@ export default function BidderInfo() {
                 }, 1000)
               }}
             >
-              <div className={`flex flex-col w-[100%] justify-center items-center border rounded-xl h-[100%] gap-[10px]`}>
+              <div className={`flex flex-col w-[100%] justify-center items-center border rounded-xl h-[100%]`}>
                 <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M50 45.8333C59.2048 45.8333 66.6667 38.3714 66.6667 29.1667C66.6667 19.9619 59.2048 12.5 50 12.5C40.7953 12.5 33.3334 19.9619 33.3334 29.1667C33.3334 38.3714 40.7953 45.8333 50 45.8333Z" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                   <path d="M16.6666 87.5V70.8333C16.6666 66.2308 20.3976 62.5 25 62.5H75C79.6025 62.5 83.3333 66.2308 83.3333 70.8333V87.5" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <div className='flex flex-col gap-[40px] justify-center items-center'>
+                <div className='flex flex-col gap-[15px] justify-center items-center'>
                   <span
-                    className={`flex text-[1.5rem] text-black not-italic font-bold font-['suit'] leading-[13px] tracking-[-0.39px]`}
+                    className={`flex text-[1.5rem] text-black not-italic font-bold font-['suit']`}
                   >
                     본인(입찰자)
                   </span>
-                  <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
+                  <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit']`}>
                     개인 또는 법인
                   </span>
                 </div>
@@ -146,7 +146,7 @@ export default function BidderInfo() {
                 }, 1000)
               }}
             >
-              <div className={`flex flex-col w-[100%] justify-center items-center border rounded-xl h-[100%] gap-[10px]`}>
+              <div className={`flex flex-col w-[100%] justify-center items-center border rounded-xl h-[100%]`}>
                 <div className='flex flex-row w-[100%] justify-center items-center'>
                   <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50 45.8333C59.2048 45.8333 66.6667 38.3714 66.6667 29.1667C66.6667 19.9619 59.2048 12.5 50 12.5C40.7953 12.5 33.3334 19.9619 33.3334 29.1667C33.3334 38.3714 40.7953 45.8333 50 45.8333Z" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -157,17 +157,17 @@ export default function BidderInfo() {
                       <path d="M9.75 17.5L9.75 2" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round"/>
                   </svg>
                 </div>
-                <div className='flex flex-col gap-[20px] justify-center items-center'>
+                <div className='flex flex-col justify-center items-center'>
                   <span
-                    className={`flex text-[1.5rem] text-black not-italic font-bold font-['suit'] leading-[13px] tracking-[-0.39px]`}
+                    className={`flex text-[1.5rem] text-black not-italic font-bold font-['suit']`}
                   >
                     대리인
                   </span>
-                  <div className='flex flex-col justify-center items-center gap-[10px]'>
-                    <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
+                  <div className='flex flex-col justify-center items-center'>
+                    <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit']`}>
                       개인의 대리인 또는
                     </span>
-                    <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
+                    <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit']`}>
                       법인대리인, 공동입찰대리인
                     </span>
                   </div>
@@ -176,7 +176,7 @@ export default function BidderInfo() {
             </div>
           </div>
           <div className={`${isSelected ? 'hidden' : 'flex'} mt-[50px]`}>
-            <span className="text-[1rem] font-bold text-myRed font-NanumGothic leading-[-0.3px] ">
+            <span className="text-[1rem] font-bold text-myRed font-['suit']">
               본인 / 대리인 버튼을 선택해주세요.
             </span>
           </div>

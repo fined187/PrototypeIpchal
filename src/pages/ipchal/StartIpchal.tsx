@@ -106,34 +106,36 @@ export default function StartIpchal() {
       <div id='box' className={`flex w-[100%] justify-center bg-mybg relative`} >
         <div className={`flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}>
           <div className="flex md:pt-[100px] pt-[50px]">
-            <span className="md:text-[40px] text-[1.2rem] font-bold font-['suit'] not-italic">
+            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
               입찰표 작성을 시작합니다
             </span>
           </div>
           <div className="flex">
-            <span className="md:text-[1rem] text-[0.8rem] text-mygray font-normal font-['suit'] not-italic">
+            <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic">
               누구나 쉽게 써보는 경매 입찰표
             </span>
           </div>
+          <div className='flex mt-[30px]'>
             <img 
               src="/images/MainLogo.png"
               alt="logo"
               width={300}
               height={300}
             />
+          </div>
           <div
-            className="flex bg-myBlue w-[180px] h-[46px] rounded-full items-center justify-center cursor-pointer mt-[30px]"
+            className="flex flex-col bg-myBlue w-[180px] h-[46px] rounded-full items-center justify-center cursor-pointer md:mt-[70px]"
             onClick={handleStart}
           >
-            <span className="text-white md:text-[20px] text-[1rem] font-['suit'] font-extrabold not-italic leading-4">
+            <span className="text-white md:text-[1.2rem] text-[1rem] font-['suit'] font-bold not-italic">
               입찰표 작성하기
             </span>
           </div>
-          <div className="flex flex-col justify-center pt-[50px]">
-            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-mygray font-normal text-center">
+          <div className="flex flex-col justify-center mt-[20px]">
+            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-mygray font-normal text-center">
               입력하신 주민등록번호 등 개인정보는 저장되지 않으며,
             </span>
-            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-mygray font-normal text-center">
+            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-mygray font-normal text-center">
               새로운 입찰표 작성 시 재입력하셔야 합니다.
             </span>
           </div>

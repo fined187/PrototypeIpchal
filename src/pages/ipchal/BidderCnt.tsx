@@ -119,15 +119,15 @@ export default function BidderCnt() {
     <>
       <div id='box' className="flex w-[100%] bg-mybg justify-center relative">
         <div className="flex flex-col w-[100%] h-[100%] items-center text-center md:py-[0px] py-[25px]">
-          <div className="flex flex-col md:pt-[100px] pt-[50px] gap-[25px]">
-            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
+          <div className="flex flex-col pt-[50px] gap-[10px]">
+            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
               총 입찰자는 몇 명인가요?
             </span>
             <div className='flex flex-col justify-center items-center gap-[0px]'>
-              <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-normal font-['suit'] not-italic leading-8">
+              <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic ">
                 입찰에 참여하는 사람이 여러 명인 경우
               </span>
-              <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-normal font-['suit'] not-italic leading-8">
+              <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic ">
                 총 인원 수를 입력합니다(본인 포함)
               </span>
             </div>
@@ -138,7 +138,7 @@ export default function BidderCnt() {
             )}
             <div className="flex flex-col">
               <div className="flex flex-row justify-center items-center">
-                <span className="md:text-[1.1rem] text-[1rem] font-semibold mr-5">
+                <span className="md:text-[1.1rem] text-[1rem] font-bold mr-5 font-['suit']">
                   총 입찰자 수는
                 </span>
                 <input
@@ -157,13 +157,13 @@ export default function BidderCnt() {
                     handleErrorOk(e)
                   }}
                 />
-                <span className="md:text-[1.1rem] text-[1rem] font-bold font-NanumGothic leading-[30px] ml-2">
+                <span className="md:text-[1.1rem] text-[1rem] font-bold font-['suit'] leading-[30px] ml-2">
                   명 입니다
                 </span>
               </div>
               {errorMsg && (
                 <div className="mt-5">
-                  <span className="md:text-[0.9rem] text-[0.8rem] font-NanumGothic font-bold text-red-500">
+                  <span className="md:text-[0.9rem] text-[0.8rem] font-['suit'] font-bold text-red-500">
                     입찰자는 1명 이상이어야 합니다
                   </span>
                 </div>

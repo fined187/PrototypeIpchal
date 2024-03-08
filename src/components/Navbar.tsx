@@ -40,7 +40,7 @@ export default function Navbar() {
       zIndex: biddingForm.isModalOpen ? 0 : 10,
     }}>
       {stepStateNum === 0 ? (
-        <div className="flex justify-center items-center top-[10px] ">
+        <div className="flex justify-center items-center top-[25px]">
           <div className="flex">
             <img
               src={'/images/TopLogo.png'}

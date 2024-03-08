@@ -158,17 +158,17 @@ export default function SearchIpchal() {
           <Spinner />
         )}
       <div className="flex flex-col w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
-        <div className="flex flex-col md:pt-[100px] pt-[50px] gap-[25px]">
-          <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic leading-8">
+        <div className="flex flex-col md:pt-[100px] pt-[50px] gap-[10px]">
+          <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
             {searchResult === 1 ? "입찰 예정인 경매물건을 검색해주세요" : searchResult === 2 ? "입찰서를 작성할 물건을 선택해주세요" : "검색 결과가 없습니다"}
           </span>
-          <span className="md:text-[1rem] text-[0.8rem] font-normal font-['suit'] not-italic leading-8 text-sutTitle">
+          <span className="md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic text-sutTitle">
             {searchResult === 1 ? "입찰표 하나 당 한 개의 물건만 검색할 수 있습니다" : searchResult === 2 ? "검색결과가 많을 경우 물건번호, 법원, 감정가, 입찰일을 확인해주세요" : "이전으로 버튼을 눌러 재검색해주세요"}
           </span>
         </div>
         {searchResult === 1 ? (
-          <div className="flex flex-row md:w-[550px] w-[90%] h-[200px] md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto pt-[30px] pb-[30px]">
-            <div className="flex w-[80%] justify-between items-center">
+          <div className="flex flex-row md:w-[550px] w-[90%] h-[200px] md:mt-[200px] mt-[130px] justify-center items-center absolute overflow-auto">
+            <div className="flex flex-row gap-[10px] items-center">
               <label htmlFor="yearSelect" className="sr-only">Select Year</label>
               <select id="yearSelect" className="border-gray border md:w-[150px] w-[100px] h-[40px] rounded-lg outline-myBlue md:text-[1rem] text-[0.8rem] text-right pr-1" onChange={(e) => {
                 setGetCase(e.target.value)
@@ -195,27 +195,27 @@ export default function SearchIpchal() {
             </div>
             <div className="w-[60px] h-[40px] bg-myBlue flex justify-center items-center cursor-pointer rounded-lg ml-[10px]" 
               onClick={() => handleNextButton(searchResult, '', '', '')}>
-              <span className="text-white font-bold font-NanumGothic md:text-[1rem] text-[0.8rem]">
+              <span className="text-white font-bold font-['suit'] md:text-[1rem] text-[0.8rem]">
                 검색
               </span>
             </div>
           </div>
         ) : searchResult === 2 && (getData?.length ?? 0) > 0 ? (
           <>
-            <div className="flex flex-col justify-start items-center md:w-[550px] w-[90%] h-[350px] overflow-y-auto pt-[10px] gap-[10px]">
+            <div className="flex flex-col justify-start items-center md:w-[550px] w-[90%] h-[350px] overflow-y-auto pt-[10px] gap-[10px] mt-[25px]">
               {getData?.map((data: any, index: number) => (
               <div className="flex flex-col md:w-[500px] w-[100%] bg-white h-[110px] items-center rounded-lg pb-[10px] cursor-pointer" key={index}>
                 <div className={`w-[95%] flex flex-col`}
                   onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}
                 >
                   <div className="flex flex-row w-[100%] mt-[10px]">
-                    <span className="text-[1rem] font-nanum font-bold text-myOrange text-left">
+                    <span className="text-[1rem] font-['suit'] font-bold text-myOrange text-left">
                       {data.reqCourtName + "계 "}
                     </span>
-                    <span className="text-[1rem] font-nanum font-bold text-black text-left">
+                    <span className="text-[1rem] font-['suit'] font-bold text-black text-left">
                       &nbsp;{data.caseNoString + "[" + (data.mulNo ? data.mulNo : "1") + "]" + (data.subCaseNoString ? "[" + data.subCaseNoString + "]" : '')}
                     </span>
-                    <span className="text-[1rem] font-nanum font-bold text-black text-left ml-[10px]">
+                    <span className="text-[1rem] font-['suit'] font-bold text-black text-left ml-[10px]">
                       {data.usage}
                     </span>
                   </div>
@@ -262,11 +262,11 @@ export default function SearchIpchal() {
           </>
         ) : searchResult === 3 ? (
           <div className="flex flex-col md:w-[550px] w-[90%] h-[200px] bg-white md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto pt-[30px] pb-[30px]">
-            <span className="md:text-[1.2rem] text-[1rem] font-nanum font-bold text-center text-black">
+            <span className="md:text-[1.2rem] text-[1rem] font-['suit'] font-bold text-center text-black">
               검색결과가 없습니다. 
             </span>
             <br />
-            <span className="md:text-[1rem] text-[0.8rem] font-nanum font-bold text-center text-gray-400">
+            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] font-bold text-center text-gray-400">
               이전 버튼을 눌러 다시 검색해주세요.
             </span>
           </div>

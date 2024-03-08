@@ -78,7 +78,7 @@ export default function AgentCheck() {
       window.removeEventListener('resize', handleHeight)
     }
   }, [])
-  console.log(checkedItems)
+
   return (
     <div id="box" className="flex w-[100%] bg-mybg justify-center relative">
       <div className="flex flex-col w-[100%] h-[100%] items-center text-center md:py-[0px] py-[25px]">

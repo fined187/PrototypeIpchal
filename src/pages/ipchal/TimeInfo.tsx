@@ -3,8 +3,8 @@ import Spinner from "@/components/Spinner"
 import Button from "@/components/shared/Button"
 import axios from "axios"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
+import { useState } from "react"
+import { useRecoilState } from "recoil"
 
 export default function TimeInfo() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
@@ -66,11 +66,11 @@ export default function TimeInfo() {
         <Spinner />
       )}
       <div className="flex flex-col md:w-[550px] w-[100%] h-[100%] bg-mybg items-center text-center pt-[50px]">
-        <div className="flex flex-col gap-[25px]">
-          <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic leading-8">
+        <div className="flex flex-col gap-[10px]">
+          <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
             원하시는 경매를 선택하세요
           </span>
-          <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-normal font-['suit'] not-italic leading-8">
+          <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-bold font-['suit'] not-italic">
             1기일 2회 입찰 사건입니다
             <br />
             오전 기일에 낙찰이 될 경우 오후 기일은 진행하지 않습니다
@@ -89,7 +89,7 @@ export default function TimeInfo() {
                 {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.biddingTime.substring(0, 2) + '시'}
               </span>
             </div>
-            <div className={`flex flex-col justify-center items-start w-[50%]`}>
+            <div className={`flex flex-col justify-center text-sutTitle items-start w-[50%]`}>
               <span className="font-['suit'] md:text-[1rem] text-[0.8rem] font-bold">
                 최저가
               </span>
@@ -111,7 +111,7 @@ export default function TimeInfo() {
               </span>
             </div>
             <div className={`flex flex-col justify-center items-start w-[50%]`}>
-              <span className="font-['suit'] md:text-[1rem] text-[0.8rem] font-bold">
+              <span className="font-['suit'] md:text-[1rem] text-[0.8rem] font-bold text-sutTitle">
                 최저가
               </span>
               <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold`}>
