@@ -232,7 +232,7 @@ export default function ModalAddr({
                     height: '100%',
                   }}
                 >
-                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[70%] w-[100%] justify-center items-center md:h-[80vh] h-[100vh] overflow-auto scrollbar-hide rounded-md absolute top-[0px] sm:left-[50%] left-[50%]" style={{
+                  <div className="bg-white px-2 pb-2 pt-5 sm:p-6 sm:pb-4 md:w-[600px] w-[100%] justify-center items-center md:h-[80vh] h-[100vh] overflow-auto scrollbar-hide rounded-md absolute top-[0px] sm:left-[50%] left-[50%]" style={{
                     zIndex: 11,
                     transform: 'translate(-50%, 0)',
                   }}>

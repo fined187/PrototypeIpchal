@@ -1,7 +1,7 @@
 export default function IpchalText() {
   return (
     <div className="flex flex-col w-[100%] absolute md:top-[750px] top-[720px] leading-[-1px] justify-center items-center">
-      <div className="flex flex-col md:w-[85%] w-[100%] text-left items-start justify-start">
+      <div className="flex flex-col md:w-[800px] w-[90%] text-left items-start justify-start">
         <span className="md:text-[15pt] text-[14px] font-extrabold font-batang ">
           주의사항
         </span>

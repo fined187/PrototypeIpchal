@@ -39,196 +39,180 @@ export default function BidderFormMod2() {
 
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)   //  전역 상태에서 저장하는 값
   const [bidderList, setBidderList] = useState<BiddersProps[] | null>(null)          //  입찰자 정보(서버에서 받아온 값)
-  const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({       //  입찰자 정보 초기화(입찰자 수만큼 배열 생성)
-    bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderPhone1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderPhone2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderPhone3: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderIdNum1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderIdNum2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderAddr: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderAddrDetail: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpNum1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpNum2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpNum3: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpRegiNum1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpRegiNum2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill('I'),
-    bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-  })
 
    // 초기 컴포넌트 마운트 시 서버에 저장된 입찰자 정보를 불러온다.
-  useEffect(() => {
-    const handleGetBidders = async () => {
-      try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`)
-        if (response.status === 200) {
-          setBidderList(response.data.data)
-          if (biddingForm.bidderNum > response.data.data.length) {
-            //  입찰자 수가 서버에 저장된 입찰자 수보다 많을 경우
-            setBiddingForm((prev: any) => {
-              const temp1 = prev.bidName
-              const temp2 = prev.bidPhone1
-              const temp3 = prev.bidPhone2
-              const temp4 = prev.bidPhone3
-              const temp5 = prev.bidIdNum1
-              const temp6 = prev.bidIdNum2
-              const temp7 = prev.bidAddr
-              const temp8 = prev.bidAddrDetail
-              const temp9 = prev.bidCorpNum1
-              const temp10 = prev.bidCorpNum2
-              const temp11 = prev.bidCorpNum3
-              const temp12 = prev.bidCorpRegiNum1
-              const temp13 = prev.bidCorpRegiNum2
-              const temp14 = prev.bidCorpYn
-              const temp15 = prev.bidJob
-              for (let i = response.data.data.length; i < biddingForm.bidderNum; i++) {
-                temp1.push('')
-                temp2.push('')
-                temp3.push('')
-                temp4.push('')
-                temp5.push('')
-                temp6.push('')
-                temp7.push('')
-                temp8.push('')
-                temp9.push('')
-                temp10.push('')
-                temp11.push('')
-                temp12.push('')
-                temp13.push('')
-                temp14.push('I')
-                temp15.push('')
-              }
-              return {
-                ...prev,
-                bidName: temp1,
-                bidPhone1: temp2,
-                bidPhone2: temp3,
-                bidPhone3: temp4,
-                bidIdNum1: temp5,
-                bidIdNum2: temp6,
-                bidAddr: temp7,
-                bidAddrDetail: temp8,
-                bidCorpNum1: temp9,
-                bidCorpNum2: temp10,
-                bidCorpNum3: temp11,
-                bidCorpRegiNum1: temp12,
-                bidCorpRegiNum2: temp13,
-                bidCorpYn: temp14,
-                bidJob: temp15,
-              }
-            })
-          } else if (biddingForm.bidderNum < response.data.data.length) {
-            //  입찰자 수가 서버에 저장된 입찰자 수보다 적을 경우 => 입찰자 수 감소
-            setBiddingForm((prev: any) => {
-              const temp1 = prev.bidName
-              const temp2 = prev.bidPhone1
-              const temp3 = prev.bidPhone2
-              const temp4 = prev.bidPhone3
-              const temp5 = prev.bidIdNum1
-              const temp6 = prev.bidIdNum2
-              const temp7 = prev.bidAddr
-              const temp8 = prev.bidAddrDetail
-              const temp9 = prev.bidCorpNum1
-              const temp10 = prev.bidCorpNum2
-              const temp11 = prev.bidCorpNum3
-              const temp12 = prev.bidCorpRegiNum1
-              const temp13 = prev.bidCorpRegiNum2
-              const temp14 = prev.bidCorpYn
-              const temp15 = prev.bidJob
-              for (let i = response.data.data.length; i > biddingForm.bidderNum; i--) {
-                temp1.pop()
-                temp2.pop()
-                temp3.pop()
-                temp4.pop()
-                temp5.pop()
-                temp6.pop()
-                temp7.pop()
-                temp8.pop()
-                temp9.pop()
-                temp10.pop()
-                temp11.pop()
-                temp12.pop()
-                temp13.pop()
-                temp14.pop()
-                temp15.pop()
-              }
-              return {
-                ...prev,
-                bidName: temp1,
-                bidPhone1: temp2,
-                bidPhone2: temp3,
-                bidPhone3: temp4,
-                bidIdNum1: temp5,
-                bidIdNum2: temp6,
-                bidAddr: temp7,
-                bidAddrDetail: temp8,
-                bidCorpNum1: temp9,
-                bidCorpNum2: temp10,
-                bidCorpNum3: temp11,
-                bidCorpRegiNum1: temp12,
-                bidCorpRegiNum2: temp13,
-                bidCorpYn: temp14,
-                bidJob: temp15,
-              }
-            })
-          } else {
-            //  입찰자 수가 서버에 저장된 입찰자 수와 같을 경우
-            setBiddingForm((prev: any) => {
-              const temp1 = prev.bidName
-              const temp2 = prev.bidPhone1
-              const temp3 = prev.bidPhone2
-              const temp4 = prev.bidPhone3
-              const temp5 = prev.bidIdNum1
-              const temp6 = prev.bidIdNum2
-              const temp7 = prev.bidAddr
-              const temp8 = prev.bidAddrDetail
-              const temp9 = prev.bidCorpNum1
-              const temp10 = prev.bidCorpNum2
-              const temp11 = prev.bidCorpNum3
-              const temp12 = prev.bidCorpRegiNum1
-              const temp13 = prev.bidCorpRegiNum2
-              const temp14 = prev.bidCorpYn
-              const temp15 = prev.bidJob
-              return {
-                ...prev,
-                bidName: temp1,
-                bidPhone1: temp2,
-                bidPhone2: temp3,
-                bidPhone3: temp4,
-                bidIdNum1: temp5,
-                bidIdNum2: temp6,
-                bidAddr: temp7,
-                bidAddrDetail: temp8,
-                bidCorpNum1: temp9,
-                bidCorpNum2: temp10,
-                bidCorpNum3: temp11,
-                bidCorpRegiNum1: temp12,
-                bidCorpRegiNum2: temp13,
-                bidCorpYn: temp14,
-                bidJob: temp15,
-              }
-            })
+  const handleGetBidders = async () => {
+    if (biddingForm.bidderNum === 1 && biddingForm.agentYn === 'Y') {
+      setBiddingForm((prev: any) => {
+        return {
+          ...prev,
+          mandates: {
+            mandateYn: 'Y',
+            name: biddingForm.bidName[0],
+            peopleSeq: 1
           }
         }
-      } catch (error) {
-        console.log(error)
-      }
+      })
     }
-    handleGetBidders()
-  }, [])
-  if (biddingForm.bidderNum === 1 && biddingForm.agentYn === 'Y') {
-    setBiddingForm((prev: any) => {
-      return {
-        ...prev,
-        mandates: {
-          mandateYn: 'Y',
-          name: biddingForm.bidName[0],
-          peopleSeq: 1
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`)
+      if (response.status === 200) {
+        setBidderList(response.data.data.bidders)
+        if (biddingForm.bidderNum > response.data.data.length) {
+          //  입찰자 수가 서버에 저장된 입찰자 수보다 많을 경우
+          setBiddingForm((prev: any) => {
+            const temp1 = prev.bidName
+            const temp2 = prev.bidPhone1
+            const temp3 = prev.bidPhone2
+            const temp4 = prev.bidPhone3
+            const temp5 = prev.bidIdNum1
+            const temp6 = prev.bidIdNum2
+            const temp7 = prev.bidAddr
+            const temp8 = prev.bidAddrDetail
+            const temp9 = prev.bidCorpNum1
+            const temp10 = prev.bidCorpNum2
+            const temp11 = prev.bidCorpNum3
+            const temp12 = prev.bidCorpRegiNum1
+            const temp13 = prev.bidCorpRegiNum2
+            const temp14 = prev.bidCorpYn
+            const temp15 = prev.bidJob
+            for (let i = response.data.data.length; i < biddingForm.bidderNum; i++) {
+              temp1.push('')
+              temp2.push('')
+              temp3.push('')
+              temp4.push('')
+              temp5.push('')
+              temp6.push('')
+              temp7.push('')
+              temp8.push('')
+              temp9.push('')
+              temp10.push('')
+              temp11.push('')
+              temp12.push('')
+              temp13.push('')
+              temp14.push('I')
+              temp15.push('')
+            }
+            return {
+              ...prev,
+              bidName: temp1,
+              bidPhone1: temp2,
+              bidPhone2: temp3,
+              bidPhone3: temp4,
+              bidIdNum1: temp5,
+              bidIdNum2: temp6,
+              bidAddr: temp7,
+              bidAddrDetail: temp8,
+              bidCorpNum1: temp9,
+              bidCorpNum2: temp10,
+              bidCorpNum3: temp11,
+              bidCorpRegiNum1: temp12,
+              bidCorpRegiNum2: temp13,
+              bidCorpYn: temp14,
+              bidJob: temp15,
+            }
+          })
+        } else if (biddingForm.bidderNum < response.data.data.length) {
+          //  입찰자 수가 서버에 저장된 입찰자 수보다 적을 경우 => 입찰자 수 감소
+          setBiddingForm((prev: any) => {
+            const temp1 = prev.bidName
+            const temp2 = prev.bidPhone1
+            const temp3 = prev.bidPhone2
+            const temp4 = prev.bidPhone3
+            const temp5 = prev.bidIdNum1
+            const temp6 = prev.bidIdNum2
+            const temp7 = prev.bidAddr
+            const temp8 = prev.bidAddrDetail
+            const temp9 = prev.bidCorpNum1
+            const temp10 = prev.bidCorpNum2
+            const temp11 = prev.bidCorpNum3
+            const temp12 = prev.bidCorpRegiNum1
+            const temp13 = prev.bidCorpRegiNum2
+            const temp14 = prev.bidCorpYn
+            const temp15 = prev.bidJob
+            temp1.splice(biddingForm.bidderNum, response.data.data.length)
+            temp2.splice(biddingForm.bidderNum, response.data.data.length)
+            temp3.splice(biddingForm.bidderNum, response.data.data.length)
+            temp4.splice(biddingForm.bidderNum, response.data.data.length)
+            temp5.splice(biddingForm.bidderNum, response.data.data.length)
+            temp6.splice(biddingForm.bidderNum, response.data.data.length)
+            temp7.splice(biddingForm.bidderNum, response.data.data.length)
+            temp8.splice(biddingForm.bidderNum, response.data.data.length)
+            temp9.splice(biddingForm.bidderNum, response.data.data.length)
+            temp10.splice(biddingForm.bidderNum, response.data.data.length)
+            temp11.splice(biddingForm.bidderNum, response.data.data.length)
+            temp12.splice(biddingForm.bidderNum, response.data.data.length)
+            temp13.splice(biddingForm.bidderNum, response.data.data.length)
+            temp14.splice(biddingForm.bidderNum, response.data.data.length)
+            temp15.splice(biddingForm.bidderNum, response.data.data.length)
+            return {
+              ...prev,
+              bidName: temp1,
+              bidPhone1: temp2,
+              bidPhone2: temp3,
+              bidPhone3: temp4,
+              bidIdNum1: temp5,
+              bidIdNum2: temp6,
+              bidAddr: temp7,
+              bidAddrDetail: temp8,
+              bidCorpNum1: temp9,
+              bidCorpNum2: temp10,
+              bidCorpNum3: temp11,
+              bidCorpRegiNum1: temp12,
+              bidCorpRegiNum2: temp13,
+              bidCorpYn: temp14,
+              bidJob: temp15,
+            }
+          })
+        } else if (biddingForm.bidderNum == response.data.data.length) {
+          //  입찰자 수가 서버에 저장된 입찰자 수와 같을 경우
+          setBiddingForm((prev: any) => {
+            const temp1 = prev.bidName
+            const temp2 = prev.bidPhone1
+            const temp3 = prev.bidPhone2
+            const temp4 = prev.bidPhone3
+            const temp5 = prev.bidIdNum1
+            const temp6 = prev.bidIdNum2
+            const temp7 = prev.bidAddr
+            const temp8 = prev.bidAddrDetail
+            const temp9 = prev.bidCorpNum1
+            const temp10 = prev.bidCorpNum2
+            const temp11 = prev.bidCorpNum3
+            const temp12 = prev.bidCorpRegiNum1
+            const temp13 = prev.bidCorpRegiNum2
+            const temp14 = prev.bidCorpYn
+            const temp15 = prev.bidJob
+            return {
+              ...prev,
+              bidName: temp1,
+              bidPhone1: temp2,
+              bidPhone2: temp3,
+              bidPhone3: temp4,
+              bidIdNum1: temp5,
+              bidIdNum2: temp6,
+              bidAddr: temp7,
+              bidAddrDetail: temp8,
+              bidCorpNum1: temp9,
+              bidCorpNum2: temp10,
+              bidCorpNum3: temp11,
+              bidCorpRegiNum1: temp12,
+              bidCorpRegiNum2: temp13,
+              bidCorpYn: temp14,
+              bidJob: temp15,
+            }
+          })
         }
       }
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
+
+  useEffect(() => {
+    handleGetBidders()
+  }, [stepNum])
+
+
 
   const {
     register,
@@ -291,7 +275,6 @@ export default function BidderFormMod2() {
   const handleBidderFormUpdate = async () => {
     try {
       if (biddingForm?.bidCorpYn[stepNum - 1] === 'I') {
-        console.log("여기1")
         const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${stepNum}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
@@ -303,7 +286,6 @@ export default function BidderFormMod2() {
           return
         }
       } else if (biddingForm?.bidCorpYn[stepNum - 1] === 'C') {
-        console.log("여기2")
         const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${stepNum}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
@@ -374,95 +356,108 @@ export default function BidderFormMod2() {
       setLoading(false)
     }
   }
-
+  console.log(biddingForm.bidderNum)
+  console.log(bidderList?.length!)
+  console.log(stepNum)
   //  다음 단계로 이동
   const handleNextStep = async () => {
     handleUpdateIdNum(stepNum - 1)
     try {
       if (biddingForm.bidderNum === 1) {
-        if (biddingForm.agentYn === 'Y' && biddingForm.bidderNum <= bidderList?.length!) {
-          //  1. 입찰자 수가 1명이고, 대리입찰자가 있고, 서버에 저장된 입찰자 수보다 적을 경우
-          await handleBidderFormUpdate()
-          setStateNum(19)
-        } else if (biddingForm.agentYn !== 'Y' && biddingForm.bidderNum <= bidderList?.length!) {
-          //  2. 입찰자 수가 1명이고, 대리입찰자가 없고, 서버에 저장된 입찰자 수보다 적을 경우
-          await handleBidderFormUpdate()
-          setStateNum(9)
+        if (biddingForm.bidderNum > (bidderList?.length!)) {    //  서버에 저장된 입찰자 수보다 많을 경우 => 아직 서버에 저장을 하지 못한 경우
+          if (biddingForm.agentYn === 'Y') {
+            await handleBidderFormSave()
+            await handleRegisterMandate()
+            setStateNum(9)
+          } else {
+            await handleBidderFormSave()
+            setStateNum(9)
+          }
+        } else if (biddingForm.bidderNum < (bidderList?.length!)) {    //  서버에 저장된 입찰자 수보다 적을 경우 => 서버에 저장된 입찰자 수를 줄여야 하는 경우
+          if (biddingForm.agentYn === 'Y') {
+            await handleBidderFormUpdate()
+            await handleRegisterMandate()
+            setStateNum(9)
+          } else {
+            await handleBidderFormUpdate()
+            setStateNum(9)
+          }
         } else {
-          //  3. 입찰자 수가 1명이고, 서버에 저장된 입찰자 수보다 많을 경우
-          await handleBidderFormSave()
-          setStateNum(9)
+          if (biddingForm.agentYn === 'Y') {
+            await handleBidderFormUpdate()
+            await handleRegisterMandate()
+            setStateNum(9)
+          } else {
+            await handleBidderFormUpdate()
+            setStateNum(9)
+          }
         }
       } else {
-        if (biddingForm.agentYn === 'Y' && biddingForm.bidderNum > bidderList?.length!) {
-          //  4. 입찰자 수가 2명 이상이고, 대리입찰자가 있고, 서버에 저장된 입찰자 수보다 증가된 경우
-          if (stepNum === biddingForm.bidderNum) {
-            await handleBidderFormSave()
-            await handleRegisterMandate()
-            setStateNum(19)
-          } else {
-            if (stepNum > bidderList?.length!) {
+        if (biddingForm.bidderNum > bidderList?.length!) {
+          if (biddingForm.agentYn === 'Y') {
+            if (stepNum === biddingForm.bidderNum) {
               await handleBidderFormSave()
-              setStepNum(stepNum + 1)
-              reset()
+              await handleRegisterMandate()
+              setStateNum(19)
             } else {
-              await handleBidderFormUpdate()
-              setStepNum(stepNum + 1)
-              reset()
+              if (stepNum > bidderList?.length!) {
+                await handleBidderFormSave()
+                setStepNum(stepNum + 1)
+                reset()
+              } else {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              } 
+            }
+          } else {
+            if (stepNum === biddingForm.bidderNum) {
+              await handleBidderFormSave()
+              setStateNum(19)
+            } else {
+              if (stepNum > bidderList?.length!) {
+                await handleBidderFormSave()
+                setStepNum(stepNum + 1)
+                reset()
+              } else {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              }
             }
           }
-        } else if (biddingForm.agentYn !== 'Y' && biddingForm.bidderNum > bidderList?.length!) {
-          //  5. 입찰자 수가 2명 이상이고, 대리입찰자가 없고, 서버에 저장된 입찰자 수보다 증가된 경우
-          if (stepNum === biddingForm.bidderNum) {
-            await handleBidderFormSave()
-            setStateNum(8)
-          } else {
-            if (stepNum > bidderList?.length!) {
-              await handleBidderFormSave()
-              setStepNum(stepNum + 1)
-              reset()
-            } else {
-              await handleBidderFormUpdate()
-              setStepNum(stepNum + 1)
-              reset()
-            }
-          }
-        } else if (biddingForm.agentYn === 'Y' && biddingForm.bidderNum < bidderList?.length!) {
-          //  6. 입찰자 수가 2명 이상이고, 대리입찰자가 있고, 서버에 저장된 입찰자 수보다 감소된 경우
-          if (stepNum === biddingForm.bidderNum) {
-            await handleBidderFormUpdate()
-            await handleRegisterMandate()
-            setStateNum(19)
-          } else {
-            await handleBidderFormUpdate()
-            setStepNum(stepNum + 1)
-          }
-        } else if (biddingForm.agentYn !== 'Y' && biddingForm.bidderNum < bidderList?.length!) {
-          //  7. 입찰자 수가 2명 이상이고, 대리입찰자가 없고, 서버에 저장된 입찰자 수보다 감소된 경우
-          if (stepNum === biddingForm.bidderNum) {
-            await handleBidderFormUpdate()
-            setStateNum(8)
-          } else {
-            await handleBidderFormUpdate()
-            setStepNum(stepNum + 1)
-          }
-        } else {
-          //  8. 입찰자 수가 2명 이상이고, 서버에 저장된 입찰자 수와 같은 경우
-          if (stepNum === biddingForm.bidderNum) {
-            if (biddingForm.agentYn === 'Y') {
-              console.log("여기!!")
+        } else if (biddingForm.bidderNum < bidderList?.length!) {
+          if (biddingForm.agentYn === 'Y') {
+            if (stepNum === biddingForm.bidderNum) {
               await handleBidderFormUpdate()
               await handleRegisterMandate()
               setStateNum(19)
             } else {
-              console.log("여기!!!")
-              await handleBidderFormUpdate()
-              setStateNum(8)
+              if (stepNum > biddingForm.bidderNum) {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              } else {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              }
             }
           } else {
-            console.log("여기!")
-            await handleBidderFormUpdate()
-            setStepNum(stepNum + 1)
+            if (stepNum === biddingForm.bidderNum) {
+              await handleBidderFormUpdate()
+              setStateNum(19)
+            } else {
+              if (stepNum > biddingForm.bidderNum) {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              } else {
+                await handleBidderFormUpdate()
+                setStepNum(stepNum + 1)
+                reset()
+              }
+            }
           }
         }
       }
@@ -528,15 +523,10 @@ export default function BidderFormMod2() {
             <div className='flex flex-row gap-[5px]'>
               <input 
                 name='bidderType'
-                checked={biddingForm.bidCorpYn[stepNum - 1] === 'I'}
+                checked={biddingForm.bidCorpYn[stepNum - 1] === 'I' ? true : false}
                 className='cursor-pointer w-[15px]'
                 type='radio'
-                onClick={() => {
-                  setBiddingInfo((prev: any) => {
-                    const temp = prev.bidderCorpYn
-                    temp[stepNum - 1] = 'I'
-                    return { ...prev, bidderCorpYn: temp }
-                  })
+                onChange={() => {
                   setBiddingForm((prev: any) => {
                     const temp = prev.bidCorpYn
                     temp[stepNum - 1] = 'I'
@@ -552,16 +542,11 @@ export default function BidderFormMod2() {
             </div>
             <div className='flex flex-row gap-[5px]'>
               <input 
-                checked={biddingForm.bidCorpYn[stepNum - 1] === 'C'}
+                checked={biddingForm.bidCorpYn[stepNum - 1] === 'C' ? true : false}
                 name='bidderType'
                 className='cursor-pointer w-[15px]'
                 type='radio'
-                onClick={() => {
-                  setBiddingInfo((prev: any) => {
-                    const temp = prev.bidderCorpYn
-                    temp[stepNum - 1] = 'C'
-                    return { ...prev, bidderCorpYn: temp }
-                  })
+                onChange={() => {
                   setBiddingForm((prev: any) => {
                     const temp = prev.bidCorpYn
                     temp[stepNum - 1] = 'C'
@@ -617,11 +602,6 @@ export default function BidderFormMod2() {
                       temp[stepNum - 1] = e.target.value
                       return { ...prev, bidName: temp }
                     })
-                    setBiddingInfo((prev) => {
-                      const temp = prev.bidderName
-                      temp[stepNum - 1] = e.target.value
-                      return { ...prev, bidName: temp }
-                    })
                   }}
                 />
               </div>
@@ -665,11 +645,6 @@ export default function BidderFormMod2() {
                     className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-semibold font-['suit'] not-italic h-[40px] px-2 w-[33%] text-center"
                     value={biddingForm.bidPhone1[stepNum - 1] || ''}
                     onChange={(e) => {
-                      setBiddingInfo((prev) => {
-                        const temp = prev.bidderPhone1
-                        temp[stepNum - 1] = e.target.value
-                        return { ...prev, bidPhone1: temp }
-                      })
                       setBiddingForm((prev: any) => {
                         const temp = prev.bidPhone1
                         temp[stepNum - 1] = e.target.value
@@ -698,11 +673,6 @@ export default function BidderFormMod2() {
                     className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-semibold font-['suit'] not-italic h-[40px] px-2 w-[33%] text-center"
                     value={biddingForm.bidPhone2[stepNum - 1] || ''}
                     onChange={(e) => {
-                      setBiddingInfo((prev: any) => {
-                        const temp = prev.bidderPhone2
-                        temp[stepNum - 1] = e.target.value
-                        return { ...prev, bidPhone2: temp }
-                      })
                       setBiddingForm((prev: any) => {
                         const temp = prev.bidPhone2
                         temp[stepNum - 1] = e.target.value
@@ -731,11 +701,6 @@ export default function BidderFormMod2() {
                     className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-semibold font-['suit'] not-italic h-[40px] px-2 w-[33%] text-center"
                     value={biddingForm.bidPhone3[stepNum - 1] || ''}
                     onChange={(e) => {
-                      setBiddingInfo((prev: any) => {
-                        const temp = prev.bidderPhone3
-                        temp[stepNum - 1] = e.target.value
-                        return { ...prev, bidPhone3: temp }
-                      })
                       setBiddingForm((prev: any) => {
                         const temp = prev.bidPhone3
                         temp[stepNum - 1] = e.target.value
@@ -906,16 +871,6 @@ export default function BidderFormMod2() {
                               temp[stepNum - 1] = e.target.value + biddingForm.bidCorpNum2[stepNum - 1] + biddingForm.bidCorpNum3[stepNum - 1]
                               return { ...prev, bidCorpNum: temp }
                             })
-                            setBiddingInfo((prev: any) => {
-                              const temp = prev.bidderCorpNum1
-                              temp[stepNum - 1] = e.target.value
-                              return { ...prev, bidCorpNum1: temp }
-                            })
-                            setBiddingInfo((prev: any) => {
-                              const temp = prev.bidderCorpNum
-                              temp[stepNum - 1] = e.target.value + biddingInfo.bidderCorpNum2[stepNum - 1] + biddingInfo.bidderCorpNum3[stepNum - 1]
-                              return { ...prev, bidCorpNum: temp }
-                            })
                             handleCorpNumFocusMove(e.target)
                           }}
                         />
@@ -947,16 +902,6 @@ export default function BidderFormMod2() {
                               temp[stepNum - 1] = biddingForm.bidCorpNum1[stepNum - 1] + e.target.value + biddingForm.bidCorpNum3[stepNum - 1]
                               return { ...prev, bidCorpNum: temp }
                             })
-                            setBiddingInfo((prev: any) => {
-                              const temp = prev.bidderCorpNum2
-                              temp[stepNum - 1] = e.target.value
-                              return { ...prev, bidCorpNum2: temp }
-                            })
-                            setBiddingInfo((prev: any) => {
-                              const temp = prev.bidderCorpNum
-                              temp[stepNum - 1] = biddingInfo.bidderCorpNum1[stepNum - 1] + e.target.value + biddingInfo.bidderCorpNum3[stepNum - 1]
-                              return { ...prev, bidCorpNum: temp }
-                            })
                             handleCorpNumFocusMove(e.target)
                           }}
                         />
@@ -986,16 +931,6 @@ export default function BidderFormMod2() {
                             setBiddingForm((prev: any) => {
                               const temp = prev.bidCorpNum
                               temp[stepNum - 1] = biddingForm.bidCorpNum1[stepNum - 1] + biddingForm.bidCorpNum2[stepNum - 1] + e.target.value
-                              return { ...prev, bidCorpNum: temp }
-                            })
-                            setBiddingInfo((prev: any) => {
-                              const temp = prev.bidderCorpNum3
-                              temp[stepNum - 1] = e.target.value
-                              return { ...prev, bidCorpNum3: temp }
-                            })
-                            setBiddingInfo((prev: any) => {
-                              const temp = prev.bidderCorpNum
-                              temp[stepNum - 1] = biddingInfo.bidderCorpNum1[stepNum - 1] + biddingInfo.bidderCorpNum2[stepNum - 1] + e.target.value
                               return { ...prev, bidCorpNum: temp }
                             })
                             handleCorpNumFocusMove(e.target)
@@ -1056,16 +991,6 @@ export default function BidderFormMod2() {
                                 temp[stepNum - 1] = e.target.value + biddingForm.bidCorpRegiNum2[stepNum - 1]
                                 return { ...prev, bidCorpRegiNum: temp }
                               })
-                              setBiddingInfo((prev: any) => {
-                                const temp = prev.bidderCorpRegiNum1
-                                temp[stepNum - 1] = e.target.value
-                                return { ...prev, bidCorpRegiNum1: temp }
-                              })
-                              setBiddingInfo((prev: any) => {
-                                const temp = prev.bidderCorpRegiNum2
-                                temp[stepNum - 1] = e.target.value + biddingInfo.bidderCorpRegiNum2[stepNum - 1]
-                                return { ...prev, bidCorpRegiNum: temp }
-                              })
                               handleCorpRegiNumFocusMove(e.target)
                             }}
                           />
@@ -1095,16 +1020,6 @@ export default function BidderFormMod2() {
                               setBiddingForm((prev: any) => {
                                 const temp = prev.bidCorpRegiNum
                                 temp[stepNum - 1] = biddingForm.bidCorpRegiNum1[stepNum - 1] + e.target.value
-                                return { ...prev, bidCorpRegiNum: temp }
-                              })
-                              setBiddingInfo((prev: any) => {
-                                const temp = prev.bidderCorpRegiNum2
-                                temp[stepNum - 1] = e.target.value
-                                return { ...prev, bidCorpRegiNum2: temp }
-                              })
-                              setBiddingInfo((prev: any) => {
-                                const temp = prev.bidderCorpRegiNum
-                                temp[stepNum - 1] = biddingInfo.bidderCorpRegiNum1[stepNum - 1] + e.target.value
                                 return { ...prev, bidCorpRegiNum: temp }
                               })
                             }}
@@ -1155,11 +1070,6 @@ export default function BidderFormMod2() {
                           temp[stepNum - 1] = e.target.value
                           return { ...prev, bidJob: temp }
                         })
-                        setBiddingInfo((prev: any) => {
-                          const temp = prev.bidderJob
-                          temp[stepNum - 1] = e.target.value
-                          return { ...prev, bidJob: temp }
-                        })
                       }}
                     />
                   </div>
@@ -1169,8 +1079,6 @@ export default function BidderFormMod2() {
                   register={register}
                   errors={errors}
                   setError={setError}
-                  biddingInfo={biddingInfo}
-                  setBiddingInfo={setBiddingInfo}
                   isOpen={isOpen}
                   onOpen={onOpen}
                   onClose={onClose}

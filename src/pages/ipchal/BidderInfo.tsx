@@ -112,8 +112,8 @@ export default function BidderInfo() {
             >
               <div className={`flex flex-col w-[100%] justify-center items-center border rounded-xl h-[100%] gap-[10px]`}>
                 <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M50 45.8333C59.2048 45.8333 66.6667 38.3714 66.6667 29.1667C66.6667 19.9619 59.2048 12.5 50 12.5C40.7953 12.5 33.3334 19.9619 33.3334 29.1667C33.3334 38.3714 40.7953 45.8333 50 45.8333Z" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16.6666 87.5V70.8333C16.6666 66.2308 20.3976 62.5 25 62.5H75C79.6025 62.5 83.3333 66.2308 83.3333 70.8333V87.5" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M50 45.8333C59.2048 45.8333 66.6667 38.3714 66.6667 29.1667C66.6667 19.9619 59.2048 12.5 50 12.5C40.7953 12.5 33.3334 19.9619 33.3334 29.1667C33.3334 38.3714 40.7953 45.8333 50 45.8333Z" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M16.6666 87.5V70.8333C16.6666 66.2308 20.3976 62.5 25 62.5H75C79.6025 62.5 83.3333 66.2308 83.3333 70.8333V87.5" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
 
                 <div className='flex flex-col gap-[40px] justify-center items-center'>
@@ -150,12 +150,12 @@ export default function BidderInfo() {
               <div className={`flex flex-col w-[100%] justify-center items-center border rounded-xl h-[100%] gap-[10px]`}>
                 <div className='flex flex-row w-[100%] justify-center items-center'>
                   <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 45.8333C59.2048 45.8333 66.6667 38.3714 66.6667 29.1667C66.6667 19.9619 59.2048 12.5 50 12.5C40.7953 12.5 33.3334 19.9619 33.3334 29.1667C33.3334 38.3714 40.7953 45.8333 50 45.8333Z" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M16.6666 87.5V70.8333C16.6666 66.2308 20.3976 62.5 25 62.5H75C79.6025 62.5 83.3333 66.2308 83.3333 70.8333V87.5" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M50 45.8333C59.2048 45.8333 66.6667 38.3714 66.6667 29.1667C66.6667 19.9619 59.2048 12.5 50 12.5C40.7953 12.5 33.3334 19.9619 33.3334 29.1667C33.3334 38.3714 40.7953 45.8333 50 45.8333Z" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16.6666 87.5V70.8333C16.6666 66.2308 20.3976 62.5 25 62.5H75C79.6025 62.5 83.3333 66.2308 83.3333 70.8333V87.5" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                   <svg width="10" height="10" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2 9.75H17.5" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round"/>
-                      <path d="M9.75 17.5L9.75 2" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round"/>
+                      <path d="M2 9.75H17.5" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round"/>
+                      <path d="M9.75 17.5L9.75 2" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round"/>
                   </svg>
                 </div>
                 <div className='flex flex-col gap-[20px] justify-center items-center'>

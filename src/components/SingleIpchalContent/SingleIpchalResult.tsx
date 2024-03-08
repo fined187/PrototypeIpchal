@@ -26,7 +26,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
   return (
     <div className="flex flex-col bg-white max-h-[2600px] h-[1300px] w-[100%] mx-auto relative justify-center items-center" id="wrap-capture">
       <div className="flex flex-col bg-mybg h-[100%] w-[100%] mx-auto relative justify-center items-center" id="capture">
-        <div className="w-[100%] md:max-w-[850px] overflow-x-scroll absolute top-[100px] h-[600px] bg-mybg scrollbar-hide">
+        <div className="w-[90%] md:max-w-[850px] overflow-x-scroll absolute top-[100px] h-[600px] bg-mybg scrollbar-hide">
           <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-mybg">
             {/* 첫 번째 박스 */}
             <div className="flex flex-col border-black border-b-[1px] h-[15%] w-[100%] justify-center items-center relative">
@@ -264,7 +264,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
             {/* 네 번째 박스 */}
             <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[15%]">
               <div className="w-[5%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
-                <span className="md:text-[12pt] text-[10px] font-batang">
+                <span className="md:text-[12pt] text-[6pt] font-batang">
                   입찰
                   가격
                 </span> 
@@ -518,7 +518,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                 </div>
               </div>
               <div className="w-[5%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
-                <span className="md:text-[11pt] text-[10px] font-batang">
+                <span className="md:text-[12pt] text-[6pt] font-batang">
                   보증
                   <br />
                   금액
@@ -772,7 +772,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
             <div className="flex flex-row justify-between items-stretch w-[100%] h-[13%]">
                 <div className="flex flex-row w-[49.9%] border-black border-r-[2px] h-[100%]">
                   <div className='flex items-center justify-start w-[30%] h-[100%] ml-[10px]'>
-                    <span className="text-[11pt] text-left font-batang">
+                    <span className="md:text-[11pt] text-[9pt] text-left font-batang">
                       보증의 
                       <br />
                       제공방법
@@ -786,7 +786,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                         className="w-[15px] h-[15px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
                         readOnly
                       />
-                      <span className="text-[11pt] font-batang mt-1">현금·자기앞수표</span>
+                      <span className="md:text-[11pt] text-[9pt] font-batang mt-1">현금·자기앞수표</span>
                     </div>
                     <div className="flex flex-row w-[100%]">
                       <input
@@ -795,7 +795,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                         className="w-[15px] h-[15px] border-black border-[2px] mr-1 mt-2 indeterminate:bg-white"
                         readOnly
                       />
-                      <span className="text-[11pt] font-batang mt-1">
+                      <span className="md:text-[11pt] text-[9pt] font-batang mt-1">
                         보증서
                       </span>
                     </div>
@@ -803,19 +803,19 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                 </div>
                 <div className="flex flex-col justify-around items-stretch w-[50%] h-[100%]">
                   <div className="flex justify-start">
-                    <span className="text-[11pt] text-left font-batang ml-[10px]">
+                    <span className="md:text-[11pt] text-[9pt] text-left font-batang ml-[10px]">
                       보증을 반환 받았습니다.
                     </span>
                   </div>
                   <div className="flex justify-end">
                     <div className='flex justify-between w-[70%] items-center'>
-                      <span className="text-[11pt] font-batang mr-[10px]">
+                      <span className="md:text-[11pt] text-[9pt] font-batang mr-[10px]">
                         입찰자{' '}
                       </span>
-                      <span className="text-[11pt] font-batang mr-[10px]">
+                      <span className="md:text-[11pt] text-[9pt] font-batang mr-[10px]">
                         {totalResult && totalResult.agent !== null ? totalResult && totalResult?.agent?.name : totalResult && totalResult.bidders[0].name}
                       </span>
-                      <span className="text-[11pt] font-batang mr-[10px]">
+                      <span className="md:text-[11pt] text-[9pt] font-batang mr-[10px]">
                         (인)
                       </span>
                   </div>

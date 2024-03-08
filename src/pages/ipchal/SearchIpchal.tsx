@@ -204,8 +204,8 @@ export default function SearchIpchal() {
           <>
             <div className="flex flex-col justify-start items-center w-[550px] h-[350px] overflow-y-auto pt-[10px] gap-[10px]">
               {getData?.map((data: any, index: number) => (
-              <div className="flex flex-col md:w-[500px] w-[90%] bg-white h-[110px]  items-center rounded-lg pb-[10px] cursor-pointer">
-                <div key={index} className={`w-[95%] flex flex-col`}
+              <div className="flex flex-col md:w-[500px] w-[90%] bg-white h-[110px]  items-center rounded-lg pb-[10px] cursor-pointer" key={index}>
+                <div className={`w-[95%] flex flex-col`}
                   onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}
                 >
                   <div className="flex flex-row w-[100%] mt-[10px]">

@@ -13,8 +13,10 @@ export default function Navbar() {
   const handleProgressBar = () => {
     if (stepStateNum === 0) {
       setStatusBar(0)
-    } else if ((stepStateNum >= 1 && stepStateNum <= 4)) {
+    } else if ((stepStateNum >= 1 && stepStateNum <= 2)) {
       setStatusBar(10)
+    } else if ((stepStateNum >= 3) && (stepStateNum <= 4)) {
+      setStatusBar(15)
     } else if ((stepStateNum >= 5 && stepStateNum <= 7)  || (stepStateNum >= 16 && stepStateNum <= 17)) {
       setStatusBar(30)
     } else if ((stepStateNum >= 8 && stepStateNum <= 10) || stepStateNum === 19) {
@@ -23,7 +25,7 @@ export default function Navbar() {
       setStatusBar(70)
     } else if ((stepStateNum >= 14 && stepStateNum <= 15)) {
       setStatusBar(90)
-    } else if ((stepStateNum === 18)) {
+    } else if ((stepStateNum === 19)) {
       setStatusBar(100)
     }
   }

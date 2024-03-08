@@ -110,24 +110,22 @@ export default function CreateFile() {
           isFileCreated: true,
           pdfFile: file,
         });
-        if (biddingInfo.aesUserId === '') {
-          handleDownload(file)
-        }
+        handleDownload(file)
       });
       captureDiv && captureDiv.style.display === 'block' ? captureDiv.style.display = 'none' : captureDiv.style.display = 'none'
     }
-}
-
-const handleDownload = (file: Blob) => {
-  if (biddingInfo.pdfFile) {
-    const url = window.URL.createObjectURL(file);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${fileName.replace(" ", "")}.pdf`;
-    a.click();
-    window.URL.revokeObjectURL(url);
   }
-}
+
+  const handleDownload = (file: Blob) => {
+    if (biddingInfo.pdfFile) {
+      const url = window.URL.createObjectURL(file);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${fileName.replace(" ", "")}.pdf`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
+  }
 
   useEffect(() => {
     handleGetHeight()

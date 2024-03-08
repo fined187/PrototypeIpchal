@@ -81,7 +81,6 @@ export default function BiddingPrice() {
   useEffect(() => {
     const handleRegisterMandate = async () => {
       if (biddingForm.agentYn === 'Y' && biddingForm.bidderNum === 1) {
-        console.log("입찰자 대리인 연결 실행")
         try {
           const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/mandates`, {
             bidderCount: biddingForm.bidderNum,
@@ -319,9 +318,9 @@ export default function BiddingPrice() {
               <svg width="15" height="15" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" style={{
                 marginTop: '5px',
               }}>
-                <path d="M17.4993 32.0827C25.5535 32.0827 32.0827 25.5535 32.0827 17.4993C32.0827 9.4452 25.5535 2.91602 17.4993 2.91602C9.4452 2.91602 2.91602 9.4452 2.91602 17.4993C2.91602 25.5535 9.4452 32.0827 17.4993 32.0827Z" stroke="#181826" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M17.5 8.77848V8.75" stroke="#181826" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M17.5 14.584V26.2507" stroke="#181826" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.4993 32.0827C25.5535 32.0827 32.0827 25.5535 32.0827 17.4993C32.0827 9.4452 25.5535 2.91602 17.4993 2.91602C9.4452 2.91602 2.91602 9.4452 2.91602 17.4993C2.91602 25.5535 9.4452 32.0827 17.4993 32.0827Z" stroke="#181826" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M17.5 8.77848V8.75" stroke="#181826" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M17.5 14.584V26.2507" stroke="#181826" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               <span className={`font-bold text-['suit'] text-sutTitle`}>
                 &nbsp;{biddingForm.sagunNum}

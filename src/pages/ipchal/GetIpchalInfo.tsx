@@ -148,7 +148,7 @@ export default function GetIpchalInfo() {
           <Spinner />
         )}
         <div className="flex flex-col w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
-          <div className="flex flex-col gap-[25px] md:pt-[100px] pt-[50px]">
+          <div className="flex flex-col gap-[25px] pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-NanumGothic not-italic leading-8">
               상세 내역을 확인해주세요
             </span>

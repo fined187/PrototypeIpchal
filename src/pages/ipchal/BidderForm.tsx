@@ -457,7 +457,7 @@ export default function BidderForm() {
               checked={biddingForm.bidCorpYn[stepNum - 1] === 'I'}
               className='cursor-pointer w-[15px]'
               type='radio'
-              onClick={() => {
+              onChange={() => {
                 setBiddingInfo((prev: any) => {
                   const temp = prev.bidderCorpYn
                   temp[stepNum - 1] = 'I'
@@ -482,7 +482,7 @@ export default function BidderForm() {
               name='bidderType'
               className='cursor-pointer w-[15px]'
               type='radio'
-              onClick={() => {
+              onChange={() => {
                 setBiddingInfo((prev: any) => {
                   const temp = prev.bidderCorpYn
                   temp[stepNum - 1] = 'C'

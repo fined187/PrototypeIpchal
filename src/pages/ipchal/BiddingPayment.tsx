@@ -80,14 +80,14 @@ export default function BiddingPayment() {
           한 개 방법만 선택할 수 있습니다
         </span>
         <div className={`flex gap-10 md:w-[550px] w-[90%] h-[250px] justify-between items-center rounded-lg border-slate-500 mt-[10px] `}>
-          <div className={`flex flex-col md:w-[270px] w-[45%] h-[100%] bg-white border border-gray-300 justify-center gap-[10px] ${biddingForm.bidWay === 'M' ? 'bg-mySelect' : 'bg-white'}`} onClick={async () => {
+          <div className={`flex flex-col md:w-[270px] w-[45%] h-[100%] border border-gray-300 justify-center gap-[10px] ${biddingForm.bidWay === 'M' ? 'bg-mySelect' : 'bg-white'}`} onClick={async () => {
             setBiddingForm({
               ...biddingForm,
               bidWay: 'M',
             })
             await handleBiddingPayment('M')
           }}>
-            <div className='flex justify-center items-center w-[100%] cursor-pointer'>
+            <div className={`flex justify-center items-center w-[100%] cursor-pointer ${biddingForm.bidWay === 'M' ? 'bg-mySelect' : 'bg-white'}`}>
               <svg width="90" height="90" viewBox="0 0 105 115" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2 70.3761C2 68.0159 3.92983 66.1026 6.31039 66.1026H23.552C25.9325 66.1026 27.8623 68.0159 27.8623 70.3761V108.838C27.8623 111.198 25.9325 113.111 23.552 113.111H6.31039C3.92983 113.111 2 111.198 2 108.838V70.3761Z" fill="white"/>
                 <path d="M83.8974 36.188C83.8974 45.6288 76.1781 53.2821 66.6559 53.2821C57.1336 53.2821 49.4143 45.6288 49.4143 36.188C49.4143 26.7473 57.1336 19.094 66.6559 19.094C76.1781 19.094 83.8974 26.7473 83.8974 36.188Z" fill="white"/>
@@ -100,7 +100,7 @@ export default function BiddingPayment() {
               </span>
             </div>
           </div>
-          <div className={`flex flex-col md:w-[270px] w-[45%] h-[100%] bg-white border border-gray-300 justify-center gap-[10px] ${biddingForm.bidWay === 'W' ? 'bg-mySelect' : 'bg-white'}`} onClick={async () => {
+          <div className={`flex flex-col md:w-[270px] w-[45%] h-[100%] border border-gray-300 justify-center gap-[10px] ${biddingForm.bidWay === 'W' ? 'bg-mySelect' : 'bg-white'}`} onClick={async () => {
             setBiddingForm({
               ...biddingForm,
               bidWay: 'W',
@@ -109,9 +109,9 @@ export default function BiddingPayment() {
           }}>
             <div className='flex justify-center items-center w-[100%] cursor-pointer'>
               <svg width="80" height="80" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M30 110H90C95.523 110 100 105.523 100 100V49.1422C100 46.49 98.9465 43.9465 97.071 42.0711L67.929 12.9289C66.0535 11.0535 63.51 10 60.858 10H30C24.4771 10 20 14.4771 20 20V100C20 105.523 24.4771 110 30 110Z" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M40 85H75" stroke="#8E8EA9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M40 65H75" stroke="#8E8EA9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M30 110H90C95.523 110 100 105.523 100 100V49.1422C100 46.49 98.9465 43.9465 97.071 42.0711L67.929 12.9289C66.0535 11.0535 63.51 10 60.858 10H30C24.4771 10 20 14.4771 20 20V100C20 105.523 24.4771 110 30 110Z" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M40 85H75" stroke="#8E8EA9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M40 65H75" stroke="#8E8EA9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
             <div className='flex flex-col justify-center items-center w-[100%] cursor-pointer'>

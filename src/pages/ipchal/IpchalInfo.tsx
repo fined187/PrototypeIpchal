@@ -48,7 +48,7 @@ export default function IpchalInfo() {
         </div>
       </div>
       <Button 
-        nextText='다음'
+        nextText='다음으로'
         handleNextStep={() => setStateNum(stateNum + 1)}
         handlePrevStep={() => setStateNum(stateNum - 1)}
       />

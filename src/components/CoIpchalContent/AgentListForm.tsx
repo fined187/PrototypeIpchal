@@ -17,9 +17,9 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
   }, [])
   
   return (
-    <div className={`flex flex-col bg-white h-[1300px] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
-      <div className="flex flex-col bg-mybg h-[100%] w-[100%] m-auto relative justify-center items-center">
-        <div className="flex md:w-[80%] w-[100%] absolute top-[5px]">
+    <div className={`flex flex-col bg-mybg h-[1300px] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
+      <div className="flex flex-col bg-mybg h-[100%] md:w-[850px] w-[90%] m-auto relative justify-center items-center">
+        <div className="flex w-[100%] absolute top-[5px]">
           <span className="md:text-[12pt] text-[10px] font-batang">
             (뒷면)
           </span>

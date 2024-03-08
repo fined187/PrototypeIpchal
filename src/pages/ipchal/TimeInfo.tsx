@@ -13,18 +13,18 @@ export default function TimeInfo() {
   const [timeClicked, setTimeClicked] = useState('')
   const [loading, setLoading] = useState<boolean>(false)
   const router = useRouter()
-
+  console.log(biddingInfo)
   const handleConfirm = async (time: string) => {
     setLoading(true)
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}inits`,
         {
-          userId: router.query.userId,
+          aesUserId: router.query.aesUserId ?? "",
           infoId: biddingInfo.infoId,
           caseNo: biddingInfo.caseNo,
-          mulSeq: biddingInfo.mulNo,
-          biddingDate: biddingInfo.ipchalDate,
+          mulSeq: biddingInfo.mulSeq,
+          biddingDate: biddingInfo.biddingDate,
           biddingTime: time,
         },
         {
@@ -61,41 +61,63 @@ export default function TimeInfo() {
   }
 
   return (
-    <div className="flex w-[100%] md:h-screen h-[95vh] bg-white justify-center relative">
+    <div className="flex w-[100%] md:h-screen h-[95vh] bg-mybg justify-center relative">
       {loading && (
         <Spinner />
       )}
-      <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center md:pt-[100px] pt-[50px]">
-        <div className="flex">
-          <span className="md:text-[1.5rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
-            입찰일에 두 번의 경매가 진행됩니다
-            <br />
+      <div className="flex flex-col md:w-[550px] w-[100%] h-[100%] bg-mybg items-center text-center pt-[50px]">
+        <div className="flex flex-col gap-[25px]">
+          <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic leading-8">
             원하시는 경매를 선택하세요
           </span>
+          <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-normal font-['suit'] not-italic leading-8">
+            1기일 2회 입찰 사건입니다
+            <br />
+            오전 기일에 낙찰이 될 경우 오후 기일은 진행하지 않습니다
+          </span>
         </div>
-        <div className="flex flex-col gap-10 md:w-[550px] w-[90%] h-[60%] bg-white mt-[50px] justify-center items-center rounded-lg border-slate-500">
-          <div className={`flex flex-col justify-center items-center border-2 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1000" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} 
-            onClick={() => {
+        <div className="flex flex-col gap-[10px] md:w-[550px] w-[90%] h-[50%] mt-[50px] justify-start items-center rounded-lg border-slate-500">
+          <div className={`flex flex-row gap-[50px] justify-center items-center w-[100%] h-[100px] border border-gray-300 rounded-lg cursor-pointer ${timeClicked === '1000' ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
             setTimeClicked('1000')
             handleConfirm('1000')
           }}>
-            <span className={`font-NanumGothic text-[20px] font-bold ${biddingInfo.selectedTime === '1000' ? 'text-white' : 'text-mygold'}`}>
-              {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.biddingTime.substring(0, 2) + '시'}
-            </span>
-            <span className={`font-NanumGothic text-[20px] font-bold ${biddingInfo.selectedTime === '1000' ? 'text-white' : 'text-mygold'}`}>
-              {'최저가 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.minimumAmount.toLocaleString('ko-KR') + '원'}
-            </span>
+            <div className="flex flex-col justify-center items-start w-[50%] ml-[25px]">
+              <span className="font-['suit'] md:text-[1rem] text-[0.8rem] font-bold text-sutTitle">
+                입찰시간
+              </span>
+              <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold`}>
+                {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.biddingTime.substring(0, 2) + '시'}
+              </span>
+            </div>
+            <div className={`flex flex-col justify-center items-start w-[50%]`}>
+              <span className="font-['suit'] md:text-[1rem] text-[0.8rem] font-bold">
+                최저가
+              </span>
+              <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold`}>
+                {'최저가 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.minimumAmount.toLocaleString('ko-KR') + '원'}
+              </span>
+            </div>
           </div>
-          <div className={`flex flex-col justify-center items-center border-2 ${errorMsg ? 'border-red-500' : 'border-mygold'} ${biddingInfo.selectedTime === "1400" ? 'bg-mygold' : 'bg-white'} w-[300px] h-[150px] cursor-pointer`} onClick={() => {
-            setTimeClicked('1000')
+          <div className={`flex flex-row gap-[50px] justify-center items-center w-[100%] h-[100px] cursor-pointer border border-gray-300 rounded-lg ${timeClicked === '1400' ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
+            setTimeClicked('1400')
             handleConfirm('1400')
           }}>
-            <span className={`font-NanumGothic text-[20px] font-bold ${biddingInfo.selectedTime === '1400' ? 'text-white' : 'text-mygold'}`}>
-              {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[1]?.biddingTime.substring(0, 2) + '시'}
-            </span>
-            <span className={`font-NanumGothic text-[20px] font-bold ${biddingInfo.selectedTime === '1400' ? 'text-white' : 'text-mygold'}`}>
-              {'최저가 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[1]?.minimumAmount.toLocaleString('ko-KR') + '원'}
-            </span>
+            <div className="flex flex-col justify-center items-start w-[50%] ml-[25px]">
+              <span className="font-['suit'] md:text-[1rem] text-[0.8rem] font-bold text-sutTitle">
+                입찰시간
+              </span>
+              <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold`}>
+                {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[1]?.biddingTime.substring(0, 2) + '시'}
+              </span>
+            </div>
+            <div className={`flex flex-col justify-center items-start w-[50%]`}>
+              <span className="font-['suit'] md:text-[1rem] text-[0.8rem] font-bold">
+                최저가
+              </span>
+              <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold`}>
+                {'최저가 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[1]?.minimumAmount.toLocaleString('ko-KR') + '원'}
+              </span>
+            </div>
           </div>
           {errorMsg && (
             <div className="mt-5">
@@ -106,7 +128,7 @@ export default function TimeInfo() {
           )}
         </div>
         <Button 
-          nextText="다음"
+          nextText="다음으로"
           handleNextStep={() => handleNextStep(biddingInfo.selectedTime)}
           handlePrevStep={() => {
             setStateNum(stateNum - 1)

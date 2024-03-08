@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil"
 export default function AgentCheck() {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [stateNum, setStateNum] = useRecoilState(stepState)
-  const [checkedItems, setCheckedItems] = useState(biddingInfo.bidName.map((name: any, index: number) => false));
+  const [checkedItems, setCheckedItems] = useState<boolean[]>(Array(biddingInfo.bidName.length).fill(false));
 
   const allChecked = checkedItems.every(Boolean);
   useEffect(() => {
@@ -78,7 +78,7 @@ export default function AgentCheck() {
       window.removeEventListener('resize', handleHeight)
     }
   }, [])
-
+  console.log(checkedItems)
   return (
     <div id="box" className="flex w-[100%] bg-mybg justify-center relative">
       <div className="flex flex-col w-[100%] h-[100%] items-center text-center md:py-[0px] py-[25px]">
@@ -109,7 +109,7 @@ export default function AgentCheck() {
             <label htmlFor="allChecked" className="ml-2 md:text-[1rem] text-[0.8rem] text-subTitle font-normal">전체 선택</label>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center md:w-[550px] h-[450px] w-[90%] gap-[10px] overflow-auto pt-[25px] pb-[25px]"> 
+        <div className="flex flex-col items-center justify-start md:w-[550px] h-[450px] w-[90%] gap-[10px] overflow-auto pt-[25px] pb-[25px]"> 
           {biddingInfo.bidName.map((name: any, index: number) => (
             <div className={`flex justify-between md:w-[500px] w-[90%] h-[100px] ${checkedItems[index] ? 'bg-mySelect' : 'bg-unClicked'} justify-between cursor-pointer`} key={index}
               onClick={() => {
@@ -139,31 +139,31 @@ export default function AgentCheck() {
                 {biddingInfo.bidCorpYn[index] === 'I' ? (
                   <svg width="50" height="50" viewBox="0 0 91 90" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="45.5" cy="45" r="44.5" fill="white" stroke="#8E8EA9"/>
-                    <path d="M45.5014 42.3192C51.4187 42.3192 56.2157 37.5222 56.2157 31.6049C56.2157 25.6876 51.4187 20.8906 45.5014 20.8906C39.5841 20.8906 34.7871 25.6876 34.7871 31.6049C34.7871 37.5222 39.5841 42.3192 45.5014 42.3192Z" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M24.0723 69.1066V58.3923C24.0723 55.4336 26.4707 53.0352 29.4294 53.0352H61.5723C64.531 53.0352 66.9294 55.4336 66.9294 58.3923V69.1066" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M45.5014 42.3192C51.4187 42.3192 56.2157 37.5222 56.2157 31.6049C56.2157 25.6876 51.4187 20.8906 45.5014 20.8906C39.5841 20.8906 34.7871 25.6876 34.7871 31.6049C34.7871 37.5222 39.5841 42.3192 45.5014 42.3192Z" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M24.0723 69.1066V58.3923C24.0723 55.4336 26.4707 53.0352 29.4294 53.0352H61.5723C64.531 53.0352 66.9294 55.4336 66.9294 58.3923V69.1066" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 ) : (
                   <>
                     <svg width="50" height="50" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_61_783)">
+                      <g clipPath="url(#clip0_61_783)">
                         <path d="M45 89.5C69.5767 89.5 89.5 69.5767 89.5 45C89.5 20.4233 69.5767 0.5 45 0.5C20.4233 0.5 0.5 20.4233 0.5 45C0.5 69.5767 20.4233 89.5 45 89.5Z" fill="white" stroke="#8E8EA9"/>
-                        <path d="M40.082 48.918V57.043" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M50.918 48.918V57.043" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M26.543 38.082V67.8737" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M64.457 38.082V67.8737" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M21.125 67.875H69.875" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M21.125 38.082H69.875" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M64.4583 29.9586L45.5 19.125" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M26.543 29.9586L45.5013 19.125" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M40.082 48.918V57.043" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M50.918 48.918V57.043" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M26.543 38.082V67.8737" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M64.457 38.082V67.8737" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M21.125 67.875H69.875" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M21.125 38.082H69.875" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M64.4583 29.9586L45.5 19.125" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M26.543 29.9586L45.5013 19.125" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M45.5 50V56" stroke="#8E8EA9" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M40.082 48.918V57.043" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M50.918 48.918V57.043" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M26.543 38.082V67.8737" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M64.457 38.082V67.8737" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M21.125 67.875H69.875" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M21.125 38.082H69.875" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M64.4583 29.9586L45.5 19.125" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M26.543 29.9586L45.5013 19.125" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M40.082 48.918V57.043" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M50.918 48.918V57.043" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M26.543 38.082V67.8737" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M64.457 38.082V67.8737" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M21.125 67.875H69.875" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M21.125 38.082H69.875" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M64.4583 29.9586L45.5 19.125" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M26.543 29.9586L45.5013 19.125" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M45.5 50V56" stroke="#8E8EA9" strokeWidth="2" strokeLinecap="round"/>
                       </g>
                       <defs>
                         <clipPath id="clip0_61_783">
