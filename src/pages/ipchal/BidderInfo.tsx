@@ -95,9 +95,9 @@ export default function BidderInfo() {
               본인이 아닌 경우 대리인을 선택해주세요
             </span>
           </div>
-          <div className="flex flex-row md:w-[500px] w-[90%] h-[200px] mt-[50px] gap-[40px]">
+          <div className="flex flex-row md:w-[500px] w-[90%] h-[200px] mt-[50px] md:gap-[40px] gap-[10px]">
             <div
-              className={`flex flex-row w-[230px] h-[200px] rounded-xl ${
+              className={`flex flex-row md:w-[230px] w-[180px] h-[200px] rounded-xl ${
                 isSelected ? '' : 'border-red-600 border-[2px]'
               } justify-center items-center cursor-pointer ${
                 biddingInfo.bidder === 'self' ? 'bg-mySelect' : 'bg-white'
@@ -115,21 +115,20 @@ export default function BidderInfo() {
                   <path d="M50 45.8333C59.2048 45.8333 66.6667 38.3714 66.6667 29.1667C66.6667 19.9619 59.2048 12.5 50 12.5C40.7953 12.5 33.3334 19.9619 33.3334 29.1667C33.3334 38.3714 40.7953 45.8333 50 45.8333Z" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                   <path d="M16.6666 87.5V70.8333C16.6666 66.2308 20.3976 62.5 25 62.5H75C79.6025 62.5 83.3333 66.2308 83.3333 70.8333V87.5" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-
                 <div className='flex flex-col gap-[40px] justify-center items-center'>
                   <span
                     className={`flex text-[1.5rem] text-black not-italic font-bold font-['suit'] leading-[13px] tracking-[-0.39px]`}
                   >
                     본인(입찰자)
                   </span>
-                  <span className={`flex text-[1rem] text-subTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
+                  <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
                     개인 또는 법인
                   </span>
                 </div>
               </div>
             </div>
             <div
-              className={`flex flex-row w-[230px] h-[200px] rounded-xl ${
+              className={`flex flex-row md:w-[230px] w-[180px] rounded-xl ${
                 isSelected ? '' : 'border-red-600 border-[2px]'
               } justify-center items-center cursor-pointer ${
                 biddingInfo.bidder === 'agent' ? 'bg-mySelect' : 'bg-white'
@@ -165,10 +164,10 @@ export default function BidderInfo() {
                     대리인
                   </span>
                   <div className='flex flex-col justify-center items-center gap-[10px]'>
-                    <span className={`flex text-[1rem] text-subTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
+                    <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
                       개인의 대리인 또는
                     </span>
-                    <span className={`flex text-[1rem] text-subTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
+                    <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[13px] tracking-[-0.39px]`}>
                       법인대리인, 공동입찰대리인
                     </span>
                   </div>

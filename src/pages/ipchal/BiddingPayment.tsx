@@ -79,8 +79,8 @@ export default function BiddingPayment() {
         <span className="md:text-[0.9rem] text-[0.8rem] font-bold font-Nanum Gothic text-center leading-[11px] mt-[10px] text-sutTitle">
           한 개 방법만 선택할 수 있습니다
         </span>
-        <div className={`flex gap-10 md:w-[550px] w-[90%] h-[250px] justify-between items-center rounded-lg border-slate-500 mt-[10px] `}>
-          <div className={`flex flex-col md:w-[270px] w-[45%] h-[100%] border border-gray-300 justify-center gap-[10px] ${biddingForm.bidWay === 'M' ? 'bg-mySelect' : 'bg-white'}`} onClick={async () => {
+        <div className={`flex md:gap-10 gap-[10px] md:w-[550px] w-[90%] h-[250px] justify-between items-center rounded-lg border-slate-500 mt-[10px] `}>
+          <div className={`flex flex-col md:w-[270px] w-[50%] h-[100%] border border-gray-300 justify-center gap-[10px] ${biddingForm.bidWay === 'M' ? 'bg-mySelect' : 'bg-white'}`} onClick={async () => {
             setBiddingForm({
               ...biddingForm,
               bidWay: 'M',
@@ -100,7 +100,7 @@ export default function BiddingPayment() {
               </span>
             </div>
           </div>
-          <div className={`flex flex-col md:w-[270px] w-[45%] h-[100%] border border-gray-300 justify-center gap-[10px] ${biddingForm.bidWay === 'W' ? 'bg-mySelect' : 'bg-white'}`} onClick={async () => {
+          <div className={`flex flex-col md:w-[270px] w-[50%] h-[100%] border border-gray-300 justify-center gap-[10px] ${biddingForm.bidWay === 'W' ? 'bg-mySelect' : 'bg-white'}`} onClick={async () => {
             setBiddingForm({
               ...biddingForm,
               bidWay: 'W',

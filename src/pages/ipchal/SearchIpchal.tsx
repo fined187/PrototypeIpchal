@@ -170,7 +170,7 @@ export default function SearchIpchal() {
           <div className="flex flex-row md:w-[550px] w-[90%] h-[200px] md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto pt-[30px] pb-[30px]">
             <div className="flex w-[80%] justify-between items-center">
               <label htmlFor="yearSelect" className="sr-only">Select Year</label>
-              <select id="yearSelect" className="border-gray border w-[150px] h-[40px] rounded-lg outline-myBlue md:text-[1rem] text-[0.8rem] text-right pr-1" onChange={(e) => {
+              <select id="yearSelect" className="border-gray border md:w-[150px] w-[100px] h-[40px] rounded-lg outline-myBlue md:text-[1rem] text-[0.8rem] text-right pr-1" onChange={(e) => {
                 setGetCase(e.target.value)
               }}
                 value={getCase}
@@ -179,7 +179,7 @@ export default function SearchIpchal() {
                   <option key={index} value={parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - index) : (parseInt(nowDate.substring(0, 4)) + 1 - index)}>{parseInt(nowDate.substring(4, 6)) < 11 ? (parseInt(nowDate.substring(0, 4)) - index) : (parseInt(nowDate.substring(0, 4)) + 1 - index)}</option>
                 ))}
               </select>
-              <span className="font-['suit'] font-bold md:text-[1.2rem] text-[1rem]">
+              <span className="font-['suit'] font-bold md:text-[1.2rem] text-[0.8rem]">
                 타경
               </span>
               <label htmlFor="auctionInput" className="sr-only">Auction Number</label>
@@ -202,9 +202,9 @@ export default function SearchIpchal() {
           </div>
         ) : searchResult === 2 && (getData?.length ?? 0) > 0 ? (
           <>
-            <div className="flex flex-col justify-start items-center w-[550px] h-[350px] overflow-y-auto pt-[10px] gap-[10px]">
+            <div className="flex flex-col justify-start items-center md:w-[550px] w-[90%] h-[350px] overflow-y-auto pt-[10px] gap-[10px]">
               {getData?.map((data: any, index: number) => (
-              <div className="flex flex-col md:w-[500px] w-[90%] bg-white h-[110px]  items-center rounded-lg pb-[10px] cursor-pointer" key={index}>
+              <div className="flex flex-col md:w-[500px] w-[100%] bg-white h-[110px] items-center rounded-lg pb-[10px] cursor-pointer" key={index}>
                 <div className={`w-[95%] flex flex-col`}
                   onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}
                 >
@@ -223,33 +223,33 @@ export default function SearchIpchal() {
                       <div className="flex flex-col w-[50%] h-[60px]">
                         <div className="flex flex-row mt-[5px] mb-[5px]">
                           <div className="flex justify-center items-center">
-                            <span className="text-[1rem] font-['suit'] text-black text-center">
+                            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-black text-center">
                               감정가
                             </span>
                           </div>
                           <div className="flex justify-center items-center">
-                            <span className="text-[1rem] font-['suit'] text-black ml-[10px]">
+                            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-black ml-[10px]">
                               {data.appraisalAmount.toLocaleString('ko-KR')}
                             </span>
                           </div>
                         </div>
                         <div className="flex flex-row">
                           <div className="flex justify-center items-center">
-                            <span className="text-[1rem] font-['suit'] text-black text-center">
+                            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-black text-center">
                               최저가
                             </span>
                           </div>
                           <div className="flex flex-row justify-center items-center">
-                            <span className="text-[1rem] font-['suit'] text-myBlue ml-[10px]">
+                            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-myBlue ml-[10px]">
                               {"(" + data.rate + ")"}
                             </span>
-                            <span className="text-[1rem] font-['suit'] text-black ml-[10px]">
+                            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-black ml-[10px]">
                               {data.minimumAmount.toLocaleString('ko-KR')}
                             </span>
                           </div>
                         </div>
                       </div>
-                      <div className="flex w-[150px] h-[60px] rounded-md justify-center items-center bg-searchBg">
+                      <div className="flex md:w-[150px] w-[120px] h-[60px] rounded-md justify-center items-center bg-searchBg">
                         <span className="text-center font-['suit'] text-[1rem] font-bold">
                           {data.biddingDateString + " " + "입찰"}
                         </span>

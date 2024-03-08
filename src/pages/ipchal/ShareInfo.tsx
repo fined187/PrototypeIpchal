@@ -212,9 +212,7 @@ export default function ShareInfo() {
         setGoNext(false)
       }
     }
-  }, [biddingInfo.numerator, biddingInfo.denominator, biddingInfo.shareWay])
-
-  console.log(biddingInfo, goNext)
+  }, [biddingInfo.numerator, biddingInfo.denominator])
 
   return (
     <div className={`flex w-screen bg-mybg justify-center relative`}>
@@ -312,7 +310,7 @@ export default function ShareInfo() {
                   (biddingInfo.shareWay === 'N') && goNext
                     ? 'border-red-500'
                     : 'border-green-500'
-                  } rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center h-[40px] w-[80px]`}
+                  } rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center h-[40px] md:w-[80px] w-[40px]`}
                   onChange={(e) => {
                   let temp = [...shareList.shareList]
                   temp[index] = {
@@ -342,7 +340,7 @@ export default function ShareInfo() {
                   type="text"
                   value={100}
                   className={`border-2 ${(biddingInfo.shareWay === 'N') && goNext ? 'border-red-500' : 'border-green-500'} 
-                  rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center h-[40px] w-[80px]`}
+                  rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center h-[40px] md:w-[80px] w-[40px]`}
                   onChange={(e) => {
                   let temp = [...shareList.shareList]
                   temp[index] = {

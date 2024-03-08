@@ -339,7 +339,7 @@ export default function BiddingPrice() {
                 <div className='flex flex-row w-[80%] justify-start'>
                   <input 
                     readOnly
-                    className="text-sutTitle md:text-[1.2rem] text-[1rem] font-bold font-['suit'] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md" 
+                    className="text-sutTitle md:text-[1.2rem] text-[1rem] md:w-[100%] w-[70%] font-bold font-['suit'] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md" 
                     value={paymentsInfo.appraisalAmount.toLocaleString('ko-KR')} 
                   />
                   <span className="text-sutTitle md:text-[1.2rem] text-[1rem] font-bold font-['suit'] mt-[5px]">
@@ -356,7 +356,7 @@ export default function BiddingPrice() {
                 <div className='flex flex-row w-[80%] justify-start'>
                   <input 
                     value={paymentsInfo.minimumAmount.toLocaleString('ko-KR')}
-                    className="text-myBlue md:text-[1.2rem] text-[1rem] font-bold font-['suit'] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md" 
+                    className="text-myBlue md:text-[1.2rem] text-[1rem] font-bold font-['suit'] md:w-[100%] w-[70%] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md" 
                     readOnly
                   />
                   <span className="text-sutTitle md:text-[1.2rem] text-[1rem] font-bold font-['suit'] mt-[5px]">
@@ -367,8 +367,8 @@ export default function BiddingPrice() {
             </div>
             <div className='flex w-[100%] h-[1px] bg-gray-300 mt-[5px]' />
             <div className="flex flex-col gap-[10px] w-[100%]">
-              <div className='flex justify-start w-[20%] pt-[25px]'>
-                <span className="text-[1rem] font-['suit'] not-italic font-bold">
+              <div className='flex justify-start pt-[25px]'>
+                <span className="md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold">
                   입찰 가격
                 </span>
               </div>
@@ -395,13 +395,13 @@ export default function BiddingPrice() {
             <div className="flex justify-between w-[100%] h-[40px]">
               <div className='flex w-[100%] justify-end'>
                 <span className="md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-myOrange mb-2 text-left">
-                  {num2han(biddingForm.biddingPrice) + '원'  + "(최저가의 " + Math.floor(((biddingForm.biddingPrice - paymentsInfo.minimumAmount) / (paymentsInfo.minimumAmount)) * 100 + 100) + "%)"}
+                  {num2han(biddingForm.biddingPrice ?? 0) + '원'  + "(최저가의 " + Math.floor(((biddingForm.biddingPrice - paymentsInfo.minimumAmount) / (paymentsInfo.minimumAmount)) * 100 + 100) + "%)"}
                 </span>
               </div>
             </div>
             <div className="flex flex-col gap-[10px] w-[100%]">
-              <div className="flex justify-start w-[20%] pt-[25px]">
-                <span className="text-[1rem] font-['suit'] not-italic font-bold ">
+              <div className="flex justify-start pt-[25px]">
+                <span className="md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold ">
                   입찰 보증 금액
                 </span>
               </div>

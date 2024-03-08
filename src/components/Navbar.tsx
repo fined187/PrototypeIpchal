@@ -51,7 +51,7 @@ export default function Navbar() {
           </div>
         </div>
       ) : (
-        <div className='flex justify-start w-[550px] h-[2.5px] bg-gray-200 absolute top-[25px]'>
+        <div className='flex justify-start md:w-[550px] w-[80%] h-[2.5px] bg-gray-200 absolute top-[25px]'>
           <div className={`flex w-[${statusBar}%] h-[2.5px] bg-myBlue ease-in`}>
           </div>
         </div>

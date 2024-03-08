@@ -9,9 +9,9 @@ interface CoIpchalFormProps {
 export default function CoIpchalForm({ totalResult }: CoIpchalFormProps) {
   const stateNum = useRecoilValue(stepState);
   return (
-    <div className={`flex flex-col bg-white h-[1300px] w-[100%] m-auto relative justify-center items-center ${stateNum === 11 ? '' : 'border-black border-dashed border-t-[2px] border-b-[2px]'} overflow-x-scroll scrollbar-hide`}>
-      <div className="flex flex-col bg-mybg h-[100%] w-[100%] m-auto relative justify-center items-center">
-        <div className="flex flex-col md:w-[100%] w-[80%] h-[100%] justify-center items-center">
+    <div className={`flex flex-col bg-mybg h-[1300px] w-[100%] m-auto relative justify-center items-center ${stateNum === 11 ? '' : 'border-black border-dashed border-t-[2px] border-b-[2px]'} overflow-x-scroll scrollbar-hide`}>
+      <div className="flex flex-col bg-mybg h-[100%] md:w-[100%] w-[90%] m-auto relative justify-center items-center">
+        <div className="flex flex-col w-[100%] h-[100%] justify-center items-center">
           <div className="md:text-[18pt] text-[18px] py-[60px] leading-[23px] font-batang absolute top-0 bg-mybg">
             공 동 입 찰 신 고 서
           </div>
