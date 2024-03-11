@@ -158,7 +158,7 @@ export default function SearchIpchal() {
           <Spinner />
         )}
       <div className="flex flex-col w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
-        <div className="flex flex-col md:pt-[100px] pt-[50px] gap-[10px]">
+        <div className="flex flex-col pt-[50px] gap-[10px]">
           <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
             {searchResult === 1 ? "입찰 예정인 경매물건을 검색해주세요" : searchResult === 2 ? "입찰서를 작성할 물건을 선택해주세요" : "검색 결과가 없습니다"}
           </span>
@@ -202,9 +202,9 @@ export default function SearchIpchal() {
           </div>
         ) : searchResult === 2 && (getData?.length ?? 0) > 0 ? (
           <>
-            <div className="flex flex-col justify-start items-center md:w-[550px] w-[90%] h-[350px] overflow-y-auto pt-[10px] gap-[10px] mt-[25px]">
+            <div className="flex flex-col justify-start items-center md:w-[550px] w-[90%] h-[350px] overflow-y-auto pt-[10px] gap-[10px] mt-[25px] ">
               {getData?.map((data: any, index: number) => (
-              <div className="flex flex-col md:w-[500px] w-[100%] bg-white h-[110px] items-center rounded-lg pb-[10px] cursor-pointer" key={index}>
+              <div className="flex flex-col md:w-[500px] w-[100%] bg-white h-[110px] items-center rounded-lg pb-[10px] cursor-pointer relative" key={index}>
                 <div className={`w-[95%] flex flex-col`}
                   onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}
                 >
@@ -249,7 +249,7 @@ export default function SearchIpchal() {
                           </div>
                         </div>
                       </div>
-                      <div className="flex md:w-[150px] w-[120px] h-[60px] rounded-md justify-center items-center bg-searchBg">
+                      <div className="flex md:w-[150px] w-[120px] h-[40px] rounded-md justify-center items-center bg-searchBg absolute bottom-[15px] right-[10px]">
                         <span className="text-center font-['suit'] text-[1rem] font-bold">
                           {data.biddingDateString + " " + "입찰"}
                         </span>
@@ -261,15 +261,16 @@ export default function SearchIpchal() {
             </div>
           </>
         ) : searchResult === 3 ? (
-          <div className="flex flex-col md:w-[550px] w-[90%] h-[200px] bg-white md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto pt-[30px] pb-[30px]">
-            <span className="md:text-[1.2rem] text-[1rem] font-['suit'] font-bold text-center text-black">
-              검색결과가 없습니다. 
-            </span>
-            <br />
-            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] font-bold text-center text-gray-400">
-              이전 버튼을 눌러 다시 검색해주세요.
-            </span>
-          </div>
+          // <div className="flex flex-col md:w-[550px] w-[90%] h-[200px] bg-white md:mt-[200px] mt-[130px] justify-center items-center rounded-lg absolute overflow-auto pt-[30px] pb-[30px]">
+          //   <span className="md:text-[1.2rem] text-[1rem] font-['suit'] font-bold text-center text-black">
+          //     검색결과가 없습니다. 
+          //   </span>
+          //   <br />
+          //   <span className="md:text-[1rem] text-[0.8rem] font-['suit'] font-bold text-center text-gray-400">
+          //     이전 버튼을 눌러 다시 검색해주세요.
+          //   </span>
+          // </div>
+          null
         ) : (
           null
         )}

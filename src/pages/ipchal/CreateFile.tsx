@@ -197,20 +197,20 @@ export default function CreateFile() {
       {!loading && (
         <div className="flex w-[100%] md:h-[100vh] h-[100vh] justify-center bg-mybg relative">
           <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
-            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
+            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
               입찰표 작성이 끝났습니다
             </span>
-            <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-normal font-['suit'] not-italic leading-8">
+            <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic">
               생성하기 버튼을 눌러 파일을 다운로드 받아주세요
             </span>
             <div className="flex flex-col gap-5 md:w-[550px] w-[90%] h-[200px] justify-center items-left mt-[30px] rounded-md border-gray-400">
               <div className="flex flex-col justify-start text-left gap-3">
-                <span className="text-black text-[1rem] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
+                <span className="text-black text-[1rem] font-bold not-italic font-['suit'] ml-[5%]">
                   파일명
                 </span>
                 <input
                   aria-label='파일 이름'
-                  className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myBlue"
+                  className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myBlue font-['suit'] font-bold p-[10px]"
                   value={fileName.replace(" ", "") || biddingInfo.fileName.replace(" ", "")}
                   onChange={(e) => {
                     setFileName(e.target.value)
@@ -221,16 +221,16 @@ export default function CreateFile() {
                   }} 
                 />
               </div>
-              <div className="flex flex-col justify-start text-left gap-3 relative">
-                <span className="text-black text-[1rem] font-extrabold not-italic font-NanumGothic leading-[9px] ml-[5%]">
+              <div className="flex flex-col justify-start text-left gap-3 relative ml-[5%]">
+                <span className="text-black text-[1rem] font-bold not-italic font-['suit']">
                   비밀번호
                 </span>
                 <div className='flex flex-row w-[100%] gap-[1%]'>
-                  <div className='relative w-[65%] h-[40px]'>
+                  <div className='relative w-[69%] h-[40px]'>
                     <input
                       aria-label='비밀번호'
                       type={`${passwordActive ? 'text' : 'password'}`}
-                      className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[7%] focus:outline-2 focus:outline-myBlue"
+                      className="flex w-[100%] h-[40px] border border-gray-300 rounded-md focus:outline-2 focus:outline-myBlue font-['suit'] font-bold p-[10px]"
                       value={password || ''}
                       onChange={(e) => {
                         setPassword(e.target.value)
@@ -251,10 +251,10 @@ export default function CreateFile() {
                     </div>
                   </div>
                   <div
-                    className="flex w-[30%] h-[40px] bg-myBlue border-[1px] border-gray-300 justify-center items-center rounded-md"
+                    className="flex w-[25%] h-[40px] bg-mySelect border-[1px] border-gray-300 justify-center items-center rounded-md"
                     onClick={onClickPdf}
                   >
-                    <span className="flex text-white text-center text-[1rem] not-italic font-extrabold leading-[15px] font-NanumGothic cursor-pointer">
+                    <span className="flex text-black text-center text-[1rem] not-italic font-bold font-['suit'] cursor-pointer">
                       생성하기
                     </span>
                   </div>
@@ -263,7 +263,7 @@ export default function CreateFile() {
             </div>
             {!biddingInfo.isFileCreated && (
               <div className="flex mt-[30px]">
-                <span className="text-red-500 md:text-[0.9rem] text-[0.8rem] font-bold">
+                <span className="text-red-500 md:text-[1rem] text-[0.8rem] font-bold">
                   파일을 생성해주세요
                 </span>
               </div>

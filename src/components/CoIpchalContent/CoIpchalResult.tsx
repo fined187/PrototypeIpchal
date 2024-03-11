@@ -819,7 +819,7 @@ export default function CoIpchalResult() {
             </div>
           </div>
           <div className="flex flex-col md:max-w-[850px] w-[90%] leading-[-1px] justify-center items-center absolute top-[750px]">
-            <div className="flex flex-col md:w-[85%] w-[100%] text-left items-start justify-start">
+            <div className="flex flex-col md:w-[90%] w-[100%] text-left items-start justify-start">
               <span className="md:text-[15pt] text-[14px] font-extrabold font-batang ">
                 주의사항
               </span>

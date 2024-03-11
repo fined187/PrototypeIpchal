@@ -271,7 +271,7 @@ export default function ShareInfo() {
         )}
         {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
             return (
-            <div key={index} className="flex justify-between w-[100%] h-[100px] bg-white border-2 border-gray-300 relative">
+            <div key={index} className="flex justify-between w-[100%] h-[100px] bg-white border border-black rounded-lg relative">
               <div className="flex flex-col w-[100%] justify-center items-start ml-5">
               <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-sutTitle font-normal">
                 {"#" + (index + 1)}
@@ -280,7 +280,7 @@ export default function ShareInfo() {
                 {name + (biddingInfo.bidCorpYn[index] === 'I' ? ' (개인)' : ' (법인)')}
               </span>
               </div>
-              <div className="flex flex-row gap-[10px] w-[30%] justify-center h-[50px] absolute top-[50%]  border-b-2 border-b-unClicked transform translate-y-[-50%] right-5">
+              <div className="flex flex-row gap-[10px] w-[30%] justify-center h-[50px] absolute top-[50%] border-b-[1px] border-b-sutTitle transform translate-y-[-50%] right-5">
               {biddingInfo.shareWay === 'S' ? (
                 <>
                 <input
@@ -306,11 +306,11 @@ export default function ShareInfo() {
                   id="numerator"
                   type="text"
                   value={shareList.shareList[index]?.share?.split('/')[0] === 'undefined' ? '1' : shareList.shareList[index]?.share?.split('/')[0]}
-                  className={`border-2 ${
+                  className={` ${
                   (biddingInfo.shareWay === 'N') && goNext
-                    ? 'border-red-500'
-                    : 'border-green-500'
-                  } rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center h-[40px] md:w-[80px] w-[40px]`}
+                    ? 'text-red-500'
+                    : ''
+                  } rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center h-[40px] md:w-[80px] w-[40px] border-[1px] border-sutTitle`}
                   onChange={(e) => {
                   let temp = [...shareList.shareList]
                   temp[index] = {
@@ -339,8 +339,7 @@ export default function ShareInfo() {
                   id='denominator'
                   type="text"
                   value={100}
-                  className={`border-2 ${(biddingInfo.shareWay === 'N') && goNext ? 'border-red-500' : 'border-green-500'} 
-                  rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center h-[40px] md:w-[80px] w-[40px]`}
+                  className={`rounded-md md:text-[1rem] text-[0.8rem] font-['suit'] not-italic font-bold text-center h-[40px] md:w-[80px] w-[40px] border-[1px] border-sutTitle`}
                   onChange={(e) => {
                   let temp = [...shareList.shareList]
                   temp[index] = {

@@ -208,8 +208,8 @@ export default function AgentForm() {
           {/* 입력정보 */}
           <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[550px] w-[80%] h-[100%] justify-start items-center overflow-x-hidden'>
             <div className="flex flex-col w-[100%] gap-2">
-              <div className="flex flex-row w-[100%] gap-[5%]">
-                <div className="flex flex-col w-[47.5%] gap-1">
+              <div className="flex flex-row w-[100%] gap-[0.5%]">
+                <div className="flex flex-col w-[49.5%] gap-1">
                   <div className='flex justify-between w-[100%]'>
                     {(errors.agentName?.type === 'required' ||
                       errors.agentName?.type === 'minLength') && 
@@ -257,7 +257,7 @@ export default function AgentForm() {
                     }}
                   />
                 </div>
-                <div className="flex flex-col w-[47.5%] gap-1">
+                <div className="flex flex-col w-[49.5%] gap-1">
                   <div className='flex flex-row w-[100%]'>
                     {errors.agentRel?.type === 'required' && 
                     (biddingForm.agentRel === '') ?

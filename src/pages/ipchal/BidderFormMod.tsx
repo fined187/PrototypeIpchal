@@ -2,13 +2,11 @@ import { biddingInfoState, stepState } from "@/atom"
 import SearchAddress from "@/components/SearchAddress"
 import Spinner from "@/components/Spinner"
 import { BiddingInfoType } from "@/interface/IpchalType"
-import { getBidders } from "@/remote/bidders"
 import { useDisclosure } from "@chakra-ui/react"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { LiaEyeSlashSolid, LiaEyeSolid } from "react-icons/lia"
-import { useQuery } from "react-query"
 import { useRecoilState } from "recoil"
 
 type BiddersProps = {
@@ -58,6 +56,7 @@ export default function BidderFormMod2() {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`)
       if (response.status === 200) {
         setBidderList(response.data.data.bidders)
+        console.log(response.data.data.bidders)
         if (biddingForm.bidderNum > response.data.data.length) {
           //  입찰자 수가 서버에 저장된 입찰자 수보다 많을 경우
           setBiddingForm((prev: any) => {
@@ -115,21 +114,21 @@ export default function BidderFormMod2() {
         } else if (biddingForm.bidderNum < response.data.data.length) {
           //  입찰자 수가 서버에 저장된 입찰자 수보다 적을 경우 => 입찰자 수 감소
           setBiddingForm((prev: any) => {
-            const temp1 = prev.bidName
-            const temp2 = prev.bidPhone1
-            const temp3 = prev.bidPhone2
-            const temp4 = prev.bidPhone3
+            const temp1 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.name)
+            const temp2 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(0, 3) : bidder.phoneNo.slice(0, 2))
+            const temp3 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(3, 7) : bidder.phoneNo.slice(2, 6))
+            const temp4 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(7, 11) : bidder.phoneNo.slice(6, 10))
             const temp5 = prev.bidIdNum1
             const temp6 = prev.bidIdNum2
-            const temp7 = prev.bidAddr
+            const temp7 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.address)
             const temp8 = prev.bidAddrDetail
-            const temp9 = prev.bidCorpNum1
-            const temp10 = prev.bidCorpNum2
-            const temp11 = prev.bidCorpNum3
-            const temp12 = prev.bidCorpRegiNum1
-            const temp13 = prev.bidCorpRegiNum2
-            const temp14 = prev.bidCorpYn
-            const temp15 = prev.bidJob
+            const temp9 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(0, 3) || '')
+            const temp10 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(3, 5) || '')
+            const temp11 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(5, 10) || '')
+            const temp12 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.corporationNo?.slice(0, 6) || '')
+            const temp13 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.corporationNo?.slice(6, 13) || '')
+            const temp14 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.bidderType)
+            const temp15 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.job || '')
             temp1.splice(biddingForm.bidderNum, response.data.data.length)
             temp2.splice(biddingForm.bidderNum, response.data.data.length)
             temp3.splice(biddingForm.bidderNum, response.data.data.length)
@@ -164,24 +163,24 @@ export default function BidderFormMod2() {
               bidJob: temp15,
             }
           })
-        } else if (biddingForm.bidderNum == response.data.data.length) {
+        } else {
           //  입찰자 수가 서버에 저장된 입찰자 수와 같을 경우
           setBiddingForm((prev: any) => {
-            const temp1 = prev.bidName
-            const temp2 = prev.bidPhone1
-            const temp3 = prev.bidPhone2
-            const temp4 = prev.bidPhone3
+            const temp1 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.name)
+            const temp2 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(0, 3) : bidder.phoneNo.slice(0, 2))
+            const temp3 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(3, 7) : bidder.phoneNo.slice(2, 6))
+            const temp4 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(7, 11) : bidder.phoneNo.slice(6, 10))
             const temp5 = prev.bidIdNum1
             const temp6 = prev.bidIdNum2
-            const temp7 = prev.bidAddr
+            const temp7 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.address)
             const temp8 = prev.bidAddrDetail
-            const temp9 = prev.bidCorpNum1
-            const temp10 = prev.bidCorpNum2
-            const temp11 = prev.bidCorpNum3
-            const temp12 = prev.bidCorpRegiNum1
-            const temp13 = prev.bidCorpRegiNum2
-            const temp14 = prev.bidCorpYn
-            const temp15 = prev.bidJob
+            const temp9 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(0, 3) || '')
+            const temp10 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(3, 5) || '')
+            const temp11 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(5, 10) || '')
+            const temp12 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.corporationNo?.slice(0, 6) || '')
+            const temp13 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.corporationNo?.slice(6, 13) || '')
+            const temp14 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.bidderType)
+            const temp15 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.job || '')
             return {
               ...prev,
               bidName: temp1,
@@ -210,9 +209,7 @@ export default function BidderFormMod2() {
 
   useEffect(() => {
     handleGetBidders()
-  }, [stepNum])
-
-
+  }, [])
 
   const {
     register,
@@ -304,7 +301,6 @@ export default function BidderFormMod2() {
     }
   }
   //  새로운 입찰자 추가
-  //  입찰자 정보 저장
   const handleBidderFormSave = async () => {
     setLoading(true)
     try {
@@ -413,7 +409,7 @@ export default function BidderFormMod2() {
           } else {
             if (stepNum === biddingForm.bidderNum) {
               await handleBidderFormSave()
-              setStateNum(19)
+              setStateNum(8)
             } else {
               if (stepNum > bidderList?.length!) {
                 await handleBidderFormSave()
@@ -449,7 +445,7 @@ export default function BidderFormMod2() {
           } else {
             if (stepNum === biddingForm.bidderNum) {
               await handleBidderFormUpdate()
-              setStateNum(19)
+              setStateNum(8)
             } else {
               if (stepNum > biddingForm.bidderNum) {
                 await handleBidderFormUpdate()
@@ -482,7 +478,7 @@ export default function BidderFormMod2() {
           } else {
             if (stepNum === biddingForm.bidderNum) {
               await handleBidderFormUpdate()
-              setStateNum(19)
+              setStateNum(8)
             } else {
               if (stepNum > biddingForm.bidderNum) {
                 await handleBidderFormUpdate()
@@ -529,6 +525,8 @@ export default function BidderFormMod2() {
       return { ...prev, bidIdNum: newBidIdNum }
     })
   }
+
+  console.log(biddingForm)
 
   return (
     <div className={`flex w-[100%] h-[100vh] bg-mybg justify-center relative overflow-y-auto`} style={{
@@ -1015,7 +1013,7 @@ export default function BidderFormMod2() {
                             id="bidderCorpRegiNum1"
                             placeholder="123456"
                             className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[50%] text-center"
-                            value={biddingForm.bidCorpNum1[stepNum - 1] ?? ''}
+                            value={biddingForm.bidCorpRegiNum1[stepNum - 1] || ''}
                             onChange={(e) => {
                               setBiddingForm((prev: any) => {
                                 const temp = prev.bidCorpRegiNum1

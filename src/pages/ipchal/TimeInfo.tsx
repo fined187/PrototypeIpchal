@@ -70,14 +70,14 @@ export default function TimeInfo() {
           <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
             원하시는 경매를 선택하세요
           </span>
-          <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-bold font-['suit'] not-italic">
+          <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic">
             1기일 2회 입찰 사건입니다
             <br />
             오전 기일에 낙찰이 될 경우 오후 기일은 진행하지 않습니다
           </span>
         </div>
         <div className="flex flex-col gap-[10px] md:w-[550px] w-[90%] h-[50%] mt-[50px] justify-start items-center rounded-lg border-slate-500">
-          <div className={`flex flex-row gap-[50px] justify-center items-center w-[100%] h-[100px] border border-gray-300 rounded-lg cursor-pointer ${timeClicked === '1000' ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
+          <div className={`flex flex-row gap-[50px] justify-center items-center w-[100%] h-[100px] border border-gray-300 rounded-lg cursor-pointer ${(timeClicked === '1000' ) || (biddingInfo.selectedTime === '1000') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
             setTimeClicked('1000')
             handleConfirm('1000')
           }}>
@@ -89,16 +89,21 @@ export default function TimeInfo() {
                 {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.biddingTime.substring(0, 2) + '시'}
               </span>
             </div>
-            <div className={`flex flex-col justify-center text-sutTitle items-start w-[50%]`}>
-              <span className="font-['suit'] md:text-[1rem] text-[0.8rem] font-bold">
+            <div className={`flex flex-col justify-center items-start w-[50%]`}>
+              <span className="font-['suit'] md:text-[1rem] text-[0.8rem] font-bold text-sutTitle ">
                 최저가
               </span>
-              <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold`}>
-                {'최저가 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.minimumAmount.toLocaleString('ko-KR') + '원'}
-              </span>
+              <div className="flex flex-row justify-start items-start w-[100%]">
+                <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold`}>
+                  {(biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.minimumAmount.toLocaleString('ko-KR') + '원'}
+                </span>
+                <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold text-myBlue`}>
+                  (100%)
+                </span>
+              </div>
             </div>
           </div>
-          <div className={`flex flex-row gap-[50px] justify-center items-center w-[100%] h-[100px] cursor-pointer border border-gray-300 rounded-lg ${timeClicked === '1400' ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
+          <div className={`flex flex-row gap-[50px] justify-center items-center w-[100%] h-[100px] cursor-pointer border border-gray-300 rounded-lg ${(timeClicked === '1400') || (biddingInfo.selectedTime === '1400') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
             setTimeClicked('1400')
             handleConfirm('1400')
           }}>
@@ -110,13 +115,18 @@ export default function TimeInfo() {
                 {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[1]?.biddingTime.substring(0, 2) + '시'}
               </span>
             </div>
-            <div className={`flex flex-col justify-center items-start w-[50%]`}>
+            <div className={`flex flex-col justify-center items-start w-[50%] `}>
               <span className="font-['suit'] md:text-[1rem] text-[0.8rem] font-bold text-sutTitle">
                 최저가
               </span>
-              <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold`}>
-                {'최저가 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[1]?.minimumAmount.toLocaleString('ko-KR') + '원'}
-              </span>
+              <div className="flex flex-row justify-start items-start w-[100%]">
+                <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold`}>
+                  {(biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[1]?.minimumAmount.toLocaleString('ko-KR') + '원'}
+                </span>
+                <span className={`font-['suit'] md:text-[1.2rem] text-[1rem] font-bold text-myBlue`}>
+                  {(biddingInfo.biddingInfos.length > 1) && '(' + (biddingInfo.biddingInfos[1]?.minimumAmount / biddingInfo.biddingInfos[0]?.minimumAmount * 100).toFixed(0) + '%)'}
+                </span>
+              </div>
             </div>
           </div>
           {errorMsg && (

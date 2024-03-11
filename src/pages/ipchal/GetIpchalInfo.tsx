@@ -152,20 +152,20 @@ export default function GetIpchalInfo() {
             <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
               상세 내역을 확인해주세요
             </span>
-            <span className="md:text-[1rem] text-[0.8rem] font-normal font-['suit'] not-italic text-sutTitle">
+            <span className="md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic text-sutTitle">
               선택한 경매 사건이 맞는지 체크합니다
             </span>
           </div>
-          <div className={`flex flex-col md:w-[500px] h-[350px] w-[90%] overflow-y-auto gap-[5px] bg-mybg mt-[30px]`}>
-            <div className="flex flex-col relative h-[100px] items-start justify-start bg-white pt-[10px] pl-[25px] pb-[10px]">
-              <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] tracking-[-0.45px] font-bold">
+          <div className={`flex flex-col md:w-[500px] h-[500px] w-[90%] overflow-y-auto gap-[5px] bg-mybg mt-[30px]`}>
+            <div className="flex flex-col relative h-[80px] items-start justify-start bg-white p-[20px]">
+              <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
                 법원
               </span>
               <span className="text-black md:text-[1rem] text-[0.8rem] font-bold font-['suit']">
                 {biddingInfo.courtFullName}
               </span>
             </div>
-            <div className='flex justify-between bg-white pt-[10px] pl-[25px] h-[100px] pb-[10px]'>
+            <div className='flex justify-between bg-white p-[20px] h-[80px]'>
               <div className="flex flex-col relative justify-start items-start w-[80%]">
                 <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
                   사건번호
@@ -183,7 +183,7 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
             </div>
-            <div className='flex justify-between bg-white pt-[10px] pl-[25px] h-[100px] pb-[10px]'>
+            <div className='flex justify-between bg-white h-[80px] p-[20px]'>
               <div className="flex flex-col relative justify-start items-start w-[80%]">
                 <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
                   입찰기일
@@ -202,7 +202,7 @@ export default function GetIpchalInfo() {
               </div>
             </div>
             {biddingInfo.usage === ('차량' || '중기') ? (
-              <div className="flex flex-col relative h-[100px] items-start justify-start bg-white pt-[10px] pl-[25px] pb-[10px]">
+              <div className="flex flex-col relative h-[80px] items-start justify-start bg-white p-[20px]">
                 <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
                   차량정보
                 </span>
@@ -213,7 +213,7 @@ export default function GetIpchalInfo() {
             ) : (
               null
             )}
-            <div className="flex flex-col relative items-start justify-center bg-white pt-[10px] pb-[10px] pl-[25px]">
+            <div className="flex flex-col relative items-start justify-center bg-white p-[20px]">
               <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
                 물건지 주소
               </span>
@@ -226,7 +226,7 @@ export default function GetIpchalInfo() {
             </div>
           </div>
         </div>
-        <Button nextText='확인' handleNextStep={handleNextStep} handlePrevStep={handlePrevStep} />
+        <Button nextText='다음으로' handleNextStep={handleNextStep} handlePrevStep={handlePrevStep} />
       </div>
     </>
   )

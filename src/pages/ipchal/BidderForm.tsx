@@ -42,23 +42,6 @@ export default function BidderForm() {
   const [bidderList, setBidderList] = useState<BidderListProps>()    //  입찰자 정보 리스트
   const [loading, setLoading] = useState<boolean>(false)            //  로딩 상태
   const { isOpen, onClose, onOpen } = useDisclosure()                       //  주소검색 모달 상태
-  const [biddingInfo, setBiddingInfo] = useState<BiddingInfoType>({ //  입찰자 정보(폼 입력값)
-    bidderName: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderPhone1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderPhone2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderPhone3: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderIdNum1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderIdNum2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderAddr: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderAddrDetail: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpNum1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpNum2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpNum3: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpRegiNum1: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpRegiNum2: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-    bidderCorpYn: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(biddingForm.bidCorpYn[stepNum - 1] ? biddingForm.bidCorpYn[stepNum - 1] : 'I'),
-    bidderJob: Array(isNaN(biddingForm.bidderNum) ? 0 : biddingForm.bidderNum).fill(''),
-  })
   const [passwordActive, setPasswordActive] = useState(false)
   const {
     register,
@@ -262,12 +245,6 @@ export default function BidderForm() {
     handleGetBidderForm()
   }, [])
 
-  useEffect(() => {
-    setBiddingForm((prev: any) => {
-      const temp = biddingInfo.bidderCorpYn
-      return { ...prev, bidCorpYn: temp }
-    })
-  }, [])
 
   const handleUpdateIdNum = (index: number) => {
     setBiddingForm((prev: any) => {
@@ -458,11 +435,6 @@ export default function BidderForm() {
               className='cursor-pointer w-[15px]'
               type='radio'
               onChange={() => {
-                setBiddingInfo((prev: any) => {
-                  const temp = prev.bidderCorpYn
-                  temp[stepNum - 1] = 'I'
-                  return { ...prev, bidderCorpYn: temp }
-                })
                 setBiddingForm((prev: any) => {
                   const temp = prev.bidCorpYn
                   temp[stepNum - 1] = 'I'
@@ -483,11 +455,6 @@ export default function BidderForm() {
               className='cursor-pointer w-[15px]'
               type='radio'
               onChange={() => {
-                setBiddingInfo((prev: any) => {
-                  const temp = prev.bidderCorpYn
-                  temp[stepNum - 1] = 'C'
-                  return { ...prev, bidderCorpYn: temp }
-                })
                 setBiddingForm((prev: any) => {
                   const temp = prev.bidCorpYn
                   temp[stepNum - 1] = 'C'
@@ -511,7 +478,7 @@ export default function BidderForm() {
             <div className="flex flex-col w-[100%] gap-1">
               <div className='flex justify-between w-[100%]'>
                 {(errors.bidderName?.type === 'required') && 
-                  (biddingInfo.bidderName[stepNum - 1] === '' || biddingInfo.bidderName[stepNum - 1] === undefined) ?
+                  (biddingForm.bidName[stepNum - 1] === '' || biddingForm.bidName[stepNum - 1] === undefined) ?
                   (<div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="bidderName"
@@ -539,18 +506,13 @@ export default function BidderForm() {
                     message: '이름은 2자 이상 입력해주세요',
                   },
                 })}
-                value={biddingInfo.bidderName[stepNum - 1] || ''}
+                value={biddingForm.bidName[stepNum - 1] || ''}
                 id="bidderName"
                 name="bidName"
                 type="text"
                 className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic text-left h-[40px] px-2"
                 placeholder="입찰자 성명을 입력해주세요"
                 onChange={(e) => {
-                  setBiddingInfo((prev) => {
-                    const temp = prev.bidderName
-                    temp[stepNum - 1] = e.target.value
-                    return { ...prev, bidderName: temp }
-                  })
                   setBiddingForm((prev: any) => {
                     const temp = prev.bidName
                     temp[stepNum - 1] = e.target.value
@@ -599,19 +561,6 @@ export default function BidderForm() {
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[33%] text-center"
                   value={biddingForm.bidPhone1[stepNum - 1] || ''}
                   onChange={(e) => {
-                    setBiddingInfo((prev: any) => {
-                      const temp = prev.bidderPhone1
-                      temp[stepNum - 1] = e.target.value
-                      return { ...prev, bidderPhone1: temp }
-                    })
-                    setBiddingInfo((prev: any) => {
-                      const temp = prev.bidderPhone1
-                      temp[stepNum - 1] =
-                        e.target.value +
-                        biddingInfo?.bidderPhone2[stepNum - 1] +
-                        biddingInfo?.bidderPhone3[stepNum - 1]
-                      return { ...prev, bidderPhone: temp }
-                    })
                     setBiddingForm((prev: any) => {
                       const temp = prev.bidPhone1
                       temp[stepNum - 1] = e.target.value
@@ -621,8 +570,8 @@ export default function BidderForm() {
                       const temp = prev.bidPhone
                       temp[stepNum - 1] =
                         e.target.value +
-                        biddingInfo?.bidderPhone2[stepNum - 1] +
-                        biddingInfo?.bidderPhone3[stepNum - 1]
+                        biddingForm.bidPhone2[stepNum - 1] +
+                        biddingForm.bidPhone3[stepNum - 1]
                       return { ...prev, bidPhone: temp }
                     })
                     handlePhoneFocusMove(e.target)
@@ -646,11 +595,6 @@ export default function BidderForm() {
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[33%] text-center"
                   value={biddingForm.bidPhone2[stepNum - 1] || ''}
                   onChange={(e) => {
-                    setBiddingInfo((prev: any) => {
-                      const temp = prev.bidderPhone2
-                      temp[stepNum - 1] = e.target.value
-                      return { ...prev, bidderPhone2: temp }
-                    })
                     setBiddingForm((prev: any) => {
                       const temp = prev.bidPhone2
                       temp[stepNum - 1] = e.target.value
@@ -659,9 +603,9 @@ export default function BidderForm() {
                     setBiddingForm((prev: any) => {
                       const temp = prev.bidPhone
                       temp[stepNum - 1] =
-                        biddingInfo?.bidderPhone1[stepNum - 1] +
+                        biddingForm?.bidPhone1[stepNum - 1] +
                         e.target.value +
-                        biddingInfo?.bidderPhone3[stepNum - 1]
+                        biddingForm?.bidPhone3[stepNum - 1]
                       return { ...prev, bidPhone: temp }
                     })
                     handlePhoneFocusMove(e.target)
@@ -685,11 +629,6 @@ export default function BidderForm() {
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[33%] text-center"
                   value={biddingForm.bidPhone3[stepNum - 1] || ''}
                   onChange={(e) => {
-                    setBiddingInfo((prev: any) => {
-                      const temp = prev.bidderPhone3
-                      temp[stepNum - 1] = e.target.value
-                      return { ...prev, bidderPhone3: temp }
-                    })
                     setBiddingForm((prev: any) => {
                       const temp = prev.bidPhone3
                       temp[stepNum - 1] = e.target.value
@@ -698,8 +637,8 @@ export default function BidderForm() {
                     setBiddingForm((prev: any) => {
                       const temp = prev.bidPhone
                       temp[stepNum - 1] =
-                        biddingInfo?.bidderPhone1[stepNum - 1] +
-                        biddingInfo?.bidderPhone2[stepNum - 1] +
+                        biddingForm?.bidPhone1[stepNum - 1] +
+                        biddingForm?.bidPhone2[stepNum - 1] +
                         e.target.value
                       return { ...prev, bidPhone: temp }
                     })
@@ -709,7 +648,7 @@ export default function BidderForm() {
                 />
               </div>
             </div>
-            {biddingInfo?.bidderCorpYn[stepNum - 1] === 'I' ? (
+            {biddingForm.bidCorpYn[stepNum - 1] === 'I' ? (
               <>
                 <div className="flex flex-col w-[100%] gap-1">
                   <div className='flex justify-between w-[100%]'>
@@ -758,11 +697,6 @@ export default function BidderForm() {
                       className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
                       value={biddingForm.bidIdNum1[stepNum - 1] || ''}
                       onChange={(e) => {
-                        setBiddingInfo((prev: any) => {
-                          const temp = prev.bidderIdNum1
-                          temp[stepNum - 1] = e.target.value
-                          return { ...prev, bidderIdNum1: temp }
-                        })
                         setBiddingForm((prev: any) => {
                           const temp = prev.bidIdNum1
                           temp[stepNum - 1] = e.target.value
@@ -772,7 +706,7 @@ export default function BidderForm() {
                           const temp = prev.bidIdNum
                           temp[stepNum - 1] =
                             e.target.value +
-                            biddingInfo?.bidderIdNum2[stepNum - 1]
+                            biddingForm.bidIdNum2[stepNum - 1]
                           return { ...prev, bidIdNum: temp }
                         })
                         handleIdNumFocusMove(e.target)
@@ -798,11 +732,6 @@ export default function BidderForm() {
                       className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
                       value={biddingForm.bidIdNum2[stepNum - 1] || ''}
                       onChange={(e) => {
-                        setBiddingInfo((prev: any) => {
-                          const temp = prev.bidderIdNum2
-                          temp[stepNum - 1] = e.target.value
-                          return { ...prev, bidderIdNum2: temp }
-                        })
                         setBiddingForm((prev: any) => {
                           const temp = prev.bidIdNum2
                           temp[stepNum - 1] = e.target.value
@@ -811,7 +740,7 @@ export default function BidderForm() {
                         setBiddingForm((prev: any) => {
                           const temp = prev.bidIdNum
                           temp[stepNum - 1] =
-                            biddingInfo?.bidderIdNum1[stepNum - 1] +
+                            biddingForm.bidIdNum1[stepNum - 1] +
                             e.target.value
                           return { ...prev, bidIdNum: temp }
                         })
@@ -872,11 +801,6 @@ export default function BidderForm() {
                       className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[30%] text-center"
                       value={biddingForm.bidCorpNum1[stepNum - 1] || ''}
                       onChange={(e) => {
-                        setBiddingInfo((prev: any) => {
-                          const temp = prev.bidderCorpNum1
-                          temp[stepNum - 1] = e.target.value
-                          return { ...prev, bidderCorpNum1: temp }
-                        })
                         setBiddingForm((prev: any) => {
                           const temp = prev.bidCorpNum1
                           temp[stepNum - 1] = e.target.value
@@ -886,8 +810,8 @@ export default function BidderForm() {
                           const temp = prev.bidCorpNum
                           temp[stepNum - 1] =
                             e.target.value +
-                            biddingInfo?.bidderCorpNum2[stepNum - 1] +
-                            biddingInfo?.bidderCorpNum3[stepNum - 1]
+                            biddingForm.bidCorpNum2[stepNum - 1] +
+                            biddingForm.bidCorpNum3[stepNum - 1]
                           return { ...prev, bidCorpNum: temp }
                         })
                         handleCorpNumFocusMove(e.target)
@@ -914,11 +838,6 @@ export default function BidderForm() {
                       className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[30%] text-center"
                       value={biddingForm.bidCorpNum2[stepNum - 1] || ''}
                       onChange={(e) => {
-                        setBiddingInfo((prev: any) => {
-                          const temp = prev.bidderCorpNum2
-                          temp[stepNum - 1] = e.target.value
-                          return { ...prev, bidderCorpNum2: temp }
-                        })
                         setBiddingForm((prev: any) => {
                           const temp = prev.bidCorpNum2
                           temp[stepNum - 1] = e.target.value
@@ -927,8 +846,8 @@ export default function BidderForm() {
                         setBiddingForm((prev: any) => {
                           const temp = prev.bidCorpNum
                           temp[stepNum - 1] =
-                            biddingInfo?.bidderCorpNum1[stepNum - 1] +
-                            biddingInfo?.bidderCorpNum2[stepNum - 1] +
+                            biddingForm.bidCorpNum1[stepNum - 1] +
+                            biddingForm.bidCorpNum2[stepNum - 1] +
                             e.target.value
                           return { ...prev, bidCorpNum: temp }
                         })
@@ -956,11 +875,6 @@ export default function BidderForm() {
                       className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[30%] text-center"
                       value={biddingForm.bidCorpNum3[stepNum - 1] || ''}
                       onChange={(e) => {
-                        setBiddingInfo((prev: any) => {
-                          const temp = prev.bidderCorpNum3
-                          temp[stepNum - 1] = e.target.value
-                          return { ...prev, bidderCorpNum3: temp }
-                        })
                         setBiddingForm((prev: any) => {
                           const temp = prev.bidCorpNum3
                           temp[stepNum - 1] = e.target.value
@@ -969,8 +883,8 @@ export default function BidderForm() {
                         setBiddingForm((prev: any) => {
                           const temp = prev.bidCorpNum
                           temp[stepNum - 1] =
-                            biddingInfo?.bidderCorpNum1[stepNum - 1] +
-                            biddingInfo?.bidderCorpNum2[stepNum - 1] +
+                            biddingForm.bidCorpNum1[stepNum - 1] +
+                            biddingForm.bidCorpNum2[stepNum - 1] +
                             e.target.value
                           return { ...prev, bidCorpNum: temp }
                         })
@@ -1022,11 +936,6 @@ export default function BidderForm() {
                         className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[50%] text-center"
                         value={biddingForm.bidCorpRegiNum1[stepNum - 1] || ''}
                         onChange={(e) => {
-                          setBiddingInfo((prev: any) => {
-                            const temp = prev.bidderCorpRegiNum1
-                            temp[stepNum - 1] = e.target.value
-                            return { ...prev, bidderCorpRegiNum1: temp }
-                          })
                           setBiddingForm((prev: any) => {
                             const temp = prev.bidCorpRegiNum1
                             temp[stepNum - 1] = e.target.value
@@ -1036,7 +945,7 @@ export default function BidderForm() {
                             const temp = prev.bidCorpRegiNum
                             temp[stepNum - 1] =
                               e.target.value +
-                              biddingInfo?.bidderCorpRegiNum2[stepNum - 1]
+                              biddingForm?.bidCorpRegiNum2[stepNum - 1]
                             return { ...prev, bidCorpRegiNum: temp }
                           })
                           handleCorpRegiNumFocusMove(e.target)
@@ -1064,11 +973,6 @@ export default function BidderForm() {
                         className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic h-[40px] px-2 w-[50%] text-center"
                         value={biddingForm.bidCorpRegiNum2[stepNum - 1] || ''}
                         onChange={(e) => {
-                          setBiddingInfo((prev: any) => {
-                            const temp = prev.bidderCorpRegiNum2
-                            temp[stepNum - 1] = e.target.value
-                            return { ...prev, bidderCorpRegiNum2: temp }
-                          })
                           setBiddingForm((prev: any) => {
                             const temp = prev.bidCorpRegiNum2
                             temp[stepNum - 1] = e.target.value
@@ -1077,7 +981,7 @@ export default function BidderForm() {
                           setBiddingForm((prev: any) => {
                             const temp = prev.bidCorpRegiNum
                             temp[stepNum - 1] =
-                              biddingInfo?.bidderCorpRegiNum1[stepNum - 1] +
+                              biddingForm?.bidCorpRegiNum1[stepNum - 1] +
                               e.target.value
                             return { ...prev, bidCorpRegiNum: temp }
                           })
@@ -1125,11 +1029,6 @@ export default function BidderForm() {
                     className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic text-left h-[40px] px-2"
                     placeholder="직업을 입력해주세요 예) 회사원"
                     onChange={(e) => {
-                      setBiddingInfo((prev: any) => {
-                        const temp = prev.bidderJob
-                        temp[stepNum - 1] = e.target.value
-                        return { ...prev, bidderJob: temp }
-                      })
                       setBiddingForm((prev: any) => {
                         const temp = prev.bidJob
                         temp[stepNum - 1] = e.target.value
@@ -1146,8 +1045,6 @@ export default function BidderForm() {
                 register={register}
                 errors={errors}
                 setError={setError}
-                biddingInfo={biddingInfo}
-                setBiddingInfo={setBiddingInfo}
                 isOpen={isOpen}
                 onOpen={onOpen}
                 onClose={onClose}

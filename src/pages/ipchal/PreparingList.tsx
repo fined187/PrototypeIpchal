@@ -15,11 +15,15 @@ export default function PreparingList() {
 
   const handlePreparingMsg = () => {
     if (biddingInfo.bidName.length === 1 && biddingInfo.agentName === '' && biddingInfo.bidCorpYn[0] === 'I') {
+      //  개인 입찰자 1인
       setList((prev: any) => ({
         ...prev,
         topBox: biddingInfo.bidName.map((item: string) => item),
+        middleBox: ['신분증', '도장'],
+        bottomBox: ['매수신청 보증금']
       }))
     } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName === '' && biddingInfo.bidCorpYn[0] === 'C') {
+      // 법인 입찰자 1인
       setList((prev: any) => ({
         ...prev,
         topBox: biddingInfo.bidName.map((item: string) => item),
@@ -27,6 +31,7 @@ export default function PreparingList() {
         bottomBox: ['매수신청 보증금', '법인등기부',]
       }))
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && !biddingInfo.bidCorpYn.includes('C')) {
+      //  2인 이상 공동입찰자
       setList((prev: any) => ({
         ...prev,
         topBox: biddingInfo.bidName.map((item: string) => item),
@@ -34,6 +39,7 @@ export default function PreparingList() {
         bottomBox: ['매수신청 보증금', '공동입찰신고서', '공동입찰자 목록', '불참자의 인감이 날인된 위임장', '불참자 인감증명서']
       }))
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && !biddingInfo.bidCorpYn.includes('I')) {
+      // 2인 이상 법인 공동입찰자
       setList((prev: any) => ({
         ...prev,
         topBox: biddingInfo.bidName.map((item: string) => item),
@@ -41,6 +47,7 @@ export default function PreparingList() {
         bottomBox: ['매수신청 보증금', '법인등기부', '공동입찰신고서', '공동입찰자 목록', '불참법인의 인감이 날인된 위임장', '불참법인 인감증명서']
       }))
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '' && (biddingInfo.bidCorpYn.includes('I') && biddingInfo.bidCorpYn.includes('C'))) {
+      //  2인 이상 개인, 법인 공동입찰자
       setList((prev: any) => ({
         ...prev,
         topBox: biddingInfo.bidName.map((item: string) => item),
@@ -48,6 +55,7 @@ export default function PreparingList() {
         bottomBox: ['매수신청 보증금', '법인등기부', '공동입찰신고서', '공동입찰자 목록', '불참자의 인감이 날인된 위임장', '불참법인의 인감이 날인된 위임장', '불참법인 등기부', '불참자 인감증명서', '불참법인 인감증명서']
       }))
     } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName !== '' && biddingInfo.bidCorpYn[0] === 'I') {
+      //  대리인 + 개인입찰자 1인
       setList((prev: any) => ({
         ...prev,
         topBox: biddingInfo.agentName,
@@ -55,6 +63,7 @@ export default function PreparingList() {
         bottomBox: ['매수신청 보증금', '본인의 인감이 날인된 위임장', '본인의 인감증명서']
       }))
     } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName !== '' && biddingInfo.bidCorpYn[0] === 'C') {
+      //  대리인 + 법인입찰자 1인
       setList((prev: any) => ({
         ...prev,
         topBox: biddingInfo.agentName,
@@ -62,6 +71,7 @@ export default function PreparingList() {
         bottomBox: ['매수신청 보증금', '법인의 인감이 날인된 위임장', '법인 등기부', '법인의 인감증명서']
       }))
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName !== '' && !biddingInfo.bidCorpYn.includes('C')) {
+      //  대리인 + 2인 이상 공동입찰자(개인)
       setList((prev: any) => ({
         ...prev,
         topBox: biddingInfo.agentName,
@@ -69,6 +79,7 @@ export default function PreparingList() {
         bottomBox: ['매수신청 보증금', '본인의 인감이 날인된 위임장', '공동입찰신고서', '공동입찰자 목록', '본인의 인감증명서']
       }))
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName !== '' && !biddingInfo.bidCorpYn.includes('I')) {
+      //  대리인 + 2인 이상 공동입찰자(법인)
       setList((prev: any) => ({
         ...prev,
         topBox: biddingInfo.agentName,
@@ -76,12 +87,27 @@ export default function PreparingList() {
         bottomBox: ['매수신청 보증금', '법인의 인감이 날인된 위임장', '법인 등기부', '공동입찰신고서', '공동입찰자 목록', '법인의 인감증명서']
       }))
     } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName !== '' && (biddingInfo.bidCorpYn.includes('I') && biddingInfo.bidCorpYn.includes('C'))) {
+      //  대리인 + 2인 이상 공동입찰자(개인, 법인)
       setList((prev: any) => ({
         ...prev,
         topBox: biddingInfo.agentName,
         middleBox: ['대리인 도장', '대리인 신분증'],
         bottomBox: ['매수신청 보증금', '본인의 인감이 날인된 위임장', '법인 등기부', '법인의 인감이 날인된 위임장', '공동입찰신고서', '공동입찰자 목록', '본인의 인감증명서', '법인의 인감증명서']
       }))
+    }
+  }
+
+  const ipchalName = () => {
+    if (biddingInfo.bidName.length === 1 && biddingInfo.agentName === '' && biddingInfo.bidCorpYn[0] === 'I') {
+      return "본인 " + biddingInfo.bidName[0] + '(개인)'
+    } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName === '' && biddingInfo.bidCorpYn[0] === 'C') {
+      return "본인 " + biddingInfo.bidName[0] + '(법인)'
+    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName === '') {
+      return "본인 " + biddingInfo.bidName[0] + ' 외 ' + (biddingInfo.bidName.length - 1) + '인'
+    } else if (biddingInfo.bidName.length === 1 && biddingInfo.agentName !== '') {
+      return "대리인 " + biddingInfo.agentName + "(본인 " + biddingInfo.bidName[0] + ")"
+    } else if (biddingInfo.bidName.length > 1 && biddingInfo.agentName !== '') {
+      return "대리인 " + biddingInfo.agentName + "(본인 " + biddingInfo.bidName[0] + " 외 " + (biddingInfo.bidName.length - 1) + "인)"
     }
   }
 
@@ -111,25 +137,25 @@ export default function PreparingList() {
     <>
       <div id="box" className="flex flex-col justify-center w-[100%] bg-white items-center text-center relative">
         <div className="flex flex-col justify-center items-center w-[100%] h-[100%] bg-mybg relative">
-          <div className="flex flex-col gap-[25px] w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
+          <div className="flex flex-col gap-[10px] w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
             <span className="md:text-[1.7rem] text-[1.4rem] font-['suit'] font-bold">
               입찰 시 준비를 알려드릴게요
             </span>
-            <span className="md:text-[1rem] text-[0.8rem] text-subTitle font-normal font-['suit'] not-italic leading-8">
+            <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic">
               지지옥션이 성공적인 낙찰을 응원합니다
             </span>
-            <div className="flex flex-col md:w-[550px] w-[90%] h-[500px] rounded-lg items-center">
-              <div className="flex flex-col bg-mySelect w-[100%] h-[80px] mx-auto rounded-md justify-start items-start p-[10px]">
+            <div className="flex flex-col md:w-[550px] w-[90%] h-[500px] rounded-lg items-center mt-[20px]">
+              <div className="flex flex-col bg-mySelect w-[100%] h-[80px] mx-auto rounded-md justify-start items-start p-[20px]">
                 <span className="md:text-[0.9rem] text-[0.7rem] font-['suit'] text-sutTitle font-bold text-left">
                   입찰자
                 </span>
                 <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-sutTitle font-bold text-left">
                   {
-                    biddingInfo.agentYn === 'Y' ? biddingInfo.bidderNum > 1 ? list.topBox + (biddingInfo.bidName.length > 1 ? ` (본인 ${biddingInfo.bidName[0]} 외 ` + (biddingInfo.bidderNum - 1) + '인)' : `(본인 ${biddingInfo.bidName[0]})`) : list.topBox + `(본인 ${biddingInfo.bidName[0]})` : list.topBox + `(본인 ${biddingInfo.bidCorpYn[0] === 'I' ? biddingInfo.bidName[0] + `(개인)` : biddingInfo.bidName[0] + `(법인)`})`
+                    ipchalName()
                   }
                 </span>
               </div>
-              <div className="flex flex-col border-gray border-[1px] w-[100%] min-h-[75px] max-h-[100px] mt-[15px] bg-white rounded-lg p-[10px] overflow-y-auto">
+              <div className="flex flex-col border-gray border-[1px] w-[100%] min-h-[75px] max-h-[100px] mt-[15px] bg-white rounded-lg overflow-y-auto p-[20px]">
                 <span className="md:text-[0.9rem] text-[0.7rem] font-['suit'] font-bold text-left text-sutTitle">
                   기본 (대리인의 경우 대리인의)
                 </span>
@@ -137,12 +163,12 @@ export default function PreparingList() {
                   {list.middleBox.length > 1 ? list.middleBox.join(', ') : list.middleBox}
                 </span>
               </div>
-              <div className="flex flex-col border-gray border-[1px] w-[100%] min-h-[100px] max-h-[250px] mt-[15px] bg-white rounded-lg p-[10px] overflow-y-auto gap-[10px]">
+              <div className="flex flex-col border-gray border-[1px] w-[100%] min-h-[100px] max-h-[250px] mt-[15px] bg-white rounded-lg p-[20px] overflow-y-auto gap-[10px]">
                 <span className="md:text-[0.9rem] text-[0.7rem] font-['suit'] font-bold text-left text-sutTitle">
                   준비서류
                 </span>
                 <div className="flex flex-col w-[100%]">
-                  {list.bottomBox.length > 1 ? list.bottomBox.map((item: string, index: number) => (
+                  {list.bottomBox.map((item: string, index: number) => (
                     <>
                       <li key={index} style={{
                         listStyle: 'none',
@@ -160,7 +186,7 @@ export default function PreparingList() {
                       </li>
                     </>
                   )) 
-                  : list.bottomBox}
+                  }
                 </div>
               </div>
             </div>

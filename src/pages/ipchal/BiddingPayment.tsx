@@ -73,13 +73,13 @@ export default function BiddingPayment() {
         <Spinner />
       )}
       <div className="flex flex-col w-[100%] h-[100%] bg-mybg items-center text-center pt-[50px] gap-[20px]">
-        <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic leading-8">
+        <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
           보증금 제공 방법을 선택해주세요
         </span>
-        <span className="md:text-[0.9rem] text-[0.8rem] font-bold font-Nanum Gothic text-center leading-[11px] mt-[10px] text-sutTitle">
+        <span className="md:text-[1rem] text-[0.8rem] font-bold font-['suit'] text-center text-sutTitle">
           한 개 방법만 선택할 수 있습니다
         </span>
-        <div className={`flex md:gap-10 gap-[10px] md:w-[550px] w-[90%] h-[250px] justify-between items-center rounded-lg border-slate-500 mt-[10px] `}>
+        <div className={`flex gap-[10px] md:w-[550px] w-[90%] h-[250px] justify-between items-center rounded-lg border-slate-500 md:mt-[100px] mt-[10px]`}>
           <div className={`flex flex-col md:w-[270px] w-[50%] h-[100%] border border-gray-300 justify-center gap-[10px] ${biddingForm.bidWay === 'M' ? 'bg-mySelect' : 'bg-white'}`} onClick={async () => {
             setBiddingForm({
               ...biddingForm,
@@ -95,7 +95,7 @@ export default function BiddingPayment() {
               </svg>
             </div>
             <div className='flex justify-center items-center w-[100%] cursor-pointer'>
-              <span className=' text-sutTitle font-bold md:text-[1.2rem] text-[1rem]'>
+              <span className="text-sutTitle font-bold md:text-[1.2rem] font-['suit'] text-[1rem]">
                 현금 · 자기앞수표
               </span>
             </div>
@@ -115,10 +115,10 @@ export default function BiddingPayment() {
               </svg>
             </div>
             <div className='flex flex-col justify-center items-center w-[100%] cursor-pointer'>
-              <span className=' text-sutTitle font-bold md:text-[1.2rem] text-[1rem]'>
+              <span className="text-sutTitle font-['suit'] font-bold md:text-[1.2rem] text-[1rem]">
                 보증서 
               </span>
-              <span className=' text-sutTitle font-bold md:text-[1.2rem] text-[1rem]'>
+              <span className="font-['suit'] text-sutTitle font-bold md:text-[1.2rem] text-[1rem]">
                 (경매보증보험)
               </span>
             </div>
@@ -126,7 +126,7 @@ export default function BiddingPayment() {
         </div>
         {isWaySelected && (
           <div className="flex">
-            <span className="md:text-[0.9rem] text-[0.8rem] font-bold text-myRed font-nanum leading-[-0.3px] ">
+            <span className="md:text-[0.9rem] text-[0.8rem] font-bold text-myRed font-['suit']">
               버튼을 선택해주세요.
             </span>
           </div>
