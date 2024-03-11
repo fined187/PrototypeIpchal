@@ -149,11 +149,11 @@ export default function BidderCnt() {
                   placeholder='숫자만 입력'
                   value={biddingInfo.bidderNum > 0 ? biddingInfo.bidderNum : ''}
                   onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                    setBiddingInfo({
-                      ...biddingInfo,
+                    setBiddingInfo((prev: any) => ({
+                      ...prev,
                       bidderNum: Number(e.target.value),
-                      bidCorpYn: Array(Number(e.target.value)).fill('I'),
-                    })
+                      bidCorpYn: prev.bidCorpYn[0] !== '' ? prev.bidCorpYn : Array(Number(e.target.value)).fill('I'),
+                    }))
                     handleErrorOk(e)
                   }}
                 />

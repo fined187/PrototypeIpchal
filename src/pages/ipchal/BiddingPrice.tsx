@@ -429,7 +429,7 @@ export default function BiddingPrice() {
           </div>
         </div>
         <Button 
-          nextText='다음'
+          nextText='다음으로'
           handleNextStep={handleNextStep}
           handlePrevStep={handlePrevStep}
         />

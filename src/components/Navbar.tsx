@@ -21,13 +21,11 @@ export default function Navbar() {
       setStatusBar(30)
     } else if ((stepStateNum >= 8 && stepStateNum <= 10) || stepStateNum === 19) {
       setStatusBar(50)
-    } else if ((stepStateNum >= 11 && stepStateNum <= 13)) {
+    } else if ((stepStateNum >= 11 && stepStateNum <= 12)) {
       setStatusBar(70)
-    } else if ((stepStateNum >= 14 && stepStateNum <= 15)) {
-      setStatusBar(90)
-    } else if ((stepStateNum === 19)) {
+    } else if ((stepStateNum >= 13 && stepStateNum <= 14)) {
       setStatusBar(100)
-    }
+    } 
   }
 
   useEffect(() => {

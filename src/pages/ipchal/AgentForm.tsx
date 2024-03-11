@@ -594,7 +594,7 @@ export default function AgentForm() {
               />
             </div>
           </div>
-          <div className="flex flex-row gap-[10px] fixed bottom-[50px] md:w-[550px] w-[90%]">
+          <div className="flex flex-row gap-[10px] fixed md:bottom-[50px] bottom-[25px] md:w-[550px] w-[90%]">
             <button
               type="button"
               className="flex w-[35%] h-[50px] bg-prevBtn rounded-full justify-center items-center cursor-pointer"

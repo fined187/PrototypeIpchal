@@ -54,11 +54,13 @@ export default function BidderFormMod2() {
     }
     try {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders`)
+      console.log(response.data.data.bidders)
       if (response.status === 200) {
         setBidderList(response.data.data.bidders)
-        console.log(response.data.data.bidders)
-        if (biddingForm.bidderNum > response.data.data.length) {
+        if (biddingForm.bidderNum > response.data.data.bidders.length) {
           //  입찰자 수가 서버에 저장된 입찰자 수보다 많을 경우
+          console.log(biddingForm)
+          console.log('여기로 들어옴')
           setBiddingForm((prev: any) => {
             const temp1 = prev.bidName
             const temp2 = prev.bidPhone1
@@ -75,7 +77,7 @@ export default function BidderFormMod2() {
             const temp13 = prev.bidCorpRegiNum2
             const temp14 = prev.bidCorpYn
             const temp15 = prev.bidJob
-            for (let i = response.data.data.length; i < biddingForm.bidderNum; i++) {
+            for (let i = biddingForm.bidName.length; i < biddingForm.bidderNum; i++) {
               temp1.push('')
               temp2.push('')
               temp3.push('')
@@ -111,7 +113,7 @@ export default function BidderFormMod2() {
               bidJob: temp15,
             }
           })
-        } else if (biddingForm.bidderNum < response.data.data.length) {
+        } else if (biddingForm.bidderNum < response.data.data.bidders.length) {
           //  입찰자 수가 서버에 저장된 입찰자 수보다 적을 경우 => 입찰자 수 감소
           setBiddingForm((prev: any) => {
             const temp1 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.name)
@@ -166,21 +168,21 @@ export default function BidderFormMod2() {
         } else {
           //  입찰자 수가 서버에 저장된 입찰자 수와 같을 경우
           setBiddingForm((prev: any) => {
-            const temp1 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.name)
-            const temp2 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(0, 3) : bidder.phoneNo.slice(0, 2))
-            const temp3 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(3, 7) : bidder.phoneNo.slice(2, 6))
-            const temp4 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(7, 11) : bidder.phoneNo.slice(6, 10))
-            const temp5 = prev.bidIdNum1
-            const temp6 = prev.bidIdNum2
-            const temp7 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.address)
-            const temp8 = prev.bidAddrDetail
-            const temp9 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(0, 3) || '')
-            const temp10 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(3, 5) || '')
-            const temp11 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(5, 10) || '')
-            const temp12 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.corporationNo?.slice(0, 6) || '')
-            const temp13 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.corporationNo?.slice(6, 13) || '')
-            const temp14 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.bidderType)
-            const temp15 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.job || '')
+            const temp1 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.name) ?? prev.bidName
+            const temp2 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(0, 3) : bidder.phoneNo.slice(0, 2)) ?? prev.bidPhone1
+            const temp3 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(3, 7) : bidder.phoneNo.slice(2, 6)) ?? prev.bidPhone2
+            const temp4 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(7, 11) : bidder.phoneNo.slice(6, 10)) ?? prev.bidPhone3
+            const temp5 = prev.bidIdNum1 ?? prev.bidIdNum1
+            const temp6 = prev.bidIdNum2 ?? prev.bidIdNum2
+            const temp7 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.address) ?? prev.bidAddr
+            const temp8 = prev.bidAddrDetail ?? ""
+            const temp9 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(0, 3) || '') ?? prev.bidCorpNum1
+            const temp10 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(3, 5) || '') ?? prev.bidCorpNum2
+            const temp11 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(5, 10) || '') ?? prev.bidCorpNum3
+            const temp12 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.corporationNo?.slice(0, 6) || '') ?? prev.bidCorpRegiNum1
+            const temp13 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.corporationNo?.slice(6, 13) || '') ?? prev.bidCorpRegiNum2
+            const temp14 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.bidderType) ?? prev.bidCorpYn
+            const temp15 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.job || '') ?? prev.bidJob
             return {
               ...prev,
               bidName: temp1,
@@ -312,7 +314,7 @@ export default function BidderFormMod2() {
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
             address: biddingForm.bidAddr[stepNum - 1],
-            job: biddingForm.bidJob[stepNum - 1],
+            job: biddingForm.bidJob[stepNum - 1] == "" ? null : biddingForm.bidJob[stepNum - 1],
           },
           {
             headers: {
@@ -332,7 +334,7 @@ export default function BidderFormMod2() {
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
             address: biddingForm.bidAddr[stepNum - 1],
-            job: biddingForm.bidJob[stepNum - 1] ?? '',
+            job: biddingForm.bidJob[stepNum - 1] == "" ? null : biddingForm.bidJob[stepNum - 1],
             companyNo: biddingForm.bidCorpNum[stepNum - 1],
             corporationNo: biddingForm.bidCorpRegiNum[stepNum - 1],
           },
@@ -412,6 +414,7 @@ export default function BidderFormMod2() {
               setStateNum(8)
             } else {
               if (stepNum > bidderList?.length!) {
+                console.log('여기로 들어옴1')
                 await handleBidderFormSave()
                 setStepNum(stepNum + 1)
                 reset()
@@ -525,8 +528,6 @@ export default function BidderFormMod2() {
       return { ...prev, bidIdNum: newBidIdNum }
     })
   }
-
-  console.log(biddingForm)
 
   return (
     <div className={`flex w-[100%] h-[100vh] bg-mybg justify-center relative overflow-y-auto`} style={{
