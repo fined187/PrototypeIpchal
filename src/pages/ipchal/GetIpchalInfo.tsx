@@ -148,47 +148,55 @@ export default function GetIpchalInfo() {
           <Spinner />
         )}
         <div className="flex flex-col w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
-          <div className="flex flex-col gap-[10px] pt-[50px]">
-            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
+          <div className="flex flex-col gap-[14px] pt-[50px]">
+            <span className="md:text-[32.5px] text-[1.4rem] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic">
               상세 내역을 확인해주세요
             </span>
-            <span className="md:text-[1rem] text-[0.8rem] font-bold font-['suit'] not-italic text-sutTitle">
+            <span className="md:text-[18px] text-[0.8rem] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
               선택한 경매 사건이 맞는지 체크합니다
             </span>
           </div>
           <div className={`flex flex-col md:w-[500px] h-[500px] w-[90%] overflow-y-auto gap-[5px] bg-mybg mt-[30px]`}>
             <div className="flex flex-col relative h-[80px] items-start justify-start bg-white p-[20px]">
-              <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
+              <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                 법원
               </span>
-              <span className="text-black md:text-[1rem] text-[0.8rem] font-bold font-['suit']">
+              <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
+                color: '#181826',
+              }}>
                 {biddingInfo.courtFullName}
               </span>
             </div>
             <div className='flex justify-between bg-white p-[20px] h-[80px]'>
               <div className="flex flex-col relative justify-start items-start w-[80%]">
-                <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
+                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                   사건번호
                 </span>
-                <span className="text-black md:text-[1rem] text-[0.8rem] font-bold">
+                <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
+                color: '#181826',
+              }}>
                   {biddingInfo.sagunNum + '호' + ' ' + biddingInfo.usage}
                 </span>
               </div>
               <div className="flex flex-col relative justify-start items-start w-[20%]">
-                <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
+                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                   물건번호
                 </span>
-                <span className="text-black md:text-[1rem] text-[0.8rem] font-bold">
+                <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
+                color: '#181826',
+              }}>
                   {biddingInfo.mulNo}
                 </span>
               </div>
             </div>
             <div className='flex justify-between bg-white h-[80px] p-[20px]'>
               <div className="flex flex-col relative justify-start items-start w-[80%]">
-                <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
+                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                   입찰기일
                 </span>
-                <span className="text-black md:text-[1rem] text-[0.8rem] font-bold">
+                <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
+                color: '#181826',
+              }}>
                   {biddingInfo.ipchalDate}
                 </span>
               </div>
@@ -196,17 +204,21 @@ export default function GetIpchalInfo() {
                 <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
                   {" "}
                 </span>
-                <span className="text-black md:text-[1rem] text-[0.8rem] font-bold">
+                <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
+                color: '#181826',
+              }}>
                   {data.dayDay}
                 </span>
               </div>
             </div>
             {biddingInfo.usage === ('차량' || '중기') ? (
               <div className="flex flex-col relative h-[80px] items-start justify-start bg-white p-[20px]">
-                <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
+                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                   차량정보
                 </span>
-                <span className="text-black md:text-[1rem] text-[0.8rem] font-bold">
+                <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%] text-left" style={{
+                color: '#181826',
+              }}>
                   {data.carInfo}
                 </span>
               </div>
@@ -214,13 +226,15 @@ export default function GetIpchalInfo() {
               null
             )}
             <div className="flex flex-col relative items-start justify-center bg-white p-[20px]">
-              <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
+              <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                 물건지 주소
               </span>
-              <span className="text-black md:text-[1rem] text-[0.8rem] font-bold text-left">
+              <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%] text-left" style={{
+                color: '#181826',
+              }}>
                 {biddingInfo.sagunAddr + (biddingInfo.etcAddress !== '' ? '[일괄]' + biddingInfo.etcAddress : '')}
               </span>
-              <span className="text-myBlue md:text-[1rem] text-[0.8rem] font-bold text-left">
+              <span className="text-myBlue md:text-[18px] text-[0.8rem] text-left font-normal leading-[135%] tracking-[-1%] ">
                 {biddingInfo.roadAddress}
               </span>
             </div>

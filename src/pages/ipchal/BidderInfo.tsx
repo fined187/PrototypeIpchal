@@ -87,24 +87,24 @@ export default function BidderInfo() {
           {loading && (
             <Spinner />
           )}
-          <div className="flex flex-col pt-[50px] gap-[10px]">
-            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
+          <div className="flex flex-col pt-[50px] gap-[14px]">
+            <span className="md:text-[32.5px] text-[1.4rem] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic">
               입찰하는 본인이 맞으신가요?
             </span>
-            <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic">
+            <span className="md:text-[18px] text-[0.8rem] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
               본인이 아닌 경우 대리인을 선택해주세요
             </span>
           </div>
-          <div className="flex flex-row md:w-[500px] w-[90%] h-[200px] mt-[100px] md:gap-[20px] gap-[10px]">
+          <div className="flex flex-row md:w-[450px] w-[90%] h-[212.5px] mt-[100px] md:gap-[20px] gap-[22.5px]">
             <div
-              className={`flex flex-row md:w-[230px] w-[180px] h-[200px] rounded-xl ${
+              className={`flex flex-row md:w-[212.5px] w-[180px] h-[100%] rounded-xl ${
                 isSelected ? '' : 'border-red-600 border-[2px]'
               } justify-center items-center cursor-pointer ${
                 biddingInfo.bidder === 'self' ? 'bg-mySelect' : 'bg-white'
               } relative`}
               onClick={() => {
                 handleDeleteAgent()
-                setTimeout(() => {
+                setTimeout(() => { 
                   setStateNum(stateNum + 2)
                   setIsSelected(false)
                 }, 1000)
@@ -117,18 +117,18 @@ export default function BidderInfo() {
                 </svg>
                 <div className='flex flex-col gap-[15px] justify-center items-center'>
                   <span
-                    className={`flex text-[1.5rem] text-black not-italic font-bold font-['suit']`}
+                    className={`flex text-[22.5px] text-black not-italic font-semibold font-['suit'] leading-[135%] tracking-[-1%]`}
                   >
                     본인(입찰자)
                   </span>
-                  <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit']`}>
+                  <span className={`flex md:text-[17px] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[130%] tracking-[-1%]`}>
                     개인 또는 법인
                   </span>
                 </div>
               </div>
             </div>
             <div
-              className={`flex flex-row md:w-[230px] w-[180px] rounded-xl ${
+              className={`flex flex-row md:w-[212.5px] w-[180px] h-[100%] rounded-xl ${
                 isSelected ? '' : 'border-red-600 border-[2px]'
               } justify-center items-center cursor-pointer ${
                 biddingInfo.bidder === 'agent' ? 'bg-mySelect' : 'bg-white'
@@ -159,15 +159,15 @@ export default function BidderInfo() {
                 </div>
                 <div className='flex flex-col justify-center items-center'>
                   <span
-                    className={`flex text-[1.5rem] text-black not-italic font-bold font-['suit']`}
+                    className={`flex text-[22.5px] text-black not-italic font-semibold font-['suit'] leading-[135%] tracking-[-1%]`}
                   >
                     대리인
                   </span>
                   <div className='flex flex-col justify-center items-center'>
-                    <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit']`}>
+                    <span className={`flex md:text-[17px] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[130%] tracking-[-1%]`}>
                       개인의 대리인 또는
                     </span>
-                    <span className={`flex md:text-[1rem] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit']`}>
+                    <span className={`flex md:text-[17px] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[130%] tracking-[-1%]`}>
                       법인대리인, 공동입찰대리인
                     </span>
                   </div>

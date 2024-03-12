@@ -83,14 +83,14 @@ export default function AgentCheck() {
     <div id="box" className="flex w-[100%] bg-mybg justify-center relative">
       <div className="flex flex-col w-[100%] h-[100%] items-center text-center md:py-[0px] py-[25px]">
         <div className="flex flex-col relative md:w-[550px] w-[90%] pt-[50px]">
-          <span className="md:text-[1.5rem] text-[1.2rem] font-bold font-['suit'] not-italic">
+          <span className="md:text-[32.5px] text-[1.2rem] font-bold leading-[135%] tracking-[-1%] font-['suit'] not-italic">
             어느 입찰자를 대리하시겠습니까?
           </span>
           <div className="flex items-center justify-end w-[95%] mt-[85px]">
             <input 
               id="allChecked"
               checked={allChecked}
-              className="md:w-[20px] md:h-[20px] w-[15px] h-[15px] text-white md:text-white bg-gray-100 border-gray-300 accent-myBlue"
+              className="md:w-[20px] md:h-[20px] w-[15px] h-[15px] border border-black text-white md:text-white bg-gray-100 accent-myBlue"
               type="checkbox"
               onChange={(e) => {
                 const newCheckedItems = [...checkedItems];
@@ -106,12 +106,12 @@ export default function AgentCheck() {
                 })
               }}
             />
-            <label htmlFor="allChecked" className="ml-2 md:text-[1rem] text-[0.8rem] text-sutTitle font-bold">전체 선택</label>
+            <label htmlFor="allChecked" className="ml-2 md:text-[20px] font-['suit'] leading-[135%] tracking-[-2%] font-normal text-[0.8rem] text-sutTitle">전체 선택</label>
           </div>
         </div>
         <div className="flex flex-col items-center justify-start md:w-[550px] h-[450px] w-[90%] gap-[10px] overflow-auto pt-[25px] pb-[25px]"> 
           {biddingInfo.bidName.map((name: any, index: number) => (
-            <div className={`flex justify-between md:w-[500px] w-[90%] h-[100px] ${checkedItems[index] ? 'bg-mySelect' : 'bg-unClicked'} justify-between cursor-pointer`} key={index}
+            <div className={`flex justify-between md:w-[500px] w-[90%] h-[100px] ${checkedItems[index] ? 'bg-mySelect' : 'bg-unClicked'} justify-between cursor-pointer border border-black`} key={index}
               onClick={() => {
                 const newCheckedItems = [...checkedItems];
                 newCheckedItems[index] = !newCheckedItems[index];
@@ -127,11 +127,11 @@ export default function AgentCheck() {
               
               }}
             >
-              <div className="flex flex-col w-[100%] justify-center items-start ml-[20px]">
-                <span className="md:text-[1rem] text-[0.8rem] font-['suit'] text-sutTitle font-normal">
+              <div className="flex flex-col w-[100%] justify-center items-start ml-[20px] ">
+                <span className="md:text-[17px] text-[0.8rem] leading-[135%] tracking-[0px] font-medium font-['suit'] text-sutTitle">
                   {"#" + (index + 1)}
                 </span>
-                <span className="md:text-[1.2rem] text-[1rem] font-['suit'] font-normal">
+                <span className="md:text-[20px] text-[1rem] leading-[140%] tracking-[-1%] font-['suit'] font-normal">
                   {name + (biddingInfo.bidCorpYn[index] === 'I' ? ' (개인)' : ' (법인)')}
                 </span>
               </div>

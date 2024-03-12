@@ -25,14 +25,14 @@ export default function IpchalInfo() {
   return (
     <div id='box' className="flex w-[100%] bg-mybg justify-center relative">
       <div className="flex flex-col gap-4 md:w-[550px] w-[90%] h-[100%] bg-mybg items-center text-center pt-[50px]">
-        <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-Nanum Gothic not-italic bg-mybg">
+        <span className="md:text-[32.5px] text-[1.4rem] font-bold font-['suit'] not-italic leading-[135%] tracking-[-1%] bg-mybg">
           입력이 모두 끝났습니다
         </span>
         <div className="flex flex-col mt-[10px]">
-          <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-['suit'] font-bold not-italic">
+          <span className="md:text-[18px] text-[0.8rem] text-sutTitle font-['suit'] font-medium leading-[135%] tracking-[-1%] not-italic">
             입찰표를 확인한 후 저장하세요
           </span>
-          <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-['suit'] font-bold not-italic">
+          <span className="md:text-[18px] text-[0.8rem] text-sutTitle font-['suit'] font-medium leading-[135%] tracking-[-1%] not-italic">
             입찰표 파일을 저장한 후에는 수정하실 수 없습니다
           </span>
         </div>
@@ -40,9 +40,12 @@ export default function IpchalInfo() {
           <img 
             src='/FinLogo.png'
             alt='logo'
-            className='w-[300px] h-[300px]'
+            style={{
+              width: 'auto',
+              height: 'auto'
+            }}
           />
-          <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic">
+          <span className="md:text-[16px] text-[0.8rem] leading-[135%] tracking-[-2%] text-sutTitle font-extralight font-['suit'] not-italic">
             실수하기 쉬운 입찰무효
           </span>
         </div>

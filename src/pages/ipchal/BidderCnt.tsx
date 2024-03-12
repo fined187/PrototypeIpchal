@@ -120,14 +120,14 @@ export default function BidderCnt() {
       <div id='box' className="flex w-[100%] bg-mybg justify-center relative">
         <div className="flex flex-col w-[100%] h-[100%] items-center text-center md:py-[0px] py-[25px]">
           <div className="flex flex-col pt-[50px] gap-[10px]">
-            <span className="md:text-[1.7rem] text-[1.4rem] font-bold font-['suit'] not-italic">
+            <span className="md:text-[32.5px] text-[1.4rem] font-bold leading-[135%] tracking-[-1%] font-['suit'] not-italic">
               총 입찰자는 몇 명인가요?
             </span>
             <div className='flex flex-col justify-center items-center gap-[0px]'>
-              <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic ">
+              <span className="md:text-[18px] text-[0.8rem] text-sutTitle font-medium font-['suit'] leading-[135%] tracking-[-1%] not-italic ">
                 입찰에 참여하는 사람이 여러 명인 경우
               </span>
-              <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic ">
+              <span className="md:text-[18px] text-[0.8rem] text-sutTitle font-medium font-['suit'] leading-[135%] tracking-[-1%] not-italic ">
                 총 인원 수를 입력합니다(본인 포함)
               </span>
             </div>
@@ -138,13 +138,13 @@ export default function BidderCnt() {
             )}
             <div className="flex flex-col">
               <div className="flex flex-row justify-center items-center">
-                <span className="md:text-[1.1rem] text-[1rem] font-bold mr-5 font-['suit']">
+                <span className="md:text-[22.5px] text-[1rem] font-semibold mr-5 font-['suit'] leading-[135%] tracking-[-1%]">
                   총 입찰자 수는
                 </span>
                 <input
                   id='bidderNum'
                   aria-label="bidderNum"
-                  className="w-[120px] border-2 border-gray-100 h-[40px] text-center focus:outline-none"
+                  className="w-[120px] border border-black h-[40px] text-center focus:outline-none font-nromal leading-[130%] tracking-[0%] text-[17.5px] rounded-lg"
                   type="text"
                   placeholder='숫자만 입력'
                   value={biddingInfo.bidderNum > 0 ? biddingInfo.bidderNum : ''}
@@ -157,7 +157,7 @@ export default function BidderCnt() {
                     handleErrorOk(e)
                   }}
                 />
-                <span className="md:text-[1.1rem] text-[1rem] font-bold font-['suit'] leading-[30px] ml-2">
+                <span className="md:text-[22.5px] text-[1rem] font-semibold font-['suit'] ml-2 leading-[135%] tracking-[-1%]">
                   명 입니다
                 </span>
               </div>

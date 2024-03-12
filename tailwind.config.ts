@@ -55,7 +55,7 @@ const config: Config = {
       prevBtn: '#EAEAEF',
       myOrange: '#FF6433',
       searchBg: '#F4F6FF',
-      mySelect: '#DCDBFF',
+      mySelect: '#F5F5FF',
       unClicked: '#EFEFEF'
     }
   },

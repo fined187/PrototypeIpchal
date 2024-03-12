@@ -16,7 +16,7 @@ const Button = ({ isDisabled, handlePrevStep, handleNextStep, nextText, bottom, 
         className="flex w-[35%] h-[50px] bg-prevBtn rounded-full justify-center items-center cursor-pointer"
         onClick={handlePrevStep}
       >
-        <span className="text-sutTitle font-bold font-['suit'] md:text-[1.2rem] text-[1rem]">
+        <span className="text-sutTitle font-bold font-['suit'] md:text-[20px] text-[1rem] leading-[135%] tracking-[-2%]">
           {prevText || '이전으로'}
         </span>
       </button>
@@ -26,7 +26,7 @@ const Button = ({ isDisabled, handlePrevStep, handleNextStep, nextText, bottom, 
         disabled={isDisabled}
         onClick={handleNextStep}
       >
-        <span className="text-white font-bold font-['suit'] md:text-[1.2rem] text-[1rem]">
+        <span className="text-white font-bold font-['suit'] md:text-[20px] text-[1rem] leading-[135%] tracking-[-2%]">
           {nextText || '다음으로'}
         </span>
       </button>

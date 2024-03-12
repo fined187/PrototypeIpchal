@@ -38,16 +38,17 @@ export default function Navbar() {
       zIndex: biddingForm.isModalOpen ? 0 : 10,
     }}>
       {stepStateNum === 0 ? (
-        <div className="flex justify-center items-center top-[25px]">
-          <div className="flex">
-            <img
-              src={'/images/TopLogo.png'}
-              alt="logo"
-              width={80}
-              height={80}
-            />
-          </div>
-        </div>
+        // <div className="flex justify-center items-center top-[25px]">
+        //   <div className="flex">
+        //     <img
+        //       src={'/images/TopLogo.png'}
+        //       alt="logo"
+        //       width={80}
+        //       height={80}
+        //     />
+        //   </div>
+        // </div>
+        null
       ) : (
         <div className='flex justify-start md:w-[550px] w-[80%] h-[2.5px] bg-gray-200 absolute top-[25px]'>
           <div className={`flex w-[${statusBar}%] h-[2.5px] bg-myBlue ease-in`}>
