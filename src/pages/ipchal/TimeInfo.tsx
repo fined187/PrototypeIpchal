@@ -79,11 +79,11 @@ export default function TimeInfo() {
           </span>
         </div>
         <div className="flex flex-col gap-[7.5px] md:w-[550px] w-[90%] h-[50%] mt-[50px] justify-start items-center rounded-lg border-slate-500">
-          <div className={`flex flex-row gap-[50px] justify-center items-center w-[100%] h-[100px] border border-gray-300 rounded-lg cursor-pointer ${(timeClicked === '1000' ) || (biddingInfo.selectedTime === '1000') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
+          <div className={`flex flex-row gap-[25px] justify-center items-center w-[100%] h-[100px] border border-gray-300 rounded-lg cursor-pointer ${(timeClicked === '1000' ) || (biddingInfo.selectedTime === '1000') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
             setTimeClicked('1000')
             handleConfirm('1000')
           }}>
-            <div className="flex flex-col justify-center items-start w-[50%] ml-[25px]">
+            <div className="flex flex-col justify-center items-start w-[40%] ml-[25px]">
               <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium text-sutTitle">
                 입찰시간
               </span>
@@ -93,7 +93,7 @@ export default function TimeInfo() {
                 {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.biddingTime.substring(0, 2) + '시'}
               </span>
             </div>
-            <div className={`flex flex-col justify-center items-start w-[50%]`}>
+            <div className={`flex flex-col justify-center items-start w-[60%]`}>
               <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium text-sutTitle">
                 최저가
               </span>
@@ -109,11 +109,11 @@ export default function TimeInfo() {
               </div>
             </div>
           </div>
-          <div className={`flex flex-row gap-[50px] justify-center items-center w-[100%] h-[100px] cursor-pointer border border-gray-300 rounded-lg ${(timeClicked === '1400') || (biddingInfo.selectedTime === '1400') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
+          <div className={`flex flex-row gap-[25px] justify-center items-center w-[100%] h-[100px] cursor-pointer border border-gray-300 rounded-lg ${(timeClicked === '1400') || (biddingInfo.selectedTime === '1400') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
             setTimeClicked('1400')
             handleConfirm('1400')
           }}>
-            <div className="flex flex-col justify-center items-start w-[50%] ml-[25px]">
+            <div className="flex flex-col justify-center items-start w-[40%] ml-[25px]">
               <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium text-sutTitle">
                 입찰시간
               </span>
@@ -123,7 +123,7 @@ export default function TimeInfo() {
                 {'시간 : ' + (biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[1]?.biddingTime.substring(0, 2) + '시'}
               </span>
             </div>
-            <div className={`flex flex-col justify-center items-start w-[50%] `}>
+            <div className={`flex flex-col justify-center items-start w-[60%] `}>
               <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium text-sutTitle">
                 최저가
               </span>

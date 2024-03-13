@@ -386,7 +386,7 @@ export default function BidderForm() {
     const { name, value } = e.target
     setValue(name, value, { shouldValidate: true })
   }
-
+  console.log(biddingForm.bidCorpYn.length)
   useEffect(() => {
     setValue('bidderName', [biddingForm.bidName[stepNum - 1] || ''])
     setValue('bidderPhone1', [biddingForm.bidPhone1[stepNum - 1] || ''])
@@ -420,11 +420,6 @@ export default function BidderForm() {
                 {`(${stepNum} / ${biddingForm.bidderNum})`}
               </span>
             )}
-          </div>
-          <div className='flex mt-[10px]'>
-            <span className="md:text-[20px] text-[0.8rem] font-bold font-['suit'] not-italic text-left leading-[140%] tracking-[-1%] text-red-500">
-              (* 표시는 필수 입력사항입니다.)
-            </span>
           </div>
         </div>
         <div className="flex flex-row md:w-[550px] w-[90%] justify-center items-center gap-[25px]">
@@ -473,7 +468,7 @@ export default function BidderForm() {
         {/* 입력정보 */}
         <form onSubmit={handleSubmit(async () => {
           await onSubmit(stepNum)
-        })} className='flex flex-col md:w-[550px] w-[80%] h-[100%] justify-center items-center overflow-y-auto overflow-x-hidden relative'>
+        })} className='flex flex-col md:w-[550px] w-[80%] h-[60%] justify-center items-center overflow-y-auto overflow-x-hidden relative'>
           <div className="flex flex-col w-[100%] gap-2 absolute top-0">
             <div className="flex flex-col w-[100%] gap-1">
               <div className='flex justify-between w-[100%]'>
@@ -1051,7 +1046,7 @@ export default function BidderForm() {
               />
             </div>
           </div>
-          <div className={`flex flex-row fixed gap-[10px] md:w-[550px] w-[90%] ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'bottom-[50px]' : 'bottom-[0px]'}`}>
+          <div className={`flex flex-row fixed gap-[10px] md:w-[550px] w-[90%] ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:bottom-[80px] bottom-[10px]' : 'md:bottom-[80px] bottom-[10px]'}`}>
             <button
               type="button"
               className="flex w-[35%] h-[50px] bg-prevBtn rounded-full justify-center items-center cursor-pointer"

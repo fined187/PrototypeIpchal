@@ -156,8 +156,8 @@ export default function GetIpchalInfo() {
               선택한 경매 사건이 맞는지 체크합니다
             </span>
           </div>
-          <div className={`flex flex-col md:w-[500px] h-[500px] w-[90%] overflow-y-auto gap-[7.5px] bg-mybg mt-[30px]`}>
-            <div className="flex flex-col relative h-[80px] items-start justify-start bg-white p-[20px]">
+          <div className={`flex flex-col md:w-[500px] h-[500px] w-[90%] overflow-y-auto gap-[7.5px] bg-mybg `}>
+            <div className="flex flex-col relative h-[80px] items-start justify-start bg-white mt-[30px] pt-[16px] pb-[16px] pl-[35px] pr-[35px] gap-[2.5px]">
               <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                 법원
               </span>
@@ -167,8 +167,8 @@ export default function GetIpchalInfo() {
                 {biddingInfo.courtFullName}
               </span>
             </div>
-            <div className='flex justify-between bg-white p-[20px] h-[80px]'>
-              <div className="flex flex-col relative justify-start items-start w-[80%]">
+            <div className='flex justify-between bg-white pt-[16px] pb-[16px] pl-[35px] pr-[35px] h-[80px]'>
+              <div className="flex flex-col relative justify-start items-start w-[80%] gap-[2.5px]">
                 <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                   사건번호
                 </span>
@@ -178,7 +178,7 @@ export default function GetIpchalInfo() {
                   {biddingInfo.sagunNum + '호' + ' ' + biddingInfo.usage}
                 </span>
               </div>
-              <div className="flex flex-col relative justify-start items-start w-[20%]">
+              <div className="flex flex-col relative justify-start items-start w-[20%] gap-[2.5px]">
                 <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                   물건번호
                 </span>
@@ -189,8 +189,8 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
             </div>
-            <div className='flex justify-between bg-white h-[80px] p-[20px]'>
-              <div className="flex flex-col relative justify-start items-start w-[80%]">
+            <div className='flex justify-between bg-white h-[80px] p-[20px] pt-[16px] pb-[16px] pl-[35px] pr-[35px]'>
+              <div className="flex flex-col relative justify-start items-start w-[80%] gap-[2.5px]">
                 <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                   입찰기일
                 </span>
@@ -200,7 +200,7 @@ export default function GetIpchalInfo() {
                   {biddingInfo.ipchalDate}
                 </span>
               </div>
-              <div className="flex flex-col relative justify-center items-start w-[20%]">
+              <div className="flex flex-col relative justify-center items-start w-[20%] gap-[2.5px]">
                 <span className="text-sutTitle font-['suit'] md:text-[0.9rem] text-[0.8rem] font-bold">
                   {" "}
                 </span>
@@ -212,7 +212,7 @@ export default function GetIpchalInfo() {
               </div>
             </div>
             {biddingInfo.usage === ('차량' || '중기') ? (
-              <div className="flex flex-col relative h-[80px] items-start justify-start bg-white p-[20px]">
+              <div className="flex flex-col relative h-[80px] items-start justify-start bg-white p-[20px] pt-[16px] pb-[16px] pl-[35px] pr-[35px] gap-[2.5px]">
                 <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                   차량정보
                 </span>
@@ -225,7 +225,7 @@ export default function GetIpchalInfo() {
             ) : (
               null
             )}
-            <div className="flex flex-col relative items-start justify-center bg-white p-[20px]">
+            <div className="flex flex-col relative items-start justify-center bg-white pt-[16px] pb-[16px] pl-[35px] pr-[35px] gap-[2.5px]">
               <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                 물건지 주소
               </span>
@@ -234,7 +234,7 @@ export default function GetIpchalInfo() {
               }}>
                 {biddingInfo.sagunAddr + (biddingInfo.etcAddress !== '' ? '[일괄]' + biddingInfo.etcAddress : '')}
               </span>
-              <span className="text-myBlue md:text-[18px] text-[0.8rem] text-left font-normal leading-[135%] tracking-[-1%] ">
+              <span className="text-myBlue md:text-[18px] text-[0.8rem] text-left font-normal leading-[135%] tracking-[-1%] font-['suit'] ">
                 {biddingInfo.roadAddress}
               </span>
             </div>

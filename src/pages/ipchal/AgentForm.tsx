@@ -196,9 +196,6 @@ export default function AgentForm() {
           <span className="md:text-[18px] text-[0.8rem] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
             법인의 대리인인 경우 입찰자와의 관계에 '직원'등으로 적습니다
           </span>
-          <span className="md:text-[18px] text-[0.8rem] font-bold font-['suit'] leading-[135%] tracking-[-1%] not-italic text-left text-red-500">
-            (* 표시는 필수 입력사항입니다)
-          </span>
         </div>
 
         {/* 입력정보 */}
@@ -570,7 +567,7 @@ export default function AgentForm() {
                   id="agentJob"
                   type="text"
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] leading-[150%] tracking-[-1%] not-italic text-left h-[40px] px-2"
-                  placeholder="직업을 입력해주세요"
+                  placeholder="직업을 입력해주세요 예) 회사원"
                   onChange={(e) => {
                     setAgentInfo((prev: any) => {
                       return { ...prev, agentJob: e.target.value }
@@ -594,7 +591,7 @@ export default function AgentForm() {
               />
             </div>
           </div>
-          <div className="flex flex-row gap-[10px] fixed md:bottom-[50px] bottom-[25px] md:w-[550px] w-[90%]">
+          <div className="flex flex-row gap-[10px] fixed md:bottom-[80px] bottom-[10px] md:w-[550px] w-[90%]">
             <button
               type="button"
               className="flex w-[35%] h-[50px] bg-prevBtn rounded-full justify-center items-center cursor-pointer"

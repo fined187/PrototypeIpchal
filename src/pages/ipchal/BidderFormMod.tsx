@@ -548,11 +548,6 @@ export default function BidderFormMod2() {
                 </span>
               )}
             </div>
-            <div className='flex'>
-              <span className="md:text-[20px] text-[0.8rem] font-bold font-['suit'] not-italic text-left leading-[140%] tracking-[-1%] text-red-500">
-                (* 표시는 필수 입력사항입니다.)
-              </span>
-            </div>
           </div>
           <div className="flex flex-row md:w-[550px] w-[90%] justify-center items-center gap-[25px]">
             <div className='flex flex-row gap-[5px]'>
@@ -598,7 +593,7 @@ export default function BidderFormMod2() {
           </div>
           
           {/* 입력정보 */}
-          <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[550px] w-[80%] h-[100%] justify-center items-center overflow-y-auto overflow-x-hidden relative'>
+          <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[550px] w-[80%] h-[60%] justify-center items-center overflow-y-auto overflow-x-hidden relative'>
             <div className="flex flex-col w-[100%] h-[100%] gap-2">
               <div className="flex flex-col w-[100%] gap-1">
                 <div className='flex justify-between w-[100%]'>
@@ -1118,7 +1113,7 @@ export default function BidderFormMod2() {
                 />
               </div>
             </div>
-            <div className={`flex flex-row fixed gap-[10px] md:w-[550px] w-[90%] ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'bottom-[50px]' : 'bottom-[20px]'}`}>
+            <div className={`flex flex-row fixed gap-[10px] md:w-[550px] w-[90%] ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'md:bottom-[80px] bottom-[10px]' : 'md:bottom-[80px] bottom-[10px]'}`}>
               <button
                 type="button"
                 className="flex w-[35%] h-[50px] bg-prevBtn rounded-full justify-center items-center cursor-pointer"

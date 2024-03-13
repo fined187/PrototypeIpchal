@@ -74,14 +74,14 @@ export default function SearchAddress({
           <div className='flex justify-between w-[100%]'>
             {errors?.bidderAddr?.type === 'required' && stepNum && (biddingForm?.bidAddr[stepNum - 1] === '') ? (
               <div className="flex w-[100%] justify-start">
-                <span className="text-[20px] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                <span className="text-[20px] font-semibold font-['suit'] not-italic text-left text-red-500">
                   주소를 입력해주세요
                 </span>
               </div>
             ) : (
                 agentErrors?.agentAddr?.type === 'required' && (biddingForm.agentAddr === '') ? (
                   <div className="flex w-[70%] justify-start">
-                    <span className="text-[20px] font-semibold font-NanumGothic not-italic text-left text-red-500">
+                    <span className="text-[20px] font-semibold font-['suit'] not-italic text-left text-red-500">
                       주소를 입력해주세요
                     </span>
                   </div>
@@ -126,7 +126,7 @@ export default function SearchAddress({
             />
           )}
           <button
-            className="text-black bg-mySelect focus:outline-2 focus:outline-myBlue rounded-md w-[25%] h-[40px] border border-gray-300"
+            className="text-black bg-mySelect focus:outline-2 focus:outline-myBlue rounded-md w-[25%] h-[40px] border border-black"
             onClick={() => {
               handleModal && handleModal()
             }}

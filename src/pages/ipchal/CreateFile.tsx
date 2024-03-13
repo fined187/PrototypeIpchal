@@ -119,12 +119,22 @@ export default function CreateFile() {
 
   const handleDownload = (file: Blob) => {
     if (biddingInfo.pdfFile) {
+        const url = window.URL.createObjectURL(file);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${fileName.replace(" ", "")}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }
+  }
+
+  const handleDownload2 = (file: Blob) => {
+    if (biddingInfo.pdfFile) {
+      if (window) {
       const url = window.URL.createObjectURL(file);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${fileName.replace(" ", "")}.pdf`;
-      a.click();
+      window.open(url, "_blank");
       window.URL.revokeObjectURL(url);
+      }
     }
   }
 
@@ -227,7 +237,7 @@ export default function CreateFile() {
                   비밀번호
                 </span>
                 <div className='flex flex-row w-[100%] gap-[1%] ml-[5%]'>
-                  <div className='relative w-[69%] h-[40px]'>
+                  <div className='relative w-[64%] h-[40px]'>
                     <input
                       aria-label='비밀번호'
                       type={`${passwordActive ? 'text' : 'password'}`}

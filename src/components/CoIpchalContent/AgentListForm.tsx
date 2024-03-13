@@ -1,7 +1,7 @@
-import { biddingInfoState } from "@/atom";
+import { biddingInfoState, stepState } from "@/atom";
 import { TotalResultType } from "@/interface/IpchalType";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 export default function AgentListForm({ totalResult, index, bidders }: { totalResult: TotalResultType, index?: number, bidders?: any }) {
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState);
@@ -15,9 +15,9 @@ export default function AgentListForm({ totalResult, index, bidders }: { totalRe
   useEffect(() => {
     handleMandateList()
   }, [])
-  
+  const stateNum = useRecoilValue(stepState);
   return (
-    <div className={`flex flex-col bg-mybg h-[1300px] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide`}>
+    <div className={`flex flex-col bg-mybg h-[1300px] w-[100%] mx-auto justify-center items-center relative overflow-x-scroll scrollbar-hide ${stateNum === 11 ? '' : 'border-t-black border-dashed border-t-[2px]'}`}>
       <div className="flex flex-col bg-mybg h-[100%] md:w-[850px] w-[90%] m-auto relative justify-center items-center">
         <div className="flex w-[100%] absolute top-[5px]">
           <span className="md:text-[12pt] text-[10px] font-batang">

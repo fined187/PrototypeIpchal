@@ -159,20 +159,23 @@ export default function SearchIpchal() {
         )}
       <div className="flex flex-col w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
         <div className="flex flex-col pt-[50px] gap-[14px]">
-          <span className="md:text-[32.5px] text-[1.4rem] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic" style={{
+          <span className="md:text-[32.5px] text-[20px] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic" style={{
             color: '#181826'
           }}>
-            {searchResult === 1 ? "입찰 예정인 경매물건을 검색해주세요" : searchResult === 2 ? "입찰서를 작성할 물건을 선택해주세요" : "검색 결과가 없습니다"}
+            {searchResult === 1 ? "입찰 예정인 경매물건을 검색해주세요" : searchResult === 2 ? "입찰표를 작성할 물건을 선택해주세요" : "검색 결과가 없습니다"}
           </span>
-          <div className="flex flex-row">
-            <span className="md:text-[18px] text-[0.8rem] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
-              {searchResult === 1 ? "입찰표 하나 당 한 개의 물건만 검색할 수 있습니다" : searchResult === 2 ? "검색결과가 많을 경우" : "이전으로 버튼을 눌러 재검색해주세요"}
+          <div className="flex flex-row justify-center items-center">
+            <span className="md:text-[18px] text-[16px] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle text-center">
+              {searchResult === 1 ? "입찰표 하나 당 한 개의 물건만 검색할 수 있습니다" : searchResult === 2 ? "" : "이전으로 버튼을 눌러 재검색해주세요"}
             </span>
-            <span className="md:text-[18px] text-[0.8rem] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-myOrange">
+            <span className="md:text-[18px] text-[16px] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-myOrange">
               &nbsp;{searchResult === 2 && ("물건번호")}
             </span>
-            <span className="md:text-[18px] text-[0.8rem] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
-              {searchResult === 2 && (", 법원, 감정가, 입찰일을 확인해주세요")}
+            <span className="md:text-[18px] text-[16px] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
+              {searchResult === 2 && (", 법원, 감정가,")}
+            </span>
+            <span className="md:text-[18px] text-[16px] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
+              {searchResult === 2 && (" 입찰일을 확인해주세요")}
             </span>
           </div>
         </div>
@@ -212,73 +215,139 @@ export default function SearchIpchal() {
           </div>
         ) : searchResult === 2 && (getData?.length ?? 0) > 0 ? (
           <>
-            <div className="flex flex-col justify-start items-center md:w-[550px] w-[90%] h-[336px] overflow-y-auto pt-[10px] gap-[10px] mt-[25px] ">
+            <div className="flex flex-col justify-start items-center md:w-[550px] w-[90%] md:h-[500px] h-[400px] overflow-y-auto gap-[10px] mt-[25px] ">
               {getData?.map((data: any, index: number) => (
-              <div className="flex flex-col md:w-[498px] w-[100%] bg-white h-[112px] items-center rounded-lg pb-[10px] cursor-pointer relative" key={index}>
-                <div className={`w-[95%] flex flex-col`}
-                  onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}
-                >
-                  <div className="flex flex-row w-[100%] mt-[10px]">
-                    <span className="text-[18px] font-['suit'] font-bold text-myOrange text-left leading-[135%] tracking-[-1%]">
-                      {data.reqCourtName + "계"}
-                    </span>
-                    <span className="text-[18px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
-                      color: '#181826'
-                    }}>
-                      &nbsp;{data.caseNoString + "[" + (data.mulNo ? data.mulNo : "1") + "]" + (data.subCaseNoString ? "[" + data.subCaseNoString + "]" : '')}
-                    </span>
-                    <span className="text-[18px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
-                      color: '#181826'
-                    }}>
-                      {data.usage}
-                    </span>
-                  </div>
-                    <div className="flex justify-between w-[100%]">
-                      <div className="flex flex-col w-[50%] h-[60px]">
-                        <div className="flex flex-row mt-[5px] mb-[5px]">
-                          <div className="flex justify-center items-center">
-                            <span className="md:text-[15px] text-[0.8rem] leading-[140%] tracking-[-1%] font-['suit'] font-normal text-black text-center" style={{
-                              color: '#181826'
-                            }}>
-                              감정가
-                            </span>
+                <>
+                  <div className="md:flex hidden flex-col md:w-[498px] w-[100%] bg-white h-[112px] items-center rounded-lg p-[10px] cursor-pointer relative" key={index}>
+                    <div className={`w-[95%] flex flex-col`}
+                      onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}
+                    >
+                      <div className="flex flex-row w-[100%] mt-[10px]">
+                        <span className="text-[18px] font-['suit'] font-bold text-myOrange text-left leading-[135%] tracking-[-1%]">
+                          {data.reqCourtName + "계"}
+                        </span>
+                        <span className="text-[18px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
+                          color: '#181826'
+                        }}>
+                          &nbsp;{data.caseNoString + "[" + (data.mulNo ? data.mulNo : "1") + "]" + (data.subCaseNoString ? "[" + data.subCaseNoString + "]" : '')}
+                        </span>
+                        <span className="text-[18px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
+                          color: '#181826'
+                        }}>
+                          {data.usage}
+                        </span>
+                      </div>
+                        <div className="flex justify-between w-[100%]">
+                          <div className="flex flex-col w-[50%] h-[60px] mt-[10px] ">
+                            <div className="flex flex-row">
+                              <div className="flex justify-center items-center">
+                                <span className="md:text-[15px] text-[0.8rem] leading-[140%] tracking-[-1%] font-['suit'] font-normal text-black text-center" style={{
+                                  color: '#181826'
+                                }}>
+                                  감정가
+                                </span>
+                              </div>
+                              <div className="flex justify-center items-center">
+                                <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-black ml-[10px] leading-[140%] tracking-[-1%] font-normal" style={{
+                                  color: '#181826'
+                                }}>
+                                  {data.appraisalAmount.toLocaleString('ko-KR')}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex flex-row">
+                              <div className="flex justify-center items-center">
+                                <span className="md:text-[15px] text-[0.8rem] leading-[140%] tracking-[-1%] font-['suit'] font-normal text-black text-center" style={{
+                                  color: '#181826'
+                                }}>
+                                  최저가
+                                </span>
+                              </div>
+                              <div className="flex flex-row justify-center items-center">
+                                <span className="md:text-[15px] text-[0.8rem] font-['suit'] leading-[140%] tracking-[-1%] font-normal text-myBlue ml-[10px]">
+                                  {"(" + data.rate + ")"}
+                                </span>
+                                <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-black ml-[10px] leading-[140%] tracking-[-1%] font-normal" style={{
+                                  color: '#181826'
+                                }}>
+                                  {data.minimumAmount.toLocaleString('ko-KR')}
+                                </span>
+                              </div>
+                            </div>
                           </div>
-                          <div className="flex justify-center items-center">
-                            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-black ml-[10px] leading-[140%] tracking-[-1%] font-normal" style={{
-                              color: '#181826'
-                            }}>
-                              {data.appraisalAmount.toLocaleString('ko-KR')}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="flex flex-row">
-                          <div className="flex justify-center items-center">
-                            <span className="md:text-[15px] text-[0.8rem] leading-[140%] tracking-[-1%] font-['suit'] font-normal text-black text-center" style={{
-                              color: '#181826'
-                            }}>
-                              최저가
-                            </span>
-                          </div>
-                          <div className="flex flex-row justify-center items-center">
-                            <span className="md:text-[15px] text-[0.8rem] font-['suit'] leading-[140%] tracking-[-1%] font-normal text-myBlue ml-[10px]">
-                              {"(" + data.rate + ")"}
-                            </span>
-                            <span className="md:text-[15px] text-[0.8rem] font-['suit'] text-black ml-[10px] leading-[140%] tracking-[-1%] font-normal" style={{
-                              color: '#181826'
-                            }}>
-                              {data.minimumAmount.toLocaleString('ko-KR')}
+                          <div className="flex md:w-[106.5px] w-[100px] h-[36px] rounded-md justify-center items-center bg-searchBg absolute bottom-[15px] right-[10px]">
+                            <span className="text-center font-['suit'] text-[14px] font-semibold leading-[135%]">
+                              {data.biddingDateString + " " + "입찰"}
                             </span>
                           </div>
                         </div>
                       </div>
-                      <div className="flex md:w-[106.5px] w-[100px] h-[36px] rounded-md justify-center items-center bg-searchBg absolute bottom-[15px] right-[10px]">
-                        <span className="text-center font-['suit'] text-[14px] font-semibold leading-[135%]">
+                  </div>
+                  {/* 모바일 */}
+                  <div className="flex md:hidden flex-col md:w-[498px] w-[100%] h-[150px] bg-white items-center rounded-lg p-[10px] cursor-pointer relative" key={index}>
+                    <div className={`w-[95%] flex flex-col h-[100%]`} onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}>
+                      <div className="flex flex-row w-[100%] mt-[10px]">
+                        <span className="text-[15px] font-['suit'] font-bold text-myOrange text-left leading-[135%] tracking-[-1%]">
+                          {data.reqCourtName + "계"}
+                        </span>
+                        <span className="text-[15px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
+                          color: '#181826'
+                        }}>
+                          &nbsp;{data.caseNoString + "[" + (data.mulNo ? data.mulNo : "1") + "]" + (data.subCaseNoString ? "[" + data.subCaseNoString + "]" : '')}
+                        </span>
+                        <span className="text-[15px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
+                          color: '#181826'
+                        }}>
+                          {data.usage}
+                        </span>
+                      </div>
+                      <div className="flex justify-start items-start mt-[10px] mb-[10px] ">
+                        <div className="flex flex-col w-[100%] h-[60px] ">
+                          <div className="flex flex-row">
+                            <div className="flex justify-start items-start">
+                              <span className="md:text-[15px] text-[15px] leading-[140%] tracking-[-1%] font-['suit'] font-normal text-black text-center" style={{
+                                color: '#181826'
+                              }}>
+                                감정가
+                              </span>
+                            </div>
+                            <div className="flex justify-start items-start">
+                              <span className="md:text-[15px] text-[15px] font-['suit'] text-black ml-[10px] leading-[140%] tracking-[-1%] font-normal" style={{
+                                color: '#181826'
+                              }}>
+                                {data.appraisalAmount.toLocaleString('ko-KR')}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex flex-row">
+                            <div className="flex justify-start items-start">
+                              <span className="md:text-[15px] text-[15px] leading-[140%] tracking-[-1%] font-['suit'] font-normal text-black text-center" style={{
+                                color: '#181826'
+                              }}>
+                                최저가
+                              </span>
+                            </div>
+                            <div className="flex flex-row justify-start items-start">
+                              <span className="md:text-[15px] text-[15px] font-['suit'] leading-[140%] tracking-[-1%] font-normal text-myBlue ml-[10px]">
+                                {"(" + data.rate + ")"}
+                              </span>
+                              <span className="md:text-[15px] text-[15px] font-['suit'] text-black ml-[10px] leading-[140%] tracking-[-1%] font-normal" style={{
+                                color: '#181826'
+                              }}>
+                                {data.minimumAmount.toLocaleString('ko-KR')}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex md:w-[106.5px] w-[100px] h-[36px] rounded-md justify-center items-center bg-searchBg absolute md:bottom-[15px] md:right-[10px] left-[15px] bottom-[5px] mb-[10px]">
+                        <span className="text-center font-['suit'] text-[13px] font-semibold leading-[135%]">
                           {data.biddingDateString + " " + "입찰"}
                         </span>
                       </div>
                     </div>
                   </div>
-                </div>
+                </>
               ))}
             </div>
           </>

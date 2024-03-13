@@ -47,7 +47,7 @@ export default function BidderInfo() {
     } else if (biddingInfo.agentName === '' && biddingInfo.bidder === 'agent') {
       setStateNum(stateNum + 1)
     } else if (biddingInfo.agentName !== '' && biddingInfo.bidder === 'agent') {
-      setStateNum(16)
+      setStateNum(17)
     } else if (biddingInfo.bidder === '') {
       setLoading(false)
       setIsSelected(false)

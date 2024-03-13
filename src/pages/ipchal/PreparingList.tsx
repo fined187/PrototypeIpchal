@@ -137,11 +137,11 @@ export default function PreparingList() {
     <>
       <div id="box" className="flex flex-col justify-center w-[100%] bg-white items-center text-center relative">
         <div className="flex flex-col justify-center items-center w-[100%] h-[100%] bg-mybg relative">
-          <div className="flex flex-col gap-[10px] w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
-            <span className="md:text-[1.7rem] text-[1.4rem] font-['suit'] font-bold">
+          <div className="flex flex-col gap-[14px] w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
+            <span className="md:text-[32.5px] text-[1.4rem] font-bold leading-[135%] tracking-[-1%] font-['suit'] not-italic">
               입찰 시 준비서류를 알려드릴게요
             </span>
-            <span className="md:text-[1rem] text-[0.8rem] text-sutTitle font-bold font-['suit'] not-italic">
+            <span className="md:text-[18px] text-[0.8rem] text-sutTitle font-medium font-['suit'] leading-[135%] tracking-[-1%] not-italic">
               지지옥션이 성공적인 낙찰을 응원합니다
             </span>
             <div className="flex flex-col md:w-[550px] w-[90%] h-[500px] rounded-lg items-center mt-[20px]">

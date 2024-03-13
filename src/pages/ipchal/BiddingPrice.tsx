@@ -385,14 +385,14 @@ export default function BiddingPrice() {
                       e.target.value.toString().replaceAll(',', ''),
                     )
                   })}
-                  className="flex w-[100%] h-[40px] border text-[20px] font-semibold leading-[150%] tracking-[-1%] text-sutTitle border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md text-right p-[10px]"
+                  className="flex w-[100%] h-[40px] border text-[20px] font-semibold leading-[150%] tracking-[-1%] font-['suit'] text-sutTitle border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md text-right p-[10px]"
                   onChange={(e) => {
                     handleChangeBiddingPrice(e)
                   }}
                 />
               </div>
             </div>
-            <div className="flex justify-between w-[100%] h-[40px]">
+            <div className="flex justify-between w-[100%]">
               <div className='flex w-[100%] justify-end'>
                 <span className="md:text-[16px] text-[0.8rem] font-['suit'] leading-[135%] tracking-[-1%] not-italic font-semibold text-myOrange mb-2 text-left">
                   {num2han(biddingForm.biddingPrice ?? 0) + '원'  + "(최저가의 " + Math.floor(((biddingForm.biddingPrice - paymentsInfo.minimumAmount) / (paymentsInfo.minimumAmount)) * 100 + 100) + "%)"}
@@ -400,7 +400,7 @@ export default function BiddingPrice() {
               </div>
             </div>
             <div className="flex flex-col gap-[10px] w-[100%]">
-              <div className="flex justify-start pt-[25px]">
+              <div className="flex justify-start">
                 <span className="md:text-[20px] text-[0.8rem] font-semibold leading-[135%] tracking-[-1%] not-italic font-['suit'] ">
                   입찰 보증 금액
                 </span>
@@ -412,14 +412,14 @@ export default function BiddingPrice() {
                   type="text"
                   id="number2"
                   value={biddingForm.depositPrice.toLocaleString('ko-KR') || 0}
-                  className="flex w-[100%] h-[40px] border text-[20px] leading-[150%] tracking-[-1%] font-semibold text-sutTitle border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md text-right p-[10px]"
+                  className="flex w-[100%] h-[40px] border text-[20px] leading-[150%] tracking-[-1%] font-semibold text-sutTitle font-['suit'] border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md text-right p-[10px]"
                   onChange={(e) => {
                     handleChangeDepositPrice(e)
                   }}
                 />
               </div>
             </div>
-            <div className="flex justify-between w-[100%] h-[40px]">
+            <div className="flex justify-between w-[100%]">
               <div className='flex w-[100%] h-[100%] justify-end'>
                 <span className="md:text-[16px] text-[0.8rem] font-['suit'] leading-[135%] tracking-[-1%] not-italic font-semibold text-myOrange mb-2 text-left">
                   {num2han(biddingForm.depositPrice) + '원' + "(최저가의 " + Math.floor(((biddingForm.depositPrice) / (paymentsInfo.minimumAmount)) * 100) + "%)"}
