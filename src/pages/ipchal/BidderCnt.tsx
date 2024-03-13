@@ -119,7 +119,7 @@ export default function BidderCnt() {
     <>
       <div id='box' className="flex w-[100%] bg-mybg justify-center relative">
         <div className="flex flex-col w-[100%] h-[100%] items-center text-center md:py-[0px] py-[25px]">
-          <div className="flex flex-col pt-[50px] gap-[10px]">
+          <div className="flex flex-col pt-[50px] gap-[14px]">
             <span className="md:text-[32.5px] text-[1.4rem] font-bold leading-[135%] tracking-[-1%] font-['suit'] not-italic">
               총 입찰자는 몇 명인가요?
             </span>
@@ -138,13 +138,13 @@ export default function BidderCnt() {
             )}
             <div className="flex flex-col">
               <div className="flex flex-row justify-center items-center">
-                <span className="md:text-[22.5px] text-[1rem] font-semibold mr-5 font-['suit'] leading-[135%] tracking-[-1%]">
+                <span className="md:text-[22.5px] text-[1rem] font-semibold font-['suit'] leading-[135%] tracking-[-1%]">
                   총 입찰자 수는
                 </span>
                 <input
                   id='bidderNum'
                   aria-label="bidderNum"
-                  className="w-[120px] border border-black h-[40px] text-center focus:outline-none font-nromal leading-[130%] tracking-[0%] text-[17.5px] rounded-lg"
+                  className="w-[120px] border border-black h-[40px] text-center focus:outline-none font-semibold leading-[150%] tracking-[-1%] text-[20px] rounded-lg ml-5 mr-5 text-sutTitle"
                   type="text"
                   placeholder='숫자만 입력'
                   value={biddingInfo.bidderNum > 0 ? biddingInfo.bidderNum : ''}
@@ -157,7 +157,7 @@ export default function BidderCnt() {
                     handleErrorOk(e)
                   }}
                 />
-                <span className="md:text-[22.5px] text-[1rem] font-semibold font-['suit'] ml-2 leading-[135%] tracking-[-1%]">
+                <span className="md:text-[22.5px] text-[1rem] font-semibold font-['suit'] leading-[135%] tracking-[-1%]">
                   명 입니다
                 </span>
               </div>

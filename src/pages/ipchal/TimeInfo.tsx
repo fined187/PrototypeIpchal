@@ -66,7 +66,7 @@ export default function TimeInfo() {
         <Spinner />
       )}
       <div className="flex flex-col md:w-[550px] w-[100%] h-[100%] bg-mybg items-center text-center pt-[50px]">
-        <div className="flex flex-col gap-[10px]">
+        <div className="flex flex-col gap-[14px]">
           <span className="md:text-[32.5px] text-[1.4rem] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic" style={{
             color: '#181826'
           }}>
@@ -78,7 +78,7 @@ export default function TimeInfo() {
             오전 기일에 낙찰이 될 경우 오후 기일은 진행하지 않습니다
           </span>
         </div>
-        <div className="flex flex-col gap-[15px] md:w-[550px] w-[90%] h-[50%] mt-[50px] justify-start items-center rounded-lg border-slate-500">
+        <div className="flex flex-col gap-[7.5px] md:w-[550px] w-[90%] h-[50%] mt-[50px] justify-start items-center rounded-lg border-slate-500">
           <div className={`flex flex-row gap-[50px] justify-center items-center w-[100%] h-[100px] border border-gray-300 rounded-lg cursor-pointer ${(timeClicked === '1000' ) || (biddingInfo.selectedTime === '1000') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
             setTimeClicked('1000')
             handleConfirm('1000')
@@ -103,7 +103,7 @@ export default function TimeInfo() {
               }}>
                   {(biddingInfo.biddingInfos.length > 1) && biddingInfo.biddingInfos[0]?.minimumAmount.toLocaleString('ko-KR') + '원'}
                 </span>
-                <span className="font-['suit'] text-[20px] leading-[135%] tracking-[-1%] text-myBlue">
+                <span className="font-['suit'] text-[20px] leading-[135%] tracking-[-1%] text-myBlue font-normal">
                   (100%)
                 </span>
               </div>

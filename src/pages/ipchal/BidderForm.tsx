@@ -416,7 +416,7 @@ export default function BidderForm() {
               {stepNum === 1 ? "입찰자(본인)" : "본인 외 "} 정보를 입력해주세요
             </span>
             {biddingForm.bidderNum > 1 && (
-              <span className="md:text-[20px] text-[0.8rem] font-light font-['suit'] not-italic leading-[140%] tracking-[-1%]">
+              <span className="md:text-[20px] text-[0.8rem] font-light font-['suit'] not-italic leading-[140%] tracking-[-1%] text-sutTitle">
                 {`(${stepNum} / ${biddingForm.bidderNum})`}
               </span>
             )}
@@ -432,7 +432,7 @@ export default function BidderForm() {
             <input 
               name='bidderType'
               checked={biddingForm.bidCorpYn[stepNum - 1] === 'I'}
-              className='cursor-pointer w-[15px]'
+              className='cursor-pointer w-[20px] h-[20px] mt-1 accent-myBlue'
               type='radio'
               onChange={() => {
                 setBiddingForm((prev: any) => {
@@ -443,7 +443,7 @@ export default function BidderForm() {
               }}
             />
             <label>
-              <span className="md:text-[20px] text-[1rem] font-normal font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
+              <span className="md:text-[20px] text-[1rem] font-normal font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] ml-1">
                 개인
               </span>
             </label>
@@ -452,7 +452,7 @@ export default function BidderForm() {
             <input 
               checked={biddingForm.bidCorpYn[stepNum - 1] === 'C'}
               name='bidderType'
-              className='cursor-pointer w-[15px]'
+              className='cursor-pointer w-[20px] h-[20px] mt-1 accent-myBlue'
               type='radio'
               onChange={() => {
                 setBiddingForm((prev: any) => {
@@ -463,7 +463,7 @@ export default function BidderForm() {
               }}
             />
             <label>
-              <span className="md:text-[20px] text-[1rem] font-normal font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
+              <span className="md:text-[20px] text-[1rem] font-normal font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] ml-1">
                 법인
               </span>
             </label>
@@ -482,7 +482,7 @@ export default function BidderForm() {
                   (<div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="bidderName"
-                      className="text-[1rem] font-bold font-['suit'] not-italic text-left text-red-500"
+                      className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                     >
                       {errors.bidderName?.message}
                     </label>
@@ -528,7 +528,7 @@ export default function BidderForm() {
                   errors.bidderPhone2?.type === 'required' ||
                   errors.bidderPhone3?.type === 'required') && (biddingForm.bidPhone[stepNum - 1] === '' || biddingForm.bidPhone[stepNum - 1] === undefined) ? (
                   <div className="flex w-[100%] justify-start">
-                    <span className="text-[1rem] font-bold font-['suit'] not-italic text-left text-red-500">
+                    <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
                       전화번호를 입력해주세요
                     </span>
                   </div>
@@ -656,7 +656,7 @@ export default function BidderForm() {
                         errors.bidderIdNum2?.type === 'required' && 
                         (biddingForm.bidIdNum[stepNum - 1] === '' || biddingForm.bidIdNum[stepNum - 1] === undefined) ? (
                         <div className="flex w-[100%] justify-start h-[15px] mb-1">
-                          <span className="text-[1rem] font-bold font-['suit'] not-italic text-left text-red-500">
+                          <span className="text-[20px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500">
                             주민등록번호를 입력해주세요
                           </span>
                         </div>
@@ -716,45 +716,44 @@ export default function BidderForm() {
                     <span className="flex text-mygray font-['suit'] font-bold mt-1">
                       -
                     </span>
-                    <input
-                      {...register('bidderIdNum2', {
-                        required: true,
-                        maxLength: 7,
-                      })}
-                      id="bidderIdNum2"
-                      onInput={(e) => {
-                        e.currentTarget.value = e.currentTarget.value
-                          .replace(/[^0-9.]/g, '')
-                          .replace(/(\..*)\./g, '$1')
-                      }}
-                      type={`${!passwordActive ? 'password' : 'text'}`}
-                      maxLength={7}
-                      className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
-                      value={biddingForm.bidIdNum2[stepNum - 1] || ''}
-                      onChange={(e) => {
-                        setBiddingForm((prev: any) => {
-                          const temp = prev.bidIdNum2
-                          temp[stepNum - 1] = e.target.value
-                          return { ...prev, bidIdNum2: temp }
-                        })
-                        setBiddingForm((prev: any) => {
-                          const temp = prev.bidIdNum
-                          temp[stepNum - 1] =
-                            biddingForm.bidIdNum1[stepNum - 1] +
-                            e.target.value
-                          return { ...prev, bidIdNum: temp }
-                        })
-                        handleInputChange(e)
-                      }}
-                    />
-                    <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] md:w-[10%] w-[15%] cursor-pointer"
-                      onClick={() => setPasswordActive(!passwordActive)}
-                    >
-                      {passwordActive ? (
-                        <LiaEyeSolid className="cursor-pointer" size={'35%'} />
-                      ) : (
-                        <LiaEyeSlashSolid className="cursor-pointer" size={'35%'} />
-                      )}
+                    <div className='relative w-[45%] h-[40px]'>
+                      <input
+                        {...register('bidderIdNum2', { required: true })}
+                        id="bidderIdNum2"
+                        name="bidderIdNum2"
+                        onInput={(e) => {
+                          e.currentTarget.value = e.currentTarget.value
+                            .replace(/[^0-9.]/g, '')
+                            .replace(/(\..*)\./g, '$1')
+                        }}
+                        type={`${!passwordActive ? 'password' : 'text'}`}
+                        maxLength={7}
+                        className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[100%] text-center"
+                        value={biddingForm.bidIdNum2[stepNum - 1] ?? ''}
+                        onChange={(e) => {
+                          setBiddingForm((prev: any) => {
+                            const temp = prev.bidIdNum2
+                            temp[stepNum - 1] = e.target.value
+                            return { ...prev, bidIdNum2: temp }
+                          })
+                          setBiddingForm((prev: any) => {
+                            const temp = prev.bidIdNum
+                            temp[stepNum - 1] =
+                              biddingForm.bidIdNum1[stepNum - 1] +
+                              e.target.value
+                            return { ...prev, bidIdNum: temp }
+                          })
+                        }}
+                      />
+                      <div className="flex justify-center items-center w-[10%] h-[40px] cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2"
+                        onClick={() => setPasswordActive(!passwordActive)}
+                      >
+                        {passwordActive ? (
+                          <LiaEyeSolid className="cursor-pointer" />
+                        ) : (
+                          <LiaEyeSlashSolid className="cursor-pointer" />
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -768,7 +767,7 @@ export default function BidderForm() {
                       errors.bidderCorpNum3?.type === 'required') && 
                       (biddingForm.bidCorpNum[stepNum - 1] === '' || biddingForm.bidCorpNum[stepNum - 1] === undefined) ? (
                       <div className="flex w-[100%] justify-start mb-1">
-                        <span className="text-[1rem] font-bold font-['suit'] not-italic text-left text-red-500">
+                        <span className="text-[20px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500">
                           사업자등록번호를 입력해주세요
                         </span>
                       </div>
@@ -777,7 +776,7 @@ export default function BidderForm() {
                         <label htmlFor="bidCorpNum" className="text-[20px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left">
                           사업자 등록번호
                         </label>
-                        <span className="text-[1rem] font-bold font-['suit'] not-italic text-left text-red-500">
+                        <span className="text-[20px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500">
                           *
                         </span>
                       </div>
@@ -900,7 +899,7 @@ export default function BidderForm() {
                         (biddingForm.bidCorpRegiNum[stepNum - 1] === '' || biddingForm.bidCorpRegiNum[stepNum - 1] === undefined) ? 
                         (
                         <div className="flex w-[100%] justify-start mb-1">
-                          <span className="text-[1rem] font-bold font-['suit'] not-italic text-left text-red-500">
+                          <span className="md:text-[20px] text-[0.8rem] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500">
                             법인 등록번호를 입력해주세요
                           </span>
                         </div>
@@ -1003,7 +1002,7 @@ export default function BidderForm() {
                         <div className="flex w-[100%] justify-start">
                           <label
                             htmlFor="agentJob"
-                            className="text-[1rem] font-bold font-['suit'] not-italic text-left text-red-500"
+                            className="text-[20px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500"
                           >
                             {errors.bidderJob?.message}
                           </label>
@@ -1052,7 +1051,7 @@ export default function BidderForm() {
               />
             </div>
           </div>
-          <div className={`flex flex-row fixed gap-[10px] md:w-[550px] w-[90%] ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'bottom-[50px]' : 'bottom-[20px]'}`}>
+          <div className={`flex flex-row fixed gap-[10px] md:w-[550px] w-[90%] ${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? 'bottom-[50px]' : 'bottom-[0px]'}`}>
             <button
               type="button"
               className="flex w-[35%] h-[50px] bg-prevBtn rounded-full justify-center items-center cursor-pointer"

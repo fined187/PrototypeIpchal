@@ -222,11 +222,11 @@ export default function CreateFile() {
                   }} 
                 />
               </div>
-              <div className="flex flex-col justify-start text-left gap-3 relative ml-[5%]">
+              <div className="flex flex-col justify-start text-left gap-3 relative ">
                 <span className="text-black text-[20px] font-semibold not-italic font-['suit'] ml-[5%] leading-[135%] tracking-[-2%]">
                   비밀번호
                 </span>
-                <div className='flex flex-row w-[100%] gap-[1%]'>
+                <div className='flex flex-row w-[100%] gap-[1%] ml-[5%]'>
                   <div className='relative w-[69%] h-[40px]'>
                     <input
                       aria-label='비밀번호'

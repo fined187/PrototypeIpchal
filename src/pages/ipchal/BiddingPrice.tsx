@@ -325,7 +325,7 @@ export default function BiddingPrice() {
               <span className={`font-semibold font-['suit'] leading-[135%] tracking-[-1%] text-[18px] text-sutTitle`}>
                 &nbsp;{biddingForm.sagunNum}
               </span>
-              <span className={`font-semibold font-['suit'] leading-[135%] tracking-[-1%] text-[18px] text-sutTitle`}>
+              <span className={`font-normal font-['suit'] leading-[135%] tracking-[-1%] text-[18px] text-sutTitle`}>
                 호 의
               </span>
             </div>
@@ -368,7 +368,7 @@ export default function BiddingPrice() {
             <div className='flex w-[100%] h-[1px] bg-gray-300 mt-[5px]' />
             <div className="flex flex-col gap-[10px] w-[100%]">
               <div className='flex justify-start pt-[25px]'>
-                <span className="text-[20px] leading-[150%] tracking-[-1%] font-normal font-['suit'] not-italic">
+                <span className="text-[20px] leading-[150%] tracking-[-1%] font-semibold font-['suit'] not-italic">
                   입찰 가격
                 </span>
               </div>
@@ -385,7 +385,7 @@ export default function BiddingPrice() {
                       e.target.value.toString().replaceAll(',', ''),
                     )
                   })}
-                  className="flex w-[100%] h-[40px] border text-[1.2rem] border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md text-right p-[10px]"
+                  className="flex w-[100%] h-[40px] border text-[20px] font-semibold leading-[150%] tracking-[-1%] text-sutTitle border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md text-right p-[10px]"
                   onChange={(e) => {
                     handleChangeBiddingPrice(e)
                   }}

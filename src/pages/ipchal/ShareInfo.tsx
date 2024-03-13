@@ -213,7 +213,7 @@ export default function ShareInfo() {
       }
     }
   }, [biddingInfo.numerator, biddingInfo.denominator])
-
+console.log(biddingInfo)
   return (
     <div className={`flex w-screen bg-mybg justify-center relative`}>
       <div className="flex flex-col w-[100%] h-[100vh] bg-mybg items-center text-center pt-[50px] gap-[25px]">
@@ -280,7 +280,7 @@ export default function ShareInfo() {
                 {name + (biddingInfo.bidCorpYn[index] === 'I' ? ' (개인)' : ' (법인)')}
               </span>
               </div>
-              <div className={`flex flex-row gap-[10px] justify-center absolute top-[50%] ${biddingInfo.bidWay === 'S' ? 'border-b-[1px] border-b-sutTitle' : ''} transform translate-y-[-50%] right-5 mt-[10px]`}>
+              <div className={`flex flex-row gap-[10px] w-[95px] justify-center absolute top-[50%] ${biddingInfo.shareWay === 'S' ? 'border-b-[0.5px] border-b-sutTitle' : 'md:mr-[50px]'} transform translate-y-[-50%] right-5 mt-[10px]`}>
               {biddingInfo.shareWay === 'S' ? (
                 <>
                 <input
@@ -366,7 +366,7 @@ export default function ShareInfo() {
         })}
         {(biddingInfo.shareWay === 'N' && goNext) ? (
           <div className='flex w-[100%] flex-row-reverse'>
-            <span className="md:text-[1rem] text-[0.8rem] font-['suit'] font-bold text-red-500 text-right">
+            <span className="md:text-[18px] text-[0.8rem] font-['suit'] font-light leading-[135%] tracking-[-1%] text-red-500 text-right">
               입력하신 지분 값을 다시 확인해주세요
             </span>
           </div>

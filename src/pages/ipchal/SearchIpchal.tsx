@@ -205,14 +205,14 @@ export default function SearchIpchal() {
             </div>
             <div className="w-[63.5px] h-[46px] bg-myBlue flex justify-center items-center cursor-pointer rounded-lg ml-[10px]" 
               onClick={() => handleNextButton(searchResult, '', '', '')}>
-              <span className="text-white font-normal font-['suit'] md:text-[20px] text-[0.8rem] leading-[135%] tracking-[-1%]">
+              <span className="text-white font-bold font-['suit'] md:text-[20px] text-[0.8rem] leading-[135%] tracking-[-2%]">
                 검색
               </span>
             </div>
           </div>
         ) : searchResult === 2 && (getData?.length ?? 0) > 0 ? (
           <>
-            <div className="flex flex-col justify-start items-center md:w-[550px] w-[90%] h-[301px] overflow-y-auto pt-[10px] gap-[10px] mt-[25px] ">
+            <div className="flex flex-col justify-start items-center md:w-[550px] w-[90%] h-[336px] overflow-y-auto pt-[10px] gap-[10px] mt-[25px] ">
               {getData?.map((data: any, index: number) => (
               <div className="flex flex-col md:w-[498px] w-[100%] bg-white h-[112px] items-center rounded-lg pb-[10px] cursor-pointer relative" key={index}>
                 <div className={`w-[95%] flex flex-col`}

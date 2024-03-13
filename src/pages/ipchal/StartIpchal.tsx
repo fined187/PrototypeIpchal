@@ -142,10 +142,10 @@ export default function StartIpchal() {
             </span>
           </div>
           <div className="flex flex-col justify-center mt-[20px]">
-            <span className="md:text-[15px] text-[0.8rem] leading-[135%] tracking-[-1%] font-['suit'] text-mygray font-normal text-center">
+            <span className="md:text-[15px] text-[0.8rem] leading-[135%] tracking-[-1%] font-['suit'] text-mygray font-medium text-center">
               입력하신 주민등록번호 등 개인정보는 저장되지 않으며,
             </span>
-            <span className="md:text-[15px] text-[0.8rem] leading-[135%] tracking-[-1%] font-['suit'] text-mygray font-normal text-center">
+            <span className="md:text-[15px] text-[0.8rem] leading-[135%] tracking-[-1%] font-['suit'] text-mygray font-medium text-center">
               새로운 입찰표 작성 시 재입력하셔야 합니다.
             </span>
           </div>

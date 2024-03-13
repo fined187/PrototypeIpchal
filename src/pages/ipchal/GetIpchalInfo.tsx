@@ -156,7 +156,7 @@ export default function GetIpchalInfo() {
               선택한 경매 사건이 맞는지 체크합니다
             </span>
           </div>
-          <div className={`flex flex-col md:w-[500px] h-[500px] w-[90%] overflow-y-auto gap-[5px] bg-mybg mt-[30px]`}>
+          <div className={`flex flex-col md:w-[500px] h-[500px] w-[90%] overflow-y-auto gap-[7.5px] bg-mybg mt-[30px]`}>
             <div className="flex flex-col relative h-[80px] items-start justify-start bg-white p-[20px]">
               <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
                 법원

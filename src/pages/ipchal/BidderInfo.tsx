@@ -95,7 +95,7 @@ export default function BidderInfo() {
               본인이 아닌 경우 대리인을 선택해주세요
             </span>
           </div>
-          <div className="flex flex-row md:w-[450px] w-[90%] h-[212.5px] mt-[100px] md:gap-[20px] gap-[22.5px]">
+          <div className="flex flex-row md:w-[450px] w-[90%] h-[212.5px] mt-[100px] md:gap-[22.5px] gap-[20px]">
             <div
               className={`flex flex-row md:w-[212.5px] w-[180px] h-[100%] rounded-xl ${
                 isSelected ? '' : 'border-red-600 border-[2px]'
