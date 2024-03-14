@@ -125,24 +125,6 @@ export default function BiddingPrice() {
         return
       }
     }
-    if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 1.1 && biddingForm.biddingPrice < paymentsInfo.minimumAmount * 1.2) {
-      if (window.confirm('최저가의 110% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
-        setErrorMsg(false)
-        handleGetBiddingFormUpdate()
-      } else {
-        setErrorMsg(true)
-        return
-      }
-    }
-    if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 1.2 && biddingForm.biddingPrice < paymentsInfo.minimumAmount * 2) {
-      if (window.confirm('최저가의 120% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
-        setErrorMsg(false)
-        handleGetBiddingFormUpdate()
-      } else {
-        setErrorMsg(true)
-        return
-      }
-    }
     setErrorMsg(false)
   }
 

@@ -115,6 +115,23 @@ export default function BidderCnt() {
     }
   }, [])
 
+  const handleCorpYn = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === '' || Number(e.target.value) === 0 || isNaN(Number(e.target.value))) {
+      return
+    }
+    if (biddingInfo.bidCorpYn.length !== 0 && biddingInfo.bidName[0] !== '') {
+      setBiddingInfo((prev: any) => ({
+        ...prev,
+        bidCorpYn: prev.bidCorpYn,
+      }))
+    } else {
+      setBiddingInfo((prev: any) => ({
+        ...prev,
+        bidCorpYn: Array(Number(e.target.value)).fill('I'),
+      }))
+    }
+  }
+
   return (
     <>
       <div id='box' className="flex w-[100%] bg-mybg justify-center relative">
@@ -151,9 +168,9 @@ export default function BidderCnt() {
                   onChange={(e: ChangeEvent<HTMLInputElement>) => {
                     setBiddingInfo((prev: any) => ({
                       ...prev,
-                      bidderNum: Number(e.target.value),
-                      bidCorpYn: (prev.bidCorpYn.length !== 0 && prev.bidName[0] !== '') ? prev.bidCorpYn : Array(Number(e.target.value)).fill('I'),
+                      bidderNum: Number(e.target.value)
                     }))
+                    handleCorpYn(e)
                     handleErrorOk(e)
                   }}
                 />

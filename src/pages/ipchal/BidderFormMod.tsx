@@ -120,10 +120,10 @@ export default function BidderFormMod2() {
             const temp2 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(0, 3) : bidder.phoneNo.slice(0, 2))
             const temp3 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(3, 7) : bidder.phoneNo.slice(2, 6))
             const temp4 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.phoneNo.length > 10 ? bidder.phoneNo.slice(7, 11) : bidder.phoneNo.slice(6, 10))
-            const temp5 = prev.bidIdNum1
-            const temp6 = prev.bidIdNum2
+            const temp5 = prev.bidIdNum1.slice(0, response.data.data.bidders.length)
+            const temp6 = prev.bidIdNum2.slice(0, response.data.data.bidders.length)
             const temp7 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.address)
-            const temp8 = prev.bidAddrDetail
+            const temp8 = prev.bidAddrDetail.slice(0, response.data.data.bidders.length)
             const temp9 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(0, 3) || '')
             const temp10 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(3, 5) || '')
             const temp11 = response.data.data.bidders.map((bidder: BiddersProps) => bidder.companyNo?.slice(5, 10) || '')
@@ -354,9 +354,7 @@ export default function BidderFormMod2() {
       setLoading(false)
     }
   }
-  console.log(biddingForm.bidderNum)
-  console.log(bidderList?.length!)
-  console.log(stepNum)
+
   //  다음 단계로 이동
   const handleNextStep = async () => {
     handleUpdateIdNum(stepNum - 1)
