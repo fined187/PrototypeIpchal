@@ -146,7 +146,9 @@ export default function PreparingList() {
             </span>
             <div className="flex flex-col md:w-[550px] w-[90%] h-[500px] rounded-lg items-center mt-[20px]">
               <div className="flex flex-col bg-mySelect w-[100%] h-[80px] mx-auto rounded-md justify-start items-start p-[20px] border border-black">
-                <span className="md:text-[17px] text-[0.7rem] font-['suit'] text-sutTitle font-medium leading-[130%] tracking-[0px] text-left">
+                <span className="md:text-[17px] text-[0.7rem] font-['suit'] font-medium leading-[130%] tracking-[0px] text-left" style={{
+                  color: "#545492"
+                }}>
                   입찰자
                 </span>
                 <span className="md:text-[20px] leading-[135%] tracking-[-1%] text-[0.8rem] font-['suit'] text-black font-normal text-left">
@@ -156,7 +158,9 @@ export default function PreparingList() {
                 </span>
               </div>
               <div className="flex flex-col w-[100%] min-h-[75px] max-h-[100px] mt-[15px] bg-white rounded-lg overflow-y-auto p-[20px]">
-                <span className="md:text-[17px] text-[0.7rem] font-['suit'] text-sutTitle font-medium leading-[130%] tracking-[0px] text-left">
+                <span className="md:text-[17px] text-[0.7rem] font-['suit'] font-medium leading-[130%] tracking-[0px] text-left" style={{
+                  color: "#545492"
+                }}>
                   기본 (대리인의 경우 대리인의)
                 </span>
                 <span className="md:text-[20px] leading-[135%] tracking-[-1%] text-[0.8rem] font-['suit'] text-black font-normal text-left">
@@ -164,7 +168,9 @@ export default function PreparingList() {
                 </span>
               </div>
               <div className="flex flex-col w-[100%] min-h-[100px] max-h-[250px] mt-[15px] bg-white rounded-lg p-[20px] overflow-y-auto gap-[10px]">
-                <span className="md:text-[17px] text-[0.7rem] font-['suit'] text-sutTitle font-medium leading-[130%] tracking-[0px] text-left">
+                <span className="md:text-[17px] text-[0.7rem] font-['suit'] font-medium leading-[130%] tracking-[0px] text-left" style={{
+                  color: "#545492"
+                }}>
                   준비서류
                 </span>
                 <div className="flex flex-col w-[100%]">

@@ -128,7 +128,9 @@ export default function AgentCheck() {
               }}
             >
               <div className="flex flex-col w-[100%] justify-center items-start ml-[20px] ">
-                <span className="md:text-[17px] text-[0.8rem] leading-[135%] tracking-[0px] font-medium font-['suit'] text-sutTitle">
+                <span className="md:text-[17px] text-[0.8rem] leading-[135%] tracking-[0px] font-medium font-['suit']" style={{
+                  color: "#545492"
+                }}>
                   {"#" + (index + 1)}
                 </span>
                 <span className="md:text-[20px] text-[1rem] leading-[140%] tracking-[-1%] font-['suit'] font-normal">

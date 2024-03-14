@@ -386,24 +386,9 @@ export default function BidderForm() {
     const { name, value } = e.target
     setValue(name, value, { shouldValidate: true })
   }
-  console.log(biddingForm.bidCorpYn.length)
-  useEffect(() => {
-    setValue('bidderName', [biddingForm.bidName[stepNum - 1] || ''])
-    setValue('bidderPhone1', [biddingForm.bidPhone1[stepNum - 1] || ''])
-    setValue('bidderPhone2', [biddingForm.bidPhone2[stepNum - 1] || ''])
-    setValue('bidderPhone3', [biddingForm.bidPhone3[stepNum - 1] || ''])
-    setValue('bidderIdNum1', [biddingForm.bidIdNum1[stepNum - 1] || ''])
-    setValue('bidderIdNum2', [biddingForm.bidIdNum2[stepNum - 1] || ''])
-    setValue('bidderAddr', [biddingForm.bidAddr[stepNum - 1] || ''])
-    setValue('bidderAddrDetail', [biddingForm.bidAddrDetail[stepNum - 1] || ''])
-    setValue('bidderCorpNum1', [biddingForm.bidCorpNum1[stepNum - 1] || ''])
-    setValue('bidderCorpNum2', [biddingForm.bidCorpNum2[stepNum - 1] || ''])
-    setValue('bidderCorpNum3', [biddingForm.bidCorpNum3[stepNum - 1] || ''])
-    setValue('bidderCorpRegiNum1', [biddingForm.bidCorpRegiNum1[stepNum - 1] || ''])
-    setValue('bidderCorpRegiNum2', [biddingForm.bidCorpRegiNum2[stepNum - 1] || ''])
-    setValue('bidderJob', [biddingForm.bidJob[stepNum - 1] || ''])
-  }, [stepNum, biddingForm])
 
+  console.log(errors.bidderName?.type)
+  
   return (
     <div className={`flex w-[100%] h-[100vh] bg-mybg justify-center relative overflow-y-auto`}>
       {loading && (
@@ -472,8 +457,8 @@ export default function BidderForm() {
           <div className="flex flex-col w-[100%] gap-2 absolute top-0">
             <div className="flex flex-col w-[100%] gap-1">
               <div className='flex justify-between w-[100%]'>
-                {(errors.bidderName?.type === 'required') && 
-                  (biddingForm.bidName[stepNum - 1] === '' || biddingForm.bidName[stepNum - 1] === undefined) ?
+                {
+                  (errors.bidderName?.type == "required")  ?
                   (<div className="flex w-[100%] justify-start">
                     <label
                       htmlFor="bidderName"
@@ -482,7 +467,18 @@ export default function BidderForm() {
                       {errors.bidderName?.message}
                     </label>
                   </div>
-                ) : (
+                ) : 
+                (errors.bidderName?.type == "minLength") && (biddingForm.bidName[stepNum - 1].length < 2) ? (
+                    <div className="flex w-[100%] justify-start">
+                      <label
+                        htmlFor="bidderName"
+                        className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                      >
+                        {errors.bidderName?.message}
+                      </label>
+                    </div>
+                  ) : 
+                (
                   <div className='flex flex-row'>
                     <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
                       성명
@@ -494,8 +490,8 @@ export default function BidderForm() {
                 )}
               </div>
               <input
-                {...register('bidderName', {
-                  required: '이름을 입력해주세요',
+                {...register("bidderName", {
+                  required: "이름을 입력해주세요",
                   minLength: {
                     value: 2,
                     message: '이름은 2자 이상 입력해주세요',
@@ -503,7 +499,6 @@ export default function BidderForm() {
                 })}
                 value={biddingForm.bidName[stepNum - 1] || ''}
                 id="bidderName"
-                name="bidName"
                 type="text"
                 className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] not-italic text-left h-[40px] px-2 leading-[135%] tracking-[-2%]"
                 placeholder="입찰자 성명을 입력해주세요"
@@ -544,13 +539,13 @@ export default function BidderForm() {
               <div className="flex flex-row gap-[0.5%]">
                 <input
                   {...register('bidderPhone1', { required: true })}
-                  id="bidderPhone1"
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
                       .replace(/[^0-9.]/g, '')
                       .replace(/(\..*)\./g, '$1')
                   }}
                   type="text"
+                  id='bidderPhone1'
                   maxLength={3}
                   placeholder="010"
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] leading-[135%] tracking-[-2%] not-italic h-[40px] px-2 w-[33%] text-center"
@@ -579,7 +574,7 @@ export default function BidderForm() {
                     maxLength: 4,
                   })}
                   type="text"
-                  id="bidderPhone2"
+                  id='bidderPhone2'
                   maxLength={4}
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
@@ -613,7 +608,7 @@ export default function BidderForm() {
                     maxLength: 4,
                   })}
                   type="text"
-                  id="bidderPhone3"
+                  id='bidderPhone3'
                   maxLength={4}
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
@@ -681,13 +676,13 @@ export default function BidderForm() {
                         required: true,
                         maxLength: 6,
                       })}
-                      id="bidderIdNum1"
                       onInput={(e) => {
                         e.currentTarget.value = e.currentTarget.value
                           .replace(/[^0-9.]/g, '')
                           .replace(/(\..*)\./g, '$1')
                       }}
                       type="text"
+                      id='bidderIdNum1'
                       maxLength={6}
                       className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
                       value={biddingForm.bidIdNum1[stepNum - 1] || ''}
@@ -713,14 +708,13 @@ export default function BidderForm() {
                     </span>
                     <div className='relative w-[45%] h-[40px]'>
                       <input
-                        {...register('bidderIdNum2', { required: true })}
-                        id="bidderIdNum2"
-                        name="bidderIdNum2"
+                        {...register('bidderIdNum2', { required: true, maxLength: 7})}
                         onInput={(e) => {
                           e.currentTarget.value = e.currentTarget.value
                             .replace(/[^0-9.]/g, '')
                             .replace(/(\..*)\./g, '$1')
                         }}
+                        id='bidderIdNum2'
                         type={`${!passwordActive ? 'password' : 'text'}`}
                         maxLength={7}
                         className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[100%] text-center"
@@ -738,6 +732,7 @@ export default function BidderForm() {
                               e.target.value
                             return { ...prev, bidIdNum: temp }
                           })
+                          handleInputChange(e)
                         }}
                       />
                       <div className="flex justify-center items-center w-[10%] h-[40px] cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2"
@@ -784,8 +779,8 @@ export default function BidderForm() {
                         maxLength: 3,
                       })}
                       type="text"
+                      id='bidderCorpNum1'
                       placeholder="123"
-                      id="bidderCorpNum1"
                       onInput={(e) => {
                         e.currentTarget.value = e.currentTarget.value
                           .replace(/[^0-9.]/g, '')
@@ -821,8 +816,8 @@ export default function BidderForm() {
                         maxLength: 2,
                       })}
                       type="text"
+                      id='bidderCorpNum2'
                       placeholder="45"
-                      id="bidderCorpNum2"
                       onInput={(e) => {
                         e.currentTarget.value = e.currentTarget.value
                           .replace(/[^0-9.]/g, '')
@@ -858,8 +853,8 @@ export default function BidderForm() {
                         maxLength: 5,
                       })}
                       type="text"
+                      id='bidderCorpNum3'
                       placeholder="67890"
-                      id="bidderCorpNum3"
                       onInput={(e) => {
                         e.currentTarget.value = e.currentTarget.value
                           .replace(/[^0-9.]/g, '')
@@ -919,13 +914,13 @@ export default function BidderForm() {
                           maxLength: 6,
                         })}
                         type="text"
+                        id='bidderCorpRegiNum1'
                         onInput={(e) => {
                           e.currentTarget.value = e.currentTarget.value
                             .replace(/[^0-9.]/g, '')
                             .replace(/(\..*)\./g, '$1')
                         }}
                         maxLength={6}
-                        id="bidderCorpRegiNum1"
                         placeholder="123456"
                         className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[50%] text-center"
                         value={biddingForm.bidCorpRegiNum1[stepNum - 1] || ''}
@@ -955,14 +950,13 @@ export default function BidderForm() {
                           maxLength: 7,
                         })}
                         type="text"
+                        id='bidderCorpRegiNum2'
                         onInput={(e) => {
                           e.currentTarget.value = e.currentTarget.value
                             .replace(/[^0-9.]/g, '')
                             .replace(/(\..*)\./g, '$1')
                         }}
                         maxLength={7}
-                        id="bidderCorpRegiNum2"
-                        name="bidderCorpRegiNum2"
                         placeholder="1234567"
                         className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[50%] text-center"
                         value={biddingForm.bidCorpRegiNum2[stepNum - 1] || ''}
@@ -1018,10 +1012,9 @@ export default function BidderForm() {
                       required: '직업을 입력해주세요',
                     })}
                     value={biddingForm.bidJob[stepNum - 1] || ''}
-                    id="bidderJob"
                     type="text"
                     className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md text-[20px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left h-[40px] px-2"
-                    placeholder="직업을 입력해주세요 예) 회사원"
+                    placeholder="직업을 입력해주세요(예: 회사원, 농부)"
                     onChange={(e) => {
                       setBiddingForm((prev: any) => {
                         const temp = prev.bidJob

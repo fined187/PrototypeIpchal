@@ -284,69 +284,6 @@ export default function SearchIpchal() {
                       </div>
                   </div>
                   {/* 모바일 */}
-                  <div className="flex md:hidden flex-col md:w-[498px] w-[100%] h-[150px] bg-white items-center rounded-lg p-[10px] cursor-pointer relative" key={index}>
-                    <div className={`w-[95%] flex flex-col h-[100%]`} onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}>
-                      <div className="flex flex-row w-[100%] mt-[10px]">
-                        <span className="text-[15px] font-['suit'] font-bold text-myOrange text-left leading-[135%] tracking-[-1%]">
-                          {data.reqCourtName + "계"}
-                        </span>
-                        <span className="text-[15px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
-                          color: '#181826'
-                        }}>
-                          &nbsp;{data.caseNoString + "[" + (data.mulNo ? data.mulNo : "1") + "]" + (data.subCaseNoString ? "[" + data.subCaseNoString + "]" : '')}
-                        </span>
-                        <span className="text-[15px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
-                          color: '#181826'
-                        }}>
-                          {data.usage}
-                        </span>
-                      </div>
-                      <div className="flex justify-start items-start mt-[10px] mb-[10px] ">
-                        <div className="flex flex-col w-[100%] h-[60px] ">
-                          <div className="flex flex-row">
-                            <div className="flex justify-start items-start">
-                              <span className="md:text-[15px] text-[15px] leading-[140%] tracking-[-1%] font-['suit'] font-normal text-black text-center" style={{
-                                color: '#181826'
-                              }}>
-                                감정가
-                              </span>
-                            </div>
-                            <div className="flex justify-start items-start">
-                              <span className="md:text-[15px] text-[15px] font-['suit'] text-black ml-[10px] leading-[140%] tracking-[-1%] font-normal" style={{
-                                color: '#181826'
-                              }}>
-                                {data.appraisalAmount.toLocaleString('ko-KR')}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex flex-row">
-                            <div className="flex justify-start items-start">
-                              <span className="md:text-[15px] text-[15px] leading-[140%] tracking-[-1%] font-['suit'] font-normal text-black text-center" style={{
-                                color: '#181826'
-                              }}>
-                                최저가
-                              </span>
-                            </div>
-                            <div className="flex flex-row justify-start items-start">
-                              <span className="md:text-[15px] text-[15px] font-['suit'] leading-[140%] tracking-[-1%] font-normal text-myBlue ml-[10px]">
-                                {"(" + data.rate + ")"}
-                              </span>
-                              <span className="md:text-[15px] text-[15px] font-['suit'] text-black ml-[10px] leading-[140%] tracking-[-1%] font-normal" style={{
-                                color: '#181826'
-                              }}>
-                                {data.minimumAmount.toLocaleString('ko-KR')}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex md:w-[106.5px] w-[100px] h-[36px] rounded-md justify-center items-center bg-searchBg absolute md:bottom-[15px] md:right-[10px] left-[15px] bottom-[5px] mb-[10px]">
-                        <span className="text-center font-['suit'] text-[13px] font-semibold leading-[135%]">
-                          {data.biddingDateString + " " + "입찰"}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
                 </>
               ))}
             </div>

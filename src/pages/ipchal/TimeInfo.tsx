@@ -84,7 +84,9 @@ export default function TimeInfo() {
             handleConfirm('1000')
           }}>
             <div className="flex flex-col justify-center items-start w-[40%] ml-[25px]">
-              <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium text-sutTitle">
+              <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium" style={{
+                color: "#545492"
+              }}>
                 입찰시간
               </span>
               <span className={`font-['suit'] md:text-[20px] text-[1rem] font-normal leading-[135%] tracking-[-1%]`} style={{
@@ -94,7 +96,9 @@ export default function TimeInfo() {
               </span>
             </div>
             <div className={`flex flex-col justify-center items-start w-[60%]`}>
-              <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium text-sutTitle">
+              <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium" style={{
+                color: "#545492"
+              }}>
                 최저가
               </span>
               <div className="flex flex-row justify-start items-start w-[100%]">
@@ -114,7 +118,9 @@ export default function TimeInfo() {
             handleConfirm('1400')
           }}>
             <div className="flex flex-col justify-center items-start w-[40%] ml-[25px]">
-              <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium text-sutTitle">
+              <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium" style={{
+                color: "#545492"
+              }}>
                 입찰시간
               </span>
               <span className={`font-['suit'] md:text-[20px] text-[1rem] font-normal leading-[135%] tracking-[-1%]`} style={{
@@ -124,7 +130,9 @@ export default function TimeInfo() {
               </span>
             </div>
             <div className={`flex flex-col justify-center items-start w-[60%] `}>
-              <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium text-sutTitle">
+              <span className="font-['suit'] md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%] font-medium" style={{
+                color: "#545492"
+              }}>
                 최저가
               </span>
               <div className="flex flex-row justify-start items-start w-[100%]">

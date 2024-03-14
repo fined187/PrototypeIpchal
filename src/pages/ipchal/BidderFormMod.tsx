@@ -528,6 +528,10 @@ export default function BidderFormMod2() {
       return { ...prev, bidIdNum: newBidIdNum }
     })
   }
+  const handleInputChange = (e: any) => {
+    const { name, value } = e.target
+    setValue(name, value, { shouldValidate: true })
+  }
 
   return (
     <div className={`flex w-[100%] h-[100vh] bg-mybg justify-center relative overflow-y-auto`} style={{
@@ -597,41 +601,58 @@ export default function BidderFormMod2() {
             <div className="flex flex-col w-[100%] h-[100%] gap-2">
               <div className="flex flex-col w-[100%] gap-1">
                 <div className='flex justify-between w-[100%]'>
-                  {(errors.bidderName?.type === 'required') && 
-                    (biddingForm.bidName[stepNum - 1]) ?
-                    (<div className="flex w-[100%] justify-start">
+                {
+                  (errors.bidderName?.type == "required")  ?
+                  (<div className="flex w-[100%] justify-start">
+                    <label
+                      htmlFor="bidderName"
+                      className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                    >
+                      {errors.bidderName?.message}
+                    </label>
+                  </div>
+                ) : 
+                (errors.bidderName?.type == "minLength") && (biddingForm.bidName[stepNum - 1].length < 2) ? (
+                    <div className="flex w-[100%] justify-start">
                       <label
                         htmlFor="bidderName"
                         className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                       >
-                        {"입찰자 성명을 입력해주세요"}
+                        {errors.bidderName?.message}
                       </label>
-                    </div>) : 
-                    (
-                    <div className='flex flex-row'>
-                      <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
-                        성명
-                      </span>
-                      <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
-                        *
-                      </span>
                     </div>
-                    )
-                  }
+                  ) : 
+                (
+                  <div className='flex flex-row'>
+                    <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
+                      성명
+                    </span>
+                    <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
+                      *
+                    </span>
+                  </div>
+                )}
                 </div>
                 <input
+                  {...register("bidderName", {
+                    required: "이름을 입력해주세요",
+                    minLength: {
+                      value: 2,
+                      message: '이름은 2자 이상 입력해주세요',
+                    },
+                  })}
                   value={biddingForm.bidName[stepNum - 1] || ''}
                   id="bidderName"
                   type="text"
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] not-italic text-left h-[40px] px-2 leading-[135%] tracking-[-2%]"
                   placeholder="입찰자 성명을 입력해주세요"
-                  {...register('bidderName', { required: true })}
                   onChange={(e) => {
                     setBiddingForm((prev: any) => {
                       const temp = prev.bidName
                       temp[stepNum - 1] = e.target.value
                       return { ...prev, bidName: temp }
                     })
+                    handleInputChange(e)
                   }}
                 />
               </div>
@@ -686,10 +707,14 @@ export default function BidderFormMod2() {
                         return { ...prev, bidPhone: temp }
                       })
                       handlePhoneFocusMove(e.target)
+                      handleInputChange(e)
                     }}
                   />
                   <input
-                    {...register('bidderPhone2', { required: true })}
+                    {...register('bidderPhone2', {
+                      required: true,
+                      maxLength: 4,
+                    })}
                     type="text"
                     id="bidderPhone2"
                     name="bidderPhone2"
@@ -714,10 +739,14 @@ export default function BidderFormMod2() {
                         return { ...prev, bidPhone: temp }
                       })
                       handlePhoneFocusMove(e.target)
+                      handleInputChange(e)
                     }}
                   />
                   <input
-                    {...register('bidderPhone3', { required: true })}
+                    {...register('bidderPhone3', {
+                      required: true,
+                      maxLength: 4,
+                    })}
                     type="text"
                     id="bidderPhone3"
                     name="bidderPhone3"
@@ -742,6 +771,7 @@ export default function BidderFormMod2() {
                         return { ...prev, bidPhone: temp }
                       })
                       handlePhoneFocusMove(e.target)
+                      handleInputChange(e)
                     }}
                   />
                 </div>
@@ -771,7 +801,7 @@ export default function BidderFormMod2() {
                             </div>
                             <div>
                               <span className="md:text-[15px] text-[0.8rem] font-light leading-[135%] tracking-[-3%] font-['suit'] not-italic text-left text-red-500">
-                                주민등록번호는 저장되지 않습니다
+                                주민등록번호는 별도로 저장되지 않습니다
                               </span>
                             </div>
                           </div>
@@ -780,7 +810,10 @@ export default function BidderFormMod2() {
                     </div>
                     <div className="flex flex-row gap-[5%] relative">
                       <input
-                        {...register('bidderIdNum1', { required: true })}
+                        {...register('bidderIdNum1', {
+                          required: true,
+                          maxLength: 6,
+                        })}
                         id="bidderIdNum1"
                         name="bidderIdNum1"
                         onInput={(e) => {
@@ -804,6 +837,7 @@ export default function BidderFormMod2() {
                             return { ...prev, bidIdNum: temp }
                           })
                           handleIdNumFocusMove(e.target)
+                          handleInputChange(e)
                         }}
                       />
                       <span className="flex text-mygray font-['suit'] font-bold mt-1">
@@ -811,7 +845,7 @@ export default function BidderFormMod2() {
                       </span>
                       <div className='relative w-[45%] h-[40px]'>
                         <input
-                          {...register('bidderIdNum2', { required: true })}
+                          {...register('bidderIdNum2', { required: true, maxLength: 7})}
                           id="bidderIdNum2"
                           name="bidderIdNum2"
                           onInput={(e) => {
@@ -836,6 +870,7 @@ export default function BidderFormMod2() {
                                 e.target.value
                               return { ...prev, bidIdNum: temp }
                             })
+                            handleInputChange(e)
                           }}
                         />
                         <div className="flex justify-center items-center w-[10%] h-[40px] cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2"
@@ -877,7 +912,10 @@ export default function BidderFormMod2() {
                       </div>
                       <div className="flex flex-row gap-[5%]">
                         <input
-                          {...register('bidderCorpNum1', { required: true })}
+                          {...register('bidderCorpNum1', {
+                            required: true,
+                            maxLength: 3,
+                          })}
                           type="text"
                           placeholder="123"
                           id="bidderCorpNum1"
@@ -908,7 +946,10 @@ export default function BidderFormMod2() {
                           -
                         </span>
                         <input
-                          {...register('bidderCorpNum2', { required: true })}
+                          {...register('bidderCorpNum2', {
+                            required: true,
+                            maxLength: 2,
+                          })}
                           type="text"
                           placeholder="45"
                           id="bidderCorpNum2"
@@ -933,13 +974,17 @@ export default function BidderFormMod2() {
                               return { ...prev, bidCorpNum: temp }
                             })
                             handleCorpNumFocusMove(e.target)
+                            handleInputChange(e)
                           }}
                         />
                         <span className="flex text-mygray font-['suit'] font-bold mt-1">
                           -
                         </span>
                         <input
-                          {...register('bidderCorpNum3', { required: true })}
+                          {...register('bidderCorpNum3', {
+                            required: true,
+                            maxLength: 5,
+                          })}
                           type="text"
                           placeholder="67890"
                           id="bidderCorpNum3"
@@ -964,6 +1009,7 @@ export default function BidderFormMod2() {
                               return { ...prev, bidCorpNum: temp }
                             })
                             handleCorpNumFocusMove(e.target)
+                            handleInputChange(e)
                           }}
                         />
                       </div>
@@ -994,7 +1040,10 @@ export default function BidderFormMod2() {
                         </div>
                         <div className="flex flex-row gap-[5%]">
                           <input
-                            {...register('bidderCorpRegiNum1', { required: true })}
+                            {...register('bidderCorpRegiNum1', {
+                              required: true,
+                              maxLength: 6,
+                            })}
                             type="text"
                             name="bidderCorpRegiNum1"
                             onInput={(e) => {
@@ -1019,13 +1068,17 @@ export default function BidderFormMod2() {
                                 return { ...prev, bidCorpRegiNum: temp }
                               })
                               handleCorpRegiNumFocusMove(e.target)
+                              handleInputChange(e)
                             }}
                           />
                           <span className="flex text-mygray font-['suit'] font-bold mt-1">
                             -
                           </span>
                           <input
-                            {...register('bidderCorpRegiNum2', { required: true })}
+                            {...register('bidderCorpRegiNum2', {
+                              required: true,
+                              maxLength: 7,
+                            })}
                             type="text"
                             onInput={(e) => {
                               e.currentTarget.value = e.currentTarget.value
@@ -1049,6 +1102,7 @@ export default function BidderFormMod2() {
                                 temp[stepNum - 1] = biddingForm.bidCorpRegiNum1[stepNum - 1] + e.target.value
                                 return { ...prev, bidCorpRegiNum: temp }
                               })
+                              handleInputChange(e)
                             }}
                           />
                         </div>
@@ -1084,19 +1138,22 @@ export default function BidderFormMod2() {
                         )}
                     </div>
                     <input
-                      {...register('bidderJob', { required: true })}
+                      {...register('bidderJob', {
+                        required: '직업을 입력해주세요',
+                      })}
                       value={biddingForm.bidJob[stepNum - 1] || ''}
                       id="bidderJob"
                       name="bidderJob"
                       type="text"
                       className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md text-[20px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left h-[40px] px-2"
-                      placeholder="직업을 입력해주세요"
+                      placeholder="직업을 입력해주세요(예: 회사원, 농부)"
                       onChange={(e) => {
                         setBiddingForm((prev: any) => {
                           const temp = prev.bidJob
                           temp[stepNum - 1] = e.target.value
                           return { ...prev, bidJob: temp }
                         })
+                        handleInputChange(e)
                       }}
                     />
                   </div>

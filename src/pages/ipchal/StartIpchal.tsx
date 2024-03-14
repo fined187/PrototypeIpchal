@@ -149,6 +149,11 @@ export default function StartIpchal() {
               새로운 입찰표 작성 시 재입력하셔야 합니다.
             </span>
           </div>
+          <div className='flex justify-center items-center mt-[20px]'>
+            <span className="font-['suit'] text-[15px] font-normal leading-[135%] tracking-[-1%] text-sutTitle">
+              (주)지지옥션
+            </span>
+          </div>
         </div>
       </div>
     </>

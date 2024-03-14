@@ -158,7 +158,9 @@ export default function GetIpchalInfo() {
           </div>
           <div className={`flex flex-col md:w-[500px] h-[500px] w-[90%] overflow-y-auto gap-[7.5px] bg-mybg `}>
             <div className="flex flex-col relative h-[80px] items-start justify-start bg-white mt-[30px] pt-[16px] pb-[16px] pl-[35px] pr-[35px] gap-[2.5px]">
-              <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
+              <span className="font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]" style={{
+                color: "#545492"
+              }}>
                 법원
               </span>
               <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
@@ -169,7 +171,9 @@ export default function GetIpchalInfo() {
             </div>
             <div className='flex justify-between bg-white pt-[16px] pb-[16px] pl-[35px] pr-[35px] h-[80px]'>
               <div className="flex flex-col relative justify-start items-start w-[80%] gap-[2.5px]">
-                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
+                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]" style={{
+                color: "#545492"
+              }}>
                   사건번호
                 </span>
                 <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
@@ -179,7 +183,9 @@ export default function GetIpchalInfo() {
                 </span>
               </div>
               <div className="flex flex-col relative justify-start items-start w-[20%] gap-[2.5px]">
-                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
+                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]" style={{
+                color: "#545492"
+              }}>
                   물건번호
                 </span>
                 <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
@@ -191,7 +197,9 @@ export default function GetIpchalInfo() {
             </div>
             <div className='flex justify-between bg-white h-[80px] p-[20px] pt-[16px] pb-[16px] pl-[35px] pr-[35px]'>
               <div className="flex flex-col relative justify-start items-start w-[80%] gap-[2.5px]">
-                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
+                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]" style={{
+                color: "#545492"
+              }}>
                   입찰기일
                 </span>
                 <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
@@ -213,7 +221,9 @@ export default function GetIpchalInfo() {
             </div>
             {biddingInfo.usage === ('차량' || '중기') ? (
               <div className="flex flex-col relative h-[80px] items-start justify-start bg-white p-[20px] pt-[16px] pb-[16px] pl-[35px] pr-[35px] gap-[2.5px]">
-                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
+                <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]" style={{
+                color: "#545492"
+              }}>
                   차량정보
                 </span>
                 <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%] text-left" style={{
@@ -226,7 +236,9 @@ export default function GetIpchalInfo() {
               null
             )}
             <div className="flex flex-col relative items-start justify-center bg-white pt-[16px] pb-[16px] pl-[35px] pr-[35px] gap-[2.5px]">
-              <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]">
+              <span className="text-sutTitle font-['suit'] font-medium md:text-[17px] text-[0.8rem] leading-[130%] tracking-[0%]" style={{
+                color: "#545492"
+              }}>
                 물건지 주소
               </span>
               <span className="text-black md:text-[20px] text-[0.8rem] font-normal font-['suit'] leading-[135%] tracking-[-1%] text-left" style={{

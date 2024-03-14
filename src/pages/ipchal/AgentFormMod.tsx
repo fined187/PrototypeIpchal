@@ -185,7 +185,12 @@ export default function AgentForm() {
     }
     handleGetAgentForm()
   }, [])
-  console.log("agentFOrm mod")
+
+  const handleInputChange = (e: any) => {
+    const { name, value } = e.target
+    setValue(name, value, { shouldValidate: true })
+  }
+
   return (
     <div className="flex w-screen h-screen bg-mybg justify-center relative">
       {loading && (
@@ -208,35 +213,44 @@ export default function AgentForm() {
               <div className="flex flex-row w-[100%] gap-[0.5%]">
                 <div className="flex flex-col w-[49.5%] gap-1">
                   <div className='flex justify-between w-[100%]'>
-                    {(errors.agentName?.type === 'required' ||
-                      errors.agentName?.type === 'minLength') && 
-                      (biddingForm.agentName === '') ?
-                      (
-                        <div className="flex w-[100%] justify-start">
-                          <label
-                            htmlFor="agentName"
-                            className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                          >
-                            {errors.agentName?.message}
-                          </label>
-                        </div>
-                      ) : (
-                        <div className='flex flex-row'>
-                          <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
-                            성명
-                          </span>
-                          <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
-                            *
-                          </span>
-                        </div>
-                      )}
+                  {
+                  (errors.agentName?.type == "required")  ?
+                  (<div className="flex w-[100%] justify-start">
+                    <label
+                      htmlFor="bidderName"
+                      className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                    >
+                      {errors.agentName?.message}
+                    </label>
+                  </div>
+                ) : 
+                (errors.agentName?.type == "minLength") && (biddingForm.agentName.length < 2) ? (
+                    <div className="flex w-[100%] justify-start">
+                      <label
+                        htmlFor="bidderName"
+                        className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                      >
+                        {errors.agentName?.message}
+                      </label>
+                    </div>
+                  ) : 
+                (
+                  <div className='flex flex-row'>
+                    <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
+                      성명
+                    </span>
+                    <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
+                      *
+                    </span>
+                  </div>
+                )}
                   </div>
                   <input
                     {...register('agentName', {
-                      required: '대리인 이름을 입력해주세요',
+                      required: "이름을 입력해주세요",
                       minLength: {
                         value: 2,
-                        message: '이름은 2자 이상 입력해주세요',
+                        message: '이름은 2글자 이상 입력해주세요',
                       },
                     })}
                     value={biddingForm.agentName || ''}
@@ -251,6 +265,7 @@ export default function AgentForm() {
                       setBiddingForm((prev: any) => {
                         return { ...prev, agentName: e.target.value }
                       })
+                      handleInputChange(e)
                     }}
                   />
                 </div>
@@ -297,6 +312,7 @@ export default function AgentForm() {
                       setBiddingForm((prev: any) => {
                         return { ...prev, agentRel: e.target.value }
                       })
+                      handleInputChange(e)
                     }}
                   />
                 </div>
@@ -361,6 +377,7 @@ export default function AgentForm() {
                         }
                       })
                       handlePhoneFocusMove(e.target)
+                      handleInputChange(e)
                     }}
                   />
                   <input
@@ -393,6 +410,7 @@ export default function AgentForm() {
                         }
                       })
                       handlePhoneFocusMove(e.target)
+                      handleInputChange(e)
                     }}
                   />
                   <input
@@ -425,6 +443,7 @@ export default function AgentForm() {
                         }
                       })
                       handlePhoneFocusMove(e.target)
+                      handleInputChange(e)
                     }}
                   />
                 </div>
@@ -522,6 +541,7 @@ export default function AgentForm() {
                             agentIdNum: prev.agentIdNum1 + e.target.value,
                           }
                         })
+                        handleInputChange(e)
                       }}
                     />
                     <div className="flex justify-center items-center w-[10%] h-[40px] cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2"
@@ -572,7 +592,7 @@ export default function AgentForm() {
                     id="agentJob"
                     type="text"
                     className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] leading-[150%] tracking-[-1%] not-italic text-left h-[40px] px-2"
-                    placeholder="직업을 입력해주세요 예) 회사원"
+                    placeholder="직업을 입력해주세요(예: 회사원, 농부)"
                     onChange={(e) => {
                       setAgentInfo((prev: any) => {
                         return { ...prev, agentJob: e.target.value }
@@ -580,6 +600,7 @@ export default function AgentForm() {
                       setBiddingForm((prev: any) => {
                         return { ...prev, agentJob: e.target.value }
                       })
+                      handleInputChange(e)
                     }}
                   />
                 </div>

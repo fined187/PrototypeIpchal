@@ -6,13 +6,11 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { LiaEyeSlashSolid, LiaEyeSolid } from 'react-icons/lia'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 
 export default function AgentForm() {
-  const biddingForm = useRecoilValue(biddingInfoState)
-  const setBiddingForm = useSetRecoilState(biddingInfoState)
-  const setStateNum = useSetRecoilState(stepState)
-  const stateNum = useRecoilValue(stepState)
+  const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
+  const [stateNum, setStateNum] = useRecoilState(stepState)
   const { isOpen, onClose, onOpen } = useDisclosure()
   const [passwordActive, setPasswordActive] = useState(false)
 
@@ -42,7 +40,17 @@ export default function AgentForm() {
     setValue,
     setError,
     formState: { errors },
-  } = useForm<AgentInfoType>({ mode: 'onChange' })
+  } = useForm<AgentInfoType>({ defaultValues: {
+    agentName: '',
+    agentRel: '',
+    agentPhone1: '',
+    agentPhone2: '',
+    agentPhone3: '',
+    agentIdNum1: '',
+    agentIdNum2: '',
+    agentAddr: '',
+    agentJob: '',
+  }, mode: "onChange" })
 
   const handlePhoneFocusMove = (target: HTMLInputElement) => {
     if (target.value.length === 3 && target.id === 'agentPhone1') {
@@ -185,7 +193,13 @@ export default function AgentForm() {
       window.removeEventListener('resize', handleHeight)
     }
   }, [])
-  
+
+  const handleInputChange = (e: any) => {
+    const { name, value } = e.target
+    setValue(name, value, { shouldValidate: true })
+  }
+
+  console.log(errors.agentName?.type)
   return (
     <div id='box' className="flex w-screen bg-mybg justify-center relative">
       <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative">
@@ -203,40 +217,49 @@ export default function AgentForm() {
           <div className="flex flex-col w-[100%] h-[100%] gap-2">
             <div className="flex flex-row w-[100%] gap-[0.5%]">
               <div className="flex flex-col w-[49.5%] gap-1">
-                <div className='flex justify-between w-[100%]'>
-                  {(errors.agentName?.type === 'required' ||
-                    errors.agentName?.type === 'minLength') && 
-                    (biddingForm.agentName === '') ?
-                    (
-                      <div className="flex w-[100%] justify-start">
-                        <label
-                          htmlFor="agentName"
-                          className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                        >
-                          {errors.agentName?.message}
-                        </label>
-                      </div>
-                    ) : (
-                        <div className='flex flex-row'>
-                          <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
-                            성명
-                          </span>
-                          <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
-                            *
-                          </span>
-                        </div>
-                    )}
+              <div className='flex justify-between w-[100%]'>
+              {
+                  (errors.agentName?.type == "required")  ?
+                  (<div className="flex w-[100%] justify-start">
+                    <label
+                      htmlFor="bidderName"
+                      className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                    >
+                      {errors.agentName?.message}
+                    </label>
+                  </div>
+                ) : 
+                (errors.agentName?.type == "minLength") && (biddingForm.agentName.length < 2) ? (
+                    <div className="flex w-[100%] justify-start">
+                      <label
+                        htmlFor="bidderName"
+                        className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                      >
+                        {errors.agentName?.message}
+                      </label>
+                    </div>
+                  ) : 
+                (
+                  <div className='flex flex-row'>
+                    <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
+                      성명
+                    </span>
+                    <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
+                      *
+                    </span>
+                  </div>
+                )}
                 </div>
                 <input
                   {...register('agentName', {
-                    required: '이름을 입력해주세요',
+                    required: "이름을 입력해주세요",
                     minLength: {
                       value: 2,
-                      message: '이름은 2자 이상 입력해주세요',
+                      message: '이름은 2글자 이상 입력해주세요',
                     },
                   })}
+                  id='agentName'
                   value={biddingForm.agentName || ''}
-                  id="agentName"
                   type="text"
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] not-italic leading-[150%] tracking-[-1%] text-left h-[40px] px-2"
                   placeholder="성명을 입력해주세요"
@@ -247,6 +270,7 @@ export default function AgentForm() {
                     setBiddingForm((prev: any) => {
                       return { ...prev, agentName: e.target.value }
                     })
+                    handleInputChange(e)
                   }}
                 />
               </div>
@@ -258,7 +282,7 @@ export default function AgentForm() {
                     <div className="flex w-[100%] justify-start">
                       <label
                         htmlFor="agentRel"
-                        className="text-[1rem] font-bold font-['suit'] not-italic text-left text-red-500"
+                        className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                       >
                         {errors.agentRel?.message}
                       </label>
@@ -282,7 +306,7 @@ export default function AgentForm() {
                     required: '관계를 입력해주세요',
                   })}
                   value={biddingForm.agentRel || ''}
-                  id="agentRel"
+                  id='agentRel'
                   type="text"
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] not-italic leading-[150%] tracking-[-1%] text-left h-[40px] px-2"
                   placeholder="관계를 입력해주세요"
@@ -293,6 +317,7 @@ export default function AgentForm() {
                     setBiddingForm((prev: any) => {
                       return { ...prev, agentRel: e.target.value }
                     })
+                    handleInputChange(e)
                   }}
                 />
                 
@@ -358,12 +383,13 @@ export default function AgentForm() {
                       }
                     })
                     handlePhoneFocusMove(e.target)
+                    handleInputChange(e)
                   }}
                 />
                 <input
                   {...register('agentPhone2', { required: true, maxLength: 4 })}
                   type="text"
-                  id="agentPhone2"
+                  id='agentPhone2'
                   maxLength={4}
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
@@ -390,12 +416,13 @@ export default function AgentForm() {
                       }
                     })
                     handlePhoneFocusMove(e.target)
+                    handleInputChange(e)
                   }}
                 />
                 <input
                   {...register('agentPhone3', { required: true, maxLength: 4 })}
                   type="text"
-                  id="agentPhone3"
+                  id='agentPhone3'
                   maxLength={4}
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
@@ -422,6 +449,7 @@ export default function AgentForm() {
                       }
                     })
                     handlePhoneFocusMove(e.target)
+                    handleInputChange(e)
                   }}
                 />
               </div>
@@ -432,7 +460,7 @@ export default function AgentForm() {
                   errors.agentIdNum2?.type === 'required' && 
                   (biddingForm.agentIdNum === '') ?
                   (
-                    <div className="flex w-[100%] justify-start h-[15px] mb-1">
+                    <div className="flex w-[100%] justify-start">
                       <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
                         주민등록번호를 입력해주세요
                       </span>
@@ -461,13 +489,13 @@ export default function AgentForm() {
                     required: true,
                     maxLength: 6,
                   })}
-                  id="agentIdNum1"
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
                       .replace(/[^0-9.]/g, '')
                       .replace(/(\..*)\./g, '$1')
                   }}
                   type="text"
+                  id='agentIdNum1'
                   maxLength={6}
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold leading-[150%] tracking-[-1%] font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
                   value={biddingForm.agentIdNum1 || ''}
@@ -485,6 +513,7 @@ export default function AgentForm() {
                       }
                     })
                     handleIdNumFocusMove(e.target)
+                    handleInputChange(e)
                   }}
                 />
                 <span className="flex text-mygray font-['suit'] font-bold mt-1">
@@ -495,13 +524,13 @@ export default function AgentForm() {
                     required: true,
                     maxLength: 7,
                   })}
-                  id="agentIdNum2"
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
                       .replace(/[^0-9.]/g, '')
                       .replace(/(\..*)\./g, '$1')
                   }}
                   type={`${!passwordActive ? 'password' : 'text'}`}
+                  id='agentIdNum2'
                   maxLength={7}
                   className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold leading-[150%] tracking-[-1%] font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
                   value={biddingForm.agentIdNum2 || ''}
@@ -518,6 +547,7 @@ export default function AgentForm() {
                         agentIdNum: prev.agentIdNum1 + e.target.value,
                       }
                     })
+                    handleInputChange(e)
                   }}
                 />
                 <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] md:w-[10%] w-[15%] cursor-pointer"
@@ -563,11 +593,11 @@ export default function AgentForm() {
                   {...register('agentJob', {
                     required: '직업을 입력해주세요',
                   })}
+                  id='agentJob'
                   value={biddingForm.agentJob || ''}
-                  id="agentJob"
                   type="text"
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] leading-[150%] tracking-[-1%] not-italic text-left h-[40px] px-2"
-                  placeholder="직업을 입력해주세요 예) 회사원"
+                  placeholder="직업을 입력해주세요(예: 회사원, 농부)"
                   onChange={(e) => {
                     setAgentInfo((prev: any) => {
                       return { ...prev, agentJob: e.target.value }
@@ -575,6 +605,7 @@ export default function AgentForm() {
                     setBiddingForm((prev: any) => {
                       return { ...prev, agentJob: e.target.value }
                     })
+                    handleInputChange(e)
                   }}
                 />
               </div>

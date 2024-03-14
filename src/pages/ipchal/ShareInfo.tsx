@@ -273,7 +273,9 @@ console.log(biddingInfo)
             return (
             <div key={index} className="flex flex-row gap-[25%] w-[100%] h-[100px] bg-white border border-black rounded-lg relative">
               <div className="flex flex-col w-[100%] justify-center items-start ml-5">
-              <span className="md:text-[17px] text-[0.8rem] font-['suit'] leading-[135%] tracking-[0px] text-sutTitle font-normal">
+              <span className="md:text-[17px] text-[0.8rem] font-['suit'] leading-[135%] tracking-[0px] font-normal" style={{
+                  color: "#545492"
+                }}>
                 {"#" + (index + 1)}
               </span>
               <span className="md:text-[20px] text-[1rem] font-['suit'] leading-[140%] tracking-[-1%] font-normal">

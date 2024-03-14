@@ -57,7 +57,7 @@ export interface AgentInfoType {
   agentIdNum1: string
   agentIdNum2: string
   agentAddr: string
-  agentAddrDetail: string
+  agentAddrDetail?: string
   agentJob: string
 }
 
