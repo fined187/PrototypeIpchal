@@ -114,14 +114,14 @@ export default function StartIpchal() {
             />
           </div>
           <div className="flex">
-            <span className="md:text-[40px] text-[30px] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic" style={{
+            <span className="md:text-[40px] text-[28px] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic" style={{
               color: '#181826'
             }}>
               입찰표 작성을 시작합니다
             </span>
           </div>
           <div className="flex">
-            <span className="md:text-[18px] text-[14px] leading-[135%] tracking-[-1%] text-sutTitle font-normal font-['suit'] not-italic">
+            <span className="text-[18px] leading-[135%] tracking-[-1%] text-sutTitle font-normal font-['suit'] not-italic">
               누구나 쉽게 써보는 경매 입찰표
             </span>
           </div>
@@ -134,23 +134,23 @@ export default function StartIpchal() {
             />
           </div>
           <div
-            className="flex flex-col bg-myBlue w-[180px] h-[46px] rounded-full items-center justify-center cursor-pointer md:mt-[70px]"
+            className="flex flex-col bg-myBlue w-[180px] h-[46px] rounded-full items-center justify-center cursor-pointer md:mt-[70px] mt-[20px]"
             onClick={handleStart}
           >
-            <span className="text-white md:text-[20px] text-[1rem] font-['suit'] leading-[135%] tracking-[-2%] font-bold not-italic">
+            <span className="text-white md:text-[20px] text-[18px] font-['suit'] leading-[135%] tracking-[-2%] font-bold not-italic">
               입찰표 작성하기
             </span>
           </div>
           <div className="flex flex-col justify-center mt-[20px]">
-            <span className="md:text-[15px] text-[0.8rem] leading-[135%] tracking-[-1%] font-['suit'] text-mygray font-medium text-center">
+            <span className="md:text-[15px] text-[14px] leading-[135%] tracking-[-1%] font-['suit'] text-mygray font-medium text-center">
               입력하신 주민등록번호 등 개인정보는 저장되지 않으며,
             </span>
-            <span className="md:text-[15px] text-[0.8rem] leading-[135%] tracking-[-1%] font-['suit'] text-mygray font-medium text-center">
+            <span className="md:text-[15px] text-[14px] leading-[135%] tracking-[-1%] font-['suit'] text-mygray font-medium text-center">
               새로운 입찰표 작성 시 재입력하셔야 합니다.
             </span>
           </div>
           <div className='flex justify-center items-center mt-[20px]'>
-            <span className="font-['suit'] text-[15px] font-normal leading-[135%] tracking-[-1%] text-sutTitle">
+            <span className="font-['suit'] md:text-[15px] text-[14px] font-normal leading-[135%] tracking-[-1%] text-sutTitle">
               (주)지지옥션
             </span>
           </div>

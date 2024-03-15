@@ -72,14 +72,14 @@ export default function BiddingPayment() {
       {loading && (
         <Spinner />
       )}
-      <div className="flex flex-col w-[100%] h-[100%] bg-mybg items-center text-center pt-[50px] gap-[20px]">
-        <span className="md:text-[32.5px] text-[1.4rem] font-bold font-['suit'] not-italic leading-[135%] tracking-[-1%]">
+      <div className="flex flex-col w-[100%] h-[100%] bg-mybg items-center text-center pt-[50px] md:gap-[14px] gap-[5px]">
+        <span className="md:text-[32.5px] text-[20px] font-bold font-['suit'] not-italic leading-[135%] tracking-[-1%]">
           보증금 제공 방법을 선택해주세요
         </span>
-        <span className="md:text-[18px] text-[0.8rem] font-semibold leading-[135%] tracking-[-1%] font-['suit'] text-center text-sutTitle">
+        <span className="md:text-[18px] text-[16px] font-semibold leading-[135%] tracking-[-1%] font-['suit'] text-center text-sutTitle">
           한 개 방법만 선택할 수 있습니다
         </span>
-        <div className={`flex gap-[10px] md:w-[550px] w-[90%] h-[250px] justify-between items-center rounded-lg border-slate-500 md:mt-[100px] mt-[10px]`}>
+        <div className={`flex gap-[10px] md:w-[550px] w-[90%] h-[250px] justify-between items-center rounded-lg border-slate-500 mt-[100px]`}>
           <div className={`flex flex-col md:w-[270px] w-[50%] h-[100%] border border-gray-300 justify-center gap-[10px] ${biddingForm.bidWay === 'M' ? 'bg-mySelect' : 'bg-white'}`} onClick={async () => {
             setBiddingForm({
               ...biddingForm,
@@ -97,7 +97,7 @@ export default function BiddingPayment() {
               </svg>
             </div>
             <div className='flex justify-center items-center w-[100%] cursor-pointer'>
-              <span className="font-semibold md:text-[22.5px] font-['suit'] text-[1rem] leading-[135%] tracking-[-1%]">
+              <span className="font-semibold md:text-[22.5px] text-[16px] font-['suit'] leading-[135%] tracking-[-1%]">
                 현금 · 자기앞수표
               </span>
             </div>
@@ -117,11 +117,11 @@ export default function BiddingPayment() {
                 <path d="M63 10V40C63 42.7614 65.2386 45 68 45H92" stroke="#8E8EA9" stroke-width="3" stroke-linecap="round"/>
               </svg>
             </div>
-            <div className='flex flex-col justify-center items-center w-[100%] cursor-pointer'>
-              <span className="font-semibold md:text-[22.5px] font-['suit'] text-[1rem] leading-[135%] tracking-[-1%]">
+            <div className='flex flex-col justify-center items-center w-[100%] cursor-pointer gap-[2px]'>
+              <span className="font-semibold md:text-[22.5px] text-[16px] font-['suit'] leading-[135%] tracking-[-1%]">
                 보증서 
               </span>
-              <span className="font-normal md:text-[20px] font-['suit'] text-[1rem] leading-[135%] tracking-[-1%]">
+              <span className="font-normal md:text-[20px] text-[13px] font-['suit'] leading-[135%] tracking-[-1%]">
                 (경매보증보험)
               </span>
             </div>

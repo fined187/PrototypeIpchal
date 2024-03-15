@@ -213,11 +213,11 @@ export default function ShareInfo() {
       }
     }
   }, [biddingInfo.numerator, biddingInfo.denominator])
-console.log(biddingInfo)
+
   return (
     <div className={`flex w-screen bg-mybg justify-center relative`}>
       <div className="flex flex-col w-[100%] h-[100vh] bg-mybg items-center text-center pt-[50px] gap-[25px]">
-        <span className="md:text-[32.5px] text-[1.4rem] font-bold font-['suit'] not-italic leading-[135%] tracking-[-1%]">
+        <span className="md:text-[32.5px] text-[20px] font-bold font-['suit'] not-italic leading-[135%] tracking-[-1%]">
           입찰자의 지분을 입력해주세요
         </span>
         <div className='flex flex-row gap-[20px] md:w-[550px] w-[90%] justify-center items-center'>
@@ -237,7 +237,7 @@ console.log(biddingInfo)
               }}
             />
             <label>
-              <span className="md:text-[20px] text-[1rem] font-normal font-['suit'] leading-[135%] tracking-[-2%] not-italic text-left">
+              <span className="md:text-[20px] text-[16px] font-normal font-['suit'] leading-[135%] tracking-[-2%] not-italic text-left">
                 균등배분
               </span>
             </label>
@@ -258,7 +258,7 @@ console.log(biddingInfo)
               }}
           />
           <label>
-            <span className="md:text-[20px] text-[1rem] font-normal font-['suit'] leading-[135%] tracking-[-2%] not-italic text-left">
+            <span className="md:text-[20px] text-[16px] font-normal font-['suit'] leading-[135%] tracking-[-2%] not-italic text-left">
               직접입력
             </span>
           </label>
@@ -273,16 +273,16 @@ console.log(biddingInfo)
             return (
             <div key={index} className="flex flex-row gap-[25%] w-[100%] h-[100px] bg-white border border-black rounded-lg relative">
               <div className="flex flex-col w-[100%] justify-center items-start ml-5">
-              <span className="md:text-[17px] text-[0.8rem] font-['suit'] leading-[135%] tracking-[0px] font-normal" style={{
-                  color: "#545492"
-                }}>
-                {"#" + (index + 1)}
-              </span>
-              <span className="md:text-[20px] text-[1rem] font-['suit'] leading-[140%] tracking-[-1%] font-normal">
-                {name + (biddingInfo.bidCorpYn[index] === 'I' ? ' (개인)' : ' (법인)')}
-              </span>
+                <span className="md:text-[17px] text-[15px] font-['suit'] leading-[135%] tracking-[0px] font-normal" style={{
+                    color: "#545492"
+                  }}>
+                  {"#" + (index + 1)}
+                </span>
+                <span className="md:text-[20px] text-[16px] font-['suit'] leading-[140%] tracking-[-1%] font-normal flex-wrap text-ellipsis overflow-hidden">
+                  {name + (biddingInfo.bidCorpYn[index] === 'I' ? ' (개인)' : ' (법인)')}
+                </span>
               </div>
-              <div className={`flex flex-row gap-[10px] w-[95px] justify-center absolute top-[50%] ${biddingInfo.shareWay === 'S' ? 'border-b-[0.5px] border-b-sutTitle' : 'md:mr-[50px]'} transform translate-y-[-50%] right-5 mt-[10px]`}>
+              <div className={`flex flex-row gap-[10px] w-[95px] justify-center absolute top-[50%] ${biddingInfo.shareWay === 'S' ? 'border-b-[0.5px] border-b-sutTitle' : 'md:mr-[50px] mr-[25px]'} transform translate-y-[-50%] right-5 mt-[10px]`}>
               {biddingInfo.shareWay === 'S' ? (
                 <>
                 <input
@@ -290,7 +290,7 @@ console.log(biddingInfo)
                   type="text"
                   readOnly
                   value={'1'}
-                  className={`rounded-md md:text-[20px] text-[0.8rem] font-['suit'] leading-[140%] tracking-[0px] not-italic font-normal text-center text-sutTitle w-[20px] bg-white border-none focus:border-transparent focus:outline-none`}
+                  className={`rounded-md md:text-[20px] text-[15px] font-['suit'] leading-[140%] tracking-[0px] not-italic font-normal text-center text-sutTitle w-[20px] bg-white border-none focus:border-transparent focus:outline-none`}
                 />
                 <span className='flex'>/</span>
                 <input
@@ -299,7 +299,7 @@ console.log(biddingInfo)
                   type="text"
                   readOnly
                   value={biddingInfo.bidderNum}
-                  className="rounded-md md:text-[20px] text-[0.8rem] font-['suit'] leading-[140%] tracking-[0px] not-italic font-normal text-center text-sutTitle w-[20px] bg-white border-none focus:border-transparent focus:outline-none"
+                  className="rounded-md md:text-[20px] text-[15px] font-['suit'] leading-[140%] tracking-[0px] not-italic font-normal text-center text-sutTitle w-[20px] bg-white border-none focus:border-transparent focus:outline-none"
                 />
                 </>
               ) : (
@@ -312,7 +312,7 @@ console.log(biddingInfo)
                   (biddingInfo.shareWay === 'N') && goNext
                     ? 'text-red-500'
                     : ''
-                  } rounded-md md:text-[20px] text-[0.8rem] font-['suit'] leading-[150%] tracking-[-1%] p-[10px] not-italic font-semibold text-center h-[40px] w-[80px] border-[1px] border-sutTitle`}
+                  } rounded-md md:text-[20px] text-[16px] font-['suit'] leading-[150%] tracking-[-1%] p-[10px] not-italic font-semibold text-center md:h-[40px] md:w-[80px] w-[60px] h-[30px] border-[1px] border-sutTitle`}
                   onChange={(e) => {
                   let temp = [...shareList.shareList]
                   temp[index] = {
@@ -335,13 +335,13 @@ console.log(biddingInfo)
                   e.target.style.border = '2px solid';
                   }}
                 />
-                <span className='mt-2'>/</span>
+                <span className='md:mt-2 mt-1'>/</span>
                 <input
                   readOnly
                   id='denominator'
                   type="text"
                   value={100}
-                  className={`rounded-md md:text-[20px] text-[0.8rem] font-['suit'] leading-[150%] tracking-[-1%] p-[10px] text-center h-[40px] w-[80px] border-[1px] border-sutTitle`}
+                  className={`rounded-md md:text-[20px] text-[16px] font-['suit'] leading-[150%] tracking-[-1%] p-[10px] text-center md:h-[40px] md:w-[80px] w-[60px] h-[30px] border-[1px] border-sutTitle`}
                   onChange={(e) => {
                   let temp = [...shareList.shareList]
                   temp[index] = {

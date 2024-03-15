@@ -87,15 +87,15 @@ export default function BidderInfo() {
           {loading && (
             <Spinner />
           )}
-          <div className="flex flex-col pt-[50px] gap-[14px]">
-            <span className="md:text-[32.5px] text-[1.4rem] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic">
+          <div className="flex flex-col pt-[50px] md:gap-[14px] gap-[5px]">
+            <span className="md:text-[32.5px] text-[20px] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic">
               입찰하는 본인이 맞으신가요?
             </span>
-            <span className="md:text-[18px] text-[0.8rem] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
+            <span className="md:text-[18px] text-[16px] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
               본인이 아닌 경우 대리인을 선택해주세요
             </span>
           </div>
-          <div className="flex flex-row md:w-[450px] w-[90%] h-[212.5px] mt-[100px] md:gap-[22.5px] gap-[20px]">
+          <div className="flex flex-row md:w-[450px] w-[90%] h-[212.5px] mt-[100px] md:gap-[22.5px] gap-[10px]">
             <div
               className={`flex flex-row md:w-[212.5px] w-[180px] h-[100%] rounded-xl ${
                 isSelected ? '' : 'border-red-600 border-[2px]'
@@ -117,11 +117,11 @@ export default function BidderInfo() {
                 </svg>
                 <div className='flex flex-col gap-[15px] justify-center items-center'>
                   <span
-                    className={`flex text-[22.5px] text-black not-italic font-semibold font-['suit'] leading-[135%] tracking-[-1%]`}
+                    className={`flex md:text-[22.5px] text-[16px] text-black not-italic font-semibold font-['suit'] leading-[135%] tracking-[-1%]`}
                   >
                     본인(입찰자)
                   </span>
-                  <span className={`flex md:text-[17px] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[130%] tracking-[-1%]`}>
+                  <span className={`flex md:text-[17px] text-[13px] text-sutTitle not-italic font-normal font-['suit'] leading-[130%] tracking-[-1%]`}>
                     개인 또는 법인
                   </span>
                 </div>
@@ -146,8 +146,8 @@ export default function BidderInfo() {
                 }, 1000)
               }}
             >
-              <div className={`flex flex-col w-[100%] justify-center items-center border rounded-xl h-[100%]`}>
-                <div className='flex flex-row w-[100%] justify-center items-center'>
+              <div className={`flex flex-col w-[100%] justify-center items-center border rounded-xl h-[100%] relative`}>
+                <div className='flex flex-row w-[100%] justify-center items-center ml-2'>
                   <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50 45.8333C59.2048 45.8333 66.6667 38.3714 66.6667 29.1667C66.6667 19.9619 59.2048 12.5 50 12.5C40.7953 12.5 33.3334 19.9619 33.3334 29.1667C33.3334 38.3714 40.7953 45.8333 50 45.8333Z" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M16.6666 87.5V70.8333C16.6666 66.2308 20.3976 62.5 25 62.5H75C79.6025 62.5 83.3333 66.2308 83.3333 70.8333V87.5" stroke="#8E8EA9" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -159,15 +159,15 @@ export default function BidderInfo() {
                 </div>
                 <div className='flex flex-col justify-center items-center'>
                   <span
-                    className={`flex text-[22.5px] text-black not-italic font-semibold font-['suit'] leading-[135%] tracking-[-1%]`}
+                    className={`flex md:text-[22.5px] text-[16px] text-black not-italic font-semibold font-['suit'] leading-[135%] tracking-[-1%]`}
                   >
                     대리인
                   </span>
                   <div className='flex flex-col justify-center items-center'>
-                    <span className={`flex md:text-[17px] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[130%] tracking-[-1%]`}>
+                    <span className={`flex md:text-[17px] text-[13px] text-sutTitle not-italic font-normal font-['suit'] leading-[130%] tracking-[-1%]`}>
                       개인의 대리인 또는
                     </span>
-                    <span className={`flex md:text-[17px] text-[0.8rem] text-sutTitle not-italic font-normal font-['suit'] leading-[130%] tracking-[-1%]`}>
+                    <span className={`flex md:text-[17px] text-[13px] text-sutTitle not-italic font-normal font-['suit'] leading-[130%] tracking-[-1%]`}>
                       법인대리인, 공동입찰대리인
                     </span>
                   </div>

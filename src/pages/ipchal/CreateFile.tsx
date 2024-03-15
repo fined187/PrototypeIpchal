@@ -207,21 +207,31 @@ export default function CreateFile() {
     <>
       {!loading && (
         <div className="flex w-[100%] md:h-[100vh] h-[100vh] justify-center bg-mybg relative">
-          <div className="flex flex-col gap-[14px] w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
-            <span className="md:text-[32.5px] text-[1.4rem] font-bold leading-[135%] tracking-[-1%] font-['suit'] not-italic">
+          <div className="flex flex-col md:gap-[14px] gap-[5px] w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
+            <span className="md:text-[32.5px] text-[20px] font-bold leading-[135%] tracking-[-1%] font-['suit'] not-italic">
               입찰표 작성이 끝났습니다
             </span>
-            <span className="md:text-[18px] text-[0.8rem] text-sutTitle font-medium font-['suit'] leading-[135%] tracking-[-1%] not-italic">
-              생성하기 버튼을 눌러 파일을 다운로드 받아주세요
-            </span>
+            <div className='hidden md:flex w-[100%] justify-center items-center'>
+              <span className="md:text-[18px] text-[16px] text-sutTitle font-medium font-['suit'] leading-[135%] tracking-[-1%] not-italic">
+                생성하기 버튼을 눌러 파일을 다운로드 받아주세요
+              </span>
+            </div>
+            <div className='flex flex-col md:hidden w-[100%] justify-center items-center'>
+              <span className="md:text-[18px] text-[16px] text-sutTitle font-medium font-['suit'] leading-[135%] tracking-[-1%] not-italic">
+                생성하기 버튼을 눌러
+              </span>
+              <span className="md:text-[18px] text-[16px] text-sutTitle font-medium font-['suit'] leading-[135%] tracking-[-1%] not-italic">
+                파일을 다운로드 받아주세요
+              </span>
+            </div>
             <div className="flex flex-col gap-5 md:w-[550px] w-[90%] h-[200px] justify-center items-left mt-[30px] rounded-md border-gray-400">
               <div className="flex flex-col justify-start text-left gap-3">
-                <span className="text-black text-[20px] font-semibold not-italic font-['suit'] ml-[5%] leading-[135%] tracking-[-2%]">
+                <span className="text-black md:text-[20px] text-[16px] font-semibold not-italic font-['suit'] ml-[5%] leading-[135%] tracking-[-2%]">
                   파일명
                 </span>
                 <input
                   aria-label='파일 이름'
-                  className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myBlue font-['suit'] font-normal leading-[150%] tracking-[-1%] text-[20px] p-[10px]"
+                  className="block w-[90%] h-[40px] border border-gray-300 rounded-md ml-[5%] focus:outline-2 focus:outline-myBlue font-['suit'] font-normal leading-[150%] tracking-[-1%] md:text-[20px] text-[15px] p-[10px]"
                   value={fileName.replace(" ", "") || biddingInfo.fileName.replace(" ", "")}
                   onChange={(e) => {
                     setFileName(e.target.value)
@@ -233,7 +243,7 @@ export default function CreateFile() {
                 />
               </div>
               <div className="flex flex-col justify-start text-left gap-3 relative ">
-                <span className="text-black text-[20px] font-semibold not-italic font-['suit'] ml-[5%] leading-[135%] tracking-[-2%]">
+                <span className="text-black md:text-[20px] text-[16px] font-semibold not-italic font-['suit'] ml-[5%] leading-[135%] tracking-[-2%]">
                   비밀번호
                 </span>
                 <div className='flex flex-row w-[100%] gap-[1%] ml-[5%]'>
@@ -241,7 +251,7 @@ export default function CreateFile() {
                     <input
                       aria-label='비밀번호'
                       type={`${passwordActive ? 'text' : 'password'}`}
-                      className="flex w-[100%] h-[40px] border border-gray-300 rounded-md focus:outline-2 focus:outline-myBlue font-['suit'] font-normal text-[20px] leading-[150%] tracking-[-1%] p-[10px]"
+                      className="flex w-[100%] h-[40px] border border-gray-300 rounded-md focus:outline-2 focus:outline-myBlue font-['suit'] font-normal md:text-[20px] text-[15px] leading-[150%] tracking-[-1%] p-[10px]"
                       value={password || ''}
                       onChange={(e) => {
                         setPassword(e.target.value)
@@ -265,7 +275,7 @@ export default function CreateFile() {
                     className="flex w-[25%] h-[40px] bg-mySelect border-[1px] border-gray-300 justify-center items-center rounded-md"
                     onClick={onClickPdf}
                   >
-                    <span className="flex text-black text-center text-[18px] leading-[135%] tracking-[-2%] not-italic font-semibold font-['suit'] cursor-pointer">
+                    <span className="flex text-black text-center md:text-[18px] text-[15px] leading-[135%] tracking-[-2%] not-italic font-semibold font-['suit'] cursor-pointer">
                       생성하기
                     </span>
                   </div>
@@ -274,14 +284,14 @@ export default function CreateFile() {
             </div>
             {!biddingInfo.isFileCreated && (
               <div className="flex mt-[30px]">
-                <span className="text-red-500 md:text-[18px] text-[0.8rem] font-medium leading-[135%] tracking-[-1%]">
+                <span className="text-red-500 md:text-[18px] text-[15px] font-medium leading-[135%] tracking-[-1%]">
                   파일을 생성해주세요
                 </span>
               </div>
             )}
             {biddingInfo.isFileCreated && (
               <div className="flex mt-[30px]">
-                <span className="text-[18px] font-medium text-myBlue leading-[135%] tracking-[-1%]">
+                <span className="md:text-[18px] text-[15px] font-medium text-myBlue leading-[135%] tracking-[-1%]">
                   입찰표 파일이 다운로드 되었습니다
                 </span>
               </div>

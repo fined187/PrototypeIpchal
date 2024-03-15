@@ -1,5 +1,4 @@
 'use client';
-
 import { AgentInfoType, BiddingInfoType } from '@/interface/IpchalType'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { FieldErrors, UseFormRegister, UseFormSetError } from 'react-hook-form'
@@ -74,14 +73,14 @@ export default function SearchAddress({
           <div className='flex justify-between w-[100%]'>
             {errors?.bidderAddr?.type === 'required' && stepNum && (biddingForm?.bidAddr[stepNum - 1] === '') ? (
               <div className="flex w-[100%] justify-start">
-                <span className="text-[20px] font-semibold font-['suit'] not-italic text-left text-red-500">
+                <span className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left text-red-500">
                   주소를 입력해주세요
                 </span>
               </div>
             ) : (
                 agentErrors?.agentAddr?.type === 'required' && (biddingForm.agentAddr === '') ? (
                   <div className="flex w-[70%] justify-start">
-                    <span className="text-[20px] font-semibold font-['suit'] not-italic text-left text-red-500">
+                    <span className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left text-red-500">
                       주소를 입력해주세요
                     </span>
                   </div>
@@ -90,11 +89,11 @@ export default function SearchAddress({
                   <div className='flex flex-row justify-start w-[100%]'>
                     <label
                       htmlFor="addr"
-                      className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]"
+                      className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]"
                     >
                       주소
                     </label>
-                    <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
+                    <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
                       *
                     </span>
                   </div>
@@ -110,7 +109,7 @@ export default function SearchAddress({
               name='bidderAddr'
               readOnly
               type="text"
-              className="border border-gray-300 rounded-md text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] h-[40px] px-2 w-[95%] focus:outline-2 focus:outline-myBlue"
+              className="border border-gray-300 rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] h-[40px] px-2 w-[95%] focus:outline-2 focus:outline-myBlue"
               value={stepNum && biddingForm?.bidAddr[stepNum - 1] ? biddingForm?.bidAddr[stepNum - 1] : ''}
             />
             
@@ -121,7 +120,7 @@ export default function SearchAddress({
               id="agentAddr"
               readOnly
               type="text"
-              className="border border-gray-300 rounded-md text-[20px] font-semibold font-['suit'] not-italic leading-[135%] tracking-[-2%] h-[40px] px-2 w-[95%] focus:outline-2 focus:outline-myBlue text-left"
+              className="border border-gray-300 rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic leading-[135%] tracking-[-2%] h-[40px] px-2 w-[95%] focus:outline-2 focus:outline-myBlue text-left"
               value={biddingForm.agentAddr ?? ''}
             />
           )}
@@ -131,7 +130,7 @@ export default function SearchAddress({
               handleModal && handleModal()
             }}
           >
-            <span className="text-[20px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
+            <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
               주소검색
             </span>
           </button>
@@ -143,7 +142,7 @@ export default function SearchAddress({
               id="bidAddrDetail"
               type="text"
               readOnly
-              className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] not-italic leading-[135%] tracking-[-2%] text-left h-[40px] px-2 w-[100%]"
+              className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic leading-[135%] tracking-[-2%] text-left h-[40px] px-2 w-[100%]"
               value={stepNum && biddingForm?.bidAddrDetail[stepNum - 1] ? biddingForm?.bidAddrDetail[stepNum - 1] : ''}
             />
           ))}
@@ -152,7 +151,7 @@ export default function SearchAddress({
               id="agentAddrDetail"
               type="text"
               readOnly
-              className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] not-italic leading-[135%] tracking-[-2%] text-left h-[40px] px-2 w-[100%]"
+              className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic leading-[135%] tracking-[-2%] text-left h-[40px] px-2 w-[100%]"
               value={biddingForm.agentAddrDetail}
             />
           ))}
