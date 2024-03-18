@@ -1,5 +1,5 @@
 import { biddingInfoState } from "@/atom";
-import { TotalResultType } from "@/interface/IpchalType"
+import { TotalResultType } from "@/model/IpchalType"
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 

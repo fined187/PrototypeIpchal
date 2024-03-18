@@ -1,5 +1,5 @@
 import { biddingInfoState } from "@/atom";
-import { TotalResultType } from "@/interface/IpchalType";
+import { TotalResultType } from "@/model/IpchalType";
 import { useRecoilState } from "recoil";
 import IpcahlTextPDF from "./IpchalTextPDF";
 import AgentListFormPDF from "./AgentListFormPDF";

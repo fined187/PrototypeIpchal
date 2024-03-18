@@ -1,7 +1,7 @@
 import { biddingInfoState, stepState } from "@/atom";
 import Spinner from "@/components/Spinner";
 import Button from "@/components/shared/Button";
-import { SearchResultType } from "@/interface/IpchalType";
+import { SearchResultType } from "@/model/IpchalType";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";

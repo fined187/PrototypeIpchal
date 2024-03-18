@@ -1,5 +1,5 @@
 import { stepState } from "@/atom";
-import { GetBiddingInfoType } from "@/interface/IpchalType";
+import { GetBiddingInfoType } from "@/model/IpchalType";
 import { useRecoilValue } from "recoil";
 
 interface CoIpchalFormProps {

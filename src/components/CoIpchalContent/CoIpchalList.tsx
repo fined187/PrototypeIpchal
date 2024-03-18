@@ -1,5 +1,5 @@
 import { biddingInfoState, stepState } from "@/atom";
-import { GetBiddingInfoType } from "@/interface/IpchalType";
+import { GetBiddingInfoType } from "@/model/IpchalType";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 

@@ -4,12 +4,6 @@ import Layout from '@/components/Layout'
 import { RecoilRoot } from 'recoil'
 import Script from 'next/script'
 import { QueryClient, QueryClientProvider } from 'react-query'
-
-declare global {
-  interface Window {
-    Kakao: any
-  }
-}
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {

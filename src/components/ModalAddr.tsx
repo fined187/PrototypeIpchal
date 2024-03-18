@@ -1,5 +1,5 @@
 import { biddingInfoState } from '@/atom'
-import { BiddingInfoType } from '@/interface/IpchalType'
+import { BiddingInfoType } from '@/model/IpchalType'
 import baseApiInstance from '@/pages/api/address'
 import {
   Modal,

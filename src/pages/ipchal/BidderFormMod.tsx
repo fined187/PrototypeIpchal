@@ -1,7 +1,7 @@
 import { biddingInfoState, stepState } from "@/atom"
 import SearchAddress from "@/components/SearchAddress"
 import Spinner from "@/components/Spinner"
-import { BiddingInfoType } from "@/interface/IpchalType"
+import { BiddingInfoType } from "@/model/IpchalType"
 import { useDisclosure } from "@chakra-ui/react"
 import axios from "axios"
 import { useEffect, useState } from "react"

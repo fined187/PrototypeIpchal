@@ -13,7 +13,6 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import IpchalResult from './ipchal/IpchalResult'
-import DownIpchal from './ipchal/DownIpchal'
 import BidderFormMod from './ipchal/BidderFormMod'
 import TimeInfo from './ipchal/TimeInfo'
 import AgentFormMod from './ipchal/AgentFormMod'
@@ -241,7 +240,7 @@ export default function Home() {
   }, [router.query, bidders.state, bidders.agentYn])
 
   return (
-    <>
+    <div className="flex w-[100vw] h-[100vh] bg-mybg">
       {loading ? (
         <div className='flex justify-center items-center bg-white w-[100%] h-screen'>
           <div className='flex flex-col justify-center items-center bg-mybg w-[50%] h-[100%]'>
@@ -266,13 +265,11 @@ export default function Home() {
           {stateNum === 12 && <IpchalResult />}
           {stateNum === 13 && <CreateFile />}
           {stateNum === 14 && <PreparingList />}
-          {/* {stateNum === 14 && <IpchalShare />} */}
-          {/* {(stateNum === 15 && (biddingForm.aesUserId !== "")) && <DownIpchal />} */}
           {(bidders.state >= 4 || bidders.state <= 6) && (bidders.agentYn !== "Y") && (stateNum === 16) ? <BidderFormMod /> : (stateNum === 16) && <BidderFormMod />}
           {(bidders.state >= 1 || bidders.state <= 6) && (bidders.agentYn === "Y") && (stateNum === 17) ? <AgentFormMod /> : (stateNum === 17) && <AgentFormMod />}
           {stateNum === 19 && biddingForm.agentYn === "Y" && <AgentCheck />}
         </>
       )}
-    </>
+    </div>
   )
 }

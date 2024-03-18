@@ -1,5 +1,5 @@
 import React from "react";
-import { TotalResultType } from "../../interface/IpchalType"
+import { TotalResultType } from "../../model/IpchalType"
 import { biddingInfoState } from "../../atom/index";
 import { useRecoilState } from "recoil";
 import IpchalText from "../coIpchalContent/IpchalText";

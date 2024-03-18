@@ -1,8 +1,8 @@
 'use client';
-import { AgentInfoType, BiddingInfoType } from '@/interface/IpchalType'
+import { AgentInfoType, BiddingInfoType } from '@/model/IpchalType'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { FieldErrors, UseFormRegister, UseFormSetError } from 'react-hook-form'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { biddingInfoState } from '@/atom'
 import ModalAddr from './ModalAddr'
 import { createPortal } from 'react-dom';

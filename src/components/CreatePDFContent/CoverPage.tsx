@@ -1,4 +1,4 @@
-import { TotalResultType } from "@/interface/IpchalType";
+import { TotalResultType } from "@/model/IpchalType";
 import Image from "next/image";
 
 interface SingleProps {

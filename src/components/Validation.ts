@@ -46,12 +46,12 @@
   }
   
   //  사업자 등록 번호 검증
-  export const handleVerifyCorpNum = (number: string) => {
-    if (number.length !== 10) {
+  export const handleVerifyCorpNum = (num: string) => {
+    if (num.length !== 10) {
       return false;
     }
 
-    const regsplitNum = number.replace(/-/gi, '').split('').map(function(item) {
+    const regsplitNum = num.replace(/-/gi, '').split('').map(function(item) {
       return parseInt(item, 10);
     });
     
@@ -82,6 +82,19 @@
       return true
     } else {
       alert('법인등록번호를 확인해주세요')
+      return false
+    }
+  }
+
+  export const handleVerifyPhone = (phone: string) => {
+    // const phoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g
+    const telRegex = /^(070|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/
+    const smartPhoneRegex = /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/g
+    const telCheck = telRegex.test(phone)
+    const smartPhoneCheck = smartPhoneRegex.test(phone)
+    if (telCheck || smartPhoneCheck) {
+      return true
+    } else {
       return false
     }
   }
