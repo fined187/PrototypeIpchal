@@ -359,6 +359,7 @@ export default function BiddingPrice() {
                   aria-label="입찰 가격"
                   placeholder=""
                   type="text"
+                  inputMode='numeric'
                   id="number"
                   onBlur={handleCheckPrice}
                   value={biddingForm.biddingPrice.toLocaleString('ko-KR')}
@@ -393,6 +394,7 @@ export default function BiddingPrice() {
                   placeholder=""
                   type="text"
                   id="number2"
+                  inputMode='numeric'
                   value={biddingForm.depositPrice.toLocaleString('ko-KR') || 0}
                   className="flex w-[100%] h-[40px] border md:text-[20px] text-[15px] leading-[150%] tracking-[-1%] font-semibold text-sutTitle font-['suit'] border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md text-right p-[10px]"
                   onChange={(e) => {

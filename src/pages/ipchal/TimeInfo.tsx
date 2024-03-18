@@ -72,14 +72,21 @@ export default function TimeInfo() {
           }}>
             원하시는 경매를 선택하세요
           </span>
-          <span className="md:text-[18px] text-[16px] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
+          <span className="md:flex hidden md:text-[18px] text-[16px] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
             1기일 2회 입찰 사건입니다
             <br />
             오전 기일에 낙찰이 될 경우 오후 기일은 진행하지 않습니다
           </span>
+          <span className="flex md:hidden md:text-[18px] text-[16px] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
+            1기일 2회 입찰 사건입니다
+            <br />
+            오전 기일에 낙찰이 될 경우 오후 기일은 
+            <br />
+            진행하지 않습니다
+          </span>
         </div>
         <div className="flex flex-col md:gap-[7.5px] gap-[10px] md:w-[550px] w-[90%] h-[50%] mt-[50px] justify-start items-center rounded-lg border-slate-500">
-          <div className={`flex flex-row gap-[25px] justify-center items-center w-[100%] h-[100px] border border-black rounded-lg cursor-pointer ${(timeClicked === '1000' ) || (biddingInfo.selectedTime === '1000') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
+          <div className={`flex flex-row gap-[20px] justify-center items-center w-[100%] h-[100px] border border-black rounded-lg cursor-pointer ${(timeClicked === '1000' ) || (biddingInfo.selectedTime === '1000') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
             setTimeClicked('1000')
             handleConfirm('1000')
           }}>
@@ -113,7 +120,7 @@ export default function TimeInfo() {
               </div>
             </div>
           </div>
-          <div className={`flex flex-row gap-[25px] justify-center items-center w-[100%] h-[100px] cursor-pointer border border-black rounded-lg ${(timeClicked === '1400') || (biddingInfo.selectedTime === '1400') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
+          <div className={`flex flex-row gap-[20px] justify-center items-center w-[100%] h-[100px] cursor-pointer border border-black rounded-lg ${(timeClicked === '1400') || (biddingInfo.selectedTime === '1400') ? ' bg-mySelect' : 'bg-white'}`} onClick={() => {
             setTimeClicked('1400')
             handleConfirm('1400')
           }}>

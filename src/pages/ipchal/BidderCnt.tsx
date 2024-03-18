@@ -71,7 +71,7 @@ export default function BidderCnt() {
       setTimeout(() => {
         setLoading(false)
         setStateNum(stateNum + 1)
-      }, 1000)
+      }, 1500)
     }
   }
 
@@ -161,6 +161,7 @@ export default function BidderCnt() {
                 <input
                   id='bidderNum'
                   aria-label="bidderNum"
+                  inputMode='numeric'
                   className="w-[120px] border border-black h-[40px] text-center focus:outline-none font-semibold leading-[150%] tracking-[-1%] md:text-[20px] text-[18px] rounded-lg ml-5 mr-5 text-sutTitle"
                   type="text"
                   placeholder='숫자만 입력'

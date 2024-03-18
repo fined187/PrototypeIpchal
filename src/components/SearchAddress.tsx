@@ -125,7 +125,7 @@ export default function SearchAddress({
             />
           )}
           <button
-            className="text-black bg-mySelect focus:outline-2 focus:outline-myBlue rounded-md w-[25%] h-[40px] border border-black"
+            className="text-black bg-mySelect focus:outline-2 focus:outline-sutTitle rounded-md w-[25%] h-[40px] border border-sutTitle"
             onClick={() => {
               handleModal && handleModal()
             }}

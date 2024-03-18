@@ -226,7 +226,7 @@ export default function ShareInfo() {
               id='shareWay'
               name='shareWay'
               checked={biddingInfo.shareWay === 'S' ?? false}
-              className='cursor-pointer w-[15px]'
+              className='cursor-pointer w-[15px] accent-myBlue'
               type='radio'
               onChange={() => {
                 setBiddingInfo({
@@ -245,7 +245,7 @@ export default function ShareInfo() {
           <div className='flex flex-row gap-[5px]'>
             <input 
               id='shareWay'
-              className='cursor-pointer w-[15px]'
+              className='cursor-pointer w-[15px] accent-myBlue'
               checked={biddingInfo.shareWay === 'N' ?? false}
               name='shareWay'
               type='radio'
@@ -272,13 +272,13 @@ export default function ShareInfo() {
         {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
             return (
             <div key={index} className="flex flex-row gap-[25%] w-[100%] h-[100px] bg-white border border-black rounded-lg relative">
-              <div className="flex flex-col w-[100%] justify-center items-start ml-5">
+              <div className="flex flex-col w-[30%] justify-center items-start ml-5">
                 <span className="md:text-[17px] text-[15px] font-['suit'] leading-[135%] tracking-[0px] font-normal" style={{
                     color: "#545492"
                   }}>
                   {"#" + (index + 1)}
                 </span>
-                <span className="md:text-[20px] text-[16px] font-['suit'] leading-[140%] tracking-[-1%] font-normal flex-wrap text-ellipsis overflow-hidden">
+                <span className="md:text-[20px] text-[16px] font-['suit'] leading-[140%] tracking-[-1%] font-normal overflow-hidden overflow-ellipsis whitespace-nowrap">
                   {name + (biddingInfo.bidCorpYn[index] === 'I' ? ' (개인)' : ' (법인)')}
                 </span>
               </div>
@@ -299,7 +299,7 @@ export default function ShareInfo() {
                   type="text"
                   readOnly
                   value={biddingInfo.bidderNum}
-                  className="rounded-md md:text-[20px] text-[15px] font-['suit'] leading-[140%] tracking-[0px] not-italic font-normal text-center text-sutTitle w-[20px] bg-white border-none focus:border-transparent focus:outline-none"
+                  className="rounded-md md:text-[20px] text-[15px] font-['suit'] leading-[140%] tracking-[0px] not-italic font-normal text-center text-sutTitle w-[20px] bg-white border-none focus:border-transparent focus:outline-none overflow-hidden text-ellipsis"
                 />
                 </>
               ) : (
@@ -307,12 +307,13 @@ export default function ShareInfo() {
                 <input
                   id="numerator"
                   type="text"
+                  inputMode='numeric'
                   value={shareList.shareList[index]?.share?.split('/')[0] === 'undefined' ? '1' : shareList.shareList[index]?.share?.split('/')[0]}
                   className={` ${
                   (biddingInfo.shareWay === 'N') && goNext
                     ? 'text-red-500'
                     : ''
-                  } rounded-md md:text-[20px] text-[16px] font-['suit'] leading-[150%] tracking-[-1%] p-[10px] not-italic font-semibold text-center md:h-[40px] md:w-[80px] w-[60px] h-[30px] border-[1px] border-sutTitle`}
+                  } rounded-md md:text-[20px] text-[16px] font-['suit'] leading-[150%] tracking-[-1%] p-[10px] not-italic font-semibold text-center md:h-[40px] md:w-[80px] w-[60px] h-[30px] border-[1px] border-sutTitle focus:border-sutTitle `}
                   onChange={(e) => {
                   let temp = [...shareList.shareList]
                   temp[index] = {
@@ -340,6 +341,7 @@ export default function ShareInfo() {
                   readOnly
                   id='denominator'
                   type="text"
+                  inputMode='numeric'
                   value={100}
                   className={`rounded-md md:text-[20px] text-[16px] font-['suit'] leading-[150%] tracking-[-1%] p-[10px] text-center md:h-[40px] md:w-[80px] w-[60px] h-[30px] border-[1px] border-sutTitle`}
                   onChange={(e) => {

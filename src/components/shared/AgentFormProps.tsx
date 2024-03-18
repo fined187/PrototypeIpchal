@@ -43,15 +43,15 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col md:w-[550px] w-[80%] h-[100%] justify-center items-center'>
       <div className="flex flex-col w-[100%] h-[100%] gap-2">
-        <div className="flex flex-row w-[100%] gap-[0.5%]">
-          <div className="flex flex-col w-[49.5%] gap-1">
-          <div className='flex justify-between w-[100%]'>
+        <div className="flex md:flex-row flex-col w-[100%] md:gap-[0.5%] gap-2">
+          <div className="flex flex-col w-[100%] gap-1">
+            <div className='flex justify-between w-[100%]'>
           {
             (errors.agentName?.type == "required")  ?
               (<div className="flex w-[100%] justify-start">
                 <label
                   htmlFor="bidderName"
-                  className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                  className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                 >
                   {errors.agentName?.message}
                 </label>
@@ -61,7 +61,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
                 <div className="flex w-[100%] justify-start">
                   <label
                     htmlFor="bidderName"
-                    className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                   >
                     {errors.agentName?.message}
                   </label>
@@ -71,7 +71,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
                 <div className="flex w-[100%] justify-start">
                   <label
                     htmlFor="bidderName"
-                    className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                   >
                     {errors.agentName?.message}
                   </label>
@@ -104,7 +104,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
               maxLength={10}
               value={biddingForm.agentName || ''}
               type="text"
-              className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[0.8rem] font-semibold font-['suit'] not-italic leading-[150%] tracking-[-1%] text-left h-[40px] px-2"
+              className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic leading-[150%] tracking-[-1%] text-left h-[40px] px-2"
               placeholder="성명을 입력해주세요"
               onChange={(e) => {
                 setAgentInfo((prev: any) => {
@@ -117,7 +117,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
               }}
             />
           </div>
-          <div className="flex flex-col w-[49.5%] gap-1">
+          <div className="flex flex-col w-[100%] gap-1">
             <div className='flex flex-row w-[100%]'>
               {errors.agentRel?.type === 'required' && 
               (biddingForm.agentRel === '') ?
@@ -125,7 +125,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
                 <div className="flex w-[100%] justify-start">
                   <label
                     htmlFor="agentRel"
-                    className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                   >
                     {errors.agentRel?.message}
                   </label>
@@ -135,7 +135,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
                 <div className="flex w-[100%] justify-start">
                   <label
                     htmlFor="agentRel"
-                    className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                   >
                     {errors.agentRel?.message}
                   </label>
@@ -193,7 +193,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
               <div className="flex w-[100%] justify-start">
                 <label
                   htmlFor="agentPhone"
-                  className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
+                  className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
                 >
                   전화번호를 입력해주세요
                 </label>
@@ -226,6 +226,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
               placeholder="010"
               className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic leading-[150%] tracking-[-1%] h-[40px] px-2 w-[33%] text-center"
               value={biddingForm.agentPhone1 || ''}
+              inputMode="numeric"
               onChange={(e) => {
                 setAgentInfo((prev: AgentInfoType) => {
                   return { ...prev, agentPhone1: e.target.value }
@@ -250,6 +251,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
               {...register('agentPhone2', { required: true, maxLength: 4 })}
               type="text"
               id='agentPhone2'
+              inputMode="numeric"
               maxLength={4}
               onInput={(e) => {
                 e.currentTarget.value = e.currentTarget.value
@@ -283,6 +285,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
               {...register('agentPhone3', { required: true, maxLength: 4 })}
               type="text"
               id='agentPhone3'
+              inputMode="numeric"
               maxLength={4}
               onInput={(e) => {
                 e.currentTarget.value = e.currentTarget.value
@@ -321,7 +324,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
               (biddingForm.agentIdNum === '') ?
               (
                 <div className="flex w-[100%] justify-start">
-                  <span className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
+                  <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
                     주민등록번호를 입력해주세요
                   </span>
                 </div>
@@ -357,6 +360,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
               type="text"
               id='agentIdNum1'
               maxLength={6}
+              inputMode="numeric"
               className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[150%] tracking-[-1%] font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
               value={biddingForm.agentIdNum1 || ''}
               onChange={(e) => {
@@ -391,6 +395,7 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
               }}
               type={`${!passwordActive ? 'password' : 'text'}`}
               id='agentIdNum2'
+              inputMode="numeric"
               maxLength={7}
               className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[150%] tracking-[-1%] font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
               value={biddingForm.agentIdNum2 || ''}
@@ -412,6 +417,9 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
             />
             <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] md:w-[10%] w-[15%] cursor-pointer"
               onClick={() => setPasswordActive(!passwordActive)}
+              style={{
+                zIndex: 10
+              }}
             >
               {passwordActive ? (
                 <LiaEyeSolid className="cursor-pointer" size={'35%'} />
