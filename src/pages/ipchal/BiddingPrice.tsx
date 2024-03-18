@@ -305,10 +305,10 @@ export default function BiddingPrice() {
                 <path d="M17.5 14.584V26.2507" stroke="#181826" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
               <span className={`font-semibold font-['suit'] leading-[135%] tracking-[-1%] md:text-[18px] text-[16px] text-sutTitle`}>
-                &nbsp;{biddingForm.sagunNum}
+                &nbsp;{biddingForm.sagunNum + "[" + biddingForm.mulNo + "]" + "호 "}
               </span>
               <span className={`font-normal font-['suit'] leading-[135%] tracking-[-1%] md:text-[18px] text-[16px] text-sutTitle`}>
-                호 의
+                의
               </span>
             </div>
             <div className='flex flex-col w-[100%] justify-start gap-[10px]'>
@@ -321,7 +321,7 @@ export default function BiddingPrice() {
                 <div className='flex flex-row w-[80%] justify-start'>
                   <input 
                     readOnly
-                    className="text-sutTitle md:text-[20px] text-[1rem] font-medium leading-[150%] tracking-[-1%] md:w-[80%] w-[70%] font-['suit'] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md p-[10px]" 
+                    className="text-sutTitle md:text-[20px] text-[15px] font-medium leading-[150%] tracking-[-1%] md:w-[80%] w-[70%] font-['suit'] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md p-[10px]" 
                     value={paymentsInfo.appraisalAmount.toLocaleString('ko-KR')} 
                   />
                   <span className="md:text-[18px] text-[15px] font-semibold font-['suit'] leading-[135%] tracking-[-1%] text-center mt-[5px]">
@@ -338,7 +338,7 @@ export default function BiddingPrice() {
                 <div className='flex flex-row w-[80%] justify-start'>
                   <input 
                     value={paymentsInfo.minimumAmount.toLocaleString('ko-KR')}
-                    className="text-myBlue md:text-[18px] text-[15px] font-medium leading-[150%] tracking-[-1%] font-['suit'] md:w-[80%] w-[70%] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md p-[10px]" 
+                    className="text-myBlue md:text-[20px] text-[15px] font-medium leading-[150%] tracking-[-1%] font-['suit'] md:w-[80%] w-[70%] text-right h-[40px] border border-gray-300 bg-mySelect rounded-md p-[10px]" 
                     readOnly
                   />
                   <span className="md:text-[18px] text-[15px] font-semibold font-['suit'] leading-[135%] tracking-[-1%] text-center mt-[5px]">

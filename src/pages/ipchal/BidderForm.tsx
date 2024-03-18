@@ -120,7 +120,7 @@ export default function BidderForm() {
         const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${stepNum}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
-          job: (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.agentYn === 'N') ? null : biddingForm.bidJob[stepNum - 1],
+          job: biddingForm.bidJob[stepNum - 1] ?? '',
           name: biddingForm?.bidName[stepNum - 1],
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
@@ -133,7 +133,7 @@ export default function BidderForm() {
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           companyNo: biddingForm?.bidCorpNum[stepNum - 1],
           corporationNo: biddingForm?.bidCorpRegiNum[stepNum - 1],
-          job: (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.agentYn === 'N') ? null : biddingForm.bidJob[stepNum - 1],
+          job: biddingForm.bidJob[stepNum - 1] ?? '',
           name: biddingForm?.bidName[stepNum - 1],
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
@@ -159,7 +159,7 @@ export default function BidderForm() {
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
             address: biddingForm.bidAddr[stepNum - 1],
-            job: (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.agentYn === 'N') ? null : biddingForm.bidJob[stepNum - 1],
+            job: biddingForm.bidJob[stepNum - 1] ?? '',
           },
           {
             headers: {
@@ -179,7 +179,7 @@ export default function BidderForm() {
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
             address: biddingForm.bidAddr[stepNum - 1],
-            job: (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.agentYn === 'N') ? null : biddingForm.bidJob[stepNum - 1],
+            job: biddingForm.bidJob[stepNum - 1] ?? '',
             companyNo: biddingForm.bidCorpNum[stepNum - 1],
             corporationNo: biddingForm.bidCorpRegiNum[stepNum - 1],
           },
@@ -386,7 +386,6 @@ export default function BidderForm() {
     const { name, value } = e.target
     setValue(name, value, { shouldValidate: true })
   }
-  console.log(errors.bidderName?.type)
   return (
     <div className={`flex w-[100%] h-[100vh] bg-mybg justify-center relative overflow-y-auto`}>
       {loading && (
@@ -998,45 +997,13 @@ export default function BidderForm() {
               {biddingForm.agentYn === 'Y' && (
                 <div className="flex flex-col w-[100%] gap-1">
                   <div className='flex justify-between w-[100%]'>
-                    {errors.bidderJob?.type === 'required' && 
-                      (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.bidJob[stepNum - 1] === undefined) ?
-                      (
-                        <div className="flex w-[100%] justify-start">
-                          <label
-                            htmlFor="agentJob"
-                            className="md:text-[20px] text-[12px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500"
-                          >
-                            {errors.bidderJob?.message}
-                          </label>
-                        </div>
-                      ) : (errors.bidderJob?.type === "maxLength") ? (
-                        <div className="flex w-[100%] justify-start">
-                          <label
-                            htmlFor="agentJob"
-                            className="md:text-[20px] text-[12px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500"
-                          >
-                            {errors.bidderJob?.message}
-                          </label>
-                        </div>
-                      ) : (
-                        <div className='flex flex-row justify-start w-[100%]'>
-                          <label htmlFor="bidderJob" className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left">
-                            직업
-                          </label>
-                          <span className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500">
-                            *
-                          </span>
-                        </div>
-                      )}
+                    <div className='flex flex-row justify-start w-[100%]'>
+                      <label htmlFor="bidderJob" className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left">
+                        직업
+                      </label>
+                    </div>
                   </div>
                   <input
-                    {...register('bidderJob', {
-                      required: '직업을 입력해주세요',
-                      maxLength: {
-                        value: 10,
-                        message: '10글자 이하로 입력해주세요',
-                      }
-                    })}
                     value={biddingForm.bidJob[stepNum - 1] || ''}
                     type="text"
                     maxLength={10}
@@ -1048,7 +1015,6 @@ export default function BidderForm() {
                         temp[stepNum - 1] = e.target.value
                         return { ...prev, bidJob: temp }
                       })
-                      handleInputChange(e)
                     }}
                   />
                   

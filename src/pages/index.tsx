@@ -240,7 +240,7 @@ export default function Home() {
   }, [router.query, bidders.state, bidders.agentYn])
 
   return (
-    <div className="flex w-[100vw] h-[100vh] bg-mybg">
+    <>
       {loading ? (
         <div className='flex justify-center items-center bg-white w-[100%] h-screen'>
           <div className='flex flex-col justify-center items-center bg-mybg w-[50%] h-[100%]'>
@@ -270,6 +270,6 @@ export default function Home() {
           {stateNum === 19 && biddingForm.agentYn === "Y" && <AgentCheck />}
         </>
       )}
-    </div>
+    </>
   )
 }

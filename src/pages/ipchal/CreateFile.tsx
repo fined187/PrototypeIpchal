@@ -309,7 +309,7 @@ export default function CreateFile() {
           <Spinner />
         </div>
       )}
-      <div className='hidden flex-col' id='capture'>
+      <div className='flex flex-col' id='capture'>
         {totalResult && (
           <CoverPage totalResult={totalResult} />)}
         {totalResult && totalResult.bidders.length > 1 && (

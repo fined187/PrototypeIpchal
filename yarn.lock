@@ -6680,7 +6680,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.5, classnames@npm:^2.5.1":
+"classnames@npm:^2.2.5":
   version: 2.5.1
   resolution: "classnames@npm:2.5.1"
   checksum: afff4f77e62cea2d79c39962980bf316bacb0d7c49e13a21adaadb9221e1c6b9d3cdb829d8bb1b23c406f4e740507f37e1dcf506f7e3b7113d17c5bab787aa69
@@ -7140,16 +7140,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-selector-tokenizer@npm:^0.8":
-  version: 0.8.0
-  resolution: "css-selector-tokenizer@npm:0.8.0"
-  dependencies:
-    cssesc: "npm:^3.0.0"
-    fastparse: "npm:^1.1.2"
-  checksum: 86f68cc666d41f9d153351677694002a9d00e2609e6abc66fcfd7f580be3d6ecc0929e46a06c621ab28da5febbb54567db9709b819414edae4a36d9ff9133e16
-  languageName: node
-  linkType: hard
-
 "cssesc@npm:^3.0.0":
   version: 3.0.0
   resolution: "cssesc@npm:3.0.0"
@@ -7173,29 +7163,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"culori@npm:^3":
-  version: 3.3.0
-  resolution: "culori@npm:3.3.0"
-  checksum: acd330a8f940dc22f36650ba722c9302a4745fee3c8fb40a27ac27228767e2cba4221c2dc414fce652b82cb264d28f65d8b76d505df402ecf94dbb9e440319e1
-  languageName: node
-  linkType: hard
-
 "culvert@npm:^0.1.2":
   version: 0.1.2
   resolution: "culvert@npm:0.1.2"
   checksum: 185fc6fd1b3bc8c8e60c8e60f4ac71123d80267e97127f00acd0fc18e2abc69d2a30d1a8bc60e5ee651e940d67a2476688d6b851acb963a27c2043d9a8677d39
-  languageName: node
-  linkType: hard
-
-"daisyui@npm:^4.6.1":
-  version: 4.6.1
-  resolution: "daisyui@npm:4.6.1"
-  dependencies:
-    css-selector-tokenizer: "npm:^0.8"
-    culori: "npm:^3"
-    picocolors: "npm:^1"
-    postcss-js: "npm:^4"
-  checksum: eb067701527baef816c67ae6c456fa3f1be845098420ee60744369e04bec2486f3a6df817464d8f8f6da0b63f5e823901e8b4d2c09caf0324ebe139b049d33d6
   languageName: node
   linkType: hard
 
@@ -7616,18 +7587,6 @@ __metadata:
   dependencies:
     sax: "npm:1.1.4"
   checksum: 669e56d5092382ceaaa2022f3c391b0f6702e47876095b0e00a790181b7f6b5f49fe6e67ebe8339fd6b1b1b66ffe53c87dd47f1e550661ea55722279bf24cad3
-  languageName: node
-  linkType: hard
-
-"emailjs@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "emailjs@npm:4.0.3"
-  peerDependencies:
-    typescript: ">=4.3.5"
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 5cb831bce7f15953bd3727bc2781dfc8030a4533f5efce24def913523809a21415a269f8e1159ccbd24f3443ec2021b1ced7bdbac8d8dde14c40a3168adbaab2
   languageName: node
   linkType: hard
 
@@ -8634,13 +8593,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fastparse@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "fastparse@npm:1.1.2"
-  checksum: c08d6e7ef10c0928426c1963dd4593e2baaf44d223ab1e5ba5d7b30470144b3a4ecb3605958b73754cea3f857ecef00b67c885f07ca2c312b38b67d9d88b84b5
-  languageName: node
-  linkType: hard
-
 "fastq@npm:^1.6.0":
   version: 1.15.0
   resolution: "fastq@npm:1.15.0"
@@ -9253,13 +9205,10 @@ __metadata:
     axios: "npm:^1.6.2"
     body-parser: "npm:^1.20.2"
     chakra-ui: "npm:^0.3.9"
-    classnames: "npm:^2.5.1"
     cordova-plugin-file: "npm:^8.0.1"
     cordova-plugin-file-opener2: "npm:^4.0.0"
     cors: "npm:^2.8.5"
-    daisyui: "npm:^4.6.1"
     date-fns: "npm:^3.0.6"
-    emailjs: "npm:^4.0.3"
     eslint: "npm:^8.55.0"
     eslint-config-next: "npm:14.0.3"
     eslint-config-prettier: "npm:^9.1.0"
@@ -9288,7 +9237,6 @@ __metadata:
     react-frame-component: "npm:^5.2.6"
     react-hook-form: "npm:^7.48.2"
     react-icons: "npm:^4.12.0"
-    react-iframe: "npm:^1.8.5"
     react-portal-popout: "npm:^1.9.3"
     react-query: "npm:^3.39.3"
     recoil: "npm:^0.7.7"
@@ -12156,7 +12104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picocolors@npm:^1, picocolors@npm:^1.0.0":
+"picocolors@npm:^1.0.0":
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
   checksum: 20a5b249e331c14479d94ec6817a182fd7a5680debae82705747b2db7ec50009a5f6648d0621c561b0572703f84dbef0858abcbd5856d3c5511426afcb1961f7
@@ -12378,7 +12326,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-js@npm:^4, postcss-js@npm:^4.0.1":
+"postcss-js@npm:^4.0.1":
   version: 4.0.1
   resolution: "postcss-js@npm:4.0.1"
   dependencies:
@@ -12900,17 +12848,6 @@ __metadata:
   peerDependencies:
     react: "*"
   checksum: 2170f43031ee7365539f72d4075cbe6c7fbf9a66d6cf4494aa9393b194272da0564f5b19d1b24dbfc567c0ac89f5fe5b8974d92dd83f61e252388dde6a226fb8
-  languageName: node
-  linkType: hard
-
-"react-iframe@npm:^1.8.5":
-  version: 1.8.5
-  resolution: "react-iframe@npm:1.8.5"
-  dependencies:
-    object-assign: "npm:^4.1.1"
-  peerDependencies:
-    react: ">=16.x.x"
-  checksum: ae5609bb88d9f36bd130d7a98cfc3067f8400ab57b29a6a72e07a20f882383f1807cb97c45dc8c536046ce2584d953780d4b6611edd66e6eea082555e5c0d62d
   languageName: node
   linkType: hard
 

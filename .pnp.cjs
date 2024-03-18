@@ -50,13 +50,10 @@ const RAW_RUNTIME_STATE =
           ["axios", "npm:1.6.2"],\
           ["body-parser", "npm:1.20.2"],\
           ["chakra-ui", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:0.3.9"],\
-          ["classnames", "npm:2.5.1"],\
           ["cordova-plugin-file", "npm:8.0.1"],\
           ["cordova-plugin-file-opener2", "npm:4.0.0"],\
           ["cors", "npm:2.8.5"],\
-          ["daisyui", "npm:4.6.1"],\
           ["date-fns", "npm:3.0.6"],\
-          ["emailjs", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3"],\
           ["eslint", "npm:8.55.0"],\
           ["eslint-config-next", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:14.0.3"],\
           ["eslint-config-prettier", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:9.1.0"],\
@@ -85,7 +82,6 @@ const RAW_RUNTIME_STATE =
           ["react-frame-component", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.2.6"],\
           ["react-hook-form", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:7.49.0"],\
           ["react-icons", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.12.0"],\
-          ["react-iframe", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.8.5"],\
           ["react-portal-popout", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.9.3"],\
           ["react-query", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:3.39.3"],\
           ["recoil", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:0.7.7"],\
@@ -11884,17 +11880,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["css-selector-tokenizer", [\
-      ["npm:0.8.0", {\
-        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/css-selector-tokenizer-npm-0.8.0-b6bad298a3-10c0.zip/node_modules/css-selector-tokenizer/",\
-        "packageDependencies": [\
-          ["css-selector-tokenizer", "npm:0.8.0"],\
-          ["cssesc", "npm:3.0.0"],\
-          ["fastparse", "npm:1.1.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["cssesc", [\
       ["npm:3.0.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/cssesc-npm-3.0.0-15ec56f86f-10c0.zip/node_modules/cssesc/",\
@@ -11920,33 +11905,11 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["culori", [\
-      ["npm:3.3.0", {\
-        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/culori-npm-3.3.0-75ee2b3b84-10c0.zip/node_modules/culori/",\
-        "packageDependencies": [\
-          ["culori", "npm:3.3.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["culvert", [\
       ["npm:0.1.2", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/culvert-npm-0.1.2-acb47d0488-10c0.zip/node_modules/culvert/",\
         "packageDependencies": [\
           ["culvert", "npm:0.1.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["daisyui", [\
-      ["npm:4.6.1", {\
-        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/daisyui-npm-4.6.1-c2e053da34-10c0.zip/node_modules/daisyui/",\
-        "packageDependencies": [\
-          ["daisyui", "npm:4.6.1"],\
-          ["css-selector-tokenizer", "npm:0.8.0"],\
-          ["culori", "npm:3.3.0"],\
-          ["picocolors", "npm:1.0.0"],\
-          ["postcss-js", "virtual:c2e053da344524e3aa4ed7019a2ad211217c6968e82272aea6dd3af41c42371c06fdd8e5db1edb106009f32aeccd87d0e57c12da8cd4d75ea2312f6ff5fa5582#npm:4.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -12459,28 +12422,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["elementtree", "npm:0.1.7"],\
           ["sax", "npm:1.1.4"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["emailjs", [\
-      ["npm:4.0.3", {\
-        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/emailjs-npm-4.0.3-a1968bcbb8-10c0.zip/node_modules/emailjs/",\
-        "packageDependencies": [\
-          ["emailjs", "npm:4.0.3"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3", {\
-        "packageLocation": "./.yarn/__virtual__/emailjs-virtual-16e6916162/3/Users/woota/AppData/Local/Yarn/Berry/cache/emailjs-npm-4.0.3-a1968bcbb8-10c0.zip/node_modules/emailjs/",\
-        "packageDependencies": [\
-          ["emailjs", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3"],\
-          ["@types/typescript", null],\
-          ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"]\
-        ],\
-        "packagePeers": [\
-          "@types/typescript",\
-          "typescript"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -13806,15 +13747,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["fastparse", [\
-      ["npm:1.1.2", {\
-        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/fastparse-npm-1.1.2-6a35154770-10c0.zip/node_modules/fastparse/",\
-        "packageDependencies": [\
-          ["fastparse", "npm:1.1.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["fastq", [\
       ["npm:1.15.0", {\
         "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/fastq-npm-1.15.0-1013f6514e-10c0.zip/node_modules/fastq/",\
@@ -14507,13 +14439,10 @@ const RAW_RUNTIME_STATE =
           ["axios", "npm:1.6.2"],\
           ["body-parser", "npm:1.20.2"],\
           ["chakra-ui", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:0.3.9"],\
-          ["classnames", "npm:2.5.1"],\
           ["cordova-plugin-file", "npm:8.0.1"],\
           ["cordova-plugin-file-opener2", "npm:4.0.0"],\
           ["cors", "npm:2.8.5"],\
-          ["daisyui", "npm:4.6.1"],\
           ["date-fns", "npm:3.0.6"],\
-          ["emailjs", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.0.3"],\
           ["eslint", "npm:8.55.0"],\
           ["eslint-config-next", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:14.0.3"],\
           ["eslint-config-prettier", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:9.1.0"],\
@@ -14542,7 +14471,6 @@ const RAW_RUNTIME_STATE =
           ["react-frame-component", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:5.2.6"],\
           ["react-hook-form", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:7.49.0"],\
           ["react-icons", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.12.0"],\
-          ["react-iframe", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.8.5"],\
           ["react-portal-popout", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.9.3"],\
           ["react-query", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:3.39.3"],\
           ["recoil", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:0.7.7"],\
@@ -18003,20 +17931,6 @@ const RAW_RUNTIME_STATE =
           "postcss"\
         ],\
         "linkType": "HARD"\
-      }],\
-      ["virtual:c2e053da344524e3aa4ed7019a2ad211217c6968e82272aea6dd3af41c42371c06fdd8e5db1edb106009f32aeccd87d0e57c12da8cd4d75ea2312f6ff5fa5582#npm:4.0.1", {\
-        "packageLocation": "./.yarn/__virtual__/postcss-js-virtual-239c8639bd/3/Users/woota/AppData/Local/Yarn/Berry/cache/postcss-js-npm-4.0.1-2c4ee70bf3-10c0.zip/node_modules/postcss-js/",\
-        "packageDependencies": [\
-          ["postcss-js", "virtual:c2e053da344524e3aa4ed7019a2ad211217c6968e82272aea6dd3af41c42371c06fdd8e5db1edb106009f32aeccd87d0e57c12da8cd4d75ea2312f6ff5fa5582#npm:4.0.1"],\
-          ["@types/postcss", null],\
-          ["camelcase-css", "npm:2.0.1"],\
-          ["postcss", null]\
-        ],\
-        "packagePeers": [\
-          "@types/postcss",\
-          "postcss"\
-        ],\
-        "linkType": "HARD"\
       }]\
     ]],\
     ["postcss-load-config", [\
@@ -18676,29 +18590,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["react-icons", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:4.12.0"],\
           ["@types/react", "npm:18.2.43"],\
-          ["react", "npm:18.2.0"]\
-        ],\
-        "packagePeers": [\
-          "@types/react",\
-          "react"\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["react-iframe", [\
-      ["npm:1.8.5", {\
-        "packageLocation": "../../Users/woota/AppData/Local/Yarn/Berry/cache/react-iframe-npm-1.8.5-d7ea2e0c6b-10c0.zip/node_modules/react-iframe/",\
-        "packageDependencies": [\
-          ["react-iframe", "npm:1.8.5"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.8.5", {\
-        "packageLocation": "./.yarn/__virtual__/react-iframe-virtual-1254872d52/3/Users/woota/AppData/Local/Yarn/Berry/cache/react-iframe-npm-1.8.5-d7ea2e0c6b-10c0.zip/node_modules/react-iframe/",\
-        "packageDependencies": [\
-          ["react-iframe", "virtual:421c1f525a7a9f0cf5468dc0ca535578d9e1b6f0397844679bd7fc84f1ba9bbdcc7dd442d3e36b976cb98ad2824f8712f68096810e723695097624a5b20900f9#npm:1.8.5"],\
-          ["@types/react", "npm:18.2.43"],\
-          ["object-assign", "npm:4.1.1"],\
           ["react", "npm:18.2.0"]\
         ],\
         "packagePeers": [\

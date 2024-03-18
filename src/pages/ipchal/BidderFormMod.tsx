@@ -277,7 +277,7 @@ export default function BidderFormMod2() {
         const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/bidders/${stepNum}`, {
           address: biddingForm?.bidAddr[stepNum - 1],
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
-          job: biddingForm.agentYn === 'Y' ? biddingForm?.bidJob[stepNum - 1] : null,
+          job: biddingForm.bidJob[stepNum - 1] ?? '',
           name: biddingForm?.bidName[stepNum - 1],
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
@@ -290,7 +290,7 @@ export default function BidderFormMod2() {
           bidderType: biddingForm?.bidCorpYn[stepNum - 1],
           companyNo: biddingForm?.bidCorpNum[stepNum - 1],
           corporationNo: biddingForm?.bidCorpRegiNum[stepNum - 1],
-          job: biddingForm.agentYn === 'Y' ? biddingForm?.bidJob[stepNum - 1] : null,
+          job: biddingForm.bidJob[stepNum - 1] ?? '',
           name: biddingForm?.bidName[stepNum - 1],
           phoneNo: biddingForm?.bidPhone[stepNum - 1],
         })
@@ -314,7 +314,7 @@ export default function BidderFormMod2() {
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
             address: biddingForm.bidAddr[stepNum - 1],
-            job: biddingForm.bidJob[stepNum - 1] == "" ? null : biddingForm.bidJob[stepNum - 1],
+            job: biddingForm.bidJob[stepNum - 1] ?? '',
           },
           {
             headers: {
@@ -334,7 +334,7 @@ export default function BidderFormMod2() {
             name: biddingForm.bidName[stepNum - 1],
             phoneNo: biddingForm.bidPhone[stepNum - 1],
             address: biddingForm.bidAddr[stepNum - 1],
-            job: biddingForm.bidJob[stepNum - 1] == "" ? null : biddingForm.bidJob[stepNum - 1],
+            job: biddingForm.bidJob[stepNum - 1] ?? '',
             companyNo: biddingForm.bidCorpNum[stepNum - 1],
             corporationNo: biddingForm.bidCorpRegiNum[stepNum - 1],
           },
@@ -1125,45 +1125,13 @@ export default function BidderFormMod2() {
                 {biddingForm.agentYn === 'Y' && (
                   <div className="flex flex-col w-[100%] gap-1">
                     <div className='flex justify-between w-[100%]'>
-                    {errors.bidderJob?.type === 'required' && 
-                      (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.bidJob[stepNum - 1] === undefined) ?
-                      (
-                        <div className="flex w-[100%] justify-start">
-                          <label
-                            htmlFor="agentJob"
-                            className="md:text-[20px] text-[12px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500"
-                          >
-                            {errors.bidderJob?.message}
-                          </label>
-                        </div>
-                      ) : (errors.bidderJob?.type === "maxLength") ? (
-                        <div className="flex w-[100%] justify-start">
-                          <label
-                            htmlFor="agentJob"
-                            className="md:text-[20px] text-[12px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500"
-                          >
-                            {errors.bidderJob?.message}
-                          </label>
-                        </div>
-                      ) : (
-                        <div className='flex flex-row justify-start w-[100%]'>
-                          <label htmlFor="bidderJob" className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left">
-                            직업
-                          </label>
-                          <span className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500">
-                            *
-                          </span>
-                        </div>
-                      )}
+                      <div className='flex flex-row justify-start w-[100%]'>
+                        <label htmlFor="bidderJob" className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left">
+                          직업
+                        </label>
+                      </div>
                     </div>
                     <input
-                      {...register('bidderJob', {
-                      required: '직업을 입력해주세요',
-                      maxLength: {
-                        value: 10,
-                        message: '10글자 이하로 입력해주세요',
-                      }
-                      })}
                       value={biddingForm.bidJob[stepNum - 1] || ''}
                       id="bidderJob"
                       maxLength={10}
@@ -1177,7 +1145,6 @@ export default function BidderFormMod2() {
                           temp[stepNum - 1] = e.target.value
                           return { ...prev, bidJob: temp }
                         })
-                        handleInputChange(e)
                       }}
                     />
                   </div>

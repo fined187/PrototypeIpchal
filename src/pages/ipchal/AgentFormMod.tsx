@@ -1,11 +1,12 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import { handleVerifyIdNum, handleVerifyPhone } from '@/components/Validation'
+import useAgent from '@/components/hooks/useAgent'
 import AgentFormProps from '@/components/shared/AgentFormProps'
 import { AgentInfoType } from '@/model/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 
@@ -13,8 +14,6 @@ export default function AgentForm() {
 
   const [biddingForm, setBiddingForm] = useRecoilState(biddingInfoState)
   const [stateNum, setStateNum] = useRecoilState(stepState)
-  const [loading, setLoading] = useState<boolean>(false)
-  const [agentList, setAgentList] = useState<AgentInfoType[]>([])
   const { isOpen, onClose, onOpen } = useDisclosure() 
   const [agentInfo, setAgentInfo] = useState<AgentInfoType>({
     agentName: '',
@@ -45,6 +44,9 @@ export default function AgentForm() {
     formState: { errors },
   } = useForm<AgentInfoType>()
 
+  const { data, isLoading } = useAgent(biddingForm.mstSeq, biddingForm.agentIdNum)
+
+  console.log(data)
   const handleAgentUpdate = async () => {
     try {
       const response = await axios.put(
@@ -54,7 +56,7 @@ export default function AgentForm() {
           relationship: biddingForm.agentRel,
           phoneNo: biddingForm.agentPhone,
           address: biddingForm.agentAddr,
-          job: biddingForm.agentJob,
+          job: biddingForm.agentJob ?? '',
         },
         {
           headers: {
@@ -94,34 +96,18 @@ export default function AgentForm() {
     }
   }
 
-  useEffect(() => {
-    const handleGetAgentForm = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/agents`,
-        )
-        if (response.status === 200) {
-          setAgentList(response.data.data)
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    handleGetAgentForm()
-  }, [])
-
   const handleInputChange = (e: any) => {
     const { name, value } = e.target
     setValue(name, value, { shouldValidate: true })
   }
 
   const handlePrevBtn = () => {
-    setStateNum(stateNum - 1)
+    setStateNum(4)
   }
 
   return (
-    <div className="flex w-screen h-screen bg-mybg justify-center relative">
-      {loading ? (<Spinner />) : (
+    <div className="flex w-screen h-screen bg-mybg justify-center items-center relative">
+      {isLoading ? (<Spinner />) : (
         <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative">
           <div className="flex flex-col md:gap-[14px] gap-[5px] justify-center items-center pt-[50px]">
             <span className="md:text-[32.5px] text-[20px] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic">
@@ -140,7 +126,6 @@ export default function AgentForm() {
               </span>
             </div>
           </div>
-
           {/* 입력정보 */}
           <AgentFormProps 
             register={register}

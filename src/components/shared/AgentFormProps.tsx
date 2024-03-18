@@ -424,50 +424,16 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
         <div className={`flex flex-col w-[100%] h-[250px] gap-1 relative `}>
           <div className="flex flex-col w-[100%] gap-1">
             <div className='flex justify-between w-[100%]'>
-              {errors.agentJob?.type === 'required' && 
-              (biddingForm.agentJob === '') ?
-              (
-                <div className="flex w-[100%] justify-start">
-                  <label
-                    htmlFor="agentJob"
-                    className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                  >
-                    {errors.agentJob?.message}
-                  </label>
-                </div>
-              ) : 
-              errors.agentJob?.type === 'maxLength' && (biddingForm.agentJob.length > 10) ? (
-                <div className="flex w-[100%] justify-start">
-                  <label
-                    htmlFor="agentJob"
-                    className="md:text-[20px] text-[12px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                  >
-                    {errors.agentJob?.message}
-                  </label>
-                </div>
-              ) : 
-              (
-                <div className='flex w-[100%] justify-start'>
-                  <label
-                    htmlFor="agentJob"
-                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]"
-                  >
-                    직업
-                  </label>
-                  <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
-                    *
-                  </span>
-                </div>
-              )}
+              <div className='flex w-[100%] justify-start'>
+                <label
+                  htmlFor="agentJob"
+                  className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]"
+                >
+                  직업
+                </label>
+              </div>
             </div>
             <input
-              {...register('agentJob', {
-                required: '직업을 입력해주세요',
-                maxLength: {
-                  value: 10,
-                  message: '10글자 이하로 입력해주세요',
-                }
-              })}
               id='agentJob'
               value={biddingForm.agentJob || ''}
               maxLength={10}
@@ -481,7 +447,6 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
                 setBiddingForm((prev: any) => {
                   return { ...prev, agentJob: e.target.value }
                 })
-                handleInputChange(e)
               }}
             />
           </div>

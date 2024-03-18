@@ -60,7 +60,7 @@ export default function AgentForm() {
           relationship: biddingForm.agentRel,
           phoneNo: biddingForm.agentPhone,
           address: biddingForm.agentAddr,
-          job: biddingForm.agentJob,
+          job: biddingForm.agentJob ?? '',
         },
         {
           headers: {

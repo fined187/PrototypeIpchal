@@ -36,7 +36,7 @@ export default function SingleIpchalResult({ totalResult }: { totalResult: Total
                 </span>
               </div>
               <div className="justify-center items-center text-center absolute top-[20%] w-[100%]">
-                <span className="md:text-[15pt] text-[15px] tracking-[20pt] leading-[23px] font-bold font-batang">
+                <span className="md:text-[2rem] text-[15px] tracking-[20pt] leading-[23px] font-bold font-['batang']">
                   기일입찰표
                 </span>
               </div>
