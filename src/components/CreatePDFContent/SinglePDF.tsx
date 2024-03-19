@@ -248,18 +248,18 @@ export default function SinglePDF({ totalResult, handlePrice, handleDepositPrice
           {/* 네 번째 박스 */}
           <div className="flex flex-row justify-between items-stretch w-[100%] border-black border-b-[1px] h-[15%]">
             <div className="w-[5%] border-black border-r-[1px] h-[100%] justify-center items-center text-center">
-              <span className="md:text-[12pt] text-[6pt] font-batang">
+              <span className="text-[12pt]  font-['batang']">
                 입찰
                 <br />
                 가격
               </span>
             </div>
             <div className="w-[3.46%] h-[100%]">
-              <div className="h-[50%] border-black border-r-[1px] leading-[70%] border-b-[1px] text-center">
-                <span className="md:text-[11pt] text-[10px] font-batang">천억</span>
+              <div className="h-[45%] border-black border-r-[1px] leading-[70%] border-b-[1px] text-center w-[100%]">
+                <span className="text-[11pt]  font-['batang']">천억</span>
               </div>
               <div className="flex justify-center items-center w-[100%] h-[55%] border-black border-[2px]">
-                <span className="md:text-[11pt] text-[10px] font-batang">
+                <span className="text-[11pt]  font-['batang']">
                   {totalResult &&
                     handlePrice && handlePrice(
                     totalResult?.bidPrice?.toString().length,
@@ -291,7 +291,7 @@ export default function SinglePDF({ totalResult, handlePrice, handleDepositPrice
               </div>
             </div>
             <div className="w-[3.46%] h-[100%]">
-              <div className="h-[45%] border-black border-r-[1px] border-b-[1px]  leading-[70%] text-center">
+              <div className="h-[45%] border-black border-r-[1px] tracking-wide border-b-[1px]  leading-[70%] text-center">
                 <span className="text-[11pt]  font-['batang']">십억</span>
               </div>
               <div className="flex justify-center items-center h-[55%] border-black border-[2px]">
@@ -489,7 +489,7 @@ export default function SinglePDF({ totalResult, handlePrice, handleDepositPrice
               </div>
             </div>
             <div className="w-[3.46%] h-[100%]">
-              <div className="h-[100%] w-[100%] border-black border-r-[2px] justify-center items-center text-center">
+              <div className="h-[100%] w-[100%] border-black border-r-[2px] text-center justify-center items-center">
                 <div className="h-[50%]">
                   <span className="text-[12pt]  font-['batang']">
                     <br />
@@ -497,7 +497,7 @@ export default function SinglePDF({ totalResult, handlePrice, handleDepositPrice
                 </div>
                 <div className="">
                   <span className="text-[12pt]  font-['batang']">
-                    원
+                    &nbsp;원
                   </span>
                 </div>
               </div>
@@ -739,7 +739,7 @@ export default function SinglePDF({ totalResult, handlePrice, handleDepositPrice
               </div>
             </div>
             <div className="w-[3.46%] h-[100%]">
-              <div className="h-[100%] w-[100%] border-black justify-center items-center text-center">
+              <div className="h-[100%] w-[100%] border-black text-center justify-center items-center">
                 <div className="h-[50%]">
                   <span className="text-[12pt]  font-['batang']">
                     <br />
@@ -747,7 +747,7 @@ export default function SinglePDF({ totalResult, handlePrice, handleDepositPrice
                 </div>
                 <div className="">
                   <span className="text-[12pt]  font-['batang']">
-                    원
+                    &nbsp;원
                   </span>
                 </div>
               </div>

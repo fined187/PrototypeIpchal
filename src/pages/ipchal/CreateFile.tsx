@@ -84,39 +84,64 @@ export default function CreateFile() {
     }
   }
 
+  const handleUpload = async (file: File, password: string) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('filePassword ', password)
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}/upload`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        },
+      )
+      if (response.status === 200) {
+        console.log(response.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const handleGeneratePDF = async () => { 
     if (window) {
       const captureDiv = document && document.getElementById('capture') as HTMLElement
       captureDiv && captureDiv.style.display === 'none' ? captureDiv.style.display = 'block' : captureDiv.style.display = 'none'
-      const responese = await axios
-      .post( 
-        `${process.env.NEXT_PUBLIC_SERVER_URL}download`,
-        {
+      const response = await fetch(`https://210.16.195.57:3000/api/generatePDF`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           html: `${htmlElement}`,
           mstSeq: biddingInfo.mstSeq,
           password: password,
           name: fileName.replace(" ", ""),
           pageNum: pageNum,
           userIdYn: biddingInfo.aesUserId ? 'Y' : 'N',
-        },
-        {
-          responseType: "blob", // important
-        }
-      )
-      .then((data) => {
-        const file = new Blob([data.data], { type: "application/pdf" });
+        }),
+      })
+      if (response.ok) {
+        const data = await response.blob();
+        const file = new Blob([data], { type: "application/pdf" });
         setBlobFile(new File([file], `${fileName}.pdf`, { type: "application/pdf" }));
         setBiddingInfo({
           ...biddingInfo,
           isFileCreated: true,
-          pdfFile: file,
+          pdfFile: file, 
         });
-        handleDownload(file)
-      });
+        if (biddingInfo.aesUserId) {
+          await handleUpload(new File([file], `${fileName}.pdf`, { type: "application/pdf" }), password)
+        }
+        await handleDownload(file)
+      }
       captureDiv && captureDiv.style.display === 'block' ? captureDiv.style.display = 'none' : captureDiv.style.display = 'none'
     }
   }
-
+  
   const handleDownload = (file: Blob) => {
     if (biddingInfo.pdfFile) {
         const url = window.URL.createObjectURL(file);

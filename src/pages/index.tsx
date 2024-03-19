@@ -174,7 +174,7 @@ export default function Home() {
       setStateNum(0)
     }
   }
-  const handleCheck = async (idcode: string) => {
+  const handleCheck = async (idcode: string, userId: string) => {
     setLoading(true)
     try {
         const response = await axios.post(
@@ -214,6 +214,7 @@ export default function Home() {
             idcode: idcode as string,
             courtFullName: response.data.data.courtFullName,
             reqCourtName: response.data.data.reqCourtName,
+            aesUserId: userId ?? "",
           })
           setLoading(false)
         }
@@ -229,7 +230,7 @@ export default function Home() {
     const { userId } = router.query
     const handleStart = async () => {
       if (idcode) {
-        await handleCheck(idcode as string)
+        await handleCheck(idcode as string, userId as string)
       }
       if (mstSeq) {
         await handleGetIpchalInfo(mstSeq as string, userId as string)

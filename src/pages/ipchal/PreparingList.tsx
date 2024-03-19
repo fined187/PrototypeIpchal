@@ -175,22 +175,20 @@ export default function PreparingList() {
                 </span>
                 <div className="flex flex-col w-[100%]">
                   {list.bottomBox.map((item: string, index: number) => (
-                    <>
-                      <li key={index} style={{
-                        listStyle: 'none',
-                        justifyContent: 'space-between',
-                        width: '100%',
-                        display: 'flex',
-                        alignItems: 'start'
-                      }}>
-                        <span className="md:text-[20px] leading-[135%] tracking-[-1%] text-[16px] font-['suit'] text-black font-normal text-left">
-                          {item}
-                        </span>
-                        <span className="md:text-[20px] leading-[135%] tracking-[-1%] text-[16px] font-['suit'] text-black font-normal text-left">
-                          {index === 0 ? biddingInfo.depositPrice.toLocaleString('ko-KR') + '원' : '1부'}
-                        </span>
-                      </li>
-                    </>
+                    <li key={index} style={{
+                      listStyle: 'none',
+                      justifyContent: 'space-between',
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'start'
+                    }}>
+                      <span className="md:text-[20px] leading-[135%] tracking-[-1%] text-[16px] font-['suit'] text-black font-normal text-left">
+                        {item}
+                      </span>
+                      <span className="md:text-[20px] leading-[135%] tracking-[-1%] text-[16px] font-['suit'] text-black font-normal text-left">
+                        {index === 0 ? biddingInfo.depositPrice.toLocaleString('ko-KR') + '원' : '1부'}
+                      </span>
+                    </li>
                   )) 
                   }
                 </div>

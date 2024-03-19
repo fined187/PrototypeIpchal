@@ -857,7 +857,6 @@ export default function BidderFormMod2() {
                       <span className="flex text-mygray font-['suit'] font-bold mt-1">
                         -
                       </span>
-                      <div className='relative w-[45%] h-[40px]'>
                         <input
                           {...register('bidderIdNum2', { required: true, maxLength: 7})}
                           id="bidderIdNum2"
@@ -870,7 +869,7 @@ export default function BidderFormMod2() {
                           }}
                           type={`${!passwordActive ? 'password' : 'text'}`}
                           maxLength={7}
-                          className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[100%] text-center"
+                          className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[150%] tracking-[-1%] font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
                           value={biddingForm.bidIdNum2[stepNum - 1] ?? ''}
                           onChange={(e) => {
                             setBiddingForm((prev: any) => {
@@ -888,7 +887,7 @@ export default function BidderFormMod2() {
                             handleInputChange(e)
                           }}
                         />
-                        <div className="flex justify-center items-center w-[10%] h-[40px] cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2"
+                        <div className="flex items-center absolute rigth-0 top-[10px] md:left-[95%] left-[93%] md:w-[10%] w-[15%] cursor-pointer"
                           onClick={() => setPasswordActive(!passwordActive)}
                           style={{
                             zIndex:10
@@ -902,7 +901,6 @@ export default function BidderFormMod2() {
                         </div>
                       </div>
                     </div>
-                  </div>
                 </>
                 ) : (
                   <>
