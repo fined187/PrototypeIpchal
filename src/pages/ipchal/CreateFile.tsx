@@ -338,8 +338,11 @@ export default function CreateFile() {
         </div>
       )}
       {loading && (
-        <div className="flex justify-center items-center w-[100%] mx-auto bg-mybg h-screen">
+        <div className="flex flex-col justify-center items-center w-[100%] mx-auto bg-mybg h-screen">
           <Spinner />
+          <span className="font-['suit'] md:text-[20px] text-[16px] font-semibold">
+            파일을 생성중입니다. 잠시만 기다려주세요.
+          </span>
         </div>
       )}
       <div className='hidden flex-col' id='capture'>
