@@ -127,13 +127,13 @@ export default function AgentCheck() {
               
               }}
             >
-              <div className="flex flex-col w-[100%] justify-center items-start ml-[20px] ">
-                <span className="md:text-[17px] text-[0.8rem] leading-[135%] tracking-[0px] font-medium font-['suit']" style={{
+              <div className="flex flex-col w-[50%] justify-center items-start ml-[20px] ">
+                <span className="md:text-[17px] text-[15px] leading-[135%] tracking-[0px] font-medium font-['suit']" style={{
                   color: "#545492"
                 }}>
                   {"#" + (index + 1)}
                 </span>
-                <span className="md:text-[20px] text-[1rem] leading-[140%] tracking-[-1%] font-['suit'] font-normal">
+                <span className="md:text-[20px] text-[16px] leading-[140%] tracking-[-1%] font-['suit'] font-normal overflow-hidden overflow-ellipsis whitespace-nowrap w-[100%] text-left">
                   {name + (biddingInfo.bidCorpYn[index] === 'I' ? ' (개인)' : ' (법인)')}
                 </span>
               </div>
