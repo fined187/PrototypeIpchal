@@ -23,7 +23,16 @@ export default function CreateFile() {
   const [blobFile, setBlobFile] = useState<File | null>(null)
   const [getHeight, setGetHeight] = useState<number>(0)
   const [pageNum, setPageNum] = useState<number>(2)
-  
+  const [width, setWidth] = useState(window && window.innerWidth)
+  const isMobile = width < 768
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window && window.innerWidth)
+    window && window.addEventListener('resize', handleResize)
+    return () => {
+      window && window.removeEventListener('resize', handleResize)
+    }
+  }, [])
   
   const date = new Date()
   
@@ -136,31 +145,30 @@ export default function CreateFile() {
         if (biddingInfo.aesUserId) {
           await handleUpload(new File([file], `${fileName}.pdf`, { type: "application/pdf" }), password)
         }
-        await handleDownload(file)
+        if (isMobile) {
+          await handleDownloadMobile(file)
+        } else {
+          await handleDownload(file)
+        }
       }
       captureDiv && captureDiv.style.display === 'block' ? captureDiv.style.display = 'none' : captureDiv.style.display = 'none'
     }
   }
   
   const handleDownload = (file: Blob) => {
-    if (biddingInfo.pdfFile) {
-        const url = window.URL.createObjectURL(file);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `${fileName.replace(" ", "")}.pdf`;
-        a.click();
-        window.URL.revokeObjectURL(url);
-    }
+    if (!isMobile) {
+      const url = window.URL.createObjectURL(file);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${fileName.replace(" ", "")}.pdf`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } 
+    
   }
 
-  const handleDownload2 = (file: Blob) => {
-    if (biddingInfo.pdfFile) {
-      if (window) {
-      const url = window.URL.createObjectURL(file);
-      window.open(url, "_blank");
-      window.URL.revokeObjectURL(url);
-      }
-    }
+  const handleDownloadMobile = (file: Blob) => {
+    window && window.open(URL.createObjectURL(file), "_blank");
   }
 
   useEffect(() => {
@@ -334,7 +342,7 @@ export default function CreateFile() {
           <Spinner />
         </div>
       )}
-      <div className='flex flex-col' id='capture'>
+      <div className='hidden flex-col' id='capture'>
         {totalResult && (
           <CoverPage totalResult={totalResult} />)}
         {totalResult && totalResult.bidders.length > 1 && (

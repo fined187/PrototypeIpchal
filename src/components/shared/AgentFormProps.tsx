@@ -67,26 +67,16 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
                   </label>
                 </div>
               ) : 
-              (errors.agentName?.type == "maxLength") && (biddingForm.agentName.length > 10) ? (
-                <div className="flex w-[100%] justify-start">
-                  <label
-                    htmlFor="bidderName"
-                    className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                  >
-                    {errors.agentName?.message}
-                  </label>
+              (
+                <div className='flex flex-row'>
+                  <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
+                    성명
+                  </span>
+                  <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
+                    *
+                  </span>
                 </div>
-              ) :
-            (
-              <div className='flex flex-row'>
-                <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
-                  성명
-                </span>
-                <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
-                  *
-                </span>
-              </div>
-            )}
+              )}
             </div>
             <input
               {...register('agentName', {
@@ -95,10 +85,6 @@ export default function AgentFormProps({ setValue, handleSubmit, onSubmit, error
                   value: 2,
                   message: '2글자 이상 입력해주세요',
                 },
-                maxLength: {
-                  value: 10,
-                  message: '10글자 이하로 입력해주세요',
-                }
               })}
               id='agentName'
               maxLength={10}

@@ -1,9 +1,10 @@
-// import { UseFormHandleSubmit } from "react-hook-form"
+import { BiddingInfoType } from "@/model/IpchalType"
+import { UseFormHandleSubmit } from "react-hook-form"
 
-// interface Props {
-//   handleSubmit: UseFormHandleSubmit<Bidde>
-//   onSubmit: (stepNum: number) => void
-// }
+interface Props {
+  handleSubmit: UseFormHandleSubmit<BiddingInfoType>
+  onSubmit: (stepNum: number) => void
+}
 
 // export default function BidderFormProps() {
 //   return (

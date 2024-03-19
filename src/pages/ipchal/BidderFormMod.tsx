@@ -616,27 +616,23 @@ export default function BidderFormMod2() {
                         {errors.bidderName?.message}
                       </label>
                     </div>
-                  ) : 
-                  (errors.bidderName?.type == "maxLength") && (biddingForm.bidName[stepNum - 1].length > 10) ? (
-                    <div className="flex w-[100%] justify-start">
-                      <label
-                        htmlFor="bidderName"
-                        className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500"
-                      >
-                        {errors.bidderName?.message}
-                      </label>
-                    </div>
                   ) :
-                (
-                  <div className='flex flex-row'>
-                    <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
-                      성명
-                    </span>
-                    <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
-                      *
-                    </span>
-                  </div>
-                )}
+                  (
+                    <div className='flex flex-row'>
+                      {biddingForm.bidCorpYn[stepNum - 1] === 'I' ? (
+                        <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
+                          성명
+                        </span>
+                      ) : (
+                        <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%]">
+                          법인명
+                        </span>
+                      )}
+                      <span className="md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left leading-[135%] tracking-[-2%] text-red-500">
+                        *
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <input
                   {...register("bidderName", {
@@ -644,18 +640,13 @@ export default function BidderFormMod2() {
                     minLength: {
                       value: 2,
                       message: '2글자 이상 입력해주세요',
-                    },
-                    maxLength: {
-                      value: 10,
-                      message: '10글자 이하로 입력해주세요',
                     }
                   })}
-                  maxLength={10}
                   value={biddingForm.bidName[stepNum - 1] || ''}
                   id="bidderName"
                   type="text"
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold font-['suit'] not-italic text-left h-[40px] px-2 leading-[135%] tracking-[-2%]"
-                  placeholder="입찰자 성명을 입력해주세요"
+                  placeholder={`${biddingForm.bidCorpYn[stepNum - 1] === 'I' ? '성명' : '법인명'}을 입력해주세요`}
                   onChange={(e) => {
                     setBiddingForm((prev: any) => {
                       const temp = prev.bidName

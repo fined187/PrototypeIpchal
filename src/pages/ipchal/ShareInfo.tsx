@@ -272,13 +272,13 @@ export default function ShareInfo() {
         {(isDataIn && isDataIn.length > 0) && biddingInfo.bidName.map((name, index) => {
             return (
             <div key={index} className="flex flex-row gap-[25%] w-[100%] h-[100px] bg-white border border-black rounded-lg relative">
-              <div className="flex flex-col w-[30%] justify-center items-start ml-5">
+              <div className="flex flex-col w-[40%] justify-center items-start ml-5">
                 <span className="md:text-[17px] text-[15px] font-['suit'] leading-[135%] tracking-[0px] font-normal" style={{
                     color: "#545492"
                   }}>
                   {"#" + (index + 1)}
                 </span>
-                <span className="md:text-[20px] text-[16px] font-['suit'] leading-[140%] tracking-[-1%] font-normal overflow-hidden overflow-ellipsis whitespace-nowrap">
+                <span className="md:text-[20px] text-[16px] font-['suit'] leading-[140%] tracking-[-1%] font-normal overflow-hidden overflow-ellipsis whitespace-nowrap w-[100%]">
                   {name + (biddingInfo.bidCorpYn[index] === 'I' ? ' (개인)' : ' (법인)')}
                 </span>
               </div>
@@ -299,7 +299,7 @@ export default function ShareInfo() {
                   type="text"
                   readOnly
                   value={biddingInfo.bidderNum}
-                  className="rounded-md md:text-[20px] text-[15px] font-['suit'] leading-[140%] tracking-[0px] not-italic font-normal text-center text-sutTitle w-[20px] bg-white border-none focus:border-transparent focus:outline-none overflow-hidden text-ellipsis"
+                  className="rounded-md md:text-[20px] text-[15px] font-['suit'] leading-[140%] tracking-[0px] not-italic font-normal text-center text-sutTitle w-[20px] bg-white border-none focus:border-transparent focus:outline-none"
                 />
                 </>
               ) : (
@@ -329,12 +329,6 @@ export default function ShareInfo() {
                     numerator: temp.map((item: any) => item.share?.split('/')[0]),
                   })
                   }}
-                  onFocus={(e) => {
-                  e.target.style.border = 'none';
-                  }}
-                  onBlur={(e) => {
-                  e.target.style.border = '2px solid';
-                  }}
                 />
                 <span className='md:mt-2 mt-1'>/</span>
                 <input
@@ -343,7 +337,7 @@ export default function ShareInfo() {
                   type="text"
                   inputMode='numeric'
                   value={100}
-                  className={`rounded-md md:text-[20px] text-[16px] font-['suit'] leading-[150%] tracking-[-1%] p-[10px] text-center md:h-[40px] md:w-[80px] w-[60px] h-[30px] border-[1px] border-sutTitle`}
+                  className={`rounded-md md:text-[20px] text-[16px] font-['suit'] leading-[150%] tracking-[-1%] p-[10px] text-center md:h-[40px] md:w-[80px] w-[60px] h-[30px] border border-sutTitle`}
                   onChange={(e) => {
                   let temp = [...shareList.shareList]
                   temp[index] = {
@@ -355,12 +349,6 @@ export default function ShareInfo() {
                     shareList: temp,
                   })
                   }}
-                  onFocus={(e) => {
-                  e.target.style.border = 'none';
-                  }}
-                  onBlur={(e) => {
-                  e.target.style.border = '2px solid';
-                  }}
                 />
                 </>
               )}
@@ -371,7 +359,7 @@ export default function ShareInfo() {
         {(biddingInfo.shareWay === 'N' && goNext) ? (
           <div className='flex w-[100%] flex-row-reverse'>
             <span className="md:text-[18px] text-[0.8rem] font-['suit'] font-light leading-[135%] tracking-[-1%] text-red-500 text-right">
-              입력하신 지분 값을 다시 확인해주세요
+              지분의 합은 100이어야 합니다
             </span>
           </div>
         ) : (biddingInfo.shareWay === 'N' && !goNext) ? (

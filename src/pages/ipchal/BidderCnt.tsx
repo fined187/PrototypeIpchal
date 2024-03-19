@@ -65,13 +65,13 @@ export default function BidderCnt() {
       setTimeout(() => {
         setLoading(false)
         setStateNum(16)
-      }, 1000)
+      }, 2000)
     } else {
       handleBiddingCnt(e)
       setTimeout(() => {
         setLoading(false)
         setStateNum(stateNum + 1)
-      }, 1500)
+      }, 2000)
     }
   }
 

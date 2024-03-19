@@ -83,10 +83,10 @@ export default function AgentForm() {
   }
 
   const onSubmit: SubmitHandler<any> = async () => {
-    if (handleVerifyIdNum(agentInfo.agentIdNum1 + agentInfo.agentIdNum2) === false) {
-      alert('주민등록번호를 확인해주세요')
-      return
-    }
+    // if (handleVerifyIdNum(agentInfo.agentIdNum1 + agentInfo.agentIdNum2) === false) {
+    //   alert('주민등록번호를 확인해주세요')
+    //   return
+    // }
     if (handleVerifyPhone(biddingForm.agentPhone1 + biddingForm.agentPhone2 + biddingForm.agentPhone3) === false) {
       alert('전화번호를 확인해주세요')
       return

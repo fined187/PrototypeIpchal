@@ -218,9 +218,9 @@ export default function SearchIpchal() {
           <>
             <div className="flex flex-col justify-start items-center md:w-[550px] w-[90%] md:h-[500px] h-[400px] overflow-y-auto gap-[10px] mt-[50px]">
               {getData?.map((data: any, index: number) => (
-                <div className="flex flex-col md:w-[500px] w-[90%] bg-white md:h-[110px] h-[145px] items-center rounded-lg md:p-[15px] p-[10px] cursor-pointer relative" key={index}>
+                <div className="flex flex-col md:w-[500px] w-[90%] bg-white md:h-[110px] h-[170px] items-center rounded-lg md:p-[15px] p-[10px] cursor-pointer relative" key={index}>
                   <div className={`w-[100%] h-[100%] flex flex-col`} onClick={() => {handleSearchResult(data.infoId, data.caseNo, data.mulSeq)}}>
-                    <div className="flex flex-row w-[100%]">
+                    <div className="flex flex-row w-[100%] gap-[0px]">
                       <span className="md:text-[18px] text-[15px] font-['suit'] font-bold text-myOrange text-left leading-[135%] tracking-[-1%]">
                         {data.reqCourtName + "계"}
                       </span>
@@ -229,12 +229,17 @@ export default function SearchIpchal() {
                       }}>
                         &nbsp;{data.caseNoString + "[" + (data.mulNo ? data.mulNo : "1") + "]" + (data.subCaseNoString ? "[" + data.subCaseNoString + "]" : '')}
                       </span>
-                      <span className="md:text-[18px] text-[15px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
+                      <span className="hidden md:flex md:text-[18px] text-[15px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
                         color: '#181826'
                       }}>
                         {data.usage}
                       </span>
                     </div>
+                    <span className="md:hidden flex md:text-[18px] text-[15px] font-['suit'] font-bold text-left leading-[135%] tracking-[-1%]" style={{
+                      color: '#181826'
+                    }}>
+                      {data.usage}
+                    </span>
                     <div className="flex justify-between w-[100%] mt-[10pt]">
                       <div className="flex flex-col md:w-[50%] w-[100%] h-[100%] justify-start items-start">
                         <div className="flex flex-row h-[22px]">

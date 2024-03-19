@@ -121,7 +121,7 @@ export default async function handler(
     doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
     heightLeft -= pageHeight;
     while (heightLeft >= 20) {
-      position = heightLeft - imgHeight + 20; // 미세조정  필요
+      position = heightLeft - imgHeight + 15; // 미세조정  필요
       doc.addPage();
       doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
