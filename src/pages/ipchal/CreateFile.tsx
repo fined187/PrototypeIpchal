@@ -23,17 +23,20 @@ export default function CreateFile() {
   const [blobFile, setBlobFile] = useState<File | null>(null)
   const [getHeight, setGetHeight] = useState<number>(0)
   const [pageNum, setPageNum] = useState<number>(2)
-  const [width, setWidth] = useState(window && window.innerWidth)
-  const isMobile = width < 768
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window && window.innerWidth)
-    window && window.addEventListener('resize', handleResize)
-    return () => {
-      window && window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+  const [width, setWidth] = useState<number>(1000)
+  const [isMobile, setIsMobile] = useState<boolean>(false)
   
+  useEffect(() => {
+    if (window) {
+      setWidth(window.innerWidth)
+      window.addEventListener('resize', () => {
+        setWidth(window.innerWidth)
+      })
+      setIsMobile(width < 768)
+    }
+  }, [width])
+
+  console.log(width, isMobile)
   const date = new Date()
   
   const handlePrice = (len: number) => {
@@ -157,18 +160,22 @@ export default function CreateFile() {
   
   const handleDownload = (file: Blob) => {
     if (!isMobile) {
-      const url = window.URL.createObjectURL(file);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${fileName.replace(" ", "")}.pdf`;
-      a.click();
-      window.URL.revokeObjectURL(url);
+      if (window) {
+        const url = window.URL.createObjectURL(file);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${fileName.replace(" ", "")}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }
     } 
     
   }
 
   const handleDownloadMobile = (file: Blob) => {
-    window && window.open(URL.createObjectURL(file), "_blank");
+    if (window) {
+      window && window.open(URL.createObjectURL(file), "_blank");
+    }
   }
 
   useEffect(() => {
