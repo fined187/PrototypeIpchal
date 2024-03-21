@@ -43,7 +43,7 @@ export default function AgentCheck() {
         }
       })
       if (response.status === 200) {
-        console.log(response.data)
+        
         return
       }
     } catch (error) {

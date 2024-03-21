@@ -100,3 +100,8 @@ export const biddingInfoState = atom({
   dangerouslyAllowMutability: true,
 })
 
+export const bidderInfoState = atom({
+  key: `bidderInfoState/${v4()}`,
+  
+  dangerouslyAllowMutability: true,
+})

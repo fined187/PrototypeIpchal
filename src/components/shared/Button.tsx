@@ -6,9 +6,10 @@ interface ButtonProps {
   prevText?: string
   bottom?: string
   hidden?: boolean
+  type?: 'button' | 'submit' | 'reset'
 }
 
-const Button = ({ isDisabled, handlePrevStep, handleNextStep, nextText, bottom, prevText, hidden }: ButtonProps) => {
+const Button = ({ isDisabled, handlePrevStep, handleNextStep, nextText, bottom, prevText, hidden, type }: ButtonProps) => {
   return (
     <div className={`flex flex-row fixed items-center md:w-[550px] w-[90%] ${bottom ? `md:bottom-[${bottom}px] bottom-[10px]` : 'md:bottom-[80px] bottom-[10px]'} gap-[10px]`} >
       <button
@@ -21,7 +22,7 @@ const Button = ({ isDisabled, handlePrevStep, handleNextStep, nextText, bottom, 
         </span>
       </button>
       <button
-        type="button"
+        type={type ?? 'button'}
         className={`flex w-[60%] md:w-[65%] h-[50px] ${isDisabled ? 'bg-disabled' : 'bg-myBlue'} rounded-full justify-center items-center cursor-pointer`}
         disabled={isDisabled}
         onClick={handleNextStep}
