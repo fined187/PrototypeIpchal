@@ -102,6 +102,52 @@ export const biddingInfoState = atom({
 
 export const bidderInfoState = atom({
   key: `bidderInfoState/${v4()}`,
-  
+  default: {
+    mstSeq: 0,
+    state: 0,
+    courtFullName: "",
+    reqCourtName: "",
+    mulNo: "",
+    caseYear: "",
+    caseDetail: "",
+    startYear: "",
+    startMonth: "",
+    startDay: "",
+    usage: "",
+    address: "",
+    etcAddress: "",
+    roadAddress: "",
+    biddingDate: "",
+    bidPrice: 0,
+    depositPrice: 0,
+    biddingInfo: {
+      biddingTime: "",
+      appraisalAmount: 0,
+      minimumAmount: 0,
+      bidDeposit: 0,
+    },
+    agentYn: "",
+    agent: {
+      name: "",
+      relationship: "",
+      phoneNo: "",
+      addressNo: "",
+      job: "",
+    },
+    bidderCount: 0,
+    bidders: [
+      {
+        peopleSeq: 0,
+        name: "",
+        phoneNo: "",
+        address: "",
+        job: "",
+        companyNo: "",
+        corporationNo: "",
+        share: "",
+        mandateYn: "",
+      }
+    ]
+    },
   dangerouslyAllowMutability: true,
 })
