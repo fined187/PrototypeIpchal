@@ -278,30 +278,10 @@ export default function BiddingPrice() {
       setStateNum(16)
     }
   }
-
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
-      }
-    }
-  }
-
-  useEffect(() => {
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
-  }, [])
   
   return (
     <>
-      <div className="flex w-[100%] bg-mybg justify-center relative" style={{
-        height: '100%',
-      }}>
+      <div className="flex w-[100%] h-[100%] bg-mybg justify-center relative">
         <div className="flex flex-col md:gap-[14px] gap-[5px] w-[100%] h-[100vh] bg-mybg items-center text-center relative pt-[50px]">
           {loading && (
               <Spinner />

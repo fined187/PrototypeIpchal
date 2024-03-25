@@ -60,9 +60,9 @@ export default function IpchalResult() {
   }, [])
   
   return (
-    <>
+    <div className='flex flex-col w-[100%] h-[100%] bg-mybg justify-center relative'>
       {loading && (
-        <div className="flex flex-col bg-white h-screen w-[100%] relative justify-center items-center">
+        <div className="flex flex-col bg-white h-[100%] w-[100%] relative justify-center items-center">
           <LoadingResult />
         </div>
       )}
@@ -89,6 +89,6 @@ export default function IpchalResult() {
           bottom='10px'
         />
       </div>
-    </>
+    </div>
   )
 }

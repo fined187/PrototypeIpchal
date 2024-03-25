@@ -69,7 +69,7 @@ export default function CoIpchalResult() {
       <>
         <div className="flex flex-col bg-mybg max-h-[2600px] h-[1300px] w-[100%] mx-auto relative justify-center items-center">
           <div className="flex flex-col bg-mybg h-[100%] w-[90%] md:w-[850px] mx-auto relative justify-center items-center">
-            <div className="w-[100%] overflow-x-scroll absolute top-[100px] h-[600px] bg-mybg scrollbar-hide">
+            <div className="w-[100%] absolute top-[100px] h-[600px] bg-mybg">
               <div className="border border-black text-[1.5rem] md:w-[800px] w-[100%] h-[100%] m-auto bg-mybg">
                 {/* 첫 번째 박스 */}
                 <div className="flex flex-col border-black border-b-[1px] h-[15%] w-[100%] justify-center items-center relative">

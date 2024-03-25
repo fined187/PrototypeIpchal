@@ -257,7 +257,9 @@ export default function Home() {
   }, [])
 
   return (
-    <div className='flex flex-col' id='box'>
+    <div className={`flex flex-col`} id={`${stateNum === 12 ? '' : 'box'}`} style={{
+      height: stateNum === 12 ? '' : 'auto',
+    }}>
       {loading ? (
         <div className='flex justify-center items-center bg-white w-[100%] h-screen'>
           <div className='flex flex-col justify-center items-center bg-mybg w-[50%] h-[100%]'>

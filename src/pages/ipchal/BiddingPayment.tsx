@@ -39,24 +39,6 @@ export default function BiddingPayment() {
     }
   }
 
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
-      }
-    }
-  }
-
-  useEffect(() => {
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
-  }, [])
-
   const handleNextStep = () => {
     if (biddingForm.bidWay === '' || !biddingForm.bidWay) {
       setIsWaySelected(true)
@@ -68,7 +50,7 @@ export default function BiddingPayment() {
   }
 
   return (
-    <div id='box' className="flex w-[100%] bg-white justify-center relative">
+    <div className="flex w-[100%] h-[100%] bg-white justify-center relative">
       {loading && (
         <Spinner />
       )}

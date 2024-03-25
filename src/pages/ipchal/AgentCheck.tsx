@@ -61,26 +61,8 @@ export default function AgentCheck() {
     }
   }
 
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
-      }
-    }
-  }
-
-  useEffect(() => {
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
-  }, [])
-
   return (
-    <div id="box" className="flex w-[100%] bg-mybg justify-center relative">
+    <div className="flex w-[100%] h-[100%] bg-mybg justify-center relative">
       <div className="flex flex-col w-[100%] h-[100%] items-center text-center md:py-[0px] py-[25px]">
         <div className="flex flex-col relative md:w-[550px] w-[90%] pt-[50px]">
           <span className="md:text-[32.5px] text-[20px] font-bold leading-[135%] tracking-[-1%] font-['suit'] not-italic">

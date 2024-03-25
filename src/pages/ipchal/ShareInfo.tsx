@@ -184,24 +184,6 @@ export default function ShareInfo() {
     }
   }
 
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
-      }
-    }
-  }
-
-  useEffect(() => {
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
-  }, [])
-
   useEffect(() => {
     let valid = 0
     for(let i = 0; i < biddingInfo.bidderNum; i++) {
@@ -215,7 +197,7 @@ export default function ShareInfo() {
   }, [biddingInfo.numerator, biddingInfo.denominator])
 
   return (
-    <div className={`flex w-screen bg-mybg justify-center relative`}>
+    <div className="flex w-[100%] h-[100%] bg-mybg justify-center relative">
       <div className="flex flex-col w-[100%] h-[100vh] bg-mybg items-center text-center pt-[50px] gap-[25px]">
         <span className="md:text-[32.5px] text-[20px] font-bold font-['suit'] not-italic leading-[135%] tracking-[-1%]">
           입찰자의 지분을 입력해주세요

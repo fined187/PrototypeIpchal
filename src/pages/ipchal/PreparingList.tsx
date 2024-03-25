@@ -114,28 +114,10 @@ export default function PreparingList() {
   useEffect(() => {
     handlePreparingMsg()
   }, [])
-
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
-      }
-    }
-  }
-
-  useEffect(() => {
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
-  }, [])
   
   return (
     <>
-      <div id="box" className="flex flex-col justify-center w-[100%] bg-white items-center text-center relative">
+      <div className="flex flex-col justify-center w-[100%] h-[100%] bg-white items-center text-center relative">
         <div className="flex flex-col justify-center items-center w-[100%] h-[100%] bg-mybg relative">
           <div className="flex flex-col md:gap-[14px] gap-[5px] w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
             <span className="md:text-[32.5px] text-[20px] font-bold leading-[135%] tracking-[-1%] font-['suit'] not-italic">
