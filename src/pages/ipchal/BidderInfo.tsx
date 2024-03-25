@@ -1,8 +1,9 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import Button from '@/components/shared/Button'
+import Title from '@/components/shared/Title'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 export default function BidderInfo() {
@@ -14,7 +15,7 @@ export default function BidderInfo() {
   const handleDeleteAgent = async () => {
     setLoading(true)
     try {
-      const response = await axios.delete(`https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/${biddingInfo.mstSeq}/agents`)
+      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}${biddingInfo.mstSeq}/agents`)
       if (response.status === 200) {
         setBiddingInfo({
           ...biddingInfo,
@@ -62,39 +63,14 @@ export default function BidderInfo() {
     }
   }
 
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
-      }
-    }
-  }
-
-  useEffect(() => {
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
-  }, [])
-
   return (
     <>
-      <div id='box' className="flex w-[100%] bg-white justify-center relative">
+      <div className="flex w-[100%] h-[100%] bg-white justify-center relative">
         <div className="flex flex-col w-[100%] h-[100%] bg-mybg items-center text-center md:py-[0px] py-[25px]">
           {loading && (
             <Spinner />
           )}
-          <div className="flex flex-col pt-[50px] md:gap-[14px] gap-[5px]">
-            <span className="md:text-[32.5px] text-[20px] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic">
-              입찰하는 본인이 맞으신가요?
-            </span>
-            <span className="md:text-[18px] text-[16px] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
-              본인이 아닌 경우 대리인을 선택해주세요
-            </span>
-          </div>
+          <Title title="입찰하는 본인이 맞으세요?" subTitle1="본인이 아닌 경우 대리인을 선택해주세요" />
           <div className="flex flex-row md:w-[450px] w-[90%] h-[212.5px] mt-[100px] md:gap-[22.5px] gap-[10px]">
             <div
               className={`flex flex-row md:w-[212.5px] w-[180px] h-[100%] rounded-xl ${

@@ -1,5 +1,6 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
+import useInits from '@/components/hooks/useInits'
 import Button from '@/components/shared/Button'
 import axios from 'axios'
 import { useRouter } from 'next/router'
@@ -10,9 +11,19 @@ export default function GetIpchalInfo() {
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
+  const [formData, setFormData] = useState({
+    aesUserId: biddingInfo.aesUserId ?? '',
+    infoId: biddingInfo.infoId,
+    caseNo: biddingInfo.caseNo,
+    mulSeq: biddingInfo.mulSeq,
+    biddingDate: biddingInfo.biddingDate,
+    biddingTime: biddingInfo.biddingInfos[0].biddingTime,
+  })
+
   const [data, getData] = useState<any>([])
   const router = useRouter()
   const { idcode } = router.query
+  const { mutate: init } = useInits()
 
   const handleConfirm = async () => {
     setLoading(true)
@@ -23,40 +34,17 @@ export default function GetIpchalInfo() {
       }, 1000)
     } else {
       try {
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}inits`,
-          {
-            aesUserId: biddingInfo.aesUserId ?? "",
-            infoId: biddingInfo.infoId,
-            caseNo: biddingInfo.caseNo,
-            mulSeq: biddingInfo.mulSeq,
-            biddingDate: biddingInfo.biddingDate,
-            biddingTime: biddingInfo.biddingInfos[0].biddingTime,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          },
-        )
-        if (response.status === 200) {
-          setBiddingInfo({
-            ...biddingInfo,
-            mstSeq: response.data.data.mstSeq,
-            state: response.data.data.state,
-            selectedTime: biddingInfo.biddingInfos[0].biddingTime,
-          })
-          if (biddingInfo.biddingInfos.length > 1) {
-            setTimeout(() => {
-              setStateNum(stateNum + 1)
-              setLoading(false)
-            }, 1000)
-          } else {
-            setTimeout(() => {
-              setStateNum(stateNum + 2)
-              setLoading(false)
-            }, 1000)
-          }
+        init(formData)
+        if (biddingInfo.biddingInfos.length > 1) {
+          setTimeout(() => {
+            setStateNum(stateNum + 1)
+            setLoading(false)
+          }, 1000)
+        } else {
+          setTimeout(() => {
+            setStateNum(stateNum + 2)
+            setLoading(false)
+          }, 1000)
         }
       } catch (error) {
         console.log(error)
@@ -64,6 +52,7 @@ export default function GetIpchalInfo() {
       }
     }
   }
+
 
   const handlePrevStep = () => {
     if (idcode) {
@@ -92,16 +81,6 @@ export default function GetIpchalInfo() {
           setStateNum(stateNum + 2)
           setLoading(false)
         }, 1000)
-      }
-    }
-  }
-  
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
       }
     }
   }
@@ -134,16 +113,11 @@ export default function GetIpchalInfo() {
 
   useEffect(() => {
     handleGetCaseCheck()
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
   }, [])
 
   return (
     <>
-      <div id='box' className="flex w-[100%] justify-center bg-white relative">
+      <div className="flex w-[100%] h-[100%] justify-center bg-white relative">
         {loading && (
           <Spinner />
         )}
@@ -252,7 +226,7 @@ export default function GetIpchalInfo() {
             </div>
           </div>
         </div>
-        <Button nextText='다음으로' handleNextStep={handleNextStep} handlePrevStep={handlePrevStep} />
+        <Button nextText='다음으로' handleNextStep={handleNextStep} handlePrevStep={() => handlePrevStep()} />
       </div>
     </>
   )

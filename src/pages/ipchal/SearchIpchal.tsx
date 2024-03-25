@@ -14,28 +14,12 @@ export default function SearchIpchal() {
   const [getAuction, setGetAuction] = useState<string | null>(null)
   const [searchResult, setSearchResult] = useState<number>(1)
   const [getData, setGetData] = useState<SearchResultType[] | null>(null)
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
-      }
-    }
-  }
 
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleSearch(getCase, getAuction || '') // Provide a default value of an empty string if getAuction is null
     }
   }
-  useEffect(() => {
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
-  }, [])
 
   const handleSearch = async(caseNum: string, autionNum: string) => {
     setLoading(true)
@@ -153,7 +137,7 @@ export default function SearchIpchal() {
   }, [])
 
   return (
-    <div id='box' className="flex w-[100%] justify-center bg-white relative">
+    <div className="flex w-[100%] h-[100%] justify-center bg-white relative">
       {loading && (
           <Spinner />
         )}

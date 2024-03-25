@@ -1,7 +1,7 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import { handleVerifyCorpNum, handleVerifyCorpReiNum, handleVerifyIdNum, handleVerifyPhone } from '@/components/Validation'
-import useBidders from '@/components/hooks/useBidders'
+import useBidders from '@/components/form/hooks/useBidders'
 import BidderFormProps from '@/components/shared/BidderFormProps'
 import { BiddingInfoType } from '@/model/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'

@@ -4,7 +4,7 @@ import AgentFormProps from '@/components/shared/AgentFormProps'
 import { AgentInfoType } from '@/model/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRecoilState } from 'recoil'
 
@@ -54,7 +54,7 @@ export default function AgentForm() {
   const handleAgentSave = async () => {
     try {
       const response = await axios.post(
-        `https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/${biddingForm.mstSeq}/agents`,
+        `${process.env.NEXT_PUBLIC_API_URL}${biddingForm.mstSeq}/agents`,
         {
           name: biddingForm.agentName,
           relationship: biddingForm.agentRel,
@@ -100,24 +100,6 @@ export default function AgentForm() {
     }
   }
 
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
-      }
-    }
-  }
-
-  useEffect(() => {
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
-  }, [])
-
   const handleInputChange = (e: any) => {
     const { name, value } = e.target
     setValue(name, value, { shouldValidate: true })
@@ -128,7 +110,7 @@ export default function AgentForm() {
   }
 
   return (
-    <div id='box' className="flex w-screen bg-mybg justify-center relative">
+    <div className="flex w-[100%] h-[100%] bg-mybg justify-center relative">
       <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative">
         <div className="flex flex-col md:gap-[14px] gap-[5px] justify-center items-center pt-[50px]">
           <span className="md:text-[32.5px] text-[20px] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic">

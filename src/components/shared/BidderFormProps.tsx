@@ -596,45 +596,25 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
           {biddingForm.agentYn === 'Y' && (
             <div className="flex flex-col w-[100%] gap-1">
               <div className='flex justify-between w-[100%]'>
-                {errors.bidderJob?.type === 'required' && 
-                  (biddingForm.bidJob[stepNum - 1] === '' || biddingForm.bidJob[stepNum - 1] === undefined) ?
-                  (
-                    <div className="flex w-[100%] justify-start">
-                      <label
-                        htmlFor="agentJob"
-                        className="md:text-[20px] text-[12px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500"
-                      >
-                        {errors.bidderJob?.message}
-                      </label>
-                    </div>
-                  ) : (errors.bidderJob?.type === "maxLength") ? (
-                    <div className="flex w-[100%] justify-start">
-                      <label
-                        htmlFor="agentJob"
-                        className="md:text-[20px] text-[12px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500"
-                      >
-                        {errors.bidderJob?.message}
-                      </label>
-                    </div>
-                  ) : (
-                    <div className='flex flex-row justify-start w-[100%]'>
-                      <label htmlFor="bidderJob" className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left">
-                        직업
-                      </label>
-                      <span className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500">
-                        *
-                      </span>
-                    </div>
-                  )}
+                {(errors.bidderJob?.type === "maxLength") ? (
+                  <div className="flex w-[100%] justify-start">
+                    <label
+                      htmlFor="agentJob"
+                      className="md:text-[20px] text-[12px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left text-red-500"
+                    >
+                      {"직업은 10자 이내로 입력해주세요"}
+                    </label>
+                  </div>
+                ) : (
+                  <div className='flex flex-row justify-start w-[100%]'>
+                    <label htmlFor="bidderJob" className="md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic text-left">
+                      직업
+                    </label>
+                  </div>
+                )}
               </div>
               <input
-                {...register('bidderJob', {
-                  required: '직업을 입력해주세요',
-                  maxLength: {
-                    value: 10,
-                    message: '10글자 이하로 입력해주세요',
-                  }
-                })}
+                {...register('bidderJob', { maxLength: 10, required: false })}
                 value={biddingForm.bidJob[stepNum - 1] || ''}
                 type="text"
                 maxLength={10}

@@ -83,27 +83,10 @@ export default function StartIpchal() {
       }
     }
   }
-  const handleHeight = () => {
-    let height = window.innerHeight;
-    if (document && document.getElementById('box')) {
-      const boxElement = document.getElementById('box');
-      if (boxElement) {
-        boxElement.style.height = height + 'px';
-      }
-    }
-  }
-
-  useEffect(() => {
-    handleHeight()
-    window.addEventListener('resize', handleHeight)
-    return () => {
-      window.removeEventListener('resize', handleHeight)
-    }
-  }, [])
 
   return (
     <>
-      <div id='box' className={`flex w-[100%] justify-center bg-mybg relative`} >
+      <div className="flex w-[100%] h-[100%] justify-center bg-mybg relative" >
         <div className={`flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}>
           <div className='flex pt-[50px]'>
             <img

@@ -61,7 +61,7 @@ export default function TimeInfo() {
   }
 
   return (
-    <div className="flex w-[100%] md:h-screen h-[95vh] bg-mybg justify-center relative">
+    <div className="flex w-[100%] h-[100%] bg-mybg justify-center relative">
       {loading && (
         <Spinner />
       )}

@@ -225,9 +225,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const { idcode } = router.query
-    const { mstSeq } = router.query
-    const { userId } = router.query
+    const { idcode, userId, mstSeq } = router.query
     const handleStart = async () => {
       if (idcode) {
         await handleCheck(idcode as string, userId as string)
@@ -240,8 +238,26 @@ export default function Home() {
     handleStart()
   }, [router.query, bidders.state, bidders.agentYn])
 
+  const handleHeight = () => {
+    let height = window.innerHeight;
+    if (document && document.getElementById('box')) {
+      const boxElement = document.getElementById('box');
+      if (boxElement) {
+        boxElement.style.height = height + 'px';
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleHeight()
+    window.addEventListener('resize', handleHeight)
+    return () => {
+      window.removeEventListener('resize', handleHeight)
+    }
+  }, [])
+
   return (
-    <>
+    <div className='flex flex-col' id='box'>
       {loading ? (
         <div className='flex justify-center items-center bg-white w-[100%] h-screen'>
           <div className='flex flex-col justify-center items-center bg-mybg w-[50%] h-[100%]'>
@@ -271,6 +287,6 @@ export default function Home() {
           {stateNum === 19 && biddingForm.agentYn === "Y" && <AgentCheck />}
         </>
       )}
-    </>
+    </div>
   )
 }

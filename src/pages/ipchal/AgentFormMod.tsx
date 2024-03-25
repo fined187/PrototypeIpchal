@@ -1,7 +1,7 @@
 import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import { handleVerifyIdNum, handleVerifyPhone } from '@/components/Validation'
-import useAgent from '@/components/hooks/useAgent'
+import useAgent from '@/components/form/hooks/useAgent'
 import AgentFormProps from '@/components/shared/AgentFormProps'
 import { AgentInfoType } from '@/model/IpchalType'
 import { useDisclosure } from '@chakra-ui/react'
@@ -45,8 +45,6 @@ export default function AgentForm() {
   } = useForm<AgentInfoType>()
 
   const { data, isLoading } = useAgent(biddingForm.mstSeq, biddingForm.agentIdNum)
-
-  console.log(data)
   const handleAgentUpdate = async () => {
     try {
       const response = await axios.put(
@@ -106,7 +104,7 @@ export default function AgentForm() {
   }
 
   return (
-    <div className="flex w-screen h-screen bg-mybg justify-center items-center relative">
+    <div className="flex w-[100%] h-[100%] bg-mybg justify-center items-center relative">
       {isLoading ? (<Spinner />) : (
         <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative">
           <div className="flex flex-col md:gap-[14px] gap-[5px] justify-center items-center pt-[50px]">

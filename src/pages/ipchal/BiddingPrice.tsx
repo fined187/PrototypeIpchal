@@ -111,7 +111,7 @@ export default function BiddingPrice() {
   }, [])
 
   const handleCheckPrice = () => {
-    if (biddingForm.biddingPrice < paymentsInfo.minimumAmount) {
+    if ((biddingForm.biddingPrice > 0) && (biddingForm.biddingPrice < paymentsInfo.minimumAmount)) {
       alert('최저가 이상으로 입력해주세요')
       setErrorMsg(true)
       return
@@ -244,20 +244,27 @@ export default function BiddingPrice() {
   }, [])
 
   const handleNextStep = () => {
-    if (biddingForm.biddingPrice < paymentsInfo.minimumAmount) {
-      alert('최저가 이상으로 입력해주세요')
-      setErrorMsg(true)
-      return
-    } else if (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 2) {
+    if ((biddingForm.biddingPrice > 0) && (biddingForm.biddingPrice >= paymentsInfo.minimumAmount * 2)) {
       if (window.confirm('최저가의 200% 이상입니다. 다음 단계로 넘어가시겠습니까?')) {
         setErrorMsg(false)
         handleGetBiddingFormUpdate()
       } else {
         setErrorMsg(true)
+        alert('최저가 이상으로 입력해주세요')
         return
       }
       setErrorMsg(false)
       handleGetBiddingFormUpdate()
+    } else if (biddingForm.biddingPrice < paymentsInfo.minimumAmount && biddingForm.biddingPrice > 0) {
+      setErrorMsg(true)
+      alert('최저가 이상으로 입력해주세요')
+    } else if (biddingForm.biddingPrice == 0) {
+      if (window.confirm("입찰 가격을 입력하지 않으셨습니다. 입찰표상의 입찰 가격이 공란으로 표시됩니다. 다음으로 넘어가시겠습니까?")) {
+        setErrorMsg(false)
+        handleGetBiddingFormUpdate()
+      } else {
+        return
+      }
     } else {
       setErrorMsg(false)
       handleGetBiddingFormUpdate()
@@ -302,9 +309,19 @@ export default function BiddingPrice() {
           <span className="md:text-[32.5px] text-[20px] font-bold font-['suit'] not-italic leading-[135%] tracking-[-1%]">
             입찰 가격을 입력해주세요
           </span>
-          <span className="md:text-[18px] text-[16px] font-medium font-['suit'] leading-[135%] tracking-[-1%] text-center text-sutTitle">
-            최저가 이상부터 입력할 수 있습니다
-          </span>
+          <div className='md:flex hidden'>
+            <span className="md:text-[18px] text-[16px] font-medium font-['suit'] leading-[135%] tracking-[-1%] text-center text-sutTitle">
+              입찰가격을 정하지 않은 경우 다음 단계로 넘어가주세요
+            </span>
+          </div>
+          <div className='flex flex-col md:hidden'>
+            <span className="md:text-[18px] text-[16px] font-medium font-['suit'] leading-[135%] tracking-[-1%] text-center text-sutTitle">
+              입찰가격을 정하지 않은 경우
+            </span>
+            <span className="md:text-[18px] text-[16px] font-medium font-['suit'] leading-[135%] tracking-[-1%] text-center text-sutTitle">
+              다음 단계로 넘어가주세요
+            </span>
+          </div>
           <div className="flex flex-col gap-2 md:w-[550px] w-[90%] h-[500px] mt-[20px] border-slate-500 items-center">
             <div className='flex flex-row w-[100%] justify-start'>              
               <svg width="15" height="15" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" style={{
