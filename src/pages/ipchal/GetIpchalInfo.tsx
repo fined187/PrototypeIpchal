@@ -2,41 +2,64 @@ import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import useInits from '@/components/hooks/useInits'
 import Button from '@/components/shared/Button'
+import Title from '@/components/shared/Title'
 import { MstSeq } from '@/model/MstSeq'
+import postChecks from '@/remote/postChecks'
+import postInit from '@/remote/postInit'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useMutation } from 'react-query'
 import { useRecoilState } from 'recoil'
 
-export default function GetIpchalInfo({ formData }: { formData: MstSeq }) {
+interface GetIpchalInfoProps {
+  formData: MstSeq
+  setFormData: React.Dispatch<React.SetStateAction<MstSeq>>
+}
+
+export default function GetIpchalInfo({ formData, setFormData }: GetIpchalInfoProps) {
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
   const [blockData, setBlockData] = useState({
-    aesUserId: biddingInfo.aesUserId ?? '',
-    infoId: biddingInfo.infoId,
-    caseNo: biddingInfo.caseNo,
-    mulSeq: biddingInfo.mulSeq,
-    biddingDate: biddingInfo.biddingDate,
-    biddingTime: biddingInfo.biddingInfos[0].biddingTime,
+    aesUserId: formData.aesUserId,
+    infoId: formData.infoId,
+    caseNo: formData.caseNo,
+    mulSeq: formData.mulSeq,
+    biddingDate: formData.biddingDate,
+    biddingTime: formData.biddingInfos[0].biddingTime,
   })
 
   const [data, setData] = useState<any>([])
   const router = useRouter()
   const { idcode } = router.query
-  const { mutate: init } = useInits()
+  const { mutate: init } = useMutation(() => postInit(blockData.aesUserId, blockData.infoId, blockData.caseNo, blockData.mulSeq, blockData.biddingDate, blockData.biddingTime), {
+    onSuccess: (data) => {
+      setFormData({
+        ...formData,
+        mstSeq: data.mstSeq,
+        state: data.state,
+      })
+    },
+  })
+
+  const { mutate: caseCheck} = useMutation(() => postChecks(formData.infoId, formData.caseNo, formData.mulSeq), {
+    onSuccess: (data) => {
+      console.log(data)
+    }
+  })
 
   const handleConfirm = async () => {
     setLoading(true)
-    if (biddingInfo.biddingInfos.length > 1) {
+    if (formData.biddingInfos.length > 1) {
       setTimeout(() => {
         setStateNum(stateNum + 1)
         setLoading(false)
       }, 1000)
     } else {
       try {
-        init(blockData)
-        if (biddingInfo.biddingInfos.length > 1) {
+        await init()
+        if (formData.biddingInfos.length > 1) {
           setTimeout(() => {
             setStateNum(stateNum + 1)
             setLoading(false)
@@ -47,6 +70,7 @@ export default function GetIpchalInfo({ formData }: { formData: MstSeq }) {
             setLoading(false)
           }, 1000)
         }
+        setLoading(false)
       } catch (error) {
         console.log(error)
         setLoading(false)
@@ -86,34 +110,8 @@ export default function GetIpchalInfo({ formData }: { formData: MstSeq }) {
     }
   }
 
-  const handleGetCaseCheck = async () => {
-    setLoading(true)
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}cases/checks`,
-        {
-          infoId: biddingInfo.infoId,
-          caseNo: biddingInfo.caseNo,
-          mulSeq: biddingInfo.mulSeq,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )
-      if (response.status === 200) {
-        setData(response.data.data)
-        setLoading(false)
-      }
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
-    handleGetCaseCheck()
+    caseCheck()
   }, [])
 
   return ( 
@@ -123,14 +121,10 @@ export default function GetIpchalInfo({ formData }: { formData: MstSeq }) {
           <Spinner />
         )}
         <div className="flex flex-col w-[100%] bg-mybg items-center text-center md:py-[0px] py-[15px] relative">
-          <div className="flex flex-col md:gap-[14px] gap-[6px] pt-[50px]">
-            <span className="md:text-[32.5px] text-[20px] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic">
-              상세 내역을 확인해주세요
-            </span>
-            <span className="md:text-[18px] text-[16px] leading-[135%] tracking-[-1%] font-normal font-['suit'] not-italic text-sutTitle">
-              선택한 경매 사건이 맞는지 체크합니다
-            </span>
-          </div>
+          <Title 
+            title='상세 내역을 확인해주세요'
+            subTitle1='선택한 경매 사건이 맞는지 체크합니다'
+          />
           <div className={`flex flex-col md:w-[500px] h-[500px] w-[90%] overflow-y-auto md:gap-[7.5px] gap-[5px] bg-mybg `}>
             <div className="flex flex-col relative h-[80px] items-start justify-start bg-white mt-[30px] pt-[16px] pb-[16px] pl-[35px] pr-[35px] gap-[2.5px]">
               <span className="font-['suit'] font-medium md:text-[17px] text-[15px] leading-[130%] tracking-[0%]" style={{

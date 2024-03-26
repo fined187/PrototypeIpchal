@@ -1,82 +1,39 @@
-import { biddingInfoState, stepState } from '@/atom'
-import axios from 'axios'
-import Image from 'next/image'
+import { stepState } from '@/atom'
 import { useRecoilState } from 'recoil'
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { MstSeq } from '@/model/MstSeq'
+import Spinner from '@/components/Spinner'
 
-export default function StartIpchal() {
+interface StartIpchalProps {
+  formData: MstSeq
+  setFormData: React.Dispatch<React.SetStateAction<MstSeq>>
+}
+
+export default function StartIpchal({ formData, setFormData }: StartIpchalProps) {
   const [stateNum, setStateNum] = useRecoilState(stepState)
-  const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
-  const [biddingStatus, setBiddingStatus] = useState(false)
-  
-  useEffect(() => {
-    const { userId } = router.query
-    const { idcode } = router.query
-    if (userId) {
-      setBiddingInfo({
-        ...biddingInfo,
-        aesUserId: userId as string,
-      })
-    }
-    const handleGetBiddingStatus = async (idCode: string) => {
-      if (idcode) {
-        try {
-          const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_API_URL}case-status`,
-            {
-              idCode: idCode,
-            },
-            {
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            },
-          )
-          if (response.status === 200) {
-            setBiddingStatus(response.data.data.isBiddingStatus)
-            setBiddingInfo({
-              ...biddingInfo,
-              idcode: idCode,
-            })
-            return true;
-          } else {
-            return false;
-          }
-        } catch (error) {
-          console.log(error)
-        }
-      } else {
-        setBiddingStatus(true)
-      }
-    } 
-    handleGetBiddingStatus(idcode as string)
-  }, [router.query.idcode, router.query.userId])
-  
   const handleStart = async () => {
     setLoading(true)
-    if (!biddingStatus) {
+    if (!formData.biddingStatus) {
       alert('입찰기일이 지났거나 현재 입찰 중인 사건이 아닙니다.')
     } else {
-      if (biddingInfo.idcode !== "") {
+      if (formData.idcode !== "") {
         setStateNum(2)
         setLoading(false)
-      } else if (biddingInfo.idcode === "") {
+      } else if (formData.idcode === "") {
         setStateNum(stateNum + 1)
-        setBiddingInfo({
-          ...biddingInfo,
+        setFormData({
+          ...formData,
           searchResultState: 1,
         })
         setLoading(false)
-      } else if (biddingInfo.idcode !== "") {
+      } else if (formData.idcode !== "") {
         setStateNum(2)
         setLoading(false)
       } else {
         setStateNum(stateNum + 1)
-        setBiddingInfo({
-          ...biddingInfo,
+        setFormData({
+          ...formData,
           searchResultState: 1,
         })
         setLoading(false)
@@ -87,6 +44,11 @@ export default function StartIpchal() {
   return (
     <>
       <div className="flex w-[100%] h-[100%] justify-center bg-mybg relative" >
+        {
+          loading && (
+            <Spinner />
+          )
+        }
         <div className={`flex flex-col md:w-[50%] w-[100%] h-[100%] bg-mybg items-center text-center gap-[10px]`}>
           <div className='flex pt-[50px]'>
             <img

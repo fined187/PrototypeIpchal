@@ -1,4 +1,10 @@
 export interface MstSeq {
+  infoId: string
+  caseNo: string
+  mulSeq: string
+  searchResultState: number
+  biddingStatus: boolean
+  idcode: string
   aesUserId: string
   mstSeq: number
   state: number

@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil'
 import StartIpchal from './ipchal/StartIpchal'
-import { biddingInfoState, stepState } from '@/atom'
+import { stepState } from '@/atom'
 import BidderInfo from './ipchal/BidderInfo'
 import BidderCnt from './ipchal/BidderCnt'
 import ShareInfo from './ipchal/ShareInfo'
@@ -11,7 +11,6 @@ import CreateFile from './ipchal/CreateFile'
 import BidderForm from './ipchal/BidderForm'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import IpchalResult from './ipchal/IpchalResult'
 import BidderFormMod from './ipchal/BidderFormMod'
 import TimeInfo from './ipchal/TimeInfo'
@@ -24,9 +23,9 @@ import SearchIpchal from './ipchal/SearchIpchal'
 import GetIpchalInfo from './ipchal/GetIpchalInfo'
 import { MstSeq } from '@/model/MstSeq'
 import useMstSeq from '@/components/hooks/useMstSeq'
-import useChecks from '@/components/hooks/useChecks'
 import { useMutation } from 'react-query'
 import getChecks from '@/remote/getChecks'
+import getCaseStatus from '@/remote/getCaseStatus'
 
 export default function Home() {
   const router = useRouter()
@@ -34,40 +33,13 @@ export default function Home() {
   const { userId } = router.query
   const { idcode } = router.query
   const { data: mstSeqData, isSuccess: mstSeqDataSuccess } = useMstSeq(Number(mstSeq))
-  const { mutate: idCodeData } = useMutation(({ idCode }: { idCode: string }) => {
-    return getChecks(idCode)
-  }, {
-    onSuccess: (response) => {
-      setFormData((prev) => ({
-        ...prev,
-        aesUserId: userId as string ?? '',
-        infoId: response.infoId,
-        caseNo: response.caseNo,
-        mulSeq: response.mulSeq,
-        biddingDate: response.biddingDate,
-        courtFullName: response.courtFullName,
-        reqCourtName: response.reqCourtName,
-        mulNo: response.mulNo,
-        caseYear: response.caseYear,
-        caseDetail: response.caseDetail,
-        startYear: response.startYear,
-        startMonth: response.startMonth,
-        startDay: response.startDay,
-        caseNoString: response.caseNoString,
-        usage: response.usage,
-        biddingDateString: response.biddingDateString,
-        dayDay: response.dayDay,
-        address: response.address,
-        etcAddress: response.etcAddress,
-        roadAddress: response.roadAddress,
-        carInfo: response.carInfo,
-        biddingInfos: response.biddingInfos,
-      }));
-    }
-  })
-  const [stateNum, setStateNum] = useRecoilState(stepState)
-  const [loading, setLoading] = useState<boolean>(false)
   const [formData, setFormData] = useState<MstSeq>({
+    infoId: '',
+    caseNo: '',
+    mulSeq: '',
+    searchResultState: 0,
+    biddingStatus: true,
+    idcode: '',
     aesUserId: '',
     mstSeq: 0,
     state: 0,
@@ -129,6 +101,56 @@ export default function Home() {
       },
     ],
   })
+  const { mutate: caseStatus } = useMutation(({ idCode }: { idCode: string }) => {
+    return getCaseStatus(idCode)
+  }, {
+    onSuccess: (response) => {
+      setFormData((prev) => ({
+        ...prev,
+        biddingStatus: response
+      }))
+      if (response) {
+        idCodeData({ idCode: idcode as string })
+      } else {
+        alert('입찰기일이 지났거나 현재 입찰 중인 사건이 아닙니다.')
+      }
+    }
+  })
+  const { mutate: idCodeData } = useMutation(({ idCode }: { idCode: string }) => {
+    return getChecks(idCode)
+  }, {
+    onSuccess: (response) => {
+      setFormData((prev) => ({
+        ...prev,
+        idcode: idcode as string,
+        aesUserId: userId as string ?? '',
+        infoId: response.infoId,
+        caseNo: response.caseNo,
+        mulSeq: response.mulSeq,
+        biddingDate: response.biddingDate,
+        courtFullName: response.courtFullName,
+        reqCourtName: response.reqCourtName,
+        mulNo: response.mulNo,
+        caseYear: response.caseYear,
+        caseDetail: response.caseDetail,
+        startYear: response.startYear,
+        startMonth: response.startMonth,
+        startDay: response.startDay,
+        caseNoString: response.caseNoString,
+        usage: response.usage,
+        biddingDateString: response.biddingDateString,
+        dayDay: response.dayDay,
+        address: response.address,
+        etcAddress: response.etcAddress,
+        roadAddress: response.roadAddress,
+        carInfo: response.carInfo,
+        biddingInfos: response.biddingInfos,
+      }));
+    }
+  })
+  const [stateNum, setStateNum] = useRecoilState(stepState)
+  const [loading, setLoading] = useState<boolean>(false)
+  
 
   const handleStateNum = () => {
     if (formData.state === 0) {
@@ -148,7 +170,7 @@ export default function Home() {
 
   const handleCheck = async () => {
     try {
-      await idCodeData({ idCode: idcode as string })
+      await caseStatus({ idCode: idcode as string })
     } catch (error) {
       console.log(error)
     }
@@ -235,9 +257,9 @@ export default function Home() {
       )
       : (
         <>
-          {(((formData.state === 9) || (stateNum === 0)) ? <StartIpchal /> : (stateNum === 0) && <StartIpchal />)}
+          {(((formData.state === 9) || (stateNum === 0)) ? <StartIpchal formData={formData} setFormData={setFormData} /> : (stateNum === 0) && <StartIpchal formData={formData} setFormData={setFormData} />)}
           {(stateNum === 1) && <SearchIpchal />}
-          {(stateNum === 2) && <GetIpchalInfo formData={formData} />}
+          {(stateNum === 2) && <GetIpchalInfo formData={formData} setFormData={setFormData} />}
           {stateNum === 3 && formData.biddingInfos.length > 1 && <TimeInfo />}
           {(formData.state === 0 && stateNum === 4) ? <BidderInfo /> : (stateNum === 4) && <BidderInfo />}
           {(stateNum === 5) && <AgentForm />}
