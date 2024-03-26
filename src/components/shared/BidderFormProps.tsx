@@ -156,6 +156,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
                   .replace(/(\..*)\./g, '$1')
               }}
               type="text"
+              inputMode="numeric"
               id='bidderPhone1'
               maxLength={3}
               placeholder="010"
@@ -186,6 +187,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
               })}
               type="text"
               id='bidderPhone2'
+              inputMode="numeric"
               maxLength={4}
               onInput={(e) => {
                 e.currentTarget.value = e.currentTarget.value
@@ -220,6 +222,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
               })}
               type="text"
               id='bidderPhone3'
+              inputMode="numeric"
               maxLength={4}
               onInput={(e) => {
                 e.currentTarget.value = e.currentTarget.value
@@ -294,6 +297,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
                   }}
                   type="text"
                   id='bidderIdNum1'
+                  inputMode="numeric"
                   maxLength={6}
                   className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[45%] text-center"
                   value={biddingForm.bidIdNum1[stepNum - 1] || ''}
@@ -328,6 +332,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
                     id='bidderIdNum2'
                     type={`${!passwordActive ? 'password' : 'text'}`}
                     maxLength={7}
+                    inputMode="numeric"
                     className="flex justify-center items-center border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[100%] text-center"
                     value={biddingForm.bidIdNum2[stepNum - 1] ?? ''}
                     onChange={(e) => {
@@ -346,7 +351,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
                       handleInputChange(e)
                     }}
                   />
-                  <div className="flex justify-center items-center w-[10%] h-[40px] cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2"
+                  <div className="flex justify-center items-center w-[10%] h-[40px] cursor-pointer absolute md:right-0 right-1 top-1/2 transform -translate-y-1/2"
                     onClick={() => setPasswordActive(!passwordActive)}
                   >
                     {passwordActive ? (
@@ -391,6 +396,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
                   })}
                   type="text"
                   id='bidderCorpNum1'
+                  inputMode="numeric"
                   placeholder="123"
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
@@ -428,6 +434,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
                   })}
                   type="text"
                   id='bidderCorpNum2'
+                  inputMode="numeric"
                   placeholder="45"
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
@@ -465,6 +472,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
                   })}
                   type="text"
                   id='bidderCorpNum3'
+                  inputMode="numeric"
                   placeholder="67890"
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value
@@ -533,6 +541,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
                     }}
                     maxLength={6}
                     placeholder="123456"
+                    inputMode="numeric"
                     className="border border-gray-300 focus:outline-2 focus:outline-myBlue rounded-md md:text-[20px] text-[16px] font-semibold leading-[135%] tracking-[-2%] font-['suit'] not-italic h-[40px] px-2 w-[50%] text-center"
                     value={biddingForm.bidCorpRegiNum1[stepNum - 1] || ''}
                     onChange={(e) => {
@@ -562,6 +571,7 @@ export default function BidderFormProps({ setValue, setError, handleSubmit, onSu
                     })}
                     type="text"
                     id='bidderCorpRegiNum2'
+                    inputMode="numeric"
                     onInput={(e) => {
                       e.currentTarget.value = e.currentTarget.value
                         .replace(/[^0-9.]/g, '')

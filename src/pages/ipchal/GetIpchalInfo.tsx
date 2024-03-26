@@ -2,16 +2,17 @@ import { biddingInfoState, stepState } from '@/atom'
 import Spinner from '@/components/Spinner'
 import useInits from '@/components/hooks/useInits'
 import Button from '@/components/shared/Button'
+import { MstSeq } from '@/model/MstSeq'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
-export default function GetIpchalInfo() {
+export default function GetIpchalInfo({ formData }: { formData: MstSeq }) {
   const [stateNum, setStateNum] = useRecoilState(stepState)
   const [biddingInfo, setBiddingInfo] = useRecoilState(biddingInfoState)
   const [loading, setLoading] = useState<boolean>(false)
-  const [formData, setFormData] = useState({
+  const [blockData, setBlockData] = useState({
     aesUserId: biddingInfo.aesUserId ?? '',
     infoId: biddingInfo.infoId,
     caseNo: biddingInfo.caseNo,
@@ -20,7 +21,7 @@ export default function GetIpchalInfo() {
     biddingTime: biddingInfo.biddingInfos[0].biddingTime,
   })
 
-  const [data, getData] = useState<any>([])
+  const [data, setData] = useState<any>([])
   const router = useRouter()
   const { idcode } = router.query
   const { mutate: init } = useInits()
@@ -34,7 +35,7 @@ export default function GetIpchalInfo() {
       }, 1000)
     } else {
       try {
-        init(formData)
+        init(blockData)
         if (biddingInfo.biddingInfos.length > 1) {
           setTimeout(() => {
             setStateNum(stateNum + 1)
@@ -102,7 +103,7 @@ export default function GetIpchalInfo() {
         },
       )
       if (response.status === 200) {
-        getData(response.data.data)
+        setData(response.data.data)
         setLoading(false)
       }
     } catch (error) {
@@ -115,7 +116,7 @@ export default function GetIpchalInfo() {
     handleGetCaseCheck()
   }, [])
 
-  return (
+  return ( 
     <>
       <div className="flex w-[100%] h-[100%] justify-center bg-white relative">
         {loading && (
@@ -140,7 +141,7 @@ export default function GetIpchalInfo() {
               <span className="text-black md:text-[20px] text-[16px] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
                 color: '#181826',
               }}>
-                {biddingInfo.courtFullName}
+                {formData.courtFullName}
               </span>
             </div>
             <div className='flex justify-between bg-white pt-[16px] pb-[16px] pl-[35px] pr-[35px] h-[80px]'>
@@ -153,7 +154,7 @@ export default function GetIpchalInfo() {
                 <span className="text-black md:text-[20px] text-[16px] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
                 color: '#181826',
               }}>
-                  {biddingInfo.sagunNum + '호'}
+                  {formData.caseNoString}
                 </span>
               </div>
               <div className="flex flex-col relative justify-start items-start w-[20%] gap-[2.5px]">
@@ -165,7 +166,7 @@ export default function GetIpchalInfo() {
                 <span className="text-black md:text-[20px] text-[16px] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
                 color: '#181826',
               }}>
-                  {biddingInfo.mulNo}
+                  {formData.mulNo}
                 </span>
               </div>
             </div>
@@ -179,7 +180,7 @@ export default function GetIpchalInfo() {
                 <span className="text-black md:text-[20px] text-[16px] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
                 color: '#181826',
               }}>
-                  {biddingInfo.ipchalDate}
+                  {formData.biddingDateString}
                 </span>
               </div>
               <div className="flex flex-col relative justify-center items-start w-[20%] gap-[2.5px]">
@@ -189,7 +190,7 @@ export default function GetIpchalInfo() {
                 <span className="text-black md:text-[20px] text-[16px] font-normal font-['suit'] leading-[135%] tracking-[-1%]" style={{
                 color: '#181826',
               }}>
-                  {data.dayDay}
+                  {formData.dayDay}
                 </span>
               </div>
             </div>
@@ -203,7 +204,7 @@ export default function GetIpchalInfo() {
                 <span className="text-black md:text-[20px] text-[16px] font-normal font-['suit'] leading-[135%] tracking-[-1%] text-left" style={{
                 color: '#181826',
               }}>
-                  {data.carInfo}
+                  {formData.carInfo}
                 </span>
               </div>
             ) : (
@@ -218,10 +219,10 @@ export default function GetIpchalInfo() {
               <span className="text-black md:text-[20px] text-[16px] font-normal font-['suit'] leading-[135%] tracking-[-1%] text-left" style={{
                 color: '#181826',
               }}>
-                {biddingInfo.sagunAddr + (biddingInfo.etcAddress !== '' ? '[일괄]' + biddingInfo.etcAddress : '')}
+                {formData.address + (formData.etcAddress !== '' ? '[일괄]' + formData.etcAddress : '')}
               </span>
               <span className="text-myBlue md:text-[18px] text-[16px] text-left font-normal leading-[135%] tracking-[-1%] font-['suit'] ">
-                {biddingInfo.roadAddress}
+                {formData.roadAddress}
               </span>
             </div>
           </div>

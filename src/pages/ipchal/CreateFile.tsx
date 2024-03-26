@@ -246,7 +246,9 @@ export default function CreateFile() {
   return (
     <>
       {!loading && (
-        <div className="flex w-[100%] h-[100%] justify-center bg-mybg relative">
+        <div className="flex w-[100%] h-[100%] justify-center bg-mybg relative" style={{
+          height: "100vh"
+        }}>
           <div className="flex flex-col md:gap-[14px] gap-[5px] w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
             <span className="md:text-[32.5px] text-[20px] font-bold leading-[135%] tracking-[-1%] font-['suit'] not-italic">
               입찰표 작성이 끝났습니다

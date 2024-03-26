@@ -117,7 +117,7 @@ export default function PreparingList() {
   
   return (
     <>
-      <div className="flex flex-col justify-center w-[100%] h-[100%] bg-white items-center text-center relative">
+      <div className="flex flex-col justify-center w-[100%] h-[100vh] bg-white items-center text-center relative">
         <div className="flex flex-col justify-center items-center w-[100%] h-[100%] bg-mybg relative">
           <div className="flex flex-col md:gap-[14px] gap-[5px] w-[100%] h-[100%] bg-mybg items-center text-center relative pt-[50px]">
             <span className="md:text-[32.5px] text-[20px] font-bold leading-[135%] tracking-[-1%] font-['suit'] not-italic">

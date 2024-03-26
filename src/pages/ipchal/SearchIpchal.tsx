@@ -1,7 +1,9 @@
 import { biddingInfoState, stepState } from "@/atom";
 import Spinner from "@/components/Spinner";
+import useSearchResult from "@/components/hooks/useSearchResult";
 import Button from "@/components/shared/Button";
 import { SearchResultType } from "@/model/IpchalType";
+import baseApiInstance from "@/remote/baseURL";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -14,6 +16,7 @@ export default function SearchIpchal() {
   const [getAuction, setGetAuction] = useState<string | null>(null)
   const [searchResult, setSearchResult] = useState<number>(1)
   const [getData, setGetData] = useState<SearchResultType[] | null>(null)
+  const {mutate: postSearchResult} = useSearchResult()
 
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -24,7 +27,7 @@ export default function SearchIpchal() {
   const handleSearch = async(caseNum: string, autionNum: string) => {
     setLoading(true)
     try {
-      const response = await axios.get(`https://dev-api.ggi.co.kr:8443/ggi/api/bid-form/cases/${caseNum}/${autionNum}`)
+      const response = await baseApiInstance.get(`cases/${caseNum}/${autionNum}`)
       if (response.status === 200) {
         if (response.data.data.cases.length > 0) {
           setGetData(response.data.data.cases)
@@ -48,43 +51,9 @@ export default function SearchIpchal() {
   const handleSearchResult = async(infoId: string, caseNo: string, mulSeq: string) => {
     setLoading(true)
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}cases/checks`, {
-        infoId: infoId,
-        caseNo: caseNo,
-        mulSeq: mulSeq
-      }, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      if (response.status === 200) {
-        setBiddingInfo({
-          ...biddingInfo,
-          infoId: response.data.data.infoId,
-          caseNo: response.data.data.caseNo,
-          mulSeq: response.data.data.mulSeq,
-          biddingDate: (response.data.data.startYear) +
-          (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) +
-          (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay),
-          courtFullName: response.data.data.courtFullName,
-          reqCourtName: response.data.data.reqCourtName,
-          mulNo: response.data.data.mulNo === '' ? '1' : response.data.data.mulNo,
-          sagunNum:
-              response.data.data.caseYear +
-              ' 타경 ' +
-              response.data.data.caseDetail,
-          ipchalDate: (response.data.data.startYear) + '년 ' +
-          (response.data.data.startMonth.length !== 2 ? "0" + response.data.data.startMonth : response.data.data.startMonth) + '월 ' +
-          (response.data.data.startDay.length !== 2 ? "0" + response.data.data.startDay : response.data.data.startDay) + '일',
-          sagunAddr: response.data.data.address,
-          usage: response.data.data.usage,
-          etcAddress: response.data.data.etcAddress,
-          roadAddress: response.data.data.roadAddress,
-          biddingInfos: response.data.data.biddingInfos,
-        })
-        setLoading(false)
-        setStateNum(stateNum + 1)
-      } 
+      postSearchResult({ infoId, caseNo, mulSeq })
+      setLoading(false)
+      setStateNum(stateNum + 1)
     } catch (error) {
       console.log(error)
       setLoading(false)

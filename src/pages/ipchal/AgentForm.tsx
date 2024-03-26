@@ -110,7 +110,7 @@ export default function AgentForm() {
   }
 
   return (
-    <div className="flex w-[100%] h-[100%] bg-mybg justify-center relative">
+    <div className="flex w-[100%] md:h-[100%] h-[100vh] bg-mybg justify-center relative">
       <div className="flex flex-col gap-4 w-[100%] h-[100%] bg-mybg items-center text-center relative">
         <div className="flex flex-col md:gap-[14px] gap-[5px] justify-center items-center pt-[50px]">
           <span className="md:text-[32.5px] text-[20px] leading-[135%] tracking-[-1%] font-bold font-['suit'] not-italic">
